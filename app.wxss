@@ -1,0 +1,32 @@
+@import "/assets/icons/iconfont.wxss";
+
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+.inter {
+  font-family: "inter";
+}
+
+.heebo {
+  font-family: "heebo";
+}
+
+.ds {
+  font-family: "ds";
+}
+
+.gilory {
+  font-family: "gilory";
+}
+
+.nunito {
+  font-family: "nunito";
+}
