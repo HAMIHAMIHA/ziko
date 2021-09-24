@@ -1,4 +1,4 @@
-// pages/index/map/map.js
+// pages/lottery/detail/detail.js
 Page({
 
   /**

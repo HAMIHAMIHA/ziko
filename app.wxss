@@ -1,15 +1,26 @@
 @import "/assets/fonts/iconfont.wxss";
 @import "/assets/fonts/fonts.wxss";
 
+/* Set Variables */
+page {
+  --env-: env(safe-area-inset-bottom);
+  --font-grey-: #A3A8B7;
+  --font-grey-dark-: #9D9FA4;
+  --font-grey-form-: #A3A8B7;
+}
 
-/**app.wxss**/
-/* .container {
-  height: 100%;
+page {
+  background: #0A0B12;
+  color: #FFFFFF;
+}
+
+.container {
+  /* height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 200rpx 0;
-  box-sizing: border-box;
-}  */
+  box-sizing: border-box; */
+} 
 

@@ -1,5 +1,4 @@
-<!--index.wxml-->
-<view class="container">
+<!-- <view class="container">
   <view class="userinfo">
     <block wx:if="{{canIUseOpenData}}">
       <view class="userinfo-avatar" bindtap="bindViewTap">
@@ -19,5 +18,30 @@
   </view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
+  </view>
+</view> -->
+
+<view class="container">
+  <view class="map" wx:if="{{ map }}">
+    <cover-image src="/assets/images/map.jpg"></cover-image>
+  </view>
+
+  <view class="list" wx:else>
+    <!-- slide menu -->
+    <!-- list = component -->
+    <offers id="list-offers"></offers>
+  </view>
+
+  <!-- popup -->
+  <view class="modal" wx:if="{{ mapList }}">
+    <!-- list = componenet -->
+    <offers id="map-offers"></offers>
+  </view>
+
+  <view class="gilroy__700 switcher__container">
+    <view class="switcher">
+      <button class="switch{{ map ? ' selected' : '' }}" bindtap="switchType" data-type="map">explore</button>
+      <button class="switch{{ map ? '' : ' selected' }}" bindtap="switchType" data-type="list">list</button>
+    </view>
   </view>
 </view>

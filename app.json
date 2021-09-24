@@ -1,12 +1,13 @@
 {
   "pages":[
-    "pages/index/map/map",
-    "pages/index/list/list",
+    "pages/index/index",
     "pages/account/index/index",
     "pages/account/information/information",
     "pages/address/index/index",
     "pages/address/detail/detail",
     "pages/cart/cart",
+    "pages/lottery/index/index",
+    "pages/lottery/detail/detail",
     "pages/offer/offer",
     "pages/orders/index/index",
     "pages/orders/detail/detail",
@@ -17,13 +18,53 @@
     "pages/vouchers/index/index",
     "pages/vouchers/select/select"
   ],
-  
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+
+  "tabBar": {
+    "borderStyle": "white",
+    "color": "#CBCFDE",
+    "backgroundColor": "#ffffff",
+    "selectedColor": "#11141B",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "assets/icons/land.png",
+        "selectedIconPath": "assets/icons/landSel.png",
+        "text": "The land"
+      },
+      {
+        "pagePath": "pages/orders/index/index",
+        "iconPath": "assets/icons/orders.png",
+        "selectedIconPath": "assets/icons/ordersSel.png",
+        "text": "Orders"
+      },
+      {
+        "pagePath": "pages/recipes/index/index",
+        "iconPath": "assets/icons/explore.png",
+        "selectedIconPath": "assets/icons/exploreSel.png",
+        "text": "Explore"
+      },
+      {
+        "pagePath": "pages/lottery/index/index",
+        "iconPath": "assets/icons/lottery.png",
+        "selectedIconPath": "assets/icons/lotterySel.png",
+        "text": "Lottery"
+      },
+      {
+        "pagePath": "pages/account/index/index",
+        "iconPath": "assets/icons/account.png",
+        "selectedIconPath": "assets/icons/accountSel.png",
+        "text": "Account"
+      }
+    ]
   },
+
+  "window":{
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#11141B",
+    "navigationBarTitleText": "Zikoland",
+    "navigationBarTextStyle":"white"
+  },
+
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

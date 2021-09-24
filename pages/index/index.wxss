@@ -1,0 +1,78 @@
+/* .userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin-top: 200px;
+} */
+
+.container {
+  position: relative;
+}
+
+.map {
+  padding-bottom: calc(132rpx + var(--env-)); /* TODO padding for button 16px * 2 + button height 34px */
+  background: #272838;
+}
+
+.list {
+  min-height: 100vh;
+}
+
+/* Bottom Switch Button */
+.switcher__container {
+  width: 100vw;
+  text-transform: uppercase;
+  display: flex;
+  position: absolute;
+  bottom: calc(32rpx + var(--env-));
+}
+
+.switcher {
+  width: 100%;
+  padding: 0 27vw;
+  display: flex;
+  filter: drop-shadow(0px 4px 8px #0E111B);
+}
+
+.switcher .switch {
+  width: 50%;
+  padding: 20rpx 30rpx;
+  background: #2E313F;
+  color: #626575;
+  font-size: 24rpx;
+  line-height: 28rpx;
+  border-radius: 0;
+}
+
+.switcher .switch:first-child {
+  border-radius: 8rpx 0 0 8rpx;
+}
+
+.switcher .switch:last-child {
+  border-radius: 0 8rpx 8rpx 0;
+}
+
+.switcher .switch.selected {
+  background: #636978;
+  color: #FFFFFF;
+}
+
+.switcher .switch:first-child.selected {
+  border-right: 2rpx solid #687084;
+}
+
+.switcher .switch:last-child.selected {
+  border-left: 2rpx solid #687084;
+}

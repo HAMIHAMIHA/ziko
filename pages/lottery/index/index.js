@@ -1,4 +1,4 @@
-// pages/index/list/list.js
+// pages/lottery/index/index.js
 Page({
 
   /**

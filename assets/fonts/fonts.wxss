@@ -152,22 +152,22 @@ page {
 }
 
 /* Fonts Class - Family */
-.gilory__500 {
+.gilroy__500 {
   font-family: "gilroy";
   font-weight: 500;
 }
 
-.gilory__700 {
+.gilroy__700 {
   font-family: "gilroy";
   font-weight: 700;
 }
 
-.gilory__800 {
+.gilroy__800 {
   font-family: "gilroy";
   font-weight: 800;
 }
 
-.gilory__900 {
+.gilroy__900 {
   font-family: "gilroy";
   font-weight: 900;
 }
