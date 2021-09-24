@@ -1,0 +1,203 @@
+/* TODO need to upload all font files to server */
+
+/* 
+    100 - Thin
+    200 - Extra Light (Ultra Light)
+    300 - Light
+    400 - Normal
+    500 - Medium
+    600 - Semi Bold (Demi Bold)
+    700 - Bold
+    800 - Extra Bold (Ultra Bold)
+    900 - Black (Heavy)
+ */
+
+ /* Gilroy */
+@font-face {
+  font-family: 'gilroy';
+  src: url('/assets/fonts/Gilroy-Medium.otf?s0kbi6');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'gilroy';
+  src: url('/assets/fonts/Gilroy-Bold.otf?s0kbi6');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'gilroy';
+  src: url('/assets/fonts/Gilroy-ExtraBold.otf?s0kbi6');
+  font-weight: 800;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'gilroy';
+  src: url('/assets/fonts/Gilroy-Heavy.otf?s0kbi6');
+  font-weight: 900;
+  font-style: normal;
+  font-display: block;
+}
+
+/* Heebo */
+@font-face {
+  font-family: 'heebo';
+  src: url('/assets/fonts/Heebo-Regular.ttf?s0kbi6');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'heebo';
+  src: url('/assets/fonts/Heebo-Medium.ttf?s0kbi6');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'heebo';
+  src: url('/assets/fonts/Heebo-Bold.ttf?s0kbi6');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'heebo';
+  src: url('/assets/fonts/Heebo-Black.ttf?s0kbi6');
+  font-weight: 900;
+  font-style: normal;
+  font-display: block;
+}
+
+/* Inter */
+@font-face {
+  font-family: 'inter';
+  src: url('/assets/fonts/Inter-Regular.ttf?0kbi6');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'inter';
+  src: url('/assets/fonts/Inter-Medium.ttf?0kbi6');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'inter';
+  src: url('/assets/fonts/Inter-SemiBold.ttf?0kbi6');
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'inter';
+  src: url('/assets/fonts/Inter-Bold.ttf?0kbi6');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'inter';
+  src: url('/assets/fonts/Inter-ExtraBold.ttf?0kbi6');
+  font-weight: 800;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'inter';
+  src: url('/assets/fonts/Inter-Black.ttf?0kbi6');
+  font-weight: 900;
+  font-style: normal;
+  font-display: block;
+}
+
+/* Nunito */
+@font-face {
+  font-family: 'nunito';
+  src: url('/assets/fonts/Nunito-Light.ttf?0kbi6');
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'nunito';
+  src: url('/assets/fonts/Nunito-Regular.ttf?0kbi6');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'nunito';
+  src: url('/assets/fonts/Nunito-SemiBold.ttf?0kbi6');
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'nunito';
+  src: url('/assets/fonts/Nunito-Bold.ttf?0kbi6');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+/* Fonts */
+.gilory {
+  font-family: "gilroy";
+}
+
+.heebo {
+  font-family: "heebo";
+}
+
+.inter {
+  font-family: "inter";
+}
+
+.nunito {
+  font-family: "nunito";
+}
+
+/* Font Weights */
+.font__300 {
+  font-weight: 300;
+}
+
+.font__500 {
+  font-weight: 500;
+}
+
+.font__600 {
+  font-weight: 600;
+}
+
+.font__700 {
+  font-weight: 700;
+}
+
+.font__800 {
+  font-weight: 800;
+}
+
+.font__900 {
+  font-weight: 900;
+}
