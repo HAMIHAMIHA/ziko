@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<!-- <view class="container">
+<view class="container">
   <view class="userinfo">
     <block wx:if="{{canIUseOpenData}}">
       <view class="userinfo-avatar" bindtap="bindViewTap">
@@ -20,36 +20,4 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
-</view> -->
-
-<text class="iconfont icon-minus"></text>
-
-
-<view>Normal 123</view>
-
-<view class="font__700">Bold 123</view>
-
-<view class="inter">inter 123</view>
-<view class="inter font__400">inter 400 123</view>
-<view class="inter font__500">inter 500 123</view>
-<view class="inter font__600">inter 600 123</view>
-<view class="inter font__700">inter 700 123</view>
-<view class="inter font__800">inter 800 123</view>
-<view class="inter font__900">inter 900 123</view>
-
-<view class="heebo">heebo 123</view>
-<view class="heebo font__400">heebo 400 123</view>
-<view class="heebo font__500">heebo 500 123</view>
-<view class="heebo font__700">heebo 700 123</view>
-<view class="heebo font__900">heebo 900 123</view>
-
-<view class="gilory font__500">gilory 500 123</view>
-<view class="gilory font__700">gilory 700 123</view>
-<view class="gilory font__800">gilory 800 123</view>
-<view class="gilory font__900">gilory 900 123</view>
-
-<view class="nunito">Nunito 123</view>
-<view class="nunito font__300">Nunito 300 123</view>
-<view class="nunito font__400">Nunito 400 123</view>
-<view class="nunito font__600">Nunito 600 123</view>
-<view class="nunito font__700">Nunito 700 123</view>
+</view>

@@ -1,18 +1,9 @@
 /* TODO need to upload all font files to server */
+page {
+  font-family: "inter, nunito, arial";
+}
 
-/* 
-    100 - Thin
-    200 - Extra Light (Ultra Light)
-    300 - Light
-    400 - Normal
-    500 - Medium
-    600 - Semi Bold (Demi Bold)
-    700 - Bold
-    800 - Extra Bold (Ultra Bold)
-    900 - Black (Heavy)
- */
-
- /* Gilroy */
+/* Font Setup - Gilroy */
 @font-face {
   font-family: 'gilroy';
   src: url('/assets/fonts/Gilroy-Medium.otf?s0kbi6');
@@ -45,7 +36,7 @@
   font-display: block;
 }
 
-/* Heebo */
+/* Font Setup - Heebo */
 @font-face {
   font-family: 'heebo';
   src: url('/assets/fonts/Heebo-Regular.ttf?s0kbi6');
@@ -78,7 +69,7 @@
   font-display: block;
 }
 
-/* Inter */
+/* Font Setup - Inter */
 @font-face {
   font-family: 'inter';
   src: url('/assets/fonts/Inter-Regular.ttf?0kbi6');
@@ -127,7 +118,7 @@
   font-display: block;
 }
 
-/* Nunito */
+/* Font Setup - Nunito */
 @font-face {
   font-family: 'nunito';
   src: url('/assets/fonts/Nunito-Light.ttf?0kbi6');
@@ -160,25 +151,96 @@
   font-display: block;
 }
 
-/* Fonts */
-.gilory {
+/* Fonts Class - Family */
+.gilory__500 {
   font-family: "gilroy";
+  font-weight: 500;
+}
+
+.gilory__700 {
+  font-family: "gilroy";
+  font-weight: 700;
+}
+
+.gilory__800 {
+  font-family: "gilroy";
+  font-weight: 800;
+}
+
+.gilory__900 {
+  font-family: "gilroy";
+  font-weight: 900;
 }
 
 .heebo {
   font-family: "heebo";
 }
 
+.heebo__500 {
+  font-family: "heebo";
+  font-weight: 500;
+}
+
+.heebo__700 {
+  font-family: "heebo";
+  font-weight: 700;
+}
+
+.heebo__900 {
+  font-family: "heebo";
+  font-weight: 900;
+}
+
 .inter {
   font-family: "inter";
+}
+
+.inter__500 {
+  font-family: "inter";
+  font-weight: 500;
+}
+
+.inter__600 {
+  font-family: "inter";
+  font-weight: 600;
+}
+
+.inter__700 {
+  font-family: "inter";
+  font-weight: 700;
+}
+
+.inter__800 {
+  font-family: "inter";
+  font-weight: 800;
+}
+
+.inter__900 {
+  font-family: "inter";
+  font-weight: 900;
 }
 
 .nunito {
   font-family: "nunito";
 }
 
-/* Font Weights */
-.font__300 {
+.nunito__300 {
+  font-family: "nunito";
+  font-weight: 300;
+}
+
+.nunito__600 {
+  font-family: "nunito";
+  font-weight: 600;
+}
+
+.nunito__700 {
+  font-family: "nunito";
+  font-weight: 700;
+}
+
+/* Fonts Class - Weights */
+/* .font__300 {
   font-weight: 300;
 }
 
@@ -200,4 +262,4 @@
 
 .font__900 {
   font-weight: 900;
-}
+} */

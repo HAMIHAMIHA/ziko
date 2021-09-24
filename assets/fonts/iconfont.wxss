@@ -12,7 +12,7 @@
   font-display: block;
 }
 
-.iconfont {
+.icon {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'iconfont' !important;
   speak: never;
@@ -27,81 +27,180 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-account:before {
+.icon-lottery:before {
+  content: "\e937";
+}
+.icon-special:before {
+  content: "\e938";
+}
+.icon-ziko_baby_nude:before {
   content: "\e900";
 }
-.icon-alert:before {
+.icon-ziko_baby1:before {
   content: "\e901";
 }
-.icon-bag:before {
+.icon-ziko_baby2:before {
   content: "\e902";
 }
-.icon-chat:before {
+.icon-ziko_baby3:before {
   content: "\e903";
 }
-.icon-check:before {
+.icon-ziko_cellar_nude:before {
   content: "\e904";
 }
-.icon-crown:before {
+.icon-ziko_cellar1:before {
   content: "\e905";
 }
-.icon-explore:before {
+.icon-ziko_cellar2:before {
   content: "\e906";
 }
-.icon-filters:before {
+.icon-ziko_cellar3:before {
   content: "\e907";
 }
-.icon-gift:before {
+.icon-ziko_garden_nude:before {
   content: "\e908";
 }
-.icon-heart:before {
+.icon-ziko_garden1:before {
+  content: "\e909";
+}
+.icon-ziko_garden2:before {
   content: "\e90a";
 }
-.icon-land:before {
+.icon-ziko_garden3:before {
   content: "\e90b";
 }
-.icon-lottery:before {
+.icon-ziko_kitchen_nude:before {
   content: "\e90c";
 }
-.icon-orders:before {
+.icon-ziko_kitchen1:before {
   content: "\e90d";
 }
-.icon-package:before {
+.icon-ziko_kitchen2:before {
   content: "\e90e";
 }
-.icon-redpacket:before {
-  content: "\e911";
-}
-.icon-search:before {
-  content: "\e912";
-}
-.icon-share:before {
-  content: "\e913";
-}
-.icon-ticket:before {
-  content: "\e914";
-}
-.icon-x:before {
-  content: "\e915";
-}
-.icon-play:before {
+.icon-ziko_kitchen3:before {
   content: "\e90f";
 }
-.icon-plus:before {
+.icon-ziko_land_nude:before {
   content: "\e910";
 }
-.icon-yuan:before {
+.icon-ziko_land1:before {
+  content: "\e911";
+}
+.icon-ziko_land2:before {
+  content: "\e912";
+}
+.icon-ziko_petcorner_nude:before {
+  content: "\e913";
+}
+.icon-ziko_petcorner1:before {
+  content: "\e914";
+}
+.icon-ziko_petcorner2:before {
+  content: "\e915";
+}
+.icon-ziko_petcorner3:before {
   content: "\e916";
 }
-.icon-bigbag:before {
+.icon-contact:before {
+  content: "\e939";
+}
+.icon-trash:before {
+  content: "\e93a";
+}
+.icon-dot:before {
   content: "\e917";
 }
-.icon-box:before {
+.icon-arrow-left:before {
   content: "\e918";
 }
-.icon-eye:before {
+.icon-arrow:before {
   content: "\e919";
 }
-.icon-minus:before {
+.icon-edit:before {
   content: "\e91a";
+}
+.icon-minus:before {
+  content: "\e91b";
+}
+.icon-eye:before {
+  content: "\e91c";
+}
+.icon-box:before {
+  content: "\e91d";
+}
+.icon-bigbag:before {
+  content: "\e91e";
+}
+.icon-yuan:before {
+  content: "\e91f";
+}
+.icon-x:before {
+  content: "\e920";
+}
+.icon-ticket:before {
+  content: "\e921";
+}
+.icon-share:before {
+  content: "\e922";
+}
+.icon-search:before {
+  content: "\e923";
+}
+.icon-redpacket:before {
+  content: "\e924";
+}
+.icon-plus:before {
+  content: "\e925";
+}
+.icon-play:before {
+  content: "\e926";
+}
+.icon-package:before {
+  content: "\e927";
+}
+.icon-orders:before {
+  content: "\e928";
+}
+.icon-lottery1:before {
+  content: "\e929";
+}
+.icon-land:before {
+  content: "\e92a";
+}
+.icon-heart:before {
+  content: "\e92b";
+}
+.icon-gift:before {
+  content: "\e92c";
+}
+.icon-filters:before {
+  content: "\e92d";
+}
+.icon-explore:before {
+  content: "\e92e";
+}
+.icon-crown:before {
+  content: "\e92f";
+}
+.icon-check:before {
+  content: "\e930";
+}
+.icon-chat:before {
+  content: "\e931";
+}
+.icon-bag:before {
+  content: "\e932";
+}
+.icon-alert:before {
+  content: "\e933";
+}
+.icon-account:before {
+  content: "\e934";
+}
+.icon-wine:before {
+  content: "\e935";
+}
+.icon-ticket-fill:before {
+  content: "\e936";
 }
