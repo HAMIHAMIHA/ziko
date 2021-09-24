@@ -2,7 +2,8 @@ const app = getApp()
 
 Page({
   data: {
-    map: true,
+    //map: true,
+    map: false,
     mapList: false
   },
 

@@ -27,7 +27,26 @@
   </view>
 
   <view class="list" wx:else>
-    <!-- slide menu -->
+    <!-- Slide Menu -->
+    <view class="page-section-spacing">
+      <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+        <view id="demo1" class="scroll-view-item_H demo-text-1">1</view>
+        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
+        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
+        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
+        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
+        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
+        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
+        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
+        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
+        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
+        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
+        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
+        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
+        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
+        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
+      </scroll-view>
+    </view>
     <!-- list = component -->
     <offers id="list-offers"></offers>
   </view>

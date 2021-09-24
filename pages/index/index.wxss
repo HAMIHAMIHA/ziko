@@ -21,14 +21,30 @@
   position: relative;
 }
 
+/* Map Display */
 .map {
   padding-bottom: calc(132rpx + var(--env-)); /* TODO padding for button 16px * 2 + button height 34px */
   background: #272838;
 }
 
+/* List Display */
 .list {
   min-height: 100vh;
 }
+
+/* TEMP */
+.scroll-view_H{
+  white-space: nowrap;
+}
+
+.scroll-view-item_H{
+  display: inline-block;
+  width: 33%;
+  height: 300rpx;
+}
+
+/* Map List Popup */
+
 
 /* Bottom Switch Button */
 .switcher__container {
