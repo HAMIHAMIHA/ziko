@@ -1,8 +1,23 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/index/map/map",
+    "pages/index/list/list",
+    "pages/account/index/index",
+    "pages/account/information/information",
+    "pages/address/index/index",
+    "pages/address/detail/detail",
+    "pages/cart/cart",
+    "pages/offer/offer",
+    "pages/orders/index/index",
+    "pages/orders/detail/detail",
+    "pages/product/product",
+    "pages/recipes/index/index",
+    "pages/recipes/detail/detail",
+    "pages/recipes/filter/filter",
+    "pages/vouchers/index/index",
+    "pages/vouchers/select/select"
   ],
+  
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
