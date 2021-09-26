@@ -28,8 +28,8 @@
 
   <view class="list" wx:else>
     <!-- Scroll Menu -->
-    <view class="h-scroll_container">
-      <scroll-view class="h-scroll scroll-menu" scroll-x="true" bindscroll="scroll">
+    <view class="h-scroll_container scroll-menu">
+      <scroll-view class="h-scroll" scroll-x="true" bindscroll="scroll">
         <view class="h-scroll_item zikoland selected" bindtap="switchMenu" data-menu-item="all">
           <view class="icon icon-ziko_right"></view>
         </view>

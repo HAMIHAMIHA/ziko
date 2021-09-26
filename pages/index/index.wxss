@@ -36,32 +36,34 @@
 /* TODO */
 
 /* Scroll Menu */
+.scroll-menu {
+  border-bottom: 2rpx solid #292D3A;
+  box-shadow: 0 12rpx 24rpx rgba(9, 11, 17, 0.65);
+}
+
 .h-scroll_item {
   margin: 0 24rpx;
   padding: 24rpx 0;
   position: relative;
 }
 
-.icon {
-  font-size: 70rpx;
-  line-height: 70rpx;
+.scroll-menu .h-scroll_item:first-child {
+  margin-left: 34rpx;
 }
 
-.zikoland {
-  font-size: 20rpx;
-  align-items: center;
+.scroll-menu .h-scroll_item:last-child {
+  margin-right: 34rpx;
 }
 
-.icon-ziko {
-  font-size: 36rpx;
-  line-height: unset;
+.scroll-menu .icon {
+  font-size: 100rpx;
 }
 
 /* Scroll Menu selected */
-.h-scroll_item.selected:after {
+.scroll-menu .h-scroll_item.selected:after {
   content: "";
   width: 100%;
-  height: 2rpx;
+  height: 4rpx;
   position: absolute;
   bottom: 0;
 }
@@ -89,10 +91,11 @@
 /* Bottom Switch Button */
 .switcher_container {
   width: 100vw;
+  padding-bottom: calc(32rpx + var(--env-));
   text-transform: uppercase;
   display: flex;
   position: absolute;
-  bottom: calc(32rpx + var(--env-));
+  bottom: 0;
 }
 
 .switcher {

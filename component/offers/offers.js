@@ -1,8 +1,9 @@
 // component/offers/offers.js
 Component({
-  /**
-   * Component properties
-   */
+  options: {
+    addGlobalClass: true
+  },
+
   properties: {
 
   },

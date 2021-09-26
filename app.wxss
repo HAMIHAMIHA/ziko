@@ -67,9 +67,18 @@ page {
 .h-scroll {
   width: 100%;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
 .h-scroll_item {
-  display: inline-flex;
-  /* height: 180rpx; */
+  display: inline-block;
+}
+
+.h-scroll_item:first-child {
+  margin-left: 30rpx;
+}
+
+.scroll-date .h-scroll_item:last-child {
+  margin-right: 30rpx;
 }
