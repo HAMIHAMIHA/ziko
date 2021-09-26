@@ -27,27 +27,27 @@
   </view>
 
   <view class="list" wx:else>
-    <!-- Slide Menu -->
-    <view class="page-section-spacing">
-      <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
-        <view id="demo1" class="scroll-view-item_H demo-text-1">1</view>
-        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
-        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
-        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
-        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
-        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
-        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
-        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
-        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
-        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
-        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
-        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
-        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
-        <view id="demo2"  class="scroll-view-item_H demo-text-2">2</view>
-        <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
+    <!-- Scroll Menu -->
+    <view class="h-scroll_container">
+      <scroll-view class="h-scroll scroll-menu" scroll-x="true" bindscroll="scroll">
+        <view class="h-scroll_item zikoland selected" bindtap="switchMenu" data-menu-item="all">
+          <view class="icon icon-ziko_right"></view>
+        </view>
+        <view class="h-scroll_item ziko-kitchen gradient-text" bindtap="switchMenu" data-menu-item="kitchen">
+          <view class="icon icon-ziko-kitchen_sides"></view>
+        </view>
+        <view class="h-scroll_item ziko-garden gradient-text" bindtap="switchMenu" data-menu-item="garden">
+          <view class="icon icon-ziko-garden_sides"></view>
+        </view>
+        <view class="h-scroll_item ziko-cellar gradient-text" bindtap="switchMenu" data-menu-item="cellar">
+          <view class="icon icon-ziko-cellar_sides"></view>
+        </view>
+        <view class="h-scroll_item ziko-pet gradient-text" bindtap="switchMenu" data-menu-item="pet">
+          <view class="icon icon-ziko-pet_sides"></view>
+        </view>
       </scroll-view>
     </view>
-    <!-- list = component -->
+
     <offers id="list-offers"></offers>
   </view>
 
@@ -57,7 +57,7 @@
     <offers id="map-offers"></offers>
   </view>
 
-  <view class="gilroy__700 switcher__container">
+  <view class="gilroy_700 switcher_container">
     <view class="switcher">
       <button class="switch{{ map ? ' selected' : '' }}" bindtap="switchType" data-type="map">explore</button>
       <button class="switch{{ map ? '' : ' selected' }}" bindtap="switchType" data-type="list">list</button>

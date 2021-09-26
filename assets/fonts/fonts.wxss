@@ -152,22 +152,22 @@ page {
 }
 
 /* Fonts Class - Family */
-.gilroy__500 {
+.gilroy_500 {
   font-family: "gilroy";
   font-weight: 500;
 }
 
-.gilroy__700 {
+.gilroy_700 {
   font-family: "gilroy";
   font-weight: 700;
 }
 
-.gilroy__800 {
+.gilroy_800 {
   font-family: "gilroy";
   font-weight: 800;
 }
 
-.gilroy__900 {
+.gilroy_900 {
   font-family: "gilroy";
   font-weight: 900;
 }
@@ -176,17 +176,17 @@ page {
   font-family: "heebo";
 }
 
-.heebo__500 {
+.heebo_500 {
   font-family: "heebo";
   font-weight: 500;
 }
 
-.heebo__700 {
+.heebo_700 {
   font-family: "heebo";
   font-weight: 700;
 }
 
-.heebo__900 {
+.heebo_900 {
   font-family: "heebo";
   font-weight: 900;
 }
@@ -195,27 +195,27 @@ page {
   font-family: "inter";
 }
 
-.inter__500 {
+.inter_500 {
   font-family: "inter";
   font-weight: 500;
 }
 
-.inter__600 {
+.inter_600 {
   font-family: "inter";
   font-weight: 600;
 }
 
-.inter__700 {
+.inter_700 {
   font-family: "inter";
   font-weight: 700;
 }
 
-.inter__800 {
+.inter_800 {
   font-family: "inter";
   font-weight: 800;
 }
 
-.inter__900 {
+.inter_900 {
   font-family: "inter";
   font-weight: 900;
 }
@@ -224,42 +224,42 @@ page {
   font-family: "nunito";
 }
 
-.nunito__300 {
+.nunito_300 {
   font-family: "nunito";
   font-weight: 300;
 }
 
-.nunito__600 {
+.nunito_600 {
   font-family: "nunito";
   font-weight: 600;
 }
 
-.nunito__700 {
+.nunito_700 {
   font-family: "nunito";
   font-weight: 700;
 }
 
 /* Fonts Class - Weights */
-/* .font__300 {
+/* .font_300 {
   font-weight: 300;
 }
 
-.font__500 {
+.font_500 {
   font-weight: 500;
 }
 
-.font__600 {
+.font_600 {
   font-weight: 600;
 }
 
-.font__700 {
+.font_700 {
   font-weight: 700;
 }
 
-.font__800 {
+.font_800 {
   font-weight: 800;
 }
 
-.font__900 {
+.font_900 {
   font-weight: 900;
 } */

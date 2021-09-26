@@ -32,22 +32,62 @@
   min-height: 100vh;
 }
 
-/* TEMP */
-.scroll-view_H{
-  white-space: nowrap;
-}
-
-.scroll-view-item_H{
-  display: inline-block;
-  width: 33%;
-  height: 300rpx;
-}
-
 /* Map List Popup */
+/* TODO */
 
+/* Scroll Menu */
+.h-scroll_item {
+  margin: 0 24rpx;
+  padding: 24rpx 0;
+  position: relative;
+}
+
+.icon {
+  font-size: 70rpx;
+  line-height: 70rpx;
+}
+
+.zikoland {
+  font-size: 20rpx;
+  align-items: center;
+}
+
+.icon-ziko {
+  font-size: 36rpx;
+  line-height: unset;
+}
+
+/* Scroll Menu selected */
+.h-scroll_item.selected:after {
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  position: absolute;
+  bottom: 0;
+}
+
+.zikoland.selected:after {
+  background: var(--ziko-default-);
+}
+
+.ziko-kitchen.selected:after {
+  background: var(--ziko-kitchen-);
+}
+
+.ziko-garden.selected:after {
+  background: var(--ziko-garden-);
+}
+
+.ziko-cellar.selected:after {
+  background: var(--ziko-cellar-);
+}
+
+.ziko-pet.selected:after {
+  background: var(--ziko-pet-);
+}
 
 /* Bottom Switch Button */
-.switcher__container {
+.switcher_container {
   width: 100vw;
   text-transform: uppercase;
   display: flex;
@@ -82,7 +122,7 @@
 
 .switcher .switch.selected {
   background: #636978;
-  color: #FFFFFF;
+  color: var(--ziko-default-);
 }
 
 .switcher .switch:first-child.selected {

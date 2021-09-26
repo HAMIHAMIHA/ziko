@@ -27,83 +27,50 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-lottery:before {
+.icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'iconfont' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ziko-lottery:before {
   content: "\e937";
 }
-.icon-special:before {
+.icon-ziko-special:before {
   content: "\e938";
 }
-.icon-ziko_baby_nude:before {
-  content: "\e900";
-}
-.icon-ziko_baby1:before {
-  content: "\e901";
-}
-.icon-ziko_baby2:before {
-  content: "\e902";
-}
-.icon-ziko_baby3:before {
-  content: "\e903";
-}
-.icon-ziko_cellar_nude:before {
-  content: "\e904";
-}
-.icon-ziko_cellar1:before {
-  content: "\e905";
-}
-.icon-ziko_cellar2:before {
-  content: "\e906";
-}
-.icon-ziko_cellar3:before {
-  content: "\e907";
-}
-.icon-ziko_garden_nude:before {
-  content: "\e908";
-}
-.icon-ziko_garden1:before {
-  content: "\e909";
-}
-.icon-ziko_garden2:before {
-  content: "\e90a";
-}
-.icon-ziko_garden3:before {
-  content: "\e90b";
-}
-.icon-ziko_kitchen_nude:before {
-  content: "\e90c";
-}
-.icon-ziko_kitchen1:before {
-  content: "\e90d";
-}
-.icon-ziko_kitchen2:before {
-  content: "\e90e";
-}
-.icon-ziko_kitchen3:before {
-  content: "\e90f";
-}
-.icon-ziko_land_nude:before {
-  content: "\e910";
-}
-.icon-ziko_land1:before {
-  content: "\e911";
-}
-.icon-ziko_land2:before {
+.icon-ziko_right:before {
   content: "\e912";
 }
-.icon-ziko_petcorner_nude:before {
-  content: "\e913";
+.icon-ziko-baby_sides:before {
+  content: "\e903";
 }
-.icon-ziko_petcorner1:before {
-  content: "\e914";
+.icon-ziko-garden_sides:before {
+  content: "\e90b";
 }
-.icon-ziko_petcorner2:before {
-  content: "\e915";
+.icon-ziko-cellar_sides:before {
+  content: "\e907";
 }
-.icon-ziko_petcorner3:before {
+.icon-ziko-kitchen_sides:before {
+  content: "\e90f";
+}
+.icon-ziko-pet_sides:before {
   content: "\e916";
 }
-.icon-contact:before {
-  content: "\e939";
+.icon-ziko:before {
+  content: "\e910";
+}
+.icon-headset:before {
+  content: "\e900";
 }
 .icon-trash:before {
   content: "\e93a";
@@ -159,15 +126,6 @@
 .icon-package:before {
   content: "\e927";
 }
-.icon-orders:before {
-  content: "\e928";
-}
-.icon-lottery1:before {
-  content: "\e929";
-}
-.icon-land:before {
-  content: "\e92a";
-}
 .icon-heart:before {
   content: "\e92b";
 }
@@ -176,9 +134,6 @@
 }
 .icon-filters:before {
   content: "\e92d";
-}
-.icon-explore:before {
-  content: "\e92e";
 }
 .icon-crown:before {
   content: "\e92f";
@@ -194,9 +149,6 @@
 }
 .icon-alert:before {
   content: "\e933";
-}
-.icon-account:before {
-  content: "\e934";
 }
 .icon-wine:before {
   content: "\e935";

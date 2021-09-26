@@ -4,14 +4,30 @@
 /* Set Variables */
 page {
   --env-: env(safe-area-inset-bottom);
-  --font-grey-: #A3A8B7;
+  /* --font-grey-: #A3A8B7;
   --font-grey-dark-: #9D9FA4;
-  --font-grey-form-: #A3A8B7;
+  --font-grey-form-: #A3A8B7; */
 }
+
+/* Set Ziko Color Variables */
+page {
+  --ziko-default-: #FFFFFF;
+  --ziko-kitchen-: linear-gradient(104.65deg, #A1803B 1.33%, #FDE28F 54.78%, #D8BC74 100%);
+  --ziko-garden-: linear-gradient(105.28deg, #98F183 2.41%, #11BF67 100%);
+  --ziko-cellar-: linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
+  --ziko-pet-: linear-gradient(105.28deg, #FFB75A 2.41%, #FF7233 100%);
+  --ziko-baby-: linear-gradient(105.28deg, #FFB2C7 2.41%, #FF5898 100%);
+  --ziko-kitchen_btn-: #CAA655;
+  --ziko-garden_btn-: #2FCA6D;
+  --ziko-cellar_btn-: #6A737B;
+  --ziko-pet_btn-: #FF7C39;
+  --ziko-baby_btn-: #FF70A4;
+}
+
 
 page {
   background: #0A0B12;
-  color: #FFFFFF;
+  color: var(--ziko-default-);
 }
 
 .container {
@@ -22,5 +38,38 @@ page {
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box; */
-} 
+}
 
+/* Ziko Colors */
+.ziko-kitchen {
+  background: var(--ziko-kitchen-);  
+}
+.ziko-garden {
+  background: var(--ziko-garden-);  
+}
+.ziko-cellar {
+  background: var(--ziko-cellar-);  
+}
+.ziko-pet {
+  background: var(--ziko-pet-);  
+}
+.ziko-baby {
+  background: var(--ziko-baby-);  
+}
+
+/* Gradient Text */
+.gradient-text {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Horizontal Scroll */
+.h-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.h-scroll_item {
+  display: inline-flex;
+  /* height: 180rpx; */
+}
