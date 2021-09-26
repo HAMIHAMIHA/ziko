@@ -51,6 +51,13 @@ page {
   background: var(--ziko-baby-);  
 }
 
+/* Flex */
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+/* End of Flex */
+
 /* Gradient Text */
 .gradient-text {
   -webkit-background-clip: text;
@@ -78,3 +85,10 @@ page {
   margin-right: 30rpx;
 }
 /* End of Horizontal Scroll */
+
+/* Icons */
+.icon_container {
+  display: flex;
+  align-items: center;
+}
+/* End of Icons */

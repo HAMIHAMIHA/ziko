@@ -21,7 +21,7 @@
     </scroll-view>
   </view>
 
-  <view class="offers_list">
+  <view class="gilroy_700 offers_list">
     <!-- Card for each offer -->
     <view class="offer_container" wx:for="{{ offers }}" wx:key="id">
       <!-- Banner image of card -->
@@ -80,7 +80,7 @@
           <!-- End of Countdown -->
 
           <!-- Current Status -->
-          <view class="offer-status">
+          <view class="offer-status gilroy_500">
             <view class="offer-counts">
               <view class="icon_container">
                 <view class="icon icon-bag"></view>
@@ -91,7 +91,7 @@
                 <view class="icon_text uppercase">122 viewers</view>
               </view>
             </view>
-            <view class="offer-delivery">
+            <view class="offer-delivery nunito_400">
               Delivery: June 12th or 14th
             </view>
           </view>
