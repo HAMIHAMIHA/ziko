@@ -27,29 +27,29 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'iconfont' !important;
-  speak: never;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 .icon-ziko-lottery:before {
   content: "\e937";
 }
 .icon-ziko-special:before {
   content: "\e938";
 }
+.icon-ziko-baby_right:before {
+  content: "\e901";
+}
+.icon-ziko-cellar_right:before {
+  content: "\e905";
+}
+.icon-ziko-garden_right:before {
+  content: "\e909";
+}
+.icon-ziko-kitchen_right:before {
+  content: "\e90d";
+}
 .icon-ziko_right:before {
   content: "\e912";
+}
+.icon-ziko-pet_right:before {
+  content: "\e914";
 }
 .icon-ziko-baby_sides:before {
   content: "\e903";

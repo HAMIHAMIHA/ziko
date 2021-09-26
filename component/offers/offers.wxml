@@ -1,47 +1,122 @@
-<view class="offer-container">
+<view class="offers_container">
+  <!-- Date Picker -->
   <view class="h-scroll_container scroll-date">
-    <scroll-view class="h-scroll" scroll-x="true" enable-flex="true">
+    <scroll-view class="h-scroll uppercase" scroll-x="true" enable-flex="true">
       <view class="h-scroll_item all selected">
         <view class="item_container">
-          <view class="gilroy_800 date">all</view>
+          <view class="item_content">
+            <view class="gilroy_800 date">all</view>
+          </view>
         </view>
       </view>
-      <view class="h-scroll_item item-date">
+      <!-- TODO for dates -->
+      <view class="h-scroll_item item-date" wx:for="{{ 10 }}" wx:key="*this">
         <view class="item_container">
-          <view class="gilroy_500 day-of-week">mon</view>
-          <view class="gilroy_800 date">12</view>
-        </view>
-      </view>
-      <view class="h-scroll_item item-date">
-        <view class="item_container">
-          <view class="gilroy_500 day-of-week">mon</view>
-          <view class="gilroy_800 date">12</view>
-        </view>
-      </view>
-      <view class="h-scroll_item item-date">
-        <view class="item_container">
-          <view class="gilroy_500 day-of-week">mon</view>
-          <view class="gilroy_800 date">12</view>
-        </view>
-      </view>
-      <view class="h-scroll_item item-date">
-        <view class="item_container">
-          <view class="gilroy_500 day-of-week">mon</view>
-          <view class="gilroy_800 date">12</view>
-        </view>
-      </view>
-      <view class="h-scroll_item item-date">
-        <view class="item_container">
-          <view class="gilroy_500 day-of-week">mon</view>
-          <view class="gilroy_800 date">12</view>
-        </view>
-      </view>
-      <view class="h-scroll_item item-date">
-        <view class="item_container">
-          <view class="gilroy_500 day-of-week">mon</view>
-          <view class="gilroy_800 date">12</view>
+          <view class="item_content">
+            <view class="gilroy_500 day-of-week">mon</view>
+            <view class="gilroy_800 date">{{ item + 1 }}</view>
+          </view>
         </view>
       </view>
     </scroll-view>
+  </view>
+
+  <view class="offers_list">
+    <!-- Card for each offer -->
+    <view class="offer_container" wx:for="{{ offers }}" wx:key="id">
+      <!-- Banner image of card -->
+      <view class="offer-banner">
+        <view class="offer-banner_image">
+          <image src="/assets/images/offerBanner.png" mode="aspectFill"></image>
+        </view>
+        <view class="offer-banner_tag">
+          <view class="icon {{ 'icon-ziko-' + item.type + '_right'}}"></view>
+        </view>
+      </view>
+      <!-- End of banner -->
+
+      <view class="offer-detail">
+        <view class="offer-detail_title">OCTOBERFEST</view>
+
+        <!-- Display for offers in progress -->
+        <view class="offer-detail_content started" wx:if="{{ item.started }}">
+          <view class="flex-between border-bottom">
+            <!-- Specials -->
+            <view class="flex-between_left offer-specials">
+              <view class="icon_container lottery" wx:if="{{ item.lottery }}">
+                <view class="icon icon-yuan"></view>
+                <view class="icon_text">lottery</view>
+              </view>
+              <view class="icon_container specials" wx:if="{{ item.specials }}">
+                <view class="icon icon-gift"></view>
+                <view class="icon_text">specials</view>
+              </view>
+            </view>
+            <!-- End of Specials -->
+
+            <!-- Bag -->
+            <view class="flex-between_rt">
+              <view class="icon_container bag{{ item.items > 0 ? ' filled' : ''}}">
+                <view class="icon icon-bag"></view>
+                <view class="icon_text">
+                  <view wx:if="{{ item.items == 0}}">empty</view>
+                  <view wx:elif="{{ item.items == 1}}">{{item.items}} item</view>
+                  <view wx:else="{{ item.items > 1}}">{{item.items}} items</view>
+                </view>
+              </view>
+            </view>
+            <!-- End of Bag -->
+          </view>
+
+          <!-- Countdown -->
+          <view class="flex-between border-bottom offer-countdown">
+            <view class="flex-between_left uppercase">
+              remaining time
+            </view>
+            <view class="flex-between_rt">
+              <countdown></countdown>
+            </view>
+          </view>
+          <!-- End of Countdown -->
+
+          <!-- Current Status -->
+          <view class="offer-status">
+            <view class="offer-counts">
+              <view class="icon_container">
+                <view class="icon icon-bag"></view>
+                <view class="icon_text uppercase">122 orders</view>
+              </view>
+              <view class="icon_container">
+                <view class="icon icon-eye"></view>
+                <view class="icon_text uppercase">122 viewers</view>
+              </view>
+            </view>
+            <view class="offer-delivery">
+              Delivery: June 12th or 14th
+            </view>
+          </view>
+          <!-- End of Current Status -->
+        </view>
+        <!-- End of offer in progress -->
+
+        <!-- Display for offers waiting -->
+        <view class="offer-detail_content waiting" wx:else>
+          <view class="coming-soon border-bottom">comming soon...</view>
+
+          <!-- Offer Time -->
+          <view class="flex-between border-bottom offer-datetime">
+            <view class="flex-between_left uppercase">
+              <view class="offer-date">Thu. 13 March,</view>
+              <view class="offer-time">2:00 PM - 4:00 PM</view>
+            </view>
+            <view class="flex-between_rt">
+              <button class="offer-reminder">Get a reminder</button>
+            </view>
+          </view>
+          <!-- End of Offer Time -->
+        </view>
+        <!-- End of offers waiting -->
+      </view>
+    </view>
   </view>
 </view>

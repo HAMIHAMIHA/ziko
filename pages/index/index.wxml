@@ -57,7 +57,7 @@
     <offers id="map-offers"></offers>
   </view>
 
-  <view class="gilroy_700 switcher_container">
+  <view class="gilroy_700 uppercase switcher_container">
     <view class="switcher">
       <button class="switch{{ map ? ' selected' : '' }}" bindtap="switchType" data-type="map">explore</button>
       <button class="switch{{ map ? '' : ' selected' }}" bindtap="switchType" data-type="list">list</button>

@@ -24,20 +24,14 @@ page {
   --ziko-baby_btn-: #FF70A4;
 }
 
-
+/* General Style */
 page {
   background: #0A0B12;
   color: var(--ziko-default-);
 }
 
-.container {
-  /* height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box; */
+.uppercase {
+  text-transform: uppercase;
 }
 
 /* Ziko Colors */
@@ -62,16 +56,17 @@ page {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+/* End of Gradient Text */
 
 /* Horizontal Scroll */
 .h-scroll {
   width: 100%;
   white-space: nowrap;
   display: flex;
-  align-items: center;
 }
 
 .h-scroll_item {
+  height: fit-content;
   display: inline-block;
 }
 
@@ -82,3 +77,4 @@ page {
 .scroll-date .h-scroll_item:last-child {
   margin-right: 30rpx;
 }
+/* End of Horizontal Scroll */

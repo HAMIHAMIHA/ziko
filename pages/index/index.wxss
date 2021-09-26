@@ -29,7 +29,8 @@
 
 /* List Display */
 .list {
-  min-height: 100vh;
+  min-height: calc(100vh - 132rpx);
+  padding-bottom: 132rpx;
 }
 
 /* Map List Popup */
@@ -92,7 +93,6 @@
 .switcher_container {
   width: 100vw;
   padding-bottom: calc(32rpx + var(--env-));
-  text-transform: uppercase;
   display: flex;
   position: absolute;
   bottom: 0;

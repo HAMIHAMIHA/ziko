@@ -238,28 +238,3 @@ page {
   font-family: "nunito";
   font-weight: 700;
 }
-
-/* Fonts Class - Weights */
-/* .font_300 {
-  font-weight: 300;
-}
-
-.font_500 {
-  font-weight: 500;
-}
-
-.font_600 {
-  font-weight: 600;
-}
-
-.font_700 {
-  font-weight: 700;
-}
-
-.font_800 {
-  font-weight: 800;
-}
-
-.font_900 {
-  font-weight: 900;
-} */
