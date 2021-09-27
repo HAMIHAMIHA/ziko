@@ -1,0 +1,50 @@
+<view class="product_container{{ product.quantity == 0 ? ' sold-out' : '' }}" wx:for="{{ products }}" wx:key="id" wx:for-item="product">
+  <view class="flex-center product">
+    <view class="product_image">
+      <image src="/assets/images/productDefault.png" mode="center" wx:if="{{ pack }}"></image>
+      <image src="/assets/images/productDefault.png" mode="center" wx:else></image>
+    </view>
+    <view class="product_info">
+      <view class="product_title">pack name</view>
+      <!-- Pack Products Detail -->
+      <view class="product_detail_container" wx:if="{{ pack }}">
+        <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="packProduct">
+          <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ units }}</text>
+          <text wx:if="{{ index < product.products.length - 1 }}">, </text>
+        </text>
+      </view>
+      <!-- End of Pack Products Detail -->
+
+      <!-- Single Products Detail -->
+      <view class="product_detail_container" wx:else>
+        <text>{{ product.quantity }} x {{ product.weight }}{{ units }}</text>
+      </view>
+      <!-- End of Single Products Detail -->
+
+      <!-- Amount Left -->
+      <view class="product_amount-left">
+        <text wx:if="{{ product.available == 0 }}">{{ product.available }} left</text>
+        <text wx:elif="{{ product.available >= 100 }}">{{ product.available }} available</text>
+        <text wx:else>Only {{ product.available }} left!</text>
+      </view>
+      <!-- End of Amount Left -->
+
+      <view class="product_price_container">
+        <view class="product_price" wx:if="{{ product.newPrice }}">${{ product.newPrice }}</view>
+        <view class="product_price">${{ product.price }}</view>
+      </view>
+    </view>
+    <quantity quantity="{{ item.qty }}" bind:changeQty="changeQty" data-idx="{{index}}"></quantity>
+  </view>
+
+  <!-- Cellar Target Tags -->
+  <view class="product_targets" wx:if="{{ targets }}">
+    <view class="product_target_container" wx:for="{{ targets }}" wx:key="*this" wx:for-item="target">
+      <!-- Freefall Targets -->
+      <text wx:if="{{ targetType == 'freefall' }}">-${{ target.rate }} every {{ target.amount }} sold</text>
+      <!-- Multiple Targets -->
+      <text wx:else>x{{ target.amount }} btl ${{ target.rate }} each </text>
+    </view>
+  </view>
+  <!-- End of Cellar Target Tags -->
+</view>

@@ -1,2 +1,135 @@
-<!--pages/offer/offer.wxml-->
-<text>pages/offer/offer.wxml</text>
+<view class="container {{ _offer.community + '-community'}}">
+  <!-- Lottery Alert -->
+  <view class="icon_container lottery-alert" wx:if="{{ _offer.priceRule != 'regular' && _pageSet.nextOffer != '' }}">
+    <view class="icon icon-flash"></view>
+    <view class="icon_text">next lottery in 50 items sold</view>
+  </view>
+  <!-- End of Lottery Alert -->
+
+  <!-- Countdown -->
+  <view class="countdown">
+    <view class="countdown_text">remaining time</view>
+    <countdown></countdown>
+  </view>
+  <!-- End of Countdown -->
+
+  <!-- Contact -->
+  <view class="contact_container">
+    <view class="icon icon-chat"></view>
+  </view>
+  <!-- End of Contact -->
+
+  <view class="banner_container">
+    <!-- Banner -->
+    <view class="swiper_container">
+      <swiper class="swiper" bindchange="swiperChange">
+        <block wx:for="{{ _offer.banner }}" wx:key="key" wx:for-item="banner">
+          <swiper-item>
+            <view class="swiper_item">
+              <image src="{{ banner.img }}" mode="widthFix"></image>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="indicator">
+        {{ _pageSet.swiperIndex }} / {{ _offer.banner.length }}
+      </view>  
+    </view>
+    <!-- End of Banner -->
+
+    <!-- Messages -->
+      <view class="messages_container">
+        <view class="message" wx:for="{{ messages }}" wx:key="*this" wx:for-item="message">{{ message }}</view>
+      </view>
+    <!-- End of Messages -->
+  </view>
+
+  <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
+    <!-- Offer Count -->
+      <view class="offer-count_container">
+        <view class="icon_container">
+          <view class="icon icon-bag"></view>
+          <view class="icon_text">100 Orders</view>
+        </view>
+        <view class="icon_container">
+          <view class="icon icon-eye"></view>
+          <view class="icon_text">Viewers</view>
+        </view>
+      </view>
+    <!-- End of Offer Count -->
+
+    <!-- Offer Share -->
+    <view class="share">
+      <view class="icon icon-share"></view>
+    </view>
+    <!-- End of Offer Share -->
+
+    <!-- Offer Detail -->
+    <view class="offer-title">Offer Title</view>
+    <view class="offer-description">
+      Offer description lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum placerat nisl auctor tellus, placerat neque placerat. Amet arcu ut nec, velit faucibus.
+    </view>
+    <!-- End of Offer Detail -->
+
+    <!-- Cellar Count -->
+    <!-- End of Cellar Count -->
+  </view>
+
+  <!-- Product Tabbar -->
+  <view class="uppercase tabbar">
+    <view class="tabbar_item selected" bindtap="switchTab" data-to-tab="product">
+      products
+    </view>
+    <view class="tabbar_item" bindtap="switchTab" data-to-tab="receipe">
+      Receipes
+    </view>
+  </view>
+  <!-- End of Product Tabbar -->
+
+  <!-- Products -->
+  <view class="list_container" wx:if="{{ _pageSet.currentTab == 'product' }}">
+    <!-- Product List -->
+    <view class="offer-group offer-packs">
+      <view class="uppercase title">
+        <text class="gilroy_500">our</text>
+        <text class="gilroy_700"> selected packs</text>
+      </view>
+
+      <products products="{{ _offer.packs }}" pack="{{ true }}" cellar="{{ false }}"></products>
+    </view>
+
+    <view class="offer-group offer-singles">
+      <view class="uppercase title">
+        <text class="gilroy_500">single</text>
+        <text class="gilroy_700"> items</text>
+      </view>
+
+      <products products="{{ _offer.singles }}" pack="{{ false }}" cellar="{{ false }}"></products>
+    </view>
+    <!-- End of Product List -->
+
+    <!-- Specials -->
+    <!-- End of Specials -->
+
+    <!-- Lottery -->
+    <view class="lottery-bourse" wx:if="{{ _offer.priceRule == 'bourse'}}">
+      <bourseLottery></bourseLottery>
+    </view>
+    <view class="lottery_cellar" wx:elif="{{ _offer.community == 'cellar' && _offer.priceRule != 'regular' }}">
+      <cellarLottery></cellarLottery>
+    </view>
+    <view class="lottery_normal" wx:else>
+      <normalLottery></normalLottery>
+    </view>
+    <!-- End of Lottery -->
+  </view>
+  <!-- End of Products -->
+
+  <!-- Receipes -->
+  <!-- End of Receipes -->
+
+  <!-- Pay Button -->
+  <view class="payment_container">
+  </view>
+  <!-- End of Pay Button -->
+</view>

@@ -1,0 +1,9 @@
+<view class="quantity">
+  <button class="quantity__change" bindtap="removeItem">
+    <view class="icon icon-minus"></view>
+  </button>
+  <view class="quantity__amount">{{ quantity }}</view>
+  <button class="quantity__change" bindtap="addItem">
+    <view class="icon icon-plus"></view>
+  </button>
+</view>

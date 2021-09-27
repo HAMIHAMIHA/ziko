@@ -69,14 +69,14 @@
 .icon-ziko:before {
   content: "\e910";
 }
+.icon-flash:before {
+  content: "\e902";
+}
 .icon-headset:before {
   content: "\e900";
 }
 .icon-trash:before {
   content: "\e93a";
-}
-.icon-dot:before {
-  content: "\e917";
 }
 .icon-arrow-left:before {
   content: "\e918";
