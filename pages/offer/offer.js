@@ -8,7 +8,7 @@ Page({
     },
     _offer: {
       community: 'cellar',
-      priceRule: 'regular',
+      priceRule: 'bourse',
       banner: [
         { key: 1, img: "/assets/images/offerDetailBanner.jpg" },
         { key: 2, img: "/assets/images/offerDetailBanner.jpg" },

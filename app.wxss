@@ -58,6 +58,12 @@ page {
   align-items: center;
 }
 
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .flex-between {
   display: flex;
   justify-content: space-between;

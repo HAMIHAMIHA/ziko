@@ -8,6 +8,10 @@ Component({
     units: String
   },
 
+  options: {
+    addGlobalClass: true
+  },
+
   methods: {
 
   },
