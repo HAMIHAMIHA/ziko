@@ -18,6 +18,11 @@ Page({
     self.setData({
       map: map
     })
+
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
   }
 
   /** TODO Get user info

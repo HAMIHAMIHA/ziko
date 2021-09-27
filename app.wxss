@@ -52,9 +52,16 @@ page {
 }
 
 /* Flex */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .flex-between {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 /* End of Flex */
 
@@ -90,5 +97,9 @@ page {
 .icon_container {
   display: flex;
   align-items: center;
+}
+
+.icon_container .icon_text {
+  padding-left: 12rpx;
 }
 /* End of Icons */

@@ -1,4 +1,6 @@
-// component/offers/offers.js
+const app = getApp();
+const _routes = app.routes;
+
 Component({
   options: {
     addGlobalClass: true
@@ -80,6 +82,15 @@ Component({
   },
 
   methods: {
+    toOffer: function(e) {
+      console.log(e);
+      let started = e.currentTarget.dataset.started;
+      let id = e.currentTarget.dataset.offerId;
 
+      if (started)
+      wx.navigateTo({
+        url: _routes.offer + '?id=' + id,
+      })
+    }
   }
 })

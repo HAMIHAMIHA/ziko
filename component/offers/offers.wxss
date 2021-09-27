@@ -54,7 +54,173 @@
 .scroll-date .selected .item_container {
   background: #3E424F;
   color: var(--ziko-default-);
-  border-radius: 4px;
+  border-radius: 8rpx;
 }
 /* End of Scroll Dates */
 
+/* Offer Card Container */
+.offer_container {
+  width: 100%;
+  margin-top: 32rpx;
+  background: #252831;
+  font-size: 24rpx;
+  line-height: 28rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.offer_container:first-child {
+  margin-top: 0;
+}
+/* End of Offer Card */
+
+/* Offer Banner */
+.offer-banner {
+  position: relative;
+}
+
+.offer-banner_image image {
+  width: 100%;
+}
+
+.offer-banner_tag {
+  padding: 16rpx 24rpx;
+  font-size: 64rpx;
+  position: absolute;
+  top: 0;
+  left: 40rpx;
+  background: #000000;
+}
+/* End of Offer Banner */
+
+/* Offer Title */
+.offer-detail_title {
+  width: 75%;
+  padding: 32rpx;
+  padding-bottom: 8rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  word-wrap: break-word;
+}
+/* End of Offer Title */
+
+/* Offer Detail - General */
+.offer-detail_content {
+  padding: 24rpx 32rpx;
+}
+
+.offer-detail_content .icon {
+  font-size: 30rpx;
+}
+
+.offer-detail_content + .offer-detail_content {
+  border-top: 2rpx solid rgba(255, 255, 255, 0.1);
+}
+/* End of Offer Detail - General */
+
+/* Offer Detail - Specials */
+.offer-specials .icon_container {
+  font-size: 20rpx;
+  line-height: 24rpx;
+}
+
+.offer-specials .icon_container + .icon_container {
+  padding-left: 24rpx;
+}
+
+.offer-specials .icon {
+  margin-right: 8rpx;
+  padding: 10rpx;
+  background: #ffdb59;
+  color: #252831;
+  border-radius: 50%;
+}
+/* End of Offer Detail - Specials */
+
+/* Offer Detail - Bag */
+.offer-bag {
+  font-size: 20rpx;
+  line-height: 24rpx;
+  opacity: 0.4;
+}
+
+.offer-bag .icon_text {
+  padding-left: 16rpx;
+}
+
+.offer-bag.offer-bag_filled {
+  opacity: 1;
+}
+
+.offer-bag.offer-bag_filled .icon {
+  position: relative;
+}
+
+.offer-bag.offer-bag_filled .icon:after {
+  content: '';
+  width: 12rpx;
+  height: 12rpx;
+  background: #FF4040;
+  border: 2rpx solid #252831;
+  border-radius: 50%;
+  position: absolute;
+  right: -6rpx;
+  top: -6rpx;
+}
+/* End of Offer Detail - Bag */
+
+/* Offer Detail - Countdown */
+.offer-countdown {
+}
+/* End of Offer Detail - Countdown */
+
+/* Offer Detail - Status */
+.offer-counts {
+  color: #9D9FA4;
+}
+
+.offer-counts .icon_container + .icon_container {
+  padding-left: 30rpx;
+}
+
+.offer-counts .icon_container .icon_text {
+  padding-left: 8rpx;
+}
+/* End of Offer Detail - Status */
+
+/* Offer Detail - Delivery */
+.offer-delivery {
+  padding-top: 26rpx;
+  color: #9D9FA4;
+  line-height: 32rpx;
+  text-align: center;
+  text-transform: none;
+}
+/* End of Offer Detail - Delivery */
+
+/* Offer Detail - Coming Soon */
+.offer-waiting .coming-soon {
+  padding-top: 8rpx;
+  color: #9D9FA4;
+}
+/* End of Offer Detail - Coming Soon */
+
+/* Offer Detail - Datetime */
+.offer-date {
+  line-height: 29rpx;
+}
+
+.offer-reminder {
+  width: fit-content !important;
+  padding: 16rpx 24rpx;
+  background: #3F4250;
+  color: var(--ziko-default-);
+  font-size: 28rpx;
+  line-height: 36rpx;
+  text-transform: none;
+  border-radius: 8rpx;
+}
+/* End of Offer Detail - Datetime */
+
+/* Offer Detail - Specials */
+/* End of Offer Detail - Specials */
