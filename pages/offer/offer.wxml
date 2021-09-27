@@ -95,7 +95,7 @@
         <text class="gilroy_700"> selected packs</text>
       </view>
 
-      <products products="{{ _offer.packs }}" pack="{{ true }}" cellar="{{ false }}"></products>
+      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _pageSet.units }}"></products>
     </view>
 
     <view class="offer-group offer-singles">
@@ -104,22 +104,46 @@
         <text class="gilroy_700"> items</text>
       </view>
 
-      <products products="{{ _offer.singles }}" pack="{{ false }}" cellar="{{ false }}"></products>
+      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ _pageSet.units }}"></products>
     </view>
     <!-- End of Product List -->
 
     <!-- Specials -->
     <!-- End of Specials -->
+    <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}">
+      <view class="offer-specials_title">
+        <view class="icon icon-ziko-special">
+        </view>
+      </view>
+      <view class="offer-specials_list">
+        <view class="offer-special" wx:for="{{ _offer.specials }}" wx:key="*this" wx:for-item="special">
+          <view class="uppercase offer-special_title">
+            <text wx:if="{{special.type == 'first'}}">first {{ special.amount }} orders</text>
+            <text wx:elif="{{ special.type == 'totalAbove' }}">above {{ special.amount }} total orders</text>
+            <text wx:elif="{{ special.type == 'orderAbove' }}">order above ${{ special.amount }}</text>
+            <text wx:elif="{{ special.type == 'totalSold' }}">{{ special.amount }} total sold items</text>
+            <text wx:elif="{{ special.type == 'cart' }}">"{{ special.item }}" in cart</text>
+          </view>
+
+          <view class="offer-special_detail">
+            <text wx:if="{{special.get == 'reduction'}}">Get {{ special.rate }}% discount rate</text>
+            <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ _pageSet.units }} item name for free</text>
+          </view>
+        </view>
+      </view>
+    </view>
 
     <!-- Lottery -->
-    <view class="lottery-bourse" wx:if="{{ _offer.priceRule == 'bourse'}}">
-      <bourseLottery></bourseLottery>
-    </view>
-    <view class="lottery_cellar" wx:elif="{{ _offer.community == 'cellar' && _offer.priceRule != 'regular' }}">
-      <cellarLottery></cellarLottery>
-    </view>
-    <view class="lottery_normal" wx:else>
-      <normalLottery></normalLottery>
+    <view class="offer-lottery" wx:if="{{ _offer.lottery }}">
+      <view class="lottery-bourse" wx:if="{{ _offer.priceRule == 'bourse'}}">
+        <bourseLottery></bourseLottery>
+      </view>
+      <view class="lottery_cellar" wx:elif="{{ _offer.community == 'cellar' && _offer.priceRule != 'regular' }}">
+        <cellarLottery></cellarLottery>
+      </view>
+      <view class="lottery_normal" wx:else>
+        <normalLottery></normalLottery>
+      </view>
     </view>
     <!-- End of Lottery -->
   </view>
