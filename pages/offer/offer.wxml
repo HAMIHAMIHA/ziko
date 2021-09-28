@@ -31,14 +31,14 @@
           </swiper-item>
         </block>
       </swiper>
-      <view class="heebo_700 indicator">
+      <view class="gilroy_700 indicator">
         {{ _pageSet.swiperIndex }} / {{ _offer.banner.length }}
       </view>  
     </view>
     <!-- End of Banner -->
 
     <!-- Messages -->
-      <view class="heebo messages_container">
+      <view class="gilroy messages_container">
         <view class="message" wx:for="{{ messages }}" wx:key="*this" wx:for-item="message">{{ message }}</view>
       </view>
     <!-- End of Messages -->
@@ -46,7 +46,7 @@
 
   <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
     <!-- Offer Count -->
-      <view class="flex-start heebo_500 offer-count_container">
+      <view class="flex-start gilroy_500 offer-count_container">
         <view class="icon_container">
           <view class="icon icon-bag"></view>
           <view class="icon_text">100 Orders</view>
@@ -127,7 +127,7 @@
             <text wx:elif="{{ special.type == 'cart' }}">"{{ special.item }}" in cart</text>
           </view>
 
-          <view class="inter_500 offer-special_detail">
+          <view class="nunito offer-special_detail">
             <text wx:if="{{special.get == 'reduction'}}">Get {{ special.rate }}% discount rate</text>
             <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ _pageSet.units }} item name for free</text>
           </view>

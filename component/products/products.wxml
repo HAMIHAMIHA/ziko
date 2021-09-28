@@ -38,7 +38,7 @@
   </view>
 
   <!-- Cellar Target Tags -->
-  <view class="inter_500 product-targets" wx:if="{{ targets }}">
+  <view class="nunito product-targets" wx:if="{{ targets }}">
     <view class="product-target_container" wx:for="{{ targets }}" wx:key="*this" wx:for-item="target">
       <!-- Freefall Targets -->
       <text wx:if="{{ targetType == 'freefall' }}">-${{ target.rate }} every {{ target.amount }} sold</text>

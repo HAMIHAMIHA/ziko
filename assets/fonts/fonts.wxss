@@ -1,9 +1,17 @@
 /* TODO need to upload all font files to server */
 page {
-  font-family: "inter, nunito, arial";
+  font-family: "nunito, arial";
 }
 
 /* Font Setup - Gilroy */
+@font-face {
+  font-family: 'gilroy';
+  src: url('/assets/fonts/Gilroy-Regular.otf?s0kbi6');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
 @font-face {
   font-family: 'gilroy';
   src: url('/assets/fonts/Gilroy-Medium.otf?s0kbi6');
@@ -30,89 +38,15 @@ page {
 
 @font-face {
   font-family: 'gilroy';
+  src: url('/assets/fonts/Gilroy-Black.otf?s0kbi6');
+  font-weight: 900;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'gilroy';
   src: url('/assets/fonts/Gilroy-Heavy.otf?s0kbi6');
-  font-weight: 900;
-  font-style: normal;
-  font-display: block;
-}
-
-/* Font Setup - Heebo */
-@font-face {
-  font-family: 'heebo';
-  src: url('/assets/fonts/Heebo-Regular.ttf?s0kbi6');
-  font-weight: 400;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'heebo';
-  src: url('/assets/fonts/Heebo-Medium.ttf?s0kbi6');
-  font-weight: 500;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'heebo';
-  src: url('/assets/fonts/Heebo-Bold.ttf?s0kbi6');
-  font-weight: 700;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'heebo';
-  src: url('/assets/fonts/Heebo-Black.ttf?s0kbi6');
-  font-weight: 900;
-  font-style: normal;
-  font-display: block;
-}
-
-/* Font Setup - Inter */
-@font-face {
-  font-family: 'inter';
-  src: url('/assets/fonts/Inter-Regular.ttf?0kbi6');
-  font-weight: 400;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'inter';
-  src: url('/assets/fonts/Inter-Medium.ttf?0kbi6');
-  font-weight: 500;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'inter';
-  src: url('/assets/fonts/Inter-SemiBold.ttf?0kbi6');
-  font-weight: 600;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'inter';
-  src: url('/assets/fonts/Inter-Bold.ttf?0kbi6');
-  font-weight: 700;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'inter';
-  src: url('/assets/fonts/Inter-ExtraBold.ttf?0kbi6');
-  font-weight: 800;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'inter';
-  src: url('/assets/fonts/Inter-Black.ttf?0kbi6');
   font-weight: 900;
   font-style: normal;
   font-display: block;
@@ -151,7 +85,28 @@ page {
   font-display: block;
 }
 
+@font-face {
+  font-family: 'nunito';
+  src: url('/assets/fonts/Nunito-ExtraBold.ttf?0kbi6');
+  font-weight: 800;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'nunito';
+  src: url('/assets/fonts/Nunito-Black.ttf?0kbi6');
+  font-weight: 900;
+  font-style: normal;
+  font-display: block;
+}
+
 /* Fonts Class - Family */
+.gilroy {
+  font-family: "gilroy";
+  font-weight: 400;
+}
+
 .gilroy_500 {
   font-family: "gilroy";
   font-weight: 500;
@@ -172,54 +127,6 @@ page {
   font-weight: 900;
 }
 
-.heebo {
-  font-family: "heebo";
-}
-
-.heebo_500 {
-  font-family: "heebo";
-  font-weight: 500;
-}
-
-.heebo_700 {
-  font-family: "heebo";
-  font-weight: 700;
-}
-
-.heebo_900 {
-  font-family: "heebo";
-  font-weight: 900;
-}
-
-.inter {
-  font-family: "inter";
-}
-
-.inter_500 {
-  font-family: "inter";
-  font-weight: 500;
-}
-
-.inter_600 {
-  font-family: "inter";
-  font-weight: 600;
-}
-
-.inter_700 {
-  font-family: "inter";
-  font-weight: 700;
-}
-
-.inter_800 {
-  font-family: "inter";
-  font-weight: 800;
-}
-
-.inter_900 {
-  font-family: "inter";
-  font-weight: 900;
-}
-
 .nunito {
   font-family: "nunito";
 }
@@ -237,4 +144,14 @@ page {
 .nunito_700 {
   font-family: "nunito";
   font-weight: 700;
+}
+
+.nunito_800 {
+  font-family: "nunito";
+  font-weight: 800;
+}
+
+.nunito_900 {
+  font-family: "nunito";
+  font-weight: 900;
 }
