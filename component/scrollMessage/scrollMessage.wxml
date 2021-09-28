@@ -1,4 +1,4 @@
-<view class="gilroy message-scroll_container" animation="{{ animateHeight }}">
+<view class="gilroy message-scroll_container" animation="{{ animation.height }}">
   <swiper
     autoplay="{{ swiperAutoplay }}"
     circular="true"
@@ -9,8 +9,12 @@
     class="message-scroll"
   >
     <block wx:for="{{ messages }}" wx:key="id" wx:for-item="message" wx:for-index="idx">
-      <swiper-item class="message-item">
-        <view class="message">{{ message }}</view>
+      <swiper-item class="message-item_container">
+        <view class="message-item"
+          animation="{{ currentTop == idx ? animation.opacity.fst : ''}}"
+        >
+          <view class="message">{{ message }}</view>
+        </view>
       </swiper-item>
     </block>
   </swiper>

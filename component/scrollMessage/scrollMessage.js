@@ -3,17 +3,57 @@ const finalMsg = [
   "message mesag asg asgkljsd agl messagesag asg asgkljsd agl messagesag asg asgkljsd agl messagesag asg asgkljsd agl message2",
   "mesag asg asgkljsd aessage2",
   "message2",
-  "message1 message2"
+  "message1 message2",
+  "mesag asg asgkljsd aessage2"
 ]
 
 var messagesShowing = 1;
+var current = [-4, -3, -2, -1, 0];
+var currentTop = -4;
+
+// Set up Animation
+var animation = {
+  opacity: {
+    fst: wx.createAnimation({
+      duration: 500,
+      timingFunction: 'linear',
+    }).opacity(0.3).step().export(),
+    snd: wx.createAnimation({
+      duration: 500,
+      timingFunction: 'linear'
+    }).opacity(0.5).step().export(),
+    trd: wx.createAnimation({
+      duration: 500,
+      timingFunction: 'linear'
+    }).opacity(0.6).step().export(),
+    fth: wx.createAnimation({
+      duration: 500,
+      timingFunction: 'linear'
+    }).opacity(0.8).step().export(),
+    normal: wx.createAnimation({
+      duration: 500,
+      timingFunction: 'linear'
+    }).opacity(1).step().export()
+  },
+  height: wx.createAnimation({
+    duration: 500,
+    timingFunction: 'linear'
+  })
+}
+// End of Set up Animation
 
 Component({
   properties: {
   },
 
   data: {
-    swiperAutoplay: false
+    currentTop: currentTop,
+    swiperAutoplay: false,
+    animation: {
+      test: animation.test,
+      opacity: animation.opacity,
+      height: ''
+    }
   },
 
   pageLifetimes: {
@@ -31,38 +71,29 @@ Component({
       })
       // End of TEMP
 
-      // Add Animation
-      var animateHeight = wx.createAnimation({
-        duration: 500,
-        timingFunction: 'linear',
-      })
-
-      // TODO
-      // var animate = wx.createAnimation({
-      //   duration: 500,
-      //   timingFunction: 'linear',
-      // })
-
+      // Add Animation For Showing messages
       let interval = setInterval(
         function() {
           if (messagesShowing < 5) {
             // Show first five by animation on height
             messagesShowing++;
             // Using rpx cannot just calcuate the sum, will show up different for different screen
-            animateHeight.height('calc((36rpx + 8rpx + 8rpx + 2rpx + 2rpx) *' + messagesShowing).step();
+            animation.height.height('calc((36rpx + 8rpx + 8rpx + 2rpx + 2rpx) *' + messagesShowing).step();
 
-            // TODO animateOpacity
             // Start swiper autoplay after the fifth shown
             if (messagesShowing == 5) {
               self.setData({
                 swiperAutoplay: true
               })
-              clearInterval(interval)
+              clearInterval(interval);
             }
           }
 
+          currentTop++;
+
           self.setData({
-            animateHeight: animateHeight.export()
+            "animation.height": animation.height.export(),
+            currentTop: currentTop
           })
       }, 1000)
       // End of Animation
@@ -79,9 +110,12 @@ Component({
 
   methods: {
     messageSwiperChange: function(e) {
-      console.log(e.detail.current);
       const self = this;
+      current = e.detail.current;
 
+      self.setData({
+        currentTop: currentTop
+      })
     },
 
     messageHeightChange: function() {
