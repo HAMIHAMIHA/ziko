@@ -2,7 +2,7 @@
   <swiper
     autoplay="{{ swiperAutoplay }}"
     circular="true"
-    interval="1000"
+    interval="3000"
     display-multiple-items="5"
     vertical="true"
     bindchange="messageSwiperChange"
@@ -11,7 +11,7 @@
     <block wx:for="{{ messages }}" wx:key="id" wx:for-item="message" wx:for-index="idx">
       <swiper-item class="message-item_container">
         <view class="message-item"
-          animation="{{ currentTop == idx ? animation.opacity.fst : ''}}"
+          animation="{{ current[0] == idx ? animation.opacity.fst : current[1] == idx ? animation.opacity.snd : current[2] == idx ? animation.opacity.trd : current[3] == idx ? animation.opacity.fth : current[4] == idx ? animation.opacity.normal : '' }}"
         >
           <view class="message">{{ message }}</view>
         </view>

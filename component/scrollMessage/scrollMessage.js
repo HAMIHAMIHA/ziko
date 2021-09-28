@@ -14,6 +14,10 @@ var currentTop = -4;
 // Set up Animation
 var animation = {
   opacity: {
+    normal: wx.createAnimation({
+      duration: 500,
+      timingFunction: 'linear'
+    }).opacity(1).step().export(),
     fst: wx.createAnimation({
       duration: 500,
       timingFunction: 'linear',
@@ -67,7 +71,7 @@ Component({
       }
 
       self.setData({
-        messages: messages,
+        messages: messages
       })
       // End of TEMP
 
@@ -89,13 +93,14 @@ Component({
             }
           }
 
-          currentTop++;
+          // Add Opacity Effect
+          current = [current[1], current[2], current[3], current[4], current[4] + 1];
 
           self.setData({
             "animation.height": animation.height.export(),
-            currentTop: currentTop
+            current: current
           })
-      }, 1000)
+      }, 300)
       // End of Animation
     }
   },
@@ -111,10 +116,17 @@ Component({
   methods: {
     messageSwiperChange: function(e) {
       const self = this;
-      current = e.detail.current;
+
+      current = [
+        current[1],
+        current[2],
+        current[3],
+        current[4],
+        (current[4] + 1 == self.data.messages.length) ? 0 : current[4] + 1
+      ];
 
       self.setData({
-        currentTop: currentTop
+        current: current
       })
     },
 
