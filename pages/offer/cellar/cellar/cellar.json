@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "countdown": "/component/countdown/countdown",
+    "products": "/component/products/products",
+    "cellarLottery": "/component/lottery/cellar/cellar"
+  }
+}

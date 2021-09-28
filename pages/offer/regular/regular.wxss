@@ -1,0 +1,121 @@
+/* General Style */
+.container {
+  position: relative;
+}
+/* End of General Style */
+
+/* Lottery Alert */
+.lottery-alert {
+  width: 100%;
+  padding: 14rpx 0;
+  background: #FF4040;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 20rpx;
+}
+
+.lottery-alert .icon {
+  font-size: 22rpx;
+}
+/* End of Lottery Alert */
+
+/* Countdown */
+.countdown {
+  padding: 16rpx 0;
+  text-align: center;
+}
+
+.countdown .countdown_text {
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+
+.countdown .countdown_clock {
+  font-size: 64rpx;
+  line-height: 78rpx;
+}
+/* End of Countdown */
+
+/* Contact */
+.contact_container {
+  padding: 30rpx;
+  background: #F74A5C;
+  font-size: 40rpx;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 100;
+  top: 20%;
+  right: 30rpx;
+}
+/* End of Contact */
+
+/* Banner */
+.banner_container {
+  height: 100vw;
+  position: relative;
+}
+
+.banner-image_container .swiper,
+.banner-image_container .swiper_item,
+.banner-image_container .swiper_item image {
+  width: 100vw;
+  height: 100vw;
+}
+
+.indicator {
+  width: fit-content;
+  padding: 2rpx 10rpx;
+  background: var(--ziko-default-);
+  color: #000000;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  border-radius: 32rpx;
+  position: absolute;
+  left: 30rpx;
+  bottom: 30rpx;
+}
+/* End of Banner */
+
+/* Messages */
+.messages_container {
+  width: 70%;
+  position: absolute;
+  right: 30rpx;
+  bottom: 30rpx;
+  z-index: 10;
+  pointer-events: none;
+}
+/* End of Messages */
+
+/* Offer Count */
+/* End of Offer Count */
+
+/* Offer Share */
+/* End of Offer Share */
+
+/* Offer Detail */
+/* End of Offer Detail */
+
+/* Cellar Count */
+/* End of Cellar Count */
+
+/* Product Tabbar */
+/* End of Product Tabbar */
+
+/* Products */
+/* Product List */
+/* End of Product List */
+
+/* Specials */
+/* End of Specials */
+
+/* Lottery */
+/* End of Lottery */
+
+/* End of Products */
+
+/* Receipes */
+/* End of Receipes */
+
+/* Pay Button */
+/* End of Pay Button */

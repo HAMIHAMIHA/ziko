@@ -1,0 +1,170 @@
+<view class="container {{ _offer.community + '-community'}}">
+  <!-- Lottery Alert -->
+  <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ _offer.priceRule != 'regular' && _pageSet.nextOffer != '' }}">
+    <view class="icon icon-flash"></view>
+    <view class="icon_text">next lottery in 50 items sold</view>
+  </view>
+  <!-- End of Lottery Alert -->
+
+  <!-- Countdown -->
+  <view class="uppercase countdown">
+    <view class="nunito_600 countdown_text">remaining time</view>
+    <countdown class="gilroy_700 countdown_clock"></countdown>
+  </view>
+  <!-- End of Countdown -->
+
+  <!-- Contact -->
+  <view class="contact_container" bindtap="contact">
+    <view class="icon icon-chat"></view>
+  </view>
+  <!-- End of Contact -->
+
+  <view class="banner_container">
+    <!-- Banner -->
+    <view class="banner-image_container swiper_container">
+      <swiper class="swiper" bindchange="swiperChange">
+        <block wx:for="{{ _offer.banner }}" wx:key="key" wx:for-item="banner">
+          <swiper-item class="swiper_item">
+            <image src="{{ banner.img }}" mode="aspectFill"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="gilroy_700 indicator">
+        {{ _pageSet.swiperIndex }} / {{ _offer.banner.length }}
+      </view>  
+    </view>
+    <!-- End of Banner -->
+
+    <!-- Messages -->
+    <view class="gilroy messages_container">
+      <swiper
+        class="swiper"
+        style="--showing-:{{ _pageSet.showingMsg }};"
+        autoplay="true"
+        circular="true"
+        display-multiple-items="{{ _pageSet.showingMsg }}"
+        vertical="true"
+        bindchange="messageSwiperChange"
+      >
+        <block wx:for="{{ messages }}" wx:key="id" wx:for-item="message" wx:for-index="idx">
+          <swiper-item
+            class="swiper_item{{ (_pageSet.msg[0] == idx) ? ' current' : (_pageSet.msg[1] == idx) ? ' next-1' : (_pageSet.msg[2] == idx) ? ' next-2' : (_pageSet.msg[3] == idx) ? ' next-3' : (_pageSet.msg[4] == idx) ? ' next-4' : '' }}"
+          >
+            <view class="message">{{ message }}</view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <!-- End of Messages -->
+  </view>
+
+  <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
+    <!-- Offer Count -->
+      <view class="flex-start gilroy_500 offer-count_container">
+        <view class="icon_container">
+          <view class="icon icon-bag"></view>
+          <view class="icon_text">100 Orders</view>
+        </view>
+        <view class="icon_container">
+          <view class="icon icon-eye"></view>
+          <view class="icon_text">Viewers</view>
+        </view>
+      </view>
+    <!-- End of Offer Count -->
+
+    <!-- Offer Share -->
+    <view class="share">
+      <view class="icon icon-share"></view>
+    </view>
+    <!-- End of Offer Share -->
+
+    <!-- Offer Detail -->
+    <view class="gilroy_700 offer-title">Offer Title</view>
+    <view class="gilroy_700 offer-priceRule">{{ _offer.priceRule }}</view>
+    <view class="nunito offer-description">
+      Offer description lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum placerat nisl auctor tellus, placerat neque placerat. Amet arcu ut nec, velit faucibus.
+    </view>
+    <!-- End of Offer Detail -->
+
+    <!-- Cellar Count -->
+    <!-- TODO -->
+    <!-- End of Cellar Count -->
+  </view>
+
+  <!-- Product Tabbar -->
+  <view class="uppercase gilroy_700 flex-center tabbar">
+    <view class="tabbar_item selected" bindtap="switchTab" data-to-tab="product">
+      products
+    </view>
+    <view class="tabbar_item" bindtap="switchTab" data-to-tab="receipe">
+      Receipes
+    </view>
+  </view>
+  <!-- End of Product Tabbar -->
+
+  <!-- Products -->
+  <view class="list_container" wx:if="{{ _pageSet.currentTab == 'product' }}">
+    <!-- Product List -->
+    <view class="offer-group offer-packs">
+      <view class="uppercase title">
+        <text class="gilroy_500">our</text>
+        <text class="gilroy_700"> selected packs</text>
+      </view>
+
+      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _pageSet.units }}"></products>
+    </view>
+
+    <view class="offer-group offer-singles">
+      <view class="uppercase title">
+        <text class="gilroy_500">single</text>
+        <text class="gilroy_700"> items</text>
+      </view>
+
+      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ _pageSet.units }}"></products>
+    </view>
+    <!-- End of Product List -->
+
+    <!-- Specials -->
+    <!-- End of Specials -->
+    <view class=" offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}">
+      <view class="offer-specials_title">
+        <view class="icon icon-ziko-special">
+        </view>
+      </view>
+      <view class="offer-specials_list">
+        <view class="offer-special" wx:for="{{ _offer.specials }}" wx:key="id" wx:for-item="special">
+          <view class="gilroy_700 uppercase offer-special_title">
+            <text wx:if="{{special.type == 'first'}}">first {{ special.amount }} orders</text>
+            <text wx:elif="{{ special.type == 'totalAbove' }}">above {{ special.amount }} total orders</text>
+            <text wx:elif="{{ special.type == 'orderAbove' }}">order above ${{ special.amount }}</text>
+            <text wx:elif="{{ special.type == 'totalSold' }}">{{ special.amount }} total sold items</text>
+            <text wx:elif="{{ special.type == 'cart' }}">"{{ special.item }}" in cart</text>
+          </view>
+
+          <view class="nunito offer-special_detail">
+            <text wx:if="{{special.get == 'reduction'}}">Get {{ special.rate }}% discount rate</text>
+            <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ _pageSet.units }} item name for free</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Lottery -->
+    <!-- TODO -->
+    <view class="offer-lottery" wx:if="{{ _offer.lottery }}">
+      <cellarLottery></cellarLottery>
+    </view>
+    <!-- End of Lottery -->
+  </view>
+  <!-- End of Products -->
+
+  <!-- Receipes -->
+    <!-- TODO -->
+  <!-- End of Receipes -->
+
+  <!-- Pay Button -->
+  <view class="payment_container">
+    <!-- TODO -->
+  </view>
+  <!-- End of Pay Button -->
+</view>
