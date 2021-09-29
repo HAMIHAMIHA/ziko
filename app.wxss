@@ -30,6 +30,10 @@ page {
   color: var(--ziko-default-);
 }
 
+.container {
+  position: relative;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -51,6 +55,33 @@ page {
   background: var(--ziko-baby-);  
 }
 
+/* Detail Banner */
+.banner_container {
+  height: 100vw;
+  position: relative;
+}
+
+.banner-image_container .swiper,
+.banner-image_container .swiper_item,
+.banner-image_container .swiper_item image {
+  width: 100vw;
+  height: 100vw;
+}
+
+.indicator {
+  width: fit-content;
+  padding: 2rpx 10rpx;
+  background: var(--ziko-default-);
+  color: #000000;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  border-radius: 32rpx;
+  position: absolute;
+  left: 30rpx;
+  bottom: 30rpx;
+}
+/* End of Detail Banner */
+
 /* Flex */
 .flex-center {
   display: flex;
@@ -70,6 +101,19 @@ page {
   align-items: center;
 }
 /* End of Flex */
+
+/* Float Contact */
+.float-contact_container {
+  padding: 30rpx;
+  background: #F74A5C;
+  font-size: 40rpx;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 100;
+  top: 20%;
+  right: 30rpx;
+}
+/* End of Float Contact */
 
 /* Gradient Text */
 .gradient-text {
@@ -109,3 +153,163 @@ page {
   padding-left: 12rpx;
 }
 /* End of Icons */
+
+/* Lottery Alert */
+.lottery-alert {
+  width: 100%;
+  padding: 14rpx 0;
+  background: #FF4040;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 20rpx;
+}
+
+.lottery-alert .icon {
+  font-size: 22rpx;
+}
+/* End of Lottery Alert */
+
+/* Offer Countdown */
+.ziko-offer .countdown {
+  padding: 16rpx 0;
+  text-align: center;
+}
+
+.ziko-offer .countdown .countdown_text {
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+
+.ziko-offer .countdown .countdown_clock {
+  font-size: 64rpx;
+  line-height: 78rpx;
+}
+/* End of Offer Countdown */
+
+/* Offer Detail */
+.offer-detail_container {
+  color: #000000;
+  position: relative;
+}
+
+.offer-detail_container:after {
+  content: '';
+  width: 100vw;
+  height: 8rpx;
+  background: linear-gradient(90deg, #B7BABF 0.42%, #878B8E 18.57%, #B5BCC4 32.06%, #D2D4D3 47.1%, #F1F1F1 69.92%, #A4A9AC 100%);
+  display: block;
+}
+
+.offer-detail {
+  padding: 48rpx 30rpx;
+  text-align: center;
+}
+
+.offer-detail .offer-title {
+  padding: 16rpx 0;
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+
+.offer-detail .offer-description {
+  padding-top: 16rpx;
+  font-size: 28r14px;
+  line-height: 36rpx;
+}
+/* End of Offer Detail */
+
+/* Offer Messages */
+.ziko-offer .messages_container {
+  width: 70%;
+  position: absolute;
+  right: 30rpx;
+  bottom: 30rpx;
+  z-index: 10;
+  pointer-events: none;
+}
+/* End of Offer Messages */
+
+/* Offer Count */
+.offer-count_container {
+  padding: 20rpx 36rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  border-bottom: 2rpx solid #B0AEB7;
+}
+
+.offer-count_container .icon_container {
+  padding-right: 40rpx;
+}
+
+.offer-count_container .icon {
+  font-size: 28rpx;
+}
+
+.offer-count_container .icon_text {
+  padding-left: 8rpx;
+}
+/* End of Offer Count */
+
+/* Offer Product Tabbar */
+.ziko-offer .tabbar {
+  width: 100%;
+  padding-top: 8rpx;
+  position: relative;
+}
+
+.ziko-offer .tabbar_item {
+  width: 100%;
+  padding: 24rpx 0;
+  text-align: center;
+  opacity: 0.3 !important;
+}
+.ziko-offer .tabbar_item.selected {
+  opacity: 1 !important;
+}
+
+.ziko-offer .tabbar_highlighter {
+  width: 50%;
+  height: 2rpx;
+  background: var(--ziko-default-);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.ziko-offer .tabbar_highlighter.receipe {
+  transform: translateX(100%) !important;
+}
+/* End of Offer Product Tabbar */
+
+/* Share */
+.container .share {
+  width: fit-content;
+  padding: 26rpx;
+  font-size: 30rpx;
+  background: #EDEEF0;
+  border-radius: 50%;
+}
+
+.ziko-offer .share {
+  position: absolute;
+  right: 30rpx;
+  top: calc(20rpx + 20rpx + 32rpx + 2rpx);
+  transform: translateY(-50%);
+}
+
+.community-kitchen .share {
+  background: #FFE9B1;
+}
+
+.community-garden .share {
+  background: #BCFFB1;
+}
+
+.community-cellar .share {
+  background: #EAEAEB;
+}
+
+.community-pet .share {
+  background: #FFDAC5;
+}
+/* End of Share */

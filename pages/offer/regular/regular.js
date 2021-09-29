@@ -1,14 +1,25 @@
+const animate = {
+  tab: wx.createAnimation({
+    duration: 100,
+    timingFunction: 'linear'
+  }).opacity(1).step().export(),
+  highlight: wx.createAnimation({
+    duration: 100,
+    timingFunction: 'linear'
+  }).translateY(0).step().export(),
+}
+
 Page({
   data: {
     _pageSet: {
       swiperIndex: 1,
       nextOffer: 'test',
       currentTab: "product",
-      units: "g"
+      units: "g",
+      animate: animate
     },
     _offer: {
-      community: 'cellar',
-      priceRule: 'bourse',
+      community: 'kitchen',
       banner: [
         { key: 1, img: "/assets/images/offerDetailBanner.jpg" },
         { key: 2, img: "/assets/images/offerDetailBanner.jpg" },
@@ -157,10 +168,5 @@ Page({
     })
   },
 
-  messageSwiperChange: function(e) {
-  },
-
-  onShareAppMessage: function () {
-
-  }
+  onShareAppMessage: function (res) {}
 })

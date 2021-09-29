@@ -1,19 +1,19 @@
-<view class="container {{ _offer.community + '-community'}}">
-  <!-- Countdown -->
+<view class="container ziko-offer {{ 'community-' + _offer.community }}">
+  <!-- Offer Countdown -->
   <view class="uppercase countdown">
     <view class="nunito_600 countdown_text">remaining time</view>
     <countdown class="gilroy_700 countdown_clock"></countdown>
   </view>
-  <!-- End of Countdown -->
+  <!-- End of Offer Countdown -->
 
   <!-- Contact -->
-  <view class="contact_container" bindtap="contact">
+  <view class="float-contact_container" bindtap="contact">
     <view class="icon icon-chat"></view>
   </view>
   <!-- End of Contact -->
 
   <view class="banner_container">
-    <!-- Banner -->
+    <!-- Detail Banner -->
     <view class="banner-image_container swiper_container">
       <swiper class="swiper" bindchange="swiperChange">
         <block wx:for="{{ _offer.banner }}" wx:key="key" wx:for-item="banner">
@@ -26,38 +26,40 @@
         {{ _pageSet.swiperIndex }} / {{ _offer.banner.length }}
       </view>  
     </view>
-    <!-- End of Banner -->
+    <!-- End of Detail Banner -->
 
-    <!-- Messages -->
+    <!-- Offer Messages -->
     <view class="messages_container"><scrollMessage></scrollMessage></view>
-    <!-- End of Messages -->
+    <!-- End of Offer Messages -->
   </view>
 
   <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
     <!-- Offer Count -->
-      <view class="flex-start gilroy_500 offer-count_container">
-        <view class="icon_container">
-          <view class="icon icon-bag"></view>
-          <view class="icon_text">100 Orders</view>
-        </view>
-        <view class="icon_container">
-          <view class="icon icon-eye"></view>
-          <view class="icon_text">Viewers</view>
-        </view>
+    <view class="flex-start gilroy_500 offer-count_container">
+      <view class="icon_container">
+        <view class="icon icon-bag"></view>
+        <view class="icon_text">100 Orders</view>
       </view>
+      <view class="icon_container">
+        <view class="icon icon-eye"></view>
+        <view class="icon_text">Viewers</view>
+      </view>
+    </view>
     <!-- End of Offer Count -->
 
-    <!-- Offer Share -->
-    <view class="share">
+    <!-- Share -->
+    <button class="share" open-type="share">
       <view class="icon icon-share"></view>
-    </view>
-    <!-- End of Offer Share -->
+    </button>
+    <!-- End of Share -->
 
     <!-- Offer Detail -->
-    <view class="gilroy_700 offer-title">Offer Title</view>
-    <view class="gilroy_700 offer-priceRule">{{ _offer.priceRule }}</view>
-    <view class="nunito offer-description">
-      Offer description lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum placerat nisl auctor tellus, placerat neque placerat. Amet arcu ut nec, velit faucibus.
+    <view class="offer-detail">
+      <view class="gilroy_700 uppercase offer-title">Offer Title</view>
+      <view class="gilroy_700 offer-priceRule">{{ _offer.priceRule }}</view>
+      <view class="nunito offer-description">
+        Offer description lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum placerat nisl auctor tellus, placerat neque placerat. Amet arcu ut nec, velit faucibus.
+      </view>
     </view>
     <!-- End of Offer Detail -->
 
@@ -66,16 +68,17 @@
     <!-- End of Cellar Count -->
   </view>
 
-  <!-- Product Tabbar -->
+  <!-- Offer Tabbar -->
   <view class="uppercase gilroy_700 flex-center tabbar">
-    <view class="tabbar_item selected" bindtap="switchTab" data-to-tab="product">
+    <view class="tabbar_item{{ _pageSet.currentTab == 'product' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="product" animation="{{ _pageSet.animate.tab }}">
       products
     </view>
-    <view class="tabbar_item" bindtap="switchTab" data-to-tab="receipe">
+    <view class="tabbar_item{{ _pageSet.currentTab == 'receipe' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="receipe" animation="{{ _pageSet.animate.tab }}">
       Receipes
     </view>
+    <view class="tabbar_highlighter {{ _pageSet.currentTab }}" animation="{{ _pageSet.animate.highlight }}"></view>
   </view>
-  <!-- End of Product Tabbar -->
+  <!-- End of Offer Tabbar -->
 
   <!-- Products -->
   <view class="list_container" wx:if="{{ _pageSet.currentTab == 'product' }}">
@@ -86,7 +89,7 @@
         <text class="gilroy_700"> selected packs</text>
       </view>
 
-      <!-- <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _pageSet.units }}"></products> -->
+      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _pageSet.units }}"></products>
     </view>
 
     <view class="offer-group offer-singles">
