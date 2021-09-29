@@ -34,7 +34,3 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-.current .message {
-  opacity: 0.3;
-}

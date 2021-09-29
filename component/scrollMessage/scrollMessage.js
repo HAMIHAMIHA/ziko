@@ -8,16 +8,11 @@ const finalMsg = [
 ]
 
 var messagesShowing = 1;
-var current = [-4, -3, -2, -1, 0];
-var currentTop = -4;
+var current = [-4, -3, -2, -1, 0, 1];
 
 // Set up Animation
 var animation = {
   opacity: {
-    normal: wx.createAnimation({
-      duration: 500,
-      timingFunction: 'linear'
-    }).opacity(1).step().export(),
     fst: wx.createAnimation({
       duration: 500,
       timingFunction: 'linear',
@@ -37,6 +32,10 @@ var animation = {
     normal: wx.createAnimation({
       duration: 500,
       timingFunction: 'linear'
+    }).opacity(1).step().export(),
+    still: wx.createAnimation({
+      duration: 3000,
+      timingFunction: 'linear'
     }).opacity(1).step().export()
   },
   height: wx.createAnimation({
@@ -46,12 +45,17 @@ var animation = {
 }
 // End of Set up Animation
 
+var nextCurrent = function(messages) {
+  current = [current[1], current[2], current[3], current[4], current[5],
+    (current[5] + 1 == messages.length) ? 0 : current[5] + 1
+  ];
+}
+
 Component({
   properties: {
   },
 
   data: {
-    currentTop: currentTop,
     swiperAutoplay: false,
     animation: {
       test: animation.test,
@@ -66,8 +70,8 @@ Component({
 
       // TEMP Set message data
       var messages = finalMsg;
-      if (messages.length <= 5) {
-        messages = finalMsg.concat(finalMsg);
+      while (messages.length <= 5) {
+        messages = messages.concat(finalMsg);
       }
 
       self.setData({
@@ -94,13 +98,13 @@ Component({
           }
 
           // Add Opacity Effect
-          current = [current[1], current[2], current[3], current[4], current[4] + 1];
+          nextCurrent(self.data.messages);
 
           self.setData({
             "animation.height": animation.height.export(),
             current: current
           })
-      }, 300)
+      }, 3000)
       // End of Animation
     }
   },
@@ -117,13 +121,7 @@ Component({
     messageSwiperChange: function(e) {
       const self = this;
 
-      current = [
-        current[1],
-        current[2],
-        current[3],
-        current[4],
-        (current[4] + 1 == self.data.messages.length) ? 0 : current[4] + 1
-      ];
+      nextCurrent(self.data.messages);
 
       self.setData({
         current: current
