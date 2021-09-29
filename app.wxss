@@ -299,6 +299,47 @@ page {
 }
 /* End of Offer Product Tabbar */
 
+/* Offer Specials */
+.offer-specials {
+  padding: 8rpx 30rpx 32rpx;
+  color: #000000;
+}
+
+.offer-specials_title {
+  padding: 40rpx;
+  font-size: 52rpx;
+  text-align: center;
+}
+
+.offer-specials_list, .offer-lottery_list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 18rpx;
+  row-gap: 20rpx;
+  align-items: center;
+}
+
+.offer-specials_list .offer-special,
+.offer-lottery_list .offer-lottery {
+  height: 220rpx;
+  padding: 20rpx;
+  text-align: center;
+  border: 1px solid #000;
+  flex-direction: column;
+}
+
+.offer-special_title {
+  padding-bottom: 32rpx;
+  font-size: 32rpx;
+  line-height: 40rpx;
+}
+
+.offer-special_detail {
+  font-size: 24rpx;
+  line-height: 36rpx;
+}
+/* End of Offer Specials */
+
 /* Share */
 .container .share {
   width: fit-content;

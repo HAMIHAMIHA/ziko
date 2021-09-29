@@ -102,14 +102,14 @@
     </view>
     <!-- End of Offer Product List -->
 
-    <!-- Specials -->
-    <view class=" offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}">
+    <!-- Offer Specials -->
+    <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}">
       <view class="offer-specials_title">
-        <view class="icon icon-ziko-special">
-        </view>
+        <view class="icon icon-ziko-special"></view>
       </view>
       <view class="offer-specials_list">
-        <view class="offer-special" wx:for="{{ _offer.specials }}" wx:key="id" wx:for-item="special">
+        <!-- TODO move to component if revceived data need to alter value -->
+        <view class="flex-center offer-special" wx:for="{{ _offer.specials }}" wx:key="id" wx:for-item="special">
           <view class="gilroy_700 uppercase offer-special_title">
             <text wx:if="{{special.type == 'first'}}">first {{ special.amount }} orders</text>
             <text wx:elif="{{ special.type == 'totalAbove' }}">above {{ special.amount }} total orders</text>
@@ -125,7 +125,7 @@
         </view>
       </view>
     </view>
-    <!-- End of Specials -->
+    <!-- End of Offer Specials -->
     <!-- Lottery -->
     <!-- TODO -->
     <view class="offer-lottery" wx:if="{{ _offer.lottery }}">
