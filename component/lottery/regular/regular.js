@@ -1,15 +1,12 @@
-// component/lottery/normal/normal.js
 Component({
-  /**
-   * Component properties
-   */
   properties: {
-
+    lotteries: Array
   },
 
-  /**
-   * Component initial data
-   */
+  options: {
+    addGlobalClass: true
+  },
+
   data: {
 
   },

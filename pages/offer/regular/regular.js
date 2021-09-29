@@ -134,6 +134,18 @@ Page({
         item: "pack a",
         get: "reduction",
         rate: "10"
+      }],
+      lotteries: [{
+        type: "first",
+        amount: 20,
+        get: "addon",
+        addon: {
+          id: 2,
+          available: 190,
+          quantity: 2,
+          weight: 200,
+          price: 500
+        }
       }]
     }
   },

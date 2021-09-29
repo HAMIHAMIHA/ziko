@@ -128,9 +128,9 @@
     <!-- End of Offer Specials -->
     <!-- Lottery -->
     <!-- TODO -->
-    <view class="offer-lottery" wx:if="{{ _offer.lottery }}">
+    <view class="offer-lotteries" wx:if="{{ _offer.lotteries }}">
       <view class="lottery_regular">
-        <regularLottery></regularLottery>
+        <regularLottery lotteries="{{ _offer.lotteries }}"></regularLottery>
       </view>
     </view>
     <!-- End of Lottery -->
