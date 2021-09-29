@@ -88,6 +88,14 @@ Component({
             // Using rpx cannot just calcuate the sum, will show up different for different screen
             animation.height.height('calc((36rpx + 8rpx + 8rpx + 2rpx + 2rpx) *' + messagesShowing).step();
 
+            // Add Opacity Effect
+            nextCurrent(self.data.messages);
+  
+            self.setData({
+              "animation.height": animation.height.export(),
+              current: current
+            })
+
             // Start swiper autoplay after the fifth shown
             if (messagesShowing == 5) {
               self.setData({
@@ -95,15 +103,9 @@ Component({
               })
               clearInterval(interval);
             }
+          } else {
+            clearInterval(interval);
           }
-
-          // Add Opacity Effect
-          nextCurrent(self.data.messages);
-
-          self.setData({
-            "animation.height": animation.height.export(),
-            current: current
-          })
       }, 3000)
       // End of Animation
     }
@@ -121,6 +123,7 @@ Component({
     messageSwiperChange: function(e) {
       const self = this;
 
+      console.log('trigger scroll');
       nextCurrent(self.data.messages);
 
       self.setData({
