@@ -82,14 +82,14 @@
 
   <!-- Products -->
   <view class="list_container" wx:if="{{ _pageSet.currentTab == 'product' }}">
-    <!-- Product List -->
+    <!-- Offer Product List -->
     <view class="offer-group offer-packs">
       <view class="uppercase title">
         <text class="gilroy_500">our</text>
         <text class="gilroy_700"> selected packs</text>
       </view>
 
-      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _pageSet.units }}"></products>
+      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _pageSet.units }}" community="{{ _offer.community }}"></products>
     </view>
 
     <view class="offer-group offer-singles">
@@ -98,9 +98,9 @@
         <text class="gilroy_700"> items</text>
       </view>
 
-      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ _pageSet.units }}"></products>
+      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ _pageSet.units }}" community="{{ _offer.community }}"></products>
     </view>
-    <!-- End of Product List -->
+    <!-- End of Offer Product List -->
 
     <!-- Specials -->
     <view class=" offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}">

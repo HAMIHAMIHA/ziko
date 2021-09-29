@@ -1,40 +1,42 @@
-<view class="product_container{{ product.quantity == 0 ? ' sold-out' : '' }}" wx:for="{{ products }}" wx:key="id" wx:for-item="product">
-  <view class="flex-center product">
-    <view class="product-image">
-      <image src="/assets/images/productDefault.png" mode="center" wx:if="{{ pack }}"></image>
-      <image src="/assets/images/productDefault.png" mode="center" wx:else></image>
+<view class="product_container{{ product.available == 0 ? ' sold-out' : '' }}" wx:for="{{ products }}" wx:key="id" wx:for-item="product">
+  <view class="flex-between product">
+    <view class="flex-start product_left">
+      <view class="product-image">
+        <image src="/assets/images/productDefault.png" mode="aspectFill" wx:if="{{ pack }}"></image>
+        <image src="/assets/images/productDefault.png" mode="aspectFill" wx:else></image>
+      </view>
+      <view class="product-info">
+        <view class="gilroy_700 ziko-{{ community }} gradient-text uppercase product-title">pack name</view>
+        <!-- Pack Products Detail -->
+        <view class="nunito_300 product-detail_container" wx:if="{{ pack }}">
+          <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="packProduct">
+            <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ units }}</text>
+            <text wx:if="{{ index < product.products.length - 1 }}">, </text>
+          </text>
+        </view>
+        <!-- End of Pack Products Detail -->
+
+        <!-- Single Products Detail -->
+        <view class="nunito_300 product-detail_container" wx:else>
+          <text>{{ product.quantity }} x {{ product.weight }}{{ units }}</text>
+        </view>
+        <!-- End of Single Products Detail -->
+
+        <!-- Available Amount Left -->
+        <view class="nunito_300 product-available">
+          <text wx:if="{{ product.available == 0 }}">{{ product.available }} left</text>
+          <text wx:elif="{{ product.available >= 100 }}">{{ product.available }} available</text>
+          <text wx:else>Only {{ product.available }} left!</text>
+        </view>
+        <!-- End of Available Amount Left -->
+
+        <view class="gilroy_800 product-price_container">
+          <text class="product-price" wx:if="{{ product.newPrice }}">${{ product.newPrice }}</text>
+          <text class="product-price">${{ product.price }}</text>
+        </view>
+      </view>
     </view>
-    <view class="product-info">
-      <view class="gilroy_700 product-title">pack name</view>
-      <!-- Pack Products Detail -->
-      <view class="nunito_300 product-detail_container" wx:if="{{ pack }}">
-        <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="packProduct">
-          <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ units }}</text>
-          <text wx:if="{{ index < product.products.length - 1 }}">, </text>
-        </text>
-      </view>
-      <!-- End of Pack Products Detail -->
-
-      <!-- Single Products Detail -->
-      <view class="nunito_300 product-detail_container" wx:else>
-        <text>{{ product.quantity }} x {{ product.weight }}{{ units }}</text>
-      </view>
-      <!-- End of Single Products Detail -->
-
-      <!-- Available Amount Left -->
-      <view class="nunito_300 product-available">
-        <text wx:if="{{ product.available == 0 }}">{{ product.available }} left</text>
-        <text wx:elif="{{ product.available >= 100 }}">{{ product.available }} available</text>
-        <text wx:else>Only {{ product.available }} left!</text>
-      </view>
-      <!-- End of Available Amount Left -->
-
-      <view class="gilroy_800 product-price_container">
-        <view class="product-price" wx:if="{{ product.newPrice }}">${{ product.newPrice }}</view>
-        <view class="product-price">${{ product.price }}</view>
-      </view>
-    </view>
-    <quantity quantity="{{ item.qty }}" bind:changeQty="changeQty" data-idx="{{index}}"></quantity>
+    <quantity quantity="{{ item.qty }}" community="{{ community }}" bind:changeQty="changeQty" data-idx="{{index}}"></quantity>
   </view>
 
   <!-- Cellar Target Tags -->

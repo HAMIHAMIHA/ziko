@@ -1,8 +1,9 @@
 // component/product/product.js
 Component({
   properties: {
-    products: Array,
+    community: String,
     pack: Boolean,
+    products: Array,
     targets: Array,
     targetType: String,
     units: String

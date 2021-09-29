@@ -123,9 +123,7 @@ Component({
     messageSwiperChange: function(e) {
       const self = this;
 
-      console.log('trigger scroll');
       nextCurrent(self.data.messages);
-
       self.setData({
         current: current
       })

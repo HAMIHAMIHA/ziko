@@ -89,7 +89,7 @@
         <text class="gilroy_700"> selected packs</text>
       </view>
 
-      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _pageSet.units }}"></products>
+      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _pageSet.units }}" community="{{ _offer.community }}"></products>
     </view>
 
     <view class="offer-group offer-singles">
@@ -98,7 +98,7 @@
         <text class="gilroy_700"> items</text>
       </view>
 
-      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ _pageSet.units }}"></products>
+      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ _pageSet.units }}" community="{{ _offer.community }}"></products>
     </view>
     <!-- End of Product List -->
 

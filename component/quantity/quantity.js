@@ -1,5 +1,6 @@
 Component({
   properties: {
+    community: String,
     quantity: Number
   },
   options: {

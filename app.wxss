@@ -169,6 +169,27 @@ page {
 }
 /* End of Lottery Alert */
 
+/* Offer Count */
+.offer-count_container {
+  padding: 20rpx 36rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  border-bottom: 2rpx solid #B0AEB7;
+}
+
+.offer-count_container .icon_container {
+  padding-right: 40rpx;
+}
+
+.offer-count_container .icon {
+  font-size: 28rpx;
+}
+
+.offer-count_container .icon_text {
+  padding-left: 8rpx;
+}
+/* End of Offer Count */
+
 /* Offer Countdown */
 .ziko-offer .countdown {
   padding: 16rpx 0;
@@ -229,26 +250,23 @@ page {
 }
 /* End of Offer Messages */
 
-/* Offer Count */
-.offer-count_container {
-  padding: 20rpx 36rpx;
-  font-size: 24rpx;
-  line-height: 32rpx;
-  border-bottom: 2rpx solid #B0AEB7;
+/* Offer Product List */
+.ziko-offer .offer-group {
+  padding: 0 30rpx;
 }
 
-.offer-count_container .icon_container {
-  padding-right: 40rpx;
+.ziko-offer .offer-group .title {
+  padding-top: 48rpx;
+  font-size: 32rpx;
+  line-height: 38rpx;
+  text-align: center;
+  letter-spacing: 0.2em;
 }
 
-.offer-count_container .icon {
-  font-size: 28rpx;
+.ziko-offer .offer-singles .title {
+  padding-top: 16rpx;
 }
-
-.offer-count_container .icon_text {
-  padding-left: 8rpx;
-}
-/* End of Offer Count */
+/* End of Offer Product List */
 
 /* Offer Product Tabbar */
 .ziko-offer .tabbar {
