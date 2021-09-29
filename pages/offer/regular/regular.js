@@ -19,7 +19,7 @@ Page({
       animate: animate
     },
     _offer: {
-      community: 'kitchen',
+      community: 'pet',
       banner: [
         { key: 1, img: "/assets/images/offerDetailBanner.jpg" },
         { key: 2, img: "/assets/images/offerDetailBanner.jpg" },

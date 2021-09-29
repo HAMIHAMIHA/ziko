@@ -142,8 +142,30 @@
   <!-- End of Receipes -->
 
   <!-- Pay Button -->
-  <view class="payment_container">
-    <!-- TODO -->
+  <view class="offer-payment">
+    <view class="payment-message">
+      <view class="icon_container">
+        <view class="icon icon-alert"></view>
+        <view class="nunito icon_text">Hurry up to be in the top 20</view>
+      </view>
+    </view>
+    
+    <view class="flex-center payment_container">
+      <view class="flex-between payment-price_container">
+        <view class="icon_container payment-price">
+          <view class="icon icon-bigbag"></view>
+          <view class="nunito icon_text">
+            <text class="price_final">¥1200</text>
+            <text class="payment-price_original">¥1500</text>
+          </view>
+        </view>
+        <view class="icon_container payment-tickets">
+          <view class="icon icon-ticket"></view>
+          <view class="nunito_600 icon_text payment-tickets_count">X3</view>
+        </view>
+      </view>
+      <button class="payment-button" hover-class="none">Pay</button>
+    </view>
   </view>
   <!-- End of Pay Button -->
 </view>
