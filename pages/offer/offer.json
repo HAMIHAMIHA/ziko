@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "countdown": "/component/countdown/countdown",
-    "products": "/component/products/products",
-    "normalLottery": "/component/lottery/normal/normalLottery",
-    "cellarLottery": "/component/lottery/cellar/cellarLottery",
-    "bourseLottery": "/component/lottery/bourse/bourseLottery"
-  }
-}
