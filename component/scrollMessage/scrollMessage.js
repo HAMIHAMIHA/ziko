@@ -7,8 +7,9 @@ const finalMsg = [
   "mesag asg asgkljsd aessage2"
 ]
 
-var messagesShowing = 1;
-var current = [-4, -3, -2, -1, 0, 1];
+var messagesShowing;
+var current;
+var interval;
 
 // Set up Animation
 var animation = require('../../utils/animation.js').message;
@@ -49,14 +50,12 @@ Component({
       // End of TEMP
 
       // Add Animation For Showing messages
-      let interval = setInterval(
+      interval = setInterval(
         function() {
           if (messagesShowing < 5) {
-            // Show first five by animation on height
             messagesShowing++;
             // Using rpx cannot just calcuate the sum, will show up different for different screen
             animation.height.height('calc((36rpx + 8rpx + 8rpx + 2rpx + 2rpx) *' + messagesShowing).step();
-
             // Add Opacity Effect
             nextCurrent(self.data.messages);
   
@@ -80,8 +79,13 @@ Component({
     }
   },
 
-  observers: {
-
+  lifetimes: {
+    attached() {
+      // Reset message
+      messagesShowing = 1;
+      current = [-4, -3, -2, -1, 0, 1];
+      clearInterval(interval);
+    }
   },
 
   options: {
