@@ -174,6 +174,48 @@ image {
 }
 /* End of Lottery Alert */
 
+/* Offer Cellar Count */
+.cellar-total_container {
+  padding: 24rpx 30rpx;
+  border-top: 2rpx solid rgba(255, 255, 255, 0.2);
+}
+
+.cellar-total_container .icon {
+  font-size: 72rpx;
+  padding-right: 24rpx;
+}
+
+.cellar-total {
+  padding-right: 24rpx;
+  white-space: nowrap;
+}
+
+.cellar-total_container .cellar-total_count {
+  font-size: 30rpx;
+  line-height: 36rpx;
+}
+
+.cellar-total_container .cellar-total_label {
+  color: #5C6B77;
+  font-size: 24rpx;
+  line-height: 36rpx;
+}
+
+.cellar-total_progress {
+  width: 100%;
+  height: 8rpx;
+  background: #E0E0E0;
+  border-radius: 20rpx;
+}
+
+.cellar-total_progress_fill {
+  width: var(--progress-fill-);
+  height: 8rpx;
+  background: linear-gradient(270deg, #4060FF -0.3%, #4080FF 25.3%, #8040FF 51.42%, #105EFA 100%);
+  border-radius: 20rpx;
+}
+/* End of Offer Cellar Count */
+
 /* Offer Count */
 .offer-count_container {
   padding: 20rpx 36rpx;
@@ -256,6 +298,10 @@ image {
 /* End of Offer Messages */
 
 /* Offer Payment */
+.offer-payment {
+  padding-bottom: var(--env-);
+}
+
 .offer-payment .payment-message {
   padding: 14rpx 30rpx;
   background: rgb(255, 255, 255, 0.6);
@@ -279,6 +325,10 @@ image {
   background: #FFFFFF;
   color: #000000;
   flex: 2;
+}
+
+.offer-payment.disabled .payment-price_container {
+  color: #A3A8B7;
 }
 
 .offer-payment .payment-price {
@@ -317,10 +367,15 @@ image {
   width: 33%;
   padding: 0;
   border-radius: 0;
-  background: #0D0F18;
+  background: #A3A8B7;
   color: var(--ziko-default-);
   font-size: 32rpx;
   line-height: 106rpx;
+}
+
+.offer-payment.disabled .payment-button {
+  background: #A3A8B7;
+  pointer-events: none;
 }
 
 .community-kitchen .payment-button {

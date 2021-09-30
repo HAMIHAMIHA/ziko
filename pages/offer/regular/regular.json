@@ -4,6 +4,6 @@
     "products": "/component/products/products",
     "receipes": "/component/receipes/receipes",
     "scrollMessage": "/component/scrollMessage/scrollMessage",
-    "regularLottery": "/component/lottery/regular/regular"
+    "lottery": "/component/lottery/regular/regular"
   }
 }

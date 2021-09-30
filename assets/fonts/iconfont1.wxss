@@ -27,9 +27,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-Group-2627:before {
-  content: "\e904";
-}
 .icon-ziko-lottery:before {
   content: "\e937";
 }
@@ -47,9 +44,6 @@
 }
 .icon-ziko-kitchen_right:before {
   content: "\e90d";
-}
-.icon-ziko_right:before {
-  content: "\e912";
 }
 .icon-ziko-pet_right:before {
   content: "\e914";

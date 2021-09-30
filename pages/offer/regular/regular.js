@@ -1,13 +1,4 @@
-const animate = {
-  tab: wx.createAnimation({
-    duration: 100,
-    timingFunction: 'linear'
-  }).opacity(1).step().export(),
-  highlight: wx.createAnimation({
-    duration: 100,
-    timingFunction: 'linear'
-  }).translateY(0).step().export(),
-}
+const animate = require('../../../utils/animation.js').tabbar;
 
 Page({
   data: {
@@ -155,15 +146,14 @@ Page({
 
     // Page unit showing
     if (self.data._offer.community) {
+      self.setData({
+        "_pageSet.units": "cl",
+      })
     }
 
     // Message counts
     let messageIndex = []
 
-
-    self.setData({
-      "_pageSet.units": "cl",
-    })
   },
 
   swiperChange: function(e) {

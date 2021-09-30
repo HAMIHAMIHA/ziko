@@ -11,38 +11,7 @@ var messagesShowing = 1;
 var current = [-4, -3, -2, -1, 0, 1];
 
 // Set up Animation
-var animation = {
-  opacity: {
-    fst: wx.createAnimation({
-      duration: 500,
-      timingFunction: 'linear',
-    }).opacity(0.3).step().export(),
-    snd: wx.createAnimation({
-      duration: 500,
-      timingFunction: 'linear'
-    }).opacity(0.5).step().export(),
-    trd: wx.createAnimation({
-      duration: 500,
-      timingFunction: 'linear'
-    }).opacity(0.6).step().export(),
-    fth: wx.createAnimation({
-      duration: 500,
-      timingFunction: 'linear'
-    }).opacity(0.8).step().export(),
-    normal: wx.createAnimation({
-      duration: 500,
-      timingFunction: 'linear'
-    }).opacity(1).step().export(),
-    still: wx.createAnimation({
-      duration: 3000,
-      timingFunction: 'linear'
-    }).opacity(1).step().export()
-  },
-  height: wx.createAnimation({
-    duration: 500,
-    timingFunction: 'linear'
-  })
-}
+var animation = require('../../utils/animation.js').message;
 // End of Set up Animation
 
 var nextCurrent = function(messages) {
