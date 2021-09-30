@@ -74,7 +74,7 @@
         </view>
 
         <view class="product_container" wx:for="{{ _product.products }}" wx:key="*this">
-          <view class="flex-between product">
+          <view class="flex-between flex-align-start product">
             <view class="flex-start flex-align-start product_left">
               <view class="product-image">
                 <image src="/assets/images/productDefault.png" mode="aspectFill"></image>
@@ -94,9 +94,11 @@
               </view>
             </view>
 
-            <navigator class="product-navigate" url="{{ _routes.product + '?type=packProduct' }}">
-              Discover
-            </navigator>
+            <view class="flex-start product-navigate_container">
+              <navigator class="product-navigate" url="{{ _routes.product + '?type=packProduct' }}">
+                Discover
+              </navigator>
+            </view>
           </view>
         </view>
       </view>

@@ -16,12 +16,6 @@ page {
   --ziko-garden-: linear-gradient(105.28deg, #98F183 2.41%, #11BF67 100%);
   --ziko-cellar-: linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
   --ziko-pet-: linear-gradient(105.28deg, #FFB75A 2.41%, #FF7233 100%);
-  --ziko-baby-: linear-gradient(105.28deg, #FFB2C7 2.41%, #FF5898 100%);
-  --ziko-kitchen_btn-: #CAA655;
-  --ziko-garden_btn-: #2FCA6D;
-  --ziko-cellar_btn-: #6A737B;
-  --ziko-pet_btn-: #FF7C39;
-  --ziko-baby_btn-: #FF70A4;
 }
 
 /* General Style */
@@ -39,26 +33,73 @@ image {
   position: relative;
 }
 
+.container-grey {
+  background: #F1F1F1;
+  color: #000000;
+}
+
+.container-btn-bottom {
+  --container-btn-bottom-height-: calc(36rpx + 32rpx + 32rpx + 48rpx);
+  min-height: calc(100vh - var(--container-btn-bottom-height-) - var(--env-));
+  padding-bottom: calc(var(--container-btn-bottom-height-) + var(--env-));
+}
+
 .uppercase {
   text-transform: uppercase;
+}
+
+.white-box {
+  padding: 0 30rpx;
+  background: #FFFFFF;
 }
 
 /* Ziko Colors */
 .ziko-kitchen {
   background: var(--ziko-kitchen-);  
 }
+
 .ziko-garden {
   background: var(--ziko-garden-);  
 }
+
 .ziko-cellar {
   background: var(--ziko-cellar-);  
 }
+
 .ziko-pet {
   background: var(--ziko-pet-);  
 }
-.ziko-baby {
-  background: var(--ziko-baby-);  
+
+.ziko-kitchen-solid {
+  background: #E3B231;  
 }
+
+.ziko-garden-solid {
+  background: #86DF77;  
+}
+
+.ziko-cellar-solid {
+  background: #C0BEC6;  
+}
+
+.ziko-pet-solid {
+  background: #E6A86F;  
+}
+
+/* Button Bottom */
+.container-btn-bottom .btn-bottom button {
+  width: calc(100vw - 30rpx - 30rpx);
+  padding: 32rpx 0;
+  background: #0D0F18;
+  color: var(--ziko-default-);
+  font-size: 32rpx;
+  line-height: 36rpx;
+  border-radius: 8rpx;
+  position: absolute;
+  left: 30rpx;
+  bottom: 48rpx;
+}
+/* End of Button Bottom */
 
 /* Detail Banner */
 .banner_container {
@@ -425,6 +466,66 @@ image {
 
 .ziko-offer .offer-singles .title {
   padding-top: 16rpx;
+}
+
+.product_container {
+  padding: 48rpx 0;
+  border-bottom: 1px solid #424756;
+}
+
+.product_container.sold-out {
+  opacity: 0.5;
+}
+
+.product_container .product_left {
+  width: 74%;
+}
+
+.product_container .product_container:last-child {
+  border-bottom: 0;
+}
+
+.product_container .product-image, .product-image image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.product_container .product-info {
+  padding-left: 24rpx;
+}
+
+.product_container .product-info .product-title {
+  font-size: 32rpx;
+  line-height: 28rpx;
+}
+
+.product_container .product-detail_container {
+  padding: 8rpx 0;
+  font-size: 26rpx;
+  line-height: 32rpx;
+}
+
+.product_container .product-available {
+  padding-bottom: 8rpx;
+  font-size: 22rpx;
+  line-height: 28rpx;
+}
+
+.product_container .product-price {
+  font-size: 40rpx;
+  line-height: 50rpx;
+  color: var(--ziko-default-);
+}
+
+.product_container .product-price + .product-price {
+  padding-left: 8rpx;
+  color: #626778;
+  text-decoration: line-through;
+}
+
+.product_container .product-quantity,
+.product_container .product-navigate_container {
+  height: 160rpx;
 }
 /* End of Offer Product List */
 

@@ -1,9 +1,9 @@
 <view class="quantity">
-  <button class="ziko-{{ community }} quantity-change" bindtap="removeItem">
+  <button class="ziko-{{ community }}-solid quantity-change" bindtap="removeItem">
     <view class="icon icon-minus"></view>
   </button>
   <view class="quantity-amount">{{ quantity }}</view>
-  <button class="ziko-{{ community }} quantity-change" bindtap="addItem">
+  <button class="ziko-{{ community }}-solid quantity-change" bindtap="addItem">
     <view class="icon icon-plus"></view>
   </button>
 </view>

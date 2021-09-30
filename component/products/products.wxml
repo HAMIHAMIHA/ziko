@@ -1,7 +1,7 @@
 <!-- TODO navigate to product/pack detail -->
 
 <view class="product_container{{ product.available == 0 ? ' sold-out' : '' }}" wx:for="{{ products }}" wx:key="id" wx:for-item="product">
-  <view class="flex-between product">
+  <view class="flex-between flex-align-start product">
     <view class="flex-start flex-align-start product_left">
       <view class="product-image">
         <image src="/assets/images/productDefault.png" mode="aspectFill" wx:if="{{ pack }}"></image>
@@ -37,10 +37,10 @@
           <text class="product-price" wx:if="{{ product.newPrice }}">${{ product.newPrice }}</text>
           <text class="product-price">${{ product.price }}</text>
         </view>
-        <!-- End of Price -->
+        <!-- End ofPrice -->
       </view>
     </view>
-    <quantity quantity="{{ item.qty }}" community="{{ community }}" bind:changeQty="changeQty" data-idx="{{index}}"></quantity>
+    <quantity class="flex-start product-quantity" quantity="{{ item.qty }}" community="{{ community }}" bind:changeQty="changeQty" data-idx="{{index}}"></quantity>
   </view>
 
   <!-- Cellar Target Tags -->
