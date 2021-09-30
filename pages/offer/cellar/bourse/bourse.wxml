@@ -1,4 +1,11 @@
-<view class="container ziko-offer {{ _offer.community + '-community'}}">
+<view class="container ziko-offer {{ 'community-' + _offer.community }}">
+  <!-- Lottery Alert -->
+  <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ _offer.priceRule != 'regular' && _pageSet.nextOffer != '' }}">
+    <view class="icon icon-flash"></view>
+    <view class="icon_text">next lottery in 50 items sold</view>
+  </view>
+  <!-- End of Lottery Alert -->
+
   <!-- Offer Countdown -->
   <view class="uppercase countdown">
     <view class="nunito_600 countdown_text">remaining time</view>
@@ -47,11 +54,10 @@
       </view>
     <!-- End of Offer Count -->
 
-
     <!-- Share -->
-    <view class="share">
+    <button class="share" open-type="share">
       <view class="icon icon-share"></view>
-    </view>
+    </button>
     <!-- End of Share -->
 
     <!-- Offer Detail -->
@@ -64,25 +70,36 @@
     </view>
     <!-- End of Offer Detail -->
 
-    <!-- Cellar Count -->
-    <!-- TODO -->
-    <!-- End of Cellar Count -->
+    <!-- Offer Cellar Count -->
+    <view class="flex-center cellar-total_container">
+      <view class="icon icon-wine"></view>
+      <view class="cellar-total">
+        <view class="nunito_700 cellar-total_count">{{ currentSold }}/{{ total }}</view>
+        <view class="inter_500 cellar-total_label">total units available</view>
+      </view>
+      <view class="cellar-total_progress">
+        <view class="cellar-total_progress_fill" style="--progress-fill-: calc(100% * {{ currentSold }} / {{ total }});"></view>
+      </view>
+    </view>
+    <!-- End of Offer Cellar Count -->
   </view>
 
   <!-- Offer Tabbar -->
   <view class="uppercase gilroy_700 flex-center tabbar">
-    <view class="tabbar_item selected" bindtap="switchTab" data-to-tab="product">
+    <view class="tabbar_item{{ _pageSet.currentTab == 'product' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="product" animation="{{ _pageSet.animate.tab }}">
       products
     </view>
-    <view class="tabbar_item" bindtap="switchTab" data-to-tab="receipe">
+    <view class="tabbar_item{{ _pageSet.currentTab == 'receipe' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="receipe" animation="{{ _pageSet.animate.tab }}">
       Receipes
     </view>
+    <view class="tabbar_highlighter {{ _pageSet.currentTab }}" animation="{{ _pageSet.animate.highlight }}"></view>
   </view>
   <!-- End of Offer Tabbar -->
 
+
   <!-- Products -->
   <view class="list_container" wx:if="{{ _pageSet.currentTab == 'product' }}">
-    <!-- Product List -->
+    <!-- Offer Product List -->
     <view class="offer-group offer-packs">
       <view class="uppercase title">
         <text class="gilroy_500">our</text>
@@ -100,17 +117,16 @@
 
       <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ _pageSet.units }}" community="{{ _offer.community }}"></products>
     </view>
-    <!-- End of Product List -->
+    <!-- End of Offer Product List -->
 
-    <!-- Specials -->
-    <!-- End of Specials -->
-    <view class=" offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}">
+    <!-- Offer Specials -->
+    <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}">
       <view class="offer-specials_title">
-        <view class="icon icon-ziko-special">
-        </view>
+        <view class="icon icon-ziko-special"></view>
       </view>
       <view class="offer-specials_list">
-        <view class="offer-special" wx:for="{{ _offer.specials }}" wx:key="id" wx:for-item="special">
+        <!-- TODO move to component if revceived data need to alter value -->
+        <view class="flex-center offer-special" wx:for="{{ _offer.specials }}" wx:key="id" wx:for-item="special">
           <view class="gilroy_700 uppercase offer-special_title">
             <text wx:if="{{special.type == 'first'}}">first {{ special.amount }} orders</text>
             <text wx:elif="{{ special.type == 'totalAbove' }}">above {{ special.amount }} total orders</text>
@@ -126,25 +142,56 @@
         </view>
       </view>
     </view>
+    <!-- End of Offer Specials -->
 
     <!-- Lottery -->
-    <!-- TODO -->
-    <view class="offer-lottery" wx:if="{{ _offer.lottery }}">
-      <view class="lottery-bourse">
-        <!-- TODO -->
+    <view class="offer-lotteries" wx:if="{{ _offer.lotteries }}">
+      <view class="lottery_regular">
+        <lottery lotteries="{{ _offer.lotteries }}"></lottery>
       </view>
     </view>
     <!-- End of Lottery -->
   </view>
   <!-- End of Products -->
 
-  <!-- Receipes -->
-    <!-- TODO -->
-  <!-- End of Receipes -->
+  <!-- Offer Receipes -->
+  <view class="list_container" wx:else>
+    <view class="offer-group receipe-group">
+      <view class="uppercase title">
+        <text class="gilroy_500">related</text>
+        <text class="gilroy_700"> receipes</text>
+      </view>
+
+      <receipes></receipes>
+    </view>
+  </view>
+  <!-- End of Offer Receipes -->
 
   <!-- Pay Button -->
-  <view class="payment_container">
-    <!-- TODO -->
+  <view class="offer-payment disabled">
+    <view class="payment-message">
+      <view class="icon_container">
+        <view class="icon icon-alert"></view>
+        <view class="nunito icon_text">Hurry up to be in the top 20</view>
+      </view>
+    </view>
+    
+    <view class="flex-center payment_container">
+      <view class="flex-between payment-price_container">
+        <view class="icon_container payment-price">
+          <view class="icon icon-bigbag"></view>
+          <view class="nunito icon_text">
+            <text class="price_final">¥1200</text>
+            <text class="payment-price_original">¥1500</text>
+          </view>
+        </view>
+        <view class="icon_container payment-tickets">
+          <view class="icon icon-ticket"></view>
+          <view class="nunito_600 icon_text payment-tickets_count">X3</view>
+        </view>
+      </view>
+      <button class="payment-button" hover-class="none">Pay</button>
+    </view>
   </view>
   <!-- End of Pay Button -->
 </view>
