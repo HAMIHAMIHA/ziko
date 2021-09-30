@@ -1,4 +1,4 @@
-<view class="container ziko-offer {{ 'community-' + _offer.community }}">
+<view class="container ziko-offer_detail {{ 'community-' + _offer.community }}">
   <!-- Offer Countdown -->
   <view class="uppercase countdown">
     <view class="nunito_600 countdown_text">remaining time</view>

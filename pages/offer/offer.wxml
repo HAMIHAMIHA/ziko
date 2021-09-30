@@ -1,4 +1,4 @@
-<view class="container {{ _offer.community + '-community'}}">
+<view class="container ziko-offer {{ _offer.community + '-community'}}">
   <!-- Lottery Alert -->
   <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ _offer.priceRule != 'regular' && _pageSet.nextOffer != '' }}">
     <view class="icon icon-flash"></view>

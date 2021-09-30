@@ -1,4 +1,4 @@
-<view class="container ziko-offer {{ 'community-' + _offer.community }}">
+<view class="container ziko-offer_detail {{ 'community-' + _offer.community }}">
   <!-- Lottery Alert -->
   <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ _offer.priceRule != 'regular' && _pageSet.nextOffer != '' }}">
     <view class="icon icon-flash"></view>
@@ -42,16 +42,16 @@
 
   <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
     <!-- Offer Count -->
-      <view class="flex-start gilroy_500 offer-count_container">
-        <view class="icon_container">
-          <view class="icon icon-bag"></view>
-          <view class="icon_text">100 Orders</view>
-        </view>
-        <view class="icon_container">
-          <view class="icon icon-eye"></view>
-          <view class="icon_text">Viewers</view>
-        </view>
+    <view class="flex-start gilroy_500 offer-count_container">
+      <view class="icon_container">
+        <view class="icon icon-bag"></view>
+        <view class="icon_text">100 Orders</view>
       </view>
+      <view class="icon_container">
+        <view class="icon icon-eye"></view>
+        <view class="icon_text">Viewers</view>
+      </view>
+    </view>
     <!-- End of Offer Count -->
 
     <!-- Share -->

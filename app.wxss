@@ -175,40 +175,40 @@ image {
 /* End of Lottery Alert */
 
 /* Offer Cellar Count */
-.cellar-total_container {
+.ziko-offer_detail .cellar-total_container {
   padding: 24rpx 30rpx;
   border-top: 2rpx solid rgba(255, 255, 255, 0.2);
 }
 
-.cellar-total_container .icon {
+.ziko-offer_detail .cellar-total_container .icon {
   font-size: 72rpx;
   padding-right: 24rpx;
 }
 
-.cellar-total {
+.ziko-offer_detail .cellar-total {
   padding-right: 24rpx;
   white-space: nowrap;
 }
 
-.cellar-total_container .cellar-total_count {
+.ziko-offer_detail .cellar-total_container .cellar-total_count {
   font-size: 30rpx;
   line-height: 36rpx;
 }
 
-.cellar-total_container .cellar-total_label {
+.ziko-offer_detail .cellar-total_container .cellar-total_label {
   color: #5C6B77;
   font-size: 24rpx;
   line-height: 36rpx;
 }
 
-.cellar-total_progress {
+.ziko-offer_detail .cellar-total_progress {
   width: 100%;
   height: 8rpx;
   background: #E0E0E0;
   border-radius: 20rpx;
 }
 
-.cellar-total_progress_fill {
+.ziko-offer_detail .cellar-total_progress_fill {
   width: var(--progress-fill-);
   height: 8rpx;
   background: linear-gradient(270deg, #4060FF -0.3%, #4080FF 25.3%, #8040FF 51.42%, #105EFA 100%);
@@ -217,50 +217,50 @@ image {
 /* End of Offer Cellar Count */
 
 /* Offer Count */
-.offer-count_container {
+.ziko-offer_detail .offer-count_container {
   padding: 20rpx 36rpx;
   font-size: 24rpx;
   line-height: 32rpx;
   border-bottom: 2rpx solid #B0AEB7;
 }
 
-.offer-count_container .icon_container {
+.ziko-offer_detail .offer-count_container .icon_container {
   padding-right: 40rpx;
 }
 
-.offer-count_container .icon {
+.ziko-offer_detail .offer-count_container .icon {
   font-size: 28rpx;
 }
 
-.offer-count_container .icon_text {
+.ziko-offer_detail .offer-count_container .icon_text {
   padding-left: 8rpx;
 }
 /* End of Offer Count */
 
 /* Offer Countdown */
-.ziko-offer .countdown {
+.ziko-offer_detail .countdown {
   padding: 16rpx 0;
   text-align: center;
 }
 
-.ziko-offer .countdown .countdown_text {
+.ziko-offer_detail .countdown .countdown_text {
   font-size: 24rpx;
   line-height: 32rpx;
 }
 
-.ziko-offer .countdown .countdown_clock {
+.ziko-offer_detail .countdown .countdown_clock {
   font-size: 64rpx;
   line-height: 78rpx;
 }
 /* End of Offer Countdown */
 
 /* Offer Detail */
-.offer-detail_container {
+.ziko-offer_detail .offer-detail_container {
   color: #000000;
   position: relative;
 }
 
-.offer-detail_container:after {
+.ziko-offer_detail .offer-detail_container:after {
   content: '';
   width: 100vw;
   height: 8rpx;
@@ -268,18 +268,18 @@ image {
   display: block;
 }
 
-.offer-detail {
+.ziko-offer_detail .offer-detail {
   padding: 48rpx 30rpx;
   text-align: center;
 }
 
-.offer-detail .offer-title {
+.ziko-offer_detail .offer-detail .offer-title {
   padding: 16rpx 0;
   font-size: 32rpx;
   line-height: 32rpx;
 }
 
-.offer-detail .offer-description {
+.ziko-offer_detail .offer-detail .offer-description {
   padding-top: 16rpx;
   font-size: 28r14px;
   line-height: 36rpx;
@@ -287,7 +287,7 @@ image {
 /* End of Offer Detail */
 
 /* Offer Messages */
-.ziko-offer .messages_container {
+.ziko-offer_detail .messages_container {
   width: 70%;
   position: absolute;
   right: 30rpx;
@@ -298,11 +298,11 @@ image {
 /* End of Offer Messages */
 
 /* Offer Payment */
-.offer-payment {
+.ziko-offer_detail .offer-payment {
   padding-bottom: var(--env-);
 }
 
-.offer-payment .payment-message {
+.ziko-offer_detail .offer-payment .payment-message {
   padding: 14rpx 30rpx;
   background: rgb(255, 255, 255, 0.6);
   color: #0C0B0B;
@@ -310,16 +310,16 @@ image {
   line-height: 28rpx;
 }
 
-.offer-payment .payment-message .icon {
+.ziko-offer_detail .offer-payment .payment-message .icon {
   font-size: 32rpx;
 }
 
-.offer-payment .payment_container {
+.ziko-offer_detail .offer-payment .payment_container {
   width: 100%;
   height: 106rpx;
 }
 
-.offer-payment .payment-price_container {
+.ziko-offer_detail .offer-payment .payment-price_container {
   height: 100%;
   padding: 0 32rpx;
   background: #FFFFFF;
@@ -327,43 +327,43 @@ image {
   flex: 2;
 }
 
-.offer-payment.disabled .payment-price_container {
+.ziko-offer_detail .offer-payment.disabled .payment-price_container {
   color: #A3A8B7;
 }
 
-.offer-payment .payment-price {
+.ziko-offer_detail .offer-payment .payment-price {
   font-size: 32rx;
 }
 
-.offer-payment .payment-price .icon {
+.ziko-offer_detail .offer-payment .payment-price .icon {
   color: #ff4040;
   font-size: 32rpx;
 }
 
-.offer-payment .payment-price .icon_text {
+.ziko-offer_detail .offer-payment .payment-price .icon_text {
   padding-left: 16rpx;
 }
 
-.offer-payment .payment-price_original {
+.ziko-offer_detail .offer-payment .payment-price_original {
   padding-left: 8rpx;
   text-decoration: line-through;
   opacity: 0.4;
   letter-spacing: 0.01em;
 }
 
-.offer-payment .payment-tickets .icon {
+.ziko-offer_detail .offer-payment .payment-tickets .icon {
   font-size: 40rpx;
   color: #FFC700;
 }
 
-.offer-payment .payment-tickets .icon_text {
+.ziko-offer_detail .offer-payment .payment-tickets .icon_text {
   padding-left: 4rpx;
   font-size: 28rpx;
   line-height: 32rpx;
   letter-spacing: 0.01em;
 }
 
-.offer-payment .payment-button {
+.ziko-offer_detail .offer-payment .payment-button {
   width: 33%;
   padding: 0;
   border-radius: 0;
@@ -373,7 +373,7 @@ image {
   line-height: 106rpx;
 }
 
-.offer-payment.disabled .payment-button {
+.ziko-offer_detail .offer-payment.disabled .payment-button {
   background: #A3A8B7;
   pointer-events: none;
 }
@@ -396,11 +396,11 @@ image {
 /* End of Offer Payment */
 
 /* Offer Product List */
-.ziko-offer .offer-group {
+.ziko-offer_detail .offer-group {
   padding: 0 30rpx;
 }
 
-.ziko-offer .offer-group .title {
+.ziko-offer_detail .offer-group .title {
   padding-top: 48rpx;
   font-size: 32rpx;
   line-height: 38rpx;
@@ -408,29 +408,29 @@ image {
   letter-spacing: 0.2em;
 }
 
-.ziko-offer .offer-singles .title {
+.ziko-offer_detail .offer-singles .title {
   padding-top: 16rpx;
 }
 /* End of Offer Product List */
 
 /* Offer Product Tabbar */
-.ziko-offer .tabbar {
+.ziko-offer_detail .tabbar {
   width: 100%;
   padding-top: 8rpx;
   position: relative;
 }
 
-.ziko-offer .tabbar_item {
+.ziko-offer_detail .tabbar_item {
   width: 100%;
   padding: 24rpx 0;
   text-align: center;
   opacity: 0.3 !important;
 }
-.ziko-offer .tabbar_item.selected {
+.ziko-offer_detail .tabbar_item.selected {
   opacity: 1 !important;
 }
 
-.ziko-offer .tabbar_highlighter {
+.ziko-offer_detail .tabbar_highlighter {
   width: 50%;
   height: 2rpx;
   background: var(--ziko-default-);
@@ -439,7 +439,7 @@ image {
   left: 0;
 }
 
-.ziko-offer .tabbar_highlighter.receipe {
+.ziko-offer_detail .tabbar_highlighter.receipe {
   transform: translateX(100%) !important;
 }
 /* End of Offer Product Tabbar */
@@ -451,17 +451,17 @@ image {
 /* End of Offer Receipes */
 
 /* Offer Specials */
-.offer-specials {
+.ziko-offer_detail .offer-specials {
   padding: 8rpx 30rpx 32rpx;
   color: #000000;
 }
 
-.offer-lotteries {
+.ziko-offer_detail .offer-lotteries {
   padding: 24rpx 30rpx 32rpx;
 }
 
-.offer-specials_title,
-.offer-lotteries_title {
+.ziko-offer_detail .offer-specials_title,
+.ziko-offer_detail .offer-lotteries_title {
   padding: 40rpx;
   font-size: 52rpx;
   text-align: center;
@@ -553,7 +553,7 @@ image {
   border-radius: 50%;
 }
 
-.ziko-offer .share {
+.ziko-offer_detail .share {
   position: absolute;
   right: 30rpx;
   top: calc(20rpx + 20rpx + 32rpx + 2rpx);
