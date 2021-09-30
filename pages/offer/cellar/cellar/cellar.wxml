@@ -1,6 +1,6 @@
-<view class="container ziko-offer_detail {{ 'community-' + _offer.community }}">
+<view class="container ziko-offer {{ 'community-' + _offer.community }}">
   <!-- Lottery Alert -->
-  <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ _offer.priceRule != 'regular' && _pageSet.nextOffer != '' }}">
+  <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ _pageSet.nextOffer != '' }}">
     <view class="icon icon-flash"></view>
     <view class="icon_text">next lottery in 50 items sold</view>
   </view>
@@ -63,7 +63,7 @@
     <!-- Offer Detail -->
     <view class="offer-detail">
       <view class="gilroy_700 offer-title">Offer Title</view>
-      <view class="gilroy_700 offer-priceRule">{{ _offer.priceRule }}</view>
+      <view class="gilroy_700 uppercase offer-price-rule">{{ _offer.priceRule }}</view>
       <view class="nunito offer-description">
         Offer description lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum placerat nisl auctor tellus, placerat neque placerat. Amet arcu ut nec, velit faucibus.
       </view>

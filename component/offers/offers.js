@@ -11,85 +11,111 @@ Component({
   },
 
   data: {
-    offers: [
-      {
-        id: 1,
-        type: "kitchen",
-        lottery: true,
-        specials: true,
-        started: true,
-        startTime: "2021-09-21 14:00",
-        endTime: "2021-10-21 16:00",
-        items: 2
-      },
-      {
-        id: 11,
-        type: "cellar",
-        lottery: true,
-        specials: false,
-        started: true,
-        startTime: "2021-09-21 14:00",
-        endTime: "2021-10-21 16:00",
-        items: 1
-      },
-      {
-        id: 2,
-        type: "pet",
-        lottery: false,
-        specials: false,
-        started: true,
-        startTime: "2021-09-21 14:00",
-        endTime: "2021-10-21 16:00",
-        items: 0
-      },
-      {
-        id: 3,
-        type: "kitchen",
-        lottery: true,
-        specials: true,
-        started: false,
-        startTime: "2021-10-21 14:00",
-        endTime: "2021-10-21 16:00"
-      },
-      {
-        id: 3,
-        type: "kitchen",
-        lottery: false,
-        specials: false,
-        started: false,
-        startTime: "2021-10-21 14:00",
-        endTime: "2021-10-21 16:00"
-      },
-      {
-        id: 3,
-        type: "kitchen",
-        lottery: false,
-        started: false,
-        specials: true,
-        startTime: "2021-10-21 14:00",
-        endTime: "2021-10-21 16:00"
-      },
-      {
-        id: 4,
-        type: "cellar",
-        lottery: true,
-        specials: true,
-        started: false,
-        startTime: "2021-10-21 14:00",
-        endTime: "2021-10-21 16:00"
-      }
-    ]
+    offers: [{
+      id: '01',
+      community: "kitchen",
+      lottery: true,
+      specials: true,
+      started: true,
+      startTime: "2021-09-21 14:00",
+      endTime: "2021-10-21 16:00",
+      items: 2
+    }, {
+      id: '02',
+      community: "cellar",
+      lottery: true,
+      specials: false,
+      started: true,
+      priceRule: "regular",
+      startTime: "2021-09-21 14:00",
+      endTime: "2021-10-21 16:00",
+      items: 1
+    }, {
+      id: '03',
+      community: "cellar",
+      lottery: false,
+      specials: true,
+      started: true,
+      priceRule: "bourse",
+      startTime: "2021-09-21 14:00",
+      endTime: "2021-10-21 16:00",
+      items: 2
+    }, {
+      id: '04',
+      community: "cellar",
+      lottery: true,
+      specials: true,
+      started: true,
+      priceRule: "freeFall",
+      startTime: "2021-09-21 14:00",
+      endTime: "2021-10-21 16:00",
+      items: 2
+    }, {
+      id: '05',
+      community: "cellar",
+      lottery: false,
+      specials: true,
+      started: true,
+      priceRule: "multiple",
+      startTime: "2021-09-21 14:00",
+      endTime: "2021-10-21 16:00",
+      items: 2
+    }, {
+      id: '06',
+      community: "pet",
+      lottery: true,
+      specials: true,
+      started: true,
+      startTime: "2021-09-21 14:00",
+      endTime: "2021-10-21 16:00",
+      items: 2
+    }, {
+      id: '07',
+      community: "garden",
+      lottery: false,
+      specials: true,
+      started: true,
+      startTime: "2021-09-21 14:00",
+      endTime: "2021-10-21 16:00",
+      items: 2
+    }, {
+      id: '3',
+      community: "kitchen",
+      lottery: false,
+      started: false,
+      specials: true,
+      startTime: "2021-10-21 14:00",
+      endTime: "2021-10-21 16:00"
+    }, {
+      id: '4',
+      community: "cellar",
+      lottery: true,
+      specials: true,
+      started: false,
+      startTime: "2021-10-21 14:00",
+      endTime: "2021-10-21 16:00"
+    }]
   },
 
   methods: {
     toOffer: function(e) {
       console.log(e);
-      let started = e.currentTarget.dataset.started;
-      let id = e.currentTarget.dataset.offerId;
+      let data = e.currentTarget.dataset;
 
-      if (started)
+      if (!data.started) return;
+
+      var url = _routes.offer_regular;
+      if (data.community == "cellar") {
+        if (data.priceRule == "bourse") {
+          url = _routes.offer_bourse;
+        } else if (data.priceRule != "regular") {
+          url = _routes.offer_cellar;
+        }
+      }
+      
       wx.navigateTo({
-        url: _routes.offer + '?id=' + id,
+        // url: url + '?id=' + id,
+        url: url + '?id=' + data.offerId + '&community=' + data.community + '&rule=' + data.priceRule,
       })
     }
   }

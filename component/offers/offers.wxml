@@ -23,20 +23,29 @@
 
   <view class="gilroy_700 offers_list">
     <!-- Card for each offer -->
-    <view class="uppercase offer_container" wx:for="{{ offers }}" wx:key="id" bindtap="toOffer" data-started="{{ item.started }}" data-offer-id="{{ item.id }}">
+    <view
+      class="uppercase offer_container"
+      wx:for="{{ offers }}"
+      wx:key="id"
+      bindtap="toOffer"
+      data-started="{{ item.started }}"
+      data-offer-id="{{ item.id }}"
+      data-community="{{ item.community }}"
+      data-price-rule="{{ item.priceRule }}"
+    >
       <!-- Banner image of card -->
       <view class="offer-banner">
         <view class="offer-banner_image">
           <image src="/assets/images/offerBanner.png" mode="widthFix"></image>
         </view>
         <view class="offer-banner_tag">
-          <view class="icon {{ 'icon-ziko-' + item.type + '_right'}}"></view>
+          <view class="icon {{ 'icon-ziko-' + item.community + '_right'}}"></view>
         </view>
       </view>
       <!-- End of banner -->
 
       <view class="offer-detail_container">
-        <view class="offer-detail_title">Octoberfest with a very long name long name</view>
+        <view class="offer-detail_title">Octoberfest with a very {{ item.community + ' ' + item.priceRule }}</view>
         <!-- Display for offers in progress -->
         <view class="offer-detail offer-started" wx:if="{{ item.started }}">
           <view class="flex-between offer-detail_content">

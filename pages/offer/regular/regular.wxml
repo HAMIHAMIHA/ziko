@@ -1,4 +1,4 @@
-<view class="container ziko-offer_detail {{ 'community-' + _offer.community }}">
+<view class="container ziko-offer {{ 'community-' + _offer.community }}">
   <!-- Offer Countdown -->
   <view class="uppercase countdown">
     <view class="nunito_600 countdown_text">remaining time</view>
@@ -56,7 +56,6 @@
     <!-- Offer Detail -->
     <view class="offer-detail">
       <view class="gilroy_700 uppercase offer-title">Offer Title</view>
-      <view class="gilroy_700 offer-priceRule">{{ _offer.priceRule }}</view>
       <view class="nunito offer-description">
         Offer description lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum placerat nisl auctor tellus, placerat neque placerat. Amet arcu ut nec, velit faucibus.
       </view>

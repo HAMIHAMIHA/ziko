@@ -13,6 +13,7 @@ Page({
     currentSold: 160,
     _offer: {
       community: 'cellar',
+      priceRule: 'bourse',
       banner: [
         { key: 1, img: "/assets/images/offerDetailBanner.jpg" },
         { key: 2, img: "/assets/images/offerDetailBanner.jpg" },
@@ -144,7 +145,6 @@ Page({
   },
 
   onLoad: function (options) {
-
   },
 
   swiperChange: function(e) {

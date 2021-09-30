@@ -119,16 +119,16 @@
 /* End of Offer Detail - General */
 
 /* Offer Detail - Specials */
-.ziko-offer .offer-specials .icon_container {
+.offer-specials .icon_container {
   font-size: 20rpx;
   line-height: 24rpx;
 }
 
-.ziko-offer .offer-specials .icon_container + .icon_container {
+.offer-specials .icon_container + .icon_container {
   padding-left: 24rpx;
 }
 
-.ziko-offer .offer-specials .icon {
+.offer-specials .icon {
   margin-right: 8rpx;
   padding: 10rpx;
   background: #ffdb59;

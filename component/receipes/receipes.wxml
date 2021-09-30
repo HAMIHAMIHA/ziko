@@ -1,5 +1,5 @@
 <view class="receipes_container">
-  <view class="receipe_container" wx:for="{{ receipes }}" wx:for-item="receipe">
+  <view class="receipe_container" wx:for="{{ receipes }}" wx:key="id" wx:for-item="receipe">
     <view class="receipe">
       <view class="receipe-image">
         <image src="/assets/images/receipeBanner.png" mode="widthFix"></image>

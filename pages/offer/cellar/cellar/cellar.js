@@ -1,5 +1,13 @@
 const animate = require('../../../../utils/animation.js').tabbar;
 
+// TEMP need translate
+const priceRules = {
+  regular: "",
+  freeFall: "Free Fall",
+  multiple: "Multiple",
+  bourse: "Bourse"
+}
+
 Page({
   data: {
     _pageSet: {
@@ -144,7 +152,12 @@ Page({
   },
 
   onLoad: function (options) {
+    const self = this;
 
+    // TEMP
+    self.setData({
+      "_offer.priceRule" : priceRules[options.rule]
+    })
   },
 
   swiperChange: function(e) {

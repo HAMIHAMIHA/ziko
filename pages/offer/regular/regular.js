@@ -5,7 +5,7 @@ Page({
     _pageSet: {
       swiperIndex: 1,
       nextOffer: 'test',
-      currentTab: "receipe",
+      currentTab: "product",
       units: "g",
       animate: animate
     },
@@ -141,15 +141,15 @@ Page({
     }
   },
 
-  onLoad: function() {
+  onLoad: function(options) {
     const self = this;
 
-    // Page unit showing
-    if (self.data._offer.community) {
-      self.setData({
-        "_pageSet.units": "cl",
-      })
-    }
+    // TEMP
+    let community = options.community;
+    self.setData({
+      "_pageSet.units": community == "cellar" ? 'cl' : 'g',
+      "_offer.community": community
+    })
 
     // Message counts
     let messageIndex = []
