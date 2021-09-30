@@ -62,10 +62,6 @@
       </view>
     </view>
     <!-- End of Offer Detail -->
-
-    <!-- Cellar Count -->
-    <!-- TODO -->
-    <!-- End of Cellar Count -->
   </view>
 
   <!-- Offer Tabbar -->
@@ -126,8 +122,8 @@
       </view>
     </view>
     <!-- End of Offer Specials -->
+
     <!-- Lottery -->
-    <!-- TODO -->
     <view class="offer-lotteries" wx:if="{{ _offer.lotteries }}">
       <view class="lottery_regular">
         <regularLottery lotteries="{{ _offer.lotteries }}"></regularLottery>
@@ -137,9 +133,18 @@
   </view>
   <!-- End of Products -->
 
-  <!-- Receipes -->
-    <!-- TODO -->
-  <!-- End of Receipes -->
+  <!-- Offer Receipes -->
+  <view class="list_container" wx:else>
+    <view class="offer-group receipe-group">
+      <view class="uppercase title">
+        <text class="gilroy_500">related</text>
+        <text class="gilroy_700"> receipes</text>
+      </view>
+
+      <receipes></receipes>
+    </view>
+  </view>
+  <!-- End of Offer Receipes -->
 
   <!-- Pay Button -->
   <view class="offer-payment">

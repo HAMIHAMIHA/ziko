@@ -389,6 +389,12 @@ image {
 }
 /* End of Offer Product Tabbar */
 
+/* Offer Receipes */
+.receipe-group {
+  padding: 0 21rpx;
+}
+/* End of Offer Receipes */
+
 /* Offer Specials */
 .offer-specials {
   padding: 8rpx 30rpx 32rpx;

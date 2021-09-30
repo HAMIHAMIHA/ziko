@@ -14,7 +14,7 @@ Page({
     _pageSet: {
       swiperIndex: 1,
       nextOffer: 'test',
-      currentTab: "product",
+      currentTab: "receipe",
       units: "g",
       animate: animate
     },
