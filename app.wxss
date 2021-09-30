@@ -105,6 +105,10 @@ image {
   justify-content: space-between;
   align-items: center;
 }
+
+.flex-align-start {
+  align-items: flex-start;
+}
 /* End of Flex */
 
 /* Float Contact */

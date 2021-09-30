@@ -1,2 +1,141 @@
-<!--pages/product/product.wxml-->
-<text>pages/product/product.wxml</text>
+<view class="container ziko-offer product {{ 'community-' + _pageSet.community }}">
+  <view class="banner_container">
+    <!-- Detail Banner -->
+    <view class="banner-image_container swiper_container">
+      <swiper class="swiper" bindchange="swiperChange">
+        <block wx:for="{{ _product.banner }}" wx:key="key" wx:for-item="banner">
+          <swiper-item class="swiper_item">
+            <image src="{{ banner.img }}" mode="aspectFill"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="gilroy_700 indicator" wx:if="{{ _product.banner.length > 1 }}">
+        {{ _pageSet.swiperIndex }} / {{ _product.banner.length }}
+      </view>  
+    </view>
+    <!-- End of Detail Banner -->
+  </view>
+
+  <!-- Product Info -->
+  <!-- TODO -->
+  <view class="flex-between flex-align-start product-info_container">
+    <view class="product-info">
+      <view class="gilroy_700 uppercase{{ _pageSet.type != 'pack' ? ' gradient-text ziko-' + _pageSet.community : '' }} product-info_title">
+        title
+      </view>
+      <view class="product-info_detail">
+        <!-- Products Detail -->
+        <view class="nunito_300 product-detail_content" wx:if="{{ _pageSet.type == 'pack' }}">
+          <text>{{ _product.weight }}{{ _pageSet.units }}</text>
+        </view>
+        <view class="nunito_300 product-detail_content" wx:else>
+          <text>{{ _product.quantity }} x {{ _product.weight }}{{ _pageSet.units }}</text>
+        </view>
+        <!-- End of Products Detail -->
+
+        <!-- Available Amount Left -->
+        <view class="nunito_300 product-detail_content">
+          <text wx:if="{{ _product.available == 0 }}">{{ _product.available }} left</text>
+          <text wx:elif="{{ _product.available >= 100 }}">{{ _product.available }} available</text>
+          <text wx:else>Only {{ _product.available }} left!</text>
+        </view>
+        <!-- End of Available Amount Left -->
+
+        <!-- Price -->
+        <view class="gilroy_800 product-price_container">
+          <text class="product-price">${{ _product.price }}</text>
+        </view>
+        <!-- End of Price -->
+      </view>
+    </view>
+    <block wx:if="{{ (_pageSet.type != 'packProduct') }}">
+      <quantity quantity="{{ qty }}" community="{{ _pageSet.community }}" bind:changeQty="changeQty"></quantity>
+    </block>
+  </view>
+  <!-- quantity component if not type = 'product' and pack = false -->
+  <!-- End of Product Info -->
+
+  <!-- Product Detail if not type = 'product' (not using pack = false because need for quantity) -->
+  <block wx:if="{{ _pageSet.type != 'pack' }}">
+    <view class="nunito_300 product-descrtiption">
+      <text>{{ _product.description }}</text>
+    </view>
+  </block>
+  <!-- End of Product Detail -->
+
+  <!-- Pack Products -->
+  <block wx:else>
+    <view class="list_container pack-products">
+      <!-- Pack Product List -->
+      <view class="offer-group offer-packs">
+        <view class="uppercase title">
+          <text class="gilroy_500">contains</text>
+          <text class="gilroy_700"> items:</text>
+        </view>
+
+        <view class="product_container" wx:for="{{ _product.products }}" wx:key="*this">
+          <view class="flex-between product">
+            <view class="flex-start flex-align-start product_left">
+              <view class="product-image">
+                <image src="/assets/images/productDefault.png" mode="aspectFill"></image>
+              </view>
+              <view class="product-info">
+                <view class="gilroy_700 ziko-{{ _pageSet.community }} gradient-text uppercase product-title">pack name</view>
+
+                <view class="nunito_300 product-detail_container">
+                  <text>{{ _product.quantity }} x {{ _product.weight }}{{ _pageSet.units }}</text>
+                </view>
+
+                <!-- Available Amount Left -->
+                <view class="nunito_300 product-detail_container">
+                  Lorem ipsum dolor sit an, consectetur adipiscing elit. 
+                </view>
+                <!-- End of Available Amount Left -->
+              </view>
+            </view>
+
+            <navigator class="product-navigate" url="{{ _routes.product + '?type=packProduct' }}">
+              Discover
+            </navigator>
+          </view>
+        </view>
+      </view>
+      <!-- End of Pack Product List -->
+    </view>
+  </block>
+  <!-- End of Pack Products -->
+
+  <!-- Offer Receipes -->
+  <view class="list_container product-reciepe">
+    <view class="offer-group receipe-group">
+      <view class="uppercase title">
+        <text class="gilroy_500">related</text>
+        <text class="gilroy_700"> receipes</text>
+      </view>
+
+      <receipes></receipes>
+    </view>
+  </view>
+  <!-- End of Offer Receipes -->
+
+  <!-- Pay Button -->
+  <view class="offer-payment">
+    <view class="flex-center payment_container">
+      <view class="flex-between payment-price_container">
+        <view class="icon_container payment-price">
+          <view class="icon icon-bigbag"></view>
+          <view class="nunito icon_text">
+            <text class="price_final">¥1200</text>
+            <text class="payment-price_original">¥1500</text>
+          </view>
+        </view>
+        <view class="icon_container payment-tickets">
+          <view class="icon icon-ticket"></view>
+          <view class="nunito_600 icon_text payment-tickets_count">X3</view>
+        </view>
+      </view>
+      <button class="payment-button" hover-class="none">Pay</button>
+    </view>
+  </view>
+  <!-- End of Pay Button -->
+</view>

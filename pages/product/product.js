@@ -1,65 +1,60 @@
-// pages/product/product.js
+const app = getApp();
+const _routes = app.routes;
+
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    _routes: _routes,
+    _pageSet: {
+      community: 'garden',
+      swiperIndex: 1,
+      units: 'g'
+    },
+    _product: {
+      id: 1,
+      banner: [
+        { key: 1, img: "/assets/images/offerDetailBanner.jpg" },
+        { key: 2, img: "/assets/images/offerDetailBanner.jpg" },
+        { key: 3, img: "/assets/images/offerDetailBanner.jpg" }
+      ],
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Commodo augue eget nisl pulvinar cursus. Mauris, ligula magna natoque ipsum, fringilla adipiscing. Ac vivamus rhoncus urna sagittis venenatis. Convallis et consectetur urna a ipsum enim, donec. Neque, eros, fermentum in pulvinar at sit mauris suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n\n Commodo augue eget nisl pulvinar cursus. Mauris, ligula magna natoque ipsum, fringilla adipiscing. Ac vivamus rhoncus urna sagittis venenatis. Convallis et consectetur urna a ipsum enim, donec.   Neque, eros, fermentum in pulvinar at sit mauris suscipit.",
+      available: 31,
+      quantity: 2,
+      weight: 200,
+      price: 500,
+      newPrice: 200,
+      products: [{
+        name: "product A",
+        quantity: 2,
+        weight: 200
+      }, {
+        name: "product B",
+        quantity: 1,
+        weight: 400
+      }, {
+        name: "product C",
+        quantity: 2,
+        weight: 200
+      }],
+    }
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
+  onLoad: function(options) {
+    const self = this;
 
+    self.setData({
+      // "_pageSet.type": 'product',
+      // "_pageSet.type": 'packProduct',
+      // "_pageSet.type": 'pack',
+      "_pageSet.type": options.type,
+    })
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
+  swiperChange: function(e) {
+    const self = this;
+    self.setData({
+      "_pageSet.swiperIndex": (e.detail.current) + 1,
+    })
   },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
   onShareAppMessage: function () {
 
   }

@@ -1,1 +1,93 @@
-/* pages/product/product.wxss */
+.product-info_container {
+  margin: 0 30rpx;
+  padding: 28rpx 0;
+  border-bottom: 2rpx solid #F0F0F0;
+}
+
+.product-info_title {
+  padding: 4rpx 0;
+  color: #C0BEC6;
+  font-size: 32rpx;
+  line-height: 28rpx;
+}
+
+.product-info_detail {
+  font-size: 26rpx;
+  line-height: 32rpx;
+}
+
+.product-detail_content {
+  padding: 4rpx 0;
+}
+
+.product-price_container {
+  padding: 4rpx 0;
+  font-size: 40rpx;
+  line-height: 50rpx;
+}
+
+/* Product Description */
+.product-descrtiption {
+  padding: 32rpx 30rpx 64rpx;
+  font-size: 26rpx;
+  line-height: 32rpx;
+}
+/* End of Product Description */
+
+/* Pack Products */
+.ziko-offer .pack-products .title {
+  padding-top: 32rpx;
+  text-align: left;
+}
+
+.pack-products .product_container {
+  padding: 48rpx 0;
+  border-bottom: 1px solid #424756;
+}
+
+/* TODO need to verify
+.pack-products .product_container.sold-out {
+  opacity: 0.5;
+}
+*/
+
+.pack-products .product_left {
+  width: 74%;
+}
+
+.pack-products .product_container:last-child {
+  border-bottom: 0;
+}
+
+.pack-products .product-image, .product-image image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.pack-products .product-info {
+  padding-left: 24rpx;
+}
+
+.pack-products .product-info .product-title {
+  font-size: 32rpx;
+  line-height: 28rpx;
+}
+
+.pack-products .product-detail_container {
+  padding-top: 8rpx;
+  font-size: 26rpx;
+  line-height: 32rpx;
+}
+
+.pack-products .product-navigate {
+  padding: 12rpx 32rpx;
+  background: #33363E;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+}
+/* End of Pack Products */
+
+.product-reciepe {
+  border-top: 2rpx solid #424756;
+}

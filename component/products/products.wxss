@@ -9,7 +9,6 @@
 
 .product_left {
   width: 74%;
-  align-items: flex-start;
 }
 
 .product_container:last-child {

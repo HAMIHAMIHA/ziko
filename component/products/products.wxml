@@ -1,6 +1,8 @@
+<!-- TODO navigate to product/pack detail -->
+
 <view class="product_container{{ product.available == 0 ? ' sold-out' : '' }}" wx:for="{{ products }}" wx:key="id" wx:for-item="product">
   <view class="flex-between product">
-    <view class="flex-start product_left">
+    <view class="flex-start flex-align-start product_left">
       <view class="product-image">
         <image src="/assets/images/productDefault.png" mode="aspectFill" wx:if="{{ pack }}"></image>
         <image src="/assets/images/productDefault.png" mode="aspectFill" wx:else></image>
@@ -30,10 +32,12 @@
         </view>
         <!-- End of Available Amount Left -->
 
+        <!-- Price -->
         <view class="gilroy_800 product-price_container">
           <text class="product-price" wx:if="{{ product.newPrice }}">${{ product.newPrice }}</text>
           <text class="product-price">${{ product.price }}</text>
         </view>
+        <!-- End of Price -->
       </view>
     </view>
     <quantity quantity="{{ item.qty }}" community="{{ community }}" bind:changeQty="changeQty" data-idx="{{index}}"></quantity>
