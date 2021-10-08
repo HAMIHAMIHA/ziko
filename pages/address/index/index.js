@@ -5,7 +5,7 @@ Page({
    * Page initial data
    */
   data: {
-
+    address: [1, 2]
   },
 
   /**

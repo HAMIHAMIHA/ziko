@@ -136,7 +136,7 @@
     </view>
   </view>
 
-  <view class="btn-bottom checkout-btn">
-    <button class="gilroy_500" hover-class="none" bindtap="pay">Pay</button>
+  <view class="btn-bottom">
+    <button class="nunito_600" hover-class="none" bindtap="pay">Pay</button>
   </view>
 </view>
