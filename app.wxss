@@ -4,9 +4,6 @@
 /* Set Variables */
 page {
   --env-: env(safe-area-inset-bottom);
-  /* --font-grey-: #A3A8B7;
-  --font-grey-dark-: #9D9FA4;
-  --font-grey-form-: #A3A8B7; */
 }
 
 /* Set Ziko Color Variables */
@@ -33,10 +30,16 @@ image {
   position: relative;
 }
 
-.container-grey {
-  background: #F1F1F1;
-  color: #000000;
+/* White Box */
+.white-box {
+  padding: 0 30rpx;
+  background: #FFFFFF;
 }
+
+.white-box + .white-box {
+  margin-top: 12rpx;
+}
+/* End of White Box */
 
 .container-btn-bottom {
   --container-btn-bottom-height-: calc(36rpx + 32rpx + 32rpx + 48rpx);
@@ -44,13 +47,23 @@ image {
   padding-bottom: calc(var(--container-btn-bottom-height-) + var(--env-));
 }
 
-.uppercase {
-  text-transform: uppercase;
+.container-grey {
+  background: #F1F1F1;
+  color: #000000;
 }
 
-.white-box {
-  padding: 0 30rpx;
-  background: #FFFFFF;
+.font_red {
+  color: #FF4040;
+}
+
+.header {
+  padding: 32rpx 0 12rpx;
+  font-size: 32rpx;
+  line-height: 38rpx;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 /* Ziko Colors */
@@ -100,6 +113,99 @@ image {
   bottom: 48rpx;
 }
 /* End of Button Bottom */
+
+/* Contact Box */
+.contact-box {
+  padding: 48rpx 32rpx;
+  text-align: center;
+}
+
+.contact-box .contact-button_container {
+  padding: 42rpx 0 12rpx;
+}
+
+.contact-box .contact-button {
+  width: fit-content;
+  padding: 26rpx 48rpx;
+  font-size: 28rpx;
+  line-height: 34rpx;
+}
+
+.contact-box .icon {
+  padding-right: 20rpx;
+  font-size: 32rpx;
+}
+/* End of Contact Box */
+
+/* Details */
+.detail {
+  padding: 30rpx 0;
+  font-size: 28rpx;
+  line-height: 34rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail .icon {
+  padding-left: 24rpx;
+  font-size: 16rpx;
+}
+
+/* Detail - Address */
+.address .detail_label {
+  align-self: flex-start;
+}
+
+.address .detail_note {
+  font-size: 24rpx;
+  line-height: 32rpx;
+  color: #A3A8B7;
+  display: block;
+}
+
+/* Detail - Fapiao */
+.fapiao .input {
+  width: 100%;
+}
+
+.fapiao .checkbox {
+  padding-left: 38rpx;
+}
+
+.fapiao .icon {
+  padding: 4rpx;
+  font-size: 20rpx;
+  color: transparent;
+  border: 2rpx solid #EBEBEB;
+  border-radius: 4rpx;
+}
+
+.fapiao .checked .icon {
+  padding: 6rpx;
+  background: #1890FF;
+  color: #FFFFFF;
+  border: 0;
+}
+
+/* Detail Input */
+.inputs_container {
+  padding: 8rpx 30rpx;
+}
+
+.inputs_container .detail {
+  padding: 8rpx 0;
+  line-height: 64rpx;
+}
+
+.detail_input {
+  width: 68%;
+}
+
+.detail_input .input {
+  border-bottom: 2rpx solid #EBEBEB;
+}
+/* End of Details */
 
 /* Detail Banner */
 .banner_container {
@@ -481,7 +587,7 @@ image {
   width: 74%;
 }
 
-.product_container .product_container:last-child {
+.product_container:last-child {
   border-bottom: 0;
 }
 
@@ -526,6 +632,7 @@ image {
 .product_container .product-quantity,
 .product_container .product-navigate_container {
   height: 160rpx;
+  align-self: start;
 }
 /* End of Offer Product List */
 

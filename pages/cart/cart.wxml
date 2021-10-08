@@ -1,7 +1,7 @@
 <view class="container container-grey container-btn-bottom">
-  <view class="white-box cart-products_container">
-    <view class="page-header">Items</view>
-    <view class="cart-products" wx:for="{{ cart.products }}" wx:key="id" wx:for-item="product">
+  <view class="white-box order-products_container">
+    <view class="nunito_700 header">Items</view>
+    <view class="order-products product_container" wx:for="{{ cart.products }}" wx:key="id" wx:for-item="product">
       <view class="flex-between product">
         <view class="flex-start flex-align-start product_left">
           <view class="product-image">
@@ -9,44 +9,134 @@
             <image src="/assets/images/productDefault.png" mode="aspectFill" wx:else></image>
           </view>
           <view class="product-info">
-            <view class="gilroy_700 product-title">pack name</view>
-            <!-- Pack Products Detail -->
-            <view class="nunito_300 product-detail_container" wx:if="{{ product.type == 'pack' }}">
-              <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="packProduct">
-                <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ units }}</text>
-                <text wx:if="{{ index < product.products.length - 1 }}">, </text>
-              </text>
-            </view>
-            <!-- End of Pack Products Detail -->
+            <view class="info_container">
+              <view class="gilroy_700 product-title">pack name</view>
+              <!-- Pack Products Detail -->
+              <view class="gilroy_500 product-detail_container" wx:if="{{ product.type == 'pack' }}">
+                <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="packProduct">
+                  <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ units }}</text>
+                  <text wx:if="{{ index < product.products.length - 1 }}">, </text>
+                </text>
+              </view>
+              <!-- End of Pack Products Detail -->
 
-            <!-- Single Products Detail -->
-            <view class="nunito_300 product-detail_container" wx:else>
-              <text>{{ product.quantity }} x {{ product.weight }}{{ units }}</text>
-            </view>
-            <!-- End of Single Products Detail -->
+              <!-- Single Products Detail -->
+              <view class="gilroy_500 product-detail_container" wx:else>
+                <text>{{ product.quantity }} x {{ product.weight }}{{ units }}</text>
+              </view>
+              <!-- End of Single Products Detail -->
 
-            <!-- Available Amount Left -->
-            <view class="nunito_300 product-available">
-              <text wx:if="{{ product.available == 0 }}">{{ product.available }} left</text>
-              <text wx:elif="{{ product.available >= 100 }}">{{ product.available }} available</text>
-              <text wx:else>Only {{ product.available }} left!</text>
+              <!-- Available Amount Left -->
+              <view class="gilroy_500 font_red product-available">
+                <text wx:if="{{ product.available == 0 }}">{{ product.available }} left</text>
+                <text wx:elif="{{ product.available >= 100 }}">{{ product.available }} available</text>
+                <text wx:else>Only {{ product.available }} left!</text>
+              </view>
+              <!-- End of Available Amount Left -->
             </view>
-            <!-- End of Available Amount Left -->
-
             <!-- Price -->
-            <view class="gilroy_800 product-price_container">
-              <text class="product-price" wx:if="{{ product.newPrice }}">${{ product.newPrice }}</text>
-              <text class="product-price">${{ product.price }}</text>
+            <view class="gilroy_500 font_red product-price_container">
+              <text class="product-price">¥{{ product.price }}</text>
             </view>
             <!-- End of Price -->
           </view>
         </view>
-        <quantity quantity="{{ item.qty }}" community="{{ community }}" bind:changeQty="changeQty" data-idx="{{index}}"></quantity>
+        <quantity class="flex-start product-quantity" quantity="{{ product.qty }}" bind:changeQty="changeQty" data-idx="{{index}}"></quantity>
       </view>
     </view>
   </view>
 
+  <view class="white-box details_container">
+    <view class="detail">
+      <text class="detail_label">Use Voucher</text>
+      <view class="nunito_600 detail_result">
+        <text>2 available</text>
+        <text class="icon icon-arrow-right"></text>
+      </view>
+    </view>
+    <view class="detail">
+      <text class="detail_label">Choose delivery date</text>
+      <picker class="nunito_600 detail_result" bindchange="bindPickerChange" value="{{ index }}" range="{{ item.options }}">
+        <view class="picker">
+          <text>{{ item.options[index] }}2020-11-10</text>
+          <text class="icon icon-arrow"></text>
+        </view>
+      </picker>
+    </view>
+    <view class="detail">
+      <text class="detail_label">Delivery fee</text>
+      <text class="detail_result">¥10</text>
+    </view>
+    <view class="nunito_700 detail">
+      <text class="detail_label">Total</text>
+      <text class="detail_result">¥1000</text>
+    </view>
+  </view>
+
+  <view class="white-box details_container">
+    <view class="detail">
+      <text class="detail_label">Lottery tickets</text>
+      <text class="detail_result">x3</text>
+    </view>
+    <view class="detail">
+      <text class="detail_label">Fidelity points</text>
+      <text class="detail_result">+30</text>
+    </view>
+  </view>
+
+  <view class="white-box details_container inputs_container">
+    <view class="detail address">
+      <text class="detail_label">Address</text>
+      <view class="detail_input">
+        <view class="input">
+          <text>{{ item.options[index] }}Home</text>
+          <text class="icon icon-arrow-right"></text>
+        </view>
+        <text class="detail_note">水电路1200弄3号401室</text>
+      </view>
+    </view>
+
+    <view class="detail">
+      <text class="detail_label">Phone No.</text>
+      <view class="detail_input"><input class="input" type="number" /></view>
+    </view>
+
+    <view class="detail">
+      <text class="detail_label">Contact</text>
+      <view class="detail_input"><input class="input" type="text" /></view>
+    </view>
+  </view>
+
+  <view class="white-box details_container inputs_container" bindtap="toggleCheck">
+    <view class="detail checkbox-container fapiao">
+      <text class="detail_label">Fapiao</text>
+      <view class="flex-between detail_input">
+        <input class="input" type="text" />
+        <view class="checkbox{{ fapiao ? ' checked' : '' }}">
+          <text class="icon icon-check"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="white-box details_container inputs_container">
+    <view class="detail">
+      <text class="detail_label">Comment</text>
+      <view class="detail_input"><input class="input" type="text" /></view>
+    </view>
+  </view>
+
+  <view class="white-box contact-box">
+    <view class="">If you need to change delivery date or other information after purchase please contact the Customer service</view>
+    <view class="contact-button_container">
+      <button class="contact-button" hover-class="none" bindtap="">
+        <text class="icon icon-headset"></text>
+        <text class="nunito_600">Contact our customer hero!</text>
+      </button>
+    </view>
+  </view>
+
   <view class="btn-bottom checkout-btn">
-    <button class="gilroy_500" hover-class="btn-none" bindtap="checkout">Checkout</button>
+    <button class="gilroy_500" hover-class="none" bindtap="pay">Pay</button>
   </view>
 </view>

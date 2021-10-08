@@ -1,65 +1,72 @@
-// pages/cart/cart.js
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-    cart: {products: [{test: '1'}]}
+    cart: {
+      products: [{
+        name: "product A",
+        type: "product",
+        available: 1,
+        quantity: 2,
+        weight: 200,
+        price: 500
+      }, {
+        id: 1,
+        available: 31,
+        type: "pack",
+        products: [{
+          name: "product A",
+          quantity: 2,
+          weight: 200
+        }, {
+          name: "product B",
+          quantity: 1,
+          weight: 400
+        }, {
+          name: "product C",
+          quantity: 2,
+          weight: 200
+        }],
+        price: 500
+      }, {
+        name: "product B",
+        type: "product",
+        available: 110,
+        quantity: 2,
+        weight: 200,
+        price: 500
+      }, {
+        name: "product C",
+        type: "product",
+        available: 10,
+        quantity: 2,
+        weight: 200,
+        price: 500
+      }, {
+        id: 2,
+        available: 190,
+        type: "pack",
+        products: [{
+          name: "product A",
+          quantity: 2,
+          weight: 200
+        }, {
+          name: "product B",
+          quantity: 1,
+          weight: 400
+        }, {
+          name: "product C",
+          quantity: 2,
+          weight: 200
+        }],
+        price: 500
+      }]
+    }
   },
-
-  /**
-   * Lifecycle function--Called when page load
-   */
   onLoad: function (options) {
 
   },
-
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
   onShow: function () {
 
   },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
   onShareAppMessage: function () {
 
   }

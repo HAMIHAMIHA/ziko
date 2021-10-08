@@ -87,6 +87,9 @@
 .icon-arrow:before {
   content: "\e919";
 }
+.icon-arrow-right:before {
+  content: "\e906";
+}
 .icon-edit:before {
   content: "\e91a";
 }
