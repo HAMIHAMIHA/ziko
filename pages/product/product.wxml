@@ -43,7 +43,7 @@
 
         <!-- Price -->
         <view class="gilroy_800 product-price_container">
-          <text class="product-price">${{ _product.price }}</text>
+          <text class="product-price">¥{{ _product.price }}</text>
         </view>
         <!-- End of Price -->
       </view>
@@ -126,7 +126,7 @@
       <view class="flex-between payment-price_container">
         <view class="icon_container payment-price">
           <view class="icon icon-bigbag"></view>
-          <view class="nunito icon_text">
+          <view class="icon_text">
             <text class="price_final">¥1200</text>
             <text class="payment-price_original">¥1500</text>
           </view>

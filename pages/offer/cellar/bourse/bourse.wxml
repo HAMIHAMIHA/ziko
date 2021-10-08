@@ -64,7 +64,7 @@
     <view class="offer-detail">
       <view class="gilroy_700 offer-title">Offer Title</view>
       <view class="gilroy_700 uppercase offer-price-rule">{{ _offer.priceRule }}</view>
-      <view class="nunito offer-description">
+      <view class="offer-description">
         Offer description lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum placerat nisl auctor tellus, placerat neque placerat. Amet arcu ut nec, velit faucibus.
       </view>
     </view>
@@ -130,12 +130,12 @@
           <view class="gilroy_700 uppercase offer-special_title">
             <text wx:if="{{special.type == 'first'}}">first {{ special.amount }} orders</text>
             <text wx:elif="{{ special.type == 'totalAbove' }}">above {{ special.amount }} total orders</text>
-            <text wx:elif="{{ special.type == 'orderAbove' }}">order above ${{ special.amount }}</text>
+            <text wx:elif="{{ special.type == 'orderAbove' }}">order above ¥{{ special.amount }}</text>
             <text wx:elif="{{ special.type == 'totalSold' }}">{{ special.amount }} total sold items</text>
             <text wx:elif="{{ special.type == 'cart' }}">"{{ special.item }}" in cart</text>
           </view>
 
-          <view class="nunito offer-special_detail">
+          <view class="offer-special_detail">
             <text wx:if="{{special.get == 'reduction'}}">Get {{ special.rate }}% discount rate</text>
             <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ _pageSet.units }} item name for free</text>
           </view>
@@ -172,7 +172,7 @@
     <view class="payment-message">
       <view class="icon_container">
         <view class="icon icon-alert"></view>
-        <view class="nunito icon_text">Hurry up to be in the top 20</view>
+        <view class="icon_text">Hurry up to be in the top 20</view>
       </view>
     </view>
     
@@ -180,7 +180,7 @@
       <view class="flex-between payment-price_container">
         <view class="icon_container payment-price">
           <view class="icon icon-bigbag"></view>
-          <view class="nunito icon_text">
+          <view class="icon_text">
             <text class="price_final">¥1200</text>
             <text class="payment-price_original">¥1500</text>
           </view>

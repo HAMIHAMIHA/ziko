@@ -7,11 +7,11 @@
       <image src="/assets/icons/lotteryTicket.svg" mode="aspectFit"></image>
     </view>
     <view class="lottery-ticket_text">
-      <view class="nunito uppercase lottery-ticket_text_top">1 ticket</view>
+      <view class="uppercase lottery-ticket_text_top">1 ticket</view>
       <view class="nunito_800 uppercase lottery-ticket_text_bottom">200rmb</view>
     </view>
   </view>
-  <view class="nunito lottery-ticket_detail">
+  <view class="lottery-ticket_detail">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet.
   </view>
 </view>
@@ -21,12 +21,12 @@
     <view class="gilroy_700 uppercase offer-lottery_title">
       <text wx:if="{{lottery.type == 'first'}}">{{ lottery.amount }} orders</text>
       <text wx:elif="{{ lottery.type == 'totalAbove' }}">above {{ lottery.amount }} total orders</text>
-      <text wx:elif="{{ lottery.type == 'orderAbove' }}">order above ${{ lottery.amount }}</text>
+      <text wx:elif="{{ lottery.type == 'orderAbove' }}">order above ¥{{ lottery.amount }}</text>
       <text wx:elif="{{ lottery.type == 'totalSold' }}">{{ lottery.amount }} total sold items</text>
       <text wx:elif="{{ lottery.type == 'cart' }}">"{{ lottery.item }}" in cart</text>
     </view>
 
-    <view class="nunito offer-lottery_detail">
+    <view class="offer-lottery_detail">
       <text wx:if="{{lottery.get == 'reduction'}}">Get {{ lottery.rate }}% discount rate</text>
       <text wx:elif="{{ lottery.get == 'addon' }}">Get {{ lottery.addon.quantity }} x {{ lottery.addon.weight }}{{ _pageSet.units }} item name for free</text>
     </view>

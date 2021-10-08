@@ -34,8 +34,8 @@
 
         <!-- Price -->
         <view class="gilroy_800 product-price_container">
-          <text class="product-price" wx:if="{{ product.newPrice }}">${{ product.newPrice }}</text>
-          <text class="product-price">${{ product.price }}</text>
+          <text class="product-price" wx:if="{{ product.newPrice }}">¥{{ product.newPrice }}</text>
+          <text class="product-price">¥{{ product.price }}</text>
         </view>
         <!-- End ofPrice -->
       </view>
@@ -44,12 +44,12 @@
   </view>
 
   <!-- Cellar Target Tags -->
-  <view class="nunito product-targets" wx:if="{{ targets }}">
+  <view class="product-targets" wx:if="{{ targets }}">
     <view class="product-target_container" wx:for="{{ targets }}" wx:key="*this" wx:for-item="target">
       <!-- Freefall Targets -->
-      <text wx:if="{{ targetType == 'freefall' }}">-${{ target.rate }} every {{ target.amount }} sold</text>
+      <text wx:if="{{ targetType == 'freefall' }}">-¥{{ target.rate }} every {{ target.amount }} sold</text>
       <!-- Multiple Targets -->
-      <text wx:else>x{{ target.amount }} btl ${{ target.rate }} each </text>
+      <text wx:else>x{{ target.amount }} btl ¥{{ target.rate }} each </text>
     </view>
   </view>
   <!-- End of Cellar Target Tags -->

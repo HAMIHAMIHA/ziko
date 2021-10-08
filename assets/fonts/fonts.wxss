@@ -1,6 +1,6 @@
 /* TODO need to upload all font files to server */
 page {
-  font-family: "nunito, arial";
+  font-family: "nunito", "arial";
 }
 
 /* Font Setup - Gilroy */
