@@ -1,16 +1,3 @@
 <view class="receipes_container">
-  <view class="receipe_container" wx:for="{{ receipes }}" wx:key="id" wx:for-item="receipe">
-    <view class="receipe">
-      <view class="receipe-image">
-        <image src="/assets/images/receipeBanner.png" mode="widthFix"></image>
-      </view>
-      <view class="gilroy_700 uppercase receipe-title">
-        {{ receipe.title }}
-      </view>
-      <view class="receipe-info">
-        <view class="reveipe-prep-time">Preparation: {{ receipe.prep }}min</view>
-        <view class="reveipe-bake-time">Baking: {{ receipe.bake }}min</view>
-      </view>
-    </view>
-  </view>
+  <masonry generic:masonry-item="receipe-box" id="masonry"></masonry>
 </view>

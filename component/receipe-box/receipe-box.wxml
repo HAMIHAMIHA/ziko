@@ -1,0 +1,14 @@
+<view class="receipe_container">
+  <view class="receipe">
+    <view class="receipe-image">
+      <image src="/assets/images/receipeBanner.png" mode="widthFix"></image>
+    </view>
+    <view class="gilroy_700 uppercase receipe-title">
+      {{ item.title }}
+    </view>
+    <view class="receipe-info">
+      <view class="reveipe-prep-time">Preparation: {{ item.prep }}min</view>
+      <view class="reveipe-bake-time">Baking: {{ item.bake }}min</view>
+    </view>
+  </view>
+</view>

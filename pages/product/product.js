@@ -40,6 +40,7 @@ Page({
 
   onLoad: function(options) {
     const self = this;
+    self.receipecomp = self.selectComponent("#receipes-component");
 
     self.setData({
       // "_pageSet.type": 'product',
@@ -57,5 +58,10 @@ Page({
   },
   onShareAppMessage: function () {
 
+  },
+  
+  onReachBottom: function() {
+    let self = this;
+    self.receipecomp.onReachBottom();
   }
 })

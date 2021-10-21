@@ -2,34 +2,3 @@
   width: 100%;
   padding-bottom: 48rpx;
 }
-
-.receipe_container {
-  width: calc(50% - 18rpx);
-  padding: 48rpx 9rpx 0;
-  
-
-  display: inline-block;
-}
-
-.receipe {
-  width: 100%;
-}
-
-.receipe-image {
-  width: 100%;
-}
-
-.receipe-image image {
-  width: 100%;
-  border-radius: 8rpx;
-}
-
-.receipe-title {
-  font-size: 24rpx;
-  line-height: 32rpx;
-}
-
-.receipe-info {
-  font-size: 24rpx;
-  line-height: 32rpx;
-}

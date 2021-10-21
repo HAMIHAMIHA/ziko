@@ -1,4 +1,7 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "masonry": "/component/masonry/masonry",
+    "receipe-box": "/component/receipe-box/receipe-box"
+  }
 }

@@ -115,7 +115,7 @@
         <text class="gilroy_700"> receipes</text>
       </view>
 
-      <receipes></receipes>
+      <receipes id="receipes-component"></receipes>
     </view>
   </view>
   <!-- End of Offer Receipes -->
