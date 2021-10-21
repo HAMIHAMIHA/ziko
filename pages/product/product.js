@@ -56,12 +56,11 @@ Page({
       "_pageSet.swiperIndex": (e.detail.current) + 1,
     })
   },
-  onShareAppMessage: function () {
-
-  },
   
   onReachBottom: function() {
     let self = this;
     self.receipecomp.onReachBottom();
-  }
+  },
+
+  onShareAppMessage: function () {}
 })

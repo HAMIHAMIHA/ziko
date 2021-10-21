@@ -27,17 +27,18 @@ Component({
   options: {
     addGlobalClass: true
   },
-  pageLifetimes: {
-    show: function () {
-      let self = this;
-      _doAppendMasonry(self, self.data.items);
-    }
+  ready: function () {
+    let self = this;
+    console.log('receipe show');
+    _doAppendMasonry(self, self.data.items);
   },
   methods: {
     onReachBottom: function(data) {
       let self = this;
-      // TODO
-      // _doAppendMasonry(self, data);
+      
+      if (data) {
+        _doAppendMasonry(self, data);
+      }
     }
   }
 })
