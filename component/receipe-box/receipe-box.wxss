@@ -1,5 +1,5 @@
 .receipe_container {
-  padding: 48rpx 9rpx 0;
+  padding-top: 48rpx;
 }
 
 .receipe {
@@ -8,6 +8,8 @@
 
 .receipe-image {
   width: 100%;
+  display: flex;
+  margin-bottom: 16rpx;
 }
 
 .receipe-image image {
@@ -21,6 +23,7 @@
 }
 
 .receipe-info {
+  margin-top: 8rpx;
   font-size: 24rpx;
   line-height: 32rpx;
 }
