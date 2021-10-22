@@ -1,1 +1,45 @@
-/* pages/address/index/index.wxss */
+.detail {
+  padding: 32rpx 0;
+  border-bottom: 2rpx solid #E6E7EB;
+}
+
+.detail:last-child {
+  border-bottom: 0;
+}
+
+.address-name {
+  padding-bottom: 8rpx;
+  font-size: 32rpx;
+  line-height: 38rpx;
+}
+
+.address-detail {
+  line-height: 28rpx;
+}
+
+.contact-detail {
+  padding-top: 8rpx;
+  color: #A3A8B7;
+}
+
+.detail .icon-edit {
+  padding: 0;
+  font-size: 32rpx;
+  opacity: 0.5;
+}
+
+.add-btn_container {
+  padding: 28rpx 30rpx;
+}
+
+.add-btn_container .add-btn {
+  width: unset;
+  padding: 28rpx 0;
+  background: transparent;
+  color: #0D0F18;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 36rpx;
+  border: 2rpx solid #0D0F18;
+  border-radius: 8rpx;
+}

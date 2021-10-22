@@ -1,15 +1,20 @@
 <view class="container container-grey container-btn-bottom address-list">
   <view class="white-box details_container">
-    <view class="flex-between detail" wx:for="{{ address }}" wx:key="*this">
+    <view class="detail" wx:for="{{ address }}" wx:key="*this">
       <view class="address_container">
-        <view class="address-name">Address 1</view>
-        <view class="address-detail">road</view>
-        <view class="contact-name">name</view>
-        <view class="contact-number">123</view>
+        <view class="nunito_700 address-name">Address 1</view>
+        <view class="address-detail">水电路1200弄3号401室</view>
+        <view class="contact-detail">Contact name</view>
+        <view class="contact-detail">132156519165</view>
       </view>
-      <view class="icon icon-edit"></view>
+      <navigator class="icon icon-edit" hover-class="none" url="{{ _routes.address_detail + '?id=' + item.id }}"></navigator>
     </view>
   </view>
+
+  <view class="add-btn_container">
+    <navigator class="add-btn nunito_600" hover-class="none" url="{{ _routes.address_detail }}">+ Add new Address</navigator>
+  </view>
+
   <view class="btn-bottom">
     <button class="nunito_600" hover-class="none" bindtap="select">Select</button>
   </view>
