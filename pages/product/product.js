@@ -1,15 +1,15 @@
 const app = getApp();
-const _routes = app.routes;
+const routes = app.routes;
 
 Page({
   data: {
-    _routes: _routes,
-    _pageSet: {
+    routes: routes,
+    pageSet: {
       community: 'garden',
       swiperIndex: 1,
       units: 'g'
     },
-    _product: {
+    product: {
       id: 1,
       banner: [
         { key: 1, img: "/assets/images/offerDetailBanner.jpg" },
@@ -43,17 +43,17 @@ Page({
     self.receipecomp = self.selectComponent("#receipes-component");
 
     self.setData({
-      // "_pageSet.type": 'product',
-      // "_pageSet.type": 'packProduct',
-      // "_pageSet.type": 'pack',
-      "_pageSet.type": options.type,
+      // "pageSet.type": 'product',
+      // "pageSet.type": 'packProduct',
+      // "pageSet.type": 'pack',
+      "pageSet.type": options.type,
     })
   },
 
   swiperChange: function(e) {
     const self = this;
     self.setData({
-      "_pageSet.swiperIndex": (e.detail.current) + 1,
+      "pageSet.swiperIndex": (e.detail.current) + 1,
     })
   },
   

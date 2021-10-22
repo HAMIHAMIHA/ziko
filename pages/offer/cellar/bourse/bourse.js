@@ -2,7 +2,7 @@ const animate = require('../../../../utils/animation.js').tabbar;
 
 Page({
   data: {
-    _pageSet: {
+    pageSet: {
       swiperIndex: 1,
       nextOffer: 'test',
       currentTab: "product",
@@ -11,7 +11,7 @@ Page({
     },
     total: 600,
     currentSold: 160,
-    _offer: {
+    offer: {
       community: 'cellar',
       priceRule: 'bourse',
       banner: [
@@ -150,7 +150,7 @@ Page({
   swiperChange: function(e) {
     const self = this;
     self.setData({
-      "_pageSet.swiperIndex": (e.detail.current) + 1,
+      "pageSet.swiperIndex": (e.detail.current) + 1,
     })
   },
 
@@ -159,7 +159,7 @@ Page({
 
     // TODO change to show and hide css on switch
     self.setData({
-      "_pageSet.currentTab": e.currentTarget.dataset.toTab
+      "pageSet.currentTab": e.currentTarget.dataset.toTab
     })
   },
   

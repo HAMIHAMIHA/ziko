@@ -10,7 +10,7 @@ const priceRules = {
 
 Page({
   data: {
-    _pageSet: {
+    pageSet: {
       swiperIndex: 1,
       nextOffer: 'test',
       currentTab: "product",
@@ -19,7 +19,7 @@ Page({
     },
     total: 600,
     currentSold: 160,
-    _offer: {
+    offer: {
       community: 'cellar',
       banner: [
         { key: 1, img: "/assets/images/offerDetailBanner.jpg" },
@@ -156,14 +156,14 @@ Page({
 
     // TEMP
     self.setData({
-      "_offer.priceRule" : priceRules[options.rule]
+      "offer.priceRule" : priceRules[options.rule]
     })
   },
 
   swiperChange: function(e) {
     const self = this;
     self.setData({
-      "_pageSet.swiperIndex": (e.detail.current) + 1,
+      "pageSet.swiperIndex": (e.detail.current) + 1,
     })
   },
 
@@ -171,7 +171,7 @@ Page({
     const self = this;
     // TODO change to show and hide css on switch
     self.setData({
-      "_pageSet.currentTab": e.currentTarget.dataset.toTab
+      "pageSet.currentTab": e.currentTarget.dataset.toTab
     })
   },
   

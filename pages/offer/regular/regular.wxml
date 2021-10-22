@@ -1,4 +1,4 @@
-<view class="container ziko-offer {{ 'community-' + _offer.community }}">
+<view class="container ziko-offer {{ 'community-' + offer.community }}">
   <!-- Offer Countdown -->
   <view class="uppercase countdown">
     <view class="nunito_600 countdown_text">remaining time</view>
@@ -16,14 +16,14 @@
     <!-- Detail Banner -->
     <view class="banner-image_container swiper_container">
       <swiper class="swiper" bindchange="swiperChange">
-        <block wx:for="{{ _offer.banner }}" wx:key="key" wx:for-item="banner">
+        <block wx:for="{{ offer.banner }}" wx:key="key" wx:for-item="banner">
           <swiper-item class="swiper_item">
             <image src="{{ banner.img }}" mode="aspectFill"></image>
           </swiper-item>
         </block>
       </swiper>
       <view class="gilroy_700 indicator">
-        {{ _pageSet.swiperIndex }} / {{ _offer.banner.length }}
+        {{ pageSet.swiperIndex }} / {{ offer.banner.length }}
       </view>  
     </view>
     <!-- End of Detail Banner -->
@@ -33,7 +33,7 @@
     <!-- End of Offer Messages -->
   </view>
 
-  <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
+  <view class="offer-detail_container {{ 'ziko-' + offer.community }}">
     <!-- Offer Count -->
     <view class="flex-start gilroy_500 offer-count_container">
       <view class="icon_container">
@@ -65,18 +65,18 @@
 
   <!-- Offer Tabbar -->
   <view class="uppercase gilroy_700 flex-center tabbar">
-    <view class="tabbar_item{{ _pageSet.currentTab == 'product' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="product" animation="{{ _pageSet.animate.tab }}">
+    <view class="tabbar_item{{ pageSet.currentTab == 'product' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="product" animation="{{ pageSet.animate.tab }}">
       products
     </view>
-    <view class="tabbar_item{{ _pageSet.currentTab == 'receipe' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="receipe" animation="{{ _pageSet.animate.tab }}">
+    <view class="tabbar_item{{ pageSet.currentTab == 'receipe' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="receipe" animation="{{ pageSet.animate.tab }}">
       Receipes
     </view>
-    <view class="tabbar_highlighter {{ _pageSet.currentTab }}" animation="{{ _pageSet.animate.highlight }}"></view>
+    <view class="tabbar_highlighter {{ pageSet.currentTab }}" animation="{{ pageSet.animate.highlight }}"></view>
   </view>
   <!-- End of Offer Tabbar -->
 
   <!-- Products -->
-  <view class="list_container" wx:if="{{ _pageSet.currentTab == 'product' }}">
+  <view class="list_container" wx:if="{{ pageSet.currentTab == 'product' }}">
     <!-- Offer Product List -->
     <view class="offer-group offer-packs">
       <view class="uppercase title">
@@ -84,7 +84,7 @@
         <text class="gilroy_700"> selected packs</text>
       </view>
 
-      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _pageSet.units }}" community="{{ _offer.community }}"></products>
+      <products products="{{ offer.packs }}" pack="{{ true }}" units="{{ pageSet.units }}" community="{{ offer.community }}"></products>
     </view>
 
     <view class="offer-group offer-singles">
@@ -93,18 +93,18 @@
         <text class="gilroy_700"> items</text>
       </view>
 
-      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ _pageSet.units }}" community="{{ _offer.community }}"></products>
+      <products products="{{ offer.singles }}" pack="{{ false }}" units="{{ pageSet.units }}" community="{{ offer.community }}"></products>
     </view>
     <!-- End of Offer Product List -->
 
     <!-- Offer Specials -->
-    <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}">
+    <view class="offer-specials ziko-{{ offer.community }}" wx:if="{{ offer.specials }}">
       <view class="offer-specials_title">
         <view class="icon icon-ziko-special"></view>
       </view>
       <view class="offer-specials_list">
         <!-- TODO move to component if revceived data need to alter value -->
-        <view class="flex-center offer-special" wx:for="{{ _offer.specials }}" wx:key="id" wx:for-item="special">
+        <view class="flex-center offer-special" wx:for="{{ offer.specials }}" wx:key="id" wx:for-item="special">
           <view class="gilroy_700 uppercase offer-special_title">
             <text wx:if="{{special.type == 'first'}}">first {{ special.amount }} orders</text>
             <text wx:elif="{{ special.type == 'totalAbove' }}">above {{ special.amount }} total orders</text>
@@ -115,7 +115,7 @@
 
           <view class="offer-special_detail">
             <text wx:if="{{special.get == 'reduction'}}">Get {{ special.rate }}% discount rate</text>
-            <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ _pageSet.units }} item name for free</text>
+            <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ pageSet.units }} item name for free</text>
           </view>
         </view>
       </view>
@@ -123,9 +123,9 @@
     <!-- End of Offer Specials -->
 
     <!-- Lottery -->
-    <view class="offer-lotteries" wx:if="{{ _offer.lotteries }}">
+    <view class="offer-lotteries" wx:if="{{ offer.lotteries }}">
       <view class="lottery_regular">
-        <lottery lotteries="{{ _offer.lotteries }}"></lottery>
+        <lottery lotteries="{{ offer.lotteries }}"></lottery>
       </view>
     </view>
     <!-- End of Lottery -->

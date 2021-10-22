@@ -1,5 +1,5 @@
 const app = getApp();
-const _routes = app.routes;
+const routes = app.routes;
 
 Page({
   data: {
@@ -7,7 +7,7 @@ Page({
       {id: 1},
       {id: 2}
     ],
-    _routes: _routes
+    routes: routes
   },
   onReachBottom: function () {
 

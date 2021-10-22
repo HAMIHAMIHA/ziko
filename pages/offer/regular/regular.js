@@ -2,14 +2,14 @@ const animate = require('../../../utils/animation.js').tabbar;
 
 Page({
   data: {
-    _pageSet: {
+    pageSet: {
       swiperIndex: 1,
       nextOffer: 'test',
       currentTab: "product",
       units: "g",
       animate: animate
     },
-    _offer: {
+    offer: {
       community: 'pet',
       banner: [
         { key: 1, img: "/assets/images/offerDetailBanner.jpg" },
@@ -147,8 +147,8 @@ Page({
     // TEMP
     let community = options.community;
     self.setData({
-      "_pageSet.units": community == "cellar" ? 'cl' : 'g',
-      "_offer.community": community
+      "pageSet.units": community == "cellar" ? 'cl' : 'g',
+      "offer.community": community
     })
 
     // Message counts
@@ -159,7 +159,7 @@ Page({
   swiperChange: function(e) {
     const self = this;
     self.setData({
-      "_pageSet.swiperIndex": (e.detail.current) + 1,
+      "pageSet.swiperIndex": (e.detail.current) + 1,
     })
   },
 
@@ -167,7 +167,7 @@ Page({
     const self = this;
     // TODO change to show and hide css on switch
     self.setData({
-      "_pageSet.currentTab": e.currentTarget.dataset.toTab
+      "pageSet.currentTab": e.currentTarget.dataset.toTab
     })
   },
   

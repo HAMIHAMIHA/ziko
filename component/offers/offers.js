@@ -1,5 +1,5 @@
 const app = getApp();
-const _routes = app.routes;
+const routes = app.routes;
 
 Component({
   options: {
@@ -104,12 +104,12 @@ Component({
 
       if (!data.started) return;
 
-      var url = _routes.offer_regular;
+      var url = routes.offer_regular;
       if (data.community == "cellar") {
         if (data.priceRule == "bourse") {
-          url = _routes.offer_bourse;
+          url = routes.offer_bourse;
         } else if (data.priceRule != "regular") {
-          url = _routes.offer_cellar;
+          url = routes.offer_cellar;
         }
       }
       
