@@ -1,2 +1,33 @@
-<!--pages/vouchers/select/select.wxml-->
-<text>pages/vouchers/select/select.wxml</text>
+<view class="container container-grey container-btn-bottom">
+  <view class="content_container">
+    <view class="gilroy_700 header">Please select a Voucher or Ziko gift card</view>
+    <view class="white-box flex-between voucher_container" wx:for="{{ vouchers }}" wx:key="*this">
+      <view class="voucher_detail">
+        <view class="voucher_detail-content voucher_for">
+          <text class="gilroy_500 voucher_label">Available for: </text>
+          <text class="voucher_text">Kitchen / Cellar</text>
+        </view>
+        <view class="voucher_detail-content voucher_recs">
+          <text class="gilroy_500 voucher_label">Received: </text>
+          <text class="voucher_text">2020/08/12 23:32</text>
+        </view>
+        <view class="voucher_detail-content voucher_exp">
+          <text class="gilroy_500 voucher_label">Expire On: </text>
+          <text class="voucher_text">2020-08-12</text>
+        </view>
+        <view class="voucher_detail-content voucher_from">
+          <text class="gilroy_500 voucher_label">From: </text>
+          <text class="voucher_text">Ziky customer hero</text>
+        </view>
+      </view>
+
+      <view class="gilroy_500 font_red voucher_price">
+         $100
+      </view>
+    </view>
+  </view>
+
+  <view class="btn-bottom">
+    <button class="nunito_600" hover-class="none" bindtap="select">Select</button>
+  </view>
+</view>

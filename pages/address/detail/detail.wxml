@@ -79,5 +79,9 @@
         </view>
       </view>
     </view>
+
+    <view class="btn-bottom">
+      <button class="nunito_600" hover-class="none" bindtap="select">Save</button>
+    </view>
   </view>
 </view>

@@ -9,7 +9,7 @@ Page({
       units: "g",
       animate: animate
     },
-    offer: {
+    _offer: {
       community: 'pet',
       banner: [
         { key: 1, img: "/assets/images/offerDetailBanner.jpg" },
@@ -148,7 +148,7 @@ Page({
     let community = options.community;
     self.setData({
       "pageSet.units": community == "cellar" ? 'cl' : 'g',
-      "offer.community": community
+      "_offer.community": community
     })
 
     // Message counts

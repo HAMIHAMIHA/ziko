@@ -11,7 +11,7 @@ Page({
     },
     total: 600,
     currentSold: 160,
-    offer: {
+    _offer: {
       community: 'cellar',
       priceRule: 'bourse',
       banner: [

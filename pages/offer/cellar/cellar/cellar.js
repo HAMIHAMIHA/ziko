@@ -19,7 +19,7 @@ Page({
     },
     total: 600,
     currentSold: 160,
-    offer: {
+    _offer: {
       community: 'cellar',
       banner: [
         { key: 1, img: "/assets/images/offerDetailBanner.jpg" },
@@ -156,7 +156,7 @@ Page({
 
     // TEMP
     self.setData({
-      "offer.priceRule" : priceRules[options.rule]
+      "_offer.priceRule" : priceRules[options.rule]
     })
   },
 
