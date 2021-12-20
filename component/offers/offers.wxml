@@ -82,7 +82,7 @@
               remaining time
             </view>
             <view class="flex-between_rt">
-              <countdown></countdown>
+              <countdown end-time="{{ item.endTime }}"></countdown>
             </view>
           </view>
           <!-- End of Countdown -->

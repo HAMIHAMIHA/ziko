@@ -24,6 +24,16 @@
 <view class="container">
   <view class="map" wx:if="{{ map }}">
     <cover-image src="/assets/images/map.jpg"></cover-image>
+    <view class="map-areas">
+      <block wx:for="{{ contents }}" wx:key="index" wx:for-item="content">
+        <view 
+          class="map-area"
+          style="--content-width: {{ content.width }}; --content-height: {{ content.height }}; --content-x: {{ content.xPos }}; --content-y: {{ content.yPos }};"
+          bindtap="mapClick"
+          data-index="{{ index }}"
+        ></view>
+      </block>
+    </view>
   </view>
 
   <view class="list" wx:else>

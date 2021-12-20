@@ -1,23 +1,17 @@
-// component/timer/timer.js
+ttabconst countDownTimer = (self, end_time) => {
+  console.log(end_time);
+
+}
+
 Component({
-  /**
-   * Component properties
-   */
   properties: {
-
+    endTime: String
   },
 
-  /**
-   * Component initial data
-   */
-  data: {
-
-  },
-
-  /**
-   * Component methods
-   */
-  methods: {
-
+  lifetimes: {
+    attached: function() {
+      const self = this;
+      countDownTimer(self, new Date(self.data.endTime));
+    }
   }
 })
