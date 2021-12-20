@@ -1,36 +1,13 @@
-<!-- <view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-</view> -->
-
 <view class="container">
   <view class="map" wx:if="{{ map }}">
-    <cover-image src="/assets/images/map.jpg"></cover-image>
+    <image src="/assets/images/map.jpg" mode="widthFix"></image>
     <view class="map-areas">
-      <block wx:for="{{ contents }}" wx:key="index" wx:for-item="content">
+      <block wx:for="{{ map_filters }}" wx:key="index" wx:for-item="filter">
         <view 
           class="map-area"
-          style="--content-width: {{ content.width }}; --content-height: {{ content.height }}; --content-x: {{ content.xPos }}; --content-y: {{ content.yPos }};"
+          style="--content-width-: {{ filter.width }}; --content-height-: {{ filter.height }}; --content-x-: {{ filter.xPos }}; --content-y-: {{ filter.yPos }};"
           bindtap="mapClick"
-          data-index="{{ index }}"
+          data-filter-name="{{ filter.name }}"
         ></view>
       </block>
     </view>
@@ -58,13 +35,23 @@
       </scroll-view>
     </view>
 
+    <dateFilter></dateFilter>
     <offers id="list-offers"></offers>
   </view>
 
   <!-- popup -->
-  <view class="modal" wx:if="{{ mapList }}">
-    <!-- list = componenet -->
-    <offers id="map-offers"></offers>
+  <view class="modal {{ map_list ? ' visible' : '' }}" catchtouchmove="preventSlide">
+    <view class="modal-backdrop"></view>
+    <view class="modal-contents">
+      <view class="modal-card">
+        <view class="gilroy_700 uppercase h1">{{ map_list.type_name }} offers</view>
+        <view class="close-modal" bindtap="closeMapModal"><text class="icon icon-x"></text></view>
+        <dateFilter></dateFilter>
+        <scroll-view class="modal-offers_container" scroll-y="true">
+          <offers id="map-offers"></offers>
+        </scroll-view>
+      </view>
+    </view>
   </view>
 
   <view class="gilroy_700 uppercase switcher_container">

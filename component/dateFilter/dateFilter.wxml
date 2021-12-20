@@ -1,0 +1,23 @@
+<view class="date_container">
+  <!-- Date Picker -->
+  <view class="h-scroll_container scroll-date">
+    <scroll-view class="h-scroll uppercase" scroll-x="true" enable-flex="true">
+      <view class="h-scroll_item all selected">
+        <view class="item_container">
+          <view class="item_content">
+            <view class="gilroy_800 date">all</view>
+          </view>
+        </view>
+      </view>
+      <!-- TODO for dates -->
+      <view class="h-scroll_item item-date" wx:for="{{ 10 }}" wx:key="*this">
+        <view class="item_container">
+          <view class="item_content">
+            <view class="gilroy_500 day-of-week">mon</view>
+            <view class="gilroy_800 date">{{ 12 + 1 }}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

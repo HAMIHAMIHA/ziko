@@ -1,0 +1,58 @@
+.date_container {
+  padding: 0 30rpx;
+}
+
+/* Scroll Dates */
+.scroll-date .h-scroll {
+  height: 128rpx;
+  padding: 48rpx 0;
+}
+
+.scroll-date .h-scroll_item {
+  margin: 0 2rpx;
+  padding: 0;
+}
+
+.scroll-date .h-scroll_item:first-child {
+  margin-left: 0;
+}
+
+.scroll-date .h-scroll_item:last-child {
+  margin-right: 0;
+}
+
+.scroll-date .item_container {
+  width: 106rpx;
+  height: 128rpx;
+  color: #BFBFBF;
+  text-align: center;
+  display: block;
+}
+
+.scroll-date .item_content {
+  padding: 30rpx 0;
+}
+
+.all .item_content {
+  padding: 44rpx 0;
+  font-size: 48rpx;
+  line-height: 40rpx;
+}
+
+.item-date .day-of-week {
+  padding-bottom: 8rpx;
+  font-size: 24rpx;
+  line-height: 20rpx;
+}
+
+.item-date .date {
+  font-size: 52rpx;
+  line-height: 40rpx;
+}
+
+.scroll-date .selected .item_container {
+  background: #3E424F;
+  color: var(--ziko-default-);
+  border-radius: 8rpx;
+}
+/* End of Scroll Dates */

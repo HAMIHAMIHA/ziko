@@ -1,9 +1,30 @@
-const app = getApp()
+const app = getApp();
 
 Page({
   data: {
-    //map: true,
-    map: false,
+    map: true,
+    map_filters: [
+      {
+        name: "kitchen",
+        width: 135,
+        height: 60,
+        xPos: 25,
+        yPos: 45
+      }, {
+        name: "baby",
+        width: 115,
+        height: 55,
+        xPos: 235,
+        yPos: 50
+      }, {
+        name: "pet",
+        width: 135,
+        height: 60,
+        xPos: 220,
+        yPos: 555
+      }
+    ],
+    // map: false,
     mapList: false
   },
 
@@ -23,7 +44,30 @@ Page({
       scrollTop: 0,
       duration: 300
     })
-  }
+  },
+
+  mapClick: function(e) {
+    const self = this;
+    // todo open filtertype card
+    let filter_name = e.currentTarget.dataset.filterName;
+    console.log(e.currentTarget.dataset.filterName);
+  
+    self.setData({
+      map_list: {
+        type_name: filter_name
+      },
+    })
+  },
+
+  closeMapModal: function() {
+    const self = this;
+    self.setData({
+      map_list: null
+    })
+  },
+
+  preventSlide: function() {}
+
 
   /** TODO Get user info
   getUserProfile(e) {
