@@ -5,8 +5,13 @@ const countDownTimer = (page, end_time) => {
     let now = new Date();
     let remaining = end_time - now;
 
+    let time = "event ended";
+    if (remaining > 0) {
+      time = formatTimer(new Date(remaining))
+    }
+
     page.setData({
-      time: formatTimer(new Date(remaining))
+      time: time
     })
   }
 

@@ -24,10 +24,12 @@ const formatTime = dateLong => {
 }
 
 const formatTimer = dateLong => {
-  const date = new Date(dateLong)
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const seconds = date.getSeconds()
+  let time = dateLong / 1000;
+
+  // let day = parseInt(time / (60 * 60 * 24));
+  let hour = parseInt(time % (60 * 60 * 24) / 3600);
+  let minute = parseInt(time % (60 * 60 * 24) % 3600 / 60);
+  let seconds = parseInt(time % (60 * 60 * 24) % 3600 % 60);
 
   return [hour, minute, seconds].map(formatNumber).join(':')
 }
