@@ -38,7 +38,7 @@ Component({
     //   started: true,
     //   priceRule: "bourse",
     //   startTime: "2021-09-21 14:00",
-    //   endTime: "2021-10-21 16:00",
+    //   endTime: "2021-12-20 19:00",
     //   items: 2
     // }, {
     //   id: '04',
@@ -48,7 +48,7 @@ Component({
     //   started: true,
     //   priceRule: "freeFall",
     //   startTime: "2021-09-21 14:00",
-    //   endTime: "2021-10-21 16:00",
+    //   endTime: "2021-12-20 19:00",
     //   items: 2
     // }, {
     //   id: '05',
@@ -58,7 +58,7 @@ Component({
     //   started: true,
     //   priceRule: "multiple",
     //   startTime: "2021-09-21 14:00",
-    //   endTime: "2021-10-21 16:00",
+    //   endTime: "2021-12-20 19:00",
     //   items: 2
     }, {
       id: '06',
@@ -67,7 +67,7 @@ Component({
       specials: true,
       started: true,
       startTime: "2021-09-21 14:00",
-      endTime: "2021-10-21 16:00",
+      endTime: "2021-12-20 19:30",
       items: 2
     }, {
       id: '07',
@@ -76,24 +76,24 @@ Component({
       specials: true,
       started: true,
       startTime: "2021-09-21 14:00",
-      endTime: "2021-10-21 16:00",
+      endTime: "2021-12-20 19:00",
       items: 2
     }, {
       id: '3',
       community: "kitchen",
       lottery: false,
-      started: false,
+      started: true,
       specials: true,
       startTime: "2021-10-21 14:00",
-      endTime: "2021-10-21 16:00"
+      endTime: "2021-12-20 19:00"
     }, {
       id: '4',
       community: "cellar",
       lottery: true,
       specials: true,
-      started: false,
+      started: true,
       startTime: "2021-10-21 14:00",
-      endTime: "2021-10-21 16:00"
+      endTime: "2021-12-20 19:00"
     }]
   },
 
