@@ -28,29 +28,53 @@ Page({
     mapList: false
   },
 
-  onLoad() {
+  onShow() {
+    const self = this;
+    self.setData({
+      _t: {
+        
+      }
+    })
 
   },
 
   switchType: function(e) {
     const self = this;
+    // Check if changing to the map view
     let map = (e.currentTarget.dataset.type == "map");
-    
-    self.setData({
-      map: map
-    })
 
+    // Change page view
+    const setMap = () => {
+      self.setData({
+        map: map
+      })
+    }
+
+    // Scroll page
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 300
     })
+
+    // Toggle timer intervals for list offers (which is only showing after of before switch)
+    if (!map) {
+      setMap();
+      let offers = self.selectComponent('#list-offers');
+      offers.changeTimers(true);
+    } else {
+      let offers = self.selectComponent('#list-offers');
+      setMap();
+      offers.changeTimers(false);
+    }
   },
 
   mapClick: function(e) {
     const self = this;
     // todo open filtertype card
     let filter_name = e.currentTarget.dataset.filterName;
-    console.log(e.currentTarget.dataset.filterName);
+
+    let offers = self.selectComponent('#map-offers');
+    offers.changeTimers(true);
   
     self.setData({
       map_list: {
@@ -61,6 +85,9 @@ Page({
 
   closeMapModal: function() {
     const self = this;
+
+    let offers = self.selectComponent('#map-offers');
+    offers.changeTimers(false);
     self.setData({
       map_list: null
     })

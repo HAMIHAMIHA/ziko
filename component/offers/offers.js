@@ -98,8 +98,17 @@ Component({
   },
 
   methods: {
+    // Toggle timer invervals
+    changeTimers: function(startTimer) {
+      const self = this;
+      let timer = self.selectAllComponents('.timer');
+      for (var i in timer) {
+        timer[i].setTimer(startTimer);
+      }
+    },
+
+    // Navigate to offer page
     toOffer: function(e) {
-      console.log(e);
       let data = e.currentTarget.dataset;
 
       if (!data.started) return;
