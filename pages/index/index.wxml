@@ -41,7 +41,7 @@
 
   <!-- popup -->
   <view class="modal {{ map_list ? ' visible' : '' }}" catchtouchmove="preventSlide">
-    <view class="modal-backdrop"></view>
+    <view class="modal-backdrop" bindtap="closeMapModal"></view>
     <view class="modal-contents">
       <view class="modal-card">
         <view class="gilroy_700 uppercase h1">{{ map_list.type_name }} offers</view>
