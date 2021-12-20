@@ -18,7 +18,7 @@ Component({
       specials: true,
       started: true,
       startTime: "2021-09-21 14:00",
-      endTime: "2021-10-21 16:00",
+      endTime: "2021-12-20 16:00",
       items: 2
     }, {
       id: '02',
@@ -28,7 +28,7 @@ Component({
       started: true,
       priceRule: "regular",
       startTime: "2021-09-21 14:00",
-      endTime: "2021-10-21 16:00",
+      endTime: "2021-12-20 16:00",
       items: 1
     // }, {
     //   id: '03',

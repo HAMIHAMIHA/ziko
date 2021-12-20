@@ -1,6 +1,16 @@
-ttabconst countDownTimer = (self, end_time) => {
-  console.log(end_time);
+const { formatTimer } = require("../../utils/util");
 
+const countDownTimer = (page, end_time) => {
+  const changeTimer = () => {
+    let now = new Date();
+    let remaining = end_time - now;
+
+    page.setData({
+      time: formatTimer(new Date(remaining))
+    })
+  }
+
+  setInterval(changeTimer , 1000)
 }
 
 Component({
