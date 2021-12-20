@@ -46,12 +46,6 @@
         "text": "Explore"
       },
       {
-        "pagePath": "pages/lottery/index/index",
-        "iconPath": "assets/icons/lottery.png",
-        "selectedIconPath": "assets/icons/lotterySel.png",
-        "text": "Lottery"
-      },
-      {
         "pagePath": "pages/account/index/index",
         "iconPath": "assets/icons/account.png",
         "selectedIconPath": "assets/icons/accountSel.png",

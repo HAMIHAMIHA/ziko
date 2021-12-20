@@ -656,6 +656,7 @@ image {
 
 .ziko-offer .tabbar_highlighter {
   width: 50%;
+  width: 100%; /* TEMP for v1 */
   height: 2rpx;
   background: var(--ziko-default-);
   position: absolute;

@@ -171,6 +171,7 @@ Page({
     })
   },
   
+  /*
   onReachBottom: function() {
     let self = this;
     var receipecomp = self.selectComponent("#receipes-component");
@@ -179,6 +180,7 @@ Page({
       receipecomp.onReachBottom();
     }
   },
+  */
 
   onShareAppMessage: function (res) {}
 })

@@ -117,7 +117,8 @@
               <view class="offer-date">Thu. 13 March,</view>
               <view class="offer-time">2:00 PM - 4:00 PM</view>
             </view>
-            <view class="flex-between_rt">
+            <!-- TEMP v1 -->
+            <view class="flex-between_rt" wx:if="{{ showing }}">
               <button class="offer-reminder">Get a reminder</button>
             </view>
           </view>
