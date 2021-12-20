@@ -580,7 +580,8 @@ image {
   border-bottom: 1px solid #424756;
 }
 
-.product_container.sold-out {
+.product_container.sold-out .product,
+.product_container.sold-out .product-targets {
   opacity: 0.5;
 }
 
