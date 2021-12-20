@@ -40,12 +40,6 @@
         "text": "Orders"
       },
       {
-        "pagePath": "pages/recipes/index/index",
-        "iconPath": "assets/icons/explore.png",
-        "selectedIconPath": "assets/icons/exploreSel.png",
-        "text": "Explore"
-      },
-      {
         "pagePath": "pages/account/index/index",
         "iconPath": "assets/icons/account.png",
         "selectedIconPath": "assets/icons/accountSel.png",
