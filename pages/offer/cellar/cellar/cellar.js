@@ -20,6 +20,7 @@ Page({
     total: 600,
     currentSold: 160,
     _offer: {
+      endTime: '2021-12-20 17:50',
       community: 'cellar',
       banner: [
         { key: 1, img: "/assets/images/offerDetailBanner.jpg" },
@@ -176,12 +177,12 @@ Page({
   },
   
   onReachBottom: function() {
-    let self = this;
-    var receipecomp = self.selectComponent("#receipes-component");
-    // TODO
-    if (data) {
-      receipecomp.onReachBottom();
-    }
+    // let self = this;
+    // var receipecomp = self.selectComponent("#receipes-component");
+    // // TODO
+    // if (data) {
+    //   receipecomp.onReachBottom();
+    // }
   },
 
   onShareAppMessage: function (res) {}

@@ -1,6 +1,7 @@
 <view class="container ziko-offer {{ 'community-' + _offer.community }}">
   <!-- Lottery Alert -->
-  <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ pageSet.nextOffer != '' }}">
+  <!-- TEMP hide for v1 -->
+  <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ pageSet.nextOffer != '' }}" wx:if="{{ showing }}">
     <view class="icon icon-flash"></view>
     <view class="icon_text">next lottery in 50 items sold</view>
   </view>
@@ -9,7 +10,7 @@
   <!-- Offer Countdown -->
   <view class="uppercase countdown">
     <view class="nunito_600 countdown_text">remaining time</view>
-    <countdown class="gilroy_700 countdown_clock"></countdown>
+    <countdown class="gilroy_700 countdown_clock" endTime="{{ _offer.endTime }}"></countdown>
   </view>
   <!-- End of Offer Countdown -->
 
@@ -36,7 +37,8 @@
     <!-- End of Detail Banner -->
 
     <!-- Offer Messages -->
-    <view class="messages_container"><scrollMessage></scrollMessage></view>
+    <!-- TEMP hide for v1 -->
+    <view class="messages_container" wx:if="{{ showing }}"><scrollMessage></scrollMessage></view>
     <!-- End of Offer Messages -->
   </view>
 
@@ -63,7 +65,7 @@
     <!-- Offer Detail -->
     <view class="offer-detail">
       <view class="gilroy_700 offer-title">Offer Title</view>
-      <view class="gilroy_700 uppercase offer-price-rule">{{ _offer.priceRule }}</view>
+      <view class="gilroy_700 uppercase offer-price-rule" wx:if="{{ _offer.priceRule }}">{{ _offer.priceRule }}</view>
       <view class="offer-description">
         Offer description lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum placerat nisl auctor tellus, placerat neque placerat. Amet arcu ut nec, velit faucibus.
       </view>
@@ -71,7 +73,7 @@
     <!-- End of Offer Detail -->
 
     <!-- Offer Cellar Count -->
-    <view class="flex-center cellar-total_container">
+    <view class="flex-center cellar-total_container" wx:if="{{ _offer.priceRule }}">
       <view class="icon icon-wine"></view>
       <view class="cellar-total">
         <view class="nunito_700 cellar-total_count">{{ currentSold }}/{{ total }}</view>
@@ -89,7 +91,8 @@
     <view class="tabbar_item{{ pageSet.currentTab == 'product' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="product" animation="{{ pageSet.animate.tab }}">
       products
     </view>
-    <view class="tabbar_item{{ pageSet.currentTab == 'receipe' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="receipe" animation="{{ pageSet.animate.tab }}">
+    <!-- TEMP hide for v1 -->
+    <view class="tabbar_item{{ pageSet.currentTab == 'receipe' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="receipe" animation="{{ pageSet.animate.tab }}" wx:if="{{ showing }}">
       Receipes
     </view>
     <view class="tabbar_highlighter {{ pageSet.currentTab }}" animation="{{ pageSet.animate.highlight }}"></view>
@@ -120,7 +123,8 @@
     <!-- End of Offer Product List -->
 
     <!-- Offer Specials -->
-    <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}">
+    <!-- TEMP hide for v1 -->
+    <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}" wx:if="{{ showing }}">
       <view class="offer-specials_title">
         <view class="icon icon-ziko-special"></view>
       </view>
@@ -145,7 +149,8 @@
     <!-- End of Offer Specials -->
 
     <!-- Lottery -->
-    <view class="offer-lotteries" wx:if="{{ _offer.lotteries }}">
+    <!-- TEMP hide for v1 -->
+    <view class="offer-lotteries" wx:if="{{ _offer.lotteries }}" wx:if="{{ showing }}">
       <view class="lottery_regular">
         <lottery lotteries="{{ _offer.lotteries }}"></lottery>
       </view>
@@ -169,7 +174,8 @@
 
   <!-- Pay Button -->
   <view class="offer-payment disabled">
-    <view class="payment-message">
+    <!-- TEMP hide for v1 -->
+    <view class="payment-message" wx:if="{{ showing }}">
       <view class="icon_container">
         <view class="icon icon-alert"></view>
         <view class="icon_text">Hurry up to be in the top 20</view>
@@ -182,10 +188,12 @@
           <view class="icon icon-bigbag"></view>
           <view class="icon_text">
             <text class="price_final">¥1200</text>
-            <text class="payment-price_original">¥1500</text>
+            <!-- TEMP hide for v1 -->
+            <text class="payment-price_original" wx:if="{{ showing }}">¥1500</text>
           </view>
         </view>
-        <view class="icon_container payment-tickets">
+        <!-- TEMP hide for v1 -->
+        <view class="icon_container payment-tickets" wx:if="{{ showing }}">
           <view class="icon icon-ticket"></view>
           <view class="nunito_600 icon_text payment-tickets_count">X3</view>
         </view>

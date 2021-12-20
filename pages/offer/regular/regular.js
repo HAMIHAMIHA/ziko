@@ -10,6 +10,7 @@ Page({
       animate: animate
     },
     _offer: {
+      endTime: '2021-12-20 19:00',
       community: 'pet',
       banner: [
         { key: 1, img: "/assets/images/offerDetailBanner.jpg" },
