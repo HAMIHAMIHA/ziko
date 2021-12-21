@@ -62,6 +62,10 @@ image {
   line-height: 38rpx;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .uppercase {
   text-transform: uppercase;
 }

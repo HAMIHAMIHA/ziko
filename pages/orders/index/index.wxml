@@ -1,2 +1,47 @@
-<!--pages/orders/index/index.wxml-->
-<text>pages/orders/index/index.wxml</text>
+<scroll-view class="capatilize">
+  <block wx:for="{{ order_status }}" wx:key="index" wx:for-item="status">
+    <button
+      class="order-status{{ filter.status == index ? ' selected' : '' }}"
+      bindtap="changeFilter"
+      data-filter="{{ index }}"
+    >
+      {{ _t.order_status[status] }}
+    </button>
+  </block>
+</scroll-view>
+
+<view class="container">
+  <view class="community-selector">
+    <picker>
+      <!-- TODO picker -->
+      {{ _t[filter.community] }}
+    </picker>
+  </view>
+
+  <block wx:for="{{ orders }}" wx:key="id" wx:for-item="order">
+    <view class="card order-card{{ order.lottery ? ' order-card__long' : '' }}">
+      <view class="order-info__detail">
+        <view class="order-info">
+          <view class="gilroy_700 order-time">{{ order.time }}</view>
+          <view class="nunito_600 order-status status-{{ order.status }}">{{ order.status }}</view>
+        </view>
+        <view class="gilroy_700 order_offer">{{ order.name }}</view>
+        <view class="order-community">({{ order.community }})</view>
+        <view class="order-detail">
+          <view class="order-count">{{ 'x' + order.count + _t.items }}</view>
+          <view class="order-total">{{ _t.cny + order.total }}</view>
+        </view>
+      </view>
+      <view class="order-info__lottery">
+        <view class="lottery-title">{{ _t.lottery_gift + ':' }}</view>
+        <block wx:for="{{ order.lottery }}" wx:key="_id" wx:key="lottery">
+          <view class="lottery-detail">
+            <image src="{{ _folders.lottery + lottery.image.uri }}"></image>
+            <view class="lottery">{{ lottery.name }}</view>
+            <view class="lottery-count">{{ 'x' + lottery.count }}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>
