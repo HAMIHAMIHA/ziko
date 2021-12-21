@@ -39,7 +39,7 @@
   </view>
 
   <view class="language-setting selected-{{ language }}">
-    <view class="langauge">{{ _t.en }}</view>
-    <view class="langauge">{{ _t.zh }}</view>
+    <button class="langauge" bindtap="switchLanguage" data-language="en">{{ _t.en }}</button>
+    <button class="langauge" bindtap="switchLanguage" data-language="zh-CN">{{ _t.zh }}</button>
   </view>
 </view>
