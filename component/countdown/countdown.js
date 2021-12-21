@@ -1,7 +1,8 @@
 const { formatTimer } = require("../../utils/util");
 
-let timer = [];
+let timer = []; // Keep track of all intervals
 
+// Set countdown time
 const countDownTimer = (page, end) => {
   let now = new Date();
 
@@ -20,14 +21,14 @@ const countDownTimer = (page, end) => {
 
 Component({
   properties: {
-    endTime: String,
-    timer: Boolean
+    endTime: String
   },
 
   methods: {
     setTimer: function(startTimer) {
       const self = this;
 
+      // Stop timer
       if (!startTimer) {
         for(var i in timer) {
           clearInterval(timer[i]);
@@ -35,8 +36,10 @@ Component({
         return;
       }
 
+      // Start timer
       timer.push(setInterval(() => {
-        countDownTimer(self, '2021-12-20T20:00:00.000Z')
+        // countDownTimer(self, self.data.endTime);
+        countDownTimer(self, '2021-12-21T20:00:00.000Z') // TEMP data
       }, 1000));
     }
   }
