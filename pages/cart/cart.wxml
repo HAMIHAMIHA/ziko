@@ -47,7 +47,8 @@
   </view>
 
   <view class="white-box details_container">
-    <view class="detail">
+    <!-- Hide for v1 -->
+    <view class="detail" wx:if="{{ showing }}">
       <text class="detail_label">Use Voucher</text>
       <view class="nunito_600 detail_result">
         <text>2 available</text>
@@ -73,7 +74,8 @@
     </view>
   </view>
 
-  <view class="white-box details_container">
+  <!-- Hide for v1 -->
+  <view class="white-box details_container" wx:if="{{ showing }}">
     <view class="detail">
       <text class="detail_label">Lottery tickets</text>
       <text class="detail_result">x3</text>
