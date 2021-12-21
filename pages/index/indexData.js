@@ -21,6 +21,30 @@ export const map_filters = [
   }
 ]
 
+export const list_filtes = [
+  {
+    class_name: "zikoland",
+    filter_group: "all",
+    icon: "ziko_right"
+  }, {
+    class_name: "ziko-kitchen gradient-text",
+    filter_group: "kitchen",
+    icon: "ziko-kitchen_sides"
+  }, {
+    class_name: "ziko-garden gradient-text",
+    filter_group: "garden",
+    icon: "ziko-garden_sides"
+  }, {
+    class_name: "ziko-cellar gradient-text",
+    filter_group: "cellar",
+    icon: "ziko-cellar_sides"
+  }, {
+    class_name: "ziko-pet gradient-text",
+    filter_group: "pet",
+    icon: "ziko-pet_sides"
+  }
+]
+
 // TEMP offer data
 export const offer_data = [{
   id: '01',

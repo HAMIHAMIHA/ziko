@@ -127,31 +127,38 @@
 }
 
 /* Scroll Menu selected */
-.scroll-menu .h-scroll_item.selected:after {
+.scroll-menu .h-scroll_item:after {
   content: "";
   width: 100%;
   height: 4rpx;
   position: absolute;
   bottom: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.3s ease-in-out;
 }
 
-.zikoland.selected:after {
+.scroll-menu .h-scroll_item.selected:after {
+  transform: scaleX(1);
+}
+
+.zikoland:after {
   background: var(--ziko-default-);
 }
 
-.ziko-kitchen.selected:after {
+.ziko-kitchen:after {
   background: var(--ziko-kitchen-);
 }
 
-.ziko-garden.selected:after {
+.ziko-garden:after {
   background: var(--ziko-garden-);
 }
 
-.ziko-cellar.selected:after {
+.ziko-cellar:after {
   background: var(--ziko-cellar-);
 }
 
-.ziko-pet.selected:after {
+.ziko-pet:after {
   background: var(--ziko-pet-);
 }
 

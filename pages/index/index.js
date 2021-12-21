@@ -1,5 +1,5 @@
-const { map_filters } = require("./mapData");
-const { offer_data } = require("./mapData"); // TEMP
+const index_data = require("./indexData");
+const { offer_data } = require("./indexData"); // TEMP
 
 const app = getApp();
 
@@ -10,6 +10,13 @@ let current_filter = {
   date: ''
 };
 
+// TEMP default list
+// let current_filter = {
+//   type: 'list',
+//   group: 'all',
+//   date: ''
+// };
+
 // Update date filter to selected or change depending on days of offers
 const _setDateFilters = (page, offers, filter_date) => {
   let date_filter = page.selectComponent('#list_date_filters');
@@ -19,8 +26,8 @@ const _setDateFilters = (page, offers, filter_date) => {
   date_filter.updateFilter(offers, filter_date);
 }
 
+// Toggle timer intervals
 const _timerControl = (page, timer_switch) => {
-  // Toggle timer intervals
   let offers = page.selectComponent('#list_offers');
   if (current_filter.type == "map") {
     offers = page.selectComponent('#map_offers');
@@ -41,7 +48,8 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
   // 2. Change filter type if different from current
   if (current_filter.type != filter_type) {
     page.setData({
-      map: (filter_type == 'map')
+      map: (filter_type == 'map'),
+      filter_group: filter_group
     })
     current_filter.type = filter_type;
   }
@@ -53,7 +61,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
     if (!filter_group) {
       // If filter type = map, group == null => clear data and return
       page.setData({
-        map_type_name: '',
+        filter_group: '',
         offers: {}
       })
       return;
@@ -62,7 +70,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
       suffix = `?type=${filter_group}&date=${filter_date}`;
       successCallback = res => {
         page.setData({
-          map_type_name: filter_group // TEMP
+          filter_group: filter_group
           // map_type_name: app.globalData.i18n[filter_group] // TODO translate 
         })
       }
@@ -80,6 +88,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
       res = { offers: offer_data};
       successCallback(res);
       page.setData({
+        filter_group: filter_group,
         offers: res.offers
       })
       _timerControl(page, true);
@@ -96,6 +105,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
 Page({
   data: {
     // map: false, // temp for testing
+    // filter_group: 'all', // temp for testing
     map: true // Default open to map view
   },
 
@@ -114,28 +124,36 @@ Page({
         // TOOD filter names
         // TODO days of week
       },
-      _map_filters: map_filters
+      _filters: {
+        list: index_data.list_filtes,
+        map: index_data.map_filters
+      }
     })
 
   },
 
   switchType: function(e) {
     const self = this;
-    // Check if changing to the map view
-    let filter_type = e.currentTarget.dataset.type;
-    _filterOfferData(self, filter_type, '', '');
-
     // Scroll page
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 300
     })
+
+    // Wait for page scroll then change
+    setTimeout(() => {
+      // Check if changing to the map view
+      let filter_type = e.currentTarget.dataset.type;
+      let filter_group = e.currentTarget.dataset.group;
+      _filterOfferData(self, filter_type, filter_group, '');
+    }, 300);
   },
 
   // Filter offers by selected group
   filterOffers: function(e) {
     const self = this;
     let date = e.detail.date ? e.detail.date : '';
+    console.log('clicked');
     _filterOfferData(self, e.currentTarget.dataset.filterType, e.currentTarget.dataset.filterGroup, date);
   },
 
