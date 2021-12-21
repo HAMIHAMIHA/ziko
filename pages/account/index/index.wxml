@@ -1,2 +1,45 @@
-<!--pages/account/index/index.wxml-->
-<text>pages/account/index/index.wxml</text>
+<view class="container">
+  <view class="user-info__container">
+    <view class="user-info__avatar">
+      <view class="avatar-contaomer">
+        <image class="avatar-image" src="{{ _folder.user_avatar + user.image.uri }}"></image>
+        <view class="avatar-label">
+          <view class="gilroy_900 uppercase avatar-label__text">{{ _t[user.type] }}</view>
+          <text class="avatar-label_background icon icon-banner-{{ user.type }}"></text>
+        </view>
+      </view>
+    </view>
+    <view class="gilroy_900 uppercase user-info__name">{{ user.name }}</view>
+  </view>
+
+  <view class="nunito_600 card profile-info">
+    <button class="profile-info__button">{{ _t.edit_my_info }}</button>
+    <button class="profile-info__button">{{ _t.edit_my_address }}</button>
+    <button class="profile-info__button">{{ _t.fapiao_info }}</button>
+    <button class="profile-info__button">{{ _t.my_favorite_recipes }}</button>
+  </view>
+
+  <view class="gilroy_700 uppercase card short-cuts">
+    <button class="short-cuts__button">
+      <text class="short-cut__icon icon icon-package"></text>
+      <view class="short-cut__label">{{ _t.orders }}</view>
+    </button>
+    <button class="short-cuts__button">
+      <text class="short-cut__icon icon icon-box"></text>
+      <view class="short-cut__label">{{ _t.claims }}</view>
+    </button>
+    <button class="short-cuts__button">
+      <text class="short-cut__icon icon icon-headset"></text>
+      <view class="short-cut__label">{{ _t.contact }}</view>
+    </button>
+    <button class="short-cuts__button">
+      <text class="short-cut__icon icon icon-redpacket"></text>
+      <view class="short-cut__label">{{ _t.vouchers }}</view>
+    </button>
+  </view>
+
+  <view class="language-setting selected-{{ language }}">
+    <view class="langauge">{{ _t.en }}</view>
+    <view class="langauge">{{ _t.zh }}</view>
+  </view>
+</view>
