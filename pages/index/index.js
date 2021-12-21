@@ -67,6 +67,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
       return;
     } else {
       // If filter type = map, group = smth, date = mull || smth => api => change popup title depending on selected
+      filter_group = filter_group == 'all' ? '' : filter_group;
       suffix = `?type=${filter_group}&date=${filter_date}`;
       successCallback = res => {
         page.setData({
