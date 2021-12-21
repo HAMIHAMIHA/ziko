@@ -140,16 +140,6 @@
     </view>
   </view>
 
-  <view class="white-box contact-box">
-    <view class="">If you need to change delivery date or other information after purchase please contact the Customer service</view>
-    <view class="contact-button_container">
-      <button class="contact-button" hover-class="none" bindtap="">
-        <text class="icon icon-headset"></text>
-        <text class="nunito_600">Contact our customer hero!</text>
-      </button>
-    </view>
-  </view>
-
   <view class="white-box details_container timeline">
     <block wx:for="{{ order.staus }}" wx:key="index" wx:for-item="status">
       <view class="timeline__detail">
@@ -158,5 +148,15 @@
         <view class="timeline__status">{{ _t.order_status[status.status] }}</view>
       </view>
     </block>
+  </view>
+
+  <view class="white-box contact-box">
+    <view class="">{{ _t.problem_with_order }}</view>
+    <view class="contact-button_container">
+      <button class="contact-button" hover-class="none" bindtap="">
+        <text class="icon icon-headset"></text>
+        <text class="nunito_600">Contact our customer hero!</text>
+      </button>
+    </view>
   </view>
 </view>
