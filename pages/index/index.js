@@ -77,7 +77,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
   let callback = {
     success: res => {
       // TEMP
-      res = offer_data;
+      res = { offers: offer_data};
       successCallback(res);
       page.setData({
         offers: res.offers

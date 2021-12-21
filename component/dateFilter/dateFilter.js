@@ -9,6 +9,18 @@ Component({
   options: {
     addGlobalClass: true
   },
+
+  pageLifeTime: {
+    show: function() {
+      const self = this;
+      self.setData({
+        _t: {
+          all: app.globalData.i18n.all,
+          week_days: app.globalData.i18n.week_days
+        }
+      })
+    }
+  },
   
   methods: {
     updateFilter: function(offers, filter_date) {
@@ -23,19 +35,22 @@ Component({
       }];
     
       for (var item in offers) {
-        let d = new Date(offers[item].startDate).setHours(0, 0, 0, 0);
+        let d = new Date(offers[item].startTime).setHours(0, 0, 0, 0);
+        let date = new Date(d);
 
-        if (findIndex(offer_dates, d, 'date') == -1) {
+        if (findIndex(offer_dates, date, 'date') == -1) {
           offer_dates.push({
-            date: d,
-            day: d.getDate(),
-            week: d.getDayOfWeek()
+            date: date,
+            day: date.getDate(),
+            week: date.getDay()
           })
         }
         
         self.setData({
           selected: filter_date ? new Date(filter_date).setHours(0, 0, 0, 0) : 0
         })
+
+        console.log(offer_dates);
 
         if (JSON.stringify(self.data.dates) == JSON.stringify(offer_dates)) {
           self.setData({
