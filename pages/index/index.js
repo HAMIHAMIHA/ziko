@@ -57,6 +57,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
   // 3. Get data by filter group and filter date
   current_filter.group = filter_group;
   current_filter.date = filter_date;
+
   if (filter_type == 'map') {
     if (!filter_group) {
       // If filter type = map, group == null => clear data and return
@@ -67,8 +68,6 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
       return;
     } else {
       // If filter type = map, group = smth, date = mull || smth => api => change popup title depending on selected
-      filter_group = filter_group == 'all' ? '' : filter_group;
-      suffix = `?type=${filter_group}&date=${filter_date}`;
       successCallback = res => {
         page.setData({
           filter_group: filter_group
@@ -78,8 +77,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
     }
   } else {
   // If filter type = list, group = all || smth, date = null || smth => api
-    // TODO filter date > filter date and < next day
-    suffix = `?type=${filter_group}&date=${filter_date}`;
+    filter_group = filter_group == 'all' ? '' : filter_group;
   }  
 
   // 4. Set up page data, Start new timers, Change date filters
@@ -98,6 +96,11 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
   };
 
   // API
+  // TODO filter date > filter date and < next day
+  let last_hour = new Date(filter_date).setHours(23,59,59,999);
+  // TODO filter date by gte or lte
+  let date_filter = `&filter={"$and":"[{"date":{"$gte":${filter_date}}, {"date":{"$lte":${last_hour}}]"}`
+  suffix = `?type=${filter_group}${date_filter}`;
   callback.success(); // TEMP
   // TODO api
   // app.api.getOffers(suffix, callback, app.globalData.i18n.loading);
