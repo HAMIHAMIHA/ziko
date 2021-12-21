@@ -1,27 +1,47 @@
-// app.js
 var api = require('utils/api.js'); //接口文档
 const i18n = require('utils/translate.js'); // 翻译功能
 const db = require('utils/db.config.js'); // 本地存储
+const { folders } = require('./utils/properties');
 
 App({
   api: api,
-  routes: require('utils/routes.js').routes,
+  db: db,
+  folders: folders,
   globalData: {
-    // token: null
+    token: null
   },
+  routes: require('utils/routes.js').routes,
 
   onLaunch() {
-    // 登录
-    wx.login({
-      success: res => {
-        console.log(res);
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
+    const self = this;
+    // Language setting
+    i18n.check();
+    self.globalData.i18n = i18n.translate();
+  },
+
+  onShow() {
+    // const self = this;
+    // let userInfo = db.get('userInfo');
+    // if (!userInfo || new Date(userInfo.expireAt) < new Date()) {
+    // }
+  },
+
+  setTabbar: function() {
+    // Get tabbar text when called
+    const self = this;
+    wx.setTabBarItem({
+      index: 0,
+      "text": self.globalData.i18n.home
     })
 
-    // Language setting
-    // i18n.check();
-    // self.globalData._t = i18n.translate();
+    wx.setTabBarItem({
+      index: 1,
+      "text": self.globalData.i18n.orders
+    })
 
+    wx.setTabBarItem({
+      index: 2,
+      "text": self.globalData.i18n.account
+    })
   }
 })

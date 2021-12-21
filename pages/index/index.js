@@ -102,6 +102,8 @@ Page({
   onShow: function() {
     const self = this;
 
+    app.setTabbar();
+
     // TODO translate tabbar
     // TOOD translate navbar
     // Translation values

@@ -13,7 +13,7 @@ const languageMap = {
   // G
 
   // H
-  home: "Home",
+  home: "The land",
 
   // I
   // J
@@ -24,6 +24,7 @@ const languageMap = {
   // M
   // N
   // O
+  orders: "Orders",
   // P
   // Q
   // R
