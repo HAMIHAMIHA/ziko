@@ -1,2 +1,162 @@
-<!--pages/orders/detail/detail.wxml-->
-<text>pages/orders/detail/detail.wxml</text>
+<view class="container container-grey container-btn-bottom">
+  <view class="white-box order-products_container">
+    <view class="nunito_700 header">{{ order.offer + _t.offer }}</view>
+    <view class="nunito_700 header">{{ _t.items }}</view>
+    <view class="order-products product_container" wx:for="{{ order.products }}" wx:key="id" wx:for-item="product">
+      <view class="flex-between product">
+        <view class="flex-start flex-align-start product_left">
+          <view class="product-image">
+            <image src="/assets/images/productDefault.png" mode="aspectFill" wx:if="{{ product.type == 'pack' }}"></image>
+            <image src="/assets/images/productDefault.png" mode="aspectFill" wx:else></image>
+          </view>
+          <view class="product-info">
+            <view class="info_container">
+              <view class="gilroy_700 product-title">pack name</view>
+              <!-- Pack Products Detail -->
+              <view class="gilroy_500 product-detail_container" wx:if="{{ product.type == 'pack' }}">
+                <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="packProduct">
+                  <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ units }}</text>
+                  <text wx:if="{{ index < product.products.length - 1 }}">, </text>
+                </text>
+              </view>
+              <!-- End of Pack Products Detail -->
+
+              <!-- Single Products Detail -->
+              <view class="gilroy_500 product-detail_container" wx:else>
+                <text>{{ product.quantity }} x {{ product.weight }}{{ units }}</text>
+              </view>
+              <!-- End of Single Products Detail -->
+
+              <!-- Product Amount Bought -->
+              <view class="gilroy_500 product-count">
+                {{ 'x' + product.count }}
+              </view>
+              <!-- End of Product Amount Bought -->
+            </view>
+            <!-- Price -->
+            <view class="gilroy_500 font_red product-price_container">
+              <text class="product-price">¥{{ product.price }}</text>
+            </view>
+            <!-- End of Price -->
+          </view>
+        </view>
+        <quantity class="flex-start product-quantity" quantity="{{ product.qty }}" bind:changeQty="changeQty" data-idx="{{index}}"></quantity>
+      </view>
+    </view>
+  </view>
+
+  <view class="white-box details_container">
+    <!-- Hide for v1 -->
+    <view class="detail" wx:if="{{ showing }}">
+      <text class="detail_label">Use Voucher</text>
+      <view class="nunito_600 detail_result">
+        <text>2 available</text>
+        <text class="icon icon-arrow-right"></text>
+      </view>
+    </view>
+    <view class="detail">
+      <text class="detail_label">Choose delivery date</text>
+      <view class="nunito_600 detail_result">
+        <text>{{ item.options[index] }}2020-11-10</text>
+      </view>
+    </view>
+    <view class="detail">
+      <text class="detail_label">Delivery fee</text>
+      <text class="detail_result">¥10</text>
+    </view>
+    <!-- Hide for v1 -->
+    <view class="nunito_700 detail" wx:if="{{ showing }}">
+      <text class="detail_label">Ziko Special</text>
+      <text class="detail_result">¥1000</text>
+    </view>
+    <view class="nunito_700 detail">
+      <text class="detail_label">Total</text>
+      <text class="detail_result">¥1000</text>
+    </view>
+  </view>
+
+  <!-- Hide for v1 -->
+  <view class="white-box details_container">
+    <view class="detail">
+      <text class="detail_label">Order no</text>
+      <text class="detail_result">77846513298465</text>
+    </view>
+    <view class="detail">
+      <text class="detail_label">Delivery company</text>
+      <text class="detail_result">SF</text>
+    </view>
+    <view class="detail">
+      <text class="detail_label">Tracking number</text>
+      <text class="detail_result">77846513298465</text>
+    </view>
+  </view>
+
+  <!-- Hide for v1 -->
+  <view class="white-box details_container" wx:if="{{ showing }}">
+    <view class="detail">
+      <text class="detail_label">Lottery tickets</text>
+      <text class="detail_result">x3</text>
+    </view>
+    <view class="detail">
+      <text class="detail_label">Fidelity points</text>
+      <text class="detail_result">+30</text>
+    </view>
+  </view>
+
+  <view class="white-box details_container">
+    <view class="detail address">
+      <text class="detail__label">Address</text>
+      <view class="detail__value">
+        <view class="input flex-between">
+          <text>{{ item.options[index] }}Home</text>
+        </view>
+        <text class="detail__note">水电路1200弄3号401室</text>
+      </view>
+    </view>
+
+    <view class="detail">
+      <text class="detail__label">Phone No.</text>
+      <view class="detail__value">132156519165</view>
+    </view>
+
+    <view class="detail">
+      <text class="detail__label">Contact</text>
+      <view class="detail__value">Contact person Name</view>
+    </view>
+  </view>
+
+  <view class="white-box details_container" bindtap="toggleCheck">
+    <view class="detail checkbox-container fapiao">
+      <text class="detail_label">Fapiao</text>
+      <view class="flex-between detail_input">
+      </view>
+    </view>
+  </view>
+
+  <view class="white-box details_container">
+    <view class="detail">
+      <text class="detail_label">Comment</text>
+      <view class="detail_input"></view>
+    </view>
+  </view>
+
+  <view class="white-box contact-box">
+    <view class="">If you need to change delivery date or other information after purchase please contact the Customer service</view>
+    <view class="contact-button_container">
+      <button class="contact-button" hover-class="none" bindtap="">
+        <text class="icon icon-headset"></text>
+        <text class="nunito_600">Contact our customer hero!</text>
+      </button>
+    </view>
+  </view>
+
+  <view class="white-box details_container timeline">
+    <block wx:for="{{ order.staus }}" wx:key="index" wx:for-item="status">
+      <view class="timeline__detail">
+        <view class="timeline__dot{{ index == 0 ? ' current' : '' }}"></view>
+        <text class="timeline__date">{{ status.date }}</text>
+        <view class="timeline__status">{{ _t.order_status[status.status] }}</view>
+      </view>
+    </block>
+  </view>
+</view>
