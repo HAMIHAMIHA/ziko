@@ -50,8 +50,6 @@ Component({
           selected: filter_date ? new Date(filter_date).setHours(0, 0, 0, 0) : 0
         })
 
-        console.log(offer_dates);
-
         if (JSON.stringify(self.data.dates) == JSON.stringify(offer_dates)) {
           self.setData({
             dates: offer_dates
