@@ -1,5 +1,6 @@
 const db = require('db.config.js');
 const config = require('properties.js');
+
 let header = {};
 
 const loadingModal = (show, text) => {
@@ -14,8 +15,8 @@ const loadingModal = (show, text) => {
 
 //接口统一封装
 const api = (apiMethod, path, data, callback, loadingText) => {
-  if (db.get('token')) {
-    header = {'Authorization': `Bearer ${db.get('token')}`};
+  if (db.get('userInfo').token) {
+    header = {'Authorization': `Bearer ${db.get('userInfo').token}`};
   }
   path = config.api_url + path;
 
@@ -34,21 +35,25 @@ const api = (apiMethod, path, data, callback, loadingText) => {
 
 //get请求
 const get = (path, callback, loadingText) => {
-  // loadingModal(true, loadingText);
+  loadingModal(true, loadingText);
 
   wx.request({
     url: path,
     header: header,
     success: function (res) {
-      // loadingModal(false, loadingText);
+      loadingModal(false, loadingText);
 
       if (res.data.success === false) {
-        callback.error(res.data);
+        console.debug(res.data.message);
+        if (callback.error) {
+          callback.error(res.data.message);
+        }
       } else {
         callback.success(res.data);
       }
     },
     fail: function (res) {
+      loadingModal(false, loadingText);
       console.debug('err', err);
     }
   });
@@ -64,21 +69,25 @@ const post = (path, data, callback, loadingText) => {
     data: data,
     method: 'POST',
     success: function (res) {
-        console.log(res);
+      loadingModal(false, loadingText);
       if (res.data.success === false) {
-        callback.error(res.data.message);
+        console.debug(res.data.message);
+        if (callback.error) {
+          callback.error(res.data.message);
+        }
       } else {
         callback.success(res.data);
       }
     },
     fail: function (res) {
+      loadingModal(false, loadingText);
       console.debug('err', err);
     }
   });
 }
 //put请求
 const put = (path, data, callback, loadingText) => {
-  // loadingModal(true, loadingText);
+  loadingModal(true, loadingText);
 
   wx.request({
     url: path,
@@ -86,43 +95,34 @@ const put = (path, data, callback, loadingText) => {
     data: data,
     method: 'PUT',
     success: function (res) {
-      // loadingModal(false, loadingText);
-
-      // if (res.data.success) {
-      //   callback.success();
-      // } else {
-      //   callback.error(res.data)
-      // }
+      loadingModal(false, loadingText);
+      if (res.data.success === false) {
+        console.debug(res.data.message);
+        if (callback.error) {
+          callback.error(res.data.message);
+        }
+      } else {
+        callback.success(res.data);
+      }
     },
     fail: function (res) {
-      // loadingModal(false, loadingText);
-
-      // return {
-      //   status: false,
-      //   data: res.data,
-      //   msg: '接口调用失败',
-      // };
-    },
-    complete: function (res) { }
+      loadingModal(false, loadingText);
+      console.debug('err', err);
+    }
   });
 }
 
 
-const login = (data, callback) => {
-  api('post', 'customers/login', data, callback, null)
-}
-
-const productCategoriesGet = (callback) => {
-  api('get', 'product-categories', null, callback, null)
-}
-
-const productTypesGet = (callback) => {
-  api('get', 'product-types', null, callback, null)
-}
-
-
 module.exports = {
-  // login: login,
-  // productCategoriesGet: productCategoriesGet,
-  // productTypesGet: productTypesGet
+  login: (data, callback) => {
+    api('post', 'wechat/login', data, callback, null)
+  },
+
+  productCategoriesGet: (callback) => {
+    api('get', 'product-categories', null, callback, null)
+  },
+
+  productTypesGet: (callback) => {
+    api('get', 'product-types', null, callback, null)
+  }
 }
