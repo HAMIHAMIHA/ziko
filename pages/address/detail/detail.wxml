@@ -7,6 +7,7 @@
         <view class="detail_label">Type</view>
         <view class="detail_input">
           <view class="input flex-between">
+          <!-- TODO picker -->
             <input type="text" value="{{ formData.type }}"></input>
             <text class="icon icon-arrow-right"></text>
           </view>
@@ -71,6 +72,7 @@
 
     <view class="details_container textarea_container">
       <view class="detail">
+      <!-- TODO style -->
         <view class="detail_label">Comment</view>
         <view class="detail_input">
           <view class="input textarea_container">
