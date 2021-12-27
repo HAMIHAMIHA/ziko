@@ -99,7 +99,8 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
   // TODO filter date > filter date and < next day
   let last_hour = new Date(filter_date).setHours(23,59,59,999);
   // TODO filter date by gte or lte
-  let date_filter = `&filter={"$and":"[{"date":{"$gte":${filter_date}}, {"date":{"$lte":${last_hour}}]"}`
+  // let date_filter = `&filter={"$and":"[{"date":{"$gte":${filter_date}}, {"date":{"$lte":${last_hour}}]"}`
+  let date_filter = '';
   suffix = `?type=${filter_group}${date_filter}`;
   callback.success(); // TEMP
   // TODO api

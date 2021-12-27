@@ -94,12 +94,14 @@
 
 .modal .modal-offers_container {
   --header-: calc(38rpx + 44rpx);
-  --date-picker-: calc(34rpx + 128rpx + 48rpx);
+  /* --date-picker-: calc(34rpx + 128rpx + 48rpx); */
+  --date-picker-: 0px; /* TEMP hide date picker */
   height: calc(100% - 24rpx - var(--header-) - var(--date-picker-));
 }
 
 .modal .offers_container {
   padding: 0 24rpx;
+  padding-top: 24rpx; /* TEMP hide date picker */
 }
 
 /* Scroll Menu */

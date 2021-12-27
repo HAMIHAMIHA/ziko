@@ -1,6 +1,7 @@
 /* Container */
 .offers_container {
   padding: 0 30rpx;
+  padding-top: 48rpx; /* TEMP hide date picker */
 }
 
 /* Offer Card Container */
