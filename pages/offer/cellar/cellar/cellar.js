@@ -1,5 +1,13 @@
 const animate = require('../../../../utils/animation.js').tabbar;
 
+let countdown_timer = [];
+
+const _clearCountdown = (page) => {
+  let timer = page.selectComponent('#countdown');
+  timer.setTimer(countdown_timer, false);
+  countdown_timer = []
+}
+
 // TEMP need translate
 const priceRules = {
   regular: "",
@@ -152,13 +160,25 @@ Page({
     }
   },
 
-  onLoad: function (options) {
+  onShow: function () {
     const self = this;
+
+    // Start countdown
+    let timer = self.selectComponent('#countdown');
+    countdown_timer.push(timer.setTimer([], true));
 
     // TEMP
     self.setData({
-      "_offer.priceRule" : priceRules[options.rule]
+      "_offer.priceRule" : priceRules[self.options.rule]
     })
+  },
+
+  onHide: function() {
+    _clearCountdown(this);
+  },
+
+  onUnload: function() {
+    _clearCountdown(this);
   },
 
   swiperChange: function(e) {

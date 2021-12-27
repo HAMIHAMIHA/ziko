@@ -1,5 +1,13 @@
 const animate = require('../../../../utils/animation.js').tabbar;
 
+let countdown_timer = [];
+
+const _clearCountdown = (page) => {
+  let timer = page.selectComponent('#countdown');
+  timer.setTimer(countdown_timer, false);
+  countdown_timer = []
+}
+
 Page({
   data: {
     pageSet: {
@@ -144,7 +152,19 @@ Page({
     }
   },
 
-  onLoad: function (options) {
+  onShow: function () {
+
+    // Start countdown
+    let timer = self.selectComponent('#countdown');
+    countdown_timer.push(timer.setTimer([], true));
+  },
+
+  onHide: function() {
+    _clearCountdown(this);
+  },
+
+  onUnload: function() {
+    _clearCountdown(this);
   },
 
   swiperChange: function(e) {

@@ -1,5 +1,13 @@
 const animate = require('../../../utils/animation.js').tabbar;
 
+let countdown_timer = [];
+
+const _clearCountdown = (page) => {
+  let timer = page.selectComponent('#countdown');
+  timer.setTimer(countdown_timer, false);
+  countdown_timer = []
+}
+
 Page({
   data: {
     pageSet: {
@@ -142,19 +150,30 @@ Page({
     }
   },
 
-  onLoad: function(options) {
+  onShow: function() {
     const self = this;
 
     // TEMP
-    let community = options.community;
+    let community = self.options.community;
     self.setData({
       "pageSet.units": community == "cellar" ? 'cl' : 'g',
       "_offer.community": community
     })
 
+    // Start countdown
+    let timer = self.selectComponent('#countdown');
+    countdown_timer.push(timer.setTimer([], true));
+
     // Message counts
     let messageIndex = []
+  },
 
+  onHide: function() {
+    _clearCountdown(this);
+  },
+
+  onUnload: function() {
+    _clearCountdown(this);
   },
 
   swiperChange: function(e) {

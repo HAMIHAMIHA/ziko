@@ -2,14 +2,14 @@
   <!-- Offer Countdown -->
   <view class="uppercase countdown">
     <view class="nunito_600 countdown_text">remaining time</view>
-    <countdown class="gilroy_700 countdown_clock" endTime="{{ _offer.endTime }}"></countdown>
+    <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endTime }}"></countdown>
   </view>
   <!-- End of Offer Countdown -->
 
   <!-- Contact -->
-  <view class="float-contact_container" bindtap="contact">
+  <button class="float-contact_container" open-type="contact">
     <view class="icon icon-chat"></view>
-  </view>
+  </button>
   <!-- End of Contact -->
 
   <view class="banner_container">

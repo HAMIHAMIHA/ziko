@@ -1,13 +1,11 @@
 const app = getApp();
 const routes = app.routes;
 
+let timer_intervals = [];
+
 Component({
   options: {
     addGlobalClass: true
-  },
-
-  properties: {
-
   },
 
   data: {
@@ -102,13 +100,19 @@ Component({
     changeTimers: function(startTimer) {
       const self = this;
       let timer = self.selectAllComponents('.timer');
-      for (var i in timer) {
-        timer[i].setTimer(startTimer);
+      if (startTimer) {
+        for (var i in timer) {
+          timer_intervals.push(timer[i].setTimer([], startTimer));
+        }
+      } else {
+        timer[0].setTimer(timer_intervals, startTimer);
+        timer_intervals = [];
       }
     },
 
     // Navigate to offer page
     toOffer: function(e) {
+      const self = this;
       let data = e.currentTarget.dataset;
 
       if (!data.started) return;
