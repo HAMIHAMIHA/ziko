@@ -24,7 +24,7 @@ export const map_filters = [
 export const list_filtes = [
   {
     class_name: "zikoland",
-    filter_group: "all",
+    filter_group: "",
     icon: "ziko_right"
   }, {
     class_name: "ziko-kitchen gradient-text",
