@@ -10,9 +10,9 @@
           </view>
           <view class="product-info">
             <view class="info_container">
-              <view class="gilroy_700 product-title">pack name</view>
+              <view class="nunito_700 product-title">pack name</view>
               <!-- Pack Products Detail -->
-              <view class="gilroy_500 product-detail_container" wx:if="{{ product.type == 'pack' }}">
+              <view class="product-detail_container" wx:if="{{ product.type == 'pack' }}">
                 <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="packProduct">
                   <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ units }}</text>
                   <text wx:if="{{ index < product.products.length - 1 }}">, </text>
@@ -21,13 +21,13 @@
               <!-- End of Pack Products Detail -->
 
               <!-- Single Products Detail -->
-              <view class="gilroy_500 product-detail_container" wx:else>
+              <view class="product-detail_container" wx:else>
                 <text>{{ product.quantity }} x {{ product.weight }}{{ units }}</text>
               </view>
               <!-- End of Single Products Detail -->
 
               <!-- Available Amount Left -->
-              <view class="gilroy_500 font_red product-available">
+              <view class="font_red product-available">
                 <text wx:if="{{ product.available == 0 }}">{{ product.available }} left</text>
                 <text wx:elif="{{ product.available >= 100 }}">{{ product.available }} available</text>
                 <text wx:else>Only {{ product.available }} left!</text>
@@ -35,7 +35,7 @@
               <!-- End of Available Amount Left -->
             </view>
             <!-- Price -->
-            <view class="gilroy_500 font_red product-price_container">
+            <view class="nunito_600 font_red product-price_container">
               <text class="product-price">¥{{ product.price }}</text>
             </view>
             <!-- End of Price -->
@@ -113,7 +113,7 @@
     <view class="detail checkbox-container fapiao">
       <text class="detail_label">Fapiao</text>
       <view class="flex-between detail_input">
-        <input class="input" type="text" />
+        <input class="input" type="text"  disabled="true" value="{{ user.fapiao }}"/>
         <view class="checkbox{{ fapiao ? ' checked' : '' }}">
           <text class="icon icon-check"></text>
         </view>
@@ -131,7 +131,7 @@
   <view class="white-box contact-box">
     <view class="">If you need to change delivery date or other information after purchase please contact the Customer service</view>
     <view class="contact-button_container">
-      <button class="contact-button" hover-class="none" bindtap="">
+      <button class="contact-button" hover-class="none" open-type="contact">
         <text class="icon icon-headset"></text>
         <text class="nunito_600">Contact our customer hero!</text>
       </button>

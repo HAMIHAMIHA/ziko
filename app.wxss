@@ -267,7 +267,7 @@ button:not([size=mini]).float-contact_container {
   width: auto;
   padding: 30rpx;
   background: #F74A5C;
-  color: #FFFFFF;
+  color: var(--ziko-default-);
   font-size: 40rpx;
   border-radius: 50%;
   position: fixed;
