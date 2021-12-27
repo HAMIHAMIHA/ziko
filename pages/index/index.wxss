@@ -83,7 +83,7 @@
   right: 0;
 }
 
-.modal .icon {
+.modal .close-modal .icon {
   font-size: 20rpx;
   color: #A3A8B7;
 }
