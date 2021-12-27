@@ -10,7 +10,7 @@ let current_filter = {
   date: ''
 };
 
-// TEMP default list
+// TEMP for testing default to list
 // let current_filter = {
 //   type: 'list',
 //   group: 'all',
@@ -77,15 +77,18 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
     }
   } else {
   // If filter type = list, group = all || smth, date = null || smth => api
-    filter_group = filter_group == 'all' ? '' : filter_group;
+    filter_group = filter_group == 'all' ? '' : filter_group; // Remove 'all' for filter to api
   }  
 
   // 4. Set up page data, Start new timers, Change date filters
   let callback = {
     success: res => {
       // TEMP
-      res = { offers: offer_data};
+      res = { offers: offer_data };
       successCallback(res);
+
+      // TODO add checkout product count to offer list
+
       page.setData({
         filter_group: filter_group,
         offers: res.offers
@@ -97,10 +100,13 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
 
   // API
   // TODO filter date > filter date and < next day
-  let last_hour = new Date(filter_date).setHours(23,59,59,999);
-  // TODO filter date by gte or lte
-  // let date_filter = `&filter={"$and":"[{"date":{"$gte":${filter_date}}, {"date":{"$lte":${last_hour}}]"}`
   let date_filter = '';
+  if (filter_date) {
+  // TODO filter date by gte or lte
+    let last_hour = new Date(filter_date).setHours(23,59,59,999);
+    date_filter = `&filter={"$and":"[{"date":{"$gte":${filter_date}}, {"date":{"$lte":${last_hour}}]"}`
+  }
+
   suffix = `?type=${filter_group}${date_filter}`;
   callback.success(); // TEMP
   // TODO api
@@ -158,7 +164,6 @@ Page({
   filterOffers: function(e) {
     const self = this;
     let date = e.detail.date ? e.detail.date : '';
-    console.log('clicked');
     _filterOfferData(self, e.currentTarget.dataset.filterType, e.currentTarget.dataset.filterGroup, date);
   },
 
