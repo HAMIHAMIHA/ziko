@@ -20,7 +20,8 @@
     <navigator class="profile-info__button" url="{{ _routes.account_info }}">{{ _t.edit_my_info }}edit my info</navigator>
     <navigator class="profile-info__button" url="{{ _routes.address }}">{{ _t.edit_my_address }}edit my address</navigator>
     <navigator class="profile-info__button" url="{{ _routes.fapiaos }}">{{ _t.fapiao_info }}fapiao</navigator>
-    <navigator class="profile-info__button" url="{{ _routes.receipes }}">{{ _t.my_favorite_recipes }}recipes</navigator>
+    <!-- Hide for v1 -->
+    <navigator class="profile-info__button" url="{{ _routes.receipes }}" wx:if="{{ showing }}">{{ _t.my_favorite_recipes }}recipes</navigator> 
   </view>
   <!-- END OF PROFILE INFO -->
 
@@ -30,7 +31,8 @@
       <view class="short-cut__icon icon icon-package"></view>
       <view class="short-cut__label">{{ _t.orders }}orders</view>
     </navigator>
-    <navigator class="short-cuts__button" url="{{ _routes.claims }}">
+    <!-- Hide for v1 -->
+    <navigator class="short-cuts__button" url="{{ _routes.claims }}" wx:if="{{ showing }}">
       <view class="short-cut__icon icon icon-box"></view>
       <view class="short-cut__label">{{ _t.claims }}claims</view>
     </navigator>
@@ -38,7 +40,8 @@
       <view class="short-cut__icon icon icon-headset"></view>
       <view class="short-cut__label">{{ _t.contact }}contact</view>
     </button>
-    <navigator class="short-cuts__button" url="{{ _routes.vouchers }}">
+    <!-- Hide for v1 -->
+    <navigator class="short-cuts__button" url="{{ _routes.vouchers }}" wx:if="{{ showing }}">
       <view class="short-cut__icon icon icon-redpacket"></view>
       <view class="short-cut__label">{{ _t.vouchers }}vouchers</view>
     </navigator>

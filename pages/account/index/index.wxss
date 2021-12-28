@@ -78,6 +78,7 @@
   padding: 30rpx 35rpx;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* TEMP for v1 */
 }
 
 .short-cuts__button,
