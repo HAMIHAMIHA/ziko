@@ -1,89 +1,63 @@
-<view class="container-grey container-btn-bottom address-detail">
-  <view class="white-box address_container">
-    <view class="nunito_700 header">{{ formData.name }}</view>
+<view class="container container-grey container-btn-bottom">
+  <!-- Profile Input Group -->
+  <view class="white-box contact-info">
+    <view class="nunito_700 header">{{ _t.contact_info }}contact info</view>
 
-    <view class="details_container inputs_container">
-      <view class="detail">
-        <view class="detail_label">Type</view>
-        <view class="detail_input">
-          <view class="input flex-between">
-          <!-- TODO picker -->
-            <input type="text" value="{{ formData.type }}"></input>
-            <text class="icon icon-arrow-right"></text>
-          </view>
-        </view>
+    <view class="detail">
+      <view class="detail_label">{{ _t.name }}Name</view>
+      <view class="detail_input">
+        <input class="input" type="text" value="{{ formData.type }}"></input>
       </view>
-    </view>
-
-    <view class="details_container inputs_container">
-      <view class="detail">
-        <view class="detail_label">City</view>
-        <view class="detail_input">
-          <view class="input">
-            <input value="{{ formData.city }}"></input>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="details_container inputs_container">
-      <view class="detail">
-        <view class="detail_label">Area</view>
-        <view class="detail_input">
-          <view class="input">
-            <input value="{{ formData.area }}"></input>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="details_container inputs_container">
-      <view class="detail">
-        <view class="detail_label">Zipcode</view>
-        <view class="detail_input">
-          <view class="input">
-            <input value="{{ formData.zipcode }}"></input>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="details_container inputs_container">
-      <view class="detail">
-        <view class="detail_label">Address</view>
-        <view class="detail_input">
-          <view class="input">
-            <input value="{{ formData.address }}"></input>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="details_container inputs_container">
-      <view class="detail">
-        <view class="detail_label">Phone no</view>
-        <view class="detail_input">
-          <view class="input">
-            <input value="{{ formData.phone }}"></input>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="details_container textarea_container">
-      <view class="detail">
-      <!-- TODO style -->
-        <view class="detail_label">Comment</view>
-        <view class="detail_input">
-          <view class="input textarea_container">
-            <textarea class="comment_box" auto-height="true" value="{{ formData.comment }}" type="text"></textarea>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="btn-bottom">
-      <button class="nunito_600" hover-class="none" bindtap="select">Save</button>
     </view>
   </view>
+  <!-- End of Profile Input Group -->
+
+  <!-- Pets Input Group -->
+  <view class="white-box pet-info" wx:for="p" wx:for-item="pet" wx:key="index">
+    <view class="nunito_700 header">{{ _t.pet + ' ' + index }}pet</view>
+
+    <view class="detail">
+      <view class="detail_label">{{ _t.name }}name</view>
+      <view class="detail_input">
+        <input class="input" type="text" value="{{ formData.type }}"></input>
+      </view>
+    </view>
+
+    <view class="detail">
+      <text class="detail_label">{{ _t.type }}type</text>
+      <view class="detail_input">
+        <picker class="picker" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_type }}">
+          <view class="input flex-between ">
+            <text>{{ item.options[index] }}Home</text>
+            <text class="icon icon-arrow-right"></text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="detail">
+      <text class="detail_label">{{ _t.size }}size</text>
+      <view class="detail_input">
+        <picker class="picker" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_size }}">
+          <view class="input flex-between ">
+            <text>{{ _t.pet_size[pet.size] }}Home</text>
+            <text class="icon icon-arrow-right"></text>
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <!-- End of Pets Input Group -->
+
+  <!-- Add Pet Button -->
+  <view class="btn-outline_container">
+    <button class="btn-outline nunito_600" hover-class="none" bindtap="">{{ _t.add_pet}}+ Add new Pet</button>
+  </view>
+  <!-- End of Add Pet Button -->
+
+  <!-- Submit Button -->
+  <view class="btn-bottom">
+    <button class="nunito_600" hover-class="none" bindtap="pay">{{ _t.save }}save</button>
+  </view>
+  <!-- End of Submit Button -->
 </view>

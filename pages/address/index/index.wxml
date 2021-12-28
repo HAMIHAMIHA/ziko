@@ -11,8 +11,8 @@
     </view>
   </view>
 
-  <view class="add-btn_container">
-    <navigator class="add-btn nunito_600" hover-class="none" url="{{ routes.address_detail }}">+ Add new Address</navigator>
+  <view class="btn-outline_container">
+    <navigator class="btn-outline nunito_600" hover-class="none" url="{{ routes.address_detail }}">+ Add new Address</navigator>
   </view>
 
   <view class="btn-bottom">

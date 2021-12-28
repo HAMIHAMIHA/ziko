@@ -28,11 +28,11 @@
   opacity: 0.5;
 }
 
-.add-btn_container {
+.btn-outline_container {
   padding: 28rpx 30rpx;
 }
 
-.add-btn_container .add-btn {
+.btn-outline_container .btn-outline {
   width: unset;
   padding: 28rpx 0;
   background: transparent;
