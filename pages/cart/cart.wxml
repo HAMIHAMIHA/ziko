@@ -90,10 +90,12 @@
     <view class="detail address">
       <text class="detail_label">Address</text>
       <view class="detail_input">
-        <view class="input flex-between">
-          <text>{{ item.options[index] }}Home</text>
-          <text class="icon icon-arrow-right"></text>
-        </view>
+        <picker class="picker" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.addresses }}">
+          <view class="input flex-between ">
+            <text>{{ item.options[index] }}Home</text>
+            <text class="icon icon-arrow-right"></text>
+          </view>
+        </picker>
         <text class="detail_note">水电路1200弄3号401室</text>
       </view>
     </view>
