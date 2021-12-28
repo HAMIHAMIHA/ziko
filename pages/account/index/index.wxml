@@ -1,45 +1,54 @@
 <view class="container">
+  <!-- USER INFO -->
   <view class="user-info__container">
     <view class="user-info__avatar">
-      <view class="avatar-contaomer">
-        <image class="avatar-image" src="{{ _folder.user_avatar + user.image.uri }}"></image>
-        <view class="avatar-label">
-          <view class="gilroy_900 uppercase avatar-label__text">{{ _t[user.type] }}</view>
-          <text class="avatar-label_background icon icon-banner-{{ user.type }}"></text>
+      <view class="avatar-container">
+        <!-- <image class="avatar-image" src="{{ _folder.user_avatar + user.image.uri }}"></image> -->
+        <image class="avatar-image" src="/assets/images/receipeBanner.png"></image>
+        <view class="gilroy_900 uppercase avatar-label">
+          <text class="avatar-label__text">{{ _t[user.type] }}jshgkldh j</text>
+          <image class="avatar-label__background" src="/assets/images/avatarLabel.png" mode="scaleToFill"></image>
         </view>
       </view>
     </view>
-    <view class="gilroy_900 uppercase user-info__name">{{ user.name }}</view>
+    <view class="gilroy_700 uppercase user-info__name">{{ user.name }}jshgkldh jk</view>
   </view>
+  <!-- END OF USER INFO -->
 
+  <!-- PROFILE INFO -->
   <view class="nunito_600 card profile-info">
-    <navigator class="profile-info__button" url="{{ _routes.account_info }}">{{ _t.edit_my_info }}</navigator>
-    <navigator class="profile-info__button" url="{{ _routes.address }}">{{ _t.edit_my_address }}</navigator>
-    <navigator class="profile-info__button" url="{{ _routes.fapiaos }}">{{ _t.fapiao_info }}</navigator>
-    <navigator class="profile-info__button" url="{{ _routes.receipes }}">{{ _t.my_favorite_recipes }}</navigator>
+    <navigator class="profile-info__button" url="{{ _routes.account_info }}">{{ _t.edit_my_info }}edit my info</navigator>
+    <navigator class="profile-info__button" url="{{ _routes.address }}">{{ _t.edit_my_address }}edit my address</navigator>
+    <navigator class="profile-info__button" url="{{ _routes.fapiaos }}">{{ _t.fapiao_info }}fapiao</navigator>
+    <navigator class="profile-info__button" url="{{ _routes.receipes }}">{{ _t.my_favorite_recipes }}recipes</navigator>
   </view>
+  <!-- END OF PROFILE INFO -->
 
+  <!-- SHORT CUTS -->
   <view class="gilroy_700 uppercase card short-cuts">
     <navigator class="short-cuts__button" url="{{ _routes.orders }}" open-type="switchTab">
-      <text class="short-cut__icon icon icon-package"></text>
-      <view class="short-cut__label">{{ _t.orders }}</view>
+      <view class="short-cut__icon icon icon-package"></view>
+      <view class="short-cut__label">{{ _t.orders }}orders</view>
     </navigator>
     <navigator class="short-cuts__button" url="{{ _routes.claims }}">
-      <text class="short-cut__icon icon icon-box"></text>
-      <view class="short-cut__label">{{ _t.claims }}</view>
+      <view class="short-cut__icon icon icon-box"></view>
+      <view class="short-cut__label">{{ _t.claims }}claims</view>
     </navigator>
-    <button class="short-cuts__button" bindtap="contactAssistant">
-      <text class="short-cut__icon icon icon-headset"></text>
-      <view class="short-cut__label">{{ _t.contact }}</view>
+    <button class="short-cuts__button" open-type="contact">
+      <view class="short-cut__icon icon icon-headset"></view>
+      <view class="short-cut__label">{{ _t.contact }}contact</view>
     </button>
     <navigator class="short-cuts__button" url="{{ _routes.vouchers }}">
-      <text class="short-cut__icon icon icon-redpacket"></text>
-      <view class="short-cut__label">{{ _t.vouchers }}</view>
+      <view class="short-cut__icon icon icon-redpacket"></view>
+      <view class="short-cut__label">{{ _t.vouchers }}vouchers</view>
     </navigator>
   </view>
+  <!-- END OF SHORT CUTS -->
 
-  <view class="language-setting selected-{{ language }}">
-    <button class="langauge" bindtap="switchLanguage" data-language="en">{{ _t.en }}</button>
-    <button class="langauge" bindtap="switchLanguage" data-language="zh-CN">{{ _t.zh }}</button>
+  <!-- LANGUAGE BUTTON -->
+  <view class="nunito_700 uppercase language-setting selected-zh{{ language }}">
+    <button class="langauge" bindtap="switchLanguage" data-language="en">{{ _t.en }}en</button>
+    <button class="langauge" bindtap="switchLanguage" data-language="zh-CN">{{ _t.zh }}zh</button>
   </view>
+  <!-- END OF LANGUAGE BUTTON -->
 </view>

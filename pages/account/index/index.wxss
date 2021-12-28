@@ -1,1 +1,152 @@
-/* pages/account/index/index.wxss */
+.container {
+  --container-padding-bottom-: calc(34rpx + 4rpx + 4rpx + 48rpx + 48rpx); /* height of language button + bottom padding + mininum top padding */
+  min-height: calc(100vh - var(--container-padding-bottom-));
+  padding: 0 30rpx;
+  padding-bottom: var(--container-padding-bottom-);
+}
+
+/* USER INFO */
+.avatar-container {
+  height: 222rpx;
+  padding-top: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.avatar-image {
+  width: 184rpx;
+  height: 184rpx;
+  border-radius: 50%;
+}
+
+.avatar-label {
+  padding: 2rpx 50rpx;
+  color: #041542;
+  font-size: 26rpx;
+  line-height: 40rpx;
+  white-space: nowrap;
+  position: absolute;
+  bottom: 0;
+}
+
+.avatar-label__text {
+  position: relative;
+  z-index: 1;
+}
+
+.avatar-label__background {
+  height: 58rpx;
+  vertical-align: middle;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.user-info__name {
+  padding: 32rpx 0;
+  font-size: 32rpx;
+  line-height: 34rpx;
+  text-align: center;
+}
+/* END OF USER INFO */
+
+.card {
+  background: #373A44;
+  border-radius: 4px;
+}
+
+/* PROFILE INFO */
+.profile-info {
+  margin: 66rpx 0 32rpx;
+}
+
+.profile-info__button {
+  padding: 32rpx 24rpx;
+  font-size: 28rpx;
+  line-height: 34rpx;
+}
+
+.profile-info__button + .profile-info__button {
+  border-top: 1px solid #545764;
+}
+/* END OF PROFILE INFO */
+
+/* SHORT CUTS */
+.short-cuts {
+  padding: 30rpx 35rpx;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.short-cuts__button,
+button:not([size=mini]).short-cuts__button {
+  width: unset;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--ziko-default-);
+  text-align: center;
+}
+
+.short-cut__icon {
+  margin-bottom: 18rpx;
+  color: #20A1FF;
+  font-size: 36rpx;
+  line-height: 1;
+}
+
+.short-cut__label {
+  padding: 5rpx 0;
+  font-size: 20rpx;
+  line-height: 1;
+}
+/* END OF SHORT CUTS */
+
+/* LANGUAGE BUTTON */
+.language-setting {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  bottom: 48rpx;
+  transform: translateX(-50%);
+}
+
+.language-setting:after {
+  content: '';
+  width: 50%;
+  height: 100%;
+  background: var(--ziko-default-);
+  border-radius: 40rpx;
+  display: block;
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+.language-setting.selected-en:after {
+  left: 0;
+}
+
+.language-setting.selected-zh:after {
+  left: 100%;
+  transform: translateX(-100%);
+}
+
+button:not([size=mini]).langauge {
+  width: 88rpx;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: #4C5264;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  transition: all 0.3s ease-in-out;
+}
+
+.language-setting.selected-en button:not([size=mini]).langauge:first-child,
+.language-setting.selected-zh button:not([size=mini]).langauge:last-child {
+  color: #12151E;
+}
+/* END OF LANGUAGE BUTTON */

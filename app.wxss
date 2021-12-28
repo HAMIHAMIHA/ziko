@@ -2,8 +2,18 @@
 @import "/assets/fonts/fonts.wxss";
 
 /* Set Variables */
-page {
-  --env-: env(safe-area-inset-bottom);
+/* 兼容 iOS < 11.2 */
+@supports (padding: constant(safe-area-inset-bottom)) {
+  page {
+    --env-: constant( safe-area-inset-bottom, 0px);
+  }
+}
+
+ /* 兼容 iOS > 11.2 */
+@supports (padding: env(safe-area-inset-bottom)) {
+  page {
+    --env-: env(safe-area-inset-bottom);
+  }
 }
 
 /* Set Ziko Color Variables */
