@@ -1,3 +1,11 @@
 .container-btn-bottom {
   --container-btn-bottom-height-: calc(36rpx + 32rpx + 32rpx + 48rpx + 32rpx);
 }
+
+.pet-info {
+  padding-bottom: 8rpx;
+}
+
+.detail {
+  padding: 8rpx 0;
+}

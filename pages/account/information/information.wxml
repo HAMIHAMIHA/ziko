@@ -19,7 +19,9 @@
     <view class="detail">
       <view class="detail_label">{{ _t.name }}name</view>
       <view class="detail_input">
-        <input class="input" type="text" value="{{ formData.type }}"></input>
+        <view class="input">
+          <input  type="text" value="{{ formData.type }}"></input>
+        </view>
       </view>
     </view>
 
@@ -29,7 +31,7 @@
         <picker class="picker" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_type }}">
           <view class="input flex-between ">
             <text>{{ item.options[index] }}Home</text>
-            <text class="icon icon-arrow-right"></text>
+            <text class="icon icon-arrow"></text>
           </view>
         </picker>
       </view>
@@ -41,7 +43,7 @@
         <picker class="picker" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_size }}">
           <view class="input flex-between ">
             <text>{{ _t.pet_size[pet.size] }}Home</text>
-            <text class="icon icon-arrow-right"></text>
+            <text class="icon icon-arrow"></text>
           </view>
         </picker>
       </view>
