@@ -93,7 +93,7 @@
         <picker class="picker" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.addresses }}">
           <view class="input flex-between ">
             <text>{{ item.options[index] }}Home</text>
-            <text class="icon icon-arrow-right"></text>
+            <text class="icon icon-arrow"></text>
           </view>
         </picker>
         <text class="detail_note">水电路1200弄3号401室</text>

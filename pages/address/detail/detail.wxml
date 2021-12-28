@@ -9,7 +9,7 @@
           <view class="input flex-between">
           <!-- TODO picker -->
             <input type="text" value="{{ formData.type }}"></input>
-            <text class="icon icon-arrow-right"></text>
+            <text class="icon icon-arrow"></text>
           </view>
         </view>
       </view>
