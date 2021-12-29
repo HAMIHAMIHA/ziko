@@ -1,1 +1,189 @@
-/* pages/orders/index/index.wxss */
+/* Scroll Menu */
+.scroll-menu {
+  background: #2F323A;
+  color: #7C8497;
+}
+
+.h-scroll_item {
+  margin: 0 12rpx;
+  padding: 30rpx 4rpx;
+  position: relative;
+}
+
+.scroll-menu .h-scroll_item:first-child {
+  margin-left: 16rpx;
+}
+
+.scroll-menu .h-scroll_item:last-child {
+  margin-right: 16rpx;
+}
+
+/* Scroll Menu selected */
+.scroll-menu .h-scroll_item:after {
+  content: "";
+  width: 100%;
+  height: 4rpx;
+  background: var(--ziko-default-);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.3s ease-in-out;
+}
+
+.scroll-menu .h-scroll_item.selected {
+  color: var(--ziko-default-);
+}
+
+.scroll-menu .h-scroll_item.selected:after {
+  transform: scaleX(1);
+}
+/* End of Scroll Menu */
+
+.container {
+  padding: 16rpx 30rpx;
+}
+
+/* Community Picker */
+.community-selector {
+  width: 50%;
+  margin-bottom: 4rpx;
+  padding: 16rpx;
+  background: #454852;
+  font-size: 28rpx;
+  line-height: 38rpx;
+  border: 1px solid #171921;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.community-selector .icon {
+  font-size: 20rpx;
+}
+/* End of Community Picker */
+
+/* Order Card */
+.cards-container {
+  padding: 12rpx 0;
+  display: grid;
+  grid-row-gap: 24rpx;
+}
+
+.card {
+  background: #252831;
+  border-radius: 4px;
+}
+
+/* Order Detail */
+.order-info__detail {
+  padding: 24rpx;
+}
+
+.order-time {
+  color: var(--grey-);
+  font-size: 24rpx;
+  line-height: 30rpx;
+}
+
+.order-info .order-status {
+  padding: 4rpx 24rpx;
+  background: #FF8718; /* TEMP */
+  color: #FFE9DD; /* TEMP */
+  font-size: 20rpx;
+  line-height: 24rpx;
+  border-radius: 4px;
+}
+
+.order-info .order-status.status-delayed {
+  background: #FF8718;
+  color: #FFE9DD;
+}
+
+.order-info .order-status.status-delivered {
+  background: #00CB45;
+  color: #DDEFFF;
+}
+
+.order-info .order-status.status-prepared {
+  background: #DDEFFF;
+  color: #DDFFE4;
+}
+
+.order-info .order-status.status-on_the_way {
+  background: #FF4040;
+  color: #FFE3E3;
+}
+
+.order_offer-name {
+  padding: 24rpx 0 8rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  letter-spacing: 0.05em;
+}
+
+.order-community {
+  padding-bottom: 18rpx;
+  color: var(--grey-);
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+
+.order-count {
+  color: var(--grey-);
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+
+.order-price {
+  font-size: 40rpx;
+  line-height: 42rpx;
+  letter-spacing: 0.01em;
+}
+
+.order-total__old {
+  margin-left: 8rpx;
+  color: var(--grey-);
+  text-decoration: line-through;
+}
+/* End of Order Detail */
+
+/* Order Lottery */
+.order-info__lottery {
+  padding: 24rpx;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lottery-title {
+  padding-bottom: 16rpx;
+  color: var(--grey-);
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+
+.lottery__container {
+  padding-bottom: 8rpx;
+}
+
+.lottery {
+  display: flex;
+  align-items: center;
+}
+
+.lottery__image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.lottery__name {
+  padding-left: 20rpx;
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+
+.lottery__count {
+  color: var(--grey-);
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+/* End of Order Card */

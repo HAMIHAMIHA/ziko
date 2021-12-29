@@ -1,47 +1,71 @@
-<scroll-view class="capatilize">
-  <block wx:for="{{ order_status }}" wx:key="index" wx:for-item="status">
-    <button
-      class="order-status{{ filter.status == index ? ' selected' : '' }}"
-      bindtap="changeFilter"
-      data-filter="{{ index }}"
-    >
-      {{ _t.order_status[status] }}
-    </button>
-  </block>
-</scroll-view>
+<!-- Scroll Menu -->
+<view class="h-scroll_container scroll-menu">
+  <scroll-view class="h-scroll capatilize" scroll-x="true">
+    <block wx:for="{{ '_order_status' }}" wx:key="index" wx:for-item="status">
+      <view
+        class="h-scroll_item order-status{{ filter.status == index ? ' selected' : '' }}"
+        bindtap="changeFilter"
+        data-filter="{{ index }}"
+      >
+        {{ _t.order_status[status] }}asbf
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<!-- End of Scroll Menu -->
 
 <view class="container">
+  <!-- Community Picker -->
   <view class="community-selector">
-    <picker>
-      <!-- TODO picker -->
-      {{ _t[filter.community] }}
+    <picker class="picker">
+      <view class="nunito_600 flex-between picker-btn">
+        <text>{{ _t[filter.community] }}All communities</text>
+        <text class="icon icon-arrow"></text>
+      </view>
     </picker>
   </view>
+  <!-- End of Community Picker -->
 
-  <block wx:for="{{ orders }}" wx:key="id" wx:for-item="order">
-    <view class="card order-card{{ order.lottery ? ' order-card__long' : '' }}">
-      <view class="order-info__detail">
-        <view class="order-info">
-          <view class="gilroy_700 order-time">{{ order.time }}</view>
-          <view class="nunito_600 order-status status-{{ order.status }}">{{ order.status }}</view>
-        </view>
-        <view class="gilroy_700 order_offer">{{ order.name }}</view>
-        <view class="order-community">({{ order.community }})</view>
-        <view class="order-detail">
-          <view class="order-count">{{ 'x' + order.count + _t.items }}</view>
-          <view class="order-total">{{ _t.cny + order.total }}</view>
-        </view>
-      </view>
-      <view class="order-info__lottery">
-        <view class="lottery-title">{{ _t.lottery_gift + ':' }}</view>
-        <block wx:for="{{ order.lottery }}" wx:key="_id" wx:key="lottery">
-          <view class="lottery-detail">
-            <image src="{{ _folders.lottery + lottery.image.uri }}"></image>
-            <view class="lottery">{{ lottery.name }}</view>
-            <view class="lottery-count">{{ 'x' + lottery.count }}</view>
+  <!-- Order Card -->
+  <view class="cards-container">
+    <block wx:for="{{ 'orders' }}" wx:key="id" wx:for-item="order">
+      <view class="card order-card">
+        <!-- Order Detail -->
+        <view class="order-info__detail">
+          <view class="flex-between order-info">
+            <view class="gilroy_700 order-time">{{ order.time }}2021-11-11 00:00</view>
+            <view class="nunito_600 uppercase order-status status-{{ order.status }}">{{ order.status }}status</view>
           </view>
-        </block>
+          <view class="gilroy_700 uppercase order_offer-name">{{ order.name }}name</view>
+          <view class="order-community">({{ order.community }}communtiy)</view>
+          <view class="order-detail flex-between">
+            <view class="order-count">x{{ order.count + _t.items }}3 items</view>
+            <view class="order-price">              
+              <text class="gilroy_800 order-total">{{ _t.cny + order.total }}$000</text>
+              <text class="gilroy_800 order-total__old" wx:if="{{ order.originalPrice }}">{{ _t.cny + order.total }}$000</text>
+            </view>
+          </view>
+        </view>
+        <!-- End of Order Detail -->
+
+        <!-- Order Lottery -->
+        <view class="order-info__lottery" -wx:if="{{ order.lottery }}">
+          <view class="lottery-title">lottery gift{{ _t.lottery_gift }}:</view>
+          <!-- <block wx:for="{{ order.lottery }}" wx:key="_id" wx:key="lottery"> -->
+          <block wx:for="12" wx:key="_id" wx:key="lottery">
+            <view class="lottery__container flex-between">
+              <view class="lottery">
+                <image class="lottery__image" src="/assets/images/receipeBanner.png" mode="aspectFill"></image>
+                <!-- <image src="{{ _folders.lottery + lottery.image.uri }}" mode="aspectFill"></image> -->
+                <view class="lottery__name">{{ lottery.name }}gold mask + 15% off</view>
+              </view>
+              <view class="lottery__count">x{{ lottery.count }}1</view>
+            </view>
+          </block>
+        </view>
+        <!-- End of Order Lottery -->
       </view>
-    </view>
-  </block>
+    </block>
+  </view>
+  <!-- End of Order Card -->
 </view>
