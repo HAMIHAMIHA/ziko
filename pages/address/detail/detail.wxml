@@ -1,4 +1,5 @@
 <view class="container-grey container-btn-bottom address-detail">
+  <!-- Address Form -->
   <view class="white-box address_container">
     <view class="nunito_700 header">{{ formData.name }}</view>
 
@@ -82,6 +83,7 @@
       </view>
     </view>
   </view>
+  <!-- End of Address Form -->
 
   <!-- Delete Button -->
   <view class="btn-outline_container">
