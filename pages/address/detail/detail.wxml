@@ -6,11 +6,12 @@
       <view class="detail">
         <view class="detail_label">Type</view>
         <view class="detail_input">
-          <view class="input flex-between">
-          <!-- TODO picker -->
-            <input type="text" value="{{ formData.type }}"></input>
-            <text class="icon icon-arrow"></text>
-          </view>
+          <picker class="input" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_type }}">
+            <view class="flex-between">
+              <view type="text" value="{{ formData.type }}"></view>
+              <text class="icon icon-arrow"></text>
+            </view>
+          </picker>
         </view>
       </view>
     </view>
@@ -75,7 +76,7 @@
       <!-- TODO style -->
         <view class="detail_label">Comment</view>
         <view class="detail_input">
-          <view class="input textarea_container">
+          <view class="input">
             <textarea class="comment_box" auto-height="true" value="{{ formData.comment }}" type="text"></textarea>
           </view>
         </view>
