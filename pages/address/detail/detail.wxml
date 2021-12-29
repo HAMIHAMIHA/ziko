@@ -1,4 +1,4 @@
-<view class="container-grey container-btn-bottom address-detail">
+<view class="container container-grey container-btn-bottom address-detail">
   <!-- Address Form -->
   <view class="white-box address_container">
     <view class="nunito_700 header">{{ formData.name }}</view>
@@ -77,7 +77,7 @@
         <view class="detail_label">Comment</view>
         <view class="detail_input">
           <view class="input">
-            <textarea class="comment_box" auto-height="true" value="{{ formData.comment }}" type="text"></textarea>
+            <textarea class="textarea" auto-height="true" value="{{ formData.comment }}" type="text"></textarea>
           </view>
         </view>
       </view>
