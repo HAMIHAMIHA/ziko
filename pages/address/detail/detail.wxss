@@ -10,11 +10,25 @@
   position: relative;
 }
 
+.textarea_container .detail {
+  padding: 16rpx 0;
+  align-items: start;
+}
+
+.textarea_container .detail_label {
+  line-height: 64rpx;
+}
+
+.textarea_container .detail_input {
+  min-height: 64rpx;
+  height: fit-content;
+}
+
+.textarea_container .input {
+  margin: unset;
+}
+
 .comment_box {
   width: 100%;
   word-wrap: none;
-}
-
-.textarea_container .detail {
-  align-items: start;
 }

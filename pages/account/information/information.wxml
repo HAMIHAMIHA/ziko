@@ -1,6 +1,6 @@
 <view class="container container-grey container-btn-bottom">
   <!-- Profile Input Group -->
-  <view class="white-box contact-info">
+  <view class="white-box inputs_container contact-info">
     <view class="nunito_700 header">{{ _t.contact_info }}contact info</view>
 
     <view class="detail">
@@ -13,14 +13,15 @@
   <!-- End of Profile Input Group -->
 
   <!-- Pets Input Group -->
-  <view class="white-box pet-info" wx:for="p" wx:for-item="pet" wx:key="index">
+  <view class="white-box inputs_container pet-info" wx:for="p" wx:for-item="pet" wx:key="index">
     <view class="nunito_700 header">{{ _t.pet + ' ' + index }}pet</view>
+    <view class="icon icon-trash btn-icon"></view>
 
     <view class="detail">
       <view class="detail_label">{{ _t.name }}name</view>
       <view class="detail_input">
         <view class="input">
-          <input  type="text" value="{{ formData.type }}"></input>
+          <input type="text" value="{{ formData.type }}"></input>
         </view>
       </view>
     </view>
@@ -28,8 +29,8 @@
     <view class="detail">
       <text class="detail_label">{{ _t.type }}type</text>
       <view class="detail_input">
-        <picker class="picker" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_type }}">
-          <view class="input flex-between ">
+        <picker class="input" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_type }}">
+          <view class="flex-between">
             <text>{{ item.options[index] }}Home</text>
             <text class="icon icon-arrow"></text>
           </view>
@@ -40,8 +41,8 @@
     <view class="detail">
       <text class="detail_label">{{ _t.size }}size</text>
       <view class="detail_input">
-        <picker class="picker" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_size }}">
-          <view class="input flex-between ">
+        <picker class="input" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_size }}">
+          <view class="flex-between">
             <text>{{ _t.pet_size[pet.size] }}Home</text>
             <text class="icon icon-arrow"></text>
           </view>

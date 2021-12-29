@@ -7,7 +7,7 @@
         <view class="contact-detail">Contact name</view>
         <view class="contact-detail">132156519165</view>
       </view>
-      <navigator class="icon icon-edit" hover-class="none" url="{{ routes.address_detail + '?id=' + item.id }}"></navigator>
+      <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ routes.address_detail + '?id=' + item.id }}"></navigator>
     </view>
   </view>
 
