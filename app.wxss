@@ -180,7 +180,7 @@ image {
 
 /* Details */
 .detail {
-  padding: 30rpx 0;
+  padding: 28rpx 0;
   font-size: 28rpx;
   line-height: 34rpx;
   display: flex;
@@ -194,11 +194,20 @@ image {
 }
 
 /* Detail - Address */
+.inputs_container .detail.address {
+  padding-bottom: 48rpx;
+}
+
+.address .detail_input {
+  flex-direction: column;
+}
+
 .address .detail_label {
   align-self: flex-start;
 }
 
 .address .detail_note {
+  padding-top: 16rpx;
   font-size: 24rpx;
   line-height: 32rpx;
   color: #A3A8B7;

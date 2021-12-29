@@ -90,8 +90,8 @@
     <view class="detail address">
       <text class="detail_label">Address</text>
       <view class="detail_input">
-        <picker class="picker" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.addresses }}">
-          <view class="input flex-between ">
+        <picker class="input" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.addresses }}">
+          <view class="flex-between">
             <text>{{ item.options[index] }}Home</text>
             <text class="icon icon-arrow"></text>
           </view>
