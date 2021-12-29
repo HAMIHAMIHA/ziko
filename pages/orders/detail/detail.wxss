@@ -111,7 +111,7 @@
 
 .timeline__date {
   padding: 0 4rpx;
-  color: #A3A8B7;
+  color: var(--grey-);
 }
 
 .timeline__status {

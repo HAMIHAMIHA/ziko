@@ -85,7 +85,7 @@
 
 .modal .close-modal .icon {
   font-size: 20rpx;
-  color: #A3A8B7;
+  color: var(--grey-);
 }
 
 .modal .scroll-date .h-scroll {

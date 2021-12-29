@@ -19,7 +19,7 @@
 
 .contact-detail {
   padding-top: 8rpx;
-  color: #A3A8B7;
+  color: var(--grey-);
 }
 
 .detail .btn-icon {

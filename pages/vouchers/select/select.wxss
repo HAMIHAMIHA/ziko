@@ -29,7 +29,7 @@
 }
 
 .voucher_label {
-  color: #A3A8B7;
+  color: var(--grey-);
 }
 
 .voucher_price {

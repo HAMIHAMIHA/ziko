@@ -27,6 +27,7 @@
 
 /* Set Ziko Color Variables */
 page {
+  --grey-: #A3A8B7;
   --ziko-default-: #FFFFFF;
   --ziko-kitchen-: linear-gradient(104.65deg, #A1803B 1.33%, #FDE28F 54.78%, #D8BC74 100%);
   --ziko-garden-: linear-gradient(105.28deg, #98F183 2.41%, #11BF67 100%);
@@ -210,7 +211,7 @@ image {
   padding-top: 16rpx;
   font-size: 24rpx;
   line-height: 32rpx;
-  color: #A3A8B7;
+  color: var(--grey-);
   display: block;
 }
 
@@ -502,7 +503,7 @@ button:not([size=mini]).float-contact_container {
 
 .ziko-offer .offer-detail .offer-description {
   padding-top: 20rpx;
-  font-size: 28r14px;
+  font-size: 28rpx;
   line-height: 36rpx;
 }
 /* End of Offer Detail */
@@ -549,7 +550,7 @@ button:not([size=mini]).float-contact_container {
 }
 
 .ziko-offer .offer-payment.disabled .payment-price_container {
-  color: #A3A8B7;
+  color: var(--grey-);
 }
 
 .ziko-offer .offer-payment .payment-price {
@@ -588,14 +589,14 @@ button:not([size=mini]).float-contact_container {
   width: 33%;
   padding: 0;
   border-radius: 0;
-  background: #A3A8B7;
+  background: var(--grey-);
   color: var(--ziko-default-);
   font-size: 32rpx;
   line-height: 106rpx;
 }
 
 .ziko-offer .offer-payment.disabled .payment-button {
-  background: #A3A8B7;
+  background: var(--grey-);
   pointer-events: none;
 }
 
