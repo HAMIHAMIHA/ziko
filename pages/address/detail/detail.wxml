@@ -91,7 +91,9 @@
   </view>
   <!-- End of Delete Button -->
 
+  <!-- Submit Button -->
   <view class="btn-bottom">
     <button class="nunito_600" hover-class="none" bindtap="select">Save</button>
   </view>
+  <!-- End of Submit Button -->
 </view>

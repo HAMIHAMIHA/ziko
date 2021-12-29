@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/account/index/index",
     "pages/account/information/information",
+    "pages/account/fapiao/fapiao",
     "pages/address/index/index",
     "pages/address/detail/detail",
     "pages/cart/cart",

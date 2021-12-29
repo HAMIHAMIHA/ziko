@@ -861,3 +861,33 @@ button:not([size=mini]).float-contact_container {
   background: #FFDAC5;
 }
 /* End of Share */
+
+/* Textarea */
+.textarea_container {
+  position: relative;
+}
+
+.textarea_container .detail {
+  padding: 16rpx 0;
+  align-items: start;
+}
+
+.textarea_container .detail_label {
+  line-height: 64rpx;
+}
+
+.textarea_container .detail_input {
+  min-height: 64rpx;
+  height: fit-content;
+}
+
+.textarea_container .input {
+  margin: unset;
+}
+
+
+.textarea_container .textarea {
+  width: 100%;
+  word-wrap: none;
+}
+/* End of Textarea */

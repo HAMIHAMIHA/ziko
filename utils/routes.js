@@ -3,6 +3,7 @@ const routes = {
   home_list: "/pages/index/list/list",
   account: "/pages/account/index/index",
   account_info: "/pages/account/information/information",
+  fapiao: "/pages/account/fapiao/fapiao",
   address: "/pages/address/index/index",
   address_detail: "/pages/address/detail/detail",
   cart: "/pages/cart/cart",
