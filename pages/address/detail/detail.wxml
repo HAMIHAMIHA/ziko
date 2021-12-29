@@ -73,7 +73,6 @@
 
     <view class="details_container textarea_container">
       <view class="detail">
-      <!-- TODO style -->
         <view class="detail_label">Comment</view>
         <view class="detail_input">
           <view class="input">
@@ -82,11 +81,15 @@
         </view>
       </view>
     </view>
+  </view>
 
-    <!-- TODO delete button -->
+  <!-- Delete Button -->
+  <view class="btn-outline_container">
+    <button class="btn-outline nunito_600" hover-class="none" bindtap="">{{ _t.delete}}delete</button>
+  </view>
+  <!-- End of Delete Button -->
 
-    <view class="btn-bottom">
-      <button class="nunito_600" hover-class="none" bindtap="select">Save</button>
-    </view>
+  <view class="btn-bottom">
+    <button class="nunito_600" hover-class="none" bindtap="select">Save</button>
   </view>
 </view>
