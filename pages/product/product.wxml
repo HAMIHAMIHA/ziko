@@ -108,7 +108,8 @@
   <!-- End of Pack Products -->
 
   <!-- Offer Receipes -->
-  <view class="list_container product-reciepe">
+  <!-- Hide for v1 -->
+  <view class="list_container product-reciepe" wx:if="{{ showing }}">
     <view class="offer-group receipe-group">
       <view class="uppercase title">
         <text class="gilroy_500">related</text>
