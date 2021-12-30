@@ -14,5 +14,9 @@ Page({
         orders: app.routes.orders
       }
     })
+  },
+
+  onTabItemTap: function(e) {
+    // TODO get user profile
   }
 })

@@ -64,4 +64,6 @@
     </view>
   </view>
   <!-- End of Map popup -->
+
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">mobile</button>
 </view>

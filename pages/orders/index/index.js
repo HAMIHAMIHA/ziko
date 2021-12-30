@@ -9,5 +9,9 @@ Page({
         order: app.routes.order
       }
     })
+  },
+
+  onTabItemTap: function(e) {
+    // TODO get user profile
   }
 })
