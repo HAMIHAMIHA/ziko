@@ -1,0 +1,30 @@
+<template name="payment_container">
+  <view class="offer-payment{{ minimum && original_price < minimum ? ' disabled' : '' }}">
+    <!-- TEMP hide for v1 -->
+    <view class="payment-message" wx:if="{{ special }}">
+      <view class="icon_container">
+        <view class="icon icon-alert"></view>
+        <view class="icon_text">Hurry up to be in the top 20{{ special }}</view>
+      </view>
+    </view>
+
+    <view class="flex-center payment_container">
+      <view class="flex-between payment-price_container">
+        <view class="icon_container payment-price">
+          <view class="icon icon-bigbag"></view>
+          <view class="icon_text">
+            <text class="price_final">¥{{ total }}1200</text>
+            <text class="payment-price_original" wx:if="{{ original_price }}">¥{{ original_price }}1500</text>
+          </view>
+        </view>
+        <!-- TEMP hide for v1 -->
+        <view class="icon_container payment-tickets" wx:if="{{ tickets > 0 }}">
+          <view class="icon icon-ticket"></view>
+          <view class="nunito_600 icon_text payment-tickets_count">X{{ tickets }}3</view>
+        </view>
+      </view>
+      <button class="payment-button" bindtap="checkout">
+        {{ minimum && original_price < minimum ? 'Min: ' + minimum : _t.pay }}Pay</button>
+    </view>
+  </view>
+</template>
