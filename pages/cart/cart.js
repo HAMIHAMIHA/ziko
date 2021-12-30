@@ -1,3 +1,7 @@
+const { createOrderData } = require("./createOrder");
+
+const app = getApp();
+
 Page({
   data: {
     cart: {
@@ -61,13 +65,12 @@ Page({
       }]
     }
   },
-  onLoad: function (options) {
 
-  },
   onShow: function () {
 
   },
-  onShareAppMessage: function () {
 
+  pay: function() {
+    createOrderData(this, '');
   }
 })

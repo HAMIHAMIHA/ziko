@@ -141,6 +141,6 @@
   </view>
 
   <view class="btn-bottom">
-    <button class="nunito_600" hover-class="none" bindtap="pay">Pay</button>
+    <button class="nunito_600" hover-class="none" bindtap="pay">{{ _t.pay }}Pay</button>
   </view>
 </view>
