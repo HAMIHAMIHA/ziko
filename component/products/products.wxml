@@ -2,8 +2,7 @@
   <view class="flex-between flex-align-start product">
     <navigator
       class="flex-start flex-align-start product_left"
-      hover-class="{{ product.available > 0 ? '' : 'none' }}"
-      url="{{ product.available > 0 ? _routes.product + '?id=' + product.id : '' }}"
+      url="{{ _routes.product + '?id=' + product.id }}"
     >
       <view class="product-image">
         <image src="/assets/images/productDefault.png" mode="aspectFill" wx:if="{{ pack }}"></image>
