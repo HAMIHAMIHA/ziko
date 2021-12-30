@@ -2,7 +2,7 @@
   <view class="flex-between flex-align-start product">
     <navigator
       class="flex-start flex-align-start product_left"
-      url="{{ _routes.product + '?id=' + product.id }}"
+      url="{{ pack ? _routes.product + '?id=' + product.id + '&type=pack' : _routes.product + '?id=' + product.id + '&type=product' }}"
     >
       <view class="product-image">
         <image src="/assets/images/productDefault.png" mode="aspectFill" wx:if="{{ pack }}"></image>
