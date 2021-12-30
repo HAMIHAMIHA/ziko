@@ -1,4 +1,5 @@
-// component/product/product.js
+const app = getApp();
+
 Component({
   properties: {
     community: String,
@@ -9,13 +10,19 @@ Component({
     units: String
   },
 
+  data: {
+    _routes: {
+      product: app.routes.product
+    }
+  },
+
   options: {
     addGlobalClass: true
   },
 
   methods: {
-
-  },
-  ready: function() {
+    updatePage: function(language) {
+      // TODO on page show, change product language
+    }
   }
 })

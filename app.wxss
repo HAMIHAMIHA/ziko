@@ -619,7 +619,7 @@ button:not([size=mini]).float-contact_container {
 
 /* Offer Product List */
 .ziko-offer .offer-group {
-  padding: 0 30rpx;
+  /* padding: 0 30rpx; */
 }
 
 .ziko-offer .offer-group .title {
@@ -635,7 +635,7 @@ button:not([size=mini]).float-contact_container {
 }
 
 .product_container {
-  padding: 48rpx 0;
+  padding: 48rpx 30rpx;
   border-bottom: 1px solid #424756;
 }
 
