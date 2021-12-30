@@ -3,6 +3,8 @@ const { offer_data } = require("./indexData"); // TEMP
 
 const app = getApp();
 
+let leave_triggered = false;
+
 // Default filter for page
 let current_filter = {
   type: 'map',
@@ -125,6 +127,8 @@ Page({
 
     app.setTabbar();
 
+    leave_triggered = false;
+
     // TODO translate tabbar
     // TOOD translate navbar
     // Translation values
@@ -140,7 +144,25 @@ Page({
         map: index_data.map_filters
       }
     })
+  },
 
+  onHide: function(e) {
+    const self = this;
+    self.navigatePage({ detail: {} });
+  },
+
+  navigatePage: function(e) {
+  // Close modal or reset page view to map when leaving page by tabbar click
+    const self = this;
+
+    if (leave_triggered) {
+      return;
+    } else if (e.detail.navigating) {
+      leave_triggered = true;
+      return;
+    }
+
+    self.closeMapModal();
   },
 
   switchType: function(e) {
