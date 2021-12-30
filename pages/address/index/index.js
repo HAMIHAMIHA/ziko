@@ -8,9 +8,5 @@ Page({
       {id: 2}
     ],
     routes: routes
-  },
-  onReachBottom: function () {
-
-  },
-  onShareAppMessage: function () { }
+  }
 })
