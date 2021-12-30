@@ -1,1 +1,4 @@
-/* pages/account/fapiao/fapiao.wxss */
+
+.detail_input {
+  width: 100%;
+}
