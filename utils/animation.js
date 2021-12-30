@@ -1,3 +1,4 @@
+// Offer switch tab animation
 const tabbar = {
   tab: wx.createAnimation({
     duration: 100,
@@ -9,6 +10,7 @@ const tabbar = {
   }).translateY(0).step().export(),
 }
 
+// Scroll message animation
 const message = {
   opacity: {
     fst: wx.createAnimation({
@@ -41,7 +43,6 @@ const message = {
     timingFunction: 'linear'
   })
 }
-
 
 module.exports = {
   tabbar: tabbar,
