@@ -1,3 +1,6 @@
+<!-- TODO UPDATE PAGE UNIFORM TO OTHERS!!!!!! -->
+<!-- Wechat will break if using same page with too much if cases -->
+
 <view class="container ziko-offer {{ 'community-' + _offer.community }}">
   <!-- Lottery Alert -->
   <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ pageSet.nextOffer != '' }}">
