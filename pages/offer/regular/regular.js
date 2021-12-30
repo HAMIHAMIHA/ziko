@@ -1,12 +1,8 @@
-const animate = require('../../../utils/animation.js').tabbar;
+const checkout = require('../../../templates/checkout/checkout.js');
+const animate = require('../../../templates/offer/animation.js').tabbar;
+const offers = require('../../../templates/offer/offers.js');
 
 let countdown_timer = [];
-
-const _clearCountdown = (page) => {
-  let timer = page.selectComponent('#countdown');
-  timer.setTimer(countdown_timer, false);
-  countdown_timer = []
-}
 
 Page({
   data: {
@@ -169,11 +165,11 @@ Page({
   },
 
   onHide: function() {
-    _clearCountdown(this);
+    countdown_timer = offers._clearCountdown(this, countdown_timer);
   },
 
   onUnload: function() {
-    _clearCountdown(this);
+    countdown_timer = offers._clearCountdown(this, countdown_timer);
   },
 
   swiperChange: function(e) {
@@ -191,16 +187,14 @@ Page({
     })
   },
   
-  /*
   onReachBottom: function() {
-    let self = this;
-    var receipecomp = self.selectComponent("#receipes-component");
-    // TODO
-    if (data) {
-      receipecomp.onReachBottom();
-    }
+    // TODO If current tab is on receipe
+    offers.updateReceipes(this);
   },
-  */
+
+  checkout: function() {
+    checkout.checkoutItems(this, false);
+  },
 
   onShareAppMessage: function (res) {}
 })

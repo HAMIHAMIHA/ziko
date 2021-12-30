@@ -1,3 +1,6 @@
+const checkout = require('../../templates/checkout/checkout.js');
+const offers = require('../../templates/offer/offers.js');
+
 const app = getApp();
 const routes = app.routes;
 
@@ -40,7 +43,6 @@ Page({
 
   onLoad: function(options) {
     const self = this;
-    self.receipecomp = self.selectComponent("#receipes-component");
 
     self.setData({
       // "pageSet.type": 'product',
@@ -56,10 +58,13 @@ Page({
       "pageSet.swiperIndex": (e.detail.current) + 1,
     })
   },
+
+  checkout: function() {
+    checkout.checkoutItems(this, true);
+  },
   
   onReachBottom: function() {
-    let self = this;
-    self.receipecomp.onReachBottom();
+    offers.updateReceipes(this);
   },
 
   onShareAppMessage: function () {}

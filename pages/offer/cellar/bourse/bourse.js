@@ -1,4 +1,4 @@
-const animate = require('../../../../utils/animation.js').tabbar;
+const animate = require('../../../../templates/offer/animation.js').tabbar;
 
 let countdown_timer = [];
 

@@ -1,3 +1,8 @@
+
+// Set up Animation
+const animation = require('../../templates/offer/animation.js').message;
+// End of Set up Animation
+
 const finalMsg = [
   "message1 message1",
   "message mesag asg asgkljsd agl messagesag asg asgkljsd agl messagesag asg asgkljsd agl messagesag asg asgkljsd agl message2",
@@ -11,9 +16,6 @@ var messagesShowing;
 var current;
 var interval;
 
-// Set up Animation
-var animation = require('../../utils/animation.js').message;
-// End of Set up Animation
 
 var nextCurrent = function(messages) {
   current = [current[1], current[2], current[3], current[4], current[5],
