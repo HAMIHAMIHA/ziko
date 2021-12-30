@@ -125,7 +125,9 @@ Component({
           url = routes.offer_cellar;
         }
       }
-      
+
+      self.triggerEvent('navigatePage', { navigating: true });  
+
       wx.navigateTo({
         // url: url + '?id=' + id,
         url: url + '?id=' + data.offerId + '&community=' + data.community + '&rule=' + data.priceRule,

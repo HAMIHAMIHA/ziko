@@ -36,7 +36,7 @@
 
     <!-- List Contents -->
     <dateFilter id="list_date_filters" offers="{{ offers }}"></dateFilter>
-    <offers id="list_offers" offers="{{ offers }}"></offers>
+    <offers id="list_offers" offers="{{ offers }}" bind:navigatePage="navigatePage"></offers>
   </view>
   <!-- End of List View -->
 
@@ -58,7 +58,7 @@
         <view class="close-modal" bindtap="closeMapModal"><text class="icon icon-x"></text></view>
         <dateFilter id="map_date_filter" offers="{{ offers }}"></dateFilter>
         <scroll-view class="modal-offers_container" scroll-y="true">
-          <offers id="map_offers" offers="{{ offers }}"></offers>
+          <offers id="map_offers" offers="{{ offers }}" bind:navigatePage="navigatePage"></offers>
         </scroll-view>
       </view>
     </view>
