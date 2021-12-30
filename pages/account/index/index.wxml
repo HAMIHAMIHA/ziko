@@ -19,7 +19,7 @@
   <view class="nunito_600 card profile-info">
     <navigator class="profile-info__button" url="{{ _routes.account_info }}">{{ _t.edit_my_info }}edit my info</navigator>
     <navigator class="profile-info__button" url="{{ _routes.address }}">{{ _t.edit_my_address }}edit my address</navigator>
-    <navigator class="profile-info__button" url="{{ _routes.fapiaos }}">{{ _t.fapiao_info }}fapiao</navigator>
+    <navigator class="profile-info__button" url="{{ _routes.fapiao }}">{{ _t.fapiao_info }}fapiao</navigator>
     <!-- Hide for v1 -->
     <navigator class="profile-info__button" url="{{ _routes.receipes }}" wx:if="{{ showing }}">{{ _t.my_favorite_recipes }}recipes</navigator> 
   </view>

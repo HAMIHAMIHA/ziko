@@ -1,6 +1,5 @@
 const routes = {
-  home_map: "/pages/index/index",
-  home_list: "/pages/index/list/list",
+  home: "/pages/index/index",
   account: "/pages/account/index/index",
   account_info: "/pages/account/information/information",
   fapiao: "/pages/account/fapiao/fapiao",
