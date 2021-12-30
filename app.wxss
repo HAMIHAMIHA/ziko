@@ -642,6 +642,7 @@ button:not([size=mini]).float-contact_container {
 .product_container.sold-out .product,
 .product_container.sold-out .product-targets {
   opacity: 0.5;
+  pointer-events: none;
 }
 
 .product_container .product_left {
