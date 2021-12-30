@@ -1,10 +1,36 @@
-Page({
-  data: {
-  },
+// Require
 
-  onLoad: function (options) {
+import { navigateBack } from "../../../utils/common";
+
+const app = getApp();
+
+// create data to model in db
+const generateUserData = (action) => {
+  let data = {};
+  if (action == 'delete') '';
+  else '';
+
+  return data;
+}
+
+// Save new address list
+const updateUserAddress = (page, data) => {
+  // callback
+  let callback = {
+    success: function(res) {
+      navigateBack(app.routes.address, false);
+    }
+  }
+
+  // api
+  // api(data)
+  callback.success('')
+}
+
+Page({
+  onShow: function () {
     let self = this;
-    if (options.id) {
+    if (self.options.id) {
       self.setData({
         formData: {
           name: "Address 1",
@@ -20,5 +46,20 @@ Page({
     }
   },
 
-  onShareAppMessage: function () { }
+  updateAddress: function(e) {
+    const self = this;
+
+    let action = e.currentTarget.dataset.action;
+
+    if (action == 'delete' && !self.options.id) {
+      console.log('new back');
+      navigateBack(app.routes.address, false);
+      return;
+    }
+
+    // data
+    console.log(action);
+    let data = generateUserData(action);
+    updateUserAddress(self, data)
+  }
 })

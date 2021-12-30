@@ -87,13 +87,13 @@
 
   <!-- Delete Button -->
   <view class="btn-outline_container">
-    <button class="btn-outline nunito_600" hover-class="none" bindtap="">{{ _t.delete}}delete</button>
+    <button class="btn-outline nunito_600" hover-class="none" bindtap="updateAddress" data-action="delete">{{ _t.delete}}delete</button>
   </view>
   <!-- End of Delete Button -->
 
   <!-- Submit Button -->
   <view class="btn-bottom">
-    <button class="nunito_600" hover-class="none" bindtap="select">Save</button>
+    <button class="nunito_600" hover-class="none" bindtap="updateAddress" data-action="save">Save</button>
   </view>
   <!-- End of Submit Button -->
 </view>
