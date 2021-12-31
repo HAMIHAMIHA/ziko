@@ -68,15 +68,12 @@ const post = (path, data, callback) => {
 }
 //put请求
 const put = (path, data, callback) => {
-  loadingModal(true, loadingText);
-
   wx.request({
     url: path,
     header: header,
     data: data,
     method: 'PUT',
     success: function (res) {
-      loadingModal(false, loadingText);
       if (res.data.success === false) {
         console.debug(res.data.message);
         if (callback.error) {
@@ -87,7 +84,6 @@ const put = (path, data, callback) => {
       }
     },
     fail: function (res) {
-      loadingModal(false, loadingText);
       console.debug('err', err);
     }
   });
