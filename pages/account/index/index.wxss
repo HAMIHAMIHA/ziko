@@ -21,6 +21,10 @@
   border-radius: 50%;
 }
 
+.avatar-image.icon {
+  font-size: 184rpx;
+}
+
 .avatar-label {
   padding: 2rpx 50rpx;
   color: #041542;
@@ -44,8 +48,11 @@
   bottom: 0;
 }
 
-.user-info__name {
+.user-info__name,
+button:not([size=mini]).user-info__login {
   padding: 32rpx 0;
+  background: transparent;
+  color: var(--ziko-default-);
   font-size: 32rpx;
   line-height: 34rpx;
   text-align: center;

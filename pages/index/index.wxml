@@ -65,5 +65,5 @@
   </view>
   <!-- End of Map popup -->
 
-  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">mobile</button>
+  <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{ !need_login }}"></button>
 </view>

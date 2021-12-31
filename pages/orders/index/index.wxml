@@ -1,3 +1,13 @@
+<block wx:if="{{ need_login }}">
+<view class="login-container">
+  <view class="empty_message">{{ _t.need_login }}Please login first to get your orders.</view>
+  <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+    {{ _t._login }}Mobile login <!-- 手机号一键登录 -->
+  </button>
+</view>
+</block>
+
+<block wx:else>
 <!-- Scroll Menu -->
 <view class="h-scroll_container scroll-menu">
   <scroll-view class="h-scroll capatilize" scroll-x="true">
@@ -69,3 +79,4 @@
   </view>
   <!-- End of Order Card -->
 </view>
+</block>
