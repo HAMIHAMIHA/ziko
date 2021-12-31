@@ -11,7 +11,7 @@
           </view>
           <view class="product-info">
             <view class="info_container">
-              <view class="nunito_700 product-title">pack name</view>
+              <view class="nunito_700 product-title">{{ product.name }}pack name</view>
               <!-- Pack Products Detail -->
               <view class="gilroy_500 product-detail_container" wx:if="{{ product.type == 'pack' }}">
                 <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="packProduct">
@@ -47,91 +47,91 @@
   <view class="white-box order-details_container price-detail">
     <!-- Hide for v1 -->
     <view class="nunito_600 detail" wx:if="{{ showing }}">
-      <text class="detail_label">Use Voucher</text>
+      <text class="detail_label">{{ _t.use_voucher }}Use Voucher</text>
       <view class="detail_result">
-        <text>2 available</text>
+        <text>2 available{{ product.available + _t.available }}</text>
         <text class="icon icon-arrow-right"></text>
       </view>
     </view>
     <view class="nunito_600 detail">
-      <text class="detail_label">Choose delivery date</text>
+      <text class="detail_label">{{ _t.chosen_delivery_date }}Chosen delivery date</text>
       <view class="detail_result">
-        <text>{{ item.options[index] }}2020-11-10</text>
+        <text>{{ order.delivery_date }}2020-11-10</text>
       </view>
     </view>
     <view class="nunito_600 detail">
-      <text class="detail_label">Delivery fee</text>
+      <text class="detail_label">{{ _t.delivery_fee }}Delivery fee</text>
       <text class="detail_result">¥10</text>
     </view>
-    <!-- Hide for v1 -->
+    <!-- Hide for v1 (did not translate) -->
     <view class="detail" wx:if="{{ showing }}">
       <text class="nunito_600 detail_label">Ziko Special</text>
       <text class="detail_result">¥1000</text>
     </view>
     <view class="detail">
-      <text class="nunito_600 detail_label">Total</text>
-      <text class="nunito_700 detail_result">¥1000</text>
+      <text class="nunito_600 detail_label">{{ _t.total }}Total</text>
+      <text class="nunito_700 detail_result">¥1000{{ order.total }}</text>
     </view>
   </view>
 
   <view class="white-box order-details_container">
     <view class="detail">
-      <text class="nunito_600 detail_label">Order no</text>
-      <text class="detail_result">77846513298465</text>
+      <text class="nunito_600 detail_label">{{ _t.order_no }}Order no</text>
+      <text class="detail_result">77846513298465{{ order.orderNo }}</text>
     </view>
     <view class="detail">
-      <text class="nunito_600 detail_label">Delivery company</text>
-      <text class="detail_result">SF</text>
+      <text class="nunito_600 detail_label">{{ _t.delivery_company }}Delivery company</text>
+      <text class="detail_result">{{ order.delivery_company }}SF</text>
     </view>
     <view class="detail">
-      <text class="nunito_600 detail_label">Tracking number</text>
-      <text class="detail_result">77846513298465</text>
+      <text class="nunito_600 detail_label">{{ _t.tracking_number }}Tracking number</text>
+      <text class="detail_result">{{ order.tracking_number }}77846513298465</text>
     </view>
   </view>
 
   <!-- Hide for v1 -->
   <view class="white-box order-details_container" wx:if="{{ showing }}">
     <view class="detail">
-      <text class="nunito_600 detail_label">Lottery tickets</text>
-      <text class="detail_result">x3</text>
+      <text class="nunito_600 detail_label">{{ _t.lottery_tickets }}Lottery tickets</text>
+      <text class="detail_result">x3{{ order.ticket }}</text>
     </view>
     <view class="detail">
-      <text class="nunito_600 detail_label">Fidelity points</text>
-      <text class="detail_result">+30</text>
+      <text class="nunito_600 detail_label">{{ _t.fidelity_points }}Fidelity points</text>
+      <text class="detail_result">+{{ order.fidlityPoints }}30</text>
     </view>
   </view>
 
   <view class="white-box order-details_container">
     <view class="detail address">
-      <text class="nunito_600 detail_label">Address</text>
+      <text class="nunito_600 detail_label">{{ _t.address }}Address</text>
       <view class="detail_value">
-        <view class="address-name">{{ item.options[index] }}Home</view>
-        <text class="detail_note">水电路1200弄3号401室</text>
+        <view class="address-name">{{ _t.address_type[order.address.type] }}Home</view>
+        <text class="detail_note">{{ order.address.address }}水电路1200弄3号401室</text>
       </view>
     </view>
 
     <view class="detail">
-      <text class="nunito_600 detail_label">Phone No.</text>
-      <view class="detail_value">132156519165</view>
+      <text class="nunito_600 detail_label">{{ _t.phone_no }}Phone No.</text>
+      <view class="detail_value">{{ order.address.phone }}132156519165</view>
     </view>
 
     <view class="detail">
-      <text class="nunito_600 detail_label">Contact</text>
-      <view class="detail_value">Contact person Name</view>
-    </view>
-  </view>
-
-  <view class="white-box order-details_container">
-    <view class="detail">
-      <text class="nunito_600 detail_label">Fapiao</text>
-      <view class="detail_value">address</view>
+      <text class="nunito_600 detail_label">{{ _t.contact }}Contact</text>
+      <view class="detail_value">{{ order.address.contact }}Contact person Name</view>
     </view>
   </view>
 
   <view class="white-box order-details_container">
     <view class="detail">
-      <text class="nunito_600 detail_label">Comment</text>
-      <view class="detail_value">lasjfslfjas fklj dsklfaj klfjsaklfjasfklasfkldjsf k</view>
+      <text class="nunito_600 detail_label">{{ _t.fapiao }}Fapiao</text>
+      <view class="detail_value">{{ order.fapiao }}address</view>
+    </view>
+  </view>
+
+  <view class="white-box order-details_container">
+    <view class="detail">
+      <text class="nunito_600 detail_label">{{ _t.comment }}Comment</text>
+      <view class="detail_value">{{ order.comment }}lasjfslfjas fklj dsklfaj klfjsaklfjasfklasfkldjsf k</view>
     </view>
   </view>
 

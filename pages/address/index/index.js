@@ -7,6 +7,8 @@ Page({
       {id: 1},
       {id: 2}
     ],
-    routes: routes
+    _routes: {
+      address_detail: routes.address_detail
+    }
   }
 })

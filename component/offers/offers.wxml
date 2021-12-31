@@ -1,16 +1,7 @@
 <view class="offers_container">
   <view class="gilroy_700 offers_list">
     <!-- Card for each offer -->
-    <view
-      class="uppercase offer_container"
-      wx:for="{{ offers }}"
-      wx:key="id"
-      bindtap="toOffer"
-      data-started="{{ item.started }}"
-      data-offer-id="{{ item.id }}"
-      data-community="{{ item.community }}"
-      data-price-rule="{{ item.priceRule }}"
-    >
+    <view class="uppercase offer_container" wx:for="{{ offers }}" wx:key="id" bindtap="toOffer" data-started="{{ item.started }}" data-offer-id="{{ item.id }}" data-community="{{ item.community }}" data-price-rule="{{ item.priceRule }}">
       <!-- Banner image of card -->
       <view class="offer-banner">
         <view class="offer-banner_image">
@@ -23,10 +14,11 @@
       <!-- End of banner -->
 
       <view class="offer-detail_container">
-        <view class="offer-detail_title">Octoberfest with a very {{ item.community + ' ' + item.priceRule }}</view>
+        <view class="offer-detail_title">{{ offer.name }}Octoberfest with a very {{ item.community + ' ' + item.priceRule }}</view>
         <!-- Display for offers in progress -->
         <view class="offer-detail offer-started" wx:if="{{ item.started }}">
           <view class="flex-between offer-detail_content">
+            <!-- Hide for v1 (did not translate) -->
             <!-- Specials -->
             <view class="flex-between_left flex-center offer-specials">
               <view class="icon_container lottery" wx:if="{{ item.lottery }}">
@@ -45,9 +37,9 @@
               <view class="icon_container">
                 <view class="icon icon-bag"></view>
                 <view class="icon_text">
-                  <view wx:if="{{ item.items == 0}}">empty</view>
-                  <view wx:elif="{{ item.items == 1}}">{{item.items}} item</view>
-                  <view wx:else="{{ item.items > 1}}">{{item.items}} items</view>
+                  <view wx:if="{{ item.items == 0}}">{{ _t.empty }}empty</view>
+                  <view wx:elif="{{ item.items == 1}}">{{ item.items + _t.item_unit }} item</view>
+                  <view wx:else="{{ item.items > 1}}">{{ item.items + _t.items_unit }} items</view>
                 </view>
               </view>
             </view>
@@ -57,7 +49,7 @@
           <!-- Countdown -->
           <view class="flex-between offer-detail_content offer-countdown">
             <view class="flex-between_left">
-              remaining time
+              remaining time{{ _t.remaining_time }}
             </view>
             <view class="flex-between_rt">
               <countdown class="timer" end-time="{{ item.endTime }}"></countdown>
@@ -70,11 +62,11 @@
             <view class=" flex-center offer-counts">
               <view class="icon_container">
                 <view class="icon icon-bag"></view>
-                <view class="icon_text">122 orders</view>
+                <view class="icon_text">{{ offer.orders + _t.orders_unit }}122 orders</view>
               </view>
               <view class="icon_container">
                 <view class="icon icon-eye"></view>
-                <view class="icon_text">122 viewers</view>
+                <view class="icon_text">{{ _offer.viewers + _t.viewers }}122 viewers</view>
               </view>
             </view>
             <view class="offer-delivery nunito_400">
@@ -87,7 +79,7 @@
 
         <!-- Display for offers waiting -->
         <view class="offer-detail offer-waiting" wx:else>
-          <view class=" offer-detail_content coming-soon">comming soon...</view>
+          <view class=" offer-detail_content coming-soon">{{ _t.comming_soon }}comming soon...</view>
 
           <!-- Offer Time -->
           <view class="flex-between offer-detail_content offer-datetime">
@@ -97,7 +89,7 @@
             </view>
             <!-- TEMP v1 -->
             <view class="flex-between_rt" wx:if="{{ showing }}">
-              <button class="offer-reminder">Get a reminder</button>
+              <button class="offer-reminder">{{ _t.get_reminder }}Get a reminder</button>
             </view>
           </view>
           <!-- End of Offer Time -->

@@ -1,15 +1,15 @@
 <view class="container container-grey container-btn-bottom address-detail">
   <!-- Address Form -->
   <view class="white-box address_container">
-    <view class="nunito_700 header">{{ formData.name }}</view>
+    <view class="nunito_700 header">{{ _t.address + count }}</view>
 
     <view class="details_container inputs_container">
       <view class="detail">
-        <view class="detail_label">Type</view>
+        <view class="detail_label">{{ _t.type }}Type</view>
         <view class="detail_input">
-          <picker class="input" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_type }}">
+          <picker class="input" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.address_type }}">
             <view class="flex-between">
-              <view type="text" value="{{ formData.type }}"></view>
+              <text>{{ _t.address_type[address.type] }}</text>
               <text class="icon icon-arrow"></text>
             </view>
           </picker>
@@ -19,10 +19,10 @@
 
     <view class="details_container inputs_container">
       <view class="detail">
-        <view class="detail_label">City</view>
+        <view class="detail_label">{{ _t.city }}City</view>
         <view class="detail_input">
           <view class="input">
-            <input value="{{ formData.city }}"></input>
+            <input value="{{ address.city }}"></input>
           </view>
         </view>
       </view>
@@ -30,10 +30,10 @@
 
     <view class="details_container inputs_container">
       <view class="detail">
-        <view class="detail_label">Area</view>
+        <view class="detail_label">{{ _t.area }}Area</view>
         <view class="detail_input">
           <view class="input">
-            <input value="{{ formData.area }}"></input>
+            <input value="{{ address.area }}"></input>
           </view>
         </view>
       </view>
@@ -41,10 +41,10 @@
 
     <view class="details_container inputs_container">
       <view class="detail">
-        <view class="detail_label">Zipcode</view>
+        <view class="detail_label">{{ _t.zipcode }}Zipcode</view>
         <view class="detail_input">
           <view class="input">
-            <input value="{{ formData.zipcode }}"></input>
+            <input value="{{ address.zipcode }}"></input>
           </view>
         </view>
       </view>
@@ -52,10 +52,10 @@
 
     <view class="details_container inputs_container">
       <view class="detail">
-        <view class="detail_label">Address</view>
+        <view class="detail_label">{{ _t.address }}Address</view>
         <view class="detail_input">
           <view class="input">
-            <input value="{{ formData.address }}"></input>
+            <input value="{{ address.address }}"></input>
           </view>
         </view>
       </view>
@@ -63,10 +63,10 @@
 
     <view class="details_container inputs_container">
       <view class="detail">
-        <view class="detail_label">Phone no</view>
+        <view class="detail_label">{{ _t.phone_no }}Phone no</view>
         <view class="detail_input">
           <view class="input">
-            <input value="{{ formData.phone }}"></input>
+            <input value="{{ address.phone }}"></input>
           </view>
         </view>
       </view>
@@ -74,10 +74,10 @@
 
     <view class="details_container textarea_container">
       <view class="detail">
-        <view class="detail_label">Comment</view>
+        <view class="detail_label">{{ _t.comment }}Comment</view>
         <view class="detail_input">
           <view class="input">
-            <textarea class="textarea" auto-height="true" value="{{ formData.comment }}" type="text"></textarea>
+            <textarea class="textarea" auto-height="true" value="{{ address.comment }}" type="text"></textarea>
           </view>
         </view>
       </view>
@@ -87,13 +87,13 @@
 
   <!-- Delete Button -->
   <view class="btn-outline_container">
-    <button class="btn-outline nunito_600" hover-class="none" bindtap="updateAddress" data-action="delete">{{ _t.delete}}delete</button>
+    <button class="btn-outline nunito_600" hover-class="none" bindtap="updateAddress" data-action="delete">{{ _t.delete }}delete</button>
   </view>
   <!-- End of Delete Button -->
 
   <!-- Submit Button -->
   <view class="btn-bottom">
-    <button class="nunito_600" hover-class="none" bindtap="updateAddress" data-action="save">Save</button>
+    <button class="nunito_600" hover-class="none" bindtap="updateAddress" data-action="save">{{ _t.save }}Save</button>
   </view>
   <!-- End of Submit Button -->
 </view>

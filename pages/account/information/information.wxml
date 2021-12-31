@@ -31,7 +31,7 @@
       <view class="detail_input">
         <picker class="input" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_type }}">
           <view class="flex-between">
-            <text>{{ item.options[index] }}Home</text>
+            <text>{{  _t.pet_type[pet.pet_type] }}Home</text>
             <text class="icon icon-arrow"></text>
           </view>
         </picker>

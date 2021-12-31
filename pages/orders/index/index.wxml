@@ -29,7 +29,7 @@
   <view class="community-selector">
     <picker class="picker">
       <view class="nunito_600 flex-between picker-btn">
-        <text>{{ _t[filter.community] }}All communities</text>
+        <text>{{ _t.community[filter.community] }}All communities</text>
         <text class="icon icon-arrow"></text>
       </view>
     </picker>
@@ -52,7 +52,7 @@
             <view class="order-count">x{{ order.count + _t.items }}3 items</view>
             <view class="order-price">              
               <text class="gilroy_800 order-total">{{ _t.cny + order.total }}$000</text>
-              <text class="gilroy_800 order-total__old" wx:if="{{ order.originalPrice }}">{{ _t.cny + order.total }}$000</text>
+              <text class="gilroy_800 order-total__old" wx:if="{{ order.originalPrice }}">{{ _t.cny + order.originalPrice }}$000</text>
             </view>
           </view>
         </view>
