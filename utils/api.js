@@ -3,18 +3,8 @@ const config = require('properties.js');
 
 let header = {};
 
-const loadingModal = (show, text) => {
-  if (text && show) {
-    wx.showLoading({
-      title: text
-    });
-  } else if (text && !show) {
-    wx.hideLoading();
-  }
-}
-
 //接口统一封装
-const api = (apiMethod, path, data, callback, loadingText) => {
+const api = (apiMethod, path, data, callback) => {
   if (db.get('userInfo').token) {
     header = {'Authorization': `Bearer ${db.get('userInfo').token}`};
   }
@@ -22,27 +12,23 @@ const api = (apiMethod, path, data, callback, loadingText) => {
 
   switch (apiMethod) {
     case "post":
-      post(path, data, callback, loadingText);
+      post(path, data, callback);
       break;
     case "put":
-      put(path, data, callback, loadingText);
+      put(path, data, callback);
       break;
     default:
-      get(path, callback, loadingText)
+      get(path, callback)
       break;
   }
 }
 
 //get请求
-const get = (path, callback, loadingText) => {
-  loadingModal(true, loadingText);
-
+const get = (path, callback) => {
   wx.request({
     url: path,
     header: header,
     success: function (res) {
-      loadingModal(false, loadingText);
-
       if (res.data.success === false) {
         console.debug(res.data.message);
         if (callback.error) {
@@ -53,23 +39,19 @@ const get = (path, callback, loadingText) => {
       }
     },
     fail: function (res) {
-      loadingModal(false, loadingText);
       console.debug('err', err);
     }
   });
 }
 
 //post请求
-const post = (path, data, callback, loadingText) => {
-  loadingModal(true, loadingText);
-
+const post = (path, data, callback) => {
   wx.request({
     url: path,
     header: header,
     data: data,
     method: 'POST',
     success: function (res) {
-      loadingModal(false, loadingText);
       if (res.data.success === false) {
         console.debug(res.data.message);
         if (callback.error) {
@@ -80,13 +62,12 @@ const post = (path, data, callback, loadingText) => {
       }
     },
     fail: function (res) {
-      loadingModal(false, loadingText);
       console.debug('err', err);
     }
   });
 }
 //put请求
-const put = (path, data, callback, loadingText) => {
+const put = (path, data, callback) => {
   loadingModal(true, loadingText);
 
   wx.request({
@@ -114,15 +95,22 @@ const put = (path, data, callback, loadingText) => {
 
 
 module.exports = {
-  login: (data, callback) => {
-    api('post', 'wechat/login', data, callback, null)
-  },
 
   productCategoriesGet: (callback) => {
-    api('get', 'product-categories', null, callback, null)
+    api('get', 'product-categories', null, callback);
   },
 
   productTypesGet: (callback) => {
-    api('get', 'product-types', null, callback, null)
-  }
+    api('get', 'product-types', null, callback);
+  },
+
+  // Update user info
+  updateProfile: (data, callback) => {
+    api('put', `customers/mine`, data, callback);
+  },
+
+  // Wechat login -> get openid, and user info (if exist)
+  wxLogin: (data, callback) => {
+    api('post', 'wechat/login', data, callback);
+  },
 }
