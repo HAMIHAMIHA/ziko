@@ -2,6 +2,7 @@ var api = require('utils/api.js'); //接口文档
 const i18n = require('utils/translate.js'); // 翻译功能
 const db = require('utils/db.config.js'); // 本地存储
 const { folders } = require('./utils/properties');
+const common = require('./utils/common');
 
 const getWxUserInfo = (res) => {
   const callback = {
@@ -16,11 +17,14 @@ const getWxUserInfo = (res) => {
             })
           }
         })
-      }
-
-      // Chagne language map if user langauge different from system
-      if (res.userInfo.language != db.get('language')) {
-        i18n.changeLanguage(res.userInfo.language);
+      } else {
+        if (res.userInfo.language != db.get('language')) {
+        // Chagne language map if user langauge different from system
+          i18n.changeLanguage(res.userInfo.language);
+        } else if (!res.userInfo.langauge) {
+        // Update profile language if user exists but language not saved
+          common.updateUserInfo({ langauge: db.get('langauge')}, null);
+        }
       }
 
       db.set('user', res);
