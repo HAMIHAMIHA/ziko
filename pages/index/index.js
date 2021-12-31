@@ -118,20 +118,18 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
 
 Page({
   data: {
-    // map: false, // temp for testing
-    // filter_group: 'all', // temp for testing
     map: true // Default open to map view
   },
 
   onShow: function() {
     const self = this;
 
-    app.setTabbar();
-
     leave_triggered = false;
 
-    // TODO translate tabbar
-    // TOOD translate navbar
+    // Translate tabbar
+    app.setTabbar();
+
+    // TODO Ttranslate navbar
     // Translation values
     self.setData({
       _t: {
@@ -143,7 +141,8 @@ Page({
       _filters: {
         list: index_data.list_filtes,
         map: index_data.map_filters
-      }
+      },
+      _user: app.db.get('userInfo').user
     })
   },
 
