@@ -4,12 +4,30 @@ const db = require('utils/db.config.js'); // 本地存储
 const { folders } = require('./utils/properties');
 
 const getWxUserInfo = (res) => {
-  wx.getUserInfo({
-    success: function(res) {
-      console.log(res);
-      // TODO api to get openid and set to storage
+  const callback = {
+    success: res => {
+      // Get user info from wechat if no userInfo in result
+      if (!res.userInfo) {
+        wx.getUserInfo({
+          success: function(wx_user) {
+            res.wxUser({
+              avatar: wx_user.userInfo.avatarUrl,
+              name: wx_user.userInfo.nickName
+            })
+          }
+        })
+      }
+
+      // Chagne language map if user langauge different from system
+      if (res.userInfo.language != db.get('language')) {
+        i18n.changeLanguage(res.userInfo.language);
+      }
+
+      db.set('user', res);
     }
-  })
+  }
+
+  api.wxLogin({ code: res.code }, callback);
 }
 
 App({
@@ -27,26 +45,22 @@ App({
     i18n.check();
     self.globalData.i18n = i18n.translate();
 
+    // Check wx.login session
     wx.checkSession({
       fail: function() {
+        // Login with wechat if session not valid
         wx.login({
           success: function(res) {
-            getWxUserInfo(res);
+            // TODO wait for api
+            // getWxUserInfo(res);
           }
         })
       }
     })
   },
 
-  onShow() {
-    // const self = this;
-    // let userInfo = db.get('userInfo');
-    // if (!userInfo || new Date(userInfo.expireAt) < new Date()) {
-    // }
-  },
-
   setTabbar: function() {
-    // Get tabbar text when called
+    // Get translated tabbar text when called
     const self = this;
     wx.setTabBarItem({
       index: 0,
