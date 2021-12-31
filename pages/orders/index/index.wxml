@@ -2,7 +2,7 @@
 <view class="login-container">
   <view class="empty_message">{{ _t.need_login }}Please login first to get your orders.</view>
   <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
-    {{ _t._login }}Mobile login <!-- 手机号一键登录 -->
+    {{ _t.login }}Mobile login <!-- 手机号一键登录 -->
   </button>
 </view>
 </block>
