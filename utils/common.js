@@ -34,4 +34,22 @@ module.exports = {
       wx.hideLoading({});
     }
   },
+
+  updateUserInfo: (new_info, back_url) => {
+    const self = this;
+
+    const callback = {
+      success: res => {
+        let userInfo = app.db.get('userInfo');
+        userInfo.user = res;
+        app.db.set('userInfo', userInfo);
+
+        if (back_url) {
+          self.navigateBack(back_url);
+        }
+      }
+    }
+
+    app.api.updateProfile(new_info, callback);
+  }
 }
