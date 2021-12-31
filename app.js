@@ -1,30 +1,31 @@
 var api = require('utils/api.js'); //接口文档
-const i18n = require('utils/translate.js'); // 翻译功能
-const db = require('utils/db.config.js'); // 本地存储
-const { folders } = require('./utils/properties');
 const common = require('./utils/common');
+const db = require('utils/db.config.js'); // 本地存储
+const i18n = require('utils/translate.js'); // 翻译功能
+
+const { folders } = require('./utils/properties');
 
 const getWxUserInfo = (res) => {
   const callback = {
     success: res => {
-      if (!res.userInfo) {
-      // Get user info from wechat if no userInfo in result
-        wx.getUserInfo({
-          success: function(wx_user) {
-            res.wxUser({
-              avatar: wx_user.userInfo.avatarUrl,
-              name: wx_user.userInfo.nickName
-            })
-          }
-        })
-      } else {
+      // Get user info from wechat (name, profile picture)
+      wx.getUserInfo({
+        success: function(wx_user) {
+          res.wxUser({
+            avatar: wx_user.userInfo.avatarUrl,
+            name: wx_user.userInfo.nickName
+          })
+        }
+      })
+
+      if (res.userInfo) {
       // Update program language map if user exist
         if (res.userInfo.language != db.get('language')) {
         // Change language map if user langauge different from system
           i18n.changeLanguage(res.userInfo.language);
         } else if (!res.userInfo.langauge) {
         // Update profile language if user exists but language not saved
-          common.updateUserInfo({ langauge: db.get('langauge')}, null);
+          common.updateUserInfo({ langauge: db.get('langauge') }, null);
         }
       }
 
@@ -37,6 +38,7 @@ const getWxUserInfo = (res) => {
 
 App({
   api: api,
+  common: common,
   db: db,
   folders: folders,
   globalData: {

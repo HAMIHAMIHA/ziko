@@ -1,3 +1,4 @@
+const { mobileLogin } = require("../../utils/common");
 const index_data = require("./indexData");
 const { offer_data } = require("./indexData"); // TEMP
 
@@ -151,8 +152,14 @@ Page({
     self.navigatePage({ detail: {} });
   },
 
-  navigatePage: function(e) {
+  // Mobile login
+  getPhoneNumber: function(e) {
+    mobileLogin(this, e.detail.code);
+    // TODO api to get user phone -> user name + code + openid
+  },
+
   // Close modal or reset page view to map when leaving page by tabbar click
+  navigatePage: function(e) {
     const self = this;
 
     if (leave_triggered) {
@@ -165,6 +172,7 @@ Page({
     self.closeMapModal();
   },
 
+  // Switch display method
   switchType: function(e) {
     const self = this;
     // Scroll page
@@ -197,11 +205,6 @@ Page({
 
   // Stop slide action at the back when modal is opened
   preventSlide: function() {},
-
-  getPhoneNumber: function(e) {
-    console.log(e);
-    // TODO api to get user phone -> user name + code + openid
-  },
 })
 
 /* when need to fetch address
