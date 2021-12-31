@@ -4,6 +4,13 @@ const offers = require('../../../templates/offer/offers.js');
 
 let countdown_timer = [];
 
+const getOffer = function(page, offer_id) {
+  // callback -> for each item in product and pack list -> add quantity based on storage cart[order_id]
+    // if item in cart offer -> check quantity and availibity -> reduce to min or remove or keep
+    // update page data
+  // get product by offer id
+}
+
 Page({
   data: {
     pageSet: {
@@ -159,6 +166,11 @@ Page({
     // Start countdown
     let timer = self.selectComponent('#countdown');
     countdown_timer.push(timer.setTimer([], true));
+
+    // Set language
+
+    // Get products
+    getOffer(self, self.options.id)
 
     // Message counts
     let messageIndex = []
