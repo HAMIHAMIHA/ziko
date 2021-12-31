@@ -7,8 +7,8 @@ const common = require('./utils/common');
 const getWxUserInfo = (res) => {
   const callback = {
     success: res => {
-      // Get user info from wechat if no userInfo in result
       if (!res.userInfo) {
+      // Get user info from wechat if no userInfo in result
         wx.getUserInfo({
           success: function(wx_user) {
             res.wxUser({
@@ -18,8 +18,9 @@ const getWxUserInfo = (res) => {
           }
         })
       } else {
+      // Update program language map if user exist
         if (res.userInfo.language != db.get('language')) {
-        // Chagne language map if user langauge different from system
+        // Change language map if user langauge different from system
           i18n.changeLanguage(res.userInfo.language);
         } else if (!res.userInfo.langauge) {
         // Update profile language if user exists but language not saved
