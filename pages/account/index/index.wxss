@@ -48,14 +48,24 @@
   bottom: 0;
 }
 
-.user-info__name,
-button:not([size=mini]).user-info__login {
+.user-info__name {
   padding: 32rpx 0;
   background: transparent;
   color: var(--ziko-default-);
   font-size: 32rpx;
   line-height: 34rpx;
   text-align: center;
+}
+
+button:not([size=mini]).user-info__login {
+  width: fit-content;
+  margin-top: 24rpx;
+  padding: 0 32rpx;
+  background: #373A44;
+  color: var(--ziko-default-);
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
 }
 /* END OF USER INFO */
 
@@ -67,6 +77,10 @@ button:not([size=mini]).user-info__login {
 /* PROFILE INFO */
 .profile-info {
   margin: 66rpx 0 32rpx;
+}
+
+.profile-info.disabled {
+  pointer-events: none;
 }
 
 .profile-info__button {
