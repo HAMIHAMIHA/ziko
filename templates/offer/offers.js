@@ -19,10 +19,7 @@ export const _getTranslations = (page, community) => {
   // Set page content translation
   page.setData({
     _t: {
-      available: i18n.available,
-      left_unit: i18n.left_unit,
       minimum: i18n.minimum,
-      only_left: i18n.only_left,
       orders_unit: i18n.orders_unit,
       our_selected_packs: i18n.our_selected_packs,
       pay: i18n.pay,
@@ -33,10 +30,21 @@ export const _getTranslations = (page, community) => {
       remaining_time: i18n.remaining_time,
       single_items: i18n.single_items,
       total_units_available: i18n.total_units_available,
-      units: i18n.units[community],
       viewers: i18n.viewers,
     }
   })
+
+  let products = page.selectAllComponents('.product-list');
+  let products_translation = {
+    available: i18n.available,
+    only_left: i18n.only_left,
+    products_left: i18n.products_left,
+    units: i18n.units[community],
+  }
+
+  for (var i in products) {
+    products[i].updatePage(products_translation);
+  }
 }
 
 // Get offer products

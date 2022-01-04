@@ -28,18 +28,18 @@
       <view class="product-info_detail">
         <!-- Products Detail -->
         <view class="nunito_300 product-detail_content" wx:if="{{ pageSet.type == 'pack' }}">
-          <text>{{ product.weight }}{{ pageSet.units }}</text>
+          <text>{{ product.weight }}{{ _t.units }}</text>
         </view>
         <view class="nunito_300 product-detail_content" wx:else>
-          <text>{{ product.quantity }} x {{ product.weight }}{{ pageSet.units }}</text>
+          <text>{{ product.quantity }} x {{ product.weight }}{{ _t.units }}</text>
         </view>
         <!-- End of Products Detail -->
 
         <!-- Available Amount Left -->
         <view class="nunito_300 product-detail_content">
-          <text wx:if="{{ product.available == 0 }}">{{ _t.products_left.fst + product.available + _t.products_left.snd }} left</text>
-          <text wx:elif="{{ product.available >= 100 }}">{{ _t.products_available.fst + product.available + _t.products_available.snd }} available</text>
-          <text wx:else>Only {{ product.available }} left!</text>
+          <text wx:if="{{ product.available == 0 }}">{{ _t.products_left.fst + product.available + _t.products_left.snd }}</text>
+          <text wx:elif="{{ product.available >= 100 }}">{{ _t.products_available.fst + product.available + _t.products_available.snd }}</text>
+          <text wx:else>{{ _t.only_left.fst + product.available + _t.only_left.snd }}</text>
         </view>
         <!-- End of Available Amount Left -->
 
@@ -71,8 +71,8 @@
       <!-- Pack Product List -->
       <view class="offer-group offer-packs">
         <view class="uppercase title">
-          <text class="gilroy_500">{{ _t.contains_items.fst }}contains</text>
-          <text class="gilroy_700">{{ _t.contains_items.snd }} items:</text>
+          <text class="gilroy_500">{{ _t.contains_items.fst }}</text>
+          <text class="gilroy_700">{{ _t.contains_items.snd }}</text>
         </view>
 
         <view class="product_container" wx:for="{{ product.products }}" wx:for-item="product" wx:key="*this">
@@ -85,7 +85,7 @@
                 <view class="gilroy_700 ziko-{{ pageSet.community }} gradient-text uppercase product-title">{{ product.name }}pack name</view>
 
                 <view class="nunito_300 product-detail_container">
-                  <text>{{ product.quantity }} x {{ product.weight }}{{ pageSet.units }}</text>
+                  <text>{{ product.quantity }} x {{ product.weight }}{{ _t.units }}</text>
                 </view>
 
                 <view class="nunito_300 ellipsis_2 product-detail_container">
@@ -97,7 +97,7 @@
 
             <view class="flex-start product-navigate_container">
               <navigator class="product-navigate" url="{{ routes.product + '?type=packProduct' }}">
-                Discover
+                {{ _t.discover }}
               </navigator>
             </view>
           </view>
@@ -113,8 +113,8 @@
   <view class="list_container product-reciepe" wx:if="{{ reveipes }}">
     <view class="offer-group receipe-group">
       <view class="uppercase title">
-        <text class="gilroy_500">{{ _t.related_receipes.fst }}related</text>
-        <text class="gilroy_700">{{ _t.related_receipes.snd }} receipes</text>
+        <text class="gilroy_500">{{ _t.related_receipes.fst }}</text>
+        <text class="gilroy_700">{{ _t.related_receipes.snd }}</text>
       </view>
 
       <receipes id="receipes-component"></receipes>

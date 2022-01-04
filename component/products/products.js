@@ -21,8 +21,12 @@ Component({
   },
 
   methods: {
-    updatePage: function(language) {
-      // TODO on page show, change product language
+    updatePage: function(products_translation) {
+      const self = this;
+
+      self.setData({
+        _t: products_translation
+      })
     }
   }
 })

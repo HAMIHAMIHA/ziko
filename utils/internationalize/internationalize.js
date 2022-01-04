@@ -45,6 +45,7 @@ export const languageMap_en = {
   delivery: "Delivery",
   delivery_company: "Delivery company",
   delivery_fee: "Delivery fee",
+  discover: "Discover",
 
   // E
   edit_my_address: "Edit my addresses",
@@ -73,7 +74,6 @@ export const languageMap_en = {
   // K
   // L
   list: "list",
-  left_unit: " left",
   login: "Mobile login",
   lottery: "Lottery",
   lottery_gift: "Lottery gift:",
@@ -113,6 +113,7 @@ export const languageMap_en = {
     regular: "",
   },
   problem_with_order: "Is there a problem with your order?",
+  product_detail: "Product detail",
   products: "products",
   products_available: {
     fst: "",
@@ -218,6 +219,7 @@ export const languageMap_zh_CN = {
   delivery: "Delivery",
   delivery_company: "Delivery company",
   delivery_fee: "Delivery fee",
+  discover: "查看",
 
   // E
   edit_my_address: "Edit my addresses",
@@ -246,7 +248,6 @@ export const languageMap_zh_CN = {
   // K
   // L
   list: "list",
-  left_unit: " left",
   login: "Mobile login",
   lottery: "Lottery",
   lottery_gift: "Lottery gift:",
@@ -263,8 +264,8 @@ export const languageMap_zh_CN = {
   offer: "Offer",
   offers: " offers",
   only_left: {
-    fst: "Only ",
-    snd: " left!"
+    fst: "只剩 ",
+    snd: " !"
   },
   orders: "订单",
   orders_unit: " Orders",
@@ -286,14 +287,15 @@ export const languageMap_zh_CN = {
     regular: "",
   },
   problem_with_order: "Is there a problem with your order?",
+  product_detail: "Product详情",
   products: "products",
   products_available: {
     fst: "",
     snd: " available"
   },
   products_left: {
-    fst: "",
-    snd: " left"
+    fst: "剩余",
+    snd: ""
   },
 
   // Q

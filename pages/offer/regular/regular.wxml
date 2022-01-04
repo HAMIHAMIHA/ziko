@@ -100,7 +100,7 @@
         <text class="gilroy_700">{{ _t.our_selected_packs.snd }}</text>
       </view>
 
-      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _t.units }}" community="{{ _offer.community }}"></products>
+    <products class="product-list" products="{{ _offer.packs }}" pack="{{ true }}" community="{{ _offer.community }}"></products>
     </view>
 
     <view class="offer-group offer-singles">
@@ -109,7 +109,7 @@
         <text class="gilroy_700">{{ _t.single_items.snd }}</text>
       </view>
 
-      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ _t.units }}" community="{{ _offer.community }}"></products>
+      <products class="product-list" products="{{ _offer.singles }}" pack="{{ false }}" community="{{ _offer.community }}"></products>
     </view>
     <!-- End of Offer Product List -->
 

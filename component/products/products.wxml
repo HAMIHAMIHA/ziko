@@ -27,9 +27,9 @@
 
         <!-- Available Amount Left -->
         <view class="nunito_300 product-available">
-          <text wx:if="{{ product.available == 0 }}">{{ product.available + _t.left_unit }} left</text>
-          <text wx:elif="{{ product.available >= 100 }}">{{ _t.available.fst + product.available + _t.available.snd }} available</text>
-          <text wx:else>Only {{ _t.only_left.fst + product.available + _t.only_left.snd }} left!</text>
+          <text wx:if="{{ product.available == 0 }}">{{ _t.products_left.fst + product.available + _t.products_left.snd }}</text>
+          <text wx:elif="{{ product.available >= 100 }}">{{ _t.available.fst + product.available + _t.available.snd }}</text>
+          <text wx:else>{{ _t.only_left.fst + product.available + _t.only_left.snd }}</text>
         </view>
         <!-- End of Available Amount Left -->
 

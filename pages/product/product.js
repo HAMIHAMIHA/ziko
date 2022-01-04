@@ -52,6 +52,36 @@ Page({
     })
   },
 
+  onShow: function() {
+    const self = this;
+    let i18n = app.globalData.i18n;
+
+    // Change offer page nav title
+    wx.setNavigationBarTitle({
+      title: i18n.product_detail
+    })
+  
+    // Set page content translation
+
+    // TODO
+    let community = self.data.pageSet.community;
+
+    self.setData({
+      _t: {
+        available: i18n.available,
+        discover: i18n.discover,
+        minimum: i18n.minimum,
+        only_left: i18n.only_left,
+        pay: i18n.pay,
+        price_rules: i18n.price_rules,
+        products_available: i18n.products_available,
+        products_left: i18n.products_left,
+        related_receipes: i18n.related_receipes,
+        units: i18n.units[community],
+      }
+    })
+  },
+
   swiperChange: function(e) {
     const self = this;
     self.setData({
