@@ -28,8 +28,7 @@ button:not([size=mini]).login-btn {
   position: absolute;
   left: calc(var(--content-x-) / 375 * 100vw);
   top: calc(var(--content-y-) / 375 * 100vw);
-  transform: rotate(var(--rotate-));
-  border: 1px solid green;
+  clip-path: var(--shape-);
 }
 
 /* List Display */

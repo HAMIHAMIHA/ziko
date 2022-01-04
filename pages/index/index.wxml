@@ -6,7 +6,7 @@
       <block wx:for="{{ _filters.map }}" wx:key="index" wx:for-item="filter">
         <view 
           class="map-area"
-          style="--content-width-: {{ filter.width }}; --content-height-: {{ filter.height }}; --content-x-: {{ filter.xPos }}; --content-y-: {{ filter.yPos }}; --rotate-: {{ filter.rotate }};"
+          style="--content-width-: {{ filter.width }}; --content-height-: {{ filter.height }}; --content-x-: {{ filter.xPos }}; --content-y-: {{ filter.yPos }}; --shape-: {{ filter.shape }};"
           bindtap="filterOffers"
           data-filter-type="map"
           data-filter-group="{{ filter.name }}"

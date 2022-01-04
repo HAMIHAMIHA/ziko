@@ -60,7 +60,7 @@ image {
 /* White Box */
 .white-box {
   padding: 0 30rpx;
-  background: #FFFFFF;
+  background: #252831;
 }
 
 .white-box + .white-box {
@@ -75,8 +75,8 @@ image {
 }
 
 .container-grey {
-  background: #F1F1F1;
-  color: #000000;
+  background: #0A0B12;
+  /* color: #000000; */
 }
 
 .font_red {
@@ -134,7 +134,8 @@ image {
 .container-btn-bottom .btn-bottom button {
   width: calc(100vw - 30rpx - 30rpx);
   padding: 32rpx 0;
-  background: #0D0F18;
+  background: #3F4250;
+  /* background: #0D0F18; */
   color: var(--ziko-default-);
   font-size: 32rpx;
   line-height: 36rpx;
@@ -260,7 +261,8 @@ image {
   width: 68%;
   height: 64rpx;
   display: flex;
-  border-bottom: 2rpx solid #EBEBEB;
+  /* border-bottom: 2rpx solid #EBEBEB; */
+  border-bottom: 2rpx solid #545764;
   box-sizing: border-box;
 }
 

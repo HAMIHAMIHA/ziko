@@ -205,6 +205,7 @@ Page({
   // Filter offers by selected group
   filterOffers: function(e) {
     const self = this;
+    console.log(e.currentTarget.dataset);
     let date = e.detail.date ? e.detail.date : '';
     _filterOfferData(self, e.currentTarget.dataset.filterType, e.currentTarget.dataset.filterGroup, date);
   },
