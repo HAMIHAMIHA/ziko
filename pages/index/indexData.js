@@ -2,22 +2,39 @@
 export const map_filters = [
   {
     name: "kitchen",
-    width: 135,
-    height: 60,
+    width: 947,
+    height: 1500,
     xPos: 25,
-    yPos: 45
+    yPos: 45,
+    rotate: '45deg',
   }, {
-    name: "baby",
+    name: "farm",
     width: 115,
     height: 55,
     xPos: 235,
-    yPos: 50
+    yPos: 50,
+    rotate: '10deg',
+  }, {
+    name: "cellar",
+    width: 135,
+    height: 60,
+    xPos: 220,
+    yPos: 555,
+    rotate: '10deg',
   }, {
     name: "pet",
     width: 135,
     height: 60,
     xPos: 220,
-    yPos: 555
+    yPos: 555,
+    rotate: '10deg',
+  }, {
+    name: "pet",
+    width: 135,
+    height: 60,
+    xPos: 220,
+    yPos: 555,
+    rotate: '10deg',
   }
 ]
 
