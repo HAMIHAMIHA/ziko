@@ -18,16 +18,16 @@
         <!-- Display for offers in progress -->
         <view class="offer-detail offer-started" wx:if="{{ item.started }}">
           <view class="flex-between offer-detail_content">
-            <!-- Hide for v1 (did not translate) -->
+            <!-- Hide for v1 -->
             <!-- Specials -->
             <view class="flex-between_left flex-center offer-specials">
               <view class="icon_container lottery" wx:if="{{ item.lottery }}">
                 <view class="icon icon-yuan"></view>
-                <view class="icon_text">lottery</view>
+                <view class="icon_text">{{ _t.lottery }}</view>
               </view>
               <view class="icon_container specials" wx:if="{{ item.specials }}">
                 <view class="icon icon-gift"></view>
-                <view class="icon_text">specials</view>
+                <view class="icon_text">{{ _t.specials }}</view>
               </view>
             </view>
             <!-- End of Specials -->
