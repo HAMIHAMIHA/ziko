@@ -12,6 +12,7 @@ export const languageMap_en = {
   address: "Address",
   address_type: { },
   addresses: "Addresses",
+  add_address: "添加地址",
   add_new_address: "Add new address",
   add_pet: "Add pet",
   all: "All",
@@ -57,6 +58,7 @@ export const languageMap_en = {
   discover: "Discover",
 
   // E
+  edit_address: "Edit address",
   edit_my_address: "Edit my addresses",
   edit_my_info: "Edit my information",
   empty: "empty",
@@ -199,6 +201,7 @@ export const languageMap_zh_CN = {
   address: "地址",
   address_type: { },
   addresses: "Addresses",
+  add_address: "添加地址",
   add_new_address: "添加新地址",
   add_pet: "添加宠物",
   all: "全部",
@@ -244,6 +247,7 @@ export const languageMap_zh_CN = {
   discover: "查看",
 
   // E
+  edit_address: "Edit address",
   edit_my_address: "Edit my addresses",
   edit_my_info: "Edit my information",
   empty: "empty",

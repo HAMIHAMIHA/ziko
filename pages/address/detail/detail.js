@@ -32,7 +32,7 @@ Page({
 
     // Change page nav title
     wx.setNavigationBarTitle({
-      title: i18n.addresses
+      title: self.options.id ? i18n.edit_address : i18n.add_address
     })
 
     // Set page translation

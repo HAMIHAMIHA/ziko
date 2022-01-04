@@ -7,7 +7,7 @@ Page({
 
     // Change page nav title
     wx.setNavigationBarTitle({
-      title: i18n.addresses
+      title: i18n.fapiao
     })
 
     // Set page translation
