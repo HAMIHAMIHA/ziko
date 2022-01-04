@@ -159,9 +159,11 @@ Page({
     // TEMP
     let community = self.options.community;
     self.setData({
-      "pageSet.units": community == "cellar" ? 'cl' : 'g',
       "_offer.community": community
     })
+
+    // Change page translation
+    offers._getTranslations(self, community);
 
     // Start countdown
     let timer = self.selectComponent('#countdown');

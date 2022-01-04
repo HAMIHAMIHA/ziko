@@ -13,7 +13,7 @@
         <view class="icon_container payment-price">
           <view class="icon icon-bigbag"></view>
           <view class="icon_text">
-            <text class="price_final">¥{{ total }}1200</text>
+            <text class="price_final">¥{{ total }}</text>
             <text class="payment-price_original" wx:if="{{ original_price }}">¥{{ original_price }}1500</text>
           </view>
         </view>
@@ -24,7 +24,7 @@
         </view>
       </view>
       <button class="payment-button" bindtap="checkout">
-        {{ minimum && original_price < minimum ? 'Min: ' + minimum : _t.pay }}Pay</button>
+        {{ minimum && original_price < minimum ? _t.minimum + ': ' + minimum : _t.pay }}</button>
     </view>
   </view>
 </template>

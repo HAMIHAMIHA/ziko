@@ -80,12 +80,14 @@ export const languageMap_en = {
   lottery_tickets: "Lottery tickets",
 
   // M
+  minimum: "Min",
   my_favorite_recipes: "My favorite recipes",
 
   // N
   name: "Name",
 
   // O
+  offer: "Offer",
   offers: " offers",
   only_left: {
     fst: "Only ",
@@ -104,6 +106,12 @@ export const languageMap_en = {
   phone_no: "Phone no",
   pet_type: {},
   pet_size: {},
+  price_rules: {
+    bourse: "Bourse",
+    freeFall: "Free Fall",
+    multiple: "Multiple",
+    regular: "",
+  },
   problem_with_order: "Is there a problem with your order?",
   products: "products",
   products_available: {
@@ -142,6 +150,13 @@ export const languageMap_en = {
   type: "Type",
 
   // U
+  units: {
+    baby:"g",
+    cellar:"cl",
+    garden:"g",
+    kitchen:"g",
+    pet:"g",
+  },
   use_voucher: "Use Voucher",
 
   // V
@@ -220,7 +235,7 @@ export const languageMap_zh_CN = {
   get_reminder: "Get a reminder",
 
   // H
-  home: "The land",
+  home: "地图",
 
   // I
   item_unit: " item",
@@ -238,18 +253,20 @@ export const languageMap_zh_CN = {
   lottery_tickets: "Lottery tickets",
 
   // M
+  minimum: "Min",
   my_favorite_recipes: "My favorite recipes",
 
   // N
   name: "Name",
 
   // O
+  offer: "Offer",
   offers: " offers",
   only_left: {
     fst: "Only ",
     snd: " left!"
   },
-  orders: "Orders",
+  orders: "订单",
   orders_unit: " Orders",
   order_no: "Order no",
   our_selected_packs: {
@@ -262,6 +279,12 @@ export const languageMap_zh_CN = {
   phone_no: "Phone no",
   pet_type: {},
   pet_size: {},
+  price_rules: {
+    bourse: "Bourse",
+    freeFall: "Free Fall",
+    multiple: "Multiple",
+    regular: "",
+  },
   problem_with_order: "Is there a problem with your order?",
   products: "products",
   products_available: {
@@ -300,10 +323,17 @@ export const languageMap_zh_CN = {
   type: "Type",
 
   // U
+  units: {
+    baby:"克",
+    cellar:"厘升",
+    garden:"克",
+    kitchen:"克",
+    pet:"克",
+  },
   use_voucher: "Use Voucher",
 
   // V
-  viewers: " Viewers",
+  viewers: " 浏览",
   vouchers: "Vouchers",
 
   // W

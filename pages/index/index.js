@@ -132,22 +132,23 @@ Page({
     // TODO Translate navbar?
 
     // Translation and default values
+    let i18n = app.globalData.i18n;
     self.setData({
       _t: {
-        all: app.globalData.i18n.all,
-        comming_soon: app.globalData.i18n.comming_soon,
-        delivery: app.globalData.i18n.delivery,
-        empty: app.globalData.i18n.empty,
-        explore: app.globalData.i18n.explore,
-        get_reminder: app.globalData.i18n.get_reminder,
-        item_unit: app.globalData.i18n.item_unit,
-        items_unit: app.globalData.i18n.items_unit,
-        list: app.globalData.i18n.list,
-        lottery: app.globalData.i18n.lottery,
-        orders: app.globalData.i18n.orders,
-        remaining_time: app.globalData.i18n.remaining_time,
-        specials: app.globalData.i18n.specials,
-        views: app.globalData.i18n.views,
+        all: i18n.all,
+        comming_soon: i18n.comming_soon,
+        delivery: i18n.delivery,
+        empty: i18n.empty,
+        explore: i18n.explore,
+        get_reminder: i18n.get_reminder,
+        item_unit: i18n.item_unit,
+        items_unit: i18n.items_unit,
+        list: i18n.list,
+        lottery: i18n.lottery,
+        orders: i18n.orders,
+        remaining_time: i18n.remaining_time,
+        specials: i18n.specials,
+        views: i18n.views,
         // TODO days of week
       },
       _filters: {

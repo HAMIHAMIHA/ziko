@@ -3,7 +3,7 @@
 <view class="container ziko-offer {{ 'community-' + _offer.community }}">
   <!-- Offer Countdown -->
   <view class="uppercase countdown">
-    <view class="nunito_600 countdown_text">{{ _t.remaining_time }}remaining time</view>
+    <view class="nunito_600 countdown_text">{{ _t.remaining_time }}</view>
     <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endTime }}"></countdown>
   </view>
   <!-- End of Offer Countdown -->
@@ -41,11 +41,11 @@
     <view class="flex-start gilroy_500 offer-count_container">
       <view class="icon_container">
         <view class="icon icon-bag"></view>
-        <view class="icon_text">100 Orders{{ _offer.orders + _t.orders_unit }}</view>
+        <view class="icon_text">100{{ _offer.orders + _t.orders_unit }}</view>
       </view>
       <view class="icon_container">
         <view class="icon icon-eye"></view>
-        <view class="icon_text">{{ _offer.viewers + ' ' +  _t.viewers }}Viewers</view>
+        <view class="icon_text">{{ _offer.viewers + ' ' +  _t.viewers }}</view>
       </view>
     </view>
     <!-- End of Offer Count -->
@@ -69,13 +69,22 @@
 
   <!-- Offer Tabbar -->
   <view class="uppercase gilroy_700 flex-center tabbar">
-    <view class="tabbar_item{{ pageSet.currentTab == 'product' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="product" animation="{{ pageSet.animate.tab }}">
-      products
+    <view
+      class="tabbar_item{{ pageSet.currentTab == 'product' ? ' selected' : '' }}"
+      bindtap="switchTab"
+      data-to-tab="product"
+      animation="{{ pageSet.animate.tab }}"
+    >
       {{ _t.products }}
     </view>
     <!-- TEMP hide for v1 -->
-    <view class="tabbar_item{{ pageSet.currentTab == 'receipe' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="receipe" animation="{{ pageSet.animate.tab }}"  wx:if="{{ showing }}">
-      Receipes
+    <view
+      class="tabbar_item{{ pageSet.currentTab == 'receipe' ? ' selected' : '' }}"
+      bindtap="switchTab"
+      data-to-tab="receipe"
+      animation="{{ pageSet.animate.tab }}"
+      wx:if="{{ showing }}"
+    >
       {{ _t.receipes }}
     </view>
     <view class="tabbar_highlighter {{ pageSet.currentTab }}" animation="{{ pageSet.animate.highlight }}"></view>
@@ -87,20 +96,20 @@
     <!-- Offer Product List -->
     <view class="offer-group offer-packs">
       <view class="uppercase title">
-        <text class="gilroy_500">{{ _t.our_selected_packs.fst }}our</text>
-        <text class="gilroy_700">{{ _t.our_selected_packs.snd }} selected packs</text>
+        <text class="gilroy_500">{{ _t.our_selected_packs.fst }}</text>
+        <text class="gilroy_700">{{ _t.our_selected_packs.snd }}</text>
       </view>
 
-      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ pageSet.units }}" community="{{ _offer.community }}"></products>
+      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _t.units }}" community="{{ _offer.community }}"></products>
     </view>
 
     <view class="offer-group offer-singles">
       <view class="uppercase title">
-        <text class="gilroy_500">{{ _t.single_items.fst }}single</text>
-        <text class="gilroy_700">{{ _t.single_items.snd }} items</text>
+        <text class="gilroy_500">{{ _t.single_items.fst }}</text>
+        <text class="gilroy_700">{{ _t.single_items.snd }}</text>
       </view>
 
-      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ pageSet.units }}" community="{{ _offer.community }}"></products>
+      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ _t.units }}" community="{{ _offer.community }}"></products>
     </view>
     <!-- End of Offer Product List -->
 
@@ -145,8 +154,8 @@
   <view class="list_container" wx:else>
     <view class="offer-group receipe-group">
       <view class="uppercase title">
-        <text class="gilroy_500">{{ _t.related_receipes.fst }}related</text>
-        <text class="gilroy_700">{{ _t.related_receipes.snd }} receipes</text>
+        <text class="gilroy_500">{{ _t.related_receipes.fst }}</text>
+        <text class="gilroy_700">{{ _t.related_receipes.snd }}</text>
       </view>
 
       <receipes id="receipes-component"></receipes>

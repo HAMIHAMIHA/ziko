@@ -3,15 +3,6 @@ const animate = require('../../../../templates/offer/animation.js').tabbar;
 const offers = require('../../../../templates/offer/offers.js');
 
 let countdown_timer = [];
-
-// TEMP need translate
-const priceRules = {
-  regular: "",
-  freeFall: "Free Fall",
-  multiple: "Multiple",
-  bourse: "Bourse"
-}
-
 Page({
   data: {
     pageSet: {
@@ -159,13 +150,16 @@ Page({
   onShow: function () {
     const self = this;
 
+    // Change page translation
+    offers._getTranslations(self, 'cellar');
+  
     // Start countdown
     let timer = self.selectComponent('#countdown');
     countdown_timer.push(timer.setTimer([], true));
 
-    // TEMP
+    // TEMP need to be from data
     self.setData({
-      "_offer.priceRule" : priceRules[self.options.rule]
+      "_offer.price_rule" : self.options.rule
     })
   },
 
