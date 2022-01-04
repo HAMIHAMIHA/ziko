@@ -22,6 +22,7 @@
     <view class="h-scroll_container scroll-menu">
       <scroll-view class="h-scroll" scroll-x="true">
         <block wx:for="{{ _filters.list }}" wx:key="filter_group" wx:for-item="filter">
+          <!-- TODO icon for ZIKO ALL NEED TO CHANGE !!!!! -->
           <view
             class="h-scroll_item {{ filter.class_name }} {{ filter_group == filter.filter_group ? ' selected' : '' }}"
             bindtap="filterOffers"
