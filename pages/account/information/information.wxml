@@ -39,7 +39,7 @@
     </view>
 
     <view class="detail">
-      <text class="detail_label">{{ _t.size }}size</text>
+      <text class="detail_label">{{ _t.size }}</text>
       <view class="detail_input">
         <picker class="input" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_size }}">
           <view class="flex-between">

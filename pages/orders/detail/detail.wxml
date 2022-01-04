@@ -49,7 +49,7 @@
     <view class="nunito_600 detail" wx:if="{{ showing }}">
       <text class="detail_label">{{ _t.use_voucher }}Use Voucher</text>
       <view class="detail_result">
-        <text>2 available{{ product.available + _t.available }}</text>
+        <text>2 available{{ _t.available.fst + product.available + _t.available.snd }}</text>
         <text class="icon icon-arrow-right"></text>
       </view>
     </view>

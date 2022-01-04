@@ -29,7 +29,7 @@
               <!-- Available Amount Left -->
               <view class="font_red product-available">
                 <text wx:if="{{ product.available == 0 }}">{{ product.available + _t.left_unit }} left</text>
-                <text wx:elif="{{ product.available >= 100 }}">{{ product.available + _t.available }} available</text>
+                <text wx:elif="{{ product.available >= 100 }}">{{ _t.available.fst + product.available + _t.available.snd }} available</text>
                 <text wx:else>Only {{ _t.only_left.fst + product.available + _t.only_left.snd }} left!</text>
               </view>
               <!-- End of Available Amount Left -->
@@ -51,7 +51,7 @@
     <view class="detail" wx:if="{{ showing }}">
       <text class="detail_label">{{ _t.use_voucher }}Use Voucher</text>
       <view class="nunito_600 detail_result">
-        <text>{{ product.remaining + _t.available }}2 available</text>
+        <text>{{ _t.available.fst + product.remaining + _t.available.snd }}2 available</text>
         <text class="icon icon-arrow-right"></text>
       </view>
     </view>
