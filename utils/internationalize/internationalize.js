@@ -86,6 +86,7 @@ export const languageMap_en = {
 
   // N
   name: "Name",
+  need_login: "You need to login first",
 
   // O
   offer: "Offer",
@@ -264,6 +265,7 @@ export const languageMap_zh_CN = {
 
   // N
   name: "Name",
+  need_login: "You need to login first",
 
   // O
   offer: "Offer",

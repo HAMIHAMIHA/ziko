@@ -20,10 +20,9 @@ Page({
     // Set page translation
     self.setData({
       _t: {
-        cny: i18n.cny,
         community: i18n.community,
-        item_label: i18n.item_label,
-        items_label: i18n.items_label,
+        item_unit: i18n.item_unit,
+        items_unit: i18n.items_unit,
         login: i18n.login,
         lottery_gift: i18n.lottery_gift,
         need_login: i18n.need_login,
