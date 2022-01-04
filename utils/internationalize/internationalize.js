@@ -5,6 +5,7 @@ export const languageMap_en = {
   address_type: { },
   add_new_address: "Add new address",
   add_pet: "Add pet",
+  all: "All",
   area: "Area",
   available: {
     fst: "",
@@ -41,6 +42,7 @@ export const languageMap_en = {
 
   // D
   delete: "Delete",
+  delivery: "Delivery",
   delivery_company: "Delivery company",
   delivery_fee: "Delivery fee",
 
@@ -73,7 +75,7 @@ export const languageMap_en = {
   list: "list",
   left_unit: " left",
   login: "Mobile login",
-  lottery: "",
+  lottery: "Lottery",
   lottery_gift: "Lottery gift:",
   lottery_tickets: "Lottery tickets",
 
@@ -130,6 +132,7 @@ export const languageMap_en = {
     snd: " items"
   },
   size: "Size",
+  specials: "Specials",
 
   // T
   total: "Total",
@@ -160,6 +163,7 @@ export const languageMap_zh_CN = {
   address_type: { },
   add_new_address: "添加新地址",
   add_pet: "添加宠物",
+  all: "全部",
   area: "地区",
   available: {
     fst: "还剩",
@@ -196,6 +200,7 @@ export const languageMap_zh_CN = {
 
   // D
   delete: "Delete",
+  delivery: "Delivery",
   delivery_company: "Delivery company",
   delivery_fee: "Delivery fee",
 
@@ -228,7 +233,7 @@ export const languageMap_zh_CN = {
   list: "list",
   left_unit: " left",
   login: "Mobile login",
-  lottery: "",
+  lottery: "Lottery",
   lottery_gift: "Lottery gift:",
   lottery_tickets: "Lottery tickets",
 
@@ -285,6 +290,7 @@ export const languageMap_zh_CN = {
     snd: " items"
   },
   size: "Size",
+  specials: "Specials",
 
   // T
   total: "Total",

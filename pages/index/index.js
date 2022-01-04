@@ -36,7 +36,7 @@ const _timerControl = (page, timer_switch) => {
     offers = page.selectComponent('#map_offers');
   }
   if (offers) {
-    offers.changeTimers(timer_switch);
+    offers.changeTimers(timer_switch, page.data._t);
   }
 }
 
@@ -129,13 +129,25 @@ Page({
     // Translate tabbar
     app.setTabbar();
 
-    // TODO Ttranslate navbar
-    // Translation values
+    // TODO Translate navbar?
+
+    // Translation and default values
     self.setData({
       _t: {
-        // TODO Bottom switch
-        // TODO card items
-        // TOOD filter names
+        all: app.globalData.i18n.all,
+        comming_soon: app.globalData.i18n.comming_soon,
+        delivery: app.globalData.i18n.delivery,
+        empty: app.globalData.i18n.empty,
+        explore: app.globalData.i18n.explore,
+        get_reminder: app.globalData.i18n.get_reminder,
+        item_unit: app.globalData.i18n.item_unit,
+        items_unit: app.globalData.i18n.items_unit,
+        list: app.globalData.i18n.list,
+        lottery: app.globalData.i18n.lottery,
+        orders: app.globalData.i18n.orders,
+        remaining_time: app.globalData.i18n.remaining_time,
+        specials: app.globalData.i18n.specials,
+        views: app.globalData.i18n.views,
         // TODO days of week
       },
       _filters: {

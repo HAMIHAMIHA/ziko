@@ -115,12 +115,6 @@
 }
 /* End of Offer Detail - Bag */
 
-/* Offer Detail - Countdown */
-.offer-countdown {
-  /* TODO */
-}
-/* End of Offer Detail - Countdown */
-
 /* Offer Detail - Status */
 .offer-counts {
   color: #9D9FA4;

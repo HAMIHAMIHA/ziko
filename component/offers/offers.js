@@ -97,8 +97,15 @@ Component({
 
   methods: {
     // Toggle timer invervals
-    changeTimers: function(startTimer) {
+    changeTimers: function(startTimer, _t) {
       const self = this;
+
+      // Set offer card translation
+      self.setData({
+        _t: _t
+      })
+
+      // Start or end timers
       let timer = self.selectAllComponents('.timer');
       if (startTimer) {
         for (var i in timer) {

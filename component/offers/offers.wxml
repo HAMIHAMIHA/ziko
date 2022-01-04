@@ -37,9 +37,9 @@
               <view class="icon_container">
                 <view class="icon icon-bag"></view>
                 <view class="icon_text">
-                  <view wx:if="{{ item.items == 0}}">{{ _t.empty }}empty</view>
-                  <view wx:elif="{{ item.items == 1}}">{{ item.items + _t.item_unit }} item</view>
-                  <view wx:else="{{ item.items > 1}}">{{ item.items + _t.items_unit }} items</view>
+                  <view wx:if="{{ item.items == 0}}">{{ _t.empty }}</view>
+                  <view wx:elif="{{ item.items == 1}}">{{ item.items + _t.item_unit }}</view>
+                  <view wx:else="{{ item.items > 1}}">{{ item.items + _t.items_unit }}</view>
                 </view>
               </view>
             </view>
@@ -49,7 +49,7 @@
           <!-- Countdown -->
           <view class="flex-between offer-detail_content offer-countdown">
             <view class="flex-between_left">
-              remaining time{{ _t.remaining_time }}
+              {{ _t.remaining_time }}
             </view>
             <view class="flex-between_rt">
               <countdown class="timer" end-time="{{ item.endTime }}"></countdown>
@@ -62,15 +62,15 @@
             <view class=" flex-center offer-counts">
               <view class="icon_container">
                 <view class="icon icon-bag"></view>
-                <view class="icon_text">{{ offer.orders + _t.orders_unit }}122 orders</view>
+                <view class="icon_text">122{{ offer.orders + _t.orders_unit }}</view>
               </view>
               <view class="icon_container">
                 <view class="icon icon-eye"></view>
-                <view class="icon_text">{{ _offer.viewers + _t.viewers }}122 viewers</view>
+                <view class="icon_text">122{{ _offer.viewers + _t.viewers }}</view>
               </view>
             </view>
             <view class="offer-delivery nunito_400">
-              Delivery: June 12th or 14th
+              {{ _t.delivery }}: June 12th or 14th
             </view>
           </view>
           <!-- End of Current Status -->
@@ -79,7 +79,7 @@
 
         <!-- Display for offers waiting -->
         <view class="offer-detail offer-waiting" wx:else>
-          <view class=" offer-detail_content coming-soon">{{ _t.comming_soon }}comming soon...</view>
+          <view class=" offer-detail_content coming-soon">{{ _t.comming_soon }}</view>
 
           <!-- Offer Time -->
           <view class="flex-between offer-detail_content offer-datetime">
@@ -87,9 +87,9 @@
               <view class="offer-date">Thu. 13 March,</view>
               <view class="offer-time">2:00 PM - 4:00 PM</view>
             </view>
-            <!-- TEMP v1 -->
+            <!-- TEMP Hide for v1 -->
             <view class="flex-between_rt" wx:if="{{ showing }}">
-              <button class="offer-reminder">{{ _t.get_reminder }}Get a reminder</button>
+              <button class="offer-reminder">{{ _t.get_reminder }}</button>
             </view>
           </view>
           <!-- End of Offer Time -->
