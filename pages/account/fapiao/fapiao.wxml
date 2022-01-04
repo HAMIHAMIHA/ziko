@@ -1,7 +1,7 @@
 <view class="container container-grey container-btn-bottom address-detail">
   <!-- Fapiao Form -->
   <view class="white-box">
-    <view class="nunito_700 header">{{ _t.fapiao }}Fapiao</view>
+    <view class="nunito_700 header">{{ _t.fapiao }}</view>
 
     <view class="details_container textarea_container">
       <view class="detail">
@@ -17,7 +17,7 @@
 
   <!-- Submit Button -->
   <view class="btn-bottom">
-    <button class="nunito_600" hover-class="none" bindtap="select">{{ _t.save }}Save</button>
+    <button class="nunito_600" hover-class="none" bindtap="select">{{ _t.save }}</button>
   </view>
   <!-- End of Submit Button -->
 </view>

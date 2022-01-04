@@ -1,10 +1,10 @@
 <view class="container container-grey container-btn-bottom">
   <!-- Profile Input Group -->
   <view class="white-box inputs_container contact-info">
-    <view class="nunito_700 header">{{ _t.contact_info }}contact info</view>
+    <view class="nunito_700 header">{{ _t.contact_info }}</view>
 
     <view class="detail">
-      <view class="detail_label">{{ _t.name }}Name</view>
+      <view class="detail_label">{{ _t.name }}</view>
       <view class="detail_input">
         <input class="input" type="text" value="{{ formData.type }}"></input>
       </view>
@@ -14,11 +14,11 @@
 
   <!-- Pets Input Group -->
   <view class="white-box inputs_container pet-info" wx:for="p" wx:for-item="pet" wx:key="index">
-    <view class="nunito_700 header">{{ _t.pet + ' ' + index }}pet</view>
+    <view class="nunito_700 header">{{ _t.pet + ' ' + index }}</view>
     <view class="icon icon-trash btn-icon"></view>
 
     <view class="detail">
-      <view class="detail_label">{{ _t.name }}name</view>
+      <view class="detail_label">{{ _t.name }}</view>
       <view class="detail_input">
         <view class="input">
           <input type="text" value="{{ formData.type }}"></input>
@@ -27,7 +27,7 @@
     </view>
 
     <view class="detail">
-      <text class="detail_label">{{ _t.type }}type</text>
+      <text class="detail_label">{{ _t.type }}</text>
       <view class="detail_input">
         <picker class="input" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_type }}">
           <view class="flex-between">
@@ -54,13 +54,13 @@
 
   <!-- Add Pet Button -->
   <view class="btn-outline_container">
-    <button class="btn-outline nunito_600" hover-class="none" bindtap="">{{ _t.add_pet}}+ Add new Pet</button>
+    <button class="btn-outline nunito_600" hover-class="none" bindtap="">{{ _t.add_pet }}</button>
   </view>
   <!-- End of Add Pet Button -->
 
   <!-- Submit Button -->
   <view class="btn-bottom">
-    <button class="nunito_600" hover-class="none" bindtap="pay">{{ _t.save }}save</button>
+    <button class="nunito_600" hover-class="none" bindtap="pay">{{ _t.save }}</button>
   </view>
   <!-- End of Submit Button -->
 </view>

@@ -12,7 +12,7 @@
   </view>
 
   <view class="btn-outline_container">
-    <navigator class="btn-outline nunito_600" hover-class="none" url="{{ _routes.address_detail }}">{{ _t.add_new_address }}+ Add new Address</navigator>
+    <navigator class="btn-outline nunito_600" hover-class="none" url="{{ _routes.address_detail }}">{{ _t.add_new_address }}</navigator>
   </view>
 
   <view class="btn-bottom" wx:if="{{ _setting.selecting }}">

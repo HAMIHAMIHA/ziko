@@ -1,6 +1,4 @@
-// Require
-
-import { navigateBack } from "../../../utils/common";
+const { navigateBack } = require("../../../utils/common");
 
 const app = getApp();
 
@@ -30,6 +28,30 @@ const updateUserAddress = (page, data) => {
 Page({
   onShow: function () {
     let self = this;
+    let i18n = app.globalData.i18n;
+
+    // Change page nav title
+    wx.setNavigationBarTitle({
+      title: i18n.addresses
+    })
+
+    // Set page translation
+    self.setData({
+      _t: {
+        address: i18n.address,
+        address_type: i18n.address_type,
+        area: i18n.area,
+        city: i18n.city,
+        comment: i18n.comment,
+        delete: i18n.delete,
+        phone_no: i18n.phone_no,
+        save: i18n.save,
+        type: i18n.type,
+        zipcode: i18n.zipcode,
+      }
+    })
+
+    // TEMP
     if (self.options.id) {
       self.setData({
         formData: {
