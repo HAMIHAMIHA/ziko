@@ -1,7 +1,7 @@
 <view class="container container-grey">
   <view class="white-box order-products_container">
-    <view class="nunito_700 header page-header">{{ order.offer + _t.offer }} Offer</view>
-    <view class="nunito_700 header">{{ _t.items }}Items</view>
+    <view class="nunito_700 header page-header">{{ order.offer + _t.offer_label }}</view>
+    <view class="nunito_700 header">{{ _t.items }}</view>
     <view class="order-products product_container" wx:for="{{ order.products }}" wx:key="id" wx:for-item="product">
       <view class="flex-between product">
         <view class="flex-start flex-align-start product_left">
@@ -15,7 +15,7 @@
               <!-- Pack Products Detail -->
               <view class="gilroy_500 product-detail_container" wx:if="{{ product.type == 'pack' }}">
                 <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="packProduct">
-                  <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ units }}</text>
+                  <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ _t.units }}</text>
                   <text wx:if="{{ index < product.products.length - 1 }}">, </text>
                 </text>
               </view>
@@ -23,7 +23,7 @@
 
               <!-- Single Products Detail -->
               <view class="product-detail_container" wx:else>
-                <text>{{ product.quantity }} x {{ product.weight }}{{ units }}</text>
+                <text>{{ product.quantity }} x {{ product.weight }}{{ _t.units }}</text>
               </view>
               <!-- End of Single Products Detail -->
 
@@ -47,20 +47,19 @@
   <view class="white-box order-details_container price-detail">
     <!-- Hide for v1 -->
     <view class="nunito_600 detail" wx:if="{{ showing }}">
-      <text class="detail_label">{{ _t.use_voucher }}Use Voucher</text>
+      <text class="detail_label">{{ _t.use_voucher }}</text>
       <view class="detail_result">
-        <text>2 available{{ _t.available.fst + product.available + _t.available.snd }}</text>
-        <text class="icon icon-arrow-right"></text>
+        <text>-100</text>
       </view>
     </view>
     <view class="nunito_600 detail">
-      <text class="detail_label">{{ _t.chosen_delivery_date }}Chosen delivery date</text>
+      <text class="detail_label">{{ _t.chosen_delivery_date }}</text>
       <view class="detail_result">
         <text>{{ order.delivery_date }}2020-11-10</text>
       </view>
     </view>
     <view class="nunito_600 detail">
-      <text class="detail_label">{{ _t.delivery_fee }}Delivery fee</text>
+      <text class="detail_label">{{ _t.delivery_fee }}</text>
       <text class="detail_result">¥10</text>
     </view>
     <!-- Hide for v1 (did not translate) -->
@@ -69,22 +68,22 @@
       <text class="detail_result">¥1000</text>
     </view>
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.total }}Total</text>
+      <text class="nunito_600 detail_label">{{ _t.total }}</text>
       <text class="nunito_700 detail_result">¥1000{{ order.total }}</text>
     </view>
   </view>
 
   <view class="white-box order-details_container">
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.order_no }}Order no</text>
+      <text class="nunito_600 detail_label">{{ _t.order_no }}</text>
       <text class="detail_result">77846513298465{{ order.orderNo }}</text>
     </view>
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.delivery_company }}Delivery company</text>
+      <text class="nunito_600 detail_label">{{ _t.delivery_company }}</text>
       <text class="detail_result">{{ order.delivery_company }}SF</text>
     </view>
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.tracking_number }}Tracking number</text>
+      <text class="nunito_600 detail_label">{{ _t.tracking_number }}</text>
       <text class="detail_result">{{ order.tracking_number }}77846513298465</text>
     </view>
   </view>
@@ -92,18 +91,18 @@
   <!-- Hide for v1 -->
   <view class="white-box order-details_container" wx:if="{{ showing }}">
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.lottery_tickets }}Lottery tickets</text>
+      <text class="nunito_600 detail_label">{{ _t.lottery_tickets }}</text>
       <text class="detail_result">x3{{ order.ticket }}</text>
     </view>
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.fidelity_points }}Fidelity points</text>
+      <text class="nunito_600 detail_label">{{ _t.fidelity_points }}</text>
       <text class="detail_result">+{{ order.fidlityPoints }}30</text>
     </view>
   </view>
 
   <view class="white-box order-details_container">
     <view class="detail address">
-      <text class="nunito_600 detail_label">{{ _t.address }}Address</text>
+      <text class="nunito_600 detail_label">{{ _t.address }}</text>
       <view class="detail_value">
         <view class="address-name">{{ _t.address_type[order.address.type] }}Home</view>
         <text class="detail_note">{{ order.address.address }}水电路1200弄3号401室</text>
@@ -111,26 +110,26 @@
     </view>
 
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.phone_no }}Phone No.</text>
+      <text class="nunito_600 detail_label">{{ _t.phone_no }}</text>
       <view class="detail_value">{{ order.address.phone }}132156519165</view>
     </view>
 
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.contact }}Contact</text>
+      <text class="nunito_600 detail_label">{{ _t.contact_label }}</text>
       <view class="detail_value">{{ order.address.contact }}Contact person Name</view>
     </view>
   </view>
 
   <view class="white-box order-details_container">
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.fapiao }}Fapiao</text>
+      <text class="nunito_600 detail_label">{{ _t.fapiao }}</text>
       <view class="detail_value">{{ order.fapiao }}address</view>
     </view>
   </view>
 
   <view class="white-box order-details_container">
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.comment }}Comment</text>
+      <text class="nunito_600 detail_label">{{ _t.comment }}</text>
       <view class="detail_value">{{ order.comment }}lasjfslfjas fklj dsklfaj klfjsaklfjasfklasfkldjsf k</view>
     </view>
   </view>
@@ -141,18 +140,19 @@
         <view class="timeline__dot"></view>
         <view class="timeline__content">
           <text class="timeline__date">{{ status.date }}</text>
-          <text class="nunito_600 timeline__status">{{ _t.order_status[status.status] }}W status</text>
+          <text class="nunito_600 timeline__status">{{ _t.order_status['on_the_way'] }}</text>
+          <!-- <text class="nunito_600 timeline__status">{{ _t.order_status[status.status] }}</text> -->
         </view>
       </view>
     </block>
   </view>
 
   <view class="white-box contact-box">
-    <view>{{ _t.problem_with_order }}Is there a problem with your order?</view>
+    <view>{{ _t.problem_with_order }}</view>
     <view class="contact-button_container">
       <button class="contact-button" hover-class="none" open-type="contact">
         <text class="icon icon-headset"></text>
-        <text class="nunito_600">Contact our customer hero!</text>
+        <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
       </button>
     </view>
   </view>

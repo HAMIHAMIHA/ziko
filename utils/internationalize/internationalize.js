@@ -88,6 +88,7 @@ export const languageMap_en = {
 
   // O
   offer: "Offer",
+  offer_label: "Offer",
   offers: " offers",
   only_left: {
     fst: "Only ",
@@ -96,6 +97,11 @@ export const languageMap_en = {
   orders: "Orders",
   orders_unit: " Orders",
   order_no: "Order no",
+  order_status: {
+    on_the_way: "On the way",
+    paid: "Paid",
+    prepared: "Prepared",
+  },
   our_selected_packs: {
     fst: "our",
     snd: " selected packs"
@@ -115,10 +121,6 @@ export const languageMap_en = {
   problem_with_order: "Is there a problem with your order?",
   product_detail: "Product detail",
   products: "products",
-  products_available: {
-    fst: "",
-    snd: " available"
-  },
   products_left: {
     fst: "",
     snd: " left"
@@ -262,6 +264,7 @@ export const languageMap_zh_CN = {
 
   // O
   offer: "Offer",
+  offer_label: "Offer",
   offers: " offers",
   only_left: {
     fst: "只剩 ",
@@ -270,6 +273,11 @@ export const languageMap_zh_CN = {
   orders: "订单",
   orders_unit: " Orders",
   order_no: "Order no",
+  order_status: {
+    on_the_way: "On the way",
+    paid: "Paid",
+    prepared: "Prepared",
+  },
   our_selected_packs: {
     fst: "our",
     snd: " selected packs"
@@ -289,10 +297,6 @@ export const languageMap_zh_CN = {
   problem_with_order: "Is there a problem with your order?",
   product_detail: "Product详情",
   products: "products",
-  products_available: {
-    fst: "",
-    snd: " available"
-  },
   products_left: {
     fst: "剩余",
     snd: ""

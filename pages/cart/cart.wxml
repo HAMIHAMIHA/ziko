@@ -1,6 +1,6 @@
 <view class="container container-grey container-btn-bottom">
   <view class="white-box order-products_container">
-    <view class="nunito_700 header">{{ _t.items }}Items</view>
+    <view class="nunito_700 header">{{ _t.items }}</view>
     <view class="order-products product_container" wx:for="{{ cart.products }}" wx:key="id" wx:for-item="product">
       <view class="flex-between product">
         <view class="flex-start flex-align-start product_left">
@@ -14,7 +14,7 @@
               <!-- Pack Products Detail -->
               <view class="product-detail_container" wx:if="{{ product.type == 'pack' }}">
                 <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="packProduct">
-                  <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ units }}</text>
+                  <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ _t.units }}</text>
                   <text wx:if="{{ index < product.products.length - 1 }}">, </text>
                 </text>
               </view>
@@ -22,15 +22,15 @@
 
               <!-- Single Products Detail -->
               <view class="product-detail_container" wx:else>
-                <text>{{ product.quantity }} x {{ product.weight }}{{ units }}</text>
+                <text>{{ product.quantity }} x {{ product.weight }}{{ _t.units }}</text>
               </view>
               <!-- End of Single Products Detail -->
 
               <!-- Available Amount Left -->
               <view class="font_red product-available">
-                <text wx:if="{{ product.available == 0 }}">{{ product.available + _t.products_left }} left</text>
-                <text wx:elif="{{ product.available >= 100 }}">{{ _t.available.fst + product.available + _t.available.snd }} available</text>
-                <text wx:else>Only {{ _t.only_left.fst + product.available + _t.only_left.snd }} left!</text>
+                <text wx:if="{{ product.available == 0 }}">{{ _t.products_left.fst + product.available + _t.products_left.snd }}</text>
+                <text wx:elif="{{ product.available >= 100 }}">{{ _t.available.fst + product.available + _t.available.snd }}</text>
+                <text wx:else>{{ _t.only_left.fst + product.available + _t.only_left.snd }}</text>
               </view>
               <!-- End of Available Amount Left -->
             </view>
@@ -49,14 +49,14 @@
   <view class="white-box details_container">
     <!-- Hide for v1 -->
     <view class="detail" wx:if="{{ showing }}">
-      <text class="detail_label">{{ _t.use_voucher }}Use Voucher</text>
+      <text class="detail_label">{{ _t.use_voucher }}</text>
       <view class="nunito_600 detail_result">
-        <text>{{ _t.available.fst + product.remaining + _t.available.snd }}2 available</text>
+        <text>{{ _t.available.fst + product.remaining + _t.available.snd }}</text>
         <text class="icon icon-arrow-right"></text>
       </view>
     </view>
     <view class="detail">
-      <text class="detail_label">{{ _t.choose_delivery_date }}Choose delivery date</text>
+      <text class="detail_label">{{ _t.choose_delivery_date }}</text>
       <picker class="nunito_600 detail_result" bindchange="bindPickerChange" value="{{ index }}" range="{{ item.options }}">
         <view class="picker">
           <text>{{ item.options[index] }}2020-11-10</text>
@@ -65,11 +65,11 @@
       </picker>
     </view>
     <view class="detail">
-      <text class="detail_label">{{ _t.delivery_fee }}Delivery fee</text>
+      <text class="detail_label">{{ _t.delivery_fee }}</text>
       <text class="detail_result">¥{{ offer.delivery_fee }}10</text>
     </view>
     <view class="nunito_700 detail">
-      <text class="detail_label">{{ _t.total }}Total</text>
+      <text class="detail_label">{{ _t.total }}</text>
       <text class="detail_result">¥{{ offer.total }}1000</text>
     </view>
   </view>
@@ -77,18 +77,18 @@
   <!-- Hide for v1 -->
   <view class="white-box details_container" wx:if="{{ showing }}">
     <view class="detail">
-      <text class="detail_label">{{ _t.lottery_tickets }}Lottery tickets</text>
+      <text class="detail_label">{{ _t.lottery_tickets }}</text>
       <text class="detail_result">x{{ offer.tickets }}3</text>
     </view>
     <view class="detail">
-      <text class="detail_label">{{ _t.fidelity_points }}Fidelity points</text>
+      <text class="detail_label">{{ _t.fidelity_points }}</text>
       <text class="detail_result">+{{ offer.fidelity_points }}30</text>
     </view>
   </view>
 
   <view class="white-box details_container inputs_container">
     <view class="detail address">
-      <text class="detail_label">{{ _t.address }}Address</text>
+      <text class="detail_label">{{ _t.address }}</text>
       <view class="detail_input">
         <!-- TODO navigate to address list -->
         <view class="input" bindtap="chooseAddress">
@@ -102,19 +102,19 @@
     </view>
 
     <view class="detail">
-      <text class="detail_label">{{ _t.phone_no }}Phone No.</text>
+      <text class="detail_label">{{ _t.phone_no }}</text>
       <view class="detail_input"><input class="input" type="number" value="{{ offer.address.phone_no }}" /></view>
     </view>
 
     <view class="detail">
-      <text class="detail_label">{{ _t.contact_label }}Contact</text>
+      <text class="detail_label">{{ _t.contact_label }}</text>
       <view class="detail_input"><input class="input" type="text"  value="{{ offer.address.contact }}"/></view>
     </view>
   </view>
 
   <view class="white-box details_container inputs_container" bindtap="toggleCheck">
     <view class="detail checkbox-container fapiao">
-      <text class="detail_label">{{ _t.fapiao }}Fapiao</text>
+      <text class="detail_label">{{ _t.fapiao }}</text>
       <view class="flex-between detail_input">
         <input class="input" type="text"  disabled="true" value="{{ user.fapiao }}"/>
         <view class="checkbox{{ fapiao ? ' checked' : '' }}">
@@ -126,22 +126,22 @@
 
   <view class="white-box details_container inputs_container">
     <view class="detail">
-      <text class="detail_label">{{ _t.comment }}Comment</text>
+      <text class="detail_label">{{ _t.comment }}</text>
       <view class="detail_input"><input class="input" type="text" /></view>
     </view>
   </view>
 
   <view class="white-box contact-box">
-    <view class="">{{ _t.checkout_message }}If you need to change delivery date or other information after purchase please contact the Customer service</view>
+    <view class="">{{ _t.checkout_message }}</view>
     <view class="contact-button_container">
       <button class="contact-button" hover-class="none" open-type="contact">
         <text class="icon icon-headset"></text>
-        <text class="nunito_600">{{ _t.contact_customer_hero }}Contact our customer hero!</text>
+        <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
       </button>
     </view>
   </view>
 
-  <view class="btn-bottom">
-    <button class="nunito_600" hover-class="none" bindtap="pay">{{ _t.pay }}Pay</button>
+  <view class="btn-bottom{{ total > minimun ? '' : ' disabled' }}">
+    <button class="nunito_600" hover-class="none" bindtap="pay">{{ _t.pay }}</button>
   </view>
 </view>
