@@ -11,7 +11,7 @@ export const _clearCountdown = (page, countdown_timer) => {
 export const _getTranslations = (page, community) => {
   let i18n = app.globalData.i18n;
 
-  // Change offer page nav title
+  // Change page nav title
   wx.setNavigationBarTitle({
     title: i18n.offer
   })

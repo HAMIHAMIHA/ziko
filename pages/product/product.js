@@ -56,7 +56,7 @@ Page({
     const self = this;
     let i18n = app.globalData.i18n;
 
-    // Change offer page nav title
+    // Change page navbar title
     wx.setNavigationBarTitle({
       title: i18n.product_detail
     })

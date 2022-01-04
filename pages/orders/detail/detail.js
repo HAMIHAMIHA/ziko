@@ -79,9 +79,14 @@ Page({
     const self = this;
     let i18n = app.globalData.i18n;
 
+    // Change page nav title
+    wx.setNavigationBarTitle({
+      title: i18n.order_detail
+    })
+
+    // Translate page
     // TEMP
     let community = 'cellar';
-
     self.setData({
       _t: {
         address: i18n.address,

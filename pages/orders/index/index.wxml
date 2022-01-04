@@ -17,7 +17,8 @@
         bindtap="changeFilter"
         data-filter="{{ index }}"
       >
-        {{ _t.order_status[status] }}asbf
+        <!-- {{ _t.order_status[status] }}asbf -->
+        {{ _t.order_status['on_the_way'] }}
       </view>
     </block>
   </scroll-view>
@@ -29,7 +30,8 @@
   <view class="community-selector">
     <picker class="picker">
       <view class="nunito_600 flex-between picker-btn">
-        <text>{{ _t.community[filter.community] }}All communities</text>
+        <text>{{ _t.community['all_communities'] }}</text>
+        <!-- <text>{{ _t.community[filter.community] }}</text> -->
         <text class="icon icon-arrow"></text>
       </view>
     </picker>
@@ -44,12 +46,15 @@
         <view class="order-info__detail">
           <view class="flex-between order-info">
             <view class="gilroy_700 order-time">{{ order.time }}2021-11-11 00:00</view>
-            <view class="nunito_600 uppercase order-status status-{{ order.status }}">{{ order.status }}status</view>
+            <!-- <view class="nunito_600 uppercase order-status status-{{ order.status }}">{{ order.status }}</view> -->
+            <view class="nunito_600 uppercase order-status status-{{ order.status }}">{{ _t.order_status['on_the_way'] }}</view>
           </view>
           <view class="gilroy_700 uppercase order_offer-name">{{ order.name }}name</view>
-          <view class="order-community">({{ order.community }}communtiy)</view>
+          <!-- <view class="order-community">({{ order.community }}communtiy)</view> -->
+          <view class="order-community">({{ _t.community['kitchen'] }})</view>
           <view class="order-detail flex-between">
-            <view class="order-count">x{{ order.count + _t.items }}3 items</view>
+            <view class="order-count" wx:if="{{ order.count == 1 }}">x{{ order.count + _t.item_label }}</view>
+            <view class="order-count" wx:else>x{{ order.count + _t.items_label }}</view>
             <view class="order-price">              
               <text class="gilroy_800 order-total">{{ _t.cny + order.total }}$000</text>
               <text class="gilroy_800 order-total__old" wx:if="{{ order.originalPrice }}">{{ _t.cny + order.originalPrice }}$000</text>
@@ -59,7 +64,7 @@
         <!-- End of Order Detail -->
 
         <!-- Order Lottery -->
-        <view class="order-info__lottery" -wx:if="{{ order.lottery }}">
+        <view class="order-info__lottery" wx:if="{{ order.lottery }}">
           <view class="lottery-title">lottery gift{{ _t.lottery_gift }}:</view>
           <!-- <block wx:for="{{ order.lottery }}" wx:key="_id" wx:key="lottery"> -->
           <block wx:for="12" wx:key="_id" wx:key="lottery">

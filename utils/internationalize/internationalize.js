@@ -82,18 +82,20 @@ export const languageMap_en = {
   // M
   minimum: "Min",
   my_favorite_recipes: "My favorite recipes",
+  my_orders: "My Orders",
 
   // N
   name: "Name",
 
   // O
   offer: "Offer",
-  offer_label: "Offer",
+  offer_label: " Offer",
   offers: " offers",
   only_left: {
     fst: "Only ",
     snd: " left!"
   },
+  order_detail: "Order detail",
   orders: "Orders",
   orders_unit: " Orders",
   order_no: "Order no",
@@ -258,18 +260,20 @@ export const languageMap_zh_CN = {
   // M
   minimum: "Min",
   my_favorite_recipes: "My favorite recipes",
+  my_orders: "My Orders",
 
   // N
   name: "Name",
 
   // O
   offer: "Offer",
-  offer_label: "Offer",
+  offer_label: " Offer",
   offers: " offers",
   only_left: {
     fst: "只剩 ",
     snd: " !"
   },
+  order_detail: "Order detail",
   orders: "订单",
   orders_unit: " Orders",
   order_no: "Order no",

@@ -70,6 +70,11 @@ Page({
     const self = this;
     let i18n = app.globalData.i18n;
 
+    // Change page nav title
+    wx.setNavigationBarTitle({
+      title: i18n.cart
+    })
+
     // TEMP
     let community = 'cellar';
 
