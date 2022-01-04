@@ -6,12 +6,12 @@
         <!-- <image class="avatar-image" src="{{ _folder.user_avatar + user.image.uri }}"></image> -->
         <text class="avatar-image icon icon-ziko"></text>
         <view class="gilroy_900 uppercase avatar-label">
-          <text class="avatar-label__text">{{ _t.tourist }}tourist</text>
+          <text class="avatar-label__text">{{ _t.account_ranking[tourist] }}</text>
           <image class="avatar-label__background" src="/assets/images/avatarLabel.png" mode="scaleToFill"></image>
         </view>
       </view>
     </view>
-    <button class="gilroy_700 uppercase user-info__login" open-type="getPhoneNumber">{{ _t.login }}Mobile login <!-- 手机号一键登录 --></button>
+    <button class="gilroy_700 uppercase user-info__login" open-type="getPhoneNumber">{{ _t.login }}<!-- 手机号一键登录 --></button>
   </view>
   <!-- END OF LOGIN BUTTON -->
 
@@ -22,7 +22,7 @@
         <!-- <image class="avatar-image" src="{{ _folder.user_avatar + user.image.uri }}"></image> -->
         <image class="avatar-image" src="/assets/images/receipeBanner.png"></image>
         <view class="gilroy_900 uppercase avatar-label">
-          <text class="avatar-label__text">{{ _t[user.type] }}jshgkldh j</text>
+          <text class="avatar-label__text">{{ _t.account_ranking[user.type] }}jshgkldh j</text>
           <image class="avatar-label__background" src="/assets/images/avatarLabel.png" mode="scaleToFill"></image>
         </view>
       </view>
@@ -33,11 +33,11 @@
 
   <!-- PROFILE INFO -->
   <view class="nunito_600 card profile-info{{ user ? '' : ' disabled' }}">
-    <navigator class="profile-info__button" url="{{ _routes.account_info }}">{{ _t.edit_my_info }}edit my info</navigator>
-    <navigator class="profile-info__button" url="{{ _routes.address }}">{{ _t.edit_my_address }}edit my address</navigator>
-    <navigator class="profile-info__button" url="{{ _routes.fapiao }}">{{ _t.fapiao_info }}fapiao</navigator>
+    <navigator class="profile-info__button" url="{{ _routes.account_info }}">{{ _t.edit_my_info }}</navigator>
+    <navigator class="profile-info__button" url="{{ _routes.address }}">{{ _t.edit_my_address }}</navigator>
+    <navigator class="profile-info__button" url="{{ _routes.fapiao }}">{{ _t.fapiao_info }}</navigator>
     <!-- Hide for v1 -->
-    <navigator class="profile-info__button" url="{{ _routes.receipes }}" wx:if="{{ showing }}">{{ _t.my_favorite_recipes }}recipes</navigator> 
+    <navigator class="profile-info__button" url="{{ _routes.receipes }}" wx:if="{{ showing }}">{{ _t.my_favorite_recipes }}</navigator> 
   </view>
   <!-- END OF PROFILE INFO -->
 
@@ -45,29 +45,29 @@
   <view class="gilroy_700 uppercase card short-cuts">
     <navigator class="short-cuts__button" url="{{ _routes.orders }}" open-type="switchTab">
       <view class="short-cut__icon icon icon-package"></view>
-      <view class="short-cut__label">{{ _t.orders }}orders</view>
+      <view class="short-cut__label">{{ _t.orders }}</view>
     </navigator>
     <!-- Hide for v1 -->
     <navigator class="short-cuts__button" url="{{ _routes.claims }}" wx:if="{{ showing }}">
       <view class="short-cut__icon icon icon-box"></view>
-      <view class="short-cut__label">{{ _t.claims }}claims</view>
+      <view class="short-cut__label">{{ _t.claims }}</view>
     </navigator>
     <button class="short-cuts__button" open-type="contact">
       <view class="short-cut__icon icon icon-headset"></view>
-      <view class="short-cut__label">{{ _t.contact }}contact</view>
+      <view class="short-cut__label">{{ _t.contact }}</view>
     </button>
     <!-- Hide for v1 -->
     <navigator class="short-cuts__button" url="{{ _routes.vouchers }}" wx:if="{{ showing }}">
       <view class="short-cut__icon icon icon-redpacket"></view>
-      <view class="short-cut__label">{{ _t.vouchers }}vouchers</view>
+      <view class="short-cut__label">{{ _t.vouchers }}</view>
     </navigator>
   </view>
   <!-- END OF SHORT CUTS -->
 
   <!-- LANGUAGE BUTTON -->
   <view class="nunito_700 uppercase language-setting selected-zh{{ language }}">
-    <button class="langauge" bindtap="switchLanguage" data-language="en">{{ _t.en }}en</button>
-    <button class="langauge" bindtap="switchLanguage" data-language="zh-CN">{{ _t.zh }}zh</button>
+    <button class="langauge" bindtap="switchLanguage" data-language="en">{{ _t.en }}</button>
+    <button class="langauge" bindtap="switchLanguage" data-language="zh-CN">{{ _t.zh }}</button>
   </view>
   <!-- END OF LANGUAGE BUTTON -->
 </view>

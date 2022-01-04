@@ -1,6 +1,14 @@
 export const languageMap_en = {
   // A
   account: "Account",
+  account_ranking: {
+    chummy_villager: "chummy villager",
+    curious_wanderer: "curious wanderer",
+    humble_resident: "humble resident",
+    lord_furnace: "lord furnace",
+    tourist: "tourist",
+    ziko_secret_circle: "ziko secret circle",
+},
   address: "Address",
   address_type: { },
   add_new_address: "Add new address",
@@ -151,7 +159,6 @@ export const languageMap_en = {
   // T
   total: "Total",
   total_units_available: "total units available",
-  tourist: "tourist",
   tracking_number: "Tracking number",
   type: "Type",
 
@@ -180,6 +187,14 @@ export const languageMap_en = {
 export const languageMap_zh_CN = {
   // A
   account: "个人中心",
+  account_ranking: {
+    chummy_villager: "chummy villager",
+    curious_wanderer: "curious wanderer",
+    humble_resident: "humble resident",
+    lord_furnace: "lord furnace",
+    tourist: "tourist",
+    ziko_secret_circle: "ziko secret circle",
+},
   address: "地址",
   address_type: { },
   add_new_address: "添加新地址",
@@ -330,7 +345,6 @@ export const languageMap_zh_CN = {
   // T
   total: "Total",
   total_units_available: "total units available",
-  tourist: "tourist",
   tracking_number: "Tracking number",
   type: "Type",
 
