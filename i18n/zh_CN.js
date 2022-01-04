@@ -16,44 +16,44 @@ const languageMap = {
   // C
   cart: "购物车",
   checkout_message: "如果您在购买后需要更改交货日期或其他信息，请联系客服",
-  choose_delivery_date: "Choose delivery date",
-  chosen_delivery_date: "chosen_delivery_date",
-  city: "city",
-  claims: "claims",
-  comment: "comment",
-  comming_soon: "comming_soon",
+  choose_delivery_date:"Choose delivery date",
+  chosen_delivery_date:"Chosen delivery date",
+  city:"City",
+  claims:"Claims",
+  comment:"Comment",
+  comming_soon:"comming soon...",
   community: {
-    all_communities: "all_communities",
-    baby: "baby",
-    cellar: "cellar",
-    garden: "garden",
-    kitchen: "kitchen",
-    pet: "pet",
+    all_communities:"All communities",
+    baby:"Baby",
+    cellar:"Cellar",
+    garden:"Garden",
+    kitchen:"Kitchen",
+    pet:"Pet",
   },
-  contact: "contact",
-  contact_customer_hero: "contact_customer_hero",
-  contact_label: "contact_label",
-  contact_info: "contact_info",
+  contact:"Contact",
+  contact_customer_hero:"Contact our customer hero!",
+  contact_label:"Contact",
+  contact_info:"Contact information",
   contains_items: {
-    fst: "contain",
+    fst: "Contain",
     snd: " items:"
   },
 
   // D
-  delete: "",
-  delivery_company: "",
-  delivery_fee: "",
+  delete: "Delete",
+  delivery_company: "Delivery company",
+  delivery_fee: "Delivery fee",
 
   // E
-  edit_my_address: "",
-  edit_my_info: "",
-  empty: "",
-  en: "",
-  explore: "",
+  edit_my_address: "Edit my addresses",
+  edit_my_info: "Edit my information",
+  empty: "empty",
+  en: "EN",
+  explore: "explore",
 
   // F
-  fapiao : "",
-  fapiao_info : "",
+  fapiao : "Fapiao",
+  fapiao_info : "Fapiao information",
   fidelity_points: "Fidelity points",
 
   // G
@@ -70,40 +70,40 @@ const languageMap = {
   // J
   // K
   // L
-  list: "",
+  list: "list",
   left_unit: " left",
   login: "Mobile login",
   lottery: "",
-  lottery_gift: "",
+  lottery_gift: "Lottery gift:",
   lottery_tickets: "Lottery tickets",
 
   // M
-  my_favorite_recipes: "",
+  my_favorite_recipes: "My favorite recipes",
 
   // N
-  name: "",
+  name: "Name",
 
   // O
-  offers: "",
+  offers: " offers",
   only_left: {
     fst: "Only ",
     snd: " left!"
   },
   orders: "Orders",
   orders_unit: " Orders",
-  order_no: "",
+  order_no: "Order no",
   our_selected_packs: {
     fst: "our",
     snd: " selected packs"
   },
 
   // P
-  pay: "",
-  phone_no: "",
+  pay: "Pay",
+  phone_no: "Phone no",
   pet_type: {},
   pet_size: {},
-  problem_with_order: "",
-  products: "",
+  problem_with_order: "Is there a problem with your order?",
+  products: "products",
   products_available: {
     fst: "",
     snd: " available"
@@ -115,41 +115,42 @@ const languageMap = {
 
   // Q
   // R
-  receipes: "",
+  receipes: "receipes",
   related_receipes: {
     fst: "related",
     snd: " receipes"
   },
-  remaining_time: "",
+  remaining_time: "remaining time",
 
   // S
-  save: "",
-  select: "",
+  save: "Save",
+  select: "Select",
   single_items: {
     fst: "single",
     snd: " items"
   },
-  size: "",
+  size: "Size",
 
   // T
-  total: "",
-  total_units_available: "",
-  tourist: "",
-  tracking_number: "",
-  type: "",
+  total: "Total",
+  total_units_available: "total units available",
+  tourist: "tourist",
+  tracking_number: "Tracking number",
+  type: "Type",
 
   // U
-  use_voucher: "",
+  use_voucher: "Use Voucher",
+
   // V
   viewers: " Viewers",
-  vouchers: "",
+  vouchers: "Vouchers",
 
   // W
   // X
   // Y
   // Z
-  zh: "",
-  zipcode: "",
+  zh: "ZH",
+  zipcode: "Zipcode",
 }
 
 exports.languageMap = languageMap;

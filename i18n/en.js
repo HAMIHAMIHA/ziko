@@ -4,7 +4,7 @@ const languageMap = {
   address: "Address",
   address_type: { },
   add_new_address: "Add new address",
-  add_pet: "App pet",
+  add_pet: "Add pet",
   area: "Area",
   available: {
     fst: "",
