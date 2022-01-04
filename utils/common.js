@@ -1,6 +1,6 @@
 const api = require('./api.js'); // 本地存储
 const db = require('./db.config.js'); // 本地存储
-const i18n = require('./translate.js'); // 翻译功能
+const i18n = require('./internationalize/translate.js'); // 翻译功能
 
 // Move to cursor to next input
 const changeFocus = function(page, e) {

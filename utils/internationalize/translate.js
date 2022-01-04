@@ -1,4 +1,5 @@
-const db = require('db.config.js');
+const db = require('../db.config.js');
+const i18n = require('./internationalize.js');
 
 const checkLanguage = () => {
   // Check if language in cache
@@ -24,9 +25,7 @@ const changeLanguage = (language) => {
 
 // get translation file
 const translate = () => {
-  // TODO change langaue map
-  console.log(db.get('language'));
-  return require('../i18n/' + db.get('language') + '.js').languageMap;
+  return i18n[`languageMap_${db.get('language')}`];
 }
 
 module.exports = {
