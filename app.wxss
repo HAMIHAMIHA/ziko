@@ -240,7 +240,8 @@ image {
   padding: 4rpx;
   font-size: 20rpx;
   color: transparent;
-  border: 2rpx solid #EBEBEB;
+  /* border: 2rpx solid #EBEBEB; */
+  border: 2rpx solid #545764;
   border-radius: 4rpx;
 }
 

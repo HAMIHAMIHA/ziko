@@ -1,13 +1,20 @@
 <view class="container container-grey container-btn-bottom address-list">
-  <view class="white-box details_container">
-    <view class="detail" wx:for="{{ address }}" wx:key="*this">
+  <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
+    <view
+      class="detail{{ select_index == index ? ' select' : '' }}"
+      wx:for="{{ addresses }}"
+      wx:for-item="address"
+      wx:key="_id"
+      bindtap="selectAddress"
+      data-index="{{ index }}"
+    >
       <view class="address_container">
         <view class="nunito_700 address-name">{{ _t.address + ' ' + count }} 1</view>
-        <view class="address-detail">水电路1200弄3号401室</view>
-        <view class="contact-detail">Contact name</view>
-        <view class="contact-detail">132156519165</view>
+        <view class="address-detail">{{ address.address }}</view>
+        <view class="contact-detail">{{ address.contact }}</view>
+        <view class="contact-detail">{{ address.phone }}</view>
       </view>
-      <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.address_detail + '?id=' + item.id }}"></navigator>
+      <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.address_detail + '?id=' + address._id }}"></navigator>
     </view>
   </view>
 

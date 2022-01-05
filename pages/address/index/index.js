@@ -3,9 +3,9 @@ const routes = app.routes;
 
 Page({
   data: {
-    address: [
-      {id: 1},
-      {id: 2}
+    addresses: [
+      {_id: 1, address: 'adressdfa akjfhs ajkldfh askjlfh', contact: 'cadgsafvasf', phone: '12345465321456'},
+      {_id: 2, address: 'vadvasfasf akjfhs ajkldfh askjlfh', contact: 'w3erewfcas', phone: '531243523s'}
     ],
     _routes: {
       address_detail: routes.address_detail
@@ -42,4 +42,22 @@ Page({
       }
     })
   },
+
+  selectAddress: function(e) {
+    const self = this;
+
+    // Prevent select triggering if in user address list
+    if (self.options.action != 'select') return;
+
+    let selected = e.currentTarget.dataset.index;
+    self.setData({
+      select_index: selected
+    })
+  },
+
+  select: function() {
+    // 1. change cart address data to selected address
+    // 2. go back to previous (cart) page
+    // 3. [in cart page] update page address display
+  }
 })
