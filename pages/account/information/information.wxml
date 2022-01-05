@@ -54,7 +54,7 @@
 
   <!-- Add Pet Button -->
   <view class="btn-outline_container">
-    <button class="btn-outline nunito_600" hover-class="none" bindtap="">{{ _t.add_pet }}</button>
+    <button class="btn-outline nunito_600" hover-class="none" bindtap="">{{ '+ ' + _t.add_pet }}</button>
   </view>
   <!-- End of Add Pet Button -->
 
