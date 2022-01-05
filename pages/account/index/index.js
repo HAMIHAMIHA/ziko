@@ -3,7 +3,6 @@ const translate = require('../../../utils/internationalize/translate.js'); // ç¿
 
 const updatePageLanguage = page => {
   let i18n = app.globalData.i18n;
-  console.log(i18n);
 
   // Set tabbar translation
   app.setTabbar();
