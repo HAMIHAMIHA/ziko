@@ -195,5 +195,14 @@ Page({
     offers.updateReceipes(this);
   },
 
+  updateTotal: function(e) {
+    const self = this;
+    console.log('update');
+
+    self.setData({
+      total: e.detail.total
+    })
+  },
+
   onShareAppMessage: function (res) {}
 })

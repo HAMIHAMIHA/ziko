@@ -4,7 +4,7 @@ const offers = require('../../../templates/offer/offers.js');
 
 let countdown_timer = [];
 
-const getOffer = function(page, offer_id) {
+const getOfferProducts = function(page, offer_id) {
   // callback -> for each item in product and pack list -> add quantity based on storage cart[order_id]
     // if item in cart offer -> check quantity and availibity -> reduce to min or remove or keep
     // update page data
@@ -172,7 +172,7 @@ Page({
     // Set language
 
     // Get products
-    getOffer(self, self.options.id)
+    getOfferProducts(self, self.options.id);
 
     // Message counts
     let messageIndex = []
@@ -186,6 +186,13 @@ Page({
     countdown_timer = offers._clearCountdown(this, countdown_timer);
   },
 
+  // Hide for v1
+  onReachBottom: function() {
+    // TODO If current tab is on receipe
+    offers.updateReceipes(this);
+  },
+
+  // Product images swiper change
   swiperChange: function(e) {
     const self = this;
     self.setData({
@@ -193,6 +200,7 @@ Page({
     })
   },
 
+  // Switch between reciepe and products
   switchTab: function(e) {
     const self = this;
     // TODO change to show and hide css on switch
@@ -200,14 +208,17 @@ Page({
       "_setting.currentTab": e.currentTarget.dataset.toTab
     })
   },
-  
-  onReachBottom: function() {
-    // TODO If current tab is on receipe
-    offers.updateReceipes(this);
-  },
 
   checkout: function() {
     checkout.checkoutItems(this, false);
+  },
+
+  updateTotal: function(e) {
+    const self = this;
+
+    self.setData({
+      total: e.detail.total
+    })
   },
 
   onShareAppMessage: function (res) {}

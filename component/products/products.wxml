@@ -41,7 +41,13 @@
         <!-- End ofPrice -->
       </view>
     </navigator>
-    <quantity class="flex-start product-quantity" quantity="{{ item.qty }}" community="{{ community }}" bind:changeQty="changeQty" data-idx="{{index}}"></quantity>
+    <quantity
+      class="flex-start product-quantity"
+      quantity="{{ item.qty }}"
+      community="{{ community }}"
+      bind:changeQty="changeQty"
+      data-idx="{{index}}"
+    ></quantity>
   </view>
 
   <!-- Cellar Target Tags -->

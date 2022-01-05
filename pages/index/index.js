@@ -218,6 +218,8 @@ Page({
 
   // Stop slide action at the back when modal is opened
   preventSlide: function() {},
+
+  onShareAppMessage: function (res) {},
 })
 
 /* when need to fetch address

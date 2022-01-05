@@ -50,9 +50,11 @@ export const _getTranslations = (page, community) => {
 // Get offer products
 
 
+// Hide for v1
 // Get offer messages
 
 
+// Hide for v1
 // Get offer receipes
 export const updateReceipes = (page) => {
   // var receipecomp = page.selectComponent("#receipes-component");
