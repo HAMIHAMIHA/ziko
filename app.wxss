@@ -154,13 +154,13 @@ image {
 .btn-outline_container .btn-outline {
   width: unset;
   padding: 28rpx 0;
-  /* background: transparent; */
+  background: transparent;
   /* color: #0D0F18; */
-  background: #3F4250;
   color: var(--ziko-default-);
   font-size: 32rpx;
   text-align: center;
   line-height: 36rpx;
+  /* border: 2rpx solid #0D0F18; */
   border: 2rpx solid #3F4250;
   border-radius: 8rpx;
 }
