@@ -141,12 +141,12 @@ export const offer_data = [{
   startTime: "2021-10-21 14:00",
   endTime: "2021-12-20 19:00"
 }, {
-  id: '4',
+  id: '02',
   community: "cellar",
-  priceRule: "regular",
   lottery: true,
-  specials: true,
+  specials: false,
   started: true,
+  priceRule: "regular",
   startTime: "2021-10-21 14:00",
   endTime: "2021-12-20 19:00"
 }]
