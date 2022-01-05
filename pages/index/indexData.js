@@ -1,4 +1,4 @@
-// TODO waiting for offical image
+// Data for map clickable area
 export const map_filters = [
   {
     name: "kitchen",
@@ -38,6 +38,8 @@ export const map_filters = [
   }
 ]
 
+
+// Class name and icon for top slider filter
 export const list_filtes = [
   {
     class_name: "zikoland",
@@ -141,6 +143,7 @@ export const offer_data = [{
 }, {
   id: '4',
   community: "cellar",
+  priceRule: "regular",
   lottery: true,
   specials: true,
   started: true,

@@ -22,7 +22,7 @@ const getWxUserInfo = (res) => {
       // Update program language map if user exist
         if (res.userInfo.language != db.get('language')) {
         // Change language map if user langauge different from system
-          i18n.changeLanguage(res.userInfo.language);
+          i18n.change(res.userInfo.language);
         } else if (!res.userInfo.langauge) {
         // Update profile language if user exists but language not saved
           common.updateUserInfo({ langauge: db.get('langauge') }, null);

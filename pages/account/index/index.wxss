@@ -151,7 +151,7 @@ button:not([size=mini]).short-cuts__button {
   left: 0;
 }
 
-.language-setting.selected-zh:after {
+.language-setting.selected-zh_CN:after {
   left: 100%;
   transform: translateX(-100%);
 }

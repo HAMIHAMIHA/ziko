@@ -65,9 +65,9 @@
   <!-- END OF SHORT CUTS -->
 
   <!-- LANGUAGE BUTTON -->
-  <view class="nunito_700 uppercase language-setting selected-zh{{ language }}">
+  <view class="nunito_700 uppercase language-setting selected-{{ language }}">
     <button class="langauge" bindtap="switchLanguage" data-language="en">{{ _t.en }}</button>
-    <button class="langauge" bindtap="switchLanguage" data-language="zh-CN">{{ _t.zh }}</button>
+    <button class="langauge" bindtap="switchLanguage" data-language="zh_CN">{{ _t.zh }}</button>
   </view>
   <!-- END OF LANGUAGE BUTTON -->
 </view>

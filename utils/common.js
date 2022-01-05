@@ -18,7 +18,7 @@ const mobileLogin = function(page, code) {
         updateUserInfo({ langauge: db.get('langauge') }, null);
       } else if (res.language != db.get('language')) {
       // Update program language if user language is different from current
-        i18n.changeLanguage(res.language);
+        i18n.change(res.language);
         page.updateTranslation();
       }
     }

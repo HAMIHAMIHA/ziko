@@ -230,7 +230,7 @@ export const languageMap_zh_CN = {
     kitchen:"Kitchen",
     pet:"Pet",
   },
-  contact:"Contact",
+  contact:"联系我们",
   contact_customer_hero:"Contact our customer hero!",
   contact_label:"Contact",
   contact_info:"Contact information",
@@ -248,15 +248,15 @@ export const languageMap_zh_CN = {
 
   // E
   edit_address: "Edit address",
-  edit_my_address: "Edit my addresses",
-  edit_my_info: "Edit my information",
+  edit_my_address: "编辑我的地址",
+  edit_my_info: "编辑我的信息",
   empty: "empty",
-  en: "EN",
+  en: "英文",
   explore: "explore",
 
   // F
   fapiao : "Fapiao",
-  fapiao_info : "Fapiao information",
+  fapiao_info : "发票信息",
   fidelity_points: "Fidelity points",
 
   // G
@@ -372,6 +372,6 @@ export const languageMap_zh_CN = {
   // X
   // Y
   // Z
-  zh: "ZH",
+  zh: "中文",
   zipcode: "Zipcode",
 }
