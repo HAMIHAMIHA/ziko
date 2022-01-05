@@ -18,7 +18,7 @@ button:not([size=mini]).login-btn {
 /* Map Display */
 .map {
   width: 100vw;
-  height: calc(100vh - 132rpx); /* Button outer padding 32rpx * 2 + button height 28rpx + button inner padding 20rpx * 2 */
+  height: 100vh; /* Button outer padding 32rpx * 2 + button height 28rpx + button inner padding 20rpx * 2 */
   box-sizing: border-box;
   background: #272838;
   position: relative;
