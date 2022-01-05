@@ -7,7 +7,7 @@ const routes = app.routes;
 Page({
   data: {
     routes: routes,
-    pageSet: {
+    _setting: {
       community: 'garden',
       swiperIndex: 1,
       units: 'g'
@@ -45,10 +45,10 @@ Page({
     const self = this;
 
     self.setData({
-      // "pageSet.type": 'product',
-      // "pageSet.type": 'packProduct',
-      // "pageSet.type": 'pack',
-      "pageSet.type": options.type,
+      // "_setting.type": 'product',
+      // "_setting.type": 'packProduct',
+      // "_setting.type": 'pack',
+      "_setting.type": options.type,
     })
   },
 
@@ -64,7 +64,7 @@ Page({
     // Set page content translation
 
     // TODO
-    let community = self.data.pageSet.community;
+    let community = self.data._setting.community;
 
     self.setData({
       _t: {
@@ -84,7 +84,7 @@ Page({
   swiperChange: function(e) {
     const self = this;
     self.setData({
-      "pageSet.swiperIndex": (e.detail.current) + 1,
+      "_setting.swiperIndex": (e.detail.current) + 1,
     })
   },
 

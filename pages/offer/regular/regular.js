@@ -13,7 +13,7 @@ const getOffer = function(page, offer_id) {
 
 Page({
   data: {
-    pageSet: {
+    _setting: {
       swiperIndex: 1,
       nextOffer: 'test',
       currentTab: "product",
@@ -189,7 +189,7 @@ Page({
   swiperChange: function(e) {
     const self = this;
     self.setData({
-      "pageSet.swiperIndex": (e.detail.current) + 1,
+      "_setting.swiperIndex": (e.detail.current) + 1,
     })
   },
 
@@ -197,7 +197,7 @@ Page({
     const self = this;
     // TODO change to show and hide css on switch
     self.setData({
-      "pageSet.currentTab": e.currentTarget.dataset.toTab
+      "_setting.currentTab": e.currentTarget.dataset.toTab
     })
   },
   

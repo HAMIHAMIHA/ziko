@@ -1,6 +1,6 @@
 <import src="../../templates/checkout/payButton.wxml" />
 
-<view class="container ziko-offer product {{ 'community-' + pageSet.community }}">
+<view class="container ziko-offer product {{ 'community-' + _setting.community }}">
   <view class="banner_container">
     <!-- Detail Banner -->
     <view class="banner-image_container swiper_container">
@@ -12,7 +12,7 @@
         </block>
       </swiper>
       <view class="gilroy_700 indicator" wx:if="{{ product.banner.length > 1 }}">
-        {{ pageSet.swiperIndex }} / {{ product.banner.length }}
+        {{ _setting.swiperIndex }} / {{ product.banner.length }}
       </view>  
     </view>
     <!-- End of Detail Banner -->
@@ -22,12 +22,12 @@
   <!-- TODO -->
   <view class="flex-between flex-align-start product-info_container">
     <view class="product-info">
-      <view class="gilroy_700 uppercase{{ pageSet.type != 'pack' ? ' gradient-text ziko-' + pageSet.community : '' }} product-info_title">
+      <view class="gilroy_700 uppercase{{ _setting.type != 'pack' ? ' gradient-text ziko-' + _setting.community : '' }} product-info_title">
         title{{ product.title }}
       </view>
       <view class="product-info_detail">
         <!-- Products Detail -->
-        <view class="nunito_300 product-detail_content" wx:if="{{ pageSet.type == 'pack' }}">
+        <view class="nunito_300 product-detail_content" wx:if="{{ _setting.type == 'pack' }}">
           <text>{{ product.weight }}{{ _t.units }}</text>
         </view>
         <view class="nunito_300 product-detail_content" wx:else>
@@ -50,15 +50,15 @@
         <!-- End of Price -->
       </view>
     </view>
-    <block wx:if="{{ (pageSet.type != 'packProduct') }}">
-      <quantity quantity="{{ qty }}" community="{{ pageSet.community }}" bind:changeQty="changeQty"></quantity>
+    <block wx:if="{{ (_setting.type != 'packProduct') }}">
+      <quantity quantity="{{ qty }}" community="{{ _setting.community }}" bind:changeQty="changeQty"></quantity>
     </block>
   </view>
   <!-- quantity component if not type = 'product' and pack = false -->
   <!-- End of Product Info -->
 
   <!-- Product Detail if not type = 'product' (not using pack = false because need for quantity) -->
-  <block wx:if="{{ pageSet.type != 'pack' }}">
+  <block wx:if="{{ _setting.type != 'pack' }}">
     <view class="nunito_300 product-descrtiption">
       <text>{{ product.description }}</text>
     </view>
@@ -82,7 +82,7 @@
                 <image src="/assets/images/productDefault.png" mode="aspectFill"></image>
               </view>
               <view class="product-info">
-                <view class="gilroy_700 ziko-{{ pageSet.community }} gradient-text uppercase product-title">{{ product.name }}pack name</view>
+                <view class="gilroy_700 ziko-{{ _setting.community }} gradient-text uppercase product-title">{{ product.name }}pack name</view>
 
                 <view class="nunito_300 product-detail_container">
                   <text>{{ product.quantity }} x {{ product.weight }}{{ _t.units }}</text>
@@ -123,7 +123,7 @@
   <!-- End of Offer Receipes -->
 
   <!-- Pay Button -->
-  <view wx:if="{{ (pageSet.type != 'packProduct') }}">
+  <view wx:if="{{ (_setting.type != 'packProduct') }}">
     <template is="payment_container" data="{{ minimum: minimum, total: total, original_price: original_price, tickets: tickets, special: '', _t: _t }}"></template>
   </view>
   <!-- End of Pay Button -->

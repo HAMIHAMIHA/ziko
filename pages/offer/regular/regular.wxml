@@ -25,7 +25,7 @@
         </block>
       </swiper>
       <view class="gilroy_700 indicator">
-        {{ pageSet.swiperIndex }} / {{ _offer.banner.length }}
+        {{ _setting.swiperIndex }} / {{ _offer.banner.length }}
       </view>  
     </view>
     <!-- End of Detail Banner -->
@@ -70,29 +70,29 @@
   <!-- Offer Tabbar -->
   <view class="uppercase gilroy_700 flex-center tabbar">
     <view
-      class="tabbar_item{{ pageSet.currentTab == 'product' ? ' selected' : '' }}"
+      class="tabbar_item{{ _setting.currentTab == 'product' ? ' selected' : '' }}"
       bindtap="switchTab"
       data-to-tab="product"
-      animation="{{ pageSet.animate.tab }}"
+      animation="{{ _setting.animate.tab }}"
     >
       {{ _t.products }}
     </view>
     <!-- TEMP hide for v1 -->
     <view
-      class="tabbar_item{{ pageSet.currentTab == 'receipe' ? ' selected' : '' }}"
+      class="tabbar_item{{ _setting.currentTab == 'receipe' ? ' selected' : '' }}"
       bindtap="switchTab"
       data-to-tab="receipe"
-      animation="{{ pageSet.animate.tab }}"
+      animation="{{ _setting.animate.tab }}"
       wx:if="{{ showing }}"
     >
       {{ _t.receipes }}
     </view>
-    <view class="tabbar_highlighter {{ pageSet.currentTab }}" animation="{{ pageSet.animate.highlight }}"></view>
+    <view class="tabbar_highlighter {{ _setting.currentTab }}" animation="{{ _setting.animate.highlight }}"></view>
   </view>
   <!-- End of Offer Tabbar -->
 
   <!-- Products -->
-  <view class="list_container" wx:if="{{ pageSet.currentTab == 'product' }}">
+  <view class="list_container" wx:if="{{ _setting.currentTab == 'product' }}">
     <!-- Offer Product List -->
     <view class="offer-group offer-packs">
       <view class="uppercase title">
@@ -132,7 +132,7 @@
 
           <view class="offer-special_detail">
             <text wx:if="{{special.get == 'reduction'}}">Get {{ special.rate }}% discount rate</text>
-            <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ pageSet.units }} item name for free</text>
+            <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ _setting.units }} item name for free</text>
           </view>
         </view>
       </view>

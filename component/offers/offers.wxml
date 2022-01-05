@@ -1,7 +1,15 @@
 <view class="offers_container">
   <view class="gilroy_700 offers_list">
     <!-- Card for each offer -->
-    <view class="uppercase offer_container" wx:for="{{ offers }}" wx:key="id" bindtap="toOffer" data-started="{{ item.started }}" data-offer-id="{{ item.id }}" data-community="{{ item.community }}" data-price-rule="{{ item.priceRule }}">
+    <view class="uppercase offer_container"
+      wx:for="{{ offers }}"
+      wx:key="id"
+      bindtap="toOffer"
+      data-started="{{ item.started }}"
+      data-offer-id="{{ item.id }}"
+      data-community="{{ item.community }}"
+      data-price-rule="{{ item.priceRule }}"
+    >
       <!-- Banner image of card -->
       <view class="offer-banner">
         <view class="offer-banner_image">

@@ -3,7 +3,7 @@
 
 <view class="container ziko-offer {{ 'community-' + _offer.community }}">
   <!-- Lottery Alert -->
-  <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ pageSet.nextOffer != '' }}">
+  <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ _setting.nextOffer != '' }}">
     <view class="icon icon-flash"></view>
     <view class="icon_text">next lottery in 50 items sold</view>
   </view>
@@ -33,7 +33,7 @@
         </block>
       </swiper>
       <view class="gilroy_700 indicator">
-        {{ pageSet.swiperIndex }} / {{ _offer.banner.length }}
+        {{ _setting.swiperIndex }} / {{ _offer.banner.length }}
       </view>  
     </view>
     <!-- End of Detail Banner -->
@@ -89,19 +89,19 @@
 
   <!-- Offer Tabbar -->
   <view class="uppercase gilroy_700 flex-center tabbar">
-    <view class="tabbar_item{{ pageSet.currentTab == 'product' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="product" animation="{{ pageSet.animate.tab }}">
+    <view class="tabbar_item{{ _setting.currentTab == 'product' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="product" animation="{{ _setting.animate.tab }}">
       products
     </view>
-    <view class="tabbar_item{{ pageSet.currentTab == 'receipe' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="receipe" animation="{{ pageSet.animate.tab }}">
+    <view class="tabbar_item{{ _setting.currentTab == 'receipe' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="receipe" animation="{{ _setting.animate.tab }}">
       Receipes
     </view>
-    <view class="tabbar_highlighter {{ pageSet.currentTab }}" animation="{{ pageSet.animate.highlight }}"></view>
+    <view class="tabbar_highlighter {{ _setting.currentTab }}" animation="{{ _setting.animate.highlight }}"></view>
   </view>
   <!-- End of Offer Tabbar -->
 
 
   <!-- Products -->
-  <view class="list_container" wx:if="{{ pageSet.currentTab == 'product' }}">
+  <view class="list_container" wx:if="{{ _setting.currentTab == 'product' }}">
     <!-- Offer Product List -->
     <view class="offer-group offer-packs">
       <view class="uppercase title">
@@ -109,7 +109,7 @@
         <text class="gilroy_700"> selected packs</text>
       </view>
 
-      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ pageSet.units }}" community="{{ _offer.community }}"></products>
+      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _setting.units }}" community="{{ _offer.community }}"></products>
     </view>
 
     <view class="offer-group offer-singles">
@@ -118,7 +118,7 @@
         <text class="gilroy_700"> items</text>
       </view>
 
-      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ pageSet.units }}" community="{{ _offer.community }}"></products>
+      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ _setting.units }}" community="{{ _offer.community }}"></products>
     </view>
     <!-- End of Offer Product List -->
 
@@ -140,7 +140,7 @@
 
           <view class="offer-special_detail">
             <text wx:if="{{special.get == 'reduction'}}">Get {{ special.rate }}% discount rate</text>
-            <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ pageSet.units }} item name for free</text>
+            <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ _setting.units }} item name for free</text>
           </view>
         </view>
       </view>
