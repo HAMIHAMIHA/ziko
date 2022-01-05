@@ -28,6 +28,9 @@ button:not([size=mini]).login-btn {
   position: absolute;
   left: calc(var(--content-x-) / 375 * 100vw);
   top: calc(var(--content-y-) / 375 * 100vw);
+  /* TEMP for debuging */
+  /* background: red;
+  opacity: 0.5; */
   clip-path: var(--shape-);
 }
 
