@@ -1,4 +1,5 @@
 .container {
+  height: 100vh;
   position: relative;
 }
 
@@ -17,11 +18,18 @@ button:not([size=mini]).login-btn {
 /* Map Display */
 .map {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 132rpx); /* Button outer padding 32rpx * 2 + button height 28rpx + button inner padding 20rpx * 2 */
   box-sizing: border-box;
-  padding-bottom: calc(132rpx); /* Button outer padding 32rpx * 2 + button height 28rpx + button inner padding 20rpx * 2 */
   background: #272838;
   position: relative;
+  overflow: hidden;
+}
+
+.map .map-container {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .map .map-area {
@@ -31,8 +39,8 @@ button:not([size=mini]).login-btn {
   left: calc(var(--content-x-) / 375 * 100vw);
   top: calc(var(--content-y-) / 375 * 100vw);
   /* TEMP for debuging */
-  /* background: red;
-  opacity: 0.5; */
+  background: red;
+  opacity: 0.5;
   clip-path: var(--shape-);
 }
 
