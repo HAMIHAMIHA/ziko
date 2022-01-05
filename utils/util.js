@@ -3,16 +3,6 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
-// Output date to yyyy.mm.dd format
-const formatDate = dateLong => {
-  const date = new Date(dateLong);
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1
-  const day = date.getDate();
-
-  return [year, month, day].map(formatNumber).join('.')
-}
-
 // Output time to hh:mm format
 const formatTime = dateLong => {
   const date = new Date(dateLong)
@@ -26,6 +16,16 @@ const formatTime = dateLong => {
 module.exports = {
   findIndex: (list, find, key) => {
     return list.findIndex(item => item[key] == find);
+  },
+
+  formatDate: dateLong => {
+    // Output date to yyyy-mm-dd format
+    const date = new Date(dateLong);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1
+    const day = date.getDate();
+  
+    return [year, month, day].map(formatNumber).join('-')
   },
 
   formatTimer: dateLong => {

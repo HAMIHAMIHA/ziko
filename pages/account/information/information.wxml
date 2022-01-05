@@ -13,7 +13,7 @@
   <!-- End of Profile Input Group -->
 
   <!-- Pets Input Group -->
-  <view class="white-box inputs_container pet-info" wx:for="p" wx:for-item="pet" wx:key="index">
+  <view class="white-box inputs_container pet-info" wx:for="{{ pets }}" wx:for-item="pet" wx:key="index">
     <view class="nunito_700 header">{{ _t.pet + ' ' + index }}</view>
     <view class="icon icon-trash btn-icon"></view>
 
@@ -29,9 +29,16 @@
     <view class="detail">
       <text class="detail_label">{{ _t.type }}</text>
       <view class="detail_input">
-        <picker class="input" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_type }}">
+        <picker
+          class="input"
+          value="{{ _picker_select.type }}"
+          range="{{ _picker.pet_type }}"
+          bindchange="petPickerChange"
+          data-pet_index="{{ index }}"
+          data-key="type"
+        >
           <view class="flex-between">
-            <text>{{  _t.pet_type[pet.pet_type] }}Home</text>
+            <text>{{  _t.pet_type[pet.type] }}</text>
             <text class="icon icon-arrow"></text>
           </view>
         </picker>
@@ -41,9 +48,16 @@
     <view class="detail">
       <text class="detail_label">{{ _t.size }}</text>
       <view class="detail_input">
-        <picker class="input" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.pet_size }}">
+        <picker 
+          class="input"
+          value="{{ _picker_select.pet_size }}"
+          range="{{ _picker.pet_size }}"
+          bindchange="petPickerChange"
+          data-pet_index="{{ index }}"
+          data-key="size"
+        >
           <view class="flex-between">
-            <text>{{ _t.pet_size[pet.size] }}Home</text>
+            <text>{{ _t.pet_size[pet.size] }}</text>
             <text class="icon icon-arrow"></text>
           </view>
         </picker>
