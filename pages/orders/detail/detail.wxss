@@ -9,7 +9,8 @@
 
 .product_container {
   padding: 20rpx 0;
-  border-color: #E6E9EE;
+  /* border-color: #E6E9EE; */
+  border-color: #424756;
 }
 
 .product-info {

@@ -234,6 +234,7 @@ image {
 
 .fapiao .checkbox {
   padding-left: 38rpx;
+  border-bottom: 2rpx solid #252831;
 }
 
 .fapiao .icon {
@@ -666,6 +667,7 @@ button:not([size=mini]).float-contact_container {
 }
 
 .product_container:last-child {
+  padding-bottom: 50rpx;
   border-bottom: 0;
 }
 
