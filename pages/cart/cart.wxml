@@ -90,13 +90,12 @@
     <view class="detail address">
       <text class="detail_label">{{ _t.address }}</text>
       <view class="detail_input">
-        <!-- TODO navigate to address list -->
-        <view class="input" bindtap="chooseAddress">
+        <navigator class="input" hover-class="none" url="{{ _routes.address + '?action=select' }}">
           <view class="flex-between">
             <text>{{ offer.address.type }}Home</text>
             <text class="icon icon-arrow"></text>
           </view>
-        </view>
+        </navigator>
         <text class="detail_note">{{ offer.address.address }}水电路1200弄3号401室</text>
       </view>
     </view>

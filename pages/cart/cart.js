@@ -99,6 +99,10 @@ Page({
         total: i18n.total,
         units: i18n.units[community],
         use_voucher: i18n.use_voucher,
+      },
+
+      _routes: {
+        address: app.routes.address
       }
     })
   },

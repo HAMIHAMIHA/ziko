@@ -32,7 +32,7 @@ export const languageMap_en = {
   city:"City",
   claims:"Claims",
   comment:"Comment",
-  comming_soon:"comming soon...",
+  coming_soon:"coming soon...",
   community: {
     all_communities:"All communities",
     baby:"Baby",
@@ -221,7 +221,7 @@ export const languageMap_zh_CN = {
   city:"City",
   claims:"Claims",
   comment:"Comment",
-  comming_soon:"comming soon...",
+  coming_soon:"coming soon...",
   community: {
     all_communities:"All communities",
     baby:"Baby",

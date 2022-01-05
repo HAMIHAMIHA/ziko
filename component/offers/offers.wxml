@@ -87,7 +87,7 @@
 
         <!-- Display for offers waiting -->
         <view class="offer-detail offer-waiting" wx:else>
-          <view class=" offer-detail_content coming-soon">{{ _t.comming_soon }}</view>
+          <view class=" offer-detail_content coming-soon">{{ _t.coming_soon }}</view>
 
           <!-- Offer Time -->
           <view class="flex-between offer-detail_content offer-datetime">

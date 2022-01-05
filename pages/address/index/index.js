@@ -36,7 +36,10 @@ Page({
 
     // Set page Data
     self.setData({
-      user: user
+      user: user,
+      _setting: {
+        selecting: self.options.action == 'select'
+      }
     })
   },
 })

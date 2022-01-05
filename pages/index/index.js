@@ -136,7 +136,7 @@ Page({
     self.setData({
       _t: {
         all: i18n.all,
-        comming_soon: i18n.comming_soon,
+        coming_soon: i18n.coming_soon,
         delivery: i18n.delivery,
         empty: i18n.empty,
         explore: i18n.explore,
