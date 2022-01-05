@@ -45,7 +45,7 @@
 }
 
 .product_container .product-price {
-  color: #000000;
+  /* color: #000000; */
   font-size: 28rpx;
   line-height: 38rpx;
 }

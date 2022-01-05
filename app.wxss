@@ -177,6 +177,8 @@ image {
 .contact-box .contact-button {
   width: fit-content;
   padding: 26rpx 48rpx;
+  background: #3F4250;
+  color: var(--ziko-default-);
   font-size: 28rpx;
   line-height: 34rpx;
 }
@@ -242,8 +244,10 @@ image {
 
 .fapiao .checked .icon {
   padding: 6rpx;
-  background: #1890FF;
-  color: #FFFFFF;
+  background: var(--ziko-default-);
+  color: #252831;
+  /* background: #1890FF; */
+  /* color: #FFFFFF; */
   border: 0;
 }
 

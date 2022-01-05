@@ -27,7 +27,7 @@
               <!-- End of Single Products Detail -->
 
               <!-- Available Amount Left -->
-              <view class="font_red product-available">
+              <view class="-font_red product-available">
                 <text wx:if="{{ product.available == 0 }}">{{ _t.products_left.fst + product.available + _t.products_left.snd }}</text>
                 <text wx:elif="{{ product.available >= 100 }}">{{ _t.available.fst + product.available + _t.available.snd }}</text>
                 <text wx:else>{{ _t.only_left.fst + product.available + _t.only_left.snd }}</text>
@@ -35,7 +35,7 @@
               <!-- End of Available Amount Left -->
             </view>
             <!-- Price -->
-            <view class="nunito_600 font_red product-price_container">
+            <view class="nunito_600 -font_red product-price_container">
               <text class="product-price">¥{{ product.price }}</text>
             </view>
             <!-- End of Price -->
