@@ -4,6 +4,7 @@ const app = getApp();
 
 Page({
   data: {
+    delivery_date: '2022-01-13',
     cart: {
       products: [{
         name: "product A",
@@ -44,25 +45,7 @@ Page({
         quantity: 2,
         weight: 200,
         price: 500
-      }, {
-        id: 2,
-        available: 190,
-        type: "pack",
-        products: [{
-          name: "product A",
-          quantity: 2,
-          weight: 200
-        }, {
-          name: "product B",
-          quantity: 1,
-          weight: 400
-        }, {
-          name: "product C",
-          quantity: 2,
-          weight: 200
-        }],
-        price: 500
-      }]
+      }],
     }
   },
 
@@ -104,6 +87,29 @@ Page({
       _routes: {
         address: app.routes.address
       }
+    })
+  },
+
+  // Change picker result
+  bindPickerChange: function(e) {
+    const self = this;
+
+    let changing_key = e.currentTarget.dataset.key;
+    let new_value = e.detail.value;
+
+    self.setData({
+      [changing_key]: new_value
+    })
+  },
+
+  // Change checkmark status 
+  toggleCheck: function(e) {
+    const self = this;
+
+    let changing_key = e.currentTarget.dataset.key;
+
+    self.setData({
+      [changing_key]: !self.data[changing_key]
     })
   },
 

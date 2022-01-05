@@ -57,9 +57,19 @@
     </view>
     <view class="detail">
       <text class="detail_label">{{ _t.choose_delivery_date }}</text>
-      <picker class="nunito_600 detail_result" bindchange="bindPickerChange" value="{{ index }}" range="{{ item.options }}">
+      <!-- start="{{ delivery_start }}"
+        end="{{ delivery_end }}" -->
+      <picker
+        class="nunito_600 detail_result"
+        value="{{ delivery_date }}"
+        mode="date"
+        start="{{ '2022-01-13' }}"
+        end="{{ '2022-01-17' }}"
+        bindchange="bindPickerChange"
+        data-key="delivery_date"
+      >
         <view class="picker">
-          <text>{{ item.options[index] }}2020-11-10</text>
+          <text>{{ delivery_date }}</text>
           <text class="icon icon-arrow"></text>
         </view>
       </picker>
@@ -93,7 +103,7 @@
         <navigator class="input" hover-class="none" url="{{ _routes.address + '?action=select' }}">
           <view class="flex-between">
             <text>{{ offer.address.type }}Home</text>
-            <text class="icon icon-arrow"></text>
+            <text class="icon icon-arrow-right"></text>
           </view>
         </navigator>
         <text class="detail_note">{{ offer.address.address }}水电路1200弄3号401室</text>
@@ -111,7 +121,7 @@
     </view>
   </view>
 
-  <view class="white-box details_container inputs_container" bindtap="toggleCheck">
+  <view class="white-box details_container inputs_container" bindtap="toggleCheck" data-key="fapiao">
     <view class="detail checkbox-container fapiao">
       <text class="detail_label">{{ _t.fapiao }}</text>
       <view class="flex-between detail_input">
