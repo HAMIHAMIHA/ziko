@@ -17,7 +17,9 @@ button:not([size=mini]).login-btn {
 /* Map Display */
 .map {
   width: 100vw;
-  padding-bottom: calc(132rpx + var(--env-)); /* TODO padding for button 16px * 2 + button height 34px */
+  height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: calc(132rpx); /* Button outer padding 32rpx * 2 + button height 28rpx + button inner padding 20rpx * 2 */
   background: #272838;
   position: relative;
 }
@@ -92,7 +94,7 @@ button:not([size=mini]).login-btn {
 }
 
 .modal .close-modal {
-  margin: 30rpx 34rpx 0 0;
+  padding: 30rpx 34rpx;
   display: flex;
   position: absolute;
   top: 0;
@@ -183,7 +185,7 @@ button:not([size=mini]).login-btn {
 /* Bottom Switch Button */
 .switcher_container {
   width: 100vw;
-  padding-bottom: calc(32rpx + var(--env-));
+  padding-bottom: 32rpx;
   display: flex;
   position: absolute;
   bottom: 0;

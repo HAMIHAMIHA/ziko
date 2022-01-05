@@ -1,8 +1,8 @@
 <view class="container">
   <!-- Map View -->
   <view class="map" wx:if="{{ map }}">
-    <image src="/assets/images/map.png" mode="widthFix"></image>
-    <view class="map-areas">
+    <image src="/assets/images/map.png" mode="aspectFill"></image>
+    <!-- <view class="map-areas">
       <block wx:for="{{ _filters.map }}" wx:key="index" wx:for-item="filter">
         <view 
           class="map-area"
@@ -12,7 +12,7 @@
           data-filter-group="{{ filter.name }}"
         ></view>
       </block>
-    </view>
+    </view> -->
   </view>
   <!-- End of Map View -->
 
