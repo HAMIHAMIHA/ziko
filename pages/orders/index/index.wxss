@@ -114,7 +114,7 @@
 }
 
 .order-info .order-status {
-  padding: 4rpx 24rpx;
+  padding: 4rpx 12rpx;
   background: #FF8718; /* TEMP */
   color: #FFE9DD; /* TEMP */
   font-size: 20rpx;

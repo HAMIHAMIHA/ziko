@@ -2,6 +2,11 @@ const { mobileLogin } = require("../../../utils/common");
 
 const app = getApp();
 
+const pickers = {
+  order_status: ['all', 'delivered', 'on_the_way', 'prepared', 'delayed', 'refund'],
+  community: ['all_communities', 'baby', 'cellar', 'garden', 'kitchen', 'pet']
+}
+
 Page({
   data: {
     _routes: {
@@ -19,6 +24,13 @@ Page({
       title: i18n.my_orders
     })
 
+    // Format picker values based on langauge
+    let communities = [];
+    for (var community in pickers.community) {
+      let community_variable = pickers.community[community];
+      communities.push(i18n.community[community_variable]);
+    }
+
     // Set page translation
     self.setData({
       _t: {
@@ -29,6 +41,10 @@ Page({
         lottery_gift: i18n.lottery_gift,
         need_login: i18n.need_login,
         order_status: i18n.order_status,
+      },
+      _pickers: {
+        communities: communities,
+        order_status: pickers.order_status,
       }
     })
 

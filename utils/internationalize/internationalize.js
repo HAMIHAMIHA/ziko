@@ -115,9 +115,13 @@ export const languageMap_en = {
   orders_unit: " Orders",
   order_no: "Order no",
   order_status: {
+    all: "All",
+    delayed: "Delayed",
+    delivered: "Delivered",
     on_the_way: "On the way",
     paid: "Paid",
     prepared: "Prepared",
+    refund: "Refund"
   },
   our_selected_packs: {
     fst: "our",
@@ -314,9 +318,13 @@ export const languageMap_zh_CN = {
   orders_unit: " Orders",
   order_no: "Order no",
   order_status: {
+    all: "All",
+    delayed: "Delayed",
+    delivered: "Delivered",
     on_the_way: "On the way",
     paid: "Paid",
     prepared: "Prepared",
+    refund: "Refund"
   },
   our_selected_packs: {
     fst: "our",
