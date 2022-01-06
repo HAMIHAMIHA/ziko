@@ -154,7 +154,7 @@ Page({
         list: index_data.list_filtes,
         map: index_data.map_filters
       },
-      _user: app.db.get('userInfo').user
+      user: app.db.get('userInfo').user
     })
   },
 
@@ -187,6 +187,7 @@ Page({
   switchType: function(e) {
     const self = this;
     self.setData({
+      filter_group: '',
       map: (e.currentTarget.dataset.type == 'map'),
     })
 

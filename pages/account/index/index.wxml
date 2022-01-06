@@ -3,15 +3,14 @@
   <view class="user-info__container" wx:if="{{ !user }}">
     <view class="user-info__avatar">
       <view class="avatar-container">
-        <!-- <image class="avatar-image" src="{{ _folder.user_avatar + user.image.uri }}"></image> -->
         <text class="avatar-image icon icon-ziko"></text>
         <view class="gilroy_900 uppercase avatar-label">
-          <text class="avatar-label__text">{{ _t.account_ranking[tourist] }}</text>
+          <text class="avatar-label__text">{{ _t.account_ranking.tourist }}</text>
           <image class="avatar-label__background" src="/assets/images/avatarLabel.png" mode="scaleToFill"></image>
         </view>
       </view>
     </view>
-    <button class="gilroy_700 uppercase user-info__login" open-type="getPhoneNumber">{{ _t.login }}<!-- 手机号一键登录 --></button>
+    <button class="gilroy_700 uppercase user-info__login" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">{{ _t.login }}</button>
   </view>
   <!-- END OF LOGIN BUTTON -->
 

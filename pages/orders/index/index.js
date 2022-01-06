@@ -1,3 +1,5 @@
+const { mobileLogin } = require("../../../utils/common");
+
 const app = getApp();
 
 Page({
@@ -32,12 +34,15 @@ Page({
 
     // Get user info
     let user = app.db.get('userInfo');
-    if (!user) {
-      self.setData({
-        need_login: true
-      })
-      return;
-    }
+    self.setData({
+      user: app.db.get('userInfo')
+    })
+  },
+
+  // Mobile login
+  getPhoneNumber: function(e) {
+    mobileLogin(this, e.detail.code);
+    // TODO api to get user phone -> user name + code + openid
   },
 
   onTabItemTap: function(e) {
