@@ -52,10 +52,24 @@ Page({
     })
 
     // TODO get user info
-    let user = app.db.get('userInfo').user;
+    let user = app.db.get('userInfo').user; // TEMP
+
+    // Get pet picker locations
+    let _picker_select = [];
+    for (var i in user.pets) {
+      let type = pet_pickers.type.indexOf(user.pets[i].type);
+      let size = pet_pickers.size.indexOf(user.pets[i].size);
+
+      _picker_select.push({
+        type: `${type}`,
+        size: `${size}`
+      })
+    }
+
     self.setData({
       name: user.name,
-      pets: user.pets
+      pets: user.pets,
+      _picker_select: _picker_select
     })
   },
 
