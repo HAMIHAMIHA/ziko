@@ -44,7 +44,7 @@ export const list_filtes = [
   {
     class_name: "zikoland",
     filter_group: "",
-    icon: "ziko_right"
+    icon: "ziko_sides"
   }, {
     class_name: "ziko-kitchen gradient-text",
     filter_group: "kitchen",
@@ -61,6 +61,10 @@ export const list_filtes = [
     class_name: "ziko-pet gradient-text",
     filter_group: "pet",
     icon: "ziko-pet_sides"
+  }, {
+    class_name: "ziko-baby gradient-text",
+    filter_group: "baby",
+    icon: "ziko-baby_sides"
   }
 ]
 
