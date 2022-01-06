@@ -10,7 +10,10 @@ export const languageMap_en = {
     ziko_secret_circle: "ziko secret circle",
 },
   address: "Address",
-  address_type: { },
+  address_type: {
+    home: "Home",
+    work: "Work"
+  },
   addresses: "Addresses",
   add_address: "添加地址",
   add_new_address: "Add new address",
@@ -206,7 +209,10 @@ export const languageMap_zh_CN = {
     ziko_secret_circle: "ziko secret circle",
 },
   address: "地址",
-  address_type: { },
+  address_type: {
+    home: "家",
+    work: "工作"
+  },
   addresses: "Addresses",
   add_address: "添加地址",
   add_new_address: "添加新地址",

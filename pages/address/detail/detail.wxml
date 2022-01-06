@@ -1,17 +1,20 @@
 <view class="container container-grey container-btn-bottom address-detail">
   <!-- Address Form -->
   <view class="white-box address_container">
-    <view class="nunito_700 header">{{ _t.address + count }}</view>
+    <view class="nunito_700 header">{{ _t.address + ' ' + count }}</view>
 
     <view class="details_container inputs_container">
       <view class="detail">
         <view class="detail_label">{{ _t.type }}</view>
         <view class="detail_input">
-          <picker class="input" bindchange="bindPickerChange" value="{{ index }}" range="{{ _picker.address_type }}">
-            <view class="flex-between">
-              <text>{{ _t.address_type[address.type] }}</text>
-              <text class="icon icon-arrow"></text>
-            </view>
+          <picker
+            class="input picker"
+            range="{{ _picker.address_type }}"
+            value="{{ _picker_selected }}"
+            bindchange="bindPickerChange"
+          >
+            <view class="picker_text">{{ _t.address_type[address.type] }}</view>
+            <text class="icon icon-arrow"></text>
           </picker>
         </view>
       </view>

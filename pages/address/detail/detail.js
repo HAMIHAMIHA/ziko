@@ -2,6 +2,8 @@ const { navigateBack } = require("../../../utils/common");
 
 const app = getApp();
 
+const address_type = ['home', 'work'];
+
 // create data to model in db
 const generateUserData = (action) => {
   let data = {};
@@ -35,6 +37,14 @@ Page({
       title: self.options.id ? i18n.edit_address : i18n.add_address
     })
 
+    // Format picker values based on langauge
+    let address_picker = [];
+    for (var type in address_type) {
+      let type_variable = address_type[type];
+      console.log(i18n.address_type[type_variable]);
+      address_picker.push(i18n.address_type[type_variable]);
+    }
+
     // Set page translation
     self.setData({
       _t: {
@@ -48,24 +58,45 @@ Page({
         save: i18n.save,
         type: i18n.type,
         zipcode: i18n.zipcode,
-      }
+      },
+
+      // Picker formated for selector
+      _picker: {
+        address_type: address_picker
+      },
+
+      _picker_selected: ''
     })
 
     // TEMP
     if (self.options.id) {
       self.setData({
-        formData: {
+        address: {
           name: "Address 1",
-          type: 'Home',
+          type: 'home',
           city: 'Shanghai',
           area: 'Xuhui',
           zipcode: '200000',
           address: '水电路1200弄3号401室',
           phone: '13111111111',
           comment: 'Here is a long comment about the adress'
-        }
+        },
+
+        _picker_selected: '0'
       })
     }
+  },
+
+  // Change picker result
+  bindPickerChange: function(e) {
+    const self = this;
+
+    let new_index = e.detail.value;
+
+    self.setData({
+      'address.type': address_type[new_index],
+      _picker_selected: new_index,
+    })
   },
 
   updateAddress: function(e) {
@@ -74,7 +105,6 @@ Page({
     let action = e.currentTarget.dataset.action;
 
     if (action == 'delete' && !self.options.id) {
-      console.log('new back');
       navigateBack(app.routes.address, false);
       return;
     }
