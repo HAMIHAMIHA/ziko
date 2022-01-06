@@ -155,7 +155,11 @@ Page({
     const callback = {
       success: res => {
         // TEMP
-        app.db.set('userInfo', {user: data})
+        let user = app.db.get('userInfo').user;
+        user.name = data.name;
+        user.pets = data.pets
+
+        app.db.set('userInfo', {user: user})
 
         // TODO update storage
         navigateBack(app.routes.account, true);
