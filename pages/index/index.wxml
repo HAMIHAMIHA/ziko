@@ -57,7 +57,7 @@
     <view class="modal-backdrop" bindtap="closeMapModal"></view>
     <view class="modal-contents" wx:if="{{ map && filter_group }}">
       <view class="modal-card">
-        <view class="gilroy_700 uppercase h1">{{ _t[filter_group] + _t.offers }}</view>
+        <view class="gilroy_700 uppercase h1">{{ _t.community[filter_group] + _t.offers }}</view>
         <view class="close-modal" bindtap="closeMapModal"><text class="icon icon-x"></text></view>
         <dateFilter id="map_date_filter" offers="{{ offers }}"></dateFilter>
         <scroll-view class="modal-offers_container" scroll-y="true">

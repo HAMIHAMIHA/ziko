@@ -8,7 +8,7 @@ export const map_filters = [
     yPos: 0,
     shape: "polygon(0 0, 100% 0, 100% 44%, 35% 100%, 0 70%)",
   }, {
-    name: "farm",
+    name: "garden",
     width: 220,
     height: 252,
     xPos: 155,
@@ -29,7 +29,7 @@ export const map_filters = [
     yPos: 370,
     shape: "polygon(0% 46%, 94% 95%, 108% 87%, 100% 11%, 81% 0)",
   }, {
-    name: "pet",
+    name: "baby",
     width: 340,
     height: 191,
     xPos: 0,
@@ -71,85 +71,61 @@ export const list_filtes = [
 // TEMP offer data
 export const offer_data = [{
   id: '01',
+  name: "Octoberfest with a very",
   community: "kitchen",
-  lottery: true,
-  specials: true,
   started: true,
+  orders: "12",
+  viewers: "21",
   startTime: "2021-09-21 14:00",
   endTime: "2021-12-20 13:00",
   items: 2
 }, {
   id: '02',
+  name: "Octoberfest with a very",
   community: "cellar",
-  lottery: true,
-  specials: false,
   started: true,
   priceRule: "regular",
+  orders: "12",
+  viewers: "21",
   startTime: "2021-09-21 14:00",
   endTime: "2021-12-20 16:00",
   items: 1
-// }, {
-//   id: '03',
-//   community: "cellar",
-//   lottery: false,
-//   specials: true,
-//   started: true,
-//   priceRule: "bourse",
-//   startTime: "2021-09-21 14:00",
-//   endTime: "2021-12-20 19:00",
-//   items: 2
-// }, {
-//   id: '04',
-//   community: "cellar",
-//   lottery: true,
-//   specials: true,
-//   started: true,
-//   priceRule: "freeFall",
-//   startTime: "2021-09-21 14:00",
-//   endTime: "2021-12-20 19:00",
-//   items: 2
-// }, {
-//   id: '05',
-//   community: "cellar",
-//   lottery: false,
-//   specials: true,
-//   started: true,
-//   priceRule: "multiple",
-//   startTime: "2021-09-21 14:00",
-//   endTime: "2021-12-20 19:00",
-//   items: 2
 }, {
   id: '06',
+  name: "Octoberfest with a very",
   community: "pet",
-  lottery: true,
-  specials: true,
   started: true,
+  orders: "16",
+  viewers: "51",
   startTime: "2021-09-21 14:00",
   endTime: "2021-12-20 19:30",
   items: 2
 }, {
   id: '07',
+  name: "Octoberfest with a very",
   community: "garden",
-  lottery: false,
-  specials: true,
   started: true,
+  orders: "2",
+  viewers: "51",
   startTime: "2021-09-21 14:00",
   endTime: "2021-12-20 19:00",
   items: 2
 }, {
   id: '3',
+  name: "Octoberfest with a very",
   community: "kitchen",
-  lottery: false,
   started: true,
-  specials: true,
+  orders: "12",
+  viewers: "21",
   startTime: "2021-10-21 14:00",
   endTime: "2021-12-20 19:00"
 }, {
   id: '02',
+  name: "Octoberfest with a very",
   community: "cellar",
-  lottery: true,
-  specials: false,
-  started: true,
+  started: false,
+  orders: "12",
+  viewers: "21",
   priceRule: "regular",
   startTime: "2021-10-21 14:00",
   endTime: "2021-12-20 19:00"

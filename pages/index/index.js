@@ -137,6 +137,7 @@ Page({
       _t: {
         all: i18n.all,
         coming_soon: i18n.coming_soon,
+        community: i18n.community,
         delivery: i18n.delivery,
         empty: i18n.empty,
         explore: i18n.explore,
@@ -145,10 +146,11 @@ Page({
         items_unit: i18n.items_unit,
         list: i18n.list,
         lottery: i18n.lottery,
-        orders: i18n.orders,
+        offers: i18n.offers,
+        orders_unit: i18n.orders_unit,
         remaining_time: i18n.remaining_time,
         specials: i18n.specials,
-        views: i18n.views,
+        viewers: i18n.viewers,
         // TODO days of week
       },
       _filters: {

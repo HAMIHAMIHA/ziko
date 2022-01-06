@@ -3,6 +3,7 @@
     <!-- Card for each offer -->
     <view class="uppercase offer_container"
       wx:for="{{ offers }}"
+      wx:for-item="offer"
       wx:key="id"
       bindtap="toOffer"
       data-started="{{ item.started }}"
@@ -22,18 +23,18 @@
       <!-- End of banner -->
 
       <view class="offer-detail_container">
-        <view class="offer-detail_title">{{ offer.name }}Octoberfest with a very {{ item.community + ' ' + item.priceRule }}</view>
+        <view class="offer-detail_title">{{ offer.name }} {{ offer.community + ' ' + offer.priceRule }}</view>
         <!-- Display for offers in progress -->
-        <view class="offer-detail offer-started" wx:if="{{ item.started }}">
+        <view class="offer-detail offer-started" wx:if="{{ offer.started }}">
           <view class="flex-between offer-detail_content">
             <!-- Hide for v1 -->
             <!-- Specials -->
             <view class="flex-between_left flex-center offer-specials">
-              <view class="icon_container lottery" wx:if="{{ item.lottery }}">
+              <view class="icon_container lottery" wx:if="{{ offer.lottery }}">
                 <view class="icon icon-yuan"></view>
                 <view class="icon_text">{{ _t.lottery }}</view>
               </view>
-              <view class="icon_container specials" wx:if="{{ item.specials }}">
+              <view class="icon_container specials" wx:if="{{ offer.specials }}">
                 <view class="icon icon-gift"></view>
                 <view class="icon_text">{{ _t.specials }}</view>
               </view>
@@ -41,13 +42,13 @@
             <!-- End of Specials -->
 
             <!-- Bag -->
-            <view class="flex-between_rt offer-bag{{ item.items > 0 ? ' offer-bag_filled' : ''}}">
+            <view class="flex-between_rt offer-bag{{ offer.items > 0 ? ' offer-bag_filled' : ''}}">
               <view class="icon_container">
                 <view class="icon icon-bag"></view>
                 <view class="icon_text">
-                  <view wx:if="{{ item.items == 0}}">{{ _t.empty }}</view>
-                  <view wx:elif="{{ item.items == 1}}">{{ item.items + _t.item_unit }}</view>
-                  <view wx:else="{{ item.items > 1}}">{{ item.items + _t.items_unit }}</view>
+                  <view wx:if="{{ !offer.items || offer.items == 0}}">{{ _t.empty }}</view>
+                  <view wx:elif="{{ offer.items == 1}}">{{ offer.items + _t.item_unit }}</view>
+                  <view wx:else="{{ offer.items > 1}}">{{ offer.items + _t.items_unit }}</view>
                 </view>
               </view>
             </view>
@@ -60,7 +61,7 @@
               {{ _t.remaining_time }}
             </view>
             <view class="flex-between_rt">
-              <countdown class="timer" end-time="{{ item.endTime }}"></countdown>
+              <countdown class="timer" end-time="{{ offer.endTime }}"></countdown>
             </view>
           </view>
           <!-- End of Countdown -->
@@ -70,11 +71,11 @@
             <view class=" flex-center offer-counts">
               <view class="icon_container">
                 <view class="icon icon-bag"></view>
-                <view class="icon_text">122{{ offer.orders + _t.orders_unit }}</view>
+                <view class="icon_text">{{ offer.orders + _t.orders_unit }}</view>
               </view>
               <view class="icon_container">
                 <view class="icon icon-eye"></view>
-                <view class="icon_text">122{{ _offer.viewers + _t.viewers }}</view>
+                <view class="icon_text">{{ offer.viewers + _t.viewers }}</view>
               </view>
             </view>
             <view class="offer-delivery nunito_400">
