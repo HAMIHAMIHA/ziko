@@ -42,8 +42,8 @@ button:not([size=mini]).login-btn {
   left: calc(var(--content-x-) / 375 * 100vw);
   top: calc(var(--content-y-) / 375 * 100vw);
   /* TEMP for debuging */
-  background: blue;
-  opacity: 0.5;
+  /* background: blue; */
+  /* opacity: 0.5; */
   clip-path: var(--shape-);
 }
 

@@ -24,10 +24,10 @@ export const map_filters = [
   }, {
     name: "pet",
     width: 299,
-    height: 300,
+    height: 287,
     xPos: 76,
     yPos: 370,
-    shape: "polygon(0% 46%, 94% 95%, 108% 87%, 100% 11%, 81% 0)",
+    shape: "polygon(5% 47%, 94% 100%, 100% 96%, 100% 14%, 77% 2%)",
   }, {
     name: "baby",
     width: 340,
