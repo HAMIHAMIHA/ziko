@@ -128,6 +128,7 @@ button:not([size=mini]).short-cuts__button {
 
 /* LANGUAGE BUTTON */
 .language-setting {
+  width: 176rpx;
   display: flex;
   position: absolute;
   left: 50%;
@@ -137,7 +138,7 @@ button:not([size=mini]).short-cuts__button {
 
 .language-setting:after {
   content: '';
-  width: 50%;
+  width: 88rpx;
   height: 100%;
   background: var(--ziko-default-);
   border-radius: 40rpx;
@@ -152,8 +153,7 @@ button:not([size=mini]).short-cuts__button {
 }
 
 .language-setting.selected-zh_CN:after {
-  left: 100%;
-  transform: translateX(-100%);
+  left: 88rpx;
 }
 
 button:not([size=mini]).langauge {
