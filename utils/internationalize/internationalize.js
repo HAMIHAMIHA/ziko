@@ -123,7 +123,7 @@ export const languageMap_en = {
 
   // P
   pay: "Pay",
-  phone_no: "Phone no",
+  pet: "Pet",
   pet_type: {
     dogs: "Dogs",
     cats: "Cats"
@@ -132,6 +132,7 @@ export const languageMap_en = {
     small: "Small",
     large: "Large"
   },
+  phone_no: "Phone no",
   price_rules: {
     bourse: "Bourse",
     freeFall: "Free Fall",
@@ -318,7 +319,7 @@ export const languageMap_zh_CN = {
 
   // P
   pay: "Pay",
-  phone_no: "Phone no",
+  pet: "Pet",
   pet_type: {
     dogs: "Dogs",
     cats: "Cats"
@@ -327,6 +328,7 @@ export const languageMap_zh_CN = {
     small: "Small",
     large: "Large"
   },
+  phone_no: "Phone no",
   price_rules: {
     bourse: "Bourse",
     freeFall: "Free Fall",

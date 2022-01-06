@@ -4,7 +4,7 @@ const app = getApp();
 
 const pet_pickers = {
   type: ['dogs', 'cats'],
-  sizes: ['small', 'large']
+  size: ['small', 'large']
 }
 
 Page({
@@ -48,20 +48,41 @@ Page({
       _picker: {
         pet_type: type_picker,
         pet_size: size_picker,
-      },
+      }
+    })
 
-      // TEMP need to change to duplicatable variable
-      // Defult selected value for pickers
-      _picker_select: {
-        type: "0",
-        size: "0",
-      },
+    // TODO get user info
+  },
 
-      pets: [{
-        _id: 1,
-        type: 'dogs',
-        size: 'small'
-      }],
+  // Add data and selector for pet
+  addPet: function() {
+    const self = this;
+    let pets = self.data.pets;
+    let _picker_select = self.data._picker_select;
+  
+    if (pets) {
+      pets.push({});
+      _picker_select.push({});
+    } else {
+      pets = [{}];
+      _picker_select = [{}];
+    }
+
+    self.setData({
+      pets: pets,
+      _picker_select: _picker_select
+    })
+  },
+
+  // Set pat name in page data to input
+  updatePetName: function(e) {
+    const self = this;
+    let pets = self.data.pets;
+  
+    pets[e.currentTarget.dataset.pet_index].name = e.detail.value;
+    
+    self.setData({
+      pets: pets
     })
   },
 
@@ -69,7 +90,7 @@ Page({
   petPickerChange: function(e) {
     const self = this;
 
-    let pet = e.currentTarget.dataset.pet_index;
+    let pet = e.mark.index;
     let changing_key = e.currentTarget.dataset.key;
     let new_index = e.detail.value;
 
@@ -77,8 +98,23 @@ Page({
     pets[pet][changing_key] = pet_pickers[changing_key][new_index];
 
     self.setData({
-      [`_picker_select.${changing_key}`]: new_index,
-      pets: pets
+      pets: pets,
+      [`_picker_select[${pet}].${changing_key}`]: new_index
     })
   },
+
+  // Remove data and selector for pet
+  removePet: function(e) {
+    const self = this;
+    let pets = self.data.pets;
+    let _picker_select = self.data._picker_select;
+
+    pets.splice(e.mark.index, 1);
+    _picker_select.splice(e.mark.index, 1);
+  
+    self.setData({
+      pets: pets,
+      _picker_select: _picker_select
+    })
+  }
 })

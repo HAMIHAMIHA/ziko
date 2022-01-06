@@ -280,6 +280,22 @@ image {
   margin: auto;
   border: 0;
 }
+
+.detail_input .picker {
+  position: relative;
+}
+
+.detail_input .picker_text {
+  width: calc(100% - 24rpx - 16rpx);
+  height: 64rpx;
+}
+
+.detail_input .picker .icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
 /* End of Details */
 
 /* Detail Banner */
