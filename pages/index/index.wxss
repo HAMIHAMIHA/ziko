@@ -154,7 +154,7 @@ button:not([size=mini]).login-btn {
 }
 
 .scroll-menu .icon {
-  font-size: 100rpx;
+  font-size: 84rpx;
 }
 
 /* Scroll Menu selected */
@@ -191,6 +191,10 @@ button:not([size=mini]).login-btn {
 
 .ziko-pet:after {
   background: var(--ziko-pet-);
+}
+
+.ziko-baby:after {
+  background: var(--ziko-baby-);
 }
 
 /* Bottom Switch Button */
