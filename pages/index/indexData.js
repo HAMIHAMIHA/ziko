@@ -24,9 +24,9 @@ export const map_filters = [
   }, {
     name: "pet",
     width: 299,
-    height: 320,
+    height: 300,
     xPos: 76,
-    yPos: 353,
+    yPos: 370,
     shape: "polygon(0% 46%, 94% 95%, 108% 87%, 100% 11%, 81% 0)",
   }, {
     name: "pet",
