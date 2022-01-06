@@ -1,6 +1,9 @@
 .container {
-  height: 100vh;
   position: relative;
+}
+
+.container.map_container {
+  height: 100vh;
 }
 
 /* Login Button */
@@ -214,6 +217,7 @@ button:not([size=mini]).login-btn {
   font-size: 24rpx;
   line-height: 28rpx;
   border-radius: 0;
+  transition: all 0.3s ease-in-out;
 }
 
 .switcher .switch:first-child {

@@ -51,7 +51,6 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
   // 2. Change filter type if different from current
   if (current_filter.type != filter_type) {
     page.setData({
-      map: (filter_type == 'map'),
       filter_group: filter_group
     })
     current_filter.type = filter_type;
@@ -191,6 +190,10 @@ Page({
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 300
+    })
+
+    self.setData({
+      map: (e.currentTarget.dataset.type == 'map'),
     })
 
     // Wait for page scroll then change
