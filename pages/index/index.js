@@ -51,6 +51,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
   // 2. Change filter type if different from current
   if (current_filter.type != filter_type) {
     page.setData({
+      map: (filter_type == 'map'),
       filter_group: filter_group
     })
     current_filter.type = filter_type;
@@ -186,18 +187,11 @@ Page({
   // Switch display method
   switchType: function(e) {
     const self = this;
-    self.setData({
-      filter_group: '',
-      map: (e.currentTarget.dataset.type == 'map'),
-    })
 
-    // Wait for page scroll then change
-    setTimeout(() => {
-      // Check if changing to the map view
-      let filter_type = e.currentTarget.dataset.type;
-      let filter_group = e.currentTarget.dataset.group;
-      _filterOfferData(self, filter_type, filter_group, '');
-    }, 300);
+    // Check if changing to the map view
+    let filter_type = e.currentTarget.dataset.type;
+    let filter_group = e.currentTarget.dataset.group;
+    _filterOfferData(self, filter_type, filter_group, '');
   },
 
   // Filter offers by selected group
@@ -216,6 +210,12 @@ Page({
 
   // Stop slide action at the back when modal is opened
   preventSlide: function() {},
+
+  // Mobile login
+  getPhoneNumber: function(e) {
+    mobileLogin(this, e.detail.code);
+    // TODO api to get user phone -> user name + code + openid
+  },
 
   onShareAppMessage: function (res) {},
 })
