@@ -1,8 +1,8 @@
 <block wx:if="{{ !user }}">
 <view class="login-container">
-  <view class="empty_message">{{ _t.need_login }}Please login first to get your orders.</view>
+  <view class="empty_message">{{ _t.need_login }}</view>
   <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
-    {{ _t.login }}<!-- 手机号一键登录 -->
+    {{ _t.login }}
   </button>
 </view>
 </block>
