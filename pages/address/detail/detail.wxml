@@ -1,7 +1,7 @@
 <view class="container container-grey container-btn-bottom address-detail">
   <!-- Address Form -->
   <view class="white-box address_container">
-    <view class="nunito_700 header">{{ _t.address + ' ' + count }}</view>
+    <view class="nunito_700 header">{{ _t.address + ' ' + _count }}</view>
 
     <view class="details_container inputs_container">
       <view class="detail">

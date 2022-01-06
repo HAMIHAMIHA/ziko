@@ -46,6 +46,11 @@ Page({
 
     // Set page translation
     self.setData({
+      _count: 1,
+      _picker: {
+        address_type: address_picker
+      },
+      _picker_selected: '',
       _t: {
         address: i18n.address,
         address_type: i18n.address_type,
@@ -58,13 +63,6 @@ Page({
         type: i18n.type,
         zipcode: i18n.zipcode,
       },
-
-      // Picker formated for selector
-      _picker: {
-        address_type: address_picker
-      },
-
-      _picker_selected: ''
     })
 
     // TEMP
