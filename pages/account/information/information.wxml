@@ -6,7 +6,7 @@
     <view class="detail">
       <view class="detail_label">{{ _t.name }}</view>
       <view class="detail_input">
-        <input class="input" type="text" value="{{ formData.type }}"></input>
+        <input class="input" type="text" value="{{ name }}" bindinput="changeInput" data-key="name"></input>
       </view>
     </view>
   </view>
@@ -22,7 +22,7 @@
         <view class="detail_label">{{ _t.name }}</view>
         <view class="detail_input">
           <view class="input">
-            <input type="text" value="{{ pet.name }}" data-pet_index="{{ index }}" bindinput="updatePetName"></input>
+            <input type="text" value="{{ pet.name }}" data-index="{{ index }}" bindinput="changeInput" data-key="pets[index].name"></input>
           </view>
         </view>
       </view>
@@ -71,7 +71,7 @@
 
   <!-- Submit Button -->
   <view class="btn-bottom">
-    <button class="nunito_600" hover-class="none" bindtap="pay">{{ _t.save }}</button>
+    <button class="nunito_600" hover-class="none" bindtap="saveInformation">{{ _t.save }}</button>
   </view>
   <!-- End of Submit Button -->
 </view>

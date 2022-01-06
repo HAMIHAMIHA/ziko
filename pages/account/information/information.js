@@ -1,4 +1,4 @@
-const { change } = require("../../../utils/internationalize/translate");
+const { navigateBack } = require("../../../utils/common");
 
 const app = getApp();
 
@@ -52,6 +52,30 @@ Page({
     })
 
     // TODO get user info
+    let user = app.db.get('userInfo').user;
+    self.setData({
+      name: user.name,
+      pets: user.pets
+    })
+  },
+
+  // Set input to data
+  changeInput: function(e) {
+    const self = this;
+    let key = e.currentTarget.dataset.key;
+    let index = e.currentTarget.dataset.index;
+
+    if (index >= 0) {
+      key = key.replace('index', index);
+    }
+    console.log(key);
+  
+    let res = self.data[key];
+    res = e.detail.value;
+    
+    self.setData({
+      [key]: res
+    })
   },
 
   // Add data and selector for pet
@@ -71,18 +95,6 @@ Page({
     self.setData({
       pets: pets,
       _picker_select: _picker_select
-    })
-  },
-
-  // Set pat name in page data to input
-  updatePetName: function(e) {
-    const self = this;
-    let pets = self.data.pets;
-  
-    pets[e.currentTarget.dataset.pet_index].name = e.detail.value;
-    
-    self.setData({
-      pets: pets
     })
   },
 
@@ -116,5 +128,27 @@ Page({
       pets: pets,
       _picker_select: _picker_select
     })
+  },
+
+  // Save data
+  saveInformation: function(e) {
+    const self = this;
+    let data = {
+      name: self.data.name,
+      pets: self.data.pets
+    }
+
+    const callback = {
+      success: res => {
+        // TEMP
+        app.db.set('userInfo', {user: data})
+
+        // TODO update storage
+        navigateBack(app.routes.account, true);
+      }
+    }
+
+    callback.success('');
+    // TODO api
   }
 })
