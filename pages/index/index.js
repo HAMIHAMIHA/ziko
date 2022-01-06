@@ -186,12 +186,6 @@ Page({
   // Switch display method
   switchType: function(e) {
     const self = this;
-    // Scroll page
-    wx.pageScrollTo({
-      scrollTop: 0,
-      duration: 300
-    })
-
     self.setData({
       map: (e.currentTarget.dataset.type == 'map'),
     })
