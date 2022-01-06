@@ -11,6 +11,13 @@ const changeFocus = function(page, e) {
 
 // General method to call api and login with wechat mobile number
 const mobileLogin = function(page, code) {
+  db.set('userInfo', {"user":{"name":"tes"}}); // TEMP set user data
+
+  console.log('set user');
+  page.setData({
+    user: db.get('userInfo')
+  })
+
   const callback = {
     success: function(res) {
       if (!res.language) {
