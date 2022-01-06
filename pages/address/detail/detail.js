@@ -41,7 +41,6 @@ Page({
     let address_picker = [];
     for (var type in address_type) {
       let type_variable = address_type[type];
-      console.log(i18n.address_type[type_variable]);
       address_picker.push(i18n.address_type[type_variable]);
     }
 
