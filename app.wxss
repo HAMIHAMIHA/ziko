@@ -26,6 +26,7 @@
 }
 
 /* Set Ziko Color Variables */
+/*
 page {
   --grey-: #A3A8B7;
   --ziko-default-: #FFFFFF;
@@ -33,6 +34,16 @@ page {
   --ziko-garden-: linear-gradient(105.28deg, #98F183 2.41%, #11BF67 100%);
   --ziko-cellar-: linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
   --ziko-pet-: linear-gradient(105.28deg, #FFB75A 2.41%, #FF7233 100%);
+}
+*/
+page {
+  --grey-: #A3A8B7;
+  --ziko-default-: #FFFFFF;
+  --ziko-kitchen-: #D7BA6D;
+  --ziko-garden-: #71E256;
+  --ziko-cellar-: #C5CACE;
+  --ziko-pet-: #FF9648;
+  --ziko-baby-: #FF91B5;
 }
 
 /* General Style */
@@ -115,6 +126,10 @@ image {
   background: var(--ziko-pet-);  
 }
 
+.ziko-baby {
+  background: var(--ziko-baby-);  
+}
+
 .ziko-kitchen-solid {
   background: #E3B231;  
 }
@@ -131,6 +146,10 @@ image {
   background: #E6A86F;  
 }
 
+.ziko-baby-solid {
+  background: #ff77aa;  
+}
+
 /* Button Bottom */
 .container-btn-bottom .btn-bottom button {
   width: calc(100vw - 30rpx - 30rpx);
@@ -143,7 +162,7 @@ image {
   border-radius: 8rpx;
   position: absolute;
   left: 30rpx;
-  bottom: 48rpx;
+  bottom: calc(48rpx + var(--env-));
 }
 /* End of Button Bottom */
 
