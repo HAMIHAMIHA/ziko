@@ -166,6 +166,7 @@ export const languageMap_en = {
   // S
   save: "Save",
   select: "Select",
+  select_address: "Select Address",
   single_items: {
     fst: "single",
     snd: " items"
@@ -369,6 +370,7 @@ export const languageMap_zh_CN = {
   // S
   save: "Save",
   select: "Select",
+  select_address: "Select Address",
   single_items: {
     fst: "single",
     snd: " items"
