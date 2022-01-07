@@ -72,8 +72,6 @@ module.exports = {
   createOrderData: (page, value) => {
     let cart_items = page.data.cart_items;
 
-    console.log(value);
-
     const callback = {
       success: res => {
         createOrder(page, products, skus);
