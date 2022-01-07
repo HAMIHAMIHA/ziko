@@ -14,7 +14,7 @@ Page({
 
     // Change page nav title
     wx.setNavigationBarTitle({
-      title: i18n.addresses
+      title: (self.options.action == 'select') ? i18n.select_address : i18n.addresses
     })
 
     // Set page translation
