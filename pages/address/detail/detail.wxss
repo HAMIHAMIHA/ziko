@@ -5,3 +5,11 @@
 .inputs_container {
   padding: 0;
 }
+
+.error-field-0 .type .detail_input,
+.error-field-1 .city .detail_input,
+.error-field-2 .area .detail_input,
+.error-field-3 .address .detail_input,
+.error-field-4 .phone .detail_input {
+  border-color: #FF4040;
+}

@@ -1,30 +1,40 @@
-const { navigateBack } = require("../../../utils/common");
+const { navigateBack, updateUserInfo } = require("../../../utils/common");
+const { findIndex } = require("../../../utils/util");
 
 const app = getApp();
-
 const address_type = ['home', 'work'];
+const validate_keys = ['type', 'city', 'area', 'address', 'phone'];
 
-// create data to model in db
-const generateUserData = (action) => {
-  let data = {};
-  if (action == 'delete') '';
-  else '';
+// Check if input empty
+const validateInputs = (page, data) => {
+  let error = '';
+  for (var i in validate_keys) {
+    !data[validate_keys[i]] ? error += `error-field-${i} ` : '';
+  }
 
-  return data;
+  page.setData({
+    error: error
+  })
+
+  return error;
 }
 
-// Save new address list
-const updateUserAddress = (page, data) => {
-  // callback
-  let callback = {
-    success: function(res) {
-      navigateBack(app.routes.address, false);
+// Create address data for api
+const generateUserAddress = (page, action, new_address) => {
+  let address = app.db.get('userInfo').user.address;
+
+  if (action == 'reset') {
+    let addr_index = page.data._count;
+    address.splice(addr_index, 1)
+  } else {
+    if (page.options.id) {
+      address[page.data._count] = new_address;
+    } else {
+      address ? address.push(new_address) : address = [new_address];
     }
   }
 
-  // api
-  // api(data)
-  callback.success('')
+  return address;
 }
 
 Page({
@@ -46,11 +56,9 @@ Page({
 
     // Set page translation
     self.setData({
-      _count: 1,
       _picker: {
         address_type: address_picker
       },
-      _picker_selected: '',
       _t: {
         address: i18n.address,
         address_type: i18n.address_type,
@@ -65,23 +73,27 @@ Page({
       },
     })
 
+    // TODO get user info
     // TEMP
-    if (self.options.id) {
-      self.setData({
-        address: {
-          name: "Address 1",
-          type: 'home',
-          city: 'Shanghai',
-          area: 'Xuhui',
-          zipcode: '200000',
-          address: '水电路1200弄3号401室',
-          phone: '13111111111',
-          comment: 'Here is a long comment about the adress'
-        },
+    let user = app.db.get('userInfo').user;
 
-        _picker_selected: '0'
-      })
+    // Set default address info
+    let count = user.address ? user.address.length : 0;
+    let address = {};
+    let picker_selected = '';
+
+    // Set address info if edit
+    if (self.options.id) {
+      count = findIndex(user.address, self.options.id, '_id');
+      address = user.address[count];
+      picker_selected = `${address_type.indexOf(address.type)}`
     }
+
+    self.setData({
+      _count: count,
+      _picker_selected: picker_selected,
+      address: address
+    })
   },
 
   // Change picker result
@@ -96,19 +108,35 @@ Page({
     })
   },
 
+  // Save address info
   updateAddress: function(e) {
     const self = this;
+    let action = e.type;
 
-    let action = e.currentTarget.dataset.action;
+    console.log(action);
 
-    if (action == 'delete' && !self.options.id) {
+    // Go back to address page if delete new address
+    if (action == 'reset' && !self.options.id) {
       navigateBack(app.routes.address, false);
       return;
     }
+ 
+    // Stop if saving but inputs empty
+    if (action != 'reset' && validateInputs(self, e.detail.value)) return;
 
-    // data
-    console.log(action);
-    let data = generateUserData(action);
-    updateUserAddress(self, data)
+    let address = e.detail.value;
+    address ? address.type = self.data.address.type : '';
+    // TEMP id for testing
+    address ? address._id = self.data._count + 1 : '';
+
+    let address_list = generateUserAddress(self, action, address);
+    // TODO api save user data
+    // updateUserInfo({ address: address }, app.routes.address);
+
+    // TEMP
+    let user_info = app.db.get('userInfo');
+    user_info.user.address = address_list;
+    app.db.set('userInfo', user_info);
+    navigateBack(app.routes.address, false);
   }
 })

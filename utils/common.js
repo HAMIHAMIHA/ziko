@@ -87,6 +87,12 @@ const updateUserInfo = function(new_info, back_url) {
   // api.updateProfile(new_info, callback);
 }
 
+const updateStoredUserInfo = (new_info) => {
+  let userInfo = app.db.get('userInfo');
+  userInfo.user = new_info;
+  app.db.set('userInfo', userInfo);
+}
+
 module.exports = {
   changeFocus,
   mobileLogin,
