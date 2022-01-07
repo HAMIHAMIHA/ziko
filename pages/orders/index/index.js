@@ -1,17 +1,49 @@
+const api = require("../../../utils/api");
 const { mobileLogin } = require("../../../utils/common");
 
 const app = getApp();
-
 const pickers = {
+  community: ['all', 'baby', 'cellar', 'garden', 'kitchen', 'pet'],
   order_status: ['all', 'delivered', 'on_the_way', 'prepared', 'delayed', 'refund'],
-  community: ['all_communities', 'baby', 'cellar', 'garden', 'kitchen', 'pet']
+}
+
+let current = { community: '', order_status: '' };
+
+// Change selected filters
+const _defaultFilters = (page, key, index_val) => {
+  let value = '';
+  if (index_val != 0) {
+    value = pickers[key][index_val];
+  }
+
+  current[key] = value;
+
+  // Change picker select
+  let page_selected = page.data._picker_selected;
+  page_selected[key] = `${index_val}`;
+
+  page.setData({
+    _picker_selected: page_selected
+  })
+}
+
+const getOrders = (page) => {
+  const callback = {
+    success: res => {
+    }
+  }
+
+  let suffix = `?community=${ current.community }&order_status=${ current.order_status }&sort=["createdAt","DESC"]`;
+  // TODO
+  // app.api.getOrders(suffix, callback);
+  // TEMP
+  callback.success('');
 }
 
 Page({
   data: {
-    _routes: {
-      order: app.routes.order
-    },
+    _routes: { order: app.routes.order },
+    _picker_selected: { community: '', order_status: '' }
   },
   onShow: function () {
     const self = this;
@@ -53,12 +85,28 @@ Page({
     self.setData({
       user: app.db.get('userInfo')
     })
+  
+    // Set page filter and get order
+    _defaultFilters(self, 'community', 0);
+    _defaultFilters(self, 'order_status', 0);
+    getOrders(self);
   },
 
   // Mobile login
   getPhoneNumber: function(e) {
     mobileLogin(this, e.detail.code);
     // TODO api to get user phone -> user name + code + openid
+  },
+
+  // change filter content
+  changeFilter: function(e) {
+    const self = this;
+
+    let filter_type = e.currentTarget.dataset.filter_type;
+    let value = filter_type == 'community' ? e.detail.value : e.currentTarget.dataset.value;
+
+    _defaultFilters(self, filter_type, value);
+    getOrders(self);
   },
 
   onTabItemTap: function(e) {

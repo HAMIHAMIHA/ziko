@@ -76,13 +76,16 @@
 .community-selector {
   width: 50%;
   margin-bottom: 4rpx;
-  padding: 16rpx;
   background: #454852;
   font-size: 28rpx;
   line-height: 38rpx;
   border: 1px solid #171921;
   box-sizing: border-box;
   border-radius: 4px;
+}
+
+.community-selector .picker-btn {
+  padding: 16rpx;
 }
 
 .community-selector .icon {

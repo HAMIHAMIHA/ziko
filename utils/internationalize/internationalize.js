@@ -37,7 +37,7 @@ export const languageMap_en = {
   comment:"Comment",
   coming_soon:"coming soon...",
   community: {
-    all_communities:"All communities",
+    all:"All communities",
     baby:"Baby",
     cellar:"Cellar",
     garden:"Garden",
@@ -240,7 +240,7 @@ export const languageMap_zh_CN = {
   comment:"Comment",
   coming_soon:"coming soon...",
   community: {
-    all_communities:"All communities",
+    all:"All communities",
     baby:"Baby",
     cellar:"Cellar",
     garden:"Garden",

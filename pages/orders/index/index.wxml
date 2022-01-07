@@ -13,9 +13,10 @@
   <scroll-view class="h-scroll capatilize" scroll-x="true">
     <block wx:for="{{ _pickers.order_status }}" wx:key="index" wx:for-item="status">
       <view
-        class="h-scroll_item order-status{{ filter.status == index ? ' selected' : '' }}"
+        class="h-scroll_item order-status{{ _picker_selected.order_status == index ? ' selected' : '' }}"
         bindtap="changeFilter"
-        data-filter="{{ index }}"
+        data-filter_type="order_status"
+        data-value="{{ index }}"
       >
         {{ _t.order_status[status] }}
       </view>
@@ -27,10 +28,14 @@
 <view class="container">
   <!-- Community Picker -->
   <view class="community-selector">
-    <picker class="picker" range="{{ _pickers.communities }}">
+    <picker
+      class="picker"
+      range="{{ _pickers.communities }}"
+      bindchange="changeFilter"
+      data-filter_type="community"
+    >
       <view class="nunito_600 flex-between picker-btn">
-        <text>{{ _t.community['all_communities'] }}</text>
-        <!-- <text>{{ _t.community[filter.community] }}</text> -->
+        <text>{{ _pickers.communities[_picker_selected.community] }}</text>
         <text class="icon icon-arrow"></text>
       </view>
     </picker>
