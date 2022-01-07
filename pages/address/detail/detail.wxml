@@ -1,6 +1,6 @@
 <view class="container container-grey container-btn-bottom address-detail">
   <!-- Address Form -->
-  <form class="{{ error }}" catchsubmit="updateAddress" catchreset="updateAddress">
+  <form class="{{ error }}" bindsubmit="updateAddress" bindreset="updateAddress">
       <view class="white-box address_container">
         <view class="nunito_700 header">{{ _t.address + ' ' + (_count + 1) }}</view>
 
