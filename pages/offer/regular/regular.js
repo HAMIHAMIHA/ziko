@@ -21,6 +21,8 @@ Page({
       animate: animate
     },
     _offer: {
+      viewers: 123,
+      orders: 12,
       endTime: '2021-12-20 19:00',
       community: 'pet',
       banner: [

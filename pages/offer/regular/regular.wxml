@@ -41,7 +41,7 @@
     <view class="flex-start gilroy_500 offer-count_container">
       <view class="icon_container">
         <view class="icon icon-bag"></view>
-        <view class="icon_text">100{{ _offer.orders + _t.orders_unit }}</view>
+        <view class="icon_text">{{ _offer.orders + _t.orders_unit }}</view>
       </view>
       <view class="icon_container">
         <view class="icon icon-eye"></view>

@@ -15,6 +15,8 @@ Page({
     total: 600,
     currentSold: 160,
     _offer: {
+      viewers: 123,
+      orders: 12,
       endTime: '2021-12-20 17:50',
       community: 'cellar',
       banner: [
