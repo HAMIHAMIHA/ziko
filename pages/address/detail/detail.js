@@ -1,4 +1,4 @@
-const { navigateBack, updateUserInfo } = require("../../../utils/common");
+const { changeFocus, navigateBack, updateUserInfo } = require("../../../utils/common");
 const { findIndex } = require("../../../utils/util");
 
 const app = getApp();
@@ -106,6 +106,10 @@ Page({
       'address.type': address_type[new_index],
       _picker_selected: new_index,
     })
+  },
+
+  next: function(e) {
+    changeFocus(this, e);
   },
 
   // Save address info

@@ -5,7 +5,7 @@ const i18n = require('./internationalize/translate.js'); // 翻译功能
 // Move to cursor to next input
 const changeFocus = function(page, e) {
   page.setData({
-    _focus: e.currentTarget.dataset.nextItem
+    _focus: e.currentTarget.dataset.next_item
   })
 }
 
@@ -88,9 +88,9 @@ const updateUserInfo = function(new_info, back_url) {
 }
 
 const updateStoredUserInfo = (new_info) => {
-  let userInfo = app.db.get('userInfo');
-  userInfo.user = new_info;
-  app.db.set('userInfo', userInfo);
+  // let userInfo = app.db.get('userInfo');
+  // userInfo.user = new_info;
+  // app.db.set('userInfo', userInfo);
 }
 
 module.exports = {

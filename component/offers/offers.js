@@ -16,7 +16,7 @@ Component({
     // Toggle timer invervals
     changeTimers: function(startTimer, _t) {
       const self = this;
-
+a
       // Set offer card translation
       self.setData({
         _t: _t

@@ -27,7 +27,15 @@
             <view class="detail_label">{{ _t.city }}</view>
             <view class="detail_input">
               <view class="input">
-                <input name="city" value="{{ address.city }}"></input>
+                <input
+                  name="city"
+                  value="{{ address.city }}"
+                  confirm-type="next"
+                  confirm-hold="true"
+                  data-next_item="area"
+                  bindconfirm="next"
+                >
+                </input>
               </view>
             </view>
           </view>
@@ -38,7 +46,16 @@
             <view class="detail_label">{{ _t.area }}</view>
             <view class="detail_input">
               <view class="input">
-                <input name="area" value="{{ address.area }}"></input>
+                <input
+                  name="area"
+                  value="{{ address.area }}"
+                  confirm-type="next"
+                  confirm-hold="true"
+                  focus="{{ _focus == 'area' ? true : false }}"
+                  data-next_item="zipcode"
+                  bindconfirm="next"
+                >
+                </input>
               </view>
             </view>
           </view>
@@ -49,7 +66,16 @@
             <view class="detail_label">{{ _t.zipcode }}</view>
             <view class="detail_input">
               <view class="input">
-                <input name="zipcode" value="{{ address.zipcode }}"></input>
+                <input
+                  name="zipcode"
+                  value="{{ address.zipcode }}"
+                  confirm-type="next"
+                  confirm-hold="true"
+                  focus="{{ _focus == 'zipcode' ? true : false }}"
+                  data-next_item="address"
+                  bindconfirm="next"
+                >
+                </input>
               </view>
             </view>
           </view>
@@ -60,7 +86,16 @@
             <view class="detail_label">{{ _t.address }}</view>
             <view class="detail_input">
               <view class="input">
-                <input name="address" value="{{ address.address }}"></input>
+                <input
+                  name="address"
+                  value="{{ address.address }}"
+                  confirm-type="next"
+                  confirm-hold="true"
+                  focus="{{ _focus == 'address' ? true : false }}"
+                  data-next_item="phone"
+                  bindconfirm="next"
+                >
+                </input>
               </view>
             </view>
           </view>
@@ -71,7 +106,16 @@
             <view class="detail_label">{{ _t.phone_no }}</view>
             <view class="detail_input">
               <view class="input">
-                <input name="phone" value="{{ address.phone }}"></input>
+                <input
+                  name="phone"
+                  value="{{ address.phone }}"
+                  confirm-type="next"
+                  confirm-hold="true"
+                  focus="{{ _focus == 'phone' ? true : false }}"
+                  data-next_item="comment"
+                  bindconfirm="next"
+                >
+                </input>
               </view>
             </view>
           </view>
@@ -82,7 +126,15 @@
             <view class="detail_label">{{ _t.comment }}</view>
             <view class="detail_input">
               <view class="input">
-                <textarea class="textarea" name="comment" auto-height="true" value="{{ address.comment }}" type="text"></textarea>
+                <textarea
+                  class="textarea"
+                  auto-height="true"
+                  name="comment"
+                  focus="{{ _focus == 'comment' ? true : false }}"
+                  value="{{ address.comment }}"
+                  type="text"
+                >
+                </textarea>
               </view>
             </view>
           </view>
