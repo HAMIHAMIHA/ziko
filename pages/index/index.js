@@ -126,33 +126,10 @@ Page({
 
     leave_triggered = false;
 
-    // Translate tabbar
-    app.setTabbar();
+    self.updatePageLanguage();
 
-    // TODO Translate navbar?
-
-    // Translation and default values
-    let i18n = app.globalData.i18n;
+    // Set page default values
     self.setData({
-      _t: {
-        all: i18n.all,
-        coming_soon: i18n.coming_soon,
-        community: i18n.community,
-        delivery: i18n.delivery,
-        empty: i18n.empty,
-        explore: i18n.explore,
-        get_reminder: i18n.get_reminder,
-        item_unit: i18n.item_unit,
-        items_unit: i18n.items_unit,
-        list: i18n.list,
-        lottery: i18n.lottery,
-        offers: i18n.offers,
-        orders_unit: i18n.orders_unit,
-        remaining_time: i18n.remaining_time,
-        specials: i18n.specials,
-        viewers: i18n.viewers,
-        // TODO days of week
-      },
       _filters: {
         list: index_data.list_filtes,
         map: index_data.map_filters
@@ -217,6 +194,38 @@ Page({
   getPhoneNumber: function(e) {
     mobileLogin(this, e.detail.code);
     // TODO api to get user phone -> user name + code + openid
+  },
+
+  updatePageLanguage: function() {
+    const self = this;
+
+    // Translate tabbar
+    app.setTabbar();
+
+    // Translation and default values
+    let i18n = app.globalData.i18n;
+    self.setData({
+      _t: {
+        all: i18n.all,
+        coming_soon: i18n.coming_soon,
+        community: i18n.community,
+        delivery: i18n.delivery,
+        empty: i18n.empty,
+        explore: i18n.explore,
+        get_reminder: i18n.get_reminder,
+        item_unit: i18n.item_unit,
+        items_unit: i18n.items_unit,
+        list: i18n.list,
+        lottery: i18n.lottery,
+        offers: i18n.offers,
+        orders_unit: i18n.orders_unit,
+        remaining_time: i18n.remaining_time,
+        specials: i18n.specials,
+        viewers: i18n.viewers,
+        // TODO days of week
+      }
+    })
+
   },
 
   onShareAppMessage: function (res) {},

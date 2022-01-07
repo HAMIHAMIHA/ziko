@@ -47,6 +47,40 @@ Page({
   },
   onShow: function () {
     const self = this;
+
+    self.updatePageLanguage();
+
+    // Get user info
+    let user = app.db.get('userInfo');
+    self.setData({
+      user: user
+    })
+  
+    // Set page filter and get order
+    _defaultFilters(self, 'community', 0);
+    _defaultFilters(self, 'order_status', 0);
+    getOrders(self);
+  },
+
+  // Mobile login
+  getPhoneNumber: function(e) {
+    mobileLogin(this, e.detail.code);
+    // TODO api to get user phone -> user name + code + openid
+  },
+
+  // change filter content
+  changeFilter: function(e) {
+    const self = this;
+
+    let filter_type = e.currentTarget.dataset.filter_type;
+    let value = filter_type == 'community' ? e.detail.value : e.currentTarget.dataset.value;
+
+    _defaultFilters(self, filter_type, value);
+    getOrders(self);
+  },
+
+  updatePageLanguage: function() {
+    const self = this;
     let i18n = app.globalData.i18n;
 
     app.setTabbar();
@@ -78,38 +112,6 @@ Page({
         communities: communities,
         order_status: pickers.order_status,
       }
-    })
-
-    // Get user info
-    let user = app.db.get('userInfo');
-    self.setData({
-      user: app.db.get('userInfo')
-    })
-  
-    // Set page filter and get order
-    _defaultFilters(self, 'community', 0);
-    _defaultFilters(self, 'order_status', 0);
-    getOrders(self);
-  },
-
-  // Mobile login
-  getPhoneNumber: function(e) {
-    mobileLogin(this, e.detail.code);
-    // TODO api to get user phone -> user name + code + openid
-  },
-
-  // change filter content
-  changeFilter: function(e) {
-    const self = this;
-
-    let filter_type = e.currentTarget.dataset.filter_type;
-    let value = filter_type == 'community' ? e.detail.value : e.currentTarget.dataset.value;
-
-    _defaultFilters(self, filter_type, value);
-    getOrders(self);
-  },
-
-  onTabItemTap: function(e) {
-    // TODO get user profile
+    })  
   }
 })
