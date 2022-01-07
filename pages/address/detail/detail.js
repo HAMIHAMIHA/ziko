@@ -113,8 +113,6 @@ Page({
     const self = this;
     let action = e.type;
 
-    console.log(action);
-
     // Go back to address page if delete new address
     if (action == 'reset' && !self.options.id) {
       navigateBack(app.routes.address, false);
@@ -127,7 +125,7 @@ Page({
     let address = e.detail.value;
     address ? address.type = self.data.address.type : '';
     // TEMP id for testing
-    address ? address._id = self.data._count + 1 : '';
+    address ? address._id = self.data._count + 1 + new Date().getMilliseconds() : '';
 
     let address_list = generateUserAddress(self, action, address);
     // TODO api save user data

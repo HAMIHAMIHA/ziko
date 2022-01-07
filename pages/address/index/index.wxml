@@ -2,14 +2,14 @@
   <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
     <view
       class="detail{{ select_index == index ? ' select' : '' }}"
-      wx:for="{{ addresses }}"
+      wx:for="{{ user.address }}"
       wx:for-item="address"
       wx:key="_id"
       bindtap="selectAddress"
       data-index="{{ index }}"
     >
       <view class="address_container">
-        <view class="nunito_700 address-name">{{ _t.address + ' ' + count }} 1</view>
+        <view class="nunito_700 address-name">{{ _t.address + ' ' + (index + 1) }}</view>
         <view class="address-detail">{{ address.address }}</view>
         <view class="contact-detail">{{ address.contact }}</view>
         <view class="contact-detail">{{ address.phone }}</view>

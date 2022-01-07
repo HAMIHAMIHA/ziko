@@ -3,10 +3,6 @@ const routes = app.routes;
 
 Page({
   data: {
-    addresses: [
-      {_id: 1, address: 'adressdfa akjfhs ajkldfh askjlfh', contact: 'cadgsafvasf', phone: '12345465321456'},
-      {_id: 2, address: 'vadvasfasf akjfhs ajkldfh askjlfh', contact: 'w3erewfcas', phone: '531243523s'}
-    ],
     _routes: {
       address_detail: routes.address_detail
     }
@@ -31,7 +27,7 @@ Page({
     })
 
     // Get user info
-    let user = app.db.get('userInfo');
+    let user = app.db.get('userInfo').user;
     if (!user) { return; }
 
     // Set page Data
