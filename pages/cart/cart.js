@@ -120,7 +120,7 @@ Page({
     })
   },
 
-  pay: function() {
-    createOrderData(this, '');
+  pay: function(e) {
+    createOrderData(this, e.detail.value);
   }
 })

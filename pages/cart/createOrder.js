@@ -6,6 +6,7 @@ const makePayment = res => {
 
   const callback = {
     success: res => {
+      // TEMP
       wx.redirectTo({
         url: `${app.routes.order}?id=${order_id}&type=paid`,
       })
@@ -68,8 +69,11 @@ const  createOrder = function(page, offer) {
 }
 
 module.exports = {
-  createOrderData: (page, offer) => {
-    // let cart_items = page.data.cart_items;
+  createOrderData: (page, value) => {
+    let cart_items = page.data.cart_items;
+
+    console.log(value);
+
     const callback = {
       success: res => {
         createOrder(page, products, skus);
