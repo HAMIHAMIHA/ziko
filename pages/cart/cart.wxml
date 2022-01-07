@@ -112,12 +112,31 @@
 
     <view class="detail">
       <text class="detail_label">{{ _t.phone_no }}</text>
-      <view class="detail_input"><input class="input" type="number" value="{{ offer.address.phone_no }}" /></view>
+      <view class="detail_input">
+        <input
+          class="input"
+          type="text"
+          name="phone"
+          value="{{ offer.address.phone_no }}"
+          confirm-type="next"
+          confirm-hold="true"
+          data-next_item="contact"
+          bindconfirm="next"
+        />
+      </view>
     </view>
 
     <view class="detail">
       <text class="detail_label">{{ _t.contact_label }}</text>
-      <view class="detail_input"><input class="input" type="text"  value="{{ offer.address.contact }}"/></view>
+      <view class="detail_input">
+        <input
+          class="input"
+          type="text"
+          name="contact"
+          value="{{ offer.address.contact }}"
+          focus="{{ _focus == 'contact' ? true : false }}"
+        />
+      </view>
     </view>
   </view>
 
@@ -125,7 +144,7 @@
     <view class="detail checkbox-container fapiao">
       <text class="detail_label">{{ _t.fapiao }}</text>
       <view class="flex-between detail_input">
-        <input class="input" type="text"  disabled="true" value="{{ user.fapiao }}"/>
+        <input class="ellipsis input" type="text"  disabled="true" value="{{ user.fapiao }}"/>
         <view class="checkbox{{ fapiao ? ' checked' : '' }}">
           <text class="icon icon-check"></text>
         </view>

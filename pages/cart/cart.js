@@ -1,3 +1,4 @@
+const { changeFocus } = require("../../utils/common");
 const { createOrderData } = require("./createOrder");
 
 const app = getApp();
@@ -86,8 +87,14 @@ Page({
 
       _routes: {
         address: app.routes.address
-      }
+      },
+
+      user: app.db.get('userInfo').user
     })
+  },
+
+  next: function(e) {
+    changeFocus(this, e);
   },
 
   // Change picker result

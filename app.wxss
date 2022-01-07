@@ -62,6 +62,12 @@ image {
   position: relative;
 }
 
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .ellipsis_2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
