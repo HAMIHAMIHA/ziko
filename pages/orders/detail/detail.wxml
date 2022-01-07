@@ -1,6 +1,7 @@
 <view class="container container-grey">
   <view class="white-box order-products_container">
-    <view class="nunito_700 header page-header">{{ order.offer + _t.offer_label }}</view>
+    <!-- <view class="nunito_700 header page-header">{{ order.offer + _t.offer_label }}</view> -->
+    <view class="nunito_700 header page-header">{{ 'Kitchen' + _t.offer_label }}</view>
     <view class="nunito_700 header">{{ _t.items }}</view>
     <view class="order-products product_container" wx:for="{{ order.products }}" wx:key="id" wx:for-item="product">
       <view class="flex-between product">
@@ -29,7 +30,8 @@
 
               <!-- Product Amount Bought -->
               <view class="gilroy_500 product-count">
-                {{ 'x' + product.count }}
+                x10
+                <!-- {{ 'x' + product.count }} -->
               </view>
               <!-- End of Product Amount Bought -->
             </view>
