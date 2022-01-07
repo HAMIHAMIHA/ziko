@@ -6,10 +6,10 @@
       wx:for-item="offer"
       wx:key="id"
       bindtap="toOffer"
-      data-started="{{ item.started }}"
-      data-offer-id="{{ item.id }}"
-      data-community="{{ item.community }}"
-      data-price-rule="{{ item.priceRule }}"
+      data-started="{{ offer.started }}"
+      data-offer-id="{{ offer.id }}"
+      data-community="{{ offer.community }}"
+      data-price-rule="{{ offer.priceRule }}"
     >
       <!-- Banner image of card -->
       <view class="offer-banner">
