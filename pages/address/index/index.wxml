@@ -1,4 +1,4 @@
-<view class="container container-grey container-btn-bottom address-list">
+<view class="container container-grey address-list{{ _setting.selecting ? ' container-btn-bottom' : ''}}">
   <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
     <view
       class="detail{{ select_index == index ? ' select' : '' }}"

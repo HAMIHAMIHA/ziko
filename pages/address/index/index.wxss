@@ -1,3 +1,7 @@
+.address-list:not(.container-btn-bottom) {
+  padding-bottom: var(--env-);
+}
+
 .white-box {
   padding: 0;
 }
