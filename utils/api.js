@@ -66,6 +66,7 @@ const post = (path, data, callback) => {
     }
   });
 }
+
 //put请求
 const put = (path, data, callback) => {
   wx.request({
@@ -89,15 +90,31 @@ const put = (path, data, callback) => {
   });
 }
 
-
 module.exports = {
-
-  productCategoriesGet: (callback) => {
-    api('get', 'product-categories', null, callback);
+  createOrder: (data, callback) => {
+    api('post', 'orders', data, callback);
   },
 
-  productTypesGet: (callback) => {
-    api('get', 'product-types', null, callback);
+  getOrders: (id, callback) => {
+    let suffix = 'mine?sort=["createdAt","DESC"]';
+    if (id) suffix = `${id}/mine`;
+    api('get', `orders/${suffix}`, null, callback);
+  },
+
+  getOffers: (suffix, callback) => {
+    api('get', `offers${suffix}`, null, callback);
+  },
+
+  getProduct: (callback) => {
+    api('get', id, data, callback);
+  },
+
+  getProfile: (callback) => {
+    api('get', id, data, callback);
+  },
+
+  getOffers: (callback) => {
+    api('get', '', null, callback);
   },
 
   // Update user info
@@ -105,8 +122,13 @@ module.exports = {
     api('put', `customers/mine`, data, callback);
   },
 
-  // Wechat login -> get openid, and user info (if exist)
+  // Wechat login with mobile
   wxLogin: (data, callback) => {
+    api('post', 'wechat/login', data, callback);
+  },
+
+  // Wechat get openid, and user info (if exist)
+  wxOpenid: (data, callback) => {
     api('post', 'wechat/login', data, callback);
   },
 }
