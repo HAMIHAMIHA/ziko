@@ -230,11 +230,3 @@ Page({
 
   onShareAppMessage: function (res) {},
 })
-
-/* when need to fetch address
-wx.chooseAddress({
-  success (res) {
-    console.log(res);
-  }
-})
-*/
