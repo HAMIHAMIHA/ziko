@@ -3,16 +3,6 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
-// Output time to hh:mm format
-const formatTime = dateLong => {
-  const date = new Date(dateLong)
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const seconds = date.getSeconds()
-
-  return [hour, minute, seconds].map(formatNumber).join(':')
-}
-
 module.exports = {
   findIndex: (list, find, key) => {
     return list.findIndex(item => item[key] == find);
@@ -28,6 +18,16 @@ module.exports = {
     return [year, month, day].map(formatNumber).join('-')
   },
 
+  // Output time to hh:mm format
+  formatTime: dateLong => {
+    const date = new Date(dateLong)
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const seconds = date.getSeconds()
+  
+    return [hour, minute, seconds].map(formatNumber).join(':')
+  },
+
   formatTimer: dateLong => {
     let time = dateLong / 1000;
   
@@ -37,5 +37,14 @@ module.exports = {
     let seconds = parseInt(time % (60 * 60 * 24) % 3600 % 60);
   
     return [hour, minute, seconds].map(formatNumber).join(':')
-  }
+  },
+
+  formatWeekDate: dateLong => {
+    const date = new Date(dateLong);
+    // const hour = date.getHours()
+    // const minute = date.getMinutes()
+    // const seconds = date.getSeconds()
+  
+    // return [hour, minute, seconds].map(formatNumber).join(':')
+  },
 }

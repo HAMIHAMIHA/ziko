@@ -36,8 +36,8 @@ Component({
 
       // Start timer
       let t = setInterval(() => {
-        // countDownTimer(self, self.data.endTime);
-        countDownTimer(self, '2022-01-27T20:00:00.000Z') // TEMP data
+        countDownTimer(self, self.data.endTime);
+        // countDownTimer(self, '2022-01-27T20:00:00.000Z') // TEMP data
       }, 1000)
       return t;
     }
