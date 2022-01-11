@@ -1,5 +1,6 @@
 const { mobileLogin, showLoading } = require("../../utils/common");
 const index_data = require("../../utils/constants");
+const { formatTime, formatWeekDate } = require("../../utils/util");
 
 const app = getApp();
 let leave_triggered = false; // To track if leave page already triggered
@@ -52,14 +53,6 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
       // If filter type = map, group == null => clear data and return
       page.setData({ filter_group: '', offers: {} })
       return;
-    } else {
-      // // If filter type = map, group = smth, date = mull || smth => api => change popup title depending on selected
-      // successCallback = res => {
-      //   page.setData({
-      //     filter_group: filter_group
-      //     // map_type_name: app.globalData.i18n[filter_group] // TODO translate 
-      //   })
-      // }
     }
   }
 
@@ -69,7 +62,13 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
   // Set up page data, Start new timers, Change date filters
   let callback = {
     success: res => {
-      // TODO add checkout product count to offer list
+      let offers = [];
+      for (var i in res) {
+        let offer = res[i];
+        offer.started = (new Date() >= new Date(res.startingDate));
+        offer.startDate = formatWeekDate(res.startingDate);
+        offer.startDate = formatTime(res.startingDate);
+      }
 
       page.setData({
         offers: res
@@ -81,15 +80,15 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
   };
 
   // Set up API
-  let date_filter = '';
-  // TODO filter date > filter date and < next day
+  let general_filter = `&filter={"$and":[{"$or":[{"channel":"all"},{"channel":"miniprogram"}]},{"endingDate":{"$gte":"${ new Date() }"}},{}]}`;
+
+  // TODO get filterable dates
   if (filter_date) {
-  // TODO filter date by gte or lte
-    let last_hour = new Date(filter_date).setHours(23,59,59,999);
-    date_filter = `&filter={"$and":"[{"date":{"$gte":${filter_date}}, {"date":{"$lte":${last_hour}}]"}`
+    let starting_date_filter = `{"startingDate":{"$gte":"${ new Date(filter_date).setHours(0, 0, 0, 0) }", "$lte": "${ new Date(filter_date).setHours(23,59,59,999) }"}}`;
+    general_filter.replace('{}', starting_date_filter);
   }
 
-  suffix = `?community=${filter_id}${date_filter}`;
+  suffix = `?community=${filter_id}${general_filter}`;
   app.api.getOffers(suffix, callback);
 }
 
@@ -107,7 +106,7 @@ Page({
     // Set page default values
     self.setData({
       _filters: {
-        list: index_data.communities,
+        list: index_data.list_filter,
         map: index_data.map_filters
       },
       user: app.db.get('userInfo').user

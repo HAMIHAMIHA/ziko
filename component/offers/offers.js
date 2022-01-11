@@ -1,3 +1,5 @@
+import { communities } from "../../utils/constants";
+
 const app = getApp();
 const routes = app.routes;
 
@@ -9,7 +11,8 @@ Component({
   },
 
   data: {
-    _language: app.db.get('language')
+    _communities: communities,
+    _language: app.db.get('language'),
   },
 
   options: {

@@ -42,9 +42,8 @@ export const map_filters = [
   }
 ]
 
-
 // Class name and icon for top slider filter
-export const communities = [
+export const list_filter = [
   {
     key: 'all',
     id: '',
@@ -81,3 +80,10 @@ export const communities = [
   //   icon: "ziko-baby_sides"
   }
 ]
+
+export const communities = {
+  "60541eab7b87f1126ecf53e1": 'kitchen',
+  "60541eb37b87f1126ecf53e2": 'garden',
+  "60541eb87b87f1126ecf53e3": 'cellar',
+  "60541ebc7b87f1126ecf53e4": 'pet',
+}
