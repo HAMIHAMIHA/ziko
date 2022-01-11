@@ -910,6 +910,7 @@ button:not([size=mini]).float-contact_container {
 }
 
 .ziko-offer .share {
+  width: auto;
   position: absolute;
   right: 30rpx;
   top: calc(20rpx + 20rpx + 32rpx + 2rpx);
