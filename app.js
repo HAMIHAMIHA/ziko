@@ -8,32 +8,32 @@ const { folders } = require('./utils/properties');
 const getWxUserInfo = (res) => {
   const callback = {
     success: res => {
-      // Get user info from wechat (name, profile picture)
-      wx.getUserInfo({
-        success: function(wx_user) {
-          res.wxUser({
-            avatar: wx_user.userInfo.avatarUrl,
-            name: wx_user.userInfo.nickName
-          })
-        }
-      })
+      // if (res.userInfo) {
+      //   // Get user info from wechat (name, profile picture)
+      //   wx.getUserInfo({
+      //     success: function(wx_user) {
+      //       res.wxUser = {
+      //         avatar: wx_user.userInfo.avatarUrl,
+      //         name: wx_user.userInfo.nickName
+      //       }
+      //     }
+      //   })
 
-      if (res.userInfo) {
-      // Update program language map if user exist
-        if (res.userInfo.language != db.get('language')) {
-        // Change language map if user langauge different from system
-          i18n.change(res.userInfo.language);
-        } else if (!res.userInfo.langauge) {
-        // Update profile language if user exists but language not saved
-          common.updateUserInfo({ langauge: db.get('langauge') }, null);
-        }
-      }
+      //   // Update program language map if user exist
+      //   if (res.userInfo.language != db.get('language')) {
+      //   // Change language map if user langauge different from system
+      //     i18n.change(res.userInfo.language);
+      //   } else if (!res.userInfo.langauge) {
+      //   // Update profile language if user exists but language not saved
+      //     common.updateUserInfo({ langauge: db.get('langauge') }, null);
+      //   }
+      // }
 
-      db.set('user', res);
+      db.set('userInfo', res);
     }
   }
 
-  api.wxLogin({ code: res.code }, callback);
+  api.wxOpenid({ code: res.code }, callback);
 }
 
 App({
@@ -59,7 +59,8 @@ App({
         wx.login({
           success: function(res) {
             // TODO wait for api
-            // getWxUserInfo(res);
+            console.log(res);
+            getWxUserInfo(res);
           }
         })
       }
