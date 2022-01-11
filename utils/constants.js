@@ -10,7 +10,7 @@ export const map_filters = [
     shape: "polygon(0 0, 100% 0, 100% 44%, 35% 100%, 0 70%)",
   }, {
     name: "garden",
-    id: '60541eab7b87f1126ecf53e1',
+    id: '60541eb37b87f1126ecf53e2',
     width: 220,
     height: 252,
     xPos: 155,

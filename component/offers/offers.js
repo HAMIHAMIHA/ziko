@@ -5,7 +5,11 @@ let timer_intervals = [];
 
 Component({
   properties: {
-    offers: Array
+    offers: Array,
+  },
+
+  data: {
+    _language: app.db.get('language')
   },
 
   options: {
