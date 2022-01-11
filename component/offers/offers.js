@@ -29,6 +29,8 @@ Component({
           timer_intervals.push(timer[i].setTimer([], startTimer));
         }
       } else {
+        if (timer.length == 0) return;
+
         timer[0].setTimer(timer_intervals, startTimer);
         timer_intervals = [];
       }
