@@ -499,6 +499,26 @@ button:not([size=mini]).float-contact_container {
   border-bottom: 2rpx solid #B0AEB7;
 }
 
+.community-kitchen .offer-count_container {
+  border-color: #DEAF37;
+}
+
+.community-garden .offer-count_container {
+  border-color: #6EC75F;
+}
+
+.community-cellar .offer-count_container {
+  border-color: #B0AEB7;
+}
+
+.community-pet .offer-count_container {
+  border-color: #DC8F47;
+}
+
+.community-baby .offer-count_container {
+  border-color: #F979A3;
+}
+
 .ziko-offer .offer-count_container .icon_container {
   padding-right: 40rpx;
 }
