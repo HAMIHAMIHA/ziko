@@ -25,7 +25,7 @@ const mobileLogin = function(page, code) {
         updateUserInfo({ langauge: db.get('langauge') }, null);
       } else if (res.language != db.get('language')) {
       // Update program language if user language is different from current
-        app.globalData.i18n = i18n.change(res.language);
+        getApp().globalData.i18n = i18n.change(res.language);
         page.updatePageLanguage();
       }
     }
@@ -63,7 +63,7 @@ const navigateBack = function(back_route, switchTab = false) {
 const showLoading = function(show) {
   if (show) {
     wx.showLoading({
-      title: app.globalData.i18n.loading,
+      title: getApp().globalData.i18n.loading,
     })
   } else {
     wx.hideLoading({});
@@ -88,9 +88,9 @@ const updateUserInfo = function(new_info, back_url) {
 }
 
 const updateStoredUserInfo = (new_info) => {
-  // let userInfo = app.db.get('userInfo');
+  // let userInfo = getApp().db.get('userInfo');
   // userInfo.user = new_info;
-  // app.db.set('userInfo', userInfo);
+  // getApp().db.set('userInfo', userInfo);
 }
 
 module.exports = {
