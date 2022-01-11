@@ -48,10 +48,7 @@ export const languageMap_en = {
   contact_customer_hero:"Contact our customer hero!",
   contact_label:"Contact",
   contact_info:"Contact information",
-  contains_items: {
-    fst: "Contain",
-    snd: " items:"
-  },
+  contains_items: "Contain items:",
 
   // D
   delete: "Delete",
@@ -252,10 +249,7 @@ export const languageMap_zh_CN = {
   contact_customer_hero:"Contact our customer hero!",
   contact_label:"Contact",
   contact_info:"Contact information",
-  contains_items: {
-    fst: "Contain",
-    snd: " items:"
-  },
+  contains_items: "Contain items:",
 
   // D
   delete: "Delete",

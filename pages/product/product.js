@@ -69,6 +69,7 @@ Page({
     self.setData({
       _t: {
         available: i18n.available,
+        contains_items: i18n.contains_items,
         discover: i18n.discover,
         minimum: i18n.minimum,
         only_left: i18n.only_left,

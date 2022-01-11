@@ -70,10 +70,7 @@
     <view class="list_container pack-products">
       <!-- Pack Product List -->
       <view class="offer-group offer-packs">
-        <view class="uppercase title">
-          <text class="gilroy_500">{{ _t.contains_items.fst }}</text>
-          <text class="gilroy_700">{{ _t.contains_items.snd }}</text>
-        </view>
+        <view class="gilroy_700 uppercase title">{{ _t.contains_items }}</view>
 
         <view class="product_container" wx:for="{{ product.products }}" wx:for-item="product" wx:key="*this">
           <view class="flex-between flex-align-start product">
