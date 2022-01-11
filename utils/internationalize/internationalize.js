@@ -85,6 +85,7 @@ export const languageMap_en = {
   // K
   // L
   list: "list",
+  loading: 'Loading...',
   login: "Mobile login",
   lottery: "Lottery",
   lottery_gift: "Lottery gift:",
@@ -199,7 +200,7 @@ export const languageMap_en = {
   zipcode: "Zipcode",
 }
 
-export const languageMap_zh_CN = {
+export const languageMap_zh = {
   // A
   account: "个人中心",
   account_ranking: {
@@ -286,6 +287,7 @@ export const languageMap_zh_CN = {
   // K
   // L
   list: "list",
+  loading: 'Loading...',
   login: "Mobile login",
   lottery: "Lottery",
   lottery_gift: "Lottery gift:",

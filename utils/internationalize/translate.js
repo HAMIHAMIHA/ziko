@@ -12,7 +12,7 @@ const checkLanguage = () => {
   wx.getSystemInfo({
     success(res) {
       if (res.language == "zh_CN") {
-        db.set('language', "zh_CN");
+        db.set('language', "zh");
       }
     }
   })
