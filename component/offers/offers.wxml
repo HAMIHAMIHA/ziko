@@ -17,7 +17,7 @@
           <image src="/assets/images/offerBanner.png" mode="widthFix"></image>
         </view>
         <view class="offer-banner_tag">
-          <view class="icon {{ 'icon-ziko-' + item.community + '_right'}}"></view>
+          <view class="icon {{ 'icon-ziko-' + offer.community + '_right'}}"></view>
         </view>
       </view>
       <!-- End of banner -->
