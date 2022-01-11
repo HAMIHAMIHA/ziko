@@ -23,7 +23,7 @@
           <view class="nunito_600 icon_text payment-tickets_count">X{{ tickets }}3</view>
         </view>
       </view>
-      <button class="payment-button" bindtap="checkout">
+      <button class="payment-button" hover-class="hover-payment-button" bindtap="checkout">
         {{ minimum && original_price < minimum ? _t.minimum + ': ' + minimum : _t.pay }}</button>
     </view>
   </view>

@@ -177,26 +177,6 @@ button:not([size=mini]).login-btn {
   background: var(--ziko-default-);
 }
 
-.ziko-kitchen:after {
-  background: var(--ziko-kitchen-);
-}
-
-.ziko-garden:after {
-  background: var(--ziko-garden-);
-}
-
-.ziko-cellar:after {
-  background: var(--ziko-cellar-);
-}
-
-.ziko-pet:after {
-  background: var(--ziko-pet-);
-}
-
-.ziko-baby:after {
-  background: var(--ziko-baby-);
-}
-
 /* Bottom Switch Button */
 .switcher_container {
   width: 100vw;

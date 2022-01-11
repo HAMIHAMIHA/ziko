@@ -26,27 +26,12 @@
 }
 
 /* Set Ziko Color Variables */
-/*
 page {
   --grey-: #A3A8B7;
   --ziko-default-: #FFFFFF;
-  --ziko-kitchen-: linear-gradient(104.65deg, #A1803B 1.33%, #FDE28F 54.78%, #D8BC74 100%);
-  --ziko-garden-: linear-gradient(105.28deg, #98F183 2.41%, #11BF67 100%);
-  --ziko-cellar-: linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
-  --ziko-pet-: linear-gradient(105.28deg, #FFB75A 2.41%, #FF7233 100%);
 }
-*/
-page {
-  --grey-: #A3A8B7;
-  --ziko-default-: #FFFFFF;
-  --ziko-kitchen-: #D7BA6D;
-  --ziko-garden-: #71E256;
-  --ziko-cellar-: #C5CACE;
-  --ziko-pet-: #FF9648;
-  --ziko-baby-: #FF91B5;
-}
-
 /* General Style */
+
 page {
   background: #0A0B12;
   color: var(--ziko-default-);
@@ -116,44 +101,54 @@ image {
 }
 
 /* Ziko Colors */
-.ziko-kitchen {
-  background: var(--ziko-kitchen-);  
+.ziko-kitchen,
+.ziko-kitchen:after,
+.ziko-offer.community-kitchen .offer-payment .payment-button.hover-payment-button {
+  background: #F2C759;
 }
 
-.ziko-garden {
-  background: var(--ziko-garden-);  
+.ziko-garden,
+.ziko-garden:after,
+.ziko-offer.community-garden .offer-payment .payment-button.hover-payment-button {
+  background: #86DF77;
 }
 
-.ziko-cellar {
-  background: var(--ziko-cellar-);  
+.ziko-cellar,
+.ziko-cellar:after,
+.ziko-offer.community-cellar .offer-payment .payment-button.hover-payment-button {
+  background: #C0BEC6;
 }
 
-.ziko-pet {
-  background: var(--ziko-pet-);  
+.ziko-pet,
+.ziko-pet:after,
+.ziko-offer.community-pet .offer-payment .payment-button.hover-payment-button {
+  background: #E6A86F;
 }
 
-.ziko-baby {
-  background: var(--ziko-baby-);  
+.ziko-baby,
+.ziko-baby:after,
+.ziko-offer.community-baby .offer-payment .payment-button.hover-payment-button {
+  background: #FF91B5;  
 }
 
-.ziko-kitchen-solid {
-  background: #E3B231;  
+.ziko-offer.community-kitchen .offer-payment .payment-button {
+  background: #CE9910;
 }
 
-.ziko-garden-solid {
-  background: #86DF77;  
+.ziko-offer.community-garden .offer-payment .payment-button {
+  background: #4CD169;
 }
 
-.ziko-cellar-solid {
-  background: #C0BEC6;  
+.ziko-offer.community-cellar .offer-payment .payment-button {
+  background: #4D485C;
 }
 
-.ziko-pet-solid {
-  background: #E6A86F;  
+.ziko-offer.community-pet .offer-payment .payment-button {
+  background: #C3854C;
 }
 
-.ziko-baby-solid {
-  background: #ff77aa;  
+.ziko-offer.community-baby .offer-payment .payment-button {
+  background: #F979A3;
 }
 
 /* Button Bottom */
@@ -668,22 +663,6 @@ button:not([size=mini]).float-contact_container {
   background: var(--grey-);
   pointer-events: none;
 }
-
-.ziko-offer.community-kitchen .payment-button {
-  background: #CAA655;
-}
-
-.ziko-offer.community-garden .payment-button {
-  background: #2FCA6D;
-}
-
-.ziko-offer.community-cellar .payment-button {
-  background: #6A737B;
-}
-
-.ziko-offer.community-pet .payment-button {
-  background: #FF7C39;
-}
 /* End of Offer Payment */
 
 /* Offer Product List */
@@ -926,11 +905,15 @@ button:not([size=mini]).float-contact_container {
 }
 
 .community-cellar .share {
-  background: #EAEAEB;
+  background: #DAD7E3;
 }
 
 .community-pet .share {
-  background: #FFDAC5;
+  background: #FFD7B1;
+}
+
+.community-baby .share {
+  background: #FFC1D6;
 }
 /* End of Share */
 

@@ -11,7 +11,7 @@
   border-radius: 50%;
 }
 
-.quantity .quantity-change.ziko--solid {
+.quantity .quantity-change.ziko- {
   padding: 15rpx;
   background: #F4F4F4;
   border: 1rpx solid #E7E7E7;
