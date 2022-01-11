@@ -18,10 +18,6 @@
   position: relative;
 }
 
-.product-info .info_container {
-  padding-bottom: 38rpx;
-}
-
 .product_container .product-info .product-title {
   font-size: 28rpx;
 }
