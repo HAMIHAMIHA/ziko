@@ -95,6 +95,10 @@ module.exports = {
     api('post', 'orders', data, callback);
   },
 
+  getCommunity: (callback) => {
+    api('get', 'communities', null, callback);
+  },
+
   getOrders: (id, callback) => {
     let suffix = 'mine?sort=["createdAt","DESC"]';
     if (id) suffix = `${id}/mine`;
@@ -105,16 +109,16 @@ module.exports = {
     api('get', `offers${suffix}`, null, callback);
   },
 
-  getProduct: (callback) => {
-    api('get', id, data, callback);
+  getProduct: (id, callback) => {
+    api('get', `products/${id}`, data, callback);
   },
 
   getProfile: (callback) => {
-    api('get', id, data, callback);
+    api('get', 'customers/mine', null, callback);
   },
 
-  getOffers: (callback) => {
-    api('get', '', null, callback);
+  setOffer: (data, callback) => {
+    api('post', 'orders', data, callback);
   },
 
   // Update user info
@@ -129,6 +133,6 @@ module.exports = {
 
   // Wechat get openid, and user info (if exist)
   wxOpenid: (data, callback) => {
-    api('post', 'wechat/login', data, callback);
+    api('post', 'wechat/openid', data, callback);
   },
 }

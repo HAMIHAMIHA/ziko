@@ -9,8 +9,9 @@
             class="map-area"
             style="--content-width-: {{ filter.width }}; --content-height-: {{ filter.height }}; --content-x-: {{ filter.xPos }}; --content-y-: {{ filter.yPos }}; --shape-: {{ filter.shape }};"
             bindtap="filterOffers"
-            data-filter-type="map"
-            data-filter-group="{{ filter.name }}"
+            data-filter_type="map"
+            data-filter_group="{{ filter.name }}"
+            data-filter_id="{{ filter.id }}"
           ></view>
         </block>
       </view>
@@ -24,12 +25,12 @@
     <view class="h-scroll_container scroll-menu">
       <scroll-view class="h-scroll" scroll-x="true">
         <block wx:for="{{ _filters.list }}" wx:key="filter_group" wx:for-item="filter">
-          <!-- TODO icon for ZIKO ALL NEED TO CHANGE !!!!! -->
           <view
             class="h-scroll_item {{ filter.class_name }} {{ filter_group == filter.filter_group ? ' selected' : '' }}"
             bindtap="filterOffers"
-            data-filter-type="list"
-            data-filter-group="{{ filter.filter_group }}"
+            data-filter_type="list"
+            data-filter_group="{{ filter.filter_group }}"
+            data-filter_id="{{ filter.id }}"
           >
             <view class="icon icon-{{ filter.icon }}"></view>
           </view>

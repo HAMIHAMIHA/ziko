@@ -1,24 +1,9 @@
-const { mobileLogin } = require("../../utils/common");
-const index_data = require("./indexData");
-const { offer_data } = require("./indexData"); // TEMP
+const { mobileLogin, showLoading } = require("../../utils/common");
+const index_data = require("../../utils/constants");
 
 const app = getApp();
-
-let leave_triggered = false;
-
-// Default filter for page
-let current_filter = {
-  type: 'map',
-  group: '',
-  date: ''
-};
-
-// TEMP for testing default to list
-// let current_filter = {
-//   type: 'list',
-//   group: 'all',
-//   date: ''
-// };
+let leave_triggered = false; // To track if leave page already triggered
+let current_filter = { type: 'map', group: '', date: '' }; // Default filter for page
 
 // Update date filter to selected or change depending on days of offers
 const _setDateFilters = (page, offers, filter_date) => {
@@ -41,79 +26,71 @@ const _timerControl = (page, timer_switch) => {
 }
 
 // Get offer data by filters
-const _filterOfferData = (page, filter_type, filter_group, filter_date) => {
+const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_date) => {
   let suffix = '';
-  let successCallback = res => {};
 
-  // 1. Stop all timers
+  // Stop all timers
   _timerControl(page, false);
 
-  // 2. Change filter type if different from current
+
+  page.setData({
+    map: (filter_type == 'map'),
+    filter_group: filter_group
+  })
+
+  // Change filter type if different from current
   if (current_filter.type != filter_type) {
-    page.setData({
-      map: (filter_type == 'map'),
-      filter_group: filter_group
-    })
     current_filter.type = filter_type;
   }
 
-  // 3. Get data by filter group and filter date
+  // Get data by filter group and filter date
   current_filter.group = filter_group;
   current_filter.date = filter_date;
 
   if (filter_type == 'map') {
     if (!filter_group) {
       // If filter type = map, group == null => clear data and return
-      page.setData({
-        filter_group: '',
-        offers: {}
-      })
+      page.setData({ filter_group: '', offers: {} })
       return;
     } else {
-      // If filter type = map, group = smth, date = mull || smth => api => change popup title depending on selected
-      successCallback = res => {
-        page.setData({
-          filter_group: filter_group
-          // map_type_name: app.globalData.i18n[filter_group] // TODO translate 
-        })
-      }
+      // // If filter type = map, group = smth, date = mull || smth => api => change popup title depending on selected
+      // successCallback = res => {
+      //   page.setData({
+      //     filter_group: filter_group
+      //     // map_type_name: app.globalData.i18n[filter_group] // TODO translate 
+      //   })
+      // }
     }
-  } else {
-  // If filter type = list, group = all || smth, date = null || smth => api
-    filter_group = filter_group == 'all' ? '' : filter_group; // Remove 'all' for filter to api
-  }  
+  }
 
-  // 4. Set up page data, Start new timers, Change date filters
+  // Loading module
+  showLoading(true);
+
+  // Set up page data, Start new timers, Change date filters
   let callback = {
     success: res => {
-      // TEMP
-      res = { offers: offer_data };
-      successCallback(res);
-
       // TODO add checkout product count to offer list
 
       page.setData({
-        filter_group: filter_group,
-        offers: res.offers
+        offers: res
       })
       _timerControl(page, true);
       _setDateFilters(page, res.offers, filter_date);
+      showLoading(false);
     }
   };
 
-  // API
-  // TODO filter date > filter date and < next day
+  // Set up API
   let date_filter = '';
+  // TODO filter date > filter date and < next day
   if (filter_date) {
   // TODO filter date by gte or lte
     let last_hour = new Date(filter_date).setHours(23,59,59,999);
     date_filter = `&filter={"$and":"[{"date":{"$gte":${filter_date}}, {"date":{"$lte":${last_hour}}]"}`
   }
 
-  suffix = `?type=${filter_group}${date_filter}`;
-  callback.success(); // TEMP
-  // TODO api
-  // app.api.getOffers(suffix, callback, app.globalData.i18n.loading);
+  suffix = `?community=${filter_id}${date_filter}`;
+  app.api.getOffers(suffix, callback);
 }
 
 Page({
@@ -125,13 +102,12 @@ Page({
     const self = this;
 
     leave_triggered = false;
-
     self.updatePageLanguage();
 
     // Set page default values
     self.setData({
       _filters: {
-        list: index_data.list_filtes,
+        list: index_data.communities,
         map: index_data.map_filters
       },
       user: app.db.get('userInfo').user
@@ -168,32 +144,23 @@ Page({
     const self = this;
 
     // Check if changing to the map view
-    let filter_type = e.currentTarget.dataset.type;
-    let filter_group = e.currentTarget.dataset.group;
-    _filterOfferData(self, filter_type, filter_group, '');
+    let data = e.currentTarget.dataset;
+    _filterOfferData(self, data.type, data.group, '', '');
   },
 
   // Filter offers by selected group
   filterOffers: function(e) {
     const self = this;
-    console.log(e.currentTarget.dataset);
+    let data = e.currentTarget.dataset;
     let date = e.detail.date ? e.detail.date : '';
-    _filterOfferData(self, e.currentTarget.dataset.filterType, e.currentTarget.dataset.filterGroup, date);
+    console.log(data);
+    _filterOfferData(self, data.filter_type, data.filter_group, data.filter_id, date);
   },
 
   // Close modal for map list
   closeMapModal: function() {
     const self = this;
-    _filterOfferData(self, 'map', '', '');
-  },
-
-  // Stop slide action at the back when modal is opened
-  preventSlide: function() {},
-
-  // Mobile login
-  getPhoneNumber: function(e) {
-    mobileLogin(this, e.detail.code);
-    // TODO api to get user phone -> user name + code + openid
+    _filterOfferData(self, 'map', '', '', '');
   },
 
   updatePageLanguage: function() {
@@ -205,6 +172,7 @@ Page({
     // Translation and default values
     let i18n = app.globalData.i18n;
     self.setData({
+      _language: app.db.get('langauge'),
       _t: {
         all: i18n.all,
         coming_soon: i18n.coming_soon,
@@ -225,8 +193,9 @@ Page({
         // TODO days of week
       }
     })
-
   },
 
+  // Stop slide action at the back when modal is opened
+  preventSlide: function() {},
   onShareAppMessage: function (res) {},
 })
