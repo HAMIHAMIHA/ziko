@@ -2,9 +2,9 @@ const { formatTimer } = require("../../utils/util");
 
 // Set countdown time
 const countDownTimer = (page, end) => {
-  let now = new Date();
+  let now = new Date().getTime();
 
-  let end_time = new Date(end);
+  let end_time = new Date(end).getTime();
   let remaining = end_time - now;
 
   let time = "event ended";
@@ -37,7 +37,6 @@ Component({
       // Start timer
       let t = setInterval(() => {
         countDownTimer(self, self.data.endTime);
-        // countDownTimer(self, '2022-01-27T20:00:00.000Z') // TEMP data
       }, 1000)
       return t;
     }

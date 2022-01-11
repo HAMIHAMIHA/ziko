@@ -65,13 +65,15 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
       let offers = [];
       for (var i in res) {
         let offer = res[i];
-        offer.started = (new Date() >= new Date(res.startingDate));
+        console.log(new Date(offer.endingDate));
+        offer.started = (new Date() >= new Date(offer.startingDate));
         offer.startDate = formatWeekDate(res.startingDate);
         offer.startDate = formatTime(res.startingDate);
+        offers.push(offer);
       }
 
       page.setData({
-        offers: res
+        offers: offers
       })
       _timerControl(page, true);
       _setDateFilters(page, res.offers, filter_date);
@@ -152,7 +154,6 @@ Page({
     const self = this;
     let data = e.currentTarget.dataset;
     let date = e.detail.date ? e.detail.date : '';
-    console.log(data);
     _filterOfferData(self, data.filter_type, data.filter_group, data.filter_id, date);
   },
 

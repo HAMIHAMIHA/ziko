@@ -29,14 +29,13 @@ module.exports = {
   },
 
   formatTimer: dateLong => {
-    let time = dateLong / 1000;
-  
-    // let day = parseInt(time / (60 * 60 * 24));
-    let hour = parseInt(time % (60 * 60 * 24) / 3600);
-    let minute = parseInt(time % (60 * 60 * 24) % 3600 / 60);
-    let seconds = parseInt(time % (60 * 60 * 24) % 3600 % 60);
-  
-    return [hour, minute, seconds].map(formatNumber).join(':')
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(dateLong / (1000 * 60 * 60 * 24)) * 24;
+    var hours = days + Math.floor((dateLong % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((dateLong % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((dateLong % (1000 * 60)) / 1000);
+
+    return [hours, minutes, seconds].map(formatNumber).join(':')
   },
 
   formatWeekDate: dateLong => {
