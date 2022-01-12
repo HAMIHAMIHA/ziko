@@ -130,7 +130,7 @@
 
 /* Offer Detail - Delivery */
 .offer-delivery {
-  padding-top: 26rpx;
+  padding: 26rpx 20rpx 0;
   color: #9D9FA4;
   line-height: 32rpx;
   text-align: center;
