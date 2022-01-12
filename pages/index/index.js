@@ -97,7 +97,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
   };
 
   // Set up API
-  let general_filter = `&filter={"$and":[{"$or":[{"channel":"all"},{"channel":"miniprogram"}]},{"endingDate":{"$gte":"${ new Date() }"}},{}]}`;
+  let general_filter = `&filter={"$and":[{"$or":[{"channel":"all"},{"channel":"miniprogram"},{"channel":"wechat_group"}]},{"endingDate":{"$gte":"${ new Date() }"}},{}]}`;
 
   // TODO get filterable dates
   if (filter_date) {
@@ -111,6 +111,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
 
 Page({
   data: {
+    filter_group: '',
     map: true // Default open to map view
   },
 
