@@ -19,6 +19,7 @@ export const languageMap_en = {
   add_new_address: "Add new address",
   add_pet: "Add pet",
   all: "All",
+  am: "AM",
   area: "Area",
   available: {
     fst: "",
@@ -51,6 +52,15 @@ export const languageMap_en = {
   contains_items: "Contain items:",
 
   // D
+  days: [
+    "MON",
+    "TUE",
+    "WED",
+    "THU",
+    "FRI",
+    "SAT",
+    "SUN"
+  ],
   delete: "Delete",
   delivery: "Delivery",
   delivery_company: "Delivery company",
@@ -138,6 +148,7 @@ export const languageMap_en = {
     large: "Large"
   },
   phone_no: "Phone no",
+  pm: "PM",
   price_rules: {
     bourse: "Bourse",
     freeFall: "Free Fall",
@@ -221,6 +232,7 @@ export const languageMap_zh = {
   add_new_address: "添加新地址",
   add_pet: "添加宠物",
   all: "全部",
+  am: "AM",
   area: "地区",
   available: {
     fst: "还剩",
@@ -253,6 +265,15 @@ export const languageMap_zh = {
   contains_items: "Contain items:",
 
   // D
+  days: [
+    "MON",
+    "TUE",
+    "WED",
+    "THU",
+    "FRI",
+    "SAT",
+    "SUN"
+  ],
   delete: "Delete",
   delivery: "Delivery",
   delivery_company: "Delivery company",
@@ -340,6 +361,7 @@ export const languageMap_zh = {
     large: "Large"
   },
   phone_no: "Phone no",
+  pm: "PM",
   price_rules: {
     bourse: "Bourse",
     freeFall: "Free Fall",

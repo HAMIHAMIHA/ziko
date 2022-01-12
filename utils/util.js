@@ -40,10 +40,15 @@ module.exports = {
 
   formatWeekDate: dateLong => {
     const date = new Date(dateLong);
-    // const hour = date.getHours()
-    // const minute = date.getMinutes()
-    // const seconds = date.getSeconds()
-  
-    // return [hour, minute, seconds].map(formatNumber).join(':')
+    let i18n = getApp().globalData.i18n;
+    const hour = date.getHours();
+
+    return {
+      day: i18n.days[date.getDay()],
+      month: formatNumber(date.getMonth() + 1),
+      date: formatNumber(date.getDate()),
+      time: [(hour % 12), date.getMinutes()].map(formatNumber).join(':'),
+      time_str: date.setHours(0, 0, 0, 0)
+    }
   },
 }

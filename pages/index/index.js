@@ -1,18 +1,18 @@
 const { mobileLogin, showLoading } = require("../../utils/common");
 const index_data = require("../../utils/constants");
-const { formatTime, formatWeekDate } = require("../../utils/util");
+const { formatTime, formatWeekDate, findIndex } = require("../../utils/util");
 
 const app = getApp();
 let leave_triggered = false; // To track if leave page already triggered
 let current_filter = { type: 'map', group: '', date: '' }; // Default filter for page
 
-// Update date filter to selected or change depending on days of offers
-const _setDateFilters = (page, offers, filter_date) => {
+// Reset date filter to all
+const _resetDateFilters = (page) => {
   let date_filter = page.selectComponent('#list_date_filters');
   if (current_filter.type == "map") {
     date_filter = page.selectComponent('#map_date_filter');
   }
-  date_filter.updateFilter(offers, filter_date);
+  date_filter.resetDateFilter();
 }
 
 // Toggle timer intervals
@@ -33,7 +33,6 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
   // Stop all timers
   _timerControl(page, false);
 
-
   page.setData({
     map: (filter_type == 'map'),
     filter_group: filter_group
@@ -44,8 +43,13 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
     current_filter.type = filter_type;
   }
 
+  // Reset date filter if filter type and filter group different from current
+  if (current_filter.type != filter_type && current_filter.group != filter_id) {
+    _resetDateFilters(self);
+  }
+
   // Get data by filter group and filter date
-  current_filter.group = filter_group;
+  current_filter.group = filter_id;
   current_filter.date = filter_date;
 
   if (filter_type == 'map') {
@@ -63,20 +67,31 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
   let callback = {
     success: res => {
       let offers = [];
+      let days = page.data.days;
+      if (!filter_date) {
+        days = []; // create list for date picker
+      }
+
       for (var i in res) {
         let offer = res[i];
-        console.log(new Date(offer.endingDate));
         offer.started = (new Date() >= new Date(offer.startingDate));
-        offer.startDate = formatWeekDate(res.startingDate);
-        offer.startDate = formatTime(res.startingDate);
+
+        let date_str = formatWeekDate(res[i].startingDate);
+
+        if (!filter_date && findIndex(days, date_str.time_str, "time_str") == -1) {
+          days.push(date_str);
+        }
+
+        offer.startDate = date_str;
         offers.push(offer);
       }
 
       page.setData({
-        offers: offers
+        days: days,
+        offers: offers,
       })
       _timerControl(page, true);
-      _setDateFilters(page, res.offers, filter_date);
+      // _setDateFilters(page, res.offers, filter_date);
       showLoading(false);
     }
   };
@@ -153,7 +168,20 @@ Page({
   filterOffers: function(e) {
     const self = this;
     let data = e.currentTarget.dataset;
+
+    // Set up filtering items if just changing date
+    if (JSON.stringify(data) == '{}') {
+      data = {
+        filter_type: current_filter.type,
+        filter_group: index_data.communities[current_filter.group],
+        filter_id: current_filter.group,
+      }
+    }
+
+    // Get filtering date value
     let date = e.detail.date ? e.detail.date : '';
+  
+    // Filter
     _filterOfferData(self, data.filter_type, data.filter_group, data.filter_id, date);
   },
 

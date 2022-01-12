@@ -39,7 +39,11 @@
     </view>
 
     <!-- List Contents -->
-    <dateFilter id="list_date_filters" offers="{{ offers }}"></dateFilter>
+    <dateFilter
+      id="list_date_filters"
+      days="{{ days }}"
+      bind:filterOffers="filterOffers"
+    ></dateFilter>
     <offers id="list_offers" offers="{{ offers }}" bind:navigatePage="navigatePage"></offers>
   </view>
   <!-- End of List View -->
@@ -48,7 +52,7 @@
   <view class="gilroy_700 uppercase switcher_container">
     <view class="switcher">
       <button class="switch{{ map ? ' selected' : '' }}" bindtap="switchType" data-type="map">{{ _t.explore }}</button>
-      <button class="switch{{ map ? '' : ' selected' }}" bindtap="switchType" data-type="list" data-group="all">{{ _t.list }}</button>
+      <button class="switch{{ map ? '' : ' selected' }}" bindtap="switchType" data-type="list">{{ _t.list }}</button>
     </view>
   </view>
   <!-- End of Map and List switcher -->
@@ -60,7 +64,7 @@
       <view class="modal-card">
         <view class="gilroy_700 uppercase h1">{{ _t.community[filter_group] + _t.offers }}</view>
         <view class="close-modal" bindtap="closeMapModal"><text class="icon icon-x"></text></view>
-        <dateFilter id="map_date_filter" offers="{{ offers }}"></dateFilter>
+        <dateFilter id="map_date_filter" days="{{ days }}" bind:filterOffers="filterOffers"></dateFilter>
         <scroll-view class="modal-offers_container" scroll-y="true">
           <offers id="map_offers" offers="{{ offers }}" bind:navigatePage="navigatePage"></offers>
         </scroll-view>
