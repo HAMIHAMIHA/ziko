@@ -4,17 +4,19 @@ let total = 0; // TEMP
 
 Component({
   properties: {
-    community: String,
-    pack: Boolean,
-    products: Array,
+    _community: String,
+    _is_pack: Boolean,
+    product_list: Array,
     targets: Array,
     targetType: String,
-    units: String
   },
 
   data: {
     _routes: {
       product: app.routes.product
+    },
+    _folders: {
+      product_picture: app.folders.product_picture
     }
   },
 
@@ -26,8 +28,11 @@ Component({
     updatePage: function(products_translation) {
       const self = this;
 
+      console.log(self.data.product_list);
+
       self.setData({
-        _t: products_translation
+        _language: app.db.get('language'),
+        _t: products_translation,
       })
     },
 

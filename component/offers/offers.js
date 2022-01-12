@@ -51,7 +51,7 @@ Component({
       if (!data.started) return;
 
       var url = routes.offer_regular;
-      if (data.community == "cellar") {
+      if (communities[data.community] == "cellar") {
         if (data.priceRule == "bourse") {
           url = routes.offer_bourse;
         } else if (data.priceRule != "regular") {
@@ -62,8 +62,7 @@ Component({
       self.triggerEvent('navigatePage', { navigating: true });  
 
       wx.navigateTo({
-        // url: url + '?id=' + id,
-        url: url + '?id=' + data.offerId + '&community=' + data.community + '&rule=' + data.priceRule,
+        url: url + '?id=' + data.offerId,
       })
     }
   }

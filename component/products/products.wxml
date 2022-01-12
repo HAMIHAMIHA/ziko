@@ -1,52 +1,53 @@
-<view class="product_container{{ product.available == 0 ? ' sold-out' : '' }}" wx:for="{{ products }}" wx:key="id" wx:for-item="product">
+<view class="product_container{{ list_item.actualStock == 0 ? ' sold-out' : '' }}" wx:for="{{ product_list }}" wx:key="id" wx:for-item="list_item">
   <view class="flex-between flex-align-start product">
     <navigator
       class="flex-start flex-align-start product_left"
-      url="{{ pack ? _routes.product + '?id=' + product.id + '&type=pack' : _routes.product + '?id=' + product.id + '&type=product' }}"
+      url="{{ _is_pack ? _routes.product + '?id=' + list_item.id + '&type=pack' : _routes.product + '?id=' + list_item.id + '&type=product' }}"
     >
       <view class="product-image">
-        <image src="/assets/images/productDefault.png" mode="aspectFill" wx:if="{{ pack }}"></image>
-        <image src="/assets/images/productDefault.png" mode="aspectFill" wx:else></image>
+        <image src="/assets/images/productDefault.png" mode="aspectFill" wx:if="{{ _is_pack }}"></image>
+        <image src="{{ _folders.product_picture + list_item.product.mainPicture[_language].uri }}" mode="aspectFill" wx:else></image>
       </view>
       <view class="product-info">
-        <view class="gilroy_700 ziko-{{ community }} gradient-text uppercase product-title">{{ prodcut.name }}pack name</view>
+        <view class="gilroy_700 ziko-{{ _community }} gradient-text uppercase product-title">{{ _is_pack ? list_item.name[_language] : list_item.product.name[_language] }}</view>
         <!-- Pack Products Detail -->
-        <view class="nunito_300 product-detail_container" wx:if="{{ pack }}">
-          <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="packProduct">
-            <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ units }}</text>
-            <text wx:if="{{ index < product.products.length - 1 }}">, </text>
+        <view class="nunito_300 product-detail_container" wx:if="{{ _is_pack }}">
+          <text wx:for="{{ list_item.products }}" wx:key="*this" wx:for-index="index" wx:for-item="pack_product">
+            <text>{{ pack_product.product.name[_language] }} {{ pack_product.quantity }}{{ pack_product.weight ? 'x' + pack_product.weight + _t.units : '' }}</text>
+            <text wx:if="{{ index < list_item.products.length - 1 }}">, </text>
           </text>
         </view>
         <!-- End of Pack Products Detail -->
 
         <!-- Single Products Detail -->
         <view class="nunito_300 product-detail_container" wx:else>
-          <text>{{ product.quantity }} x {{ product.weight }}{{ units }}</text>
+          <text>{{ list_item.quantity }} x {{ list_item.weight }}{{ _t.units }}</text>
         </view>
         <!-- End of Single Products Detail -->
 
         <!-- Available Amount Left -->
         <view class="nunito_300 product-available">
-          <text wx:if="{{ product.available == 0 }}">{{ _t.products_left.fst + product.available + _t.products_left.snd }}</text>
-          <text wx:elif="{{ product.available >= 100 }}">{{ _t.available.fst + product.available + _t.available.snd }}</text>
-          <text wx:else>{{ _t.only_left.fst + product.available + _t.only_left.snd }}</text>
+          <text wx:if="{{ list_item.actualStock == 0 }}">{{ _t.products_left.fst + list_item.actualStock + _t.products_left.snd }}</text>
+          <text wx:elif="{{ list_item.actualStock >= 100 }}">{{ _t.available.fst + list_item.actualStock + _t.available.snd }}</text>
+          <text wx:else>{{ _t.only_left.fst + list_item.actualStock + _t.only_left.snd }}</text>
         </view>
         <!-- End of Available Amount Left -->
 
         <!-- Price -->
         <view class="gilroy_800 product-price_container">
-          <text class="product-price" wx:if="{{ product.newPrice }}">¥{{ product.newPrice }}</text>
-          <text class="product-price">¥{{ product.price }}</text>
+          <text class="product-price" wx:if="{{ list_item.newPrice }}">¥{{ list_item.newPrice }}</text>
+          <text class="product-price">¥{{ list_item.price }}</text>
         </view>
-        <!-- End ofPrice -->
+        <!-- End of Price -->
       </view>
     </navigator>
     <quantity
       class="flex-start product-quantity"
       quantity="{{ item.qty }}"
-      community="{{ community }}"
+      community="{{ _community }}"
       bind:changeQty="changeQty"
-      data-idx="{{index}}"
+      data-idx="{{ index }}"
+      data-price="{{ list_item.price }}"
     ></quantity>
   </view>
 

@@ -40,15 +40,26 @@ module.exports = {
 
   formatWeekDate: dateLong => {
     const date = new Date(dateLong);
-    let i18n = getApp().globalData.i18n;
+    const i18n = getApp().globalData.i18n;
+
+    // Month, date, and day of week
+    const day = i18n.days[date.getDay()];
+    const mth = i18n.month[date.getMonth() + 1];
+    const date_val = formatNumber(date.getDate());
+
+    // Time in 12 hours format
     const hour = date.getHours();
+    const hour_12 = hour % 12 || 12; 
+    const time = [hour_12, date.getMinutes()].map(formatNumber).join(':');
+    const unit = hour >= 12 ? i18n.pm : i18n.am;
 
     return {
-      day: i18n.days[date.getDay()],
-      month: formatNumber(date.getMonth() + 1),
-      date: formatNumber(date.getDate()),
-      time: [(hour % 12), date.getMinutes()].map(formatNumber).join(':'),
-      time_str: date.setHours(0, 0, 0, 0)
+      day: day,
+      month: i18n.month[mth],
+      date: date_val,
+      time: getApp().db.get('language') == 'zh' ?  `${unit} ${time}` : `${time} ${unit}`,
+      date_str: getApp().db.get('language') == 'zh' ? `${day} ${mth}${date_val}日` : `${day} ${date_val} ${mth},` ,
+      timestamp: date.setHours(0, 0, 0, 0)
     }
   },
 }

@@ -53,13 +53,13 @@ export const languageMap_en = {
 
   // D
   days: [
-    "MON",
-    "TUE",
-    "WED",
-    "THU",
-    "FRI",
-    "SAT",
-    "SUN"
+    "MON.",
+    "TUE.",
+    "WED.",
+    "THU.",
+    "FRI.",
+    "SAT.",
+    "SUN."
   ],
   delete: "Delete",
   delivery: "Delivery",
@@ -103,6 +103,20 @@ export const languageMap_en = {
 
   // M
   minimum: "Min",
+  month: {
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December",
+},
   my_favorite_recipes: "My favorite recipes",
   my_orders: "My Orders",
 
@@ -232,7 +246,7 @@ export const languageMap_zh = {
   add_new_address: "添加新地址",
   add_pet: "添加宠物",
   all: "全部",
-  am: "AM",
+  am: "上午",
   area: "地区",
   available: {
     fst: "还剩",
@@ -266,13 +280,13 @@ export const languageMap_zh = {
 
   // D
   days: [
-    "MON",
-    "TUE",
-    "WED",
-    "THU",
-    "FRI",
-    "SAT",
-    "SUN"
+    "星期一",
+    "星期二",
+    "星期三",
+    "星期四",
+    "星期五",
+    "星期六",
+    "星期日"
   ],
   delete: "Delete",
   delivery: "Delivery",
@@ -316,6 +330,20 @@ export const languageMap_zh = {
 
   // M
   minimum: "Min",
+  month: {
+    1: "1月",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December",
+},
   my_favorite_recipes: "My favorite recipes",
   my_orders: "My Orders",
 
@@ -361,7 +389,7 @@ export const languageMap_zh = {
     large: "Large"
   },
   phone_no: "Phone no",
-  pm: "PM",
+  pm: "下午",
   price_rules: {
     bourse: "Bourse",
     freeFall: "Free Fall",

@@ -76,13 +76,13 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
         let offer = res[i];
         offer.started = (new Date() >= new Date(offer.startingDate));
 
-        let date_str = formatWeekDate(res[i].startingDate);
+        let date_value = formatWeekDate(res[i].startingDate);
 
-        if (!filter_date && findIndex(days, date_str.time_str, "time_str") == -1) {
-          days.push(date_str);
+        if (!filter_date && findIndex(days, date_value.timestamp, "timestamp") == -1) {
+          days.push(date_value);
         }
 
-        offer.startDate = date_str;
+        offer.startDate = date_value;
         offers.push(offer);
       }
 
@@ -201,7 +201,7 @@ Page({
     // Translation and default values
     let i18n = app.globalData.i18n;
     self.setData({
-      _language: app.db.get('langauge'),
+      _language: app.db.get('language'),
       _t: {
         all: i18n.all,
         coming_soon: i18n.coming_soon,

@@ -106,7 +106,7 @@ module.exports = {
   },
 
   getOffers: (suffix, callback) => {
-    api('get', `offers${suffix}`, null, callback);
+    api('get', `offers/details${suffix}`, null, callback);
   },
 
   getProduct: (id, callback) => {
@@ -117,7 +117,7 @@ module.exports = {
     api('get', 'customers/mine', null, callback);
   },
 
-  setOffer: (data, callback) => {
+  setOrder: (data, callback) => {
     api('post', 'orders', data, callback);
   },
 

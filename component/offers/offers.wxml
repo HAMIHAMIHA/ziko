@@ -93,8 +93,8 @@
           <!-- Offer Time -->
           <view class="flex-between offer-detail_content offer-datetime">
             <view class="flex-between_left">
-              <view class="offer-date">Thu. 13 March,</view>
-              <view class="offer-time">2:00 PM - 4:00 PM</view>
+              <view class="offer-date">{{ offer.startDate.date_str }}</view>
+              <view class="offer-time">{{ offer.startDate.time }}</view>
             </view>
             <!-- TEMP Hide for v1 -->
             <view class="flex-between_rt" wx:if="{{ showing }}">
