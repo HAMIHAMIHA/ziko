@@ -48,7 +48,7 @@ export const list_filter = [
     key: 'all',
     id: '',
     class_name: "zikoland",
-    filter_group: "all",
+    filter_group: "",
     icon: "ziko_sides"
   }, {
     key: 'kitchen',
