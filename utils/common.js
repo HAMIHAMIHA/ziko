@@ -11,7 +11,8 @@ const changeFocus = function(page, e) {
 
 // General method to call api and login with wechat mobile number
 const mobileLogin = function(page, code) {
-  db.set('userInfo', {"user":{"name":"tes"}}); // TEMP set user data
+  // NEED TO REMOVE BEFORE PROUCTION!!!!
+  db.set('userInfo', {"user":{"name":"tes"}, token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZWM0ZDc2MDE0MzdjYjZiYzRkNjgxM2IiLCJ0eXBlIjoidXNlciIsInBlcm1pc3Npb25zIjoic3VwZXItYWRtaW4iLCJpYXQiOjE2NDE5Nzc4NjYsImV4cCI6MTY0MjIzNzA2Nn0.4lG58o2s9CIFpqWnLPdecLWzhSrmus4W0_KvGHJqMtA"}); // TEMP set user data
 
   console.log('set user');
   page.setData({
