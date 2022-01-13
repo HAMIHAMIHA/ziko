@@ -6,6 +6,8 @@ Component({
   properties: {
     _community: String,
     _is_pack: Boolean,
+    id: String,
+    offer_id: String,
     product_list: Array,
     targets: Array,
     targetType: String,
@@ -24,6 +26,8 @@ Component({
     addGlobalClass: true
   },
 
+  attached: function() { console.log(this.data);},
+
   methods: {
     updatePage: function(products_translation) {
       const self = this;
@@ -36,6 +40,9 @@ Component({
 
     changeQty: function(e) {
       const self = this;
+
+      console.log(self.data);
+
       let new_qty = e.detail.data ? e.detail.data : 0;
       let target = e.currentTarget.dataset.idx;
       

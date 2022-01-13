@@ -124,6 +124,7 @@
 
       <products
         class="product-list"
+        offer_id="{{ _offer.id }}"
         product_list="{{ _offer.miniprogram.packs }}"
         _is_pack="{{ true }}"
         _community="{{ _offer.community }}"
@@ -139,9 +140,10 @@
 
       <products
         class="product-list"
+        offer_id="{{ _offer.id }}"
         product_list="{{ _offer.miniprogram.items }}"
-        pack="{{ false }}"
-        community="{{ _offer.community }}"
+        _is_pack="{{ false }}"
+        _community="{{ _offer.community }}"
         bind:updateTotal="updateTotal"
       ></products>
     </view>
