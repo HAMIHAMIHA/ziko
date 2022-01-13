@@ -4,48 +4,43 @@
   <view class="banner_container">
     <!-- Detail Banner -->
     <view class="banner-image_container swiper_container">
-      <swiper class="swiper" bindchange="swiperChange">
-        <block wx:for="{{ product.banner }}" wx:key="key" wx:for-item="banner">
-          <swiper-item class="swiper_item">
-            <image src="{{ banner.img }}" mode="aspectFill"></image>
-          </swiper-item>
-        </block>
+      <swiper class="swiper">
+        <swiper-item class="swiper_item">
+          <image src="{{ _folders.product_picture + product.product.mainPicture[_language].uri }}" mode="aspectFill" lazy-load="true" wx:if="{{ _setting.type != 'pack' }}"></image>
+          <image src="/assets/images/packDefault.png" mode="aspectFill" wx:else></image>
+        </swiper-item>
       </swiper>
-      <view class="gilroy_700 indicator" wx:if="{{ product.banner.length > 1 }}">
-        {{ _setting.swiperIndex }} / {{ product.banner.length }}
-      </view>  
     </view>
     <!-- End of Detail Banner -->
   </view>
 
   <!-- Product Info -->
-  <!-- TODO -->
   <view class="flex-between flex-align-start product-info_container">
     <view class="product-info">
       <view class="gilroy_700 uppercase{{ _setting.type != 'pack' ? ' gradient-text ziko-' + _setting.community : '' }} product-info_title">
-        title{{ product.title }}
+        {{ _setting.type != 'pack' ? product.product.name[_language] : product.name[_language] }}
       </view>
       <view class="product-info_detail">
         <!-- Products Detail -->
         <view class="nunito_300 product-detail_content" wx:if="{{ _setting.type == 'pack' }}">
-          <text>{{ product.weight }}{{ _t.units }}</text>
+          <text>{{ product.weight ? product.weight + _t.general_unit : '' }}</text>
         </view>
         <view class="nunito_300 product-detail_content" wx:else>
-          <text>{{ product.quantity }} x {{ product.weight }}{{ _t.units }}</text>
+          <text>{{ product.quantity }}{{ product.product.weight ? 'x' + product.product.weight + _t.units : product.quantity > 1 ? _t.items_unit : _t.item_unit }}</text>
         </view>
         <!-- End of Products Detail -->
 
         <!-- Available Amount Left -->
-        <view class="nunito_300 product-detail_content">
-          <text wx:if="{{ product.available == 0 }}">{{ _t.products_left.fst + product.available + _t.products_left.snd }}</text>
-          <text wx:elif="{{ product.available >= 100 }}">{{ _t.available.fst + product.available + _t.available.snd }}</text>
-          <text wx:else>{{ _t.only_left.fst + product.available + _t.only_left.snd }}</text>
+        <view class="nunito_300 product-detail_content" wx:if="{{ _setting.type != 'packProduct' }}">
+          <text wx:if="{{ product.actualStock == 0 }}">{{ _t.products_left.fst + product.actualStock + _t.products_left.snd }}</text>
+          <text wx:elif="{{ product.actualStock >= 100 }}">{{ _t.available.fst + product.actualStock + _t.available.snd }}</text>
+          <text wx:else>{{ _t.only_left.fst + product.actualStock + _t.only_left.snd }}</text>
         </view>
         <!-- End of Available Amount Left -->
 
         <!-- Price -->
         <view class="gilroy_800 product-price_container">
-          <text class="product-price">¥{{ product.price }}</text>
+          <text class="product-price">¥{{ product.price ? product.price : product.product.price }}</text>
         </view>
         <!-- End of Price -->
       </view>
@@ -60,7 +55,7 @@
   <!-- Product Detail if not type = 'product' (not using pack = false because need for quantity) -->
   <block wx:if="{{ _setting.type != 'pack' }}">
     <view class="nunito_300 product-descrtiption">
-      <text>{{ product.description }}</text>
+      <text>{{ product.product.description[_language] }}</text>
     </view>
   </block>
   <!-- End of Product Detail -->
@@ -72,28 +67,29 @@
       <view class="offer-group offer-packs">
         <view class="gilroy_700 uppercase title">{{ _t.contains_items }}</view>
 
-        <view class="product_container" wx:for="{{ product.products }}" wx:for-item="product" wx:key="*this">
+        <view class="product_container" wx:for="{{ product.products }}" wx:for-item="product" wx:key="_id">
           <view class="flex-between flex-align-start product">
             <view class="flex-start flex-align-start product_left">
               <view class="product-image">
-                <image src="/assets/images/productDefault.png" mode="aspectFill"></image>
+                <image src="{{ _folders.product_picture + product.product.mainPicture[_language].uri }}" mode="aspectFill" lazy-load="true"></image>
               </view>
               <view class="product-info">
-                <view class="gilroy_700 ziko-{{ _setting.community }} gradient-text uppercase product-title">{{ product.name }}pack name</view>
+                <view class="gilroy_700 ziko-{{ _setting.community }} gradient-text uppercase product-title">
+                  {{ product.product.name[_language] }}
+                </view>
 
                 <view class="nunito_300 product-detail_container">
-                  <text>{{ product.quantity }} x {{ product.weight }}{{ _t.units }}</text>
+                  <text>{{ product.quantity }}{{ product.product.weight ? 'x' + product.product.weight + _t.units : product.quantity > 1 ? _t.items_unit : _t.item_unit }}</text>
                 </view>
 
                 <view class="nunito_300 ellipsis_2 product-detail_container">
-                  {{ prodcut.description }}
-                  Lorem ipsum dolor sit an, consectetur adipiscing elit. 
+                  {{ product.product.description[_language] }}
                 </view>
               </view>
             </view>
 
             <view class="flex-start product-navigate_container">
-              <navigator class="product-navigate" url="{{ routes.product + '?type=packProduct' }}">
+              <navigator class="product-navigate" url="{{ _routes.product + '?id=' + product._id + '&offer_id=' + offer_id + '&type=packProduct' }}">
                 {{ _t.discover }}
               </navigator>
             </view>

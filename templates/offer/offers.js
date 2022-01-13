@@ -64,7 +64,6 @@ export const getOffer = function(page, offer_id) {
         price: offer.minimumOrderAmount,
         items: offer.minimumCartItems
       }
-      console.log(offer);
 
       page.setData({
         _offer: offer,

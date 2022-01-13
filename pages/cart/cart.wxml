@@ -6,8 +6,8 @@
         <view class="flex-between product">
           <view class="flex-start flex-align-start product_left">
             <view class="product-image">
-              <image src="/assets/images/productDefault.png" mode="aspectFill" wx:if="{{ product.type == 'pack' }}"></image>
-              <image src="/assets/images/productDefault.png" mode="aspectFill" wx:else></image>
+              <image src="/assets/images/packDefault.png" mode="aspectFill" wx:if="{{ product.type == 'pack' }}"></image>
+              <image src="/assets/images/packDefault.png" mode="aspectFill" wx:else></image>
             </view>
             <view class="product-info">
               <view class="info_container">

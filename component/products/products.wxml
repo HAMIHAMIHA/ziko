@@ -2,10 +2,10 @@
   <view class="flex-between flex-align-start product">
     <navigator
       class="flex-start flex-align-start product_left"
-      url="{{ _is_pack ? _routes.product + '?id=' + list_item._id + '&offer_id=' + offer_id + '&type=pack' : _routes.product + '?id=' + list_item._id + '&type=product' }}"
+      url="{{ _routes.product + '?id=' + list_item._id + '&offer_id=' + offer_id }}{{ _is_pack ? '&type=pack' : '&type=product' }}"
     >
       <view class="product-image">
-        <image src="/assets/images/productDefault.png" mode="aspectFill" wx:if="{{ _is_pack }}"></image>
+        <image src="/assets/images/packDefault.png" mode="aspectFill" wx:if="{{ _is_pack }}"></image>
         <image src="{{ _folders.product_picture + list_item.product.mainPicture[_language].uri }}" mode="aspectFill" wx:else></image>
       </view>
       <view class="product-info">

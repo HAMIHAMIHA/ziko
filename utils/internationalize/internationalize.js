@@ -211,6 +211,7 @@ export const languageMap_en = {
     garden:"g",
     kitchen:"g",
     pet:"g",
+    kg:"kg",
   },
   use_voucher: "Use Voucher",
 
@@ -439,6 +440,7 @@ export const languageMap_zh = {
     garden:"克",
     kitchen:"克",
     pet:"克",
+    kg:"kg",
   },
   use_voucher: "Use Voucher",
 

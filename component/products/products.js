@@ -26,8 +26,6 @@ Component({
     addGlobalClass: true
   },
 
-  attached: function() { console.log(this.data);},
-
   methods: {
     updatePage: function(products_translation) {
       const self = this;
