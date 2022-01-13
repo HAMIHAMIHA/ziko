@@ -102,33 +102,28 @@ image {
 
 /* Ziko Colors */
 .ziko-kitchen,
-.ziko-kitchen:after,
-.ziko-offer.community-kitchen .offer-payment .payment-button.hover-payment-button {
-  background: #F2C759;
+.ziko-kitchen:after {
+  background: linear-gradient(104.65deg, #A1803B 1.33%, #FDE28F 54.78%, #D8BC74 100%);
 }
 
 .ziko-garden,
-.ziko-garden:after,
-.ziko-offer.community-garden .offer-payment .payment-button.hover-payment-button {
-  background: #86DF77;
+.ziko-garden:after {
+  background: linear-gradient(105.28deg, #98F183 2.41%, #11BF67 100%);
 }
 
 .ziko-cellar,
-.ziko-cellar:after,
-.ziko-offer.community-cellar .offer-payment .payment-button.hover-payment-button {
-  background: #C0BEC6;
+.ziko-cellar:after {
+  background: linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
 }
 
 .ziko-pet,
-.ziko-pet:after,
-.ziko-offer.community-pet .offer-payment .payment-button.hover-payment-button {
-  background: #E6A86F;
+.ziko-pet:after {
+  background: linear-gradient(105.28deg, #FFB75A 2.41%, #FF7233 100%);
 }
 
 .ziko-baby,
-.ziko-baby:after,
-.ziko-offer.community-baby .offer-payment .payment-button.hover-payment-button {
-  background: #FF91B5;  
+.ziko-baby:after {
+  background: linear-gradient(105.28deg, #FFB2C7 2.41%, #FF5898 100%);
 }
 
 .ziko-offer.community-kitchen .offer-payment .payment-button {
@@ -149,6 +144,26 @@ image {
 
 .ziko-offer.community-baby .offer-payment .payment-button {
   background: #F979A3;
+}
+
+.ziko-offer.community-kitchen .offer-payment .payment-button.hover-payment-button {
+  background: #F2C759;
+}
+
+.ziko-offer.community-garden .offer-payment .payment-button.hover-payment-button {
+  background: #86DF77;
+}
+
+.ziko-offer.community-cellar .offer-payment .payment-button.hover-payment-button {
+  background: #C0BEC6;
+}
+
+.ziko-offer.community-pet .offer-payment .payment-button.hover-payment-button {
+  background: #E6A86F;
+}
+
+.ziko-offer.community-baby .offer-payment .payment-button.hover-payment-button {
+  background: #FF91B5;  
 }
 
 /* Button Bottom */
