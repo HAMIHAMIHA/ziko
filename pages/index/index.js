@@ -28,7 +28,7 @@ const _timerControl = (page, timer_switch) => {
 
 // Rules for generating api url
 const _generateSuffix = (step, filter_date) => {
-  const start_suffix = `&filter={"$and":[{"$or":[{"channel":"all"},{"channel":"miniprogram"},{"channel":"wechat_group"}]}`;
+  const start_suffix = `&filter={"$and":[{"$or":[{"channel":"all"},{"channel":"miniprogram"},{"channel":"1wechat_group"}]}`;
 
   let key = 'general';
   let now = new Date();

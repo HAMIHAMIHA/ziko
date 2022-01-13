@@ -126,23 +126,23 @@ image {
   background: linear-gradient(105.28deg, #FFB2C7 2.41%, #FF5898 100%);
 }
 
-.ziko-offer.community-kitchen .offer-payment .payment-button {
+.ziko-offer.community-kitchen .offer-payment .payment-button:not(.disabled) {
   background: #CE9910;
 }
 
-.ziko-offer.community-garden .offer-payment .payment-button {
+.ziko-offer.community-garden .offer-payment .payment-button:not(.disabled) {
   background: #4CD169;
 }
 
-.ziko-offer.community-cellar .offer-payment .payment-button {
+.ziko-offer.community-cellar .offer-payment .payment-button:not(.disabled) {
   background: #4D485C;
 }
 
-.ziko-offer.community-pet .offer-payment .payment-button {
+.ziko-offer.community-pet .offer-payment .payment-button:not(.disabled) {
   background: #C3854C;
 }
 
-.ziko-offer.community-baby .offer-payment .payment-button {
+.ziko-offer.community-baby .offer-payment .payment-button:not(.disabled) {
   background: #F979A3;
 }
 
@@ -619,8 +619,18 @@ button:not([size=mini]).float-contact_container {
 /* End of Offer Messages */
 
 /* Offer Payment */
+.ziko-offer:not(.ziko-product) {
+  /* TODO add message height 28rpx + 14rpx + 14rpx if have message */
+  padding-bottom: calc(106rpx + var(--env-));
+  position: relative;
+}
+
 .ziko-offer .offer-payment {
+  width: 100%;
   padding-bottom: var(--env-);
+  background: #0A0B12;
+  position: fixed;
+  bottom: 0;
 }
 
 .ziko-offer .offer-payment .payment-message {
@@ -692,6 +702,7 @@ button:not([size=mini]).float-contact_container {
   color: var(--ziko-default-);
   font-size: 32rpx;
   line-height: 106rpx;
+  text-align: center;
 }
 
 .ziko-offer .offer-payment.disabled .payment-button {

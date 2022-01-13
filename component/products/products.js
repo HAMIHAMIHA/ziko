@@ -28,8 +28,6 @@ Component({
     updatePage: function(products_translation) {
       const self = this;
 
-      console.log(self.data.product_list);
-
       self.setData({
         _language: app.db.get('language'),
         _t: products_translation,

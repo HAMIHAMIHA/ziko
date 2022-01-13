@@ -135,4 +135,19 @@ module.exports = {
   wxOpenid: (data, callback) => {
     api('post', 'wechat/openid', data, callback);
   },
+
+  // TEMP
+  authLogin: () => {
+    api('post', 'auth/login', {
+      "email": "antoine@mediasia-interactive.com",
+      "password": "28YuYaoRoad"
+      }, {
+      success: res => {
+        console.log(res.token);
+        let ui = db.get('userInfo');
+        ui.token = res.token;
+        db.set('userInfo', ui);
+      }
+    });
+  }
 }

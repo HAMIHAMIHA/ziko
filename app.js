@@ -29,6 +29,9 @@ const getWxUserInfo = (res) => {
       //   }
       // }
 
+      // TEMP !!!!! remove for production!!!!!
+      api.authLogin();
+
       db.set('userInfo', res);
     }
   }
@@ -54,6 +57,10 @@ App({
 
     // Check wx.login session
     wx.checkSession({
+      success: function() {
+        // TEMP !!!!! remove for production!!!!!
+        api.authLogin();
+      },
       fail: function() {
         // Login with wechat if session not valid
         wx.login({

@@ -8,8 +8,6 @@
       bindtap="toOffer"
       data-started="{{ offer.started }}"
       data-offer-id="{{ offer.id }}"
-      data-community="{{ offer.community }}"
-      data-price-rule="{{ offer.priceRule }}"
     >
       <!-- Banner image of card -->
       <view class="offer-banner">
@@ -17,7 +15,7 @@
           <image src="/assets/images/offerBanner.png" mode="widthFix"></image>
         </view>
         <view class="offer-banner_tag">
-          <view class="icon {{ 'icon-ziko-' + _communities[offer.community] + '_right'}}"></view>
+          <view class="icon {{ 'icon-ziko-' + _communities[offer.community.id] + '_right'}}"></view>
         </view>
       </view>
       <!-- End of banner -->

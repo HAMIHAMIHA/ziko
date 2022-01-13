@@ -1,6 +1,6 @@
 <import src="../../templates/checkout/payButton.wxml" />
 
-<view class="container ziko-offer product {{ 'community-' + _setting.community }}">
+<view class="container ziko-offer ziko-{{ (_setting.type == 'packProduct' ? 'product' : 'pack' ) }} {{ 'community-' + _setting.community }}">
   <view class="banner_container">
     <!-- Detail Banner -->
     <view class="banner-image_container swiper_container">

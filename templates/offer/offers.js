@@ -23,6 +23,8 @@ export const _getTranslations = (page, community) => {
   page.setData({
     _language: app.db.get('language'),
     _t: {
+      item_unit: i18n.item_unit,
+      items: i18n.items,
       minimum: i18n.minimum,
       orders_unit: i18n.orders_unit,
       our_selected_packs: i18n.our_selected_packs,
@@ -58,11 +60,16 @@ export const getOffer = function(page, offer_id) {
     success: res => {
       let offer = res[0];
       offer.community = communities[offer.community.id];
+      offer.minimum = {
+        price: offer.minimumOrderAmount,
+        items: offer.minimumCartItems
+      }
+      console.log(offer);
 
       page.setData({
         _offer: offer,
-        _folder: {
-          offer_banner: app.folders.offer_banner
+        _folders: {
+          offer_media: app.folders.offer_media
         }
       })
     

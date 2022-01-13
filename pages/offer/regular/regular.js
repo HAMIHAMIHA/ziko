@@ -2,15 +2,13 @@ const checkout = require('../../../templates/checkout/checkout.js');
 const animate = require('../../../templates/offer/animation.js').tabbar;
 const offers = require('../../../templates/offer/offers.js');
 
-const app = getApp();
 let countdown_timer = [];
-
 Page({
   data: {
     _setting: {
       swiperIndex: 1,
       currentTab: "product",
-      units: "g",
+      units: "g", // TODO use translated version
       animate: animate
     }
   },

@@ -18,27 +18,16 @@
     <!-- Detail Banner -->
     <view class="banner-image_container swiper_container">
       <swiper class="swiper" bindchange="swiperChange">
-        <swiper-item class="swiper_item">
-          <image src="{{ _folder.offer_banner + _offer.banner[_language].uri }}" mode="aspectFill"></image>
-        </swiper-item>
-      </swiper>
-      <view class="gilroy_700 indicator">
-        1 / 1
-      </view>  
-    </view>
-    <!-- TEMP only one banner image -->
-    <!-- <view class="banner-image_container swiper_container">
-      <swiper class="swiper" bindchange="swiperChange">
-        <block wx:for="{{ _offer.banner[_language] }}" wx:key="key" wx:for-item="banner">
+        <block wx:for="{{ _offer.media }}" wx:key="key" wx:for-item="media">
           <swiper-item class="swiper_item">
-            <image src="{{ banner.img }}" mode="aspectFill"></image>
+            <image src="{{ _folders.offer_media + media.uri }}" mode="aspectFill"></image>
           </swiper-item>
         </block>
       </swiper>
       <view class="gilroy_700 indicator">
-        {{ _setting.swiperIndex }} / {{ _offer.banner[_language].length }}
+        {{ _setting.swiperIndex }} / {{ _offer.media.length }}
       </view>  
-    </view> -->
+    </view>
     <!-- End of Detail Banner -->
 
     <!-- Offer Messages -->
@@ -104,7 +93,7 @@
   <!-- Products -->
   <view class="list_container" wx:if="{{ _setting.currentTab == 'product' }}">
     <!-- Offer Product List -->
-    <view class="offer-group offer-packs" wx:if="{{ _offer.miniprogram.packs }}">
+    <view class="offer-group offer-packs" wx:if="{{ _offer.miniprogram.packs.length > 0 }}">
       <view class="uppercase title">
         <text class="gilroy_500">{{ _t.our_selected_packs.fst }}</text>
         <text class="gilroy_700">{{ _t.our_selected_packs.snd }}</text>
@@ -119,7 +108,7 @@
       ></products>
     </view>
 
-    <view class="offer-group offer-singles" wx:if="{{ _offer.miniprogram.items }}">
+    <view class="offer-group offer-singles" wx:if="{{ _offer.miniprogram.items.length > 0 }}">
       <view class="uppercase title">
         <text class="gilroy_500">{{ _t.single_items.fst }}</text>
         <text class="gilroy_700">{{ _t.single_items.snd }}</text>
@@ -186,6 +175,9 @@
   <!-- End of Offer Receipes -->
 
   <!-- Pay Button -->
-  <template is="payment_container" data="{{ minimum: minimum, total: total, original_price: original_price, tickets: tickets, special: '', _t: _t }}"></template>
+  <template
+    is="payment_container"
+    data="{{ minimum: _offer.minimum, cart_items: cart_items, total: total, original_price: original_price, tickets: tickets, special: '', _t: _t }}"
+  ></template>
   <!-- End of Pay Button -->
 </view>

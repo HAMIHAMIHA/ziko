@@ -165,8 +165,9 @@ export const languageMap_en = {
   pm: "PM",
   price_rules: {
     bourse: "Bourse",
-    freeFall: "Free Fall",
-    multiple: "Multiple",
+    cave: "Cave",
+    free_fall: "Free Fall",
+    multiple_items: "Multiple",
     regular: "",
   },
   problem_with_order: "Is there a problem with your order?",
@@ -392,8 +393,9 @@ export const languageMap_zh = {
   pm: "下午",
   price_rules: {
     bourse: "Bourse",
-    freeFall: "Free Fall",
-    multiple: "Multiple",
+    cave: "Cave",
+    free_fall: "Free Fall",
+    multiple_items: "Multiple",
     regular: "",
   },
   problem_with_order: "Is there a problem with your order?",
