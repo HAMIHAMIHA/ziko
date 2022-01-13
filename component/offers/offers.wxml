@@ -12,7 +12,7 @@
       <!-- Banner image of card -->
       <view class="offer-banner">
         <view class="offer-banner_image">
-          <image src="{{ _folder.offer_banner + offer.banner[_language].uri }}" mode="widthFix"	lazy-load="true"></image>
+          <image src="{{ _folders.offer_banner + offer.banner[_language].uri }}" mode="widthFix" lazy-load="true"></image>
         </view>
         <view class="offer-banner_tag">
           <view class="icon {{ 'icon-ziko-' + _communities[offer.community.id] + '_right'}}"></view>

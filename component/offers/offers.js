@@ -26,6 +26,9 @@ Component({
 
       // Set offer card translation
       self.setData({
+        _folders: {
+          offer_banner: app.folders.offer_banner,
+        },
         _t: _t
       })
 
