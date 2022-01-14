@@ -225,7 +225,7 @@ Page({
   // Filter offers by selected group
   filterOffers: function(e) {
     const self = this;
-    let data = e.currentTarget.dataset;
+    let data = e.currentTarget ? e.currentTarget.dataset : {};
 
     // Set up filtering items if just changing date
     if (JSON.stringify(data) == '{}') {
@@ -237,7 +237,9 @@ Page({
     }
 
     // Get filtering date value
-    let date = e.detail.date ? e.detail.date : '';
+    let date = (e.detail && e.detail.date) ? e.detail.date
+              : current_filter.date ? current_filter.date
+              : '';
   
     // Filter
     _filterOfferData(self, data.filter_type, data.filter_group, data.filter_id, date);

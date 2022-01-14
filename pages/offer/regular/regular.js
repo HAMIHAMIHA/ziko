@@ -30,6 +30,8 @@ Page({
 
   onUnload: function() {
     countdown_timer = offers._clearCountdown(this, countdown_timer);
+
+    offers.unloadOfferPage();
   },
 
   // Hide for v1

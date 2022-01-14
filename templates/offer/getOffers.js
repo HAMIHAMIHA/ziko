@@ -116,3 +116,9 @@ export const updateReceipes = (page) => {
   //   receipecomp.onReachBottom();
   // }
 }
+
+export const unloadOfferPage = () => {
+  let pages = getCurrentPages();
+  let previous_page = pages[pages.length - 2];
+  (previous_page && previous_page.filterOffers) ? previous_page.filterOffers({}) : '';
+}
