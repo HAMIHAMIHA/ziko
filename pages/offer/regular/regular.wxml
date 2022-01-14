@@ -94,7 +94,7 @@
   <!-- Products -->
   <view class="list_container" wx:if="{{ _setting.currentTab == 'product' }}">
     <!-- Offer Product List -->
-    <view class="offer-group offer-packs" wx:if="{{ _offer.miniprogram.packs.length > 0 }}" mark:type="pack">
+    <view class="offer-group offer-packs" wx:if="{{ _offer.miniprogram.packs.length > 0 }}" mark:type="packs">
       <view class="uppercase title">
         <text class="gilroy_500">{{ _t.our_selected_packs.fst }}</text>
         <text class="gilroy_700">{{ _t.our_selected_packs.snd }}</text>
@@ -107,7 +107,7 @@
       ></template>
     </view>
 
-    <view class="offer-group offer-singles" wx:if="{{ _offer.miniprogram.items.length > 0 }}" mark:type="item">
+    <view class="offer-group offer-singles" wx:if="{{ _offer.miniprogram.items.length > 0 }}" mark:type="items">
       <view class="uppercase title">
         <text class="gilroy_500">{{ _t.single_items.fst }}</text>
         <text class="gilroy_700">{{ _t.single_items.snd }}</text>
