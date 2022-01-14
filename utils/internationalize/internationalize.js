@@ -136,6 +136,7 @@ export const languageMap_en = {
   order_detail: "Order detail",
   orders: "Orders",
   orders_unit: " Orders",
+  order_unit: " Order",
   order_no: "Order no",
   order_status: {
     all: "All",
@@ -366,6 +367,7 @@ export const languageMap_zh = {
   order_detail: "Order detail",
   orders: "订单",
   orders_unit: " Orders",
+  order_unit: " Order",
   order_no: "Order no",
   order_status: {
     all: "All",

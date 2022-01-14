@@ -26,6 +26,7 @@ export const _getTranslations = (page, community) => {
       item_unit: i18n.item_unit,
       items: i18n.items,
       minimum: i18n.minimum,
+      order_unit: i18n.order_unit,
       orders_unit: i18n.orders_unit,
       our_selected_packs: i18n.our_selected_packs,
       pay: i18n.pay,

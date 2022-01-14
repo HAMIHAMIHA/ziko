@@ -273,6 +273,7 @@ Page({
         lottery: i18n.lottery,
         offers: i18n.offers,
         orders_unit: i18n.orders_unit,
+        order_unit: i18n.order_unit,
         remaining_time: i18n.remaining_time,
         specials: i18n.specials,
         viewers: i18n.viewers,
