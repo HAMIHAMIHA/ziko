@@ -7,15 +7,16 @@ export const modifyCartItems = (page, event) => {
 
   // Create empty array for offer if not in cart
   let current_cart = app.db.get('cart') ? app.db.get('cart') : {};
-  let cart_offer = current_cart[offer.id] ? current_cart[offer.id] : { count: 0, products: {} };
+  let cart_offer = current_cart[offer.id] ? current_cart[offer.id] : { count: 0, products: {}, total: 0 };
 
   // Saving values needed later
-  let product_id = offer.miniprogram[type][event.currentTarget.dataset.idx]._id;
-  let old_amount = cart_offer.products[product_id] ? cart_offer.products[product_id].amount : 0;
+  let product = offer.miniprogram[type][event.currentTarget.dataset.idx];
+  let old_amount = cart_offer.products[product._id] ? cart_offer.products[product._id].amount : 0;
 
   // Set up values for product in cart
   cart_offer.count += (new_amount - old_amount);
-  cart_offer.products[product_id] = {
+  cart_offer.total += (product.price * (new_amount - old_amount));
+  cart_offer.products[product._id] = {
     amount: new_amount,
     type: type, 
     index_in_offer: event.currentTarget.dataset.idx, 
@@ -24,4 +25,9 @@ export const modifyCartItems = (page, event) => {
   // Save to storage cart
   current_cart[offer.id] = cart_offer;
   app.db.set('cart', current_cart);
+
+  // Show new total on page
+  page.setData({
+    total: cart_offer.total
+  })
 }
