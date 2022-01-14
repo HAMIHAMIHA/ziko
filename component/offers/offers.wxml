@@ -40,13 +40,12 @@
             <!-- End of Specials -->
 
             <!-- Bag -->
-            <view class="flex-between_rt offer-bag{{ offer.items > 0 ? ' offer-bag_filled' : ''}}">
+            <view class="flex-between_rt offer-bag{{ _cart[offer.id].count > 0 ? ' offer-bag_filled' : ''}}">
               <view class="icon_container">
                 <view class="icon icon-bag"></view>
                 <view class="icon_text">
-                  <view wx:if="{{ !offer.items || offer.items == 0}}">{{ _t.empty }}</view>
-                  <view wx:elif="{{ offer.items == 1}}">{{ offer.items + _t.item_unit }}</view>
-                  <view wx:else="{{ offer.items > 1}}">{{ offer.items + _t.items_unit }}</view>
+                  <view wx:if="{{ !_cart[offer.id] || _cart[offer.id].count == 0 }}">{{ _t.empty }}</view>
+                  <view wx:else>{{ _cart[offer.id].count == 1 ? _cart[offer.id].count + _t.item_unit : _cart[offer.id].count + _t.items_unit }}</view>
                 </view>
               </view>
             </view>

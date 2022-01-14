@@ -20,16 +20,16 @@ Component({
   },
 
   methods: {
-    // Toggle timer invervals
-    changeTimers: function(startTimer, _t) {
+    updateCards: function(_t, startTimer) {
       const self = this;
 
-      // Set offer card translation
+      // Set offer card contents
       self.setData({
         _folders: {
           offer_banner: app.folders.offer_banner,
         },
-        _t: _t
+        _t: _t,
+        _cart: app.db.get('cart')
       })
 
       // Start or end timers

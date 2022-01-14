@@ -22,7 +22,7 @@ const _timerControl = (page, timer_switch) => {
     offers = page.selectComponent('#map_offers');
   }
   if (offers) {
-    offers.changeTimers(timer_switch, page.data._t);
+    offers.updateCards(page.data._t, timer_switch);
   }
 }
 
@@ -136,7 +136,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
 
       page.setData({
         days: days,
-        offers: offers,
+        offers: offers
       })
       _timerControl(page, true);
       // _setDateFilters(page, res.offers, filter_date);
