@@ -86,7 +86,7 @@ export const getOffer = function(page, offer_id) {
           },
         },
       })
-    
+
       // Change page translation
       _getTranslations(page, offer.community);
       page.startCountdown();
