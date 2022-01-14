@@ -73,7 +73,6 @@ export const getOffer = function(page, offer_id) {
       }
 
       page.setData({
-        _offer: offer,
         _folders: {
           offer_media: app.folders.offer_media,
         },
@@ -86,6 +85,9 @@ export const getOffer = function(page, offer_id) {
             product: app.routes.product
           },
         },
+        _offer: offer,
+        cart: app.db.get('cart')[offer.id],
+        total: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].total : 0,
       })
 
       // Change page translation

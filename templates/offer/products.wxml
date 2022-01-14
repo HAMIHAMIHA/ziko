@@ -44,7 +44,7 @@
       </navigator>
       <quantity
         class="flex-start product-quantity"
-        amount="{{ item.amuhnt }}"
+        amount="{{ cart.products[list_item._id].amount }}"
         community="{{ _community }}"
         bind:changeAmount="changeAmount"
         data-idx="{{ index }}"

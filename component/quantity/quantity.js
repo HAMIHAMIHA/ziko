@@ -1,7 +1,7 @@
 Component({
   properties: {
     community: String,
-    quantity: Number
+    amount: Number
   },
   options: {
     addGlobalClass: true
@@ -11,18 +11,18 @@ Component({
       const self = this;
 
       // Calculate new amount
-      let new_quantity = self.data.quantity - 1;
+      let new_amount = self.data.amount - 1;
       if (e.currentTarget.dataset.action == 'add') {
-        new_quantity = self.data.quantity + 1
+        new_amount = self.data.amount + 1
       }
 
       // Change amount displaying
       self.setData({
-        quantity: new_quantity
+        amount: new_amount
       })
 
       // Update cart amount
-      self.triggerEvent('changeAmount', { amount: new_quantity });
+      self.triggerEvent('changeAmount', { amount: new_amount });
     }
   }
 })
