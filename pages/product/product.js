@@ -1,5 +1,5 @@
 const checkout = require('../../templates/checkout/checkout.js');
-const offers = require('../../templates/offer/offers.js');
+const offers = require('../../templates/offer/getOffers.js');
 const api = require('../../utils/api.js');
 const { showLoading } = require('../../utils/common.js');
 const { communities } = require('../../utils/constants.js');
@@ -104,6 +104,9 @@ Page({
     })
 
     getProductDetail(self);
+  },
+
+  changeAmount: function(e) {
   },
 
   checkout: function() {

@@ -42,7 +42,7 @@
               <!-- End of Price -->
             </view>
           </view>
-          <quantity class="flex-start product-quantity" quantity="{{ product.qty }}" bind:changeQty="changeQty" data-idx="{{index}}"></quantity>
+          <quantity class="flex-start product-quantity" quantity="{{ product.qty }}" bind:changeAmount="changeAmount" data-idx="{{index}}"></quantity>
         </view>
       </view>
     </view>

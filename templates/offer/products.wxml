@@ -46,7 +46,7 @@
         class="flex-start product-quantity"
         amount="{{ item.amuhnt }}"
         community="{{ _community }}"
-        bind:changeQty="changeQty"
+        bind:changeAmount="changeAmount"
         data-idx="{{ index }}"
         data-price="{{ list_item.price }}"
       ></quantity>
