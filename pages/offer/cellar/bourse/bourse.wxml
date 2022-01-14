@@ -109,7 +109,11 @@
         <text class="gilroy_700"> selected packs</text>
       </view>
 
-      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ _setting.units }}" community="{{ _offer.community }}"></products>
+      <template
+        is="products"
+        class="product-list"
+        data="{{ offer_id: _offer.id, product_list: _offer.miniprogram.items, _is_pack: false, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
+      ></template>
     </view>
 
     <view class="offer-group offer-singles">
@@ -118,7 +122,11 @@
         <text class="gilroy_700"> items</text>
       </view>
 
-      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ _setting.units }}" community="{{ _offer.community }}"></products>
+      <template
+        is="products"
+        class="product-list"
+        data="{{ offer_id: _offer.id, product_list: _offer.miniprogram.items, _is_pack: false, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
+      ></template>
     </view>
     <!-- End of Offer Product List -->
 
