@@ -1,3 +1,4 @@
+<import src="../../../templates/offer/products.wxml" />
 <import src="../../../templates/checkout/payButton.wxml" />
 
 <view class="container ziko-offer {{ 'community-' + _offer.community }}">
@@ -20,7 +21,7 @@
       <swiper class="swiper" bindchange="swiperChange">
         <block wx:for="{{ _offer.media }}" wx:key="key" wx:for-item="media">
           <swiper-item class="swiper_item">
-            <image src="{{ _folders.offer_media + media.uri }}" mode="aspectFill"></image>
+            <image src="{{ media ? _folders.offer_media + media.uri : '' }}" mode="aspectFill" lazy-load="true" ></image>
           </swiper-item>
         </block>
       </swiper>
@@ -99,14 +100,11 @@
         <text class="gilroy_700">{{ _t.our_selected_packs.snd }}</text>
       </view>
 
-      <products
+      <template
+        is="products"
         class="product-list"
-        offer_id="{{ _offer.id }}"
-        product_list="{{ _offer.miniprogram.packs }}"
-        _is_pack="{{ true }}"
-        _community="{{ _offer.community }}"
-        bind:updateTotal="updateTotal"
-      ></products>
+        data="{{ offer_id: _offer.id, product_list: _offer.miniprogram.packs, _is_pack: true, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
+      ></template>
     </view>
 
     <view class="offer-group offer-singles" wx:if="{{ _offer.miniprogram.items.length > 0 }}">
@@ -115,14 +113,11 @@
         <text class="gilroy_700">{{ _t.single_items.snd }}</text>
       </view>
 
-      <products
+      <template
+        is="products"
         class="product-list"
-        offer_id="{{ _offer.id }}"
-        product_list="{{ _offer.miniprogram.items }}"
-        _is_pack="{{ false }}"
-        _community="{{ _offer.community }}"
-        bind:updateTotal="updateTotal"
-      ></products>
+        data="{{ offer_id: _offer.id, product_list: _offer.miniprogram.items, _is_pack: false, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
+      ></template>
     </view>
     <!-- End of Offer Product List -->
 

@@ -37,6 +37,12 @@ export const _getTranslations = (page, community) => {
       single_items: i18n.single_items,
       total_units_available: i18n.total_units_available,
       viewers: i18n.viewers,
+    },
+    _t_product: {
+      available: i18n.available,
+      only_left: i18n.only_left,
+      products_left: i18n.products_left,
+      units: i18n.units[community],
     }
   })
 
@@ -68,8 +74,17 @@ export const getOffer = function(page, offer_id) {
       page.setData({
         _offer: offer,
         _folders: {
-          offer_media: app.folders.offer_media
-        }
+          offer_media: app.folders.offer_media,
+        },
+        _offer_setting: {
+          folders: {
+            product_picture: app.folders.product_picture
+          },
+          language: app.db.get('language'),
+          routes: {
+            product: app.routes.product
+          },
+        },
       })
     
       // Change page translation

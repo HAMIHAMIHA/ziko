@@ -1,0 +1,67 @@
+<template name="products">
+  <view class="product_container{{ list_item.actualStock == 0 ? ' sold-out' : '' }}" wx:for="{{ product_list }}" wx:key="id" wx:for-item="list_item">
+    <view class="flex-between flex-align-start product">
+      <navigator
+        class="flex-start flex-align-start product_left"
+        url="{{ _offer_setting.routes.product + '?id=' + list_item._id + '&offer_id=' + offer_id }}{{ _is_pack ? '&type=pack' : '&type=product' }}"
+      >
+        <view class="product-image">
+          <image src="/assets/images/packDefault.png" mode="aspectFill" lazy-load="true" wx:if="{{ _is_pack }}"></image>
+          <image src="{{ list_item ? _offer_setting.folders.product_picture + list_item.product.mainPicture[_offer_setting.language].uri : '' }}" mode="aspectFill" lazy-load="true" wx:else></image>
+        </view>
+        <view class="product-info">
+          <view class="gilroy_700 ziko-{{ _community }} gradient-text uppercase product-title">{{ _is_pack ? list_item.name[_offer_setting.language] : list_item.product.name[_offer_setting.language] }}</view>
+          <!-- Pack Products Detail -->
+          <view class="nunito_300 product-detail_container" wx:if="{{ _is_pack }}">
+            <text wx:for="{{ list_item.products }}" wx:key="*this" wx:for-index="index" wx:for-item="pack_product">
+              <text>{{ pack_product.product.name[_offer_setting.language] }}{{ (pack_product.quantity > 1 || pack_product.weight) ? ' ' + pack_product.quantity : '' }}{{ pack_product.weight ? 'x' + pack_product.weight + _t.units : '' }}</text>
+              <text wx:if="{{ index < list_item.products.length - 1 }}">, </text>
+            </text>
+          </view>
+          <!-- End of Pack Products Detail -->
+
+          <!-- Single Products Detail -->
+          <view class="nunito_300 product-detail_container" wx:else>
+            <text>{{ list_item.quantity }} x {{ list_item.weight }}{{ _t.units }}</text>
+          </view>
+          <!-- End of Single Products Detail -->
+
+          <!-- Available Amount Left -->
+          <view class="nunito_300 product-available">
+            <text wx:if="{{ list_item.actualStock == 0 }}">{{ _t.products_left.fst + list_item.actualStock + _t.products_left.snd }}</text>
+            <text wx:elif="{{ list_item.actualStock >= 100 }}">{{ _t.available.fst + list_item.actualStock + _t.available.snd }}</text>
+            <text wx:else>{{ _t.only_left.fst + list_item.actualStock + _t.only_left.snd }}</text>
+          </view>
+          <!-- End of Available Amount Left -->
+
+          <!-- Price -->
+          <view class="gilroy_800 product-price_container">
+            <text class="product-price" wx:if="{{ list_item.newPrice }}">¥{{ list_item.newPrice }}</text>
+            <text class="product-price">¥{{ list_item.price }}</text>
+          </view>
+          <!-- End of Price -->
+        </view>
+      </navigator>
+      <quantity
+        class="flex-start product-quantity"
+        amount="{{ item.amuhnt }}"
+        community="{{ _community }}"
+        bind:changeQty="changeQty"
+        data-idx="{{ index }}"
+        data-price="{{ list_item.price }}"
+      ></quantity>
+    </view>
+
+    <!-- Cellar Target Tags -->
+    <!-- Hide for v1 (did not translate) -->
+    <view class="product-targets" wx:if="{{ targets }}">
+      <view class="product-target_container" wx:for="{{ targets }}" wx:key="*this" wx:for-item="target">
+        <!-- Freefall Targets -->
+        <text wx:if="{{ targetType == 'freefall' }}">-¥{{ target.rate }} every {{ target.amount }} sold</text>
+        <!-- Multiple Targets -->
+        <text wx:else>x{{ target.amount }} btl ¥{{ target.rate }} each </text>
+      </view>
+    </view>
+    <!-- End of Cellar Target Tags -->
+  </view>
+</template>

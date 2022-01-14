@@ -3,6 +3,7 @@ const animate = require('../../../templates/offer/animation.js').tabbar;
 const offers = require('../../../templates/offer/offers.js');
 
 let countdown_timer = [];
+
 Page({
   data: {
     _setting: {
