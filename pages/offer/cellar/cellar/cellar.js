@@ -1,7 +1,7 @@
 const checkout = require('../../../../templates/checkout/checkout.js');
 const animate = require('../../../../templates/offer/animation.js').tabbar;
 const offers = require('../../../../templates/offer/getOffers.js');
-const { modifyCartItems } = require('../../../templates/offer/modifyCart.js');
+const { modifyCartItems } = require('../../../../templates/offer/modifyCart.js');
 
 let countdown_timer = [];
 Page({
