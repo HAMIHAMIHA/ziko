@@ -1,6 +1,7 @@
-const checkout = require('../../../templates/checkout/checkout.js');
 const animate = require('../../../templates/offer/animation.js').tabbar;
-const offers = require('../../../templates/offer/offers.js');
+const checkout = require('../../../templates/checkout/checkout.js');
+const offers = require('../../../templates/offer/getOffers.js');
+const { modifyCartItems } = require('../../../templates/offer/modifyCart.js');
 
 let countdown_timer = [];
 
@@ -16,7 +17,7 @@ Page({
 
   onShow: function() {
     const self = this;
-    // Get products
+    // Get Offer
     offers.getOffer(self, self.options.id);
 
     // Message counts
@@ -64,12 +65,10 @@ Page({
     checkout.checkoutItems(this, false);
   },
 
-  updateTotal: function(e) {
+  changeAmount: function(e) {
     const self = this;
 
-    self.setData({
-      total: e.detail.total
-    })
+    modifyCartItems(self, e)
   },
 
   onShareAppMessage: function (res) {}
