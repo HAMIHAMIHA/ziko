@@ -1,6 +1,6 @@
 const { mobileLogin, showLoading } = require("../../utils/common");
 const index_data = require("../../utils/constants");
-const { formatTime, formatWeekDate, findIndex } = require("../../utils/util");
+const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../utils/util");
 
 const app = getApp();
 let leave_triggered = false; // To track if leave page already triggered
@@ -115,21 +115,22 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
       if (!filter_date) {
         days = []; // create list for date picker
       }
-      console.log(res);
+      // console.log(res);
 
       for (var i in raw_offers) {
         let offer = raw_offers[i];
-        // console.log(offer.startingDate);
-        // console.log(offer.endingDate);
-        offer.started = (new Date() >= new Date(offer.startingDate));
-
         let date_value = formatWeekDate(offer.startingDate);
 
+        // Creating date filter list
         if (!filter_date && findIndex(days, date_value.timestamp, "timestamp") == -1) {
           days.push(date_value);
         }
 
+        // Modify offer data to fit page display
+        offer.started = (new Date() >= new Date(offer.startingDate));
         offer.startDate = date_value;
+        offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
+        offer.banner = app.folders.offer_banner + offer.banner[page.data._language].uri
         offers.push(offer);
       }
 
@@ -146,7 +147,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
   // Get on going events
   let firstCallback = {
     success: res => {
-      console.log(res);
+      // console.log(res);
       raw_offers = res;
 
       // Set up API

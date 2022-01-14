@@ -61,6 +61,7 @@ export const languageMap_en = {
     "SAT.",
     "SUN."
   ],
+  date_suffix: [ 'th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'],
   delete: "Delete",
   delivery: "Delivery",
   delivery_company: "Delivery company",
@@ -116,7 +117,7 @@ export const languageMap_en = {
     10: "October",
     11: "November",
     12: "December",
-},
+  },
   my_favorite_recipes: "My favorite recipes",
   my_orders: "My Orders",
 
@@ -290,6 +291,7 @@ export const languageMap_zh = {
     "星期六",
     "星期日"
   ],
+  date_suffix: [ '日', '日', '日', '日', '日', '日', '日', '日', '日', '日'],
   delete: "Delete",
   delivery: "Delivery",
   delivery_company: "Delivery company",

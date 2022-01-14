@@ -1,3 +1,5 @@
+const app = getApp();
+
 const formatNumber = n => {
   n = n.toString();
   return n[1] ? n : `0${n}`
@@ -61,5 +63,25 @@ module.exports = {
       date_str: getApp().db.get('language') == 'zh' ? `${day} ${mth}${date_val}日` : `${day} ${date_val} ${mth},` ,
       timestamp: date.setHours(0, 0, 0, 0)
     }
+  },
+
+  mapDeliveryDates: dates => {
+    let current_month = '';
+
+    dates = dates.sort();
+    return dates.map( date => {
+      let res = '';
+
+      let d = new Date(date);
+      let mth = d.getMonth() + 1;
+      if (mth != current_month) {
+        res += `${ app.globalData.i18n.month[mth] }${ (app.db.get('language') == 'en') ? ' ' : '' }`;
+        current_month = mth;
+      }
+
+      let day = d.getDate();
+      res += `${ day }${ app.globalData.i18n.date_suffix[`${day}`[`${day}`.length - 1]] }`
+      return res;
+    }).join(', ');
   },
 }
