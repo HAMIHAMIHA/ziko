@@ -9,11 +9,8 @@ Page({
       swiperIndex: 1,
       nextOffer: 'test',
       currentTab: "product",
-      units: "cl",
       animate: animate
-    },
-    total: 600,
-    currentSold: 160,
+    }
   },
 
   onShow: function () {
