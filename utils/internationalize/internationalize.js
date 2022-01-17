@@ -12,7 +12,9 @@ export const languageMap_en = {
   address: "Address",
   address_type: {
     home: "Home",
-    work: "Work"
+    office: "Office",
+    other: "Other",
+    temporary: "Temporary",
   },
   addresses: "Addresses",
   add_address: "添加地址",
@@ -243,7 +245,9 @@ export const languageMap_zh = {
   address: "地址",
   address_type: {
     home: "家",
-    work: "工作"
+    office: "办公室",
+    other: "其他",
+    temporary: "Temporary",
   },
   addresses: "Addresses",
   add_address: "添加地址",

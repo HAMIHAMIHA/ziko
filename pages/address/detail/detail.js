@@ -2,7 +2,7 @@ const { changeFocus, navigateBack, updateUserInfo } = require("../../../utils/co
 const { findIndex } = require("../../../utils/util");
 
 const app = getApp();
-const address_type = ['home', 'work'];
+const address_type = ["office", "home", "other", "temporary"];
 const validate_keys = ['type', 'city', 'area', 'address', 'phone'];
 
 // Check if input empty
