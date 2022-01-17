@@ -63,7 +63,7 @@ Page({
   },
 
   checkout: function() {
-    ModifyCart.checkoutItems(this, this.options.id);
+    ModifyCart.checkoutItems(this.options.id);
   },
 
   changeAmount: function(e) {

@@ -122,7 +122,7 @@ Page({
   },
 
   checkout: function() {
-    ModifyCart.checkoutItems(this, this.options.offer_id);
+    ModifyCart.checkoutItems(this.options.offer_id);
   },
   
   onReachBottom: function() {
