@@ -22,6 +22,11 @@ export const modifyCartItems = (page, event) => {
     index_in_offer: event.currentTarget.dataset.idx, 
   };
 
+  // Remove product from list if reduced to 0
+  if (new_amount == 0) {
+    delete cart_offer.products[product._id]
+  }
+
   // Save to storage cart
   current_cart[offer.id] = cart_offer;
   app.db.set('cart', current_cart);
