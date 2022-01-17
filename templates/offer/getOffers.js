@@ -83,7 +83,7 @@ export const getOffer = function(page, offer_id) {
         },
         /* data="{{ _pay_set: _pay_set, original_price: original_price, tickets: tickets, special: '', _t: _t }}" */
         _pay_set: {
-          cart: app.db.get('cart')[offer.id].count,
+          cart: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].count : 0,
           minimum: {
             price: offer.minimumOrderAmount,
             items: offer.minimumCartItems,
