@@ -13,24 +13,24 @@
         <view class="icon_container payment-price">
           <view class="icon icon-bigbag"></view>
           <view class="icon_text">
-            <text class="price_final">¥{{ total }}</text>
-            <text class="payment-price_original" wx:if="{{ original_price }}">¥{{ original_price }}1500</text>
+            <text class="price_final">¥{{ _pay_set.total }}</text>
+            <text class="payment-price_original" wx:if="{{ _pay_set.original_price }}">¥{{ _pay_set.original_price }}1500</text>
           </view>
         </view>
         <!-- TEMP hide for v1 -->
-        <view class="icon_container payment-tickets" wx:if="{{ tickets > 0 }}">
+        <view class="icon_container payment-tickets" wx:if="{{ _pay_set.tickets > 0 }}">
           <view class="icon icon-ticket"></view>
-          <view class="nunito_600 icon_text payment-tickets_count">X{{ tickets }}3</view>
+          <view class="nunito_600 icon_text payment-tickets_count">X{{ _pay_set.tickets }}3</view>
         </view>
       </view>
-      <view class="payment-button disabled" wx:if="{{ minimum.items && minimum.items > cart_items }}">
-        {{ _t.minimum + ': ' + minimum.items }}{{ minimum.items < 1 ? _t.item_units : _t.item_unit }}
+      <view class="payment-button disabled" wx:if="{{ _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.cart }}">
+        {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }}
       </view>
-      <view class="payment-button disabled" wx:elif="{{ minimum.price && minimum.price > original_price }}">
-        {{ _t.minimum + ': ¥' + minimum.price }}
+      <view class="payment-button disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.original_price }}">
+        {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
       </view>
       <button class="payment-button" hover-class="hover-payment-button" bindtap="checkout" wx:else>
-        {{ minimum && original_price < minimum ? _t.minimum + ': ' + minimum : _t.pay }}
+        {{ _t.pay }}
       </button>
     </view>
   </view>

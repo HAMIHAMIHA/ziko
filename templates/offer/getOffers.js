@@ -67,10 +67,6 @@ export const getOffer = function(page, offer_id) {
     success: res => {
       let offer = res[0];
       offer.community = communities[offer.community.id];
-      offer.minimum = {
-        price: offer.minimumOrderAmount,
-        items: offer.minimumCartItems
-      }
 
       page.setData({
         _folders: {
@@ -85,9 +81,17 @@ export const getOffer = function(page, offer_id) {
             product: app.routes.product
           },
         },
+        /* data="{{ _pay_set: _pay_set, original_price: original_price, tickets: tickets, special: '', _t: _t }}" */
+        _pay_set: {
+          cart: app.db.get('cart')[offer.id].count,
+          minimum: {
+            price: offer.minimumOrderAmount,
+            items: offer.minimumCartItems,
+          },
+          total: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].total : 0,
+        },
         _offer: offer,
         cart: app.db.get('cart')[offer.id],
-        total: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].total : 0,
       })
 
       // Change page translation

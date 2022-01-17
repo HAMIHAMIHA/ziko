@@ -4,6 +4,7 @@ export const modifyCartItems = (page, event) => {
   const offer = page.data._offer;
   const type = event.mark.type;
   const new_amount = event.detail.amount;
+  console.log(event);
 
   // Create empty array for offer if not in cart
   let current_cart = app.db.get('cart') ? app.db.get('cart') : {};
@@ -28,6 +29,7 @@ export const modifyCartItems = (page, event) => {
 
   // Show new total on page
   page.setData({
-    total: cart_offer.total
+    '_pay_set.cart': cart_offer.count,
+    '_pay_set.total': cart_offer.total,
   })
 }

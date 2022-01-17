@@ -1,5 +1,6 @@
 const checkout = require('../../templates/checkout/checkout.js');
 const offers = require('../../templates/offer/getOffers.js');
+const { modifyCartItems } = require('../../templates/offer/modifyCart.js');
 const api = require('../../utils/api.js');
 const { showLoading } = require('../../utils/common.js');
 const { communities } = require('../../utils/constants.js');
@@ -13,6 +14,7 @@ const getProductDetail = page => {
   const callback = {
     success: res => {
       const list_var = { pack: 'packs', product: 'items' };
+      const offer_id = page.options.offer_id;
       const id = page.options.id;
       const type = page.options.type;
 
@@ -59,8 +61,18 @@ const getProductDetail = page => {
           community: community,
           type: type,
         },
-        offer_id: page.options.offer_id,
-        product: product
+        _offer: res[0],
+        product: product,
+        product_index: product_index,
+        amount: app.db.get('cart')[offer_id].products[id] ? app.db.get('cart')[offer_id].products[id].amount : 0,
+        _pay_set: {
+          cart: app.db.get('cart')[offer_id].count,
+          minimum: {
+            price: res[0].minimumOrderAmount,
+            items: res[0].minimumCartItems,
+          },
+          total: app.db.get('cart')[offer_id] ? app.db.get('cart')[offer_id].total : 0,
+        },
       })
 
       showLoading(false);
@@ -107,10 +119,11 @@ Page({
   },
 
   changeAmount: function(e) {
+    modifyCartItems(this, e);
   },
 
   checkout: function() {
-    checkout.checkoutItems(this, true);
+    checkout.checkoutItems(this);
   },
   
   onReachBottom: function() {

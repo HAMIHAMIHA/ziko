@@ -15,7 +15,7 @@
   </view>
 
   <!-- Product Info -->
-  <view class="flex-between flex-align-start product-info_container">
+  <view class="flex-between flex-align-start product-info_container" mark:type="{{  _setting.type != 'product' ? 'packs' : 'items'}}">
     <view class="product-info">
       <view class="gilroy_700 uppercase{{ _setting.type != 'pack' ? ' gradient-text ziko-' + _setting.community : '' }} product-info_title">
         {{ _setting.type != 'pack' ? product.product.name[_language] : product.name[_language] }}
@@ -46,7 +46,13 @@
       </view>
     </view>
     <block wx:if="{{ (_setting.type != 'packProduct') }}">
-      <quantity quantity="{{ qty }}" community="{{ _setting.community }}" bind:changeAmount="changeAmount"></quantity>
+      <quantity
+        amount="{{ amount }}"
+        community="{{ _setting.community }}"
+        bind:changeAmount="changeAmount"
+        data-idx="{{ product_index }}"
+        data-price="{{ product.price }}"
+      ></quantity>
     </block>
   </view>
   <!-- quantity component if not type = 'product' and pack = false -->
@@ -89,7 +95,7 @@
             </view>
 
             <view class="flex-start product-navigate_container">
-              <navigator class="product-navigate" url="{{ _routes.product + '?id=' + product._id + '&offer_id=' + offer_id + '&type=packProduct' }}">
+              <navigator class="product-navigate" url="{{ _routes.product + '?id=' + product._id + '&offer_id=' + _offer.id + '&type=packProduct' }}">
                 {{ _t.discover }}
               </navigator>
             </view>
@@ -117,7 +123,7 @@
 
   <!-- Pay Button -->
   <view wx:if="{{ (_setting.type != 'packProduct') }}">
-    <template is="payment_container" data="{{ minimum: minimum, total: total, original_price: original_price, tickets: tickets, special: '', _t: _t }}"></template>
+    <template is="payment_container" data="{{ _pay_set: _pay_set, _t: _t }}"></template>
   </view>
   <!-- End of Pay Button -->
 </view>
