@@ -1,7 +1,6 @@
 const animate = require('../../../templates/offer/animation.js').tabbar;
-const checkout = require('../../../templates/checkout/checkout.js');
-const offers = require('../../../templates/offer/getOffers.js');
-const { modifyCartItems } = require('../../../templates/offer/modifyCart.js');
+const Offers = require('../../../templates/offer/getOffers.js');
+const ModifyCart = require('../../../templates/offer/modifyCart.js');
 
 let countdown_timer = [];
 
@@ -18,26 +17,26 @@ Page({
   onShow: function() {
     const self = this;
     // Get Offer
-    offers.getOffer(self, self.options.id);
+    Offers.getOffer(self, self.options.id);
 
     // Message counts
     let messageIndex = []
   },
 
   onHide: function() {
-    countdown_timer = offers._clearCountdown(this, countdown_timer);
+    countdown_timer = Offers._clearCountdown(this, countdown_timer);
   },
 
   onUnload: function() {
-    countdown_timer = offers._clearCountdown(this, countdown_timer);
+    countdown_timer = Offers._clearCountdown(this, countdown_timer);
 
-    offers.unloadOfferPage();
+    Offers.unloadOfferPage();
   },
 
   // Hide for v1
   onReachBottom: function() {
     // TODO If current tab is on receipe
-    offers.updateReceipes(this);
+    Offers.updateReceipes(this);
   },
 
   startCountdown: function() {
@@ -64,13 +63,11 @@ Page({
   },
 
   checkout: function() {
-    checkout.checkoutItems(this, false);
+    ModifyCart.checkoutItems(this, this.options.id);
   },
 
   changeAmount: function(e) {
-    const self = this;
-
-    modifyCartItems(self, e)
+    ModifyCart.modifyCartItems(this, e)
   },
 
   onShareAppMessage: function (res) {}

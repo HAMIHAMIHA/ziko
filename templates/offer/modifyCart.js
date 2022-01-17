@@ -32,3 +32,9 @@ export const modifyCartItems = (page, event) => {
     '_pay_set.total': cart_offer.total,
   })
 }
+
+export const checkoutItems = (offer_id) => {
+  wx.navigateTo({
+    url: `${app.routes.cart}?id=${offer_id}`,
+  })
+}

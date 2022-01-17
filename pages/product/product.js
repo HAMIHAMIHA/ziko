@@ -1,6 +1,5 @@
-const checkout = require('../../templates/checkout/checkout.js');
-const offers = require('../../templates/offer/getOffers.js');
-const { modifyCartItems } = require('../../templates/offer/modifyCart.js');
+const Offers = require('../../templates/offer/getOffers.js');
+const ModifyCart = require('../../templates/offer/modifyCart.js');
 const api = require('../../utils/api.js');
 const { showLoading } = require('../../utils/common.js');
 const { communities } = require('../../utils/constants.js');
@@ -119,15 +118,15 @@ Page({
   },
 
   changeAmount: function(e) {
-    modifyCartItems(this, e);
+    ModifyCart.modifyCartItems(this, e);
   },
 
   checkout: function() {
-    checkout.checkoutItems(this);
+    ModifyCart.checkoutItems(this, this.options.offer_id);
   },
   
   onReachBottom: function() {
-    offers.updateReceipes(this);
+    Offers.updateReceipes(this);
   },
 
   onShareAppMessage: function () {}
