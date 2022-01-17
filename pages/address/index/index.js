@@ -33,6 +33,7 @@ Page({
     // Set page Data
     self.setData({
       user: user,
+      select_index: self.options.selected_address,
       _setting: {
         selecting: self.options.action == 'select'
       }
@@ -52,8 +53,17 @@ Page({
   },
 
   select: function() {
-    // 1. change cart address data to selected address
-    // 2. go back to previous (cart) page
-    // 3. [in cart page] update page address display
+    const self = this;
+
+    let pages = getCurrentPages();
+    let prev = pages[pages.length - 2];
+
+    prev.setData({
+      address_selected: self.data.select_index
+    })
+
+    wx.navigateBack({
+      delta: 1,
+    })
   }
 })

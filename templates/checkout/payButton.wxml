@@ -26,7 +26,7 @@
       <view class="payment-button disabled" wx:if="{{ _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.cart }}">
         {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }}
       </view>
-      <view class="payment-button disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.original_price }}">
+      <view class="payment-button disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.total }}">
         {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
       </view>
       <button class="payment-button" hover-class="hover-payment-button" bindtap="checkout" wx:else>

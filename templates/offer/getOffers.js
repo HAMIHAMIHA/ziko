@@ -105,7 +105,7 @@ export const getOffer = function(page, offer_id) {
     // if item in cart offer -> check quantity and availibity -> reduce to min or remove or keep
     // update page data
   // get product by offer id
-  app.api.getOffers(`?id=${offer_id}`, callback)
+  app.api.getOffers(`?id=${offer_id}`, callback);
 }
 
 

@@ -1,7 +1,8 @@
 const { modifyCartItems } = require("../../templates/offer/modifyCart");
 const { changeFocus } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
-const { createOrderData } = require("./createOrder");
+const { formatDate } = require("../../utils/util");
+const { createOrder } = require("./createOrder");
 
 const app = getApp();
 
@@ -17,6 +18,7 @@ const _setPageDefaultItems = page => {
     _language: app.db.get('language'),
     _t: {
       address: i18n.address,
+      address_type: i18n.address_type,
       available: i18n.available,
       checkout_message: i18n.checkout_message,
       choose_delivery_date: i18n.choose_delivery_date,
@@ -49,8 +51,6 @@ const _setPageDefaultItems = page => {
 const _setProducts = (offer, cart) => {
   let offer_detail = offer.miniprogram;
 
-  console.log(cart);
-
   let products = [];
   for (var id in cart.products) {
     let item = cart.products[id];
@@ -70,13 +70,26 @@ const _getOffers = page => {
       let offer = res[0];
       let cart = app.db.get('cart')[offer.id];
 
+      let delivery_dates = [];
+
+      let dates = offer.deliveryDates.sort();
+      for (var i in dates) {
+        delivery_dates.push(formatDate(dates[i]));
+      }
+
       page.setData({
         _offer: offer,
         '_t.units': app.globalData.i18n.units[communities[offer.community.id]],
         cart: cart,
         products: _setProducts(offer, cart),
+        delivery_dates: delivery_dates,
+        delivery_date: 0,
         _pay_set: {
-          total: cart.total
+          total: cart.total,
+          minimum: {
+            price: offer.minimumOrderAmount,
+            items: offer.minimumCartItems,
+          }
         },
       })
       
@@ -95,7 +108,12 @@ Page({
     // 1. get offer data community
     _getOffers(self);
     // 2. get user data
-    // user: app.db.get('userInfo').user
+    let address = app.db.get('userInfo').user.address;
+
+    self.setData({
+      address: address,
+      address_selected: 0
+    })
   },
 
   // Change checkout amount
@@ -139,6 +157,6 @@ Page({
   },
 
   pay: function(e) {
-    createOrderData(this, e.detail.value);
+    createOrder(this, e.detail.value);
   }
 })

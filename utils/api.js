@@ -146,6 +146,7 @@ module.exports = {
         console.log(res.token);
         let ui = db.get('userInfo');
         ui.token = res.token;
+        ui.user.id = res.user.id;
         db.set('userInfo', ui);
       }
     });
