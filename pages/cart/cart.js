@@ -1,95 +1,113 @@
+const { modifyCartItems } = require("../../templates/offer/modifyCart");
 const { changeFocus } = require("../../utils/common");
+const { communities } = require("../../utils/constants");
 const { createOrderData } = require("./createOrder");
 
 const app = getApp();
 
-Page({
-  data: {
-    delivery_date: '2022-01-13',
-    cart: {
-      products: [{
-        name: "product A",
-        type: "product",
-        available: 1,
-        quantity: 2,
-        weight: 200,
-        price: 500
-      }, {
-        id: 1,
-        available: 31,
-        type: "pack",
-        products: [{
-          name: "product A",
-          quantity: 2,
-          weight: 200
-        }, {
-          name: "product B",
-          quantity: 1,
-          weight: 400
-        }, {
-          name: "product C",
-          quantity: 2,
-          weight: 200
-        }],
-        price: 500
-      }, {
-        name: "product B",
-        type: "product",
-        available: 110,
-        quantity: 2,
-        weight: 200,
-        price: 500
-      }, {
-        name: "product C",
-        type: "product",
-        available: 10,
-        quantity: 2,
-        weight: 200,
-        price: 500
-      }],
-    }
-  },
+const _setPageDefaultItems = page => {
+  let i18n = app.globalData.i18n;
 
+  // Change page nav title
+  wx.setNavigationBarTitle({
+    title: i18n.cart
+  })
+
+  page.setData({
+    _language: app.db.get('language'),
+    _t: {
+      address: i18n.address,
+      available: i18n.available,
+      checkout_message: i18n.checkout_message,
+      choose_delivery_date: i18n.choose_delivery_date,
+      comment: i18n.comment,
+      contact_customer_hero: i18n.contact_customer_hero,
+      contact_label: i18n.contact_label,
+      delivery_fee: i18n.delivery_fee,
+      fapiao: i18n.fapiao,
+      fidelity_points: i18n.fidelity_points,
+      items: i18n.items,
+      item_unit: i18n.item_unit,
+      items_unit: i18n.items_unit,
+      lottery_tickets: i18n.lottery_tickets,
+      only_left: i18n.only_left,
+      pay: i18n.pay,
+      phone_no: i18n.phone_no,
+      products_left: i18n.products_left,
+      total: i18n.total,
+      use_voucher: i18n.use_voucher,
+    },
+    _routes: {
+      address: app.routes.address
+    },
+    _setting: {
+      folders: app.folders.product_picture
+    }
+  })
+}
+
+const _setProducts = (offer, cart) => {
+  let offer_detail = offer.miniprogram;
+
+  console.log(cart);
+
+  let products = [];
+  for (var id in cart.products) {
+    let item = cart.products[id];
+
+    let offer_product = offer_detail[item.type][item.index_in_offer];
+    offer_product.amount = item.amount;
+    offer_product.type = item.type;
+    products.push(offer_product);
+  }
+
+  return products;
+}
+
+const _getOffers = page => {
+  let callback = {
+    success: res => {
+      let offer = res[0];
+      let cart = app.db.get('cart')[offer.id];
+
+      page.setData({
+        _offer: offer,
+        '_t.units': app.globalData.i18n.units[communities[offer.community.id]],
+        cart: cart,
+        products: _setProducts(offer, cart),
+        _pay_set: {
+          total: cart.total
+        },
+      })
+      
+    }
+  }
+
+  app.api.getOffers(`?id=${page.options.id}`, callback);
+}
+
+Page({
   onShow: function () {
     const self = this;
-    let i18n = app.globalData.i18n;
 
-    // Change page nav title
-    wx.setNavigationBarTitle({
-      title: i18n.cart
-    })
+    _setPageDefaultItems(self);
 
-    // TEMP
-    let community = 'cellar';
+    // 1. get offer data community
+    _getOffers(self);
+    // 2. get user data
+    // user: app.db.get('userInfo').user
+  },
 
+  // Change checkout amount
+  changeAmount: function(e) {
+    const self = this;
+    modifyCartItems(self, e);
+
+    let cart = app.db.get('cart')[self.options.id];
+  
     self.setData({
-      _t: {
-        address: i18n.address,
-        available: i18n.available,
-        checkout_message: i18n.checkout_message,
-        choose_delivery_date: i18n.choose_delivery_date,
-        comment: i18n.comment,
-        contact_customer_hero: i18n.contact_customer_hero,
-        contact_label: i18n.contact_label,
-        delivery_fee: i18n.delivery_fee,
-        fapiao: i18n.fapiao,
-        fidelity_points: i18n.fidelity_points,
-        items: i18n.items,
-        lottery_tickets: i18n.lottery_tickets,
-        only_left: i18n.only_left,
-        pay: i18n.pay,
-        phone_no: i18n.phone_no,
-        products_left: i18n.products_left,
-        total: i18n.total,
-        units: i18n.units[community],
-        use_voucher: i18n.use_voucher,
-      },
-
-      _routes: {
-        address: app.routes.address
-      },
-
-      user: app.db.get('userInfo').user
+      cart: cart,
+      products: _setProducts(self.data._offer, cart)
     })
   },
 
