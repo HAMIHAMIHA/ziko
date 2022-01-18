@@ -32,7 +32,7 @@
                 value="{{ address.city }}"
                 confirm-type="next"
                 confirm-hold="true"
-                data-next_item="area"
+                data-next_item="zipcode"
                 bindconfirm="next"
               >
               </input>
@@ -41,22 +41,14 @@
         </view>
       </view>
 
-      <view class="details_container inputs_container field-2">
+      <view class="details_container inputs_container">
         <view class="detail">
           <view class="detail_label">{{ _t.area }}</view>
-          <view class="detail_input">
-            <view class="input">
-              <input
-                name="area"
-                value="{{ address.area }}"
-                confirm-type="next"
-                confirm-hold="true"
-                focus="{{ _focus == 'area' ? true : false }}"
-                data-next_item="zipcode"
-                bindconfirm="next"
-              >
-              </input>
-            </view>
+          <view class="detail_input area">
+            <navigator class="input picker" hover-class="none" url="{{ area ? _routes.address_areas + '?id=' + area.id : _routes.address_areas }}">
+              <view class="picker_text">{{ area.name }}</view>
+              <text class="icon icon-arrow-right"></text>
+            </navigator>
           </view>
         </view>
       </view>
@@ -81,7 +73,7 @@
         </view>
       </view>
 
-      <view class="details_container inputs_container field-3">
+      <view class="details_container inputs_container field-2">
         <view class="detail">
           <view class="detail_label">{{ _t.address }}</view>
           <view class="detail_input">
@@ -101,7 +93,7 @@
         </view>
       </view>
 
-      <view class="details_container inputs_container field-4">
+      <view class="details_container inputs_container field-3">
         <view class="detail">
           <view class="detail_label">{{ _t.phone_no }}</view>
           <view class="detail_input">

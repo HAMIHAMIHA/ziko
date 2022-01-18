@@ -1,9 +1,56 @@
-const { changeFocus, navigateBack, updateUserInfo } = require("../../../utils/common");
+const api = require("../../../utils/api");
+const { changeFocus, navigateBack, updateUserInfo, updateStoredUserInfo, showLoading } = require("../../../utils/common");
 const { findIndex } = require("../../../utils/util");
 
 const app = getApp();
 const address_type = ["office", "home", "other", "temporary"];
-const validate_keys = ['type', 'city', 'area', 'address', 'phone'];
+const validate_keys = ['type', 'city', 'address', 'phone'];
+
+const _getAddressAreas = (page, area_id) => {
+  const callback = {
+    success: res => {
+      page.setData({
+        area: res[findIndex(res, area_id, 'id')]
+      })
+    }
+  }
+  app.api.getAreas(callback);
+}
+
+// Get user profile
+const getUserInfo = (page) => {
+  const callback = {
+    success: res => {
+      // let user = res;
+      let user = app.db.get('userInfo').user;
+
+      updateStoredUserInfo(user);
+      // Set default address info
+      let count = user.address ? user.address.length : 0;
+      let address = {};
+      let picker_selected = '';
+
+      // Set address info if edit
+      if (page.options.id) {
+        count = findIndex(user.address, page.options.id, '_id');
+        address = user.address[count];
+        _getAddressAreas(page, address.area);
+        picker_selected = `${address_type.indexOf(address.type)}`
+      }
+
+      showLoading(false);
+
+      page.setData({
+        _count: count,
+        _picker_selected: picker_selected,
+        address: address
+      })
+    }
+  }
+
+  // app.api.getProfile(callback);
+  callback.success({})
+}
 
 // Check if input empty
 const _validateInputs = (page, data) => {
@@ -42,6 +89,10 @@ Page({
     let self = this;
     let i18n = app.globalData.i18n;
 
+    if (self.options.back) return;
+
+    showLoading(true);
+
     // Change page nav title
     wx.setNavigationBarTitle({
       title: self.options.id ? i18n.edit_address : i18n.add_address
@@ -71,31 +122,12 @@ Page({
         type: i18n.type,
         zipcode: i18n.zipcode,
       },
+      _routes: {
+        address_areas: app.routes.address_areas,
+      }
     })
 
-    // TODO get user info
-    // TEMP
-    let user = app.db.get('userInfo').user;
-    
-    // getAddressAreaList(page);
-
-    // Set default address info
-    let count = user.address ? user.address.length : 0;
-    let address = {};
-    let picker_selected = '';
-
-    // Set address info if edit
-    if (self.options.id) {
-      count = findIndex(user.address, self.options.id, '_id');
-      address = user.address[count];
-      picker_selected = `${address_type.indexOf(address.type)}`
-    }
-
-    self.setData({
-      _count: count,
-      _picker_selected: picker_selected,
-      address: address
-    })
+    getUserInfo(self);
   },
 
   // Change picker result
@@ -131,6 +163,7 @@ Page({
 
     let address = e.detail.value;
     address ? address.type = self.data.address.type : '';
+    address ? address.area = self.data.area.id : '';
     // TEMP id for testing
     address ? address._id = self.data._count + 1 + new Date().getMilliseconds() : '';
 
