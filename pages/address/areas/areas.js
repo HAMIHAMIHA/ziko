@@ -2,12 +2,14 @@ const { findIndex } = require("../../../utils/util");
 
 const app = getApp();
 
-const _getAreas = (all_areas, parent_id) => {
+let all_areas = [];
+
+const _getAreas = (parent_id) => {
   let new_areas = []
   const filtered_areas = all_areas.filter((e) => e.parent === parent_id)
   if (filtered_areas.length) {
     for (const line of filtered_areas) {
-      let childs = _getAreas(all_areas, line.id)
+      let childs = _getAreas(line.id)
 
       new_areas.push({
         value: line.id,
@@ -20,7 +22,7 @@ const _getAreas = (all_areas, parent_id) => {
   return new_areas;
 }
 
-const _find_current = (current_id, all_areas) => {
+const _find_current = (current_id) => {
   if (!current_id) return [0];
   // Find area and all ancestors
   let selected_rev = [all_areas[findIndex(all_areas, current_id, 'id')]];
@@ -42,11 +44,12 @@ const _find_current = (current_id, all_areas) => {
 const getAddressAreaList = page => {
   const callback = {
     success: res => {
-      let areas = _getAreas(res);
+      all_areas = res;
+      let areas = _getAreas();
       page.setData({
         _temp : res,
         _areas: areas,
-        _selected: _find_current(page.options.id, res) // TEMP need for when already selected
+        _selected: _find_current(page.options.id) // TEMP need for when already selected
       })
     }
   }
@@ -104,9 +107,15 @@ Page({
     // Set area data to address detail page
     let pages = getCurrentPages();
     let prev = pages[pages.length -2];
+
     prev.setData({
-      area: self.data._areas
+      area: all_areas[findIndex(all_areas, area.value, 'id')]
     })
+
+    // Set to prevent page filled items refresh in address page
+    let options = prev.options;
+    options.back = true;
+    prev.options = options;
 
     // Go back to address page
     wx.navigateBack({
