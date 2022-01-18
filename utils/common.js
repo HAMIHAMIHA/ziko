@@ -85,9 +85,9 @@ const updateUserInfo = function(new_info, back_url) {
 }
 
 const updateStoredUserInfo = (new_info) => {
-  // let userInfo = getApp().db.get('userInfo');
-  // userInfo.user = new_info;
-  // getApp().db.set('userInfo', userInfo);
+  let userInfo = getApp().db.get('userInfo');
+  userInfo.user = new_info;
+  getApp().db.set('userInfo', userInfo);
 }
 
 module.exports = {
@@ -95,5 +95,6 @@ module.exports = {
   mobileLogin,
   navigateBack,
   showLoading,
-  updateUserInfo
+  updateUserInfo,
+  updateStoredUserInfo
 }
