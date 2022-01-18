@@ -103,6 +103,8 @@ Page({
   onShow: function () {
     const self = this;
 
+    if (self.options.back) return;
+
     _setPageDefaultItems(self);
 
     // 1. get offer data community
@@ -112,7 +114,7 @@ Page({
 
     self.setData({
       address: address,
-      address_selected: 0
+      address_selected: -1
     })
   },
 
