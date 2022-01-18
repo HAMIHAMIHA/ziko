@@ -6,7 +6,7 @@ const address_type = ["office", "home", "other", "temporary"];
 const validate_keys = ['type', 'city', 'area', 'address', 'phone'];
 
 // Check if input empty
-const validateInputs = (page, data) => {
+const _validateInputs = (page, data) => {
   let error = '';
   for (var i in validate_keys) {
     !data[validate_keys[i]] ? error += `error-field-${i} ` : '';
@@ -20,7 +20,7 @@ const validateInputs = (page, data) => {
 }
 
 // Create address data for api
-const generateUserAddress = (page, action, new_address) => {
+const _generateUserAddress = (page, action, new_address) => {
   let address = app.db.get('userInfo').user.address;
 
   if (action == 'reset') {
@@ -76,6 +76,8 @@ Page({
     // TODO get user info
     // TEMP
     let user = app.db.get('userInfo').user;
+    
+    // getAddressAreaList(page);
 
     // Set default address info
     let count = user.address ? user.address.length : 0;
@@ -108,6 +110,7 @@ Page({
     })
   },
 
+  // Change input focus
   next: function(e) {
     changeFocus(this, e);
   },
@@ -124,14 +127,14 @@ Page({
     }
  
     // Stop if saving but inputs empty
-    if (action != 'reset' && validateInputs(self, e.detail.value)) return;
+    if (action != 'reset' && _validateInputs(self, e.detail.value)) return;
 
     let address = e.detail.value;
     address ? address.type = self.data.address.type : '';
     // TEMP id for testing
     address ? address._id = self.data._count + 1 + new Date().getMilliseconds() : '';
 
-    let address_list = generateUserAddress(self, action, address);
+    let address_list = _generateUserAddress(self, action, address);
     // TODO api save user data
     // updateUserInfo({ address: address }, app.routes.address);
 
