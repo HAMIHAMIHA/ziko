@@ -99,9 +99,10 @@ module.exports = {
     api('get', 'communities', null, callback);
   },
 
-  getOrders: (id, callback) => {
-    let suffix = 'mine?sort=["createdAt","DESC"]';
-    if (id) suffix = `${id}/mine`;
+  // Get orders
+  getOrders: (filter, callback) => {
+    let suffix = `mine?sort=["createdAt","DESC"]&${filter.filter_str}`;
+    if (filter.id) suffix = `${filter.id}/mine`;
     api('get', `orders/${suffix}`, null, callback);
   },
 

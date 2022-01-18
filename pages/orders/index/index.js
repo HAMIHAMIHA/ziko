@@ -1,4 +1,3 @@
-const api = require("../../../utils/api");
 const { mobileLogin } = require("../../../utils/common");
 
 const app = getApp();
@@ -30,14 +29,18 @@ const _defaultFilters = (page, key, index_val) => {
 const getOrders = (page) => {
   const callback = {
     success: res => {
+      console.log(res);
     }
   }
 
-  let suffix = `?community=${ current.community }&order_status=${ current.order_status }&sort=["createdAt","DESC"]`;
+  let filter = {
+    filter_str: `community=${ current.community }&order_status=${ current.order_status }`,
+    id: ''
+  }
   // TODO
-  // app.api.getOrders(suffix, callback);
-  // TEMP
-  callback.success('');
+  app.api.getOrders(filter, callback);
+
+  // callback.success('');
 }
 
 Page({
