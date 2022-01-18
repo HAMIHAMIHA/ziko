@@ -43,7 +43,19 @@ const _createOrderData = (page, value) => {
     }
   }
 
+  // TODO change api purchase/:offerID
   let selected_address = page_data.address[page_data.address_selected];
+  if (page_data.address_selected < 0) {
+    page.setData({
+      error: 'error-field-0'
+    })
+    return '';
+  };
+
+  page.setData({
+    error: ''
+  })
+
   let order = {
     type: communities[offer.community.id] == "cellar" ? "direct_sale" : "service",
     offer: offer.id,
@@ -121,6 +133,8 @@ module.exports = {
   // Create order to the backoffice
   createOrder: (page, value) => {
     let order = _createOrderData(page, value);
+
+    if (!order) return;
   
     // Create order, callback to connect to wechat pay
     const createOrderCallback = {

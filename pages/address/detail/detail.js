@@ -59,6 +59,10 @@ const _validateInputs = (page, data) => {
     !data[validate_keys[i]] ? error += `error-field-${i} ` : '';
   }
 
+  if (!page.data.area || JSON.stringify(page.data.area) == "{}") {
+    error += 'error-field-4 ';
+  }
+
   page.setData({
     error: error
   })
