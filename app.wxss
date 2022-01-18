@@ -320,6 +320,10 @@ image {
   position: relative;
 }
 
+.detail_input.input_goto .input {
+  height: 100%;
+}
+
 .detail_input .picker_text {
   width: calc(100% - 24rpx - 16rpx);
   height: 64rpx;

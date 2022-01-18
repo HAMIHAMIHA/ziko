@@ -1,4 +1,4 @@
-<view class="container container-grey container-btn-bottom">
+<view class="container container-grey container-btn-bottom {{ error }}">
   <form bindsubmit="pay">
     <view class="white-box order-products_container">
       <view class="nunito_700 header">{{ _t.items }}</view>
@@ -101,14 +101,12 @@
     </view>
 
     <view class="white-box details_container inputs_container">
-      <view class="detail address">
+      <view class="detail address field-0">
         <text class="detail_label">{{ _t.address }}</text>
-        <view class="detail_input">
-          <navigator class="input" hover-class="none" url="{{ _routes.address + '?action=select&selected_address=' + address_selected }}">
-            <view class="flex-between">
-              <text>{{ _t.address_type[address[address_selected].type] }}</text>
-              <text class="icon icon-arrow-right"></text>
-            </view>
+        <view class="detail_input input_goto">
+          <navigator class="input picker" hover-class="none" url="{{ _routes.address + '?action=select&selected_address=' + address_selected }}">
+            <text>{{ _t.address_type[address[address_selected].type] }}</text>
+            <text class="icon icon-arrow-right"></text>
           </navigator>
           <text class="detail_note">{{ address[address_selected].address }}</text>
         </view>

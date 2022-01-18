@@ -41,10 +41,10 @@
         </view>
       </view>
 
-      <view class="details_container inputs_container">
+      <view class="details_container inputs_container field-4">
         <view class="detail">
           <view class="detail_label">{{ _t.area }}</view>
-          <view class="detail_input area">
+          <view class="detail_input input_goto">
             <navigator class="input picker" hover-class="none" url="{{ area ? _routes.address_areas + '?id=' + area.id : _routes.address_areas }}">
               <view class="picker_text">{{ area.name }}</view>
               <text class="icon icon-arrow-right"></text>

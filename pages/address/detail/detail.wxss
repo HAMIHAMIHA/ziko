@@ -5,7 +5,3 @@
 .inputs_container {
   padding: 0;
 }
-
-.detail_input.area .input {
-  height: 100%;
-}
