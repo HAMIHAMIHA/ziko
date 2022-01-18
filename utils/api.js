@@ -91,12 +91,14 @@ const put = (path, data, callback) => {
 }
 
 module.exports = {
+  // Create order for payment
   createOrder: (data, callback) => {
     api('post', 'orders', data, callback);
   },
 
-  getCommunity: (callback) => {
-    api('get', 'communities', null, callback);
+  // Get deliverable address areas
+  getAreas: (callback) => {
+    api('get', 'delivery-areas', null, callback);
   },
 
   // Get orders
@@ -106,6 +108,7 @@ module.exports = {
     api('get', `orders/${suffix}`, null, callback);
   },
 
+  // Get offer with product details
   getOffers: (suffix, callback) => {
     api('get', `offers/details${suffix}`, null, callback);
   },
@@ -139,17 +142,21 @@ module.exports = {
 
   // TEMP
   authLogin: () => {
-    api('post', 'auth/login', {
-      "email": "antoine@mediasia-interactive.com",
-      "password": "28YuYaoRoad"
+    api(
+      'post',
+      'auth/login',
+      {
+        "email": "antoine@mediasia-interactive.com",
+        "password": "28YuYaoRoad"
       }, {
-      success: res => {
-        console.log(res.token);
-        let ui = db.get('userInfo');
-        ui.token = res.token;
-        ui.user.id = res.user.id;
-        db.set('userInfo', ui);
+        success: res => {
+          console.log(res.token);
+          let ui = db.get('userInfo') ? db.get('userInfo') : {};
+          ui.token = res.token;
+          ui.user && ui.user.id ? ui.user.id = res.user.id : ui.user = res.user;
+          db.set('userInfo', ui);
+        }
       }
-    });
+    );
   }
 }

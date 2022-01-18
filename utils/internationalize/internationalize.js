@@ -195,6 +195,7 @@ export const languageMap_en = {
   save: "Save",
   select: "Select",
   select_address: "Select Address",
+  select_area: "Select Area",
   single_items: {
     fst: "single",
     snd: " items"
@@ -428,6 +429,7 @@ export const languageMap_zh = {
   save: "Save",
   select: "Select",
   select_address: "Select Address",
+  select_area: "Select Area",
   single_items: {
     fst: "single",
     snd: " items"
