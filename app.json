@@ -6,6 +6,7 @@
     "pages/account/fapiao/fapiao",
     "pages/address/index/index",
     "pages/address/detail/detail",
+    "pages/address/areas/areas",
     "pages/cart/cart",
     "pages/lottery/index/index",
     "pages/lottery/detail/detail",

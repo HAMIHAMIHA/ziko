@@ -1,0 +1,81 @@
+<view class="container container-grey container-btn-bottom address-detail">
+  <view class="white-box address_container">
+    <view class="nunito_700 header">{{ _t.area }}</view>
+    <view class="details_container inputs_container">
+      <view class="detail">
+        <view class="detail_input">
+          <picker
+            class="input picker"
+            name="type"
+            range="{{ _areas }}"
+            range-key="label"
+            value="{{ _selected[0] }}"
+            data-picker_level="0"
+            bindchange="updatePicker"
+          >
+            <view class="picker_text">{{ _areas[_selected[0]].label }}</view>
+            <text class="icon icon-arrow"></text>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="details_container inputs_container" wx:if="{{ _areas[_selected[0]].children }}">
+      <view class="detail">
+        <view class="detail_input">
+          <picker
+            class="input picker"
+            name="type"
+            range="{{ _areas[_selected[0]].children }}"
+            range-key="label"
+            value="{{ _selected[1] }}"
+            data-picker_level="1"
+            bindchange="updatePicker"
+          >
+            <view class="picker_text">{{ _areas[_selected[0]].children[_selected[1]].label }}</view>
+            <text class="icon icon-arrow"></text>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="details_container inputs_container" wx:if="{{ _areas[_selected[0]].children[_selected[1]].children }}">
+      <view class="detail">
+        <view class="detail_input">
+          <picker
+            class="input picker"
+            name="type"
+            range="{{ _areas[_selected[0]].children[_selected[1]].children }}"
+            range-key="label"
+            value="{{ _selected[2] }}"
+            data-picker_level="2"
+            bindchange="updatePicker"
+          >
+            <view class="picker_text">{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].label }}</view>
+            <text class="icon icon-arrow"></text>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="details_container inputs_container" wx:if="{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].children }}">
+      <view class="detail">
+        <view class="detail_input">
+          <picker
+            class="input picker"
+            name="type"
+            range="{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].children }}"
+            range-key="label"
+            value="{{ _selected[3] }}"
+            data-picker_level="3"
+            bindchange="updatePicker"
+          >
+            <view class="picker_text">{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].children[_selected[3]].label }}</view>
+            <text class="icon icon-arrow"></text>
+          </picker>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="btn-bottom">
+    <button class="nunito_600" hover-class="none" bindtap="select">{{ _t.select }}</button>
+  </view>
+</view>

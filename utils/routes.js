@@ -5,6 +5,7 @@ const routes = {
   fapiao: "/pages/account/fapiao/fapiao",
   address: "/pages/address/index/index",
   address_detail: "/pages/address/detail/detail",
+  address_areas: "/pages/address/areas/areas",
   cart: "/pages/cart/cart",
   lottery: "/pages/lottery/index/index",
   lottery_detail: "/pages/lottery/detail/detail",
