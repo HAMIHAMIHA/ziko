@@ -57,18 +57,12 @@ const _createOrderData = (page, value) => {
 
   let selected_address = page_data.address[page_data.address_selected];
   let order = {
-    // type: communities[offer.community.id] == "cellar" ? "direct_sale" : "service",
-    // offer: offer.id,
-    // community: offer.community.id,
-    // channel: "miniprogram",
-    // customer: app.db.get('userInfo').customer.id,
     customerDaily: null,
-    // orderDate: new Date(),
     customerAddress: {
       type: selected_address.type,
       city: selected_address.city,
       zipCode: selected_address.zipcode,
-      area: selected_address.area, //TEMP
+      area: selected_address.area,
       detailedAddress: selected_address.address,
       phone: value.phone,
     },
@@ -79,7 +73,6 @@ const _createOrderData = (page, value) => {
     voucherSelection: "manual",
     packs: packs,
     singleItems: items,
-    // paymentStatus: "pending",
     status: "available",
     fapiao: page_data.fapiao ? page_data.fapiao : false,
     paymentMethod: "wechat",
