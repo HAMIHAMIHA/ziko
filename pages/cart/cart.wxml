@@ -45,6 +45,7 @@
           <quantity
             class="flex-start product-quantity"
             amount="{{ product.amount }}"
+            stock="{{ product.actualStock }}"
             bind:changeAmount="changeAmount"
             data-idx="{{ cart.products[product._id].index_in_offer }}"
             data-price="{{ product.price }}"

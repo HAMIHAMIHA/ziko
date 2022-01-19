@@ -1,7 +1,8 @@
 Component({
   properties: {
     community: String,
-    amount: Number
+    amount: Number,
+    stock: Number,
   },
   options: {
     addGlobalClass: true
@@ -15,6 +16,8 @@ Component({
       if (e.currentTarget.dataset.action == 'add') {
         new_amount = self.data.amount + 1
       }
+
+      if (new_amount > self.data.stock) return;
 
       // Change amount displaying
       self.setData({

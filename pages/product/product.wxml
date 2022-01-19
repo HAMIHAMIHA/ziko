@@ -49,6 +49,7 @@
       <quantity
         amount="{{ amount }}"
         community="{{ _setting.community }}"
+        stock="{{ product.actualStock }}"
         bind:changeAmount="changeAmount"
         data-idx="{{ product_index }}"
         data-price="{{ product.price }}"
