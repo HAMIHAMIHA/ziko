@@ -40,7 +40,7 @@ Page({
     })
 
     // Get user info
-    let user = app.db.get('userInfo').user;
+    let user = app.db.get('userInfo').customer;
     if (!user) { return; }
 
     _getAddressAreas();

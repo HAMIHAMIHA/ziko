@@ -22,7 +22,7 @@ const getUserInfo = (page) => {
   const callback = {
     success: res => {
       // let user = res;
-      let user = app.db.get('userInfo').user;
+      let user = app.db.get('userInfo').customer;
 
       updateStoredUserInfo(user);
       // Set default address info
@@ -72,7 +72,7 @@ const _validateInputs = (page, data) => {
 
 // Create address data for api
 const _generateUserAddress = (page, action, new_address) => {
-  let address = app.db.get('userInfo').user.address;
+  let address = app.db.get('userInfo').customer.address;
 
   if (action == 'reset') {
     let addr_index = page.data._count;

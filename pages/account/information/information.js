@@ -52,7 +52,7 @@ Page({
     })
 
     // TODO get user info
-    let user = app.db.get('userInfo').user; // TEMP
+    let user = app.db.get('userInfo').customer; // TEMP
 
     // Get pet picker locations
     let _picker_select = [];
@@ -155,7 +155,7 @@ Page({
     const callback = {
       success: res => {
         // TEMP
-        let user = app.db.get('userInfo').user;
+        let user = app.db.get('userInfo').customer;
         user.name = data.name;
         user.pets = data.pets
 

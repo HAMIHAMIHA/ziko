@@ -13,7 +13,7 @@ Page({
     })
 
     // TODO get user info
-    let user = app.db.get('userInfo').user; // TEMP
+    let user = app.db.get('userInfo').customer; // TEMP
 
     // Set page translation
     self.setData({
@@ -35,7 +35,7 @@ Page({
     const callback = {
       success: res => {
         // TEMP
-        let user = app.db.get('userInfo').user;
+        let user = app.db.get('userInfo').customer;
         user.fapiao = data.fapiao;
 
         app.db.set('userInfo', {user: user})
