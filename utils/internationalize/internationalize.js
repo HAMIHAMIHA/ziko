@@ -17,12 +17,14 @@ export const languageMap_en = {
     temporary: "Temporary",
   },
   addresses: "Addresses",
+  address_empty: "Please select address",
   add_address: "添加地址",
   add_new_address: "Add new address",
   add_pet: "Add pet",
   all: "All",
   am: "AM",
   area: "Area",
+  area_invalid: "Area is not supported",
   available: {
     fst: "",
     snd: " available"
@@ -256,12 +258,14 @@ export const languageMap_zh = {
     temporary: "Temporary",
   },
   addresses: "Addresses",
+  address_empty: "请选择地址",
   add_address: "添加地址",
   add_new_address: "添加新地址",
   add_pet: "添加宠物",
   all: "全部",
   am: "上午",
   area: "地区",
+  area_invalid: "Area is not supported",
   available: {
     fst: "还剩",
     snd: ""

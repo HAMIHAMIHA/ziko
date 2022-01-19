@@ -76,7 +76,7 @@ Page({
     // Check if an area is selected
     if (self.data.select_index == -1) {
       wx.showToast({
-        title: 'Please select area',
+        title: app.globalData.i18n.address_empty,
         icon: 'none',
         duration: 1000,
       })
@@ -122,7 +122,7 @@ Page({
     // Check if selected area is in the filtered area list
     if (selected_address && findIndex(areaList, selected_address.area, 'id') == -1) {
       wx.showToast({
-        title: 'Area is not supported',
+        title: app.globalData.i18n.area_invalid,
         icon: 'none',
         duration: 1000,
       })
