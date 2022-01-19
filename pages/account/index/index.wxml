@@ -1,6 +1,6 @@
 <view class="container">
   <!-- LOGIN BUTTON -->
-  <view class="user-info__container" wx:if="{{ !user }}">
+  <view class="user-info__container" wx:if="{{ !user.id }}">
     <view class="user-info__avatar">
       <view class="avatar-container">
         <text class="avatar-image icon icon-ziko"></text>
