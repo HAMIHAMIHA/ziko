@@ -45,17 +45,21 @@
   <!-- Order Card -->
   <view class="cards-container">
     <block wx:for="{{ orders }}" wx:key="id" wx:for-item="order">
-      <navigator class="card order-card" url="{{ _routes.order + '?id=' + order.id }}">
+      <navigator class="card order-card{{ order.count == 0 ? ' disabled' : ''}}" url="{{ _routes.order + '?id=' + order.id }}">
         <!-- Order Detail -->
         <view class="order-info__detail">
           <view class="flex-between order-info">
             <view class="gilroy_700 order-time">{{ order.orderDate }}</view>
+            <view class="order-payment">{{ _t.payment_status[order.paymentStatus] }}</view>
+          </view>
+          <view class="flex-between order-info order_offer-name_container">
+            <view class="gilroy_700 uppercase order_offer-name">{{ order.offer.name[_language] }}</view>
             <view class="nunito_600 uppercase order-status status-{{ order.trackingStatus }}">{{ _t.order_status[order.trackingStatus] }}</view>
           </view>
-          <view class="gilroy_700 uppercase order_offer-name">{{ order.offer.name[_language] }}</view>
           <view class="order-community">({{ _t.community[_communities[order.community]] }})</view>
           <view class="order-detail flex-between">
-            <view class="order-count">x{{ order.count == 1 ? order.count + _t.item_unit : order.count + _t.items_unit }}</view>
+            <view class="order-count" wx:if="{{ order.count > 0 }}">x{{ order.count == 1 ? order.count + _t.item_unit : order.count + _t.items_unit }}</view>
+            <view class="order-count" wx:else>{{ _t.payment_status[order.paymentStatus] }}</view>
             <view class="order-price">
               <text class="gilroy_800 order-total">￥{{ order.totalAmount }}</text>
               <text class="gilroy_800 order-total__old" wx:if="{{ order.originalPrice }}">￥{{ order.originalPrice }}</text>

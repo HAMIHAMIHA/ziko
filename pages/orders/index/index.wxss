@@ -105,6 +105,10 @@
   border-radius: 4px;
 }
 
+.order-card.disabled {
+  pointer-events: none;
+}
+
 /* Order Detail */
 .order-info__detail {
   padding: 24rpx;
@@ -145,8 +149,11 @@
   color: #FFE9DD;
 }
 
-.order_offer-name {
+.order_offer-name_container {
   padding: 24rpx 0 8rpx;
+}
+
+.order_offer-name {
   font-size: 32rpx;
   line-height: 32rpx;
   letter-spacing: 0.05em;
@@ -159,6 +166,7 @@
   line-height: 32rpx;
 }
 
+.order-payment,
 .order-count {
   color: var(--grey-);
   font-size: 24rpx;
