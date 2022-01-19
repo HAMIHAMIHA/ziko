@@ -1,5 +1,6 @@
 const db = require('db.config.js');
 const config = require('properties.js');
+const { showLoading } = require('./common');
 
 let header = {};
 
@@ -31,6 +32,7 @@ const get = (path, callback) => {
     success: function (res) {
       if (res.data.success === false) {
         console.debug(res.data.message);
+        showLoading(false);
         if (callback.error) {
           callback.error(res.data.message);
         }
@@ -39,7 +41,8 @@ const get = (path, callback) => {
       }
     },
     fail: function (res) {
-      console.debug('err', err);
+      showLoading(false);
+      console.debug('err', res);
     }
   });
 }
@@ -54,6 +57,7 @@ const post = (path, data, callback) => {
     success: function (res) {
       if (res.data.success === false) {
         console.debug(res.data.message);
+        showLoading(false);
         if (callback.error) {
           callback.error(res.data.message);
         }
@@ -62,7 +66,8 @@ const post = (path, data, callback) => {
       }
     },
     fail: function (res) {
-      console.debug('err', err);
+      showLoading(false);
+      console.debug('err', res);
     }
   });
 }
@@ -77,6 +82,7 @@ const put = (path, data, callback) => {
     success: function (res) {
       if (res.data.success === false) {
         console.debug(res.data.message);
+        showLoading(false);
         if (callback.error) {
           callback.error(res.data.message);
         }
@@ -85,7 +91,8 @@ const put = (path, data, callback) => {
       }
     },
     fail: function (res) {
-      console.debug('err', err);
+      showLoading(false);
+      console.debug('err', res);
     }
   });
 }
