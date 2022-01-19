@@ -5,34 +5,26 @@ const i18n = require('utils/internationalize/translate.js'); // 翻译功能
 
 const { folders } = require('./utils/properties');
 
-const getWxUserInfo = (res) => {
+const getWxUserOpenId = (res) => {
   const callback = {
     success: res => {
-      // if (res.userInfo) {
-      //   // Get user info from wechat (name, profile picture)
-      //   wx.getUserInfo({
-      //     success: function(wx_user) {
-      //       res.wxUser = {
-      //         avatar: wx_user.userInfo.avatarUrl,
-      //         name: wx_user.userInfo.nickName
-      //       }
-      //     }
-      //   })
+      let user = db.get('userInfo') ? db.get('userInfo') : {};
+      user.customer ? user.customer.openId = res.openId : user.customer = res;
 
-      //   // Update program language map if user exist
-      //   if (res.userInfo.language != db.get('language')) {
-      //   // Change language map if user langauge different from system
-      //     i18n.change(res.userInfo.language);
-      //   } else if (!res.userInfo.langauge) {
-      //   // Update profile language if user exists but language not saved
-      //     common.updateUserInfo({ langauge: db.get('langauge') }, null);
-      //   }
-      // }
-
-      // TEMP !!!!! remove for production!!!!!
-      api.authLogin();
-
-      db.set('userInfo', res);
+      if (user.customer) {
+      // Get user info from wechat (name, profile picture)
+        wx.getUserInfo({
+          success: function(wx_user) {
+            user.wxUser = {
+              avatar: wx_user.userInfo.avatarUrl,
+              name: wx_user.userInfo.nickName
+            }
+            db.set('userInfo', user);
+          }
+        })
+      } else {
+        db.set('userInfo', user);
+      }
     }
   }
 
@@ -58,16 +50,21 @@ App({
     // Check wx.login session
     wx.checkSession({
       success: function() {
-        // TEMP !!!!! remove for production!!!!!
-        api.authLogin();
+        if (db.get('userInfo').customer && db.get('userInfo').customer.openId) return;
+
+        console.debug('openid not found');
+        wx.login({
+          success: function(res) {
+            getWxUserOpenId(res);
+          }
+        })
       },
       fail: function() {
+        console.debug('openid session ended');
         // Login with wechat if session not valid
         wx.login({
           success: function(res) {
-            // TODO wait for api
-            console.log(res);
-            getWxUserInfo(res);
+            getWxUserOpenId(res);
           }
         })
       }

@@ -3,42 +3,51 @@ const db = require('./db.config.js'); // 本地存储
 const i18n = require('./internationalize/translate.js'); // 翻译功能
 
 // Move to cursor to next input
-const changeFocus = function(page, e) {
+export const changeFocus = function(page, e) {
   page.setData({
     _focus: e.currentTarget.dataset.next_item
   })
 }
 
-// General method to call api and login with wechat mobile number
-const mobileLogin = function(page, code) {
-  page.setData({
-    user: db.get('userInfo')
-  })
+// Check user session and set user to page data
+export const getUserInfo = function(page) {
+  let user = db.get('userInfo');
+  // Check if token session still valid
+  let current_session = user.expireAt ? new Date(user.expireAt) : 0;
+  if (!current_session || current_session <= new Date()) {
+    console.debug('token session ended');
+    user.customer = { openId: user.customer.openId };
+    db.set('userInfo', user);
+  }
 
+  page.setData({
+    user: user.customer
+  })
+}
+
+// General method to call api and login with wechat mobile number
+export const mobileLogin = function(page, code) {
   const callback = {
     success: function(res) {
-      if (!res.language) {
-      // Save program language to sbf if user language info not found
-        updateUserInfo({ langauge: db.get('langauge') }, null);
-      } else if (res.language != db.get('language')) {
-      // Update program language if user language is different from current
-        getApp().globalData.i18n = i18n.change(res.language);
-        page.updatePageLanguage();
-      }
+      console.log(res);
+      db.set('userInfo', res);
+      page.setData({
+        user: res.customer
+      })
     }
   }
 
   const data = {
     code: code,
-    name: db.get('userInfo').wxUser ? db.get('userInfo').wxUser.name : ''
+    name: db.get('userInfo').customer.name ? db.get('userInfo').customer.name : db.get('userInfo').wxUser.name,
+    openId: db.get('userInfo').customer.openId
   }
 
-  // api.mobileLogin(data, callback);
-  callback.success({});
+  api.wxLogin(data, callback);
 }
 
 // Go back to previous page or what should be previous page
-const navigateBack = function(back_route, switchTab = false) {
+export const navigateBack = function(back_route, switchTab = false) {
   if (getCurrentPages().length > 1) {
     wx.navigateBack({
       delta: 1
@@ -57,7 +66,7 @@ const navigateBack = function(back_route, switchTab = false) {
 }
 
 // Loading module wrapper
-const showLoading = function(show) {
+export const showLoading = function(show) {
   if (show) {
     wx.showLoading({
       title: getApp().globalData.i18n.loading,
@@ -68,7 +77,7 @@ const showLoading = function(show) {
 }
 
 // General method to call api and update user profile
-const updateUserInfo = function(new_info, back_url) {
+export const updateUserInfo = function(new_info, back_url) {
   const callback = {
     success: res => {
       let userInfo = db.get('userInfo');
@@ -84,17 +93,8 @@ const updateUserInfo = function(new_info, back_url) {
   // api.updateProfile(new_info, callback);
 }
 
-const updateStoredUserInfo = (new_info) => {
-  let userInfo = getApp().db.get('userInfo');
-  userInfo.user = new_info;
+export const updateStoredUserInfo = (new_info) => {
+  let userInfo = db.get('userInfo');
+  userInfo.customer = new_info;
   getApp().db.set('userInfo', userInfo);
-}
-
-module.exports = {
-  changeFocus,
-  mobileLogin,
-  navigateBack,
-  showLoading,
-  updateUserInfo,
-  updateStoredUserInfo
 }
