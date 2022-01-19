@@ -66,9 +66,9 @@ const getProductDetail = page => {
         _offer: res[0],
         product: product,
         product_index: product_index,
-        amount: app.db.get('cart')[offer_id].products[id] ? app.db.get('cart')[offer_id].products[id].amount : 0,
+        amount: app.db.get('cart')[offer_id] ? app.db.get('cart')[offer_id].products[id] ? app.db.get('cart')[offer_id].products[id].amount : 0 : 0,
         _pay_set: {
-          cart: app.db.get('cart')[offer_id].count,
+          cart: app.db.get('cart')[offer_id] ? app.db.get('cart')[offer_id].count : 0,
           minimum: {
             price: res[0].minimumOrderAmount,
             items: res[0].minimumCartItems,
