@@ -38,7 +38,6 @@ const getOrders = (page) => {
 
       // Count total items
       let countItems = list => {
-        console.log(list);
         let count = 0;
         for (var p in list) {
           count += list[p].amount;
