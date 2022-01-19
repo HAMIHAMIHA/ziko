@@ -1,80 +1,25 @@
+const { communities } = require("../../../utils/constants");
+
 const app = getApp();
 
+const getOrders = (page) => {
+  let order_id = page.options.id;
+
+  const callback = {
+    success: res => {
+      let community = communities[res.community];
+
+      page.setData({
+        order: res,
+        units: app.globalData.i18n.units[community],
+      })
+    }
+  }
+
+  app.api.getOrders({filter_str: null, id: order_id}, callback);
+}
+
 Page({
-  data: {
-    order: {
-      products: [{
-        name: "product A",
-        type: "product",
-        available: 1,
-        quantity: 2,
-        weight: 200,
-        price: 500
-      }, {
-        id: 1,
-        available: 31,
-        type: "pack",
-        products: [{
-          name: "product A",
-          quantity: 2,
-          weight: 200
-        }, {
-          name: "product B",
-          quantity: 1,
-          weight: 400
-        }, {
-          name: "product C",
-          quantity: 2,
-          weight: 200
-        }],
-        price: 500
-      }, {
-        name: "product B",
-        type: "product",
-        available: 110,
-        quantity: 2,
-        weight: 200,
-        price: 500
-      }, {
-        name: "product C",
-        type: "product",
-        available: 10,
-        quantity: 2,
-        weight: 200,
-        price: 500
-      }, {
-        id: 2,
-        available: 190,
-        type: "pack",
-        products: [{
-          name: "product A",
-          quantity: 2,
-          weight: 200
-        }, {
-          name: "product B",
-          quantity: 1,
-          weight: 400
-        }, {
-          name: "product C",
-          quantity: 2,
-          weight: 200
-        }],
-        price: 500
-      }],
-      status: [{
-        date: '2021-12-12',
-        status: 'on-the-way'
-      }, {
-        date: '2021-12-12',
-        status: 'on-the-way'
-      }, {
-        date: '2021-12-12',
-        status: 'on-the-way'
-      }]
-    },
-
-  },
-
   onShow: function () {
     const self = this;
     let i18n = app.globalData.i18n;
@@ -85,8 +30,6 @@ Page({
     })
 
     // Translate page
-    // TEMP
-    let community = 'cellar';
     self.setData({
       _t: {
         address: i18n.address,
@@ -107,9 +50,10 @@ Page({
         problem_with_order: i18n.problem_with_order,
         total: i18n.total,
         tracking_number: i18n.tracking_number,
-        units: i18n.units[community],
         use_voucher: i18n.use_voucher,
       }
     })
+
+    getOrders(self)
   }
 })
