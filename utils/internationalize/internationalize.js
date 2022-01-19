@@ -147,7 +147,6 @@ export const languageMap_en = {
     on_the_way: "On the way",
     paid: "Paid",
     prepared: "Prepared",
-    refund: "Refund"
   },
   our_selected_packs: {
     fst: "our",
@@ -156,6 +155,12 @@ export const languageMap_en = {
 
   // P
   pay: "Pay",
+  payment_status: {
+    paid: "Paid",
+    ccl: "Cancelled",
+    rfd: "Refund",
+    pending: "Pending"
+  },
   pet: "Pet",
   pet_type: {
     dogs: "Dogs",
@@ -381,7 +386,6 @@ export const languageMap_zh = {
     on_the_way: "On the way",
     paid: "Paid",
     prepared: "Prepared",
-    refund: "Refund"
   },
   our_selected_packs: {
     fst: "our",
@@ -390,6 +394,12 @@ export const languageMap_zh = {
 
   // P
   pay: "Pay",
+  payment_status: {
+    paid: "Paid",
+    ccl: "Cancelled",
+    rfd: "Refund",
+    pending: "Pending"
+  },
   pet: "Pet",
   pet_type: {
     dogs: "Dogs",
