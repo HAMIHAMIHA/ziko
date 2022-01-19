@@ -83,7 +83,7 @@ Page({
       return;
     }
 
-    // Get area list without areas not supported
+    // Get area list without areas not supported (by Alex)
     let fees = prev.data._offer.fees;
     let areaList = [...areas] // the list of all areas
     if (fees && fees.length) {
