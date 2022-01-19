@@ -43,8 +43,6 @@ const _createOrderData = (page, value) => {
     }
   }
 
-  // TODO change api purchase/:offerID
-  let selected_address = page_data.address[page_data.address_selected];
   if (page_data.address_selected < 0) {
     page.setData({
       error: 'error-field-0'
@@ -52,23 +50,25 @@ const _createOrderData = (page, value) => {
     return '';
   };
 
+  // Remove error
   page.setData({
     error: ''
   })
 
+  let selected_address = page_data.address[page_data.address_selected];
   let order = {
-    type: communities[offer.community.id] == "cellar" ? "direct_sale" : "service",
-    offer: offer.id,
-    community: offer.community.id,
-    channel: "miniprogram",
-    customer: app.db.get('userInfo').user.id,
+    // type: communities[offer.community.id] == "cellar" ? "direct_sale" : "service",
+    // offer: offer.id,
+    // community: offer.community.id,
+    // channel: "miniprogram",
+    // customer: app.db.get('userInfo').customer.id,
     customerDaily: null,
-    orderDate: new Date(),
+    // orderDate: new Date(),
     customerAddress: {
       type: selected_address.type,
       city: selected_address.city,
       zipCode: selected_address.zipcode,
-      area: '6188abcd1e1c58b45696648c', //TEMP
+      area: selected_address.area, //TEMP
       detailedAddress: selected_address.address,
       phone: value.phone,
     },
@@ -79,7 +79,7 @@ const _createOrderData = (page, value) => {
     voucherSelection: "manual",
     packs: packs,
     singleItems: items,
-    paymentStatus: "pending",
+    // paymentStatus: "pending",
     status: "available",
     fapiao: page_data.fapiao ? page_data.fapiao : false,
     paymentMethod: "wechat",
@@ -132,6 +132,7 @@ const makePayment = res => {
 module.exports = {
   // Create order to the backoffice
   createOrder: (page, value) => {
+    let offer_id = page.data._offer.id;
     let order = _createOrderData(page, value);
 
     if (!order) return;
@@ -139,9 +140,14 @@ module.exports = {
     // Create order, callback to connect to wechat pay
     const createOrderCallback = {
       success: res => {
+        // TODO remove from cart
+        let cart = app.db.get('cart');
+        delete cart[offer_id];
+        app.db.set('cart', cart);
+
         makePayment(res);
       }
     }
-    app.api.createOrder(order, createOrderCallback);
+    app.api.createOrder(offer_id, order, createOrderCallback);
   }
 }

@@ -26,14 +26,14 @@ const getUserInfo = (page) => {
 
       updateStoredUserInfo(user);
       // Set default address info
-      let count = user.address ? user.address.length : 0;
+      let count = user.addresses ? user.addresses.length : 0;
       let address = {};
       let picker_selected = '';
 
       // Set address info if edit
       if (page.options.id) {
-        count = findIndex(user.address, page.options.id, '_id');
-        address = user.address[count];
+        count = findIndex(user.addresses, page.options.id, '_id');
+        address = user.addresses[count];
         _getAddressAreas(page, address.area);
         picker_selected = `${address_type.indexOf(address.type)}`
       }
@@ -72,7 +72,7 @@ const _validateInputs = (page, data) => {
 
 // Create address data for api
 const _generateUserAddress = (page, action, new_address) => {
-  let address = app.db.get('userInfo').customer.address;
+  let address = app.db.get('userInfo').customer.addresses;
 
   if (action == 'reset') {
     let addr_index = page.data._count;
@@ -177,7 +177,7 @@ Page({
 
     // TEMP
     let user_info = app.db.get('userInfo');
-    user_info.user.address = address_list;
+    user_info.customer.addresses = address_list;
     app.db.set('userInfo', user_info);
     navigateBack(app.routes.address, false);
   }

@@ -117,7 +117,7 @@ Page({
       areaList = [...areaList, ...newAreaList]
     }
 
-    let selected_address = self.data.user.address[self.data.select_index];
+    let selected_address = self.data.user.addresses[self.data.select_index];
 
     // Check if selected area is in the filtered area list
     if (!selected_address || findIndex(areaList, selected_address.area, 'id')) {

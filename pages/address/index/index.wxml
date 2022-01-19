@@ -2,7 +2,7 @@
   <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
     <view
       class="detail{{ select_index == index ? ' select' : '' }}"
-      wx:for="{{ user.address }}"
+      wx:for="{{ user.addresses }}"
       wx:for-item="address"
       wx:key="_id"
       bindtap="selectAddress"

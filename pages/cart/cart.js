@@ -110,7 +110,7 @@ Page({
     // 1. get offer data community
     _getOffers(self);
     // 2. get user data
-    let address = app.db.get('userInfo').customer.address;
+    let address = app.db.get('userInfo').customer.addresses;
 
     self.setData({
       address: address,
