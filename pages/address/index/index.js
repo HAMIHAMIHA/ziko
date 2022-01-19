@@ -120,7 +120,7 @@ Page({
     let selected_address = self.data.user.addresses[self.data.select_index];
 
     // Check if selected area is in the filtered area list
-    if (!selected_address || findIndex(areaList, selected_address.area, 'id')) {
+    if (selected_address && findIndex(areaList, selected_address.area, 'id') == -1) {
       wx.showToast({
         title: 'Area is not supported',
         icon: 'none',
