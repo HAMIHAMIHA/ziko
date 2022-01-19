@@ -25,9 +25,8 @@ module.exports = {
     const date = new Date(dateLong)
     const hour = date.getHours()
     const minute = date.getMinutes()
-    const seconds = date.getSeconds()
   
-    return [hour, minute, seconds].map(formatNumber).join(':')
+    return [hour, minute].map(formatNumber).join(':')
   },
 
   formatTimer: dateLong => {

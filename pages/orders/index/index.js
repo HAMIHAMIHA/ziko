@@ -1,12 +1,15 @@
-const { mobileLogin, getUserInfo } = require("../../../utils/common");
+const { mobileLogin, getUserInfo, showLoading } = require("../../../utils/common");
+const { communities } = require("../../../utils/constants");
+const { formatDate, formatTime } = require("../../../utils/util");
 
 const app = getApp();
 const pickers = {
-  community: ['all', 'baby', 'cellar', 'garden', 'kitchen', 'pet'],
-  order_status: ['all', 'delivered', 'on_the_way', 'prepared', 'delayed', 'refund'],
+  community: ['all', 'cellar', 'garden', 'kitchen', 'pet'],
+  order_status: ['all', 'delivered', 'on_the_way', 'prepared', 'delayed'],
+  // payment_status: ['all', 'refund', 'refund', 'refund', 'refund'],
 }
 
-let current = { community: '', order_status: '' };
+let current = { community: '', order_status: '', payment_status: '' };
 
 // Change selected filters
 const _defaultFilters = (page, key, index_val) => {
@@ -27,20 +30,43 @@ const _defaultFilters = (page, key, index_val) => {
 }
 
 const getOrders = (page) => {
+  showLoading(true);
+
   const callback = {
     success: res => {
-      console.log(res);
+      showLoading(false);
+
+      // Count total items
+      let countItems = list => {
+        console.log(list);
+        let count = 0;
+        for (var p in list) {
+          count += list[p].amount;
+        }
+        return count;
+      }
+
+      res.map( order => {
+        order.orderDate = `${formatDate(order.orderDate)} ${formatTime(order.orderDate)}`;
+        order.count = countItems( [...order.packs, ...order.singleItems] )
+      })
+
+      page.setData({
+        orders: res
+      })
     }
   }
 
+  let community_id = Object.keys(communities).find(item => communities[item] == current.community);
+  community_id = community_id ? community_id : ''; // Remove undefined
+  let order_status = current.order_status;
+
   let filter = {
-    filter_str: `community=${ current.community }&order_status=${ current.order_status }`,
+    filter_str: `community=${ community_id }&trackingStatus=${ order_status }`,
     id: ''
   }
-  // TODO
-  app.api.getOrders(filter, callback);
 
-  // callback.success('');
+  app.api.getOrders(filter, callback);
 }
 
 Page({
@@ -51,7 +77,7 @@ Page({
   onShow: function () {
     const self = this;
 
-    self.updatePageLanguage();
+    self.updatePageConstants();
 
     getUserInfo(self);
   
@@ -61,6 +87,7 @@ Page({
   },
 
   initOrders: function() {
+
     const self = this;
     // Set page filter and get order
     _defaultFilters(self, 'community', 0);
@@ -84,7 +111,7 @@ Page({
     getOrders(self);
   },
 
-  updatePageLanguage: function() {
+  updatePageConstants: function() {
     const self = this;
     let i18n = app.globalData.i18n;
 
@@ -96,14 +123,15 @@ Page({
     })
 
     // Format picker values based on langauge
-    let communities = [];
+    let picker_communities = [];
     for (var community in pickers.community) {
       let community_variable = pickers.community[community];
-      communities.push(i18n.community[community_variable]);
+      picker_communities.push(i18n.community[community_variable]);
     }
 
     // Set page translation
     self.setData({
+      _language: app.db.get('language'),
       _t: {
         community: i18n.community,
         item_unit: i18n.item_unit,
@@ -112,11 +140,13 @@ Page({
         lottery_gift: i18n.lottery_gift,
         need_login: i18n.need_login,
         order_status: i18n.order_status,
+        payment_status: i18n.payment_status,
       },
       _pickers: {
-        communities: communities,
+        communities: picker_communities,
         order_status: pickers.order_status,
-      }
+      },
+      _communities: communities
     })  
   }
 })

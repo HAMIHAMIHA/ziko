@@ -126,23 +126,23 @@
 }
 
 .order-info .order-status.status-delayed {
-  background: #FF8718;
-  color: #FFE9DD;
+  background: #FF4040;
+  color: #FFE3E3;
 }
 
 .order-info .order-status.status-delivered {
-  background: #00CB45;
+  background: #1890FF;
   color: #DDEFFF;
 }
 
 .order-info .order-status.status-prepared {
-  background: #DDEFFF;
+  background: #00CB45;
   color: #DDFFE4;
 }
 
 .order-info .order-status.status-on_the_way {
-  background: #FF4040;
-  color: #FFE3E3;
+  background: #FF8718;
+  color: #FFE9DD;
 }
 
 .order_offer-name {
