@@ -23,18 +23,29 @@
           <view class="nunito_600 icon_text payment-tickets_count">X{{ _pay_set.tickets }}3</view>
         </view>
       </view>
+
+      <!-- Pay buttons -->
+      <!-- Payment not available if offer minimun items not reached -->
       <view class="payment-button disabled" wx:if="{{ _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.cart }}">
         {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }}
       </view>
+      <!-- Payment not available if offer minimun price not reached -->
       <view class="payment-button disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.total }}">
         {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
       </view>
+      <!-- Lock button if there is nothing to pay -->
       <view class="payment-button disabled" wx:elif="{{ _pay_set.total == 0 }}">
         {{ _t.pay }}
       </view>
+      <!-- Make as login button if user not logged in -->
+      <button class="payment-button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:elif="{{ !user.id }}">
+        {{ _t.pay }}
+      </button>
+      <!-- Pay button -->
       <button class="payment-button" hover-class="hover-payment-button" bindtap="checkout" wx:else>
         {{ _t.pay }}
       </button>
+      <!-- End of Pay buttons -->
     </view>
   </view>
 </template>

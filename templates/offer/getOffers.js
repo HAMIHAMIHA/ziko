@@ -1,4 +1,4 @@
-import { showLoading } from "../../utils/common";
+import { getUserInfo, showLoading } from "../../utils/common";
 import { communities } from "../../utils/constants";
 
 const app = getApp();
@@ -67,6 +67,8 @@ export const getOffer = function(page, offer_id) {
     success: res => {
       let offer = res[0];
       offer.community = communities[offer.community.id];
+
+      getUserInfo(page);
 
       page.setData({
         _folders: {

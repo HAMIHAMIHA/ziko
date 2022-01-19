@@ -21,12 +21,12 @@
         <!-- <image class="avatar-image" src="{{ _folder.user_avatar + user.image.uri }}"></image> -->
         <image class="avatar-image" src="/assets/images/receipeBanner.png"></image>
         <view class="gilroy_900 uppercase avatar-label">
-          <text class="avatar-label__text">{{ _t.account_ranking[user.type] }}jshgkldh j</text>
+          <text class="avatar-label__text">{{ _t.account_ranking[user.level] }}</text>
           <image class="avatar-label__background" src="/assets/images/avatarLabel.png" mode="scaleToFill"></image>
         </view>
       </view>
     </view>
-    <view class="gilroy_700 uppercase user-info__name">{{ user.name }}jshgkldh jk</view>
+    <view class="gilroy_700 uppercase user-info__name">{{ user.name }}</view>
   </view>
   <!-- END OF USER INFO -->
 

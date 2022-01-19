@@ -72,5 +72,4 @@
     </view>
   </view>
   <!-- End of Map popup -->
-  <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{ !user }}"></button>
 </view>

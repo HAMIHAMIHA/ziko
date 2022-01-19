@@ -1,4 +1,4 @@
-const { mobileLogin, showLoading } = require("../../utils/common");
+const { showLoading } = require("../../utils/common");
 const index_data = require("../../utils/constants");
 const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../utils/util");
 
@@ -184,19 +184,12 @@ Page({
         list: index_data.list_filter,
         map: index_data.map_filters
       },
-      user: app.db.get('userInfo').user
     })
   },
 
   onHide: function(e) {
     const self = this;
     self.navigatePage({ detail: {} });
-  },
-
-  // Mobile login
-  getPhoneNumber: function(e) {
-    mobileLogin(this, e.detail.code);
-    // TODO api to get user phone -> user name + code + openid
   },
 
   // Close modal or reset page view to map when leaving page by tabbar click

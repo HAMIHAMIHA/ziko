@@ -26,14 +26,12 @@ export const getUserInfo = function(page) {
 }
 
 // General method to call api and login with wechat mobile number
-export const mobileLogin = function(page, code) {
+export const mobileLogin = function(page, code, loginCallback) {
   const callback = {
     success: function(res) {
-      console.log(res);
       db.set('userInfo', res);
-      page.setData({
-        user: res.customer
-      })
+      page.setData({ user: res.customer })
+      loginCallback ? loginCallback() : '';
     }
   }
 

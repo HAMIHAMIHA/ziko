@@ -1,4 +1,4 @@
-const { mobileLogin } = require("../../../utils/common");
+const { mobileLogin, getUserInfo } = require("../../../utils/common");
 
 const app = getApp();
 const pickers = {
@@ -53,12 +53,15 @@ Page({
 
     self.updatePageLanguage();
 
-    // Get user info
-    let user = app.db.get('userInfo');
-    self.setData({
-      user: user
-    })
+    getUserInfo(self);
   
+    if (app.db.get('userInfo').customer.id) {
+      self.initOrders();
+    }
+  },
+
+  initOrders: function() {
+    const self = this;
     // Set page filter and get order
     _defaultFilters(self, 'community', 0);
     _defaultFilters(self, 'order_status', 0);
@@ -67,8 +70,7 @@ Page({
 
   // Mobile login
   getPhoneNumber: function(e) {
-    mobileLogin(this, e.detail.code);
-    // TODO api to get user phone -> user name + code + openid
+    mobileLogin(this, e.detail.code, this.initOrders);
   },
 
   // change filter content

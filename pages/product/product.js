@@ -1,7 +1,7 @@
 const Offers = require('../../templates/offer/getOffers.js');
 const ModifyCart = require('../../templates/offer/modifyCart.js');
 const api = require('../../utils/api.js');
-const { showLoading } = require('../../utils/common.js');
+const { showLoading, getUserInfo, mobileLogin } = require('../../utils/common.js');
 const { communities } = require('../../utils/constants.js');
 const { findIndex } = require('../../utils/util.js');
 
@@ -49,6 +49,9 @@ const getProductDetail = page => {
           general_unit = app.globalData.i18n.units.kg;
         }
       }
+
+      // Get user data
+      getUserInfo(page)
       
       page.setData({
         _folders: {
@@ -129,5 +132,8 @@ Page({
     Offers.updateReceipes(this);
   },
 
-  onShareAppMessage: function () {}
+  // Mobile login
+  getPhoneNumber: function(e) {
+    mobileLogin(this, e.detail.code, this.checkout);
+  },
 })

@@ -1,3 +1,4 @@
+const { mobileLogin } = require("../../../utils/common");
 const animate = require('../../../templates/offer/animation.js').tabbar;
 const Offers = require('../../../templates/offer/getOffers.js');
 const ModifyCart = require('../../../templates/offer/modifyCart.js');
@@ -37,6 +38,11 @@ Page({
   onReachBottom: function() {
     // TODO If current tab is on receipe
     Offers.updateReceipes(this);
+  },
+
+  // Mobile login
+  getPhoneNumber: function(e) {
+    mobileLogin(this, e.detail.code, this.checkout);
   },
 
   startCountdown: function() {

@@ -1,5 +1,5 @@
 const app = getApp();
-const { mobileLogin } = require('../../../utils/common.js');
+const { mobileLogin, getUserInfo } = require('../../../utils/common.js');
 const translate = require('../../../utils/internationalize/translate.js'); // 翻译功能
 
 Page({
@@ -23,19 +23,13 @@ Page({
     // Set page translation
     self.updatePageLanguage();
 
-    // Get user info
-    let user = app.db.get('userInfo');
-
-    // Set page Data
-    self.setData({
-      user: user
-    })
+    // Set user Data
+    getUserInfo(self)
   },
 
   // Mobile login
   getPhoneNumber: function(e) {
-    mobileLogin(this, e.detail.code);
-    // TODO api to get user phone -> user name + code + openid
+    mobileLogin(this, e.detail.code, null);
   },
 
   switchLanguage: function(e) {
