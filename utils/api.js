@@ -92,8 +92,8 @@ const put = (path, data, callback) => {
 
 module.exports = {
   // Create order for payment
-  createOrder: (data, callback) => {
-    api('post', 'orders', data, callback);
+  createOrder: (id, data, callback) => {
+    api('post', `orders/purchase/${id}`, data, callback);
   },
 
   // Get deliverable address areas
@@ -119,10 +119,6 @@ module.exports = {
 
   getProfile: (callback) => {
     api('get', 'customers/mine', null, callback);
-  },
-
-  setOrder: (data, callback) => {
-    api('post', 'orders', data, callback);
   },
 
   // Update user info
