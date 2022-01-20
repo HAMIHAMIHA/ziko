@@ -47,7 +47,7 @@ const get = (path, callback) => {
   });
 }
 
-//post请求
+// post请求
 const post = (path, data, callback) => {
   wx.request({
     url: path,
@@ -72,7 +72,7 @@ const post = (path, data, callback) => {
   });
 }
 
-//put请求
+// put请求
 const put = (path, data, callback) => {
   wx.request({
     url: path,
@@ -95,6 +95,36 @@ const put = (path, data, callback) => {
       console.debug('err', res);
     }
   });
+}
+
+// Upload Request
+const upload = (folder_path, file, callback) => {
+  let path = `${config.api_url}files/${folder_path}`;
+  let header = {
+    'Authorization': `Bearer ${db.get('userInfo').token}`
+  };
+
+  wx.uploadFile({
+    url: path,
+    filePath: file,
+    header: header,
+    name: folder_path,
+    success: function (res) {
+      if (res.statusCode != 200) {
+        showLoading(false);
+        console.debug(res.data.message);
+        if (callback.error) {
+          callback.error(res.data.message);
+        }
+        return;
+      }
+      callback.success(JSON.parse(res.data));
+    },
+    fail: function (res) {
+      showLoading(false);
+      console.debug('err', res);
+    }
+  })
 }
 
 module.exports = {
@@ -131,6 +161,11 @@ module.exports = {
   // Update user info
   updateProfile: (data, callback) => {
     api('put', `customers/mine`, data, callback);
+  },
+
+  // Upload profile picture
+  uploadProfilePicture: (file, callback) => {
+    upload('customer-picture', file, callback);
   },
 
   // Wechat login with mobile

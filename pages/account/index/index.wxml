@@ -18,8 +18,15 @@
   <view class="user-info__container" wx:else>
     <view class="user-info__avatar">
       <view class="avatar-container">
-        <!-- <image class="avatar-image" src="{{ _folder.user_avatar + user.image.uri }}"></image> -->
-        <image class="avatar-image" src="/assets/images/receipeBanner.png"></image>
+        <image
+          wx:if="{{ user.profilePicture }}"
+          class="avatar-image"
+          src="{{ _folders.customer_picture + user.profilePicture.uri }}"
+          mode="aspectFill"
+          bindtap="chooseProfilePicture"
+          lazy-load="true"
+        ></image>
+        <text wx:else class="avatar-image icon icon-ziko" bindtap="chooseProfilePicture"></text>
         <view class="gilroy_900 uppercase avatar-label">
           <text class="avatar-label__text">{{ _t.account_ranking[user.level] }}</text>
           <image class="avatar-label__background" src="/assets/images/avatarLabel.png" mode="scaleToFill"></image>

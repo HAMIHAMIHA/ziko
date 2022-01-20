@@ -1,9 +1,33 @@
 const app = getApp();
-const { mobileLogin, getUserInfo } = require('../../../utils/common.js');
+const { mobileLogin, getUserInfo, updateUserInfo, showLoading } = require('../../../utils/common.js');
 const translate = require('../../../utils/internationalize/translate.js'); // 翻译功能
+
+const _uploadProfileImage = (res, page) =>  {
+  showLoading(true);
+  const callback = {
+    success: file => {
+      // Update profile image displaying
+      let user = page.data.user;
+      user.profilePicture = file;
+      page.setData({
+        user: user
+      })
+
+      // Update user data
+      let profile_data = {
+        profilePicture: file
+      }
+      updateUserInfo(profile_data, null);
+    }
+  }
+  app.api.uploadProfilePicture(res.tempFiles[0].tempFilePath, callback);
+}
 
 Page({
   data: {
+    _folders: {
+      customer_picture: app.folders.customer_picture
+    },
     _routes: {
       account_info: app.routes.account_info,
       fapiao: app.routes.fapiao,
@@ -39,7 +63,6 @@ Page({
     if (app.db.get('langugae') != new_language) {
       app.globalData.i18n = translate.change(new_language);
       self.updatePageLanguage();
-      // TODO update user database
     }
   },
 
@@ -51,7 +74,7 @@ Page({
     // Set tabbar translation
     app.setTabbar();
   
-    // Set page translation
+    // Set page default data
     self.setData({
       _t: {
         account_ranking: i18n.account_ranking,
@@ -69,5 +92,25 @@ Page({
       },
       language: app.db.get('language')
     })
+  },
+
+  chooseProfilePicture: function() {
+    const self = this;
+
+    let choose_media_setting = {
+      count: 1,
+      sizeType: ['original'],
+      success(res) {
+        _uploadProfileImage(res, self)
+      }
+    }
+
+    // Check if wx.chooseMedia is still supported(min mp requirement: 2.11.1), if not use wx.chooseImage (discontinued)
+    if (wx.canIUse('chooseMedia')) {
+      choose_media_setting.mediaType = ['image'];
+      wx.chooseMedia(choose_media_setting);
+    } else {
+      wx.chooseImage(choose_media_setting);
+    }
   }
 })
