@@ -1,3 +1,4 @@
+const { refreshUserInfo } = require("../../../utils/common");
 const { findIndex } = require("../../../utils/util");
 
 const app = getApp();
@@ -40,15 +41,18 @@ Page({
     })
 
     // Get user info
-    let user = app.db.get('userInfo').customer;
-    if (!user) { return; }
+    refreshUserInfo(self, null);
 
     _getAddressAreas();
 
     // Set page Data
+    self.options.selected_address != undefined ? 
+      self.setData({
+        select_index: self.options.selected_address
+      })
+      : null;
+
     self.setData({
-      user: user,
-      select_index: self.options.selected_address,
       _setting: {
         selecting: self.options.action == 'select'
       }

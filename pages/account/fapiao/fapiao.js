@@ -1,4 +1,4 @@
-const { navigateBack } = require("../../../utils/common");
+const { navigateBack, refreshUserInfo, updateUserInfo, showLoading } = require("../../../utils/common");
 
 const app = getApp();
 
@@ -12,40 +12,33 @@ Page({
       title: i18n.fapiao
     })
 
-    // TODO get user info
-    let user = app.db.get('userInfo').customer; // TEMP
+    refreshUserInfo(null, res =>{
+      console.log(res);
+      self.setData({
+        fapiao: res.fapiaoInformation,
+      })
+    });
 
     // Set page translation
     self.setData({
       _t: {
         fapiao: i18n.fapiao,
         save: i18n.save,
-      },
-      fapiao: user.fapiao
+      }
     })
   },
 
   // Save data
   saveInformation: function(e) {
     const self = this;
+
+    showLoading(true);
     let data = {
-      fapiao: self.data.fapiao
+      fapiaoInformation: self.data.fapiao
     }
 
-    const callback = {
-      success: res => {
-        // TEMP
-        let user = app.db.get('userInfo').customer;
-        user.fapiao = data.fapiao;
+    console.log(data);
 
-        app.db.set('userInfo', {user: user})
-
-        // TODO update storage
-        navigateBack(app.routes.account, true);
-      }
-    }
-
-    callback.success('');
-    // TODO api
+    updateUserInfo(data, app.routes.account, true);
   }
 })

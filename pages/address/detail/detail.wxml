@@ -32,7 +32,7 @@
                 value="{{ address.city }}"
                 confirm-type="next"
                 confirm-hold="true"
-                data-next_item="zipcode"
+                data-next_item="zipCode"
                 bindconfirm="next"
               >
               </input>
@@ -41,7 +41,7 @@
         </view>
       </view>
 
-      <view class="details_container inputs_container field-4">
+      <view class="details_container inputs_container field-5">
         <view class="detail">
           <view class="detail_label">{{ _t.area }}</view>
           <view class="detail_input input_goto">
@@ -53,18 +53,18 @@
         </view>
       </view>
 
-      <view class="details_container inputs_container">
+      <view class="details_container inputs_container field-4">
         <view class="detail">
           <view class="detail_label">{{ _t.zipcode }}</view>
           <view class="detail_input">
             <view class="input">
               <input
-                name="zipcode"
-                value="{{ address.zipcode }}"
+                name="zipCode"
+                value="{{ address.zipCode }}"
                 confirm-type="next"
                 confirm-hold="true"
-                focus="{{ _focus == 'zipcode' ? true : false }}"
-                data-next_item="address"
+                focus="{{ _focus == 'zipCode' ? true : false }}"
+                data-next_item="detailedAddress"
                 bindconfirm="next"
               >
               </input>
@@ -79,11 +79,11 @@
           <view class="detail_input">
             <view class="input">
               <input
-                name="address"
-                value="{{ address.address }}"
+                name="detailedAddress"
+                value="{{ address.detailedAddress }}"
                 confirm-type="next"
                 confirm-hold="true"
-                focus="{{ _focus == 'address' ? true : false }}"
+                focus="{{ _focus == 'detailedAddress' ? true : false }}"
                 data-next_item="phone"
                 bindconfirm="next"
               >

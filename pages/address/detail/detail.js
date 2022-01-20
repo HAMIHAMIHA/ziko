@@ -1,10 +1,9 @@
-const api = require("../../../utils/api");
-const { changeFocus, navigateBack, updateUserInfo, updateStoredUserInfo, showLoading } = require("../../../utils/common");
+const { changeFocus, navigateBack, showLoading, updateUserInfo, refreshUserInfo } = require("../../../utils/common");
 const { findIndex } = require("../../../utils/util");
 
 const app = getApp();
-const address_type = ["office", "home", "other", "temporary"];
-const validate_keys = ['type', 'city', 'address', 'phone'];
+const address_type = ["office", "home", "other"];
+const validate_keys = ['type', 'city', 'detailedAddress', 'phone', 'zipCode'];
 
 const _getAddressAreas = (page, area_id) => {
   const callback = {
@@ -19,48 +18,43 @@ const _getAddressAreas = (page, area_id) => {
 
 // Get user profile
 const getUserInfo = (page) => {
-  const callback = {
-    success: res => {
-      // let user = res;
-      let user = app.db.get('userInfo').customer;
+  const callback = user => {
+    // Set default address info
+    let count = user.addresses ? user.addresses.length : 0;
+    let address = {};
+    let picker_selected = '';
 
-      updateStoredUserInfo(user);
-      // Set default address info
-      let count = user.addresses ? user.addresses.length : 0;
-      let address = {};
-      let picker_selected = '';
-
-      // Set address info if edit
-      if (page.options.id) {
-        count = findIndex(user.addresses, page.options.id, '_id');
-        address = user.addresses[count];
-        _getAddressAreas(page, address.area);
-        picker_selected = `${address_type.indexOf(address.type)}`
-      }
-
-      showLoading(false);
-
-      page.setData({
-        _count: count,
-        _picker_selected: picker_selected,
-        address: address
-      })
+    // Set address info if edit
+    if (page.options.id) {
+      count = findIndex(user.addresses, page.options.id, '_id');
+      address = user.addresses[count];
+      _getAddressAreas(page, address.area);
+      picker_selected = `${address_type.indexOf(address.type)}`
     }
+
+    showLoading(false);
+
+    page.setData({
+      _count: count,
+      _picker_selected: picker_selected,
+      address: address
+    })
   }
 
-  // app.api.getProfile(callback);
-  callback.success({})
+  refreshUserInfo(null, callback);
 }
 
 // Check if input empty
 const _validateInputs = (page, data) => {
   let error = '';
   for (var i in validate_keys) {
-    !data[validate_keys[i]] ? error += `error-field-${i} ` : '';
+    console.log('value',data[validate_keys[i]]);
+    console.log(i);
+    (data[validate_keys[i]] == null || data[validate_keys[i]] == '') ? error += `error-field-${i} ` : '';
   }
 
   if (!page.data.area || JSON.stringify(page.data.area) == "{}") {
-    error += 'error-field-4 ';
+    error += 'error-field-5 ';
   }
 
   page.setData({
@@ -162,23 +156,18 @@ Page({
       return;
     }
  
+    console.log(e.detail.value);
     // Stop if saving but inputs empty
     if (action != 'reset' && _validateInputs(self, e.detail.value)) return;
 
+    showLoading(true);
+
+    // Add address to addrss list
     let address = e.detail.value;
     address ? address.type = self.data.address.type : '';
     address ? address.area = self.data.area.id : '';
-    // TEMP id for testing
-    address ? address._id = self.data._count + 1 + new Date().getMilliseconds() : '';
-
     let address_list = _generateUserAddress(self, action, address);
-    // TODO api save user data
-    // updateUserInfo({ address: address }, app.routes.address);
 
-    // TEMP
-    let user_info = app.db.get('userInfo');
-    user_info.customer.addresses = address_list;
-    app.db.set('userInfo', user_info);
-    navigateBack(app.routes.address, false);
+    updateUserInfo({ addresses: address_list }, app.routes.address);
   }
 })

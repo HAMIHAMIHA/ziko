@@ -1,4 +1,3 @@
-const api = require('./api.js'); // 本地存储
 const db = require('./db.config.js'); // 本地存储
 const i18n = require('./internationalize/translate.js'); // 翻译功能
 
@@ -18,11 +17,13 @@ export const getUserInfo = function(page) {
     console.debug('token session ended');
     user.customer = { openId: user.customer.openId };
     db.set('userInfo', user);
-  }
 
-  page.setData({
-    user: user.customer
-  })
+    page.setData({
+      user: user.customer
+    })
+  } else {
+    refreshUserInfo(page, null);
+  }
 }
 
 // General method to call api and login with wechat mobile number
@@ -41,8 +42,55 @@ export const mobileLogin = function(page, code, loginCallback) {
     openId: db.get('userInfo').customer.openId
   }
 
-  api.wxLogin(data, callback);
+  getApp().api.wxLogin(data, callback);
 }
+
+// Get user info from database
+export const refreshUserInfo = function(page, callback) {
+  const getProfileCallback = {
+    success: function(res) {
+      let user = db.get('userInfo');
+      user.customer = res.user;
+      db.set('userInfo', user);
+      page ?
+        page.setData({
+          user: res.user
+        })
+        : null;
+    
+      callback ? 
+        callback(res.user)
+        : null;
+    }
+  }
+
+  getApp().api.getProfile(getProfileCallback);
+}
+
+// General method to call api and update user profile
+export const updateUserInfo = function(new_info, back_url, switch_tab = false) {
+  const callback = {
+    success: res => {
+      showLoading(false);
+      let userInfo = db.get('userInfo');
+      userInfo.user = res;
+
+      db.set('userInfo', userInfo);
+
+      if (back_url) {
+        navigateBack(back_url, switch_tab);
+      }
+    }
+  }
+
+  getApp().api.updateProfile(new_info, callback);
+}
+
+// export const updateStoredUserInfo = (new_info) => {
+//   let userInfo = db.get('userInfo');
+//   userInfo.customer = new_info;
+//   getApp().db.set('userInfo', userInfo);
+// }
 
 // Go back to previous page or what should be previous page
 export const navigateBack = function(back_route, switchTab = false) {
@@ -72,27 +120,4 @@ export const showLoading = function(show) {
   } else {
     wx.hideLoading({});
   }
-}
-
-// General method to call api and update user profile
-export const updateUserInfo = function(new_info, back_url) {
-  const callback = {
-    success: res => {
-      let userInfo = db.get('userInfo');
-      userInfo.user = res;
-      db.set('userInfo', userInfo);
-
-      if (back_url) {
-        navigateBack(back_url);
-      }
-    }
-  }
-
-  // api.updateProfile(new_info, callback);
-}
-
-export const updateStoredUserInfo = (new_info) => {
-  let userInfo = db.get('userInfo');
-  userInfo.customer = new_info;
-  getApp().db.set('userInfo', userInfo);
 }

@@ -116,7 +116,7 @@ button:not([size=mini]).short-cuts__button {
   margin-bottom: 18rpx;
   color: #20A1FF;
   font-size: 36rpx;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 .short-cut__label {

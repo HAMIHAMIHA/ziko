@@ -1,9 +1,9 @@
 <view class="container container-grey container-btn-bottom">
   <!-- Profile Input Group -->
-  <view class="white-box inputs_container contact-info">
+  <view class="white-box inputs_container contact-info {{ error_name }}">
     <view class="nunito_700 header">{{ _t.contact_info }}</view>
 
-    <view class="detail">
+    <view class="detail field-0">
       <view class="detail_label">{{ _t.name }}</view>
       <view class="detail_input">
         <input class="input" type="text" value="{{ name }}" bindinput="changeInput" data-key="name"></input>
@@ -14,11 +14,11 @@
 
   <!-- Pets Input Group -->
   <block wx:for="{{ pets }}" wx:for-item="pet" wx:key="index">
-    <view class="white-box inputs_container pet-info" mark:index="{{ index }}">
+    <view class="white-box inputs_container pet-info {{ errors[index] }}" mark:index="{{ index }}">
       <view class="nunito_700 header">{{ _t.pet + ' ' + (index + 1) }}</view>
       <view class="icon icon-trash btn-icon" bindtap="removePet"></view>
 
-      <view class="detail">
+      <view class="detail field-1">
         <view class="detail_label">{{ _t.name }}</view>
         <view class="detail_input">
           <view class="input">
@@ -27,7 +27,7 @@
         </view>
       </view>
 
-      <view class="detail">
+      <view class="detail field-2">
         <text class="detail_label">{{ _t.type }}</text>
         <view class="detail_input">
           <picker
@@ -43,7 +43,7 @@
         </view>
       </view>
 
-      <view class="detail">
+      <view class="detail field-3">
         <text class="detail_label">{{ _t.size }}</text>
         <view class="detail_input">
           <picker 
@@ -71,7 +71,7 @@
 
   <!-- Submit Button -->
   <view class="btn-bottom">
-    <button class="nunito_600" hover-class="none" bindtap="saveInformation">{{ _t.save }}</button>
+    <button class="nunito_600" bindtap="saveInformation">{{ _t.save }}</button>
   </view>
   <!-- End of Submit Button -->
 </view>

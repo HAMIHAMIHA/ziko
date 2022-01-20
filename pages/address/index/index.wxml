@@ -10,7 +10,7 @@
     >
       <view class="address_container">
         <view class="nunito_700 address-name">{{ _t.address + ' ' + (index + 1) }}</view>
-        <view class="address-detail">{{ address.address }}</view>
+        <view class="address-detail">{{ address.detailedAddress }}</view>
         <view class="contact-detail">{{ address.contact }}</view>
         <view class="contact-detail">{{ address.phone }}</view>
       </view>
@@ -23,6 +23,6 @@
   </view>
 
   <view class="btn-bottom" wx:if="{{ _setting.selecting }}">
-    <button class="nunito_600" hover-class="none" bindtap="select">{{ _t.select }}</button>
+    <button class="nunito_600" bindtap="select">{{ _t.select }}</button>
   </view>
 </view>

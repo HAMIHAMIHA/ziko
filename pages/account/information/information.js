@@ -1,10 +1,35 @@
-const { navigateBack } = require("../../../utils/common");
+const { navigateBack, updateUserInfo, showLoading } = require("../../../utils/common");
 
 const app = getApp();
 
 const pet_pickers = {
-  type: ['dogs', 'cats'],
-  size: ['small', 'large']
+  type: ["cat", "dog", "bird", "rabbit", "other"],
+  size: ["small", "middle", "large"]
+}
+
+// Check if all pet fields filled
+const _validatePets = (page, pets) => {
+  let errors = [];
+  let valid = true;
+
+  for (var p in pets) {
+    let error = '';
+    let pet = pets[p];
+
+    if (!pet.name) error += 'error-field-1 ';
+    if (!pet.type) error += 'error-field-2 ';
+    if (!pet.size) error += 'error-field-3 ';
+
+    if (error != '') valid = false;
+
+    errors.push(error);
+  }
+
+  page.setData({
+    errors: errors
+  })
+
+  return valid;
 }
 
 Page({
@@ -82,7 +107,6 @@ Page({
     if (index >= 0) {
       key = key.replace('index', index);
     }
-    console.log(key);
   
     let res = self.data[key];
     res = e.detail.value;
@@ -147,26 +171,23 @@ Page({
   // Save data
   saveInformation: function(e) {
     const self = this;
+
+    // Validate if name filled
+    if (!self.data.name) {
+      self.setData({
+        error_name: 'error-field-0'
+      })
+    }
+
+    if (!_validatePets(self, self.data.pets) || !self.data.name) return;
+
+    showLoading(true);
+
     let data = {
       name: self.data.name,
       pets: self.data.pets
     }
 
-    const callback = {
-      success: res => {
-        // TEMP
-        let user = app.db.get('userInfo').customer;
-        user.name = data.name;
-        user.pets = data.pets
-
-        app.db.set('userInfo', {user: user})
-
-        // TODO update storage
-        navigateBack(app.routes.account, true);
-      }
-    }
-
-    callback.success('');
-    // TODO api
+    updateUserInfo(data, app.routes.account, true);
   }
 })

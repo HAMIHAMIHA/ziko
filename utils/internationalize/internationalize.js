@@ -165,11 +165,15 @@ export const languageMap_en = {
   },
   pet: "Pet",
   pet_type: {
-    dogs: "Dogs",
-    cats: "Cats"
+    cat: "Cat",
+    dog: "Dog",
+    bird: "Bird",
+    rabbit: "Rabbit",
+    other: "Other",
   },
   pet_size: {
     small: "Small",
+    middle: "Middle",
     large: "Large"
   },
   phone_no: "Phone no",
@@ -406,11 +410,15 @@ export const languageMap_zh = {
   },
   pet: "Pet",
   pet_type: {
-    dogs: "Dogs",
-    cats: "Cats"
+    cat: "Cat",
+    dog: "Dog",
+    bird: "Bird",
+    rabbit: "Rabbit",
+    other: "Other",
   },
   pet_size: {
     small: "Small",
+    middle: "Middle",
     large: "Large"
   },
   phone_no: "Phone no",

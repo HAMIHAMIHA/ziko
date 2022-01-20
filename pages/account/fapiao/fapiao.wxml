@@ -17,7 +17,7 @@
 
   <!-- Submit Button -->
   <view class="btn-bottom">
-    <button class="nunito_600" hover-class="none" bindtap="saveInformation">{{ _t.save }}</button>
+    <button class="nunito_600" bindtap="saveInformation">{{ _t.save }}</button>
   </view>
   <!-- End of Submit Button -->
 </view>

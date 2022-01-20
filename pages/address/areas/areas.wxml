@@ -76,6 +76,6 @@
   </view>
 
   <view class="btn-bottom">
-    <button class="nunito_600" hover-class="none" bindtap="select">{{ _t.select }}</button>
+    <button class="nunito_600" bindtap="select">{{ _t.select }}</button>
   </view>
 </view>
