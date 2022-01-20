@@ -73,7 +73,7 @@ export const updateUserInfo = function(new_info, back_url, switch_tab = false) {
     success: res => {
       showLoading(false);
       let userInfo = db.get('userInfo');
-      userInfo.user = res;
+      userInfo.customer = res;
 
       db.set('userInfo', userInfo);
 
@@ -85,12 +85,6 @@ export const updateUserInfo = function(new_info, back_url, switch_tab = false) {
 
   getApp().api.updateProfile(new_info, callback);
 }
-
-// export const updateStoredUserInfo = (new_info) => {
-//   let userInfo = db.get('userInfo');
-//   userInfo.customer = new_info;
-//   getApp().db.set('userInfo', userInfo);
-// }
 
 // Go back to previous page or what should be previous page
 export const navigateBack = function(back_route, switchTab = false) {
