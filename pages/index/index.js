@@ -168,6 +168,9 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
 
 Page({
   data: {
+    _folders: {
+      asset: app.folders.asset
+    },
     filter_group: '',
     map: true // Default open to map view
   },
