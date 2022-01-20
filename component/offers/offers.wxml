@@ -1,4 +1,8 @@
 <view class="offers_container">
+  <view class="gilroy_700 offers_list" wx:if="{{ offers.length == 0 }}">
+    {{ _t.no_offers }}
+  </view>
+
   <view class="gilroy_700 offers_list">
     <!-- Card for each offer -->
     <view class="uppercase offer_container"

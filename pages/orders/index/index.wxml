@@ -42,6 +42,12 @@
   </view>
   <!-- End of Community Picker -->
 
+  <!-- Empty State -->
+  <view class="cards-container" wx:if="{{ orders.length == 0 }}">
+    {{ _t.no_orders }}
+  </view>
+  <!-- End of Empty State -->
+
   <!-- Order Card -->
   <view class="cards-container">
     <block wx:for="{{ orders }}" wx:key="id" wx:for-item="order">

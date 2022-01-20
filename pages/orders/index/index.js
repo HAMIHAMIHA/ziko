@@ -138,6 +138,7 @@ Page({
         login: i18n.login,
         lottery_gift: i18n.lottery_gift,
         need_login: i18n.need_login,
+        no_orders: i18n.no_orders,
         order_status: i18n.order_status,
         payment_status: i18n.payment_status,
       },

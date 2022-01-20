@@ -266,6 +266,7 @@ Page({
         items_unit: i18n.items_unit,
         list: i18n.list,
         lottery: i18n.lottery,
+        no_offers: i18n.no_offers,
         offers: i18n.offers,
         orders_unit: i18n.orders_unit,
         order_unit: i18n.order_unit,
