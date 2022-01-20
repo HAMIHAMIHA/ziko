@@ -1,3 +1,4 @@
+const { showLoading } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
 
 const app = getApp();
@@ -87,6 +88,8 @@ const makePayment = res => {
 
   const callback = {
     success: res => {
+      showLoading(false);
+
       // TEMP
       wx.redirectTo({
         url: `${app.routes.order}?id=${order_id}&type=paid`,
@@ -130,6 +133,7 @@ module.exports = {
 
     if (!order) return;
   
+    showLoading(true);
     // Create order, callback to connect to wechat pay
     const createOrderCallback = {
       success: res => {
