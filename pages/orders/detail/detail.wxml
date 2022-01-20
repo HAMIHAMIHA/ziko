@@ -152,7 +152,7 @@
   <view class="white-box contact-box">
     <view>{{ _t.problem_with_order }}</view>
     <view class="contact-button_container">
-      <button class="contact-button" hover-class="none" open-type="contact">
+      <button class="contact-button" open-type="contact">
         <text class="icon icon-headset"></text>
         <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
       </button>
