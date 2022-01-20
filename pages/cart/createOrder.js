@@ -39,7 +39,8 @@ const _createOrderData = (page, value) => {
         name: product.name,
         shortName: product.shortName,
         amount: product.amount,
-        price: pack_products,
+        products: pack_products,
+        price: product.price,
       })
     }
   }
