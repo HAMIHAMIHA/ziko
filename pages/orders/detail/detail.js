@@ -9,6 +9,11 @@ const getOrders = (page) => {
     success: res => {
       let community = communities[res.community];
 
+      res.packs.map( item => item.type = 'pack');
+      res.singleItems.map( item => item.type = 'item');
+
+      res.products = [...res.packs, res.singleItems];
+
       page.setData({
         order: res,
         units: app.globalData.i18n.units[community],
