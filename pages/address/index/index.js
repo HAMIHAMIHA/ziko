@@ -1,4 +1,4 @@
-const { refreshUserInfo } = require("../../../utils/common");
+const { refreshUserInfo, showLoading } = require("../../../utils/common");
 const { findIndex } = require("../../../utils/util");
 
 const app = getApp();
@@ -41,16 +41,16 @@ Page({
     })
 
     // Get user info
+    showLoading(true);
     refreshUserInfo(self, null);
-
     _getAddressAreas();
 
     // Set page Data
-    self.options.selected_address != undefined ? 
+    if (self.options.selected_address != undefined) {
       self.setData({
         select_index: self.options.selected_address
       })
-      : null;
+    }
 
     self.setData({
       _setting: {
@@ -142,6 +142,8 @@ Page({
     prev.setData({
       address_selected: self.data.select_index
     })
+
+    prev.calculateDeliveryFee(selected_address.area);
 
     // Go back to previous page
     wx.navigateBack({

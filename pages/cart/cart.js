@@ -1,11 +1,14 @@
 const { modifyCartItems } = require("../../templates/offer/modifyCart");
-const { changeFocus } = require("../../utils/common");
+const { changeFocus, showLoading } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
 const { formatDate } = require("../../utils/util");
 const { createOrder } = require("./createOrder");
+const { getDeliveryFee } = require("./findDeliveryFee");
 
 const app = getApp();
+let area_list = [];
 
+// Page default data
 const _setPageDefaultItems = page => {
   let i18n = app.globalData.i18n;
 
@@ -48,6 +51,17 @@ const _setPageDefaultItems = page => {
   })
 }
 
+// Get area list from db
+const _getAddressAreas = () => {
+  const callback = {
+    success: res => {
+      area_list = res;
+    }
+  }
+  app.api.getAreas(callback);
+}
+
+// Set product into display format
 const _setProducts = (offer, cart) => {
   let offer_detail = offer.miniprogram;
 
@@ -64,6 +78,7 @@ const _setProducts = (offer, cart) => {
   return products;
 }
 
+// Get offer data
 const _getOffers = page => {
   let callback = {
     success: res => {
@@ -92,7 +107,7 @@ const _getOffers = page => {
           }
         },
       })
-      
+      showLoading(false);      
     }
   }
 
@@ -105,7 +120,10 @@ Page({
 
     if (self.options.back) return;
 
+    showLoading(true);
+
     _setPageDefaultItems(self);
+    _getAddressAreas();
 
     // 1. get offer data community
     _getOffers(self);
@@ -129,6 +147,12 @@ Page({
       cart: cart,
       products: _setProducts(self.data._offer, cart)
     })
+
+    // Check for delivery fee after amount changed
+    if (self.data.address_selected > -1) {
+      let area = self.data.address[self.data.address_selected].area;
+      getDeliveryFee(self, area, area_list);
+    }
   },
 
   next: function(e) {
@@ -156,6 +180,10 @@ Page({
     self.setData({
       [changing_key]: !self.data[changing_key]
     })
+  },
+
+  calculateDeliveryFee: function(area) {
+    getDeliveryFee(this, area, area_list);
   },
 
   pay: function(e) {

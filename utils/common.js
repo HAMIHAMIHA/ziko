@@ -60,7 +60,7 @@ export const refreshUserInfo = function(page, callback) {
     
       callback ? 
         callback(res.user)
-        : null;
+        : showLoading(false);
     }
   }
 

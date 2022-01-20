@@ -48,8 +48,6 @@ const getUserInfo = (page) => {
 const _validateInputs = (page, data) => {
   let error = '';
   for (var i in validate_keys) {
-    console.log('value',data[validate_keys[i]]);
-    console.log(i);
     (data[validate_keys[i]] == null || data[validate_keys[i]] == '') ? error += `error-field-${i} ` : '';
   }
 
@@ -156,7 +154,6 @@ Page({
       return;
     }
  
-    console.log(e.detail.value);
     // Stop if saving but inputs empty
     if (action != 'reset' && _validateInputs(self, e.detail.value)) return;
 

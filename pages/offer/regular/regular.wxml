@@ -1,5 +1,5 @@
 <import src="../../../templates/offer/products.wxml" />
-<import src="../../../templates/checkout/payButton.wxml" />
+<import src="../../../templates/offer/payButton.wxml" />
 
 <view class="container ziko-offer {{ 'community-' + _offer.community }}">
   <!-- Offer Countdown -->
