@@ -71,7 +71,7 @@ image {
 }
 /* End of White Box */
 
-.container-btn-bottom {
+.container.container-btn-bottom {
   --container-btn-bottom-height-: calc(36rpx + 32rpx + 32rpx + 48rpx);
   min-height: calc(100vh - var(--container-btn-bottom-height-) - var(--env-));
   padding-bottom: calc(var(--container-btn-bottom-height-) + var(--env-));
