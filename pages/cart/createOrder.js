@@ -84,7 +84,7 @@ const _createOrderData = (page, value) => {
 }
 
 // Make payment by wechat pay
-const makePayment = res => {
+export const makePayment = res => {
   let order_id = res.id;
 
   const callback = {
@@ -126,26 +126,25 @@ const makePayment = res => {
   // app.api.orderPrePay(order_id, callback, app.globalData.i18n.loading);
 }
 
-module.exports = {
-  // Create order to the backoffice
-  createOrder: (page, value) => {
-    let offer_id = page.data._offer.id;
-    let order = _createOrderData(page, value);
+// Create order to the backoffice
+export const createOrder = (page, value) => {
+  let offer_id = page.data._offer.id;
+  let order = _createOrderData(page, value);
 
-    if (!order) return;
-  
-    showLoading(true);
-    // Create order, callback to connect to wechat pay
-    const createOrderCallback = {
-      success: res => {
-        // TODO remove from cart
-        let cart = app.db.get('cart');
-        delete cart[offer_id];
-        app.db.set('cart', cart);
+  if (!order) return;
 
-        makePayment(res);
-      }
+  showLoading(true);
+  // Create order, callback to connect to wechat pay
+  const createOrderCallback = {
+    success: res => {
+      // TODO remove from cart
+      let cart = app.db.get('cart');
+      delete cart[offer_id];
+      app.db.set('cart', cart);
+
+
+      makePayment(res);
     }
-    app.api.createOrder(offer_id, order, createOrderCallback);
   }
+  app.api.createOrder(offer_id, order, createOrderCallback);
 }

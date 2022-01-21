@@ -1,4 +1,5 @@
 const { communities } = require("../../../utils/constants");
+const { makePayment } = require("../../cart/createOrder");
 
 const app = getApp();
 
@@ -7,17 +8,18 @@ const getOrders = (page) => {
 
   const callback = {
     success: res => {
-      let community = communities[res.community];
+      console.log(res);
+      // let community = communities[res.community];
 
-      res.packs.map( item => item.type = 'pack');
-      res.singleItems.map( item => item.type = 'item');
+      // res.packs.map( item => item.type = 'pack');
+      // res.singleItems.map( item => item.type = 'item');
 
-      res.products = [...res.packs, res.singleItems];
+      // res.products = [...res.packs, res.singleItems];
 
-      page.setData({
-        order: res,
-        units: app.globalData.i18n.units[community],
-      })
+      // page.setData({
+      //   order: res,
+      //   units: app.globalData.i18n.units[community],
+      // })
     }
   }
 
@@ -51,6 +53,7 @@ Page({
         offer_label: i18n.offer_label,
         order_no: i18n.order_no,
         order_status: i18n.order_status,
+        pay: i18n.pay,
         phone_no: i18n.phone_no,
         problem_with_order: i18n.problem_with_order,
         total: i18n.total,
@@ -60,5 +63,10 @@ Page({
     })
 
     getOrders(self)
+  },
+
+  makePayment: function() {
+    const self = this;
+    makePayment({ id: self.options.id });
   }
 })
