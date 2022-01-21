@@ -14,6 +14,7 @@ const getOrders = (page) => {
     success: res => {
       showLoading(false);
 
+      res.actualAmount = Math.round(res.actualAmount * 100) / 100;
       res.deliveryDate = formatDate(res.deliveryDate);
       let community = communities[res.community];
       res.packs.map( item => item.type = 'pack');
