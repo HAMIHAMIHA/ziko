@@ -121,6 +121,9 @@ Page({
   onShow: function () {
     const self = this;
 
+    // Need to get newest user info
+    getUserInfo(self);
+
     if (self.options.back) {
       self.options.back = false;
       return;
@@ -128,17 +131,12 @@ Page({
 
     showLoading(true);
 
+    // Get data for page
     _setPageDefaultItems(self);
-    _getAddressAreas();
-    getUserInfo(self);
-
-    // 1. get offer data community
     _getOffers(self);
-    // 2. get user data
-    let address = app.db.get('userInfo').customer.addresses;
+    _getAddressAreas();
 
     self.setData({
-      address: address,
       address_selected: -1
     })
   },
