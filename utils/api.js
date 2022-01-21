@@ -150,12 +150,19 @@ module.exports = {
     api('get', `offers/details${suffix}`, null, callback);
   },
 
+  // Get product detail
   getProduct: (id, callback) => {
     api('get', `products/${id}`, data, callback);
   },
 
+  // Get user information
   getProfile: (callback) => {
     api('get', 'customers/mine', null, callback);
+  },
+
+  // Get prepay id for wechat pay
+  orderPrePay: (id, callback) => {
+    api('get', `orders/${id}/prepay`, null, callback);
   },
 
   // Set view for offer

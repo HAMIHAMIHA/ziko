@@ -1,4 +1,4 @@
-const { showLoading } = require("../../utils/common");
+const { showLoading, showToast } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
 
 const app = getApp();
@@ -67,6 +67,7 @@ const _createOrderData = (page, value) => {
       area: selected_address.area,
       detailedAddress: selected_address.detailedAddress,
       phone: value.phone,
+      contact: value.contact,
     },
     comment: value.comment,
     deliveryDate: offer.deliveryDates[page_data.delivery_date],
@@ -91,11 +92,6 @@ export const makePayment = res => {
     success: res => {
       showLoading(false);
 
-      // TEMP
-      wx.redirectTo({
-        url: `${app.routes.order}?id=${order_id}&type=paid`,
-      })
-      /*
       wx.requestPayment({
         timeStamp: `${res.timestamp}`,
         nonceStr: `${res.nonce_str}`,
@@ -103,27 +99,25 @@ export const makePayment = res => {
         signType: 'MD5',
         paySign: res.signature,
         success (res) { 
-          app.db.set('cart', []);
           wx.redirectTo({
-            url: app.routes.orders + '?type=paid&id=' + order_id,
+            url: `${app.routes.order}?id=${order_id}&type=paid`,
           })
         },
         fail (res) {
           console.debug('payment error', res);
-          wx.showModal({
-            confirmText: app.globalData.i18n.ok,
-            content: app.globalData.i18n.payment_failed_message,
-            showCancel: false,
-            title: app.globalData.i18n.payment_failed_title
-          })
+          showToast(app.globalData.i18n.payment_cancelled);
+          
+          setTimeout( () => {
+            wx.navigateBack({
+              delta: 0,
+            })
+          }, 1000)
         }
       })
-      */
     }
   }
 
-  callback.success('');
-  // app.api.orderPrePay(order_id, callback, app.globalData.i18n.loading);
+  app.api.orderPrePay(order_id, callback);
 }
 
 // Create order to the backoffice
