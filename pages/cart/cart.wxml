@@ -136,7 +136,7 @@
             class="input"
             type="text"
             name="contact"
-            value="{{ contact }}"
+            value="{{ user.addresses[address_selected].contact }}"
             focus="{{ _focus == 'contact' ? true : false }}"
           />
         </view>

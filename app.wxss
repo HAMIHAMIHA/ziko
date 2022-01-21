@@ -370,7 +370,8 @@ image {
 .error-field-2 .field-2 .detail_input,
 .error-field-3 .field-3 .detail_input,
 .error-field-4 .field-4 .detail_input,
-.error-field-5 .field-5 .detail_input {
+.error-field-5 .field-5 .detail_input ,
+.error-field-6 .field-6 .detail_input {
   border-color: #FF4040;
 }
 /* End of Error */

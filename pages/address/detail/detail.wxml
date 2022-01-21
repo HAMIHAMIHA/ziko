@@ -24,6 +24,25 @@
 
       <view class="details_container inputs_container field-1">
         <view class="detail">
+          <view class="detail_label">{{ _t.contact }}</view>
+          <view class="detail_input">
+            <view class="input">
+              <input
+                name="contact"
+                value="{{ address.contact }}"
+                confirm-type="next"
+                confirm-hold="true"
+                data-next_item="city"
+                bindconfirm="next"
+              >
+              </input>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="details_container inputs_container field-2">
+        <view class="detail">
           <view class="detail_label">{{ _t.city }}</view>
           <view class="detail_input">
             <view class="input">
@@ -32,6 +51,7 @@
                 value="{{ address.city }}"
                 confirm-type="next"
                 confirm-hold="true"
+                focus="{{ _focus == 'city' ? true : false }}"
                 data-next_item="zipCode"
                 bindconfirm="next"
               >
@@ -41,7 +61,7 @@
         </view>
       </view>
 
-      <view class="details_container inputs_container field-5">
+      <view class="details_container inputs_container field-6">
         <view class="detail">
           <view class="detail_label">{{ _t.area }}</view>
           <view class="detail_input input_goto">
@@ -53,7 +73,7 @@
         </view>
       </view>
 
-      <view class="details_container inputs_container field-4">
+      <view class="details_container inputs_container field-5">
         <view class="detail">
           <view class="detail_label">{{ _t.zipcode }}</view>
           <view class="detail_input">
@@ -73,7 +93,7 @@
         </view>
       </view>
 
-      <view class="details_container inputs_container field-2">
+      <view class="details_container inputs_container field-3">
         <view class="detail">
           <view class="detail_label">{{ _t.address }}</view>
           <view class="detail_input">
@@ -93,7 +113,7 @@
         </view>
       </view>
 
-      <view class="details_container inputs_container field-3">
+      <view class="details_container inputs_container field-4">
         <view class="detail">
           <view class="detail_label">{{ _t.phone_no }}</view>
           <view class="detail_input">

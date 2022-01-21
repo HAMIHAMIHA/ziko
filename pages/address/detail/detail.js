@@ -3,7 +3,7 @@ const { findIndex } = require("../../../utils/util");
 
 const app = getApp();
 const address_type = ["office", "home", "other"];
-const validate_keys = ['type', 'city', 'detailedAddress', 'phone', 'zipCode'];
+const validate_keys = ['type', 'contact', 'city', 'detailedAddress', 'phone', 'zipCode'];
 
 const _getAddressAreas = (page, area_id) => {
   const callback = {
@@ -30,6 +30,8 @@ const getUserInfo = (page) => {
       address = user.addresses[count];
       _getAddressAreas(page, address.area);
       picker_selected = `${address_type.indexOf(address.type)}`
+    } else {
+      address.contact = user.name;
     }
 
     showLoading(false);
@@ -110,6 +112,7 @@ Page({
         address: i18n.address,
         address_type: i18n.address_type,
         area: i18n.area,
+        contact: i18n.contact,
         city: i18n.city,
         comment: i18n.comment,
         delete: i18n.delete,
