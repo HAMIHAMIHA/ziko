@@ -7,6 +7,7 @@ Component({
     community: String,
     amount: Number,
     stock: Number,
+    product_id: String,
   },
   options: {
     addGlobalClass: true
@@ -39,6 +40,15 @@ Component({
 
       // Update cart amount
       self.triggerEvent('changeAmount', { amount: new_amount });
+    },
+
+    updateData: function(cart, product) {
+      const self = this;
+
+      self.setData({
+        amount: cart ? cart.products[self.data.product_id] ? cart.products[self.data.product_id].amount : 0 : 0,
+        stock: product.actualStock,
+      })
     }
   }
 })

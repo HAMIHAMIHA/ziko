@@ -46,6 +46,7 @@
         class="flex-start product-quantity"
         amount="{{ cart.products[list_item._id].amount }}"
         community="{{ _community }}"
+        product_id="{{ list_item._id }}"
         stock="{{ list_item.actualStock }}"
         bind:changeAmount="changeAmount"
         data-idx="{{ index }}"

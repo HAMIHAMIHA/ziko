@@ -1,5 +1,6 @@
 import { getUserInfo, showLoading } from "../../utils/common";
 import { communities } from "../../utils/constants";
+import { findIndex } from "../../utils/util";
 
 const app = getApp();
 
@@ -46,18 +47,6 @@ export const _getTranslations = (page, community) => {
       units: i18n.units[community],
     }
   })
-
-  let products = page.selectAllComponents('.product-list');
-  let products_translation = {
-    available: i18n.available,
-    only_left: i18n.only_left,
-    products_left: i18n.products_left,
-    units: i18n.units[community],
-  }
-
-  for (var i in products) {
-    products[i].updatePage(products_translation);
-  }
 }
 
 // Get Offer
@@ -100,6 +89,15 @@ export const getOffer = function(page, offer_id) {
       _getTranslations(page, offer.community);
       page.startCountdown();
       showLoading(false);
+
+      // Update quantity button setting
+      let quantity_changers = page.selectAllComponents('.product-quantity');
+      quantity_changers.forEach( changer => {
+        let products = [...offer.miniprogram.packs, ...offer.miniprogram.items];
+        let product_id = changer.data.product_id;
+        let product = products[findIndex(products, product_id, '_id')];
+        changer.updateData(app.db.get('cart')[offer.id], product);
+      });
     }
   }
 
