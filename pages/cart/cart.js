@@ -1,5 +1,5 @@
 const { modifyCartItems } = require("../../templates/offer/modifyCart");
-const { changeFocus, showLoading } = require("../../utils/common");
+const { changeFocus, showLoading, getUserInfo } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
 const { formatDate } = require("../../utils/util");
 const { createOrder } = require("./createOrder");
@@ -43,7 +43,8 @@ const _setPageDefaultItems = page => {
       use_voucher: i18n.use_voucher,
     },
     _routes: {
-      address: app.routes.address
+      address: app.routes.address,
+      fapiao: app.routes.fapiao
     },
     _setting: {
       folders: app.folders.product_picture
@@ -120,12 +121,16 @@ Page({
   onShow: function () {
     const self = this;
 
-    if (self.options.back) return;
+    if (self.options.back) {
+      self.options.back = false;
+      return;
+    }
 
     showLoading(true);
 
     _setPageDefaultItems(self);
     _getAddressAreas();
+    getUserInfo(self);
 
     // 1. get offer data community
     _getOffers(self);

@@ -37,8 +37,16 @@ Page({
       fapiaoInformation: self.data.fapiao
     }
 
-    console.log(data);
+    let prev = app.routes.account;
+    let switch_tab = true;
+    if (self.options.action == 'edit') {
+      let pages = getCurrentPages();
+      let cart_pg = pages[pages.length - 2];
+      cart_pg.options.back = true;
+      prev = app.routes.cart;
+      switch_tab = false;
+    }
 
-    updateUserInfo(data, app.routes.account, true);
+    updateUserInfo(data, prev, switch_tab);
   }
 })

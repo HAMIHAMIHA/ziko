@@ -106,10 +106,10 @@
         <text class="detail_label">{{ _t.address }}</text>
         <view class="detail_input input_goto">
           <navigator class="input picker" hover-class="none" url="{{ _routes.address + '?action=select&selected_address=' + address_selected }}">
-            <text>{{ _t.address_type[address[address_selected].type] }}</text>
+            <text>{{ _t.address_type[user.addresses[address_selected].type] }}</text>
             <text class="icon icon-arrow-right"></text>
           </navigator>
-          <text class="detail_note">{{ address[address_selected].detailedAddress }}</text>
+          <text class="detail_note">{{ user.addresses[address_selected].detailedAddress }}</text>
         </view>
       </view>
 
@@ -120,7 +120,7 @@
             class="input"
             type="text"
             name="phone"
-            value="{{ address[address_selected].phone }}"
+            value="{{ user.addresses[address_selected].phone }}"
             confirm-type="next"
             confirm-hold="true"
             data-next_item="contact"
@@ -143,12 +143,14 @@
       </view>
     </view>
 
-    <view class="white-box details_container inputs_container" bindtap="toggleCheck" data-key="fapiao">
+    <view class="white-box details_container inputs_container">
       <view class="detail checkbox-container fapiao">
         <text class="detail_label">{{ _t.fapiao }}</text>
         <view class="flex-between detail_input">
-          <input class="ellipsis input" type="text" name="fapiao" disabled="true" value="{{ user.fapiao }}"/>
-          <view class="checkbox{{ fapiao ? ' checked' : '' }}">
+          <navigator hover-class="none" url="{{ _routes.fapiao + '?action=edit' }}">
+            <input class="ellipsis input" type="text" name="fapiao" disabled="true" value="{{ user.fapiaoInformation }}" />
+          </navigator>
+          <view class="checkbox{{ fapiao ? ' checked' : '' }}" bindtap="toggleCheck" data-key="fapiao">
             <text class="icon icon-check"></text>
           </view>
         </view>
