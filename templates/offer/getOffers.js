@@ -103,11 +103,14 @@ export const getOffer = function(page, offer_id) {
     }
   }
 
-  // callback -> for each item in product and pack list -> add quantity based on storage cart[order_id]
-    // if item in cart offer -> check quantity and availibity -> reduce to min or remove or keep
-    // update page data
-  // get product by offer id
-  app.api.getOffers(`?id=${offer_id}`, callback);
+  // Update number of views for offer before getting offer
+  let viewCallback = {
+    success: res => {
+      // Get product by offer id
+      app.api.getOffers(`?id=${offer_id}`, callback);
+    }
+  }
+  app.api.setOfferView(offer_id, viewCallback);
 }
 
 

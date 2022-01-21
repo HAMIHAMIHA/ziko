@@ -158,6 +158,11 @@ module.exports = {
     api('get', 'customers/mine', null, callback);
   },
 
+  // Set view for offer
+  setOfferView: (id, callback) => {
+    api('get', `offers/${id}/viewed`, null, callback);
+  },
+
   // Update user info
   updateProfile: (data, callback) => {
     api('put', `customers/mine`, data, callback);

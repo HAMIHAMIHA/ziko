@@ -76,7 +76,7 @@
               </view>
               <view class="icon_container">
                 <view class="icon icon-eye"></view>
-                <view class="icon_text">{{ offer.viewers + _t.viewers }}</view>
+                <view class="icon_text">{{ offer.views ? offer.views : 0 }}{{ _t.viewers }}</view>
               </view>
             </view>
             <view class="offer-delivery nunito_400" wx:if="{{ offer.deliveryDates }}">
