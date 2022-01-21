@@ -57,15 +57,15 @@ const _createOrderData = (page, value) => {
     error: ''
   })
 
-  let selected_address = page_data.address[page_data.address_selected];
+  let selected_address = page_data.user.addresses[page_data.address_selected];
   let order = {
     customerDaily: null,
     customerAddress: {
       type: selected_address.type,
       city: selected_address.city,
-      zipCode: selected_address.zipcode,
+      zipCode: selected_address.zipCode,
       area: selected_address.area,
-      detailedAddress: selected_address.address,
+      detailedAddress: selected_address.detailedAddress,
       phone: value.phone,
     },
     comment: value.comment,

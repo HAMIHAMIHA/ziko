@@ -35,6 +35,7 @@ const _setPageDefaultItems = page => {
       item_unit: i18n.item_unit,
       items_unit: i18n.items_unit,
       lottery_tickets: i18n.lottery_tickets,
+      minimum: i18n.minimum,
       only_left: i18n.only_left,
       pay: i18n.pay,
       phone_no: i18n.phone_no,
@@ -155,7 +156,7 @@ Page({
 
     // Check for delivery fee after amount changed
     if (self.data.address_selected > -1) {
-      let area = self.data.address[self.data.address_selected].area;
+      let area = self.data.user.addresses[self.data.address_selected].area;
       getDeliveryFee(self, area, area_list);
     }
   },
