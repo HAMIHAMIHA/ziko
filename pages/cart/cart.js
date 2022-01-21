@@ -89,7 +89,7 @@ const _getOffers = page => {
 
       let dates = offer.deliveryDates.sort();
       for (var i in dates) {
-        if (new Date(dates[i]) > new Date()) {
+        if (new Date(dates[i]) > new Date().setHours(23, 59, 59, 999)) {
           delivery_dates.push(formatDate(dates[i]));
         }
       }
