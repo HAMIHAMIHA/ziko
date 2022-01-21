@@ -70,7 +70,7 @@ const _createOrderData = (page, value) => {
       contact: value.contact,
     },
     comment: value.comment,
-    deliveryDate: offer.deliveryDates[page_data.delivery_date],
+    deliveryDate: new Date(page_data.delivery_dates[page_data.delivery_date]),
     deliverySelection: "auto",
     vouchers: [],
     voucherSelection: "manual",
