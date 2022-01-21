@@ -116,7 +116,7 @@
 
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.contact_label }}</text>
-      <view class="detail_value">{{ order.customerAddress.contact }}</view>
+      <view class="detail_value">{{ order.customerAddress.contact ? order.customerAddress.contact : "" }}</view>
     </view>
   </view>
 
@@ -130,11 +130,11 @@
   <view class="white-box order-details_container">
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.comment }}</text>
-      <view class="detail_value">{{ order.comment }}</view>
+      <view class="detail_value">{{ order.comment ? order.comment : '' }}</view>
     </view>
   </view>
 
-  <view class="white-box order-details_container timeline" wx:if="{{ order.statusHistory }}">
+  <view class="white-box order-details_container timeline" wx:if="{{ order.statusHistory.length > 0 }}">
     <block wx:for="{{ order.statusHistory }}" wx:key="index" wx:for-item="status">
       <view class="timeline__detail">
         <view class="timeline__dot"></view>
