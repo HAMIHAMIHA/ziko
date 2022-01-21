@@ -81,7 +81,7 @@
       </view>
       <view class="detail">
         <text class="detail_label">{{ _t.delivery_fee }}</text>
-        <text class="detail_result">¥{{ offer.delivery_fee }}10</text>
+        <text class="detail_result">{{ delivery_fee >= 0 ? '¥' + delivery_fee : '' }}</text>
       </view>
       <view class="nunito_700 detail">
         <text class="detail_label">{{ _t.total }}</text>
@@ -109,7 +109,7 @@
             <text>{{ _t.address_type[address[address_selected].type] }}</text>
             <text class="icon icon-arrow-right"></text>
           </navigator>
-          <text class="detail_note">{{ address[address_selected].address }}</text>
+          <text class="detail_note">{{ address[address_selected].detailedAddress }}</text>
         </view>
       </view>
 
