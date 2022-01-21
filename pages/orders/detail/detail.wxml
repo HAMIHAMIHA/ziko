@@ -1,22 +1,21 @@
 <view class="container container-grey{{ order.paymentStatus == 'pending' ? ' container-btn-bottom' : '' }}">
   <view class="white-box order-products_container">
-    <!-- <view class="nunito_700 header page-header">{{ order.offer + _t.offer_label }}</view> -->
-    <view class="nunito_700 header page-header">{{ 'Kitchen' + _t.offer_label }}</view>
+    <view class="nunito_700 header page-header">{{ order.offer.name[_language] }}</view>
     <view class="nunito_700 header">{{ _t.items }}</view>
     <view class="order-products product_container" wx:for="{{ order.products }}" wx:key="id" wx:for-item="product">
       <view class="flex-between product">
         <view class="flex-start flex-align-start product_left">
           <view class="product-image">
             <image src="/assets/images/packDefault.png" mode="aspectFill" wx:if="{{ product.type == 'pack' }}"></image>
-            <image src="/assets/images/packDefault.png" mode="aspectFill" wx:else></image>
+            <image src="{{ _folders.product_picture + product.product.mainPicture[_language].uri }}" mode="aspectFill" wx:else></image>
           </view>
           <view class="product-info">
             <view class="info_container">
-              <view class="nunito_700 product-title">{{ product.name }}pack name</view>
+              <view class="nunito_700 product-title">{{ product.type == 'pack' ? product.name[_language] : product.product.name[_language] }}</view>
               <!-- Pack Products Detail -->
               <view class="gilroy_500 product-detail_container" wx:if="{{ product.type == 'pack' }}">
-                <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="packProduct">
-                  <text>{{ packProduct.name }} {{ packProduct.quantity }}x{{ packProduct.weight }}{{ _t.units }}</text>
+                <text wx:for="{{ product.products }}" wx:key="*this" wx:for-index="index" wx:for-item="pack_product">
+                  <text>{{ pack_product.product.name[_language] }}{{ (pack_product.quantity > 1 || pack_product.weight) ? ' ' + pack_product.quantity : '' }}{{ pack_product.weight ? 'x' + pack_product.weight + _t.units : '' }}</text>
                   <text wx:if="{{ index < product.products.length - 1 }}">, </text>
                 </text>
               </view>
@@ -24,14 +23,13 @@
 
               <!-- Single Products Detail -->
               <view class="product-detail_container" wx:else>
-                <text>{{ product.quantity }} x {{ product.weight }}{{ _t.units }}</text>
+                <text>{{ product.quantity }}{{ product.weight ? 'x' + product.weight + _t.units : product.quantity > 1 ? _t.items_unit : _t.item_unit }}</text>
               </view>
               <!-- End of Single Products Detail -->
 
               <!-- Product Amount Bought -->
               <view class="gilroy_500 product-count">
-                x10
-                <!-- {{ 'x' + product.count }} -->
+                {{ 'x' + product.amount }}
               </view>
               <!-- End of Product Amount Bought -->
             </view>
@@ -57,12 +55,12 @@
     <view class="nunito_600 detail">
       <text class="detail_label">{{ _t.chosen_delivery_date }}</text>
       <view class="detail_result">
-        <text>{{ order.delivery_date }}2020-11-10</text>
+        <text>{{ order.deliveryDate }}</text>
       </view>
     </view>
     <view class="nunito_600 detail">
       <text class="detail_label">{{ _t.delivery_fee }}</text>
-      <text class="detail_result">¥10</text>
+      <text class="detail_result">¥{{ order.deliveryFee }}</text>
     </view>
     <!-- Hide for v1 (did not translate) -->
     <view class="detail" wx:if="{{ showing }}">
@@ -71,22 +69,22 @@
     </view>
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.total }}</text>
-      <text class="nunito_700 detail_result">¥1000{{ order.total }}</text>
+      <text class="nunito_700 detail_result">¥{{ order.actualAmount }}</text>
     </view>
   </view>
 
   <view class="white-box order-details_container">
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.order_no }}</text>
-      <text class="detail_result">77846513298465{{ order.orderNo }}</text>
+      <text class="detail_result">{{ order.orderID }}</text>
     </view>
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.delivery_company }}</text>
-      <text class="detail_result">{{ order.delivery_company }}SF</text>
+      <text class="detail_result">{{ _t.delivery_companies[order.offer.deliveryType] }}</text>
     </view>
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.tracking_number }}</text>
-      <text class="detail_result">{{ order.tracking_number }}77846513298465</text>
+      <text class="detail_result">{{ order.deliveryTrackingID }}</text>
     </view>
   </view>
 
@@ -106,44 +104,43 @@
     <view class="detail address">
       <text class="nunito_600 detail_label">{{ _t.address }}</text>
       <view class="detail_value">
-        <view class="address-name">{{ _t.address_type[order.address.type] }}Home</view>
-        <text class="detail_note">{{ order.address.address }}水电路1200弄3号401室</text>
+        <view class="address-name">{{ _t.address_type[order.customerAddress.type] }}</view>
+        <text class="detail_note">{{ order.customerAddress.detailedAddress }}</text>
       </view>
     </view>
 
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.phone_no }}</text>
-      <view class="detail_value">{{ order.address.phone }}132156519165</view>
+      <view class="detail_value">{{ order.customerAddress.phone }}</view>
     </view>
 
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.contact_label }}</text>
-      <view class="detail_value">{{ order.address.contact }}Contact person Name</view>
+      <view class="detail_value">{{ order.customerAddress.contact }}</view>
     </view>
   </view>
 
-  <view class="white-box order-details_container">
+  <view class="white-box order-details_container" wx:if="{{ order.fapiao }}">
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.fapiao }}</text>
-      <view class="detail_value">{{ order.fapiao }}address</view>
+      <view class="detail_value">{{ order.customer.fapiaoInformation }}</view>
     </view>
   </view>
 
   <view class="white-box order-details_container">
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.comment }}</text>
-      <view class="detail_value">{{ order.comment }}lasjfslfjas fklj dsklfaj klfjsaklfjasfklasfkldjsf k</view>
+      <view class="detail_value">{{ order.comment }}</view>
     </view>
   </view>
 
-  <view class="white-box order-details_container timeline">
-    <block wx:for="{{ order.status }}" wx:key="index" wx:for-item="status">
+  <view class="white-box order-details_container timeline" wx:if="{{ order.statusHistory }}">
+    <block wx:for="{{ order.statusHistory }}" wx:key="index" wx:for-item="status">
       <view class="timeline__detail">
         <view class="timeline__dot"></view>
         <view class="timeline__content">
           <text class="timeline__date">{{ status.date }}</text>
-          <text class="nunito_600 timeline__status">{{ _t.order_status['on_the_way'] }}</text>
-          <!-- <text class="nunito_600 timeline__status">{{ _t.order_status[status.status] }}</text> -->
+          <text class="nunito_600 timeline__status">{{ _t.order_status[status.value] }}</text>
         </view>
       </view>
     </block>
@@ -159,7 +156,7 @@
     </view>
   </view>
 
- 
+  <!-- Pay button for pending orders -->
   <view class="btn-bottom" wx:if="{{ order.paymentStatus == 'pending' }}">
     <button class="nunito_600" bindtap="makePayment">
       {{ _t.pay }}

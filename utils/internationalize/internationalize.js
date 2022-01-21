@@ -69,6 +69,10 @@ export const languageMap_en = {
   delete: "Delete",
   delivery: "Delivery",
   delivery_company: "Delivery company",
+  delivery_companies: {
+    manual: "Manual",
+    shunfeng: "SF"
+  },
   delivery_fee: "Delivery fee",
   discover: "Discover",
 
@@ -160,6 +164,7 @@ export const languageMap_en = {
 
   // P
   pay: "Pay",
+  payment_cancelled: "Payment Cancelled",
   payment_status: {
     paid: "Paid",
     ccl: "Cancelled",
@@ -317,6 +322,10 @@ export const languageMap_zh = {
   delete: "Delete",
   delivery: "Delivery",
   delivery_company: "Delivery company",
+  delivery_companies: {
+    manual: "手动",
+    shunfeng: "SF"
+  },
   delivery_fee: "Delivery fee",
   discover: "查看",
 
@@ -408,13 +417,13 @@ export const languageMap_zh = {
 
   // P
   pay: "Pay",
+  payment_cancelled: "Payment Cancelled",
   payment_status: {
     paid: "Paid",
     ccl: "Cancelled",
     rfd: "Refund",
     pending: "Pending"
   },
-  pet: "Pet",
   pet_type: {
     cat: "Cat",
     dog: "Dog",
