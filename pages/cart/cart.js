@@ -89,7 +89,9 @@ const _getOffers = page => {
 
       let dates = offer.deliveryDates.sort();
       for (var i in dates) {
-        delivery_dates.push(formatDate(dates[i]));
+        if (new Date(dates[i]) > new Date()) {
+          delivery_dates.push(formatDate(dates[i]));
+        }
       }
 
       page.setData({
