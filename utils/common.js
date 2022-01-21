@@ -115,3 +115,12 @@ export const showLoading = function(show) {
     wx.hideLoading({});
   }
 }
+
+// Toast module wrapper
+export const showToast = function(message) {
+  wx.showToast({
+    title: message,
+    icon: 'none',
+    duration: 1000,
+  })
+}

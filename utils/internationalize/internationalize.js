@@ -108,6 +108,7 @@ export const languageMap_en = {
 
   // M
   minimum: "Min",
+  minimum_in_cart: "Must have at least one item in cart",
   month: {
     1: "January",
     2: "February",
@@ -355,6 +356,7 @@ export const languageMap_zh = {
 
   // M
   minimum: "Min",
+  minimum_in_cart: "Must have at least one item in cart",
   month: {
     1: "1月",
     2: "February",

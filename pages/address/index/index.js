@@ -1,4 +1,4 @@
-const { refreshUserInfo, showLoading } = require("../../../utils/common");
+const { refreshUserInfo, showLoading, showToast } = require("../../../utils/common");
 const { findIndex } = require("../../../utils/util");
 
 const app = getApp();
@@ -79,11 +79,7 @@ Page({
 
     // Check if an area is selected
     if (self.data.select_index == -1) {
-      wx.showToast({
-        title: app.globalData.i18n.address_empty,
-        icon: 'none',
-        duration: 1000,
-      })
+      showToast(app.globalData.i18n.address_empty);
       return;
     }
 
@@ -125,11 +121,7 @@ Page({
 
     // Check if selected area is in the filtered area list
     if (selected_address && findIndex(areaList, selected_address.area, 'id') == -1) {
-      wx.showToast({
-        title: app.globalData.i18n.area_invalid,
-        icon: 'none',
-        duration: 1000,
-      })
+      showToast(app.globalData.i18n.area_invalid);
       return;
     }
 
