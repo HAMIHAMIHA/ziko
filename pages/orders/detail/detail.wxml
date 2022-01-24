@@ -82,7 +82,7 @@
       <text class="nunito_600 detail_label">{{ _t.delivery_company }}</text>
       <text class="detail_result">{{ _t.delivery_companies[order.offer.deliveryType] }}</text>
     </view>
-    <view class="detail">
+    <view class="detail" wx:if="{{ order.deliveryTrackingID }}">
       <text class="nunito_600 detail_label">{{ _t.tracking_number }}</text>
       <text class="detail_result">{{ order.deliveryTrackingID }}</text>
     </view>
