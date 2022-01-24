@@ -3,7 +3,7 @@ const { findIndex } = require("../../../utils/util");
 
 const app = getApp();
 const address_type = ["office", "home", "other"];
-const validate_keys = ['type', 'contact', 'city', 'detailedAddress', 'phone', 'zipCode'];
+const validate_keys = ['type', 'contact', 'city', 'detailedAddress', 'phone'];
 
 const _getAddressAreas = (page, area_id) => {
   const callback = {
@@ -78,6 +78,8 @@ const _generateUserAddress = (page, action, new_address) => {
       address ? address.push(new_address) : address = [new_address];
     }
   }
+
+  console.log(new_address);
 
   return address;
 }

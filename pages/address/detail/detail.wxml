@@ -61,7 +61,7 @@
         </view>
       </view>
 
-      <view class="details_container inputs_container field-6">
+      <view class="details_container inputs_container field-5">
         <view class="detail">
           <view class="detail_label">{{ _t.area }}</view>
           <view class="detail_input input_goto">
@@ -73,7 +73,7 @@
         </view>
       </view>
 
-      <view class="details_container inputs_container field-5">
+      <view class="details_container inputs_container">
         <view class="detail">
           <view class="detail_label">{{ _t.zipcode }}</view>
           <view class="detail_input">
