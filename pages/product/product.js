@@ -41,13 +41,14 @@ const getProductDetail = page => {
         for (var i in product.products) {
           let item = product.products[i];
           total_weight += item.weight * item.quantity;
-          product.weight = total_weight;
         }
 
-        if (community != 'cellar' && total_weight > 1000) {
-          total_weight = ( total_weight / 1000 ).toFixed(2);
+        if (community != 'cellar' && total_weight >= 1000) {
+          total_weight = Math.round(total_weight / 1000 * 100) / 100;
           general_unit = app.globalData.i18n.units.kg;
         }
+
+        product.weight = total_weight;
       }
 
       // Get user data
