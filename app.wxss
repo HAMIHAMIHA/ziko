@@ -403,7 +403,7 @@ image {
 /* Float Contact */
 button:not([size=mini]).float-contact_container {
   width: auto;
-  padding: 30rpx;
+  padding: 30rpx 28rpx 26rpx;
   background: #F74A5C;
   color: var(--ziko-default-);
   font-size: 40rpx;
