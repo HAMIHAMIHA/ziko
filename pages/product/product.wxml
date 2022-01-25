@@ -15,7 +15,7 @@
   </view>
 
   <!-- Product Info -->
-  <view class="flex-between flex-align-start product-info_container" mark:type="{{  _setting.type != 'product' ? 'packs' : 'items'}}">
+  <view class="flex-between flex-align-start product-info_container" mark:type="{{ _setting.type != 'product' ? 'packs' : 'items'}}">
     <view class="product-info">
       <view class="gilroy_700 uppercase{{ _setting.type != 'pack' ? ' gradient-text ziko-' + _setting.community : '' }} product-info_title">
         {{ _setting.type != 'pack' ? product.product.name[_language] : product.name[_language] }}
