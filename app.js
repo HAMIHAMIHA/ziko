@@ -24,7 +24,8 @@ App({
   db: db,
   folders: folders,
   globalData: {
-    token: null
+    token: null,
+    i18n: require('./utils/internationalize/internationalize.js').zh // Load a default language map first
   },
   routes: require('utils/routes.js').routes,
 

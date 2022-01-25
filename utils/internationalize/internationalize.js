@@ -365,7 +365,7 @@ export const languageMap_zh = {
   // J
   // K
   // L
-  list: "list",
+  list: "列表",
   loading: 'Loading...',
   lottery: "Lottery",
   lottery_gift: "Lottery gift:",
