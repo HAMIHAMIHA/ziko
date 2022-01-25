@@ -41,6 +41,8 @@ export const _getTranslations = (page, community) => {
       viewers: i18n.viewers,
     },
     _t_product: {
+      item_unit: i18n.item_unit,
+      items_unit: i18n.items_unit,
       available: i18n.available,
       only_left: i18n.only_left,
       products_left: i18n.products_left,
