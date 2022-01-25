@@ -1,7 +1,7 @@
 const Offers = require('../../templates/offer/getOffers.js');
 const ModifyCart = require('../../templates/offer/modifyCart.js');
 const api = require('../../utils/api.js');
-const { showLoading, getUserInfo, mobileLogin } = require('../../utils/common.js');
+const { showLoading, getUserInfo, mobileLogin, getWxUserInfo } = require('../../utils/common.js');
 const { communities } = require('../../utils/constants.js');
 const { findIndex } = require('../../utils/util.js');
 
@@ -136,5 +136,10 @@ Page({
   // Mobile login
   getPhoneNumber: function(e) {
     mobileLogin(this, e.detail.code, this.checkout);
+  },
+
+  // Get user profile if not logged in
+  getUserProfile: function() {
+    getWxUserInfo(this);
   },
 })
