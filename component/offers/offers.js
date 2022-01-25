@@ -55,11 +55,11 @@ Component({
 
       var url = routes.offer_regular;
       if (communities[data.community] == "cellar") {
-        if (data.priceRule == "bourse") {
-          url = routes.offer_bourse;
-        } else if (data.priceRule != "regular") {
-          url = routes.offer_cellar;
-        }
+        // if (data.type == "bourse") {
+        //   url = routes.offer_bourse;
+        // } else {
+        //   url = routes.offer_cellar;
+        // }
       }
 
       self.triggerEvent('navigatePage', { navigating: true });  

@@ -11,7 +11,9 @@
       wx:key="id"
       bindtap="toOffer"
       data-started="{{ offer.started }}"
+      data-community="{{ offer.community.id }}"
       data-offer-id="{{ offer.id }}"
+      data-type="{{ offer.type }}"
     >
       <!-- Banner image of card -->
       <view class="offer-banner">
