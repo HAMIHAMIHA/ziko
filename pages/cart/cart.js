@@ -142,6 +142,10 @@ Page({
     })
   },
 
+  onHide: function() {
+    this.options.back = true;
+  },
+
   // Change checkout amount
   changeAmount: function(e) {
     const self = this;
