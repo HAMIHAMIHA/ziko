@@ -115,6 +115,7 @@ Page({
         price_rules: i18n.price_rules,
         products_left: i18n.products_left,
         related_receipes: i18n.related_receipes,
+        storage_types: i18n.storage_types,
       }
     })
 

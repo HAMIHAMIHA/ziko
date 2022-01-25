@@ -22,7 +22,7 @@
 
           <!-- Single Products Detail -->
           <view class="nunito_300 product-detail_container" wx:else>
-            <text>{{ list_item.quantity }}{{ list_item.weight ? ' x ' + list_item.weight +  _t.units : list_item.quantity > 1 ? _t.items_unit : _t.item_unit }}</text>
+            <text>{{ list_item.product.storageType != 'none' ? '(' + _t.storage_types[list_item.product.storageType] + ') ' : '' }}{{ list_item.quantity }}{{ list_item.weight ? ' x ' + list_item.weight +  _t.units : list_item.quantity > 1 ? _t.items_unit : _t.item_unit }}</text>
           </view>
           <!-- End of Single Products Detail -->
 

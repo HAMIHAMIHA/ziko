@@ -46,6 +46,7 @@ export const _getTranslations = (page, community) => {
       available: i18n.available,
       only_left: i18n.only_left,
       products_left: i18n.products_left,
+      storage_types: i18n.storage_types,
       units: i18n.units[community],
     }
   })

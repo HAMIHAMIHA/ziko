@@ -26,7 +26,7 @@
           <text>{{ product.weight ? product.weight + _t.general_unit : '' }}</text>
         </view>
         <view class="nunito_300 product-detail_content" wx:else>
-          <text>{{ product.quantity }}{{ product.weight ? 'x' + product.weight + _t.units : product.quantity > 1 ? _t.items_unit : _t.item_unit }}</text>
+          <text>{{ product.product.storageType != 'none' ? '(' + _t.storage_types[product.product.storageType] + ') ' : '' }}{{ product.quantity }}{{ product.weight ? 'x' + product.weight + _t.units : product.quantity > 1 ? _t.items_unit : _t.item_unit }}</text>
         </view>
         <!-- End of Products Detail -->
 
@@ -86,7 +86,7 @@
                 </view>
 
                 <view class="nunito_300 product-detail_container">
-                  <text>{{ product.quantity }}{{ product.weight ? 'x' + product.weight + _t.units : product.quantity > 1 ? _t.items_unit : _t.item_unit }}</text>
+                  <text>{{ product.product.storageType != 'none' ? '(' + _t.storage_types[product.product.storageType] + ') ' : '' }}{{ product.quantity }}{{ product.weight ? 'x' + product.weight + _t.units : product.quantity > 1 ? _t.items_unit : _t.item_unit }}</text>
                 </view>
 
                 <view class="nunito_300 ellipsis_2 product-detail_container">

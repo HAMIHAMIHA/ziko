@@ -223,6 +223,11 @@ export const languageMap_en = {
   },
   size: "Size",
   specials: "Specials",
+  storage_types: {
+    dry: "Dry",
+    fresh: "Fresh",
+    frozen: "Frozen"
+  },
 
   // T
   total: "Total",
@@ -477,6 +482,11 @@ export const languageMap_zh = {
   },
   size: "Size",
   specials: "Specials",
+  storage_types: {
+    dry: "Dry",
+    fresh: "Fresh",
+    frozen: "Frozen"
+  },
 
   // T
   total: "Total",
