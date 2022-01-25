@@ -15,11 +15,14 @@ export const getUserInfo = function(page) {
   let current_session = user.expireAt ? new Date(user.expireAt) : 0;
   if (!current_session || current_session <= new Date()) {
     console.debug('token session ended');
-    user.customer = { openId: user.customer.openId };
+    if (user && user.customer) {
+      user.customer = { openId: user.customer.openId };
+    }
     db.set('userInfo', user);
 
     page.setData({
-      user: user.customer
+      user: user.customer,
+      wxUser: user.wxUser
     })
   } else {
     refreshUserInfo(page, null);
@@ -30,9 +33,10 @@ export const getUserInfo = function(page) {
 export const mobileLogin = function(page, code, loginCallback) {
   const callback = {
     success: function(res) {
+      res.wxUser = db.get('userInfo').wxUser;
       db.set('userInfo', res);
       page.setData({ user: res.customer })
-      loginCallback ? loginCallback() : '';
+      loginCallback ? loginCallback() : null;
     }
   }
 
@@ -45,6 +49,24 @@ export const mobileLogin = function(page, code, loginCallback) {
   getApp().api.wxLogin(data, callback);
 }
 
+export const getWxUserInfo = function(page) {
+  wx.getUserProfile({
+    desc: `${i18n.getting_user_profile}`, // Need to be quoted to trigger popup
+    success: (res) => {
+      let wx_user = res;
+      let user = db.get('userInfo');
+      user.wxUser = {
+        avatar: wx_user.userInfo.avatarUrl,
+        name: wx_user.userInfo.nickName
+      }
+      page.setData({
+        wxUser: user.wxUser
+      })
+      db.set('userInfo', user);
+    }
+  })
+}
+
 // Get user info from database
 export const refreshUserInfo = function(page, callback) {
   const getProfileCallback = {
@@ -54,7 +76,8 @@ export const refreshUserInfo = function(page, callback) {
       db.set('userInfo', user);
       page ?
         page.setData({
-          user: res.user
+          user: res.user,
+          wxUser: user.wxUser
         })
         : null;
     

@@ -1,4 +1,4 @@
-const { mobileLogin, getUserInfo, showLoading } = require("../../../utils/common");
+const { mobileLogin, getUserInfo, showLoading, getWxUserInfo } = require("../../../utils/common");
 const { communities } = require("../../../utils/constants");
 const { formatDate, formatTime } = require("../../../utils/util");
 
@@ -95,6 +95,11 @@ Page({
     getOrders(self);
   },
 
+  // Get Profile info
+  getUserProfile: function(e) {
+    getWxUserInfo(this);
+  },
+
   // Mobile login
   getPhoneNumber: function(e) {
     mobileLogin(this, e.detail.code, this.initOrders);
@@ -134,9 +139,10 @@ Page({
       _language: app.db.get('language'),
       _t: {
         community: i18n.community,
+        get_profile: i18n.get_profile,
         item_unit: i18n.item_unit,
         items_unit: i18n.items_unit,
-        login: i18n.login,
+        moile_login: i18n.mobile_login,
         lottery_gift: i18n.lottery_gift,
         need_login: i18n.need_login,
         no_orders: i18n.no_orders,

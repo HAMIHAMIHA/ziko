@@ -11,20 +11,7 @@ const getWxUserOpenId = (res) => {
       let user = db.get('userInfo') ? db.get('userInfo') : {};
       user.customer ? user.customer.openId = res.openId : user.customer = res;
 
-      if (user.customer) {
-      // Get user info from wechat (name, profile picture)
-        wx.getUserInfo({
-          success: function(wx_user) {
-            user.wxUser = {
-              avatar: wx_user.userInfo.avatarUrl,
-              name: wx_user.userInfo.nickName
-            }
-            db.set('userInfo', user);
-          }
-        })
-      } else {
-        db.set('userInfo', user);
-      }
+      db.set('userInfo', user);
     }
   }
 

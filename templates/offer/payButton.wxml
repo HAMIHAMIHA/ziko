@@ -37,7 +37,11 @@
       <view class="payment-button disabled" wx:elif="{{ _pay_set.total == 0 }}">
         {{ _t.pay }}
       </view>
-      <!-- Make as login button if user not logged in -->
+      <!-- Make as login buttons if user not logged in -->
+      <button class="payment-button" bindtap="getUserProfile" wx:elif="{{ !user.name && !wxUser.name }}">
+        {{ _t.pay }}
+      </button>
+      <!-- Mobile logged in -->
       <button class="payment-button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:elif="{{ !user.id }}">
         {{ _t.pay }}
       </button>

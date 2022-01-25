@@ -10,7 +10,13 @@
         </view>
       </view>
     </view>
-    <button class="gilroy_700 uppercase user-info__login" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">{{ _t.login }}</button>
+
+    <!-- Get user Info -->
+    <button class="gilroy_700 uppercase user-info__login" bindtap="getUserProfile" wx:if="{{ !user.name && !wxUser.name }}">
+      {{ _t.get_profile }}
+    </button>
+    <!-- Get mobile number -->
+    <button class="gilroy_700 uppercase user-info__login" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else>{{ _t.moile_login }}</button>
   </view>
   <!-- END OF LOGIN BUTTON -->
 

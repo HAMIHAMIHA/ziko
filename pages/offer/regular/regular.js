@@ -1,4 +1,4 @@
-const { mobileLogin } = require("../../../utils/common");
+const { mobileLogin, getWxUserInfo } = require("../../../utils/common");
 const animate = require('../../../templates/offer/animation.js').tabbar;
 const Offers = require('../../../templates/offer/getOffers.js');
 const ModifyCart = require('../../../templates/offer/modifyCart.js');
@@ -24,10 +24,10 @@ Page({
     let messageIndex = []
   },
 
+  // Stop countdown timer on leaving page
   onHide: function() {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
   },
-
   onUnload: function() {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
 
@@ -45,13 +45,19 @@ Page({
     mobileLogin(this, e.detail.code, this.checkout);
   },
 
+  // Get user profile if not logged in
+  getUserProfile: function() {
+    getWxUserInfo(this);
+  },
+
+  // Start countdown timer
   startCountdown: function() {
     // Start countdown
     let timer = this.selectComponent('#countdown');
     countdown_timer.push(timer.setTimer([], true));
   },
 
-  // Product images swiper change
+  // Change swiper indicatior
   swiperChange: function(e) {
     const self = this;
     self.setData({
@@ -68,10 +74,12 @@ Page({
     })
   },
 
+  // Checkout offer
   checkout: function() {
     ModifyCart.checkoutItems(this.options.id);
   },
 
+  // Change product amount in cart
   changeAmount: function(e) {
     ModifyCart.modifyCartItems(this, e)
   },

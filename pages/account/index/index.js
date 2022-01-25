@@ -1,5 +1,5 @@
 const app = getApp();
-const { mobileLogin, getUserInfo, updateUserInfo, showLoading } = require('../../../utils/common.js');
+const { mobileLogin, getUserInfo, updateUserInfo, showLoading, getWxUserInfo } = require('../../../utils/common.js');
 const translate = require('../../../utils/internationalize/translate.js'); // 翻译功能
 
 const _uploadProfileImage = (res, page) =>  {
@@ -51,6 +51,11 @@ Page({
     getUserInfo(self)
   },
 
+  // Get Profile info
+  getUserProfile: function(e) {
+    getWxUserInfo(this);
+  },
+
   // Mobile login
   getPhoneNumber: function(e) {
     mobileLogin(this, e.detail.code, null);
@@ -84,7 +89,8 @@ Page({
         edit_my_info: i18n.edit_my_info,
         en: i18n.en,
         fapiao_info: i18n.fapiao_info,
-        login: i18n.login,
+        get_profile: i18n.get_profile,
+        moile_login: i18n.mobile_login,
         my_favorite_recipes: i18n.my_favorite_recipes,
         orders: i18n.orders,
         vouchers: i18n.vouchers,

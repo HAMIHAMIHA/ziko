@@ -91,6 +91,8 @@ export const languageMap_en = {
 
   // G
   get_reminder: "Get a reminder",
+  get_profile: "Authorize wechat nickname",
+  getting_user_profile: "To complete your user profile",
 
   // H
   home: "The land",
@@ -105,7 +107,6 @@ export const languageMap_en = {
   // L
   list: "list",
   loading: 'Loading...',
-  login: "Mobile login",
   lottery: "Lottery",
   lottery_gift: "Lottery gift:",
   lottery_tickets: "Lottery tickets",
@@ -113,6 +114,7 @@ export const languageMap_en = {
   // M
   minimum: "Min",
   minimum_in_cart: "Must have at least one item in cart",
+  mobile_login: "Mobile login",
   month: {
     1: "January",
     2: "February",
@@ -344,6 +346,8 @@ export const languageMap_zh = {
 
   // G
   get_reminder: "Get a reminder",
+  get_profile: "授权微信昵称",
+  getting_user_profile: "用于完善会员资料",
 
   // H
   home: "地图",
@@ -358,7 +362,6 @@ export const languageMap_zh = {
   // L
   list: "list",
   loading: 'Loading...',
-  login: "Mobile login",
   lottery: "Lottery",
   lottery_gift: "Lottery gift:",
   lottery_tickets: "Lottery tickets",
@@ -366,6 +369,7 @@ export const languageMap_zh = {
   // M
   minimum: "Min",
   minimum_in_cart: "Must have at least one item in cart",
+  mobile_login: "手机登录",
   month: {
     1: "1月",
     2: "February",

@@ -1,4 +1,4 @@
-const { mobileLogin } = require("../../../../utils/common");
+const { mobileLogin, getWxUserInfo } = require("../../../../utils/common");
 const animate = require('../../../../templates/offer/animation.js').tabbar;
 const Offers = require('../../../../templates/offer/getOffers.js');
 const ModifyCart = require('../../../../templates/offer/modifyCart.js');
@@ -20,15 +20,16 @@ Page({
     Offers.getOffer(self, self.options.id);
   },
 
+  // Stop countdown timer on leaving page
   onHide: function() {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
   },
-
   onUnload: function() {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
     Offers.unloadOfferPage();
   },
 
+  // Hide for v1
   onReachBottom: function() {
     // TODO If current tab is on receipe
     Offers.updateReceipes(this);
@@ -39,12 +40,19 @@ Page({
     mobileLogin(this, e.detail.code, this.checkout);
   },
 
+  // Get user profile if not logged in
+  getUserProfile: function() {
+    getWxUserInfo(this);
+  },
+
+  // Start countdown timer
   startCountdown: function() {
     // Start countdown
     let timer = this.selectComponent('#countdown');
     countdown_timer.push(timer.setTimer([], true));
   },
 
+  // Change swiper indicatior
   swiperChange: function(e) {
     const self = this;
     self.setData({
@@ -52,6 +60,7 @@ Page({
     })
   },
 
+  // Switch between receipes and products
   switchTab: function(e) {
     const self = this;
     // TODO change to show and hide css on switch
@@ -60,10 +69,12 @@ Page({
     })
   },
   
+  // Checkout offer
   checkout: function() {
     ModifyCart.checkoutItems(this.options.id);
   },
 
+  // Change product amount in cart
   changeAmount: function(e) {
     ModifyCart.modifyCartItems(this, e)
   },
