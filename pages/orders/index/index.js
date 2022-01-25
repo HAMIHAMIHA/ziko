@@ -74,6 +74,7 @@ Page({
     _routes: { order: app.routes.order },
     _picker_selected: { community: '', order_status: '' }
   },
+
   onShow: function () {
     const self = this;
 
@@ -82,12 +83,20 @@ Page({
     getUserInfo(self);
   
     if (app.db.get('userInfo').customer.id) {
-      self.initOrders();
+      if (!self.options.back) {
+        self.initOrders();
+      } else {
+        self.options.back = false;
+        getOrders(self);
+      }
     }
   },
 
-  initOrders: function() {
+  onHide: function() {
+    this.options.back = true;
+  },
 
+  initOrders: function() {
     const self = this;
     // Set page filter and get order
     _defaultFilters(self, 'community', 0);
