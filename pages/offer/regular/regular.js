@@ -10,7 +10,6 @@ Page({
     _setting: {
       swiperIndex: 1,
       currentTab: "product",
-      units: "g", // TODO use translated version
       animate: animate
     }
   },
@@ -30,7 +29,6 @@ Page({
   },
   onUnload: function() {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
-
     Offers.unloadOfferPage();
   },
 
