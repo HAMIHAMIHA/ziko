@@ -8,7 +8,7 @@ Page({
   data: {
     _setting: {
       swiperIndex: 1,
-      nextOffer: 'test',
+      nextOffer: '',
       currentTab: "product",
       animate: animate
     }
@@ -18,6 +18,9 @@ Page({
     const self = this;
     // Get Offer
     Offers.getOffer(self, self.options.id);
+
+    // Message counts
+    let messageIndex = []
   },
 
   // Stop countdown timer on leaving page
