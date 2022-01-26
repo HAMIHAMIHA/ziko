@@ -9,7 +9,5 @@ module.exports = {
     offer_banner: `${FILE_URL}offer-banner/`,
     offer_media: `${FILE_URL}offer-media/`,
     product_picture: `${FILE_URL}product-cover/`,
-    // category: `${FILE_URL}product-category/`,
-    // product_main: `${FILE_URL}product-main-picture/`,
   }
 }
