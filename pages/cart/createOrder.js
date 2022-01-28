@@ -45,17 +45,23 @@ const _createOrderData = (page, value) => {
     }
   }
 
+  let error = '';
+  // Check for address
   if (page_data.address_selected < 0) {
-    page.setData({
-      error: 'error-field-0'
-    })
-    return '';
+    error += ' error-field-0'
+  };
+
+  // Check for date
+  if (!page_data.delivery_dates[page_data.delivery_date]) {
+    error += ' error-field-1'
   };
 
   // Remove error
   page.setData({
-    error: ''
+    error: error
   })
+
+  if (error) return;
 
   let selected_address = page_data.user.addresses[page_data.address_selected];
   let order = {

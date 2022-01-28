@@ -6,6 +6,11 @@
   color: #FF4040;
 }
 
+/* Error for delivery date */
+.error-field-1 .field-1 {
+  color: #FF4040;
+}
+
 .product_container {
   padding: 20rpx 0;
   /* border-color: #E6E9EE; */
