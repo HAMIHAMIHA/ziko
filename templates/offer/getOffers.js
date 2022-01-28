@@ -52,13 +52,33 @@ export const _getTranslations = (page, community) => {
   })
 }
 
+// Modify for pack product
+export const packProductDetail = function(offer) {
+  let units = app.globalData.i18n.units[offer.community];
+  let item_unit = app.globalData.i18n.item_unit;
+  let items_unit = app.globalData.i18n.items_unit;
+
+  offer.miniprogram.packs.map( item => {
+    let details = [];
+    item.products.forEach( product => {
+      details.push(
+        `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? units : product.quantity == 1 ? item_unit : items_unit }`
+      );
+    })
+    item.products_info = details.join(', ');
+  })
+  return offer;
+}
+
 // Get Offer
 export const getOffer = function(page, offer_id) {
   showLoading(true);
+
   const callback = {
     success: res => {
       let offer = res[0];
       offer.community = communities[offer.community.id];
+      offer = packProductDetail(offer);
 
       getUserInfo(page);
 

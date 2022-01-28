@@ -1,3 +1,4 @@
+const { packProductDetail } = require("../../templates/offer/getOffers");
 const { modifyCartItems } = require("../../templates/offer/modifyCart");
 const { changeFocus, showLoading, getUserInfo } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
@@ -40,6 +41,7 @@ const _setPageDefaultItems = page => {
       pay: i18n.pay,
       phone_no: i18n.phone_no,
       products_left: i18n.products_left,
+      storage_types: i18n.storage_types,
       total: i18n.total,
       use_voucher: i18n.use_voucher,
     },
@@ -85,6 +87,8 @@ const _getOffers = page => {
   let callback = {
     success: res => {
       let offer = res[0];
+      offer.community = communities[offer.community.id];
+      offer = packProductDetail(offer);
       let cart = app.db.get('cart')[offer.id];
 
       let delivery_dates = [];
@@ -98,7 +102,7 @@ const _getOffers = page => {
 
       page.setData({
         _offer: offer,
-        '_t.units': app.globalData.i18n.units[communities[offer.community.id]],
+        '_t.units': app.globalData.i18n.units[offer.community],
         cart: cart,
         products: _setProducts(offer, cart),
         delivery_dates: delivery_dates,
