@@ -11,7 +11,7 @@
       <view class="address_container">
         <view class="nunito_700 address-name">{{ _t.address + ' ' + (index + 1) }}</view>
         <view class="address-detail">{{ address.detailedAddress }}</view>
-        <view class="contact-detail">{{ address.contact }}</view>
+        <view class="contact-detail">{{ address.contact || address.contact != null ? address.contact : '' }}</view>
         <view class="contact-detail">{{ address.phone }}</view>
       </view>
       <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.address_detail + '?id=' + address._id }}"></navigator>
