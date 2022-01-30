@@ -12,12 +12,25 @@ const getOrders = (page) => {
 
   const callback = {
     success: res => {
+      let community = communities[res.community];
+      let units = app.globalData.i18n.units[community];
+      let item_unit = app.globalData.i18n.item_unit;
+      let items_unit = app.globalData.i18n.items_unit;
+
       showLoading(false);
 
       res.actualAmount = Math.round(res.actualAmount * 100) / 100;
       res.deliveryDate = formatDate(res.deliveryDate);
-      let community = communities[res.community];
-      res.packs.map( item => item.type = 'pack');
+      res.packs.map(item => {
+        let details = [];
+        item.products.forEach( product => {
+          details.push(
+            `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? units : product.quantity == 1 ? item_unit : items_unit }`
+          );
+        })
+        item.products_info = details.join(', ');
+        item.type = 'pack'
+      });
       res.singleItems.map( item => item.type = 'item');
 
       res.products = [...res.packs, ...res.singleItems];
@@ -68,6 +81,8 @@ Page({
         fapiao: i18n.fapiao,
         fidelity_points: i18n.fidelity_points,
         items: i18n.items,
+        item_unit: i18n.item_unit,
+        items_unit: i18n.items_unit,
         lottery_tickets: i18n.lottery_tickets,
         offer_label: i18n.offer_label,
         order_no: i18n.order_no,
@@ -75,6 +90,7 @@ Page({
         pay: i18n.pay,
         phone_no: i18n.phone_no,
         problem_with_order: i18n.problem_with_order,
+        storage_types: i18n.storage_types,
         total: i18n.total,
         tracking_number: i18n.tracking_number,
         use_voucher: i18n.use_voucher,
