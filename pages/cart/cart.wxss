@@ -1,4 +1,4 @@
-.container-btn-bottom {
+.container.container-btn-bottom {
   --container-btn-bottom-height-: calc(36rpx + 32rpx + 32rpx + 48rpx + 32rpx);
 }
 
@@ -6,9 +6,15 @@
   color: #FF4040;
 }
 
+/* Error for delivery date */
+.error-field-1 .field-1 {
+  color: #FF4040;
+}
+
 .product_container {
-  padding: 20rpx 0 50rpx;
-  border-color: #E6E9EE;
+  padding: 20rpx 0;
+  /* border-color: #E6E9EE; */
+  border-color: #424756;
 }
 
 .product-info {

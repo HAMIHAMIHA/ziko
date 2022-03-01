@@ -1,2 +1,85 @@
-<!--pages/account/index/index.wxml-->
-<text>pages/account/index/index.wxml</text>
+<view class="container">
+  <!-- LOGIN BUTTON -->
+  <view class="user-info__container" wx:if="{{ !user.id }}">
+    <view class="user-info__avatar">
+      <view class="avatar-container">
+        <text class="avatar-image icon icon-ziko"></text>
+        <view class="gilroy_900 uppercase avatar-label">
+          <text class="avatar-label__text">{{ _t.account_ranking.tourist }}</text>
+          <image class="avatar-label__background" src="/assets/images/avatarLabel.png" mode="scaleToFill"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- Get user Info -->
+    <button class="gilroy_700 uppercase user-info__login" bindtap="getUserProfile" wx:if="{{ !user.name && !wxUser.name }}">
+      {{ _t.get_profile }}
+    </button>
+    <!-- Get mobile number -->
+    <button class="gilroy_700 uppercase user-info__login" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else>{{ _t.moile_login }}</button>
+  </view>
+  <!-- END OF LOGIN BUTTON -->
+
+  <!-- USER INFO -->
+  <view class="user-info__container" wx:else>
+    <view class="user-info__avatar">
+      <view class="avatar-container">
+        <image
+          wx:if="{{ user.profilePicture }}"
+          class="avatar-image"
+          src="{{ _folders.customer_picture + user.profilePicture.uri }}"
+          mode="aspectFill"
+          bindtap="chooseProfilePicture"
+          lazy-load="true"
+        ></image>
+        <text wx:else class="avatar-image icon icon-ziko" bindtap="chooseProfilePicture"></text>
+        <view class="gilroy_900 uppercase avatar-label">
+          <text class="avatar-label__text">{{ _t.account_ranking[user.level] }}</text>
+          <image class="avatar-label__background" src="/assets/images/avatarLabel.png" mode="scaleToFill"></image>
+        </view>
+      </view>
+    </view>
+    <view class="gilroy_700 uppercase user-info__name">{{ user.name }}</view>
+  </view>
+  <!-- END OF USER INFO -->
+
+  <!-- PROFILE INFO -->
+  <view class="nunito_600 card profile-info{{ user.id ? '' : ' disabled' }}">
+    <navigator class="profile-info__button" url="{{ _routes.account_info }}">{{ _t.edit_my_info }}</navigator>
+    <navigator class="profile-info__button" url="{{ _routes.address }}">{{ _t.edit_my_address }}</navigator>
+    <navigator class="profile-info__button" url="{{ _routes.fapiao }}">{{ _t.fapiao_info }}</navigator>
+    <!-- Hide for v1 -->
+    <navigator class="profile-info__button" url="{{ _routes.receipes }}" wx:if="{{ showing }}">{{ _t.my_favorite_recipes }}</navigator> 
+  </view>
+  <!-- END OF PROFILE INFO -->
+
+  <!-- SHORT CUTS -->
+  <view class="gilroy_700 uppercase card short-cuts">
+    <navigator class="short-cuts__button" url="{{ _routes.orders }}" open-type="switchTab">
+      <view class="short-cut__icon icon icon-package"></view>
+      <view class="short-cut__label">{{ _t.orders }}</view>
+    </navigator>
+    <!-- Hide for v1 -->
+    <navigator class="short-cuts__button" url="{{ _routes.claims }}" wx:if="{{ showing }}">
+      <view class="short-cut__icon icon icon-box"></view>
+      <view class="short-cut__label">{{ _t.claims }}</view>
+    </navigator>
+    <button class="short-cuts__button" open-type="contact">
+      <view class="short-cut__icon icon icon-headset"></view>
+      <view class="short-cut__label">{{ _t.contact }}</view>
+    </button>
+    <!-- Hide for v1 -->
+    <navigator class="short-cuts__button" url="{{ _routes.vouchers }}" wx:if="{{ showing }}">
+      <view class="short-cut__icon icon icon-redpacket"></view>
+      <view class="short-cut__label">{{ _t.vouchers }}</view>
+    </navigator>
+  </view>
+  <!-- END OF SHORT CUTS -->
+
+  <!-- LANGUAGE BUTTON -->
+  <view class="nunito_700 uppercase language-setting selected-{{ language }}">
+    <button class="langauge" bindtap="switchLanguage" data-language="en">{{ _t.en }}</button>
+    <button class="langauge" bindtap="switchLanguage" data-language="zh">{{ _t.zh }}</button>
+  </view>
+  <!-- END OF LANGUAGE BUTTON -->
+</view>

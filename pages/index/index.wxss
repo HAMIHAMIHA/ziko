@@ -1,30 +1,38 @@
-/* .userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #aaa;
-}
-
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.usermotto {
-  margin-top: 200px;
-} */
-
 .container {
   position: relative;
 }
 
+.container.map_container {
+  height: 100vh;
+}
+
 /* Map Display */
 .map {
-  padding-bottom: calc(132rpx + var(--env-)); /* TODO padding for button 16px * 2 + button height 34px */
+  width: 100vw;
+  height: 100vh; /* Button outer padding 32rpx * 2 + button height 28rpx + button inner padding 20rpx * 2 */
+  box-sizing: border-box;
   background: #272838;
+  position: relative;
+  overflow: hidden;
+}
+
+.map .map-container {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.map .map-area {
+  width: calc(var(--content-width-) / 375 * 100vw);
+  height: calc(var(--content-height-) / 375 * 100vw);
+  position: absolute;
+  left: calc(var(--content-x-) / 375 * 100vw);
+  top: calc(var(--content-y-) / 375 * 100vw);
+  /* TEMP for debuging */
+  /* background: blue; */
+  /* opacity: 0.5; */
+  clip-path: var(--shape-);
 }
 
 /* List Display */
@@ -32,9 +40,86 @@
   min-height: calc(100vh - 132rpx);
   padding-bottom: 132rpx;
 }
+/* End of List Display */
 
 /* Map List Popup */
-/* TODO */
+.modal {
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+
+.modal.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-backdrop {
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  opacity: 0.5;
+}
+
+.modal-contents {
+  width: calc(100% - 30rpx - 30rpx);
+  height: calc(100vh - 8rpx - 40rpx);
+  position: absolute;
+  top: 8rpx;
+  left: 30rpx;
+  box-sizing: border-box;
+}
+
+.modal-card {
+  height: 100%;
+  background: #0C0D10;
+  box-shadow: 0px 6px 12px rgba(7, 9, 11, 0.8);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.modal .h1 {
+  padding-top: 38rpx;
+  text-align: center;
+  font-size: 36rpx;
+  line-height: 44rpx;
+  letter-spacing: 0.05em;
+}
+
+.modal .close-modal {
+  padding: 30rpx 34rpx;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.modal .close-modal .icon {
+  font-size: 20rpx;
+  color: var(--grey-);
+}
+
+.modal .scroll-date .h-scroll {
+  padding-top: 34rpx;
+}
+
+.modal .modal-offers_container {
+  --header-: calc(38rpx + 44rpx);
+  /* --date-picker-: calc(34rpx + 128rpx + 48rpx); */
+  --date-picker-: 0px; /* TEMP hide date picker */
+  height: calc(100% - 24rpx - var(--header-) - var(--date-picker-));
+}
+
+.modal .offers_container {
+  padding: 0 24rpx;
+  padding-top: 24rpx; /* TEMP hide date picker */
+}
 
 /* Scroll Menu */
 .scroll-menu {
@@ -57,44 +142,35 @@
 }
 
 .scroll-menu .icon {
-  font-size: 100rpx;
+  font-size: 84rpx;
 }
 
 /* Scroll Menu selected */
-.scroll-menu .h-scroll_item.selected:after {
+.scroll-menu .h-scroll_item:after {
   content: "";
   width: 100%;
   height: 4rpx;
   position: absolute;
   bottom: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.3s ease-in-out;
 }
 
-.zikoland.selected:after {
+.scroll-menu .h-scroll_item.selected:after {
+  transform: scaleX(1);
+}
+
+.zikoland:after {
   background: var(--ziko-default-);
-}
-
-.ziko-kitchen.selected:after {
-  background: var(--ziko-kitchen-);
-}
-
-.ziko-garden.selected:after {
-  background: var(--ziko-garden-);
-}
-
-.ziko-cellar.selected:after {
-  background: var(--ziko-cellar-);
-}
-
-.ziko-pet.selected:after {
-  background: var(--ziko-pet-);
 }
 
 /* Bottom Switch Button */
 .switcher_container {
   width: 100vw;
-  padding-bottom: calc(32rpx + var(--env-));
+  padding-bottom: 32rpx;
   display: flex;
-  position: absolute;
+  position: fixed;
   bottom: 0;
 }
 
@@ -113,6 +189,7 @@
   font-size: 24rpx;
   line-height: 28rpx;
   border-radius: 0;
+  transition: all 0.3s ease-in-out;
 }
 
 .switcher .switch:first-child {

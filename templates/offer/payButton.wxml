@@ -1,0 +1,55 @@
+<template name="payment_container">
+  <view class="offer-payment{{ minimum && original_price < minimum ? ' disabled' : '' }}">
+    <!-- TEMP hide for v1 (did not translate) -->
+    <view class="payment-message" wx:if="{{ special }}">
+      <view class="icon_container">
+        <view class="icon icon-alert"></view>
+        <view class="icon_text">Hurry up to be in the top 20{{ special }}</view>
+      </view>
+    </view>
+
+    <view class="flex-center payment_container">
+      <view class="flex-between payment-price_container">
+        <view class="icon_container payment-price">
+          <view class="icon icon-bigbag"></view>
+          <view class="icon_text">
+            <text class="price_final">¥{{ _pay_set.total }}</text>
+            <text class="payment-price_original" wx:if="{{ _pay_set.original_price }}">¥{{ _pay_set.original_price }}1500</text>
+          </view>
+        </view>
+        <!-- TEMP hide for v1 -->
+        <view class="icon_container payment-tickets" wx:if="{{ _pay_set.tickets > 0 }}">
+          <view class="icon icon-ticket"></view>
+          <view class="nunito_600 icon_text payment-tickets_count">X{{ _pay_set.tickets }}3</view>
+        </view>
+      </view>
+
+      <!-- Pay buttons -->
+      <!-- Payment not available if offer minimun items not reached -->
+      <view class="payment-button disabled" wx:if="{{ _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.cart }}">
+        {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }}
+      </view>
+      <!-- Payment not available if offer minimun price not reached -->
+      <view class="payment-button disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.total }}">
+        {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
+      </view>
+      <!-- Lock button if there is nothing to pay -->
+      <view class="payment-button disabled" wx:elif="{{ _pay_set.total == 0 }}">
+        {{ _t.pay }}
+      </view>
+      <!-- Make as login buttons if user not logged in -->
+      <button class="payment-button" bindtap="getUserProfile" wx:elif="{{ !user.name && !wxUser.name }}">
+        {{ _t.pay }}
+      </button>
+      <!-- Mobile logged in -->
+      <button class="payment-button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:elif="{{ !user.id }}">
+        {{ _t.pay }}
+      </button>
+      <!-- Pay button -->
+      <button class="payment-button" hover-class="hover-payment-button" bindtap="checkout" wx:else>
+        {{ _t.pay }}
+      </button>
+      <!-- End of Pay buttons -->
+    </view>
+  </view>
+</template>

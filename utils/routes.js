@@ -1,10 +1,11 @@
 const routes = {
-  home_map: "/pages/index/index",
-  home_list: "/pages/index/list/list",
+  home: "/pages/index/index",
   account: "/pages/account/index/index",
   account_info: "/pages/account/information/information",
+  fapiao: "/pages/account/fapiao/fapiao",
   address: "/pages/address/index/index",
   address_detail: "/pages/address/detail/detail",
+  address_areas: "/pages/address/areas/areas",
   cart: "/pages/cart/cart",
   lottery: "/pages/lottery/index/index",
   lottery_detail: "/pages/lottery/detail/detail",

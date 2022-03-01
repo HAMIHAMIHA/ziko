@@ -1,1 +1,24 @@
-/* pages/account/information/information.wxss */
+.container.container-btn-bottom {
+  --container-btn-bottom-height-: calc(36rpx + 32rpx + 32rpx + 48rpx + 32rpx);
+}
+
+.pet-info {
+  padding-top: 0;
+  padding-bottom: 8rpx;
+  position: relative;
+}
+
+.pet-info .header {
+  padding-bottom: 6rpx;
+}
+
+.btn-icon {
+  padding: 24rpx 30rpx;
+  font-size: 32rpx;
+  opacity: 0.24;
+  position: absolute;
+  right: 0;
+  /* right: 30rpx; */
+  top: 0;
+  /* top: 24rpx; */
+}

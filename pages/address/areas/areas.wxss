@@ -1,0 +1,7 @@
+.inputs_container {
+  padding: 0;
+}
+
+.detail_input {
+  width: 100%;
+}

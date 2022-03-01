@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "countdown": "/component/countdown/countdown",
-    "products": "/component/products/products",
+    "quantity": "/component/quantity/quantity",
     "receipes": "/component/receipes/receipes",
     "scrollMessage": "/component/scrollMessage/scrollMessage",
     "lottery": "/component/lottery/cellar/cellar"

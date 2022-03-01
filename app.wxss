@@ -2,20 +2,36 @@
 @import "/assets/fonts/fonts.wxss";
 
 /* Set Variables */
-page {
-  --env-: env(safe-area-inset-bottom);
+/* 兼容 iOS < 11.2 */
+@supports (padding: constant(safe-area-inset-bottom)) {
+  page {
+    --env-: constant( safe-area-inset-bottom, 0px);
+  }
+}
+
+ /* 兼容 iOS > 11.2 */
+@supports (padding: env(safe-area-inset-bottom)) {
+  page {
+    --env-: env(safe-area-inset-bottom);
+  }
+}
+
+/* Remove extra paddin for iPhone textarea */
+@supports (-webkit-appearance:none) and (display:flow-root) {
+  @media not all and (min-resolution:.001dpcm) {
+    textarea {
+      margin-left: -3px;
+    }
+  }
 }
 
 /* Set Ziko Color Variables */
 page {
+  --grey-: #A3A8B7;
   --ziko-default-: #FFFFFF;
-  --ziko-kitchen-: linear-gradient(104.65deg, #A1803B 1.33%, #FDE28F 54.78%, #D8BC74 100%);
-  --ziko-garden-: linear-gradient(105.28deg, #98F183 2.41%, #11BF67 100%);
-  --ziko-cellar-: linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
-  --ziko-pet-: linear-gradient(105.28deg, #FFB75A 2.41%, #FF7233 100%);
 }
-
 /* General Style */
+
 page {
   background: #0A0B12;
   color: var(--ziko-default-);
@@ -24,16 +40,30 @@ page {
 image {
   width: 100%;
   height: 100%;
+  vertical-align: middle;
 }
 
 .container {
   position: relative;
 }
 
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ellipsis_2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* White Box */
 .white-box {
   padding: 0 30rpx;
-  background: #FFFFFF;
+  background: #252831;
 }
 
 .white-box + .white-box {
@@ -41,15 +71,15 @@ image {
 }
 /* End of White Box */
 
-.container-btn-bottom {
+.container.container-btn-bottom {
   --container-btn-bottom-height-: calc(36rpx + 32rpx + 32rpx + 48rpx);
   min-height: calc(100vh - var(--container-btn-bottom-height-) - var(--env-));
   padding-bottom: calc(var(--container-btn-bottom-height-) + var(--env-));
 }
 
 .container-grey {
-  background: #F1F1F1;
-  color: #000000;
+  background: #0A0B12;
+  /* color: #000000; */
 }
 
 .font_red {
@@ -62,57 +92,115 @@ image {
   line-height: 38rpx;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
 
 /* Ziko Colors */
-.ziko-kitchen {
-  background: var(--ziko-kitchen-);  
+.ziko-kitchen,
+.ziko-kitchen:after {
+  background: linear-gradient(104.65deg, #A1803B 1.33%, #FDE28F 54.78%, #D8BC74 100%);
 }
 
-.ziko-garden {
-  background: var(--ziko-garden-);  
+.ziko-garden,
+.ziko-garden:after {
+  background: linear-gradient(105.28deg, #98F183 2.41%, #11BF67 100%);
 }
 
-.ziko-cellar {
-  background: var(--ziko-cellar-);  
+.ziko-cellar,
+.ziko-cellar:after {
+  background: linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
 }
 
-.ziko-pet {
-  background: var(--ziko-pet-);  
+.ziko-pet,
+.ziko-pet:after {
+  background: linear-gradient(105.28deg, #FFB75A 2.41%, #FF7233 100%);
 }
 
-.ziko-kitchen-solid {
-  background: #E3B231;  
+.ziko-baby,
+.ziko-baby:after {
+  background: linear-gradient(105.28deg, #FFB2C7 2.41%, #FF5898 100%);
 }
 
-.ziko-garden-solid {
-  background: #86DF77;  
+.ziko-offer.community-kitchen .offer-payment .payment-button:not(.disabled) {
+  background: #CE9910;
 }
 
-.ziko-cellar-solid {
-  background: #C0BEC6;  
+.ziko-offer.community-garden .offer-payment .payment-button:not(.disabled) {
+  background: #4CD169;
 }
 
-.ziko-pet-solid {
-  background: #E6A86F;  
+.ziko-offer.community-cellar .offer-payment .payment-button:not(.disabled) {
+  background: #4D485C;
+}
+
+.ziko-offer.community-pet .offer-payment .payment-button:not(.disabled) {
+  background: #C3854C;
+}
+
+.ziko-offer.community-baby .offer-payment .payment-button:not(.disabled) {
+  background: #F979A3;
+}
+
+.ziko-offer.community-kitchen .offer-payment .payment-button.hover-payment-button {
+  background: #F2C759;
+}
+
+.ziko-offer.community-garden .offer-payment .payment-button.hover-payment-button {
+  background: #86DF77;
+}
+
+.ziko-offer.community-cellar .offer-payment .payment-button.hover-payment-button {
+  background: #C0BEC6;
+}
+
+.ziko-offer.community-pet .offer-payment .payment-button.hover-payment-button {
+  background: #E6A86F;
+}
+
+.ziko-offer.community-baby .offer-payment .payment-button.hover-payment-button {
+  background: #FF91B5;  
 }
 
 /* Button Bottom */
 .container-btn-bottom .btn-bottom button {
   width: calc(100vw - 30rpx - 30rpx);
   padding: 32rpx 0;
-  background: #0D0F18;
+  background: #3F4250;
+  /* background: #0D0F18; */
   color: var(--ziko-default-);
   font-size: 32rpx;
   line-height: 36rpx;
   border-radius: 8rpx;
   position: absolute;
   left: 30rpx;
-  bottom: 48rpx;
+  bottom: calc(48rpx + var(--env-));
 }
 /* End of Button Bottom */
+
+/* Buttons */
+.btn-outline_container {
+  padding: 28rpx 30rpx;
+}
+
+.btn-outline_container .btn-outline {
+  width: unset;
+  padding: 28rpx 0;
+  background: transparent;
+  /* color: #0D0F18; */
+  color: var(--ziko-default-);
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 36rpx;
+  /* border: 2rpx solid #0D0F18; */
+  border: 2rpx solid #3F4250;
+  border-radius: 8rpx;
+}
+/* End of Buttons */
 
 /* Contact Box */
 .contact-box {
@@ -127,6 +215,8 @@ image {
 .contact-box .contact-button {
   width: fit-content;
   padding: 26rpx 48rpx;
+  background: #3F4250;
+  color: var(--ziko-default-);
   font-size: 28rpx;
   line-height: 34rpx;
 }
@@ -139,7 +229,7 @@ image {
 
 /* Details */
 .detail {
-  padding: 30rpx 0;
+  padding: 28rpx 0;
   font-size: 28rpx;
   line-height: 34rpx;
   display: flex;
@@ -153,14 +243,23 @@ image {
 }
 
 /* Detail - Address */
+.inputs_container .detail.address {
+  padding-bottom: 48rpx;
+}
+
+.address .detail_input {
+  flex-direction: column;
+}
+
 .address .detail_label {
   align-self: flex-start;
 }
 
 .address .detail_note {
+  padding-top: 16rpx;
   font-size: 24rpx;
   line-height: 32rpx;
-  color: #A3A8B7;
+  color: var(--grey-);
   display: block;
 }
 
@@ -171,20 +270,24 @@ image {
 
 .fapiao .checkbox {
   padding-left: 38rpx;
+  border-bottom: 2rpx solid #252831;
 }
 
 .fapiao .icon {
   padding: 4rpx;
   font-size: 20rpx;
   color: transparent;
-  border: 2rpx solid #EBEBEB;
+  /* border: 2rpx solid #EBEBEB; */
+  border: 2rpx solid #545764;
   border-radius: 4rpx;
 }
 
 .fapiao .checked .icon {
   padding: 6rpx;
-  background: #1890FF;
-  color: #FFFFFF;
+  background: var(--ziko-default-);
+  color: #252831;
+  /* background: #1890FF; */
+  /* color: #FFFFFF; */
   border: 0;
 }
 
@@ -200,10 +303,37 @@ image {
 
 .detail_input {
   width: 68%;
+  height: 64rpx;
+  display: flex;
+  /* border-bottom: 2rpx solid #EBEBEB; */
+  border-bottom: 2rpx solid #545764;
+  box-sizing: border-box;
 }
 
 .detail_input .input {
-  border-bottom: 2rpx solid #EBEBEB;
+  width: 100%;
+  margin: auto;
+  border: 0;
+}
+
+.detail_input .picker {
+  position: relative;
+}
+
+.detail_input.input_goto .input {
+  height: 100%;
+}
+
+.detail_input .picker_text {
+  width: calc(100% - 24rpx - 16rpx);
+  height: 64rpx;
+}
+
+.detail_input .picker .icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
 }
 /* End of Details */
 
@@ -234,6 +364,18 @@ image {
 }
 /* End of Detail Banner */
 
+/* Error */
+.error-field-0 .field-0 .detail_input,
+.error-field-1 .field-1 .detail_input,
+.error-field-2 .field-2 .detail_input,
+.error-field-3 .field-3 .detail_input,
+.error-field-4 .field-4 .detail_input,
+.error-field-5 .field-5 .detail_input ,
+.error-field-6 .field-6 .detail_input {
+  border-color: #FF4040;
+}
+/* End of Error */
+
 /* Flex */
 .flex-center {
   display: flex;
@@ -259,9 +401,11 @@ image {
 /* End of Flex */
 
 /* Float Contact */
-.float-contact_container {
-  padding: 30rpx;
+button:not([size=mini]).float-contact_container {
+  width: auto;
+  padding: 30rpx 28rpx 26rpx;
   background: #F74A5C;
+  color: var(--ziko-default-);
   font-size: 40rpx;
   border-radius: 50%;
   position: fixed;
@@ -376,6 +520,26 @@ image {
   border-bottom: 2rpx solid #B0AEB7;
 }
 
+.community-kitchen .offer-count_container {
+  border-color: #DEAF37;
+}
+
+.community-garden .offer-count_container {
+  border-color: #6EC75F;
+}
+
+.community-cellar .offer-count_container {
+  border-color: #B0AEB7;
+}
+
+.community-pet .offer-count_container {
+  border-color: #DC8F47;
+}
+
+.community-baby .offer-count_container {
+  border-color: #F979A3;
+}
+
 .ziko-offer .offer-count_container .icon_container {
   padding-right: 40rpx;
 }
@@ -444,7 +608,7 @@ image {
 
 .ziko-offer .offer-detail .offer-description {
   padding-top: 20rpx;
-  font-size: 28r14px;
+  font-size: 28rpx;
   line-height: 36rpx;
 }
 /* End of Offer Detail */
@@ -461,8 +625,18 @@ image {
 /* End of Offer Messages */
 
 /* Offer Payment */
+.ziko-offer:not(.ziko-product) {
+  /* TODO add message height 28rpx + 14rpx + 14rpx if have message */
+  padding-bottom: calc(106rpx + var(--env-));
+  position: relative;
+}
+
 .ziko-offer .offer-payment {
+  width: 100%;
   padding-bottom: var(--env-);
+  background: #0A0B12;
+  position: fixed;
+  bottom: 0;
 }
 
 .ziko-offer .offer-payment .payment-message {
@@ -491,7 +665,7 @@ image {
 }
 
 .ziko-offer .offer-payment.disabled .payment-price_container {
-  color: #A3A8B7;
+  color: var(--grey-);
 }
 
 .ziko-offer .offer-payment .payment-price {
@@ -530,37 +704,22 @@ image {
   width: 33%;
   padding: 0;
   border-radius: 0;
-  background: #A3A8B7;
+  background: var(--grey-);
   color: var(--ziko-default-);
   font-size: 32rpx;
   line-height: 106rpx;
+  text-align: center;
 }
 
 .ziko-offer .offer-payment.disabled .payment-button {
-  background: #A3A8B7;
+  background: var(--grey-);
   pointer-events: none;
-}
-
-.ziko-offer.community-kitchen .payment-button {
-  background: #CAA655;
-}
-
-.ziko-offer.community-garden .payment-button {
-  background: #2FCA6D;
-}
-
-.ziko-offer.community-cellar .payment-button {
-  background: #6A737B;
-}
-
-.ziko-offer.community-pet .payment-button {
-  background: #FF7C39;
 }
 /* End of Offer Payment */
 
 /* Offer Product List */
 .ziko-offer .offer-group {
-  padding: 0 30rpx;
+  /* padding: 0 30rpx; */
 }
 
 .ziko-offer .offer-group .title {
@@ -576,12 +735,14 @@ image {
 }
 
 .product_container {
-  padding: 48rpx 0;
+  padding: 48rpx 30rpx;
   border-bottom: 1px solid #424756;
 }
 
-.product_container.sold-out {
+.product_container.sold-out .product,
+.product_container.sold-out .product-targets {
   opacity: 0.5;
+  pointer-events: none;
 }
 
 .product_container .product_left {
@@ -589,6 +750,7 @@ image {
 }
 
 .product_container:last-child {
+  padding-bottom: 50rpx;
   border-bottom: 0;
 }
 
@@ -607,7 +769,8 @@ image {
 }
 
 .product_container .product-detail_container {
-  padding: 8rpx 0;
+  padding-top: 8rpx;
+  margin-bottom: 8rpx;
   font-size: 26rpx;
   line-height: 32rpx;
 }
@@ -656,6 +819,7 @@ image {
 
 .ziko-offer .tabbar_highlighter {
   width: 50%;
+  width: 100%; /* TEMP for v1 */
   height: 2rpx;
   background: var(--ziko-default-);
   position: absolute;
@@ -778,6 +942,7 @@ image {
 }
 
 .ziko-offer .share {
+  width: auto;
   position: absolute;
   right: 30rpx;
   top: calc(20rpx + 20rpx + 32rpx + 2rpx);
@@ -793,10 +958,44 @@ image {
 }
 
 .community-cellar .share {
-  background: #EAEAEB;
+  background: #DAD7E3;
 }
 
 .community-pet .share {
-  background: #FFDAC5;
+  background: #FFD7B1;
+}
+
+.community-baby .share {
+  background: #FFC1D6;
 }
 /* End of Share */
+
+/* Textarea */
+.textarea_container {
+  position: relative;
+}
+
+.textarea_container .detail {
+  padding: 16rpx 0;
+  align-items: start;
+}
+
+.textarea_container .detail_label {
+  line-height: 64rpx;
+}
+
+.textarea_container .detail_input {
+  min-height: 64rpx;
+  height: fit-content;
+}
+
+.textarea_container .input {
+  margin: unset;
+}
+
+
+.textarea_container .textarea {
+  width: 100%;
+  word-wrap: none;
+}
+/* End of Textarea */

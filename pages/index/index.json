@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "offers": "/component/offers/offers"
+    "offers": "/component/offers/offers",
+    "dateFilter": "/component/dateFilter/dateFilter"
   }
 }

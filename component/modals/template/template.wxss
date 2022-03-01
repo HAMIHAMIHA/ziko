@@ -1,0 +1,76 @@
+page {
+  position: relative;
+}
+
+.modal-component {
+  width: 100vw;
+  height: 100%;
+  color: var(--blk-);
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 10000;
+  pointer-events: all;
+}
+
+.modal-component.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mask {
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #000;
+  opacity: 0.6;
+}
+
+.modal-container {
+  width: calc(100% - 60rpx); /* Use minus to prevent overlapping mask tap action */
+  border-radius: 12rpx;
+  overflow: hidden;
+  position: fixed;
+  left: 50vw;
+  top: calc((100vh + var(--nav-height) - var(--env)) / 2); /* Make sure rating card is centered */
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+  box-sizing: border-box;
+}
+
+.card {
+  position: relative;
+}
+
+.card-scroll-container {
+  max-height: calc(100vh - var(--nav-height) - 96rpx + 2px - var(--env));
+}
+
+.modal-container .card-detail {
+  padding: 64rpx 48rpx;
+}
+
+.close-btn {
+  padding: 18rpx;
+  background: var(--grey);
+  color: var(--dark-grey);
+  font-size: 16rpx;
+  border-radius: 50%;
+  position: fixed;
+  top: 21rpx;
+  right: 21rpx;
+  z-index: 100001;
+}
+
+.header {
+  padding: 0;
+  font-size: 40rpx;
+  font-weight: var(--font-bold);
+}
+
+.modal-btn-container .btn {
+  width: 100%;
+}

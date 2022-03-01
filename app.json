@@ -3,8 +3,10 @@
     "pages/index/index",
     "pages/account/index/index",
     "pages/account/information/information",
+    "pages/account/fapiao/fapiao",
     "pages/address/index/index",
     "pages/address/detail/detail",
+    "pages/address/areas/areas",
     "pages/cart/cart",
     "pages/lottery/index/index",
     "pages/lottery/detail/detail",
@@ -38,18 +40,6 @@
         "iconPath": "assets/icons/orders.png",
         "selectedIconPath": "assets/icons/ordersSel.png",
         "text": "Orders"
-      },
-      {
-        "pagePath": "pages/recipes/index/index",
-        "iconPath": "assets/icons/explore.png",
-        "selectedIconPath": "assets/icons/exploreSel.png",
-        "text": "Explore"
-      },
-      {
-        "pagePath": "pages/lottery/index/index",
-        "iconPath": "assets/icons/lottery.png",
-        "selectedIconPath": "assets/icons/lotterySel.png",
-        "text": "Lottery"
       },
       {
         "pagePath": "pages/account/index/index",

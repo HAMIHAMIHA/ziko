@@ -1,66 +1,75 @@
-<!-- <view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-</view> -->
-
-<view class="container">
+<view class="container{{ map ? ' map_container' : '' }}">
+  <!-- Map View -->
   <view class="map" wx:if="{{ map }}">
-    <cover-image src="/assets/images/map.jpg"></cover-image>
+    <view class="map-container">
+      <image src="{{ _folders.asset + 'map.png' }}" mode="widthFix" lazy-load="true"></image>
+      <view class="map-areas">
+        <block wx:for="{{ _filters.map }}" wx:key="index" wx:for-item="filter">
+          <view 
+            class="map-area"
+            style="--content-width-: {{ filter.width }}; --content-height-: {{ filter.height }}; --content-x-: {{ filter.xPos }}; --content-y-: {{ filter.yPos }}; --shape-: {{ filter.shape }};"
+            bindtap="filterOffers"
+            data-filter_type="map"
+            data-filter_group="{{ filter.name }}"
+            data-filter_id="{{ filter.id }}"
+          ></view>
+        </block>
+      </view>
+    </view>
   </view>
+  <!-- End of Map View -->
 
+  <!-- List View -->
   <view class="list" wx:else>
     <!-- Scroll Menu -->
     <view class="h-scroll_container scroll-menu">
-      <scroll-view class="h-scroll" scroll-x="true" bindscroll="scroll">
-        <view class="h-scroll_item zikoland selected" bindtap="switchMenu" data-menu-item="all">
-          <view class="icon icon-ziko_right"></view>
-        </view>
-        <view class="h-scroll_item ziko-kitchen gradient-text" bindtap="switchMenu" data-menu-item="kitchen">
-          <view class="icon icon-ziko-kitchen_sides"></view>
-        </view>
-        <view class="h-scroll_item ziko-garden gradient-text" bindtap="switchMenu" data-menu-item="garden">
-          <view class="icon icon-ziko-garden_sides"></view>
-        </view>
-        <view class="h-scroll_item ziko-cellar gradient-text" bindtap="switchMenu" data-menu-item="cellar">
-          <view class="icon icon-ziko-cellar_sides"></view>
-        </view>
-        <view class="h-scroll_item ziko-pet gradient-text" bindtap="switchMenu" data-menu-item="pet">
-          <view class="icon icon-ziko-pet_sides"></view>
-        </view>
+      <scroll-view class="h-scroll" scroll-x="true">
+        <block wx:for="{{ _filters.list }}" wx:key="filter_group" wx:for-item="filter">
+          <view
+            class="h-scroll_item {{ filter.class_name }} {{ filter_group == filter.filter_group ? ' selected' : '' }}"
+            bindtap="filterOffers"
+            data-filter_type="list"
+            data-filter_group="{{ filter.filter_group }}"
+            data-filter_id="{{ filter.id }}"
+          >
+            <view class="icon icon-{{ filter.icon }}"></view>
+          </view>
+        </block>
       </scroll-view>
     </view>
 
-    <offers id="list-offers"></offers>
+    <!-- List Contents -->
+    <dateFilter
+      id="list_date_filters"
+      days="{{ days }}"
+      bind:filterOffers="filterOffers"
+    ></dateFilter>
+    <offers id="list_offers" offers="{{ offers }}" bind:navigatePage="navigatePage"></offers>
   </view>
+  <!-- End of List View -->
 
-  <!-- popup -->
-  <view class="modal" wx:if="{{ mapList }}">
-    <!-- list = componenet -->
-    <offers id="map-offers"></offers>
-  </view>
-
+  <!-- Map and List switcher -->
   <view class="gilroy_700 uppercase switcher_container">
     <view class="switcher">
-      <button class="switch{{ map ? ' selected' : '' }}" bindtap="switchType" data-type="map">explore</button>
-      <button class="switch{{ map ? '' : ' selected' }}" bindtap="switchType" data-type="list">list</button>
+      <button class="switch{{ map ? ' selected' : '' }}" bindtap="switchType" data-type="map">{{ _t.explore }}</button>
+      <button class="switch{{ map ? '' : ' selected' }}" bindtap="switchType" data-type="list">{{ _t.list }}</button>
     </view>
   </view>
+  <!-- End of Map and List switcher -->
+
+  <!-- Map popup -->
+  <view class="modal {{ map && filter_group ? ' visible' : '' }}" catchtouchmove="preventSlide">
+    <view class="modal-backdrop" bindtap="closeMapModal"></view>
+    <view class="modal-contents" wx:if="{{ map && filter_group }}">
+      <view class="modal-card">
+        <view class="gilroy_700 uppercase h1">{{ _t.community[filter_group] + _t.offers }}</view>
+        <view class="close-modal" bindtap="closeMapModal"><text class="icon icon-x"></text></view>
+        <dateFilter id="map_date_filter" days="{{ days }}" bind:filterOffers="filterOffers"></dateFilter>
+        <scroll-view class="modal-offers_container" scroll-y="true">
+          <offers id="map_offers" offers="{{ offers }}" bind:navigatePage="navigatePage"></offers>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <!-- End of Map popup -->
 </view>

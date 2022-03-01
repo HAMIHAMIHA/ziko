@@ -1,121 +1,71 @@
+import { communities } from "../../utils/constants";
+
 const app = getApp();
 const routes = app.routes;
 
+let timer_intervals = [];
+
 Component({
+  properties: {
+    offers: Array,
+  },
+
+  data: {
+    _communities: communities,
+    _language: app.db.get('language'),
+  },
+
   options: {
     addGlobalClass: true
   },
 
-  properties: {
-
-  },
-
-  data: {
-    offers: [{
-      id: '01',
-      community: "kitchen",
-      lottery: true,
-      specials: true,
-      started: true,
-      startTime: "2021-09-21 14:00",
-      endTime: "2021-10-21 16:00",
-      items: 2
-    }, {
-      id: '02',
-      community: "cellar",
-      lottery: true,
-      specials: false,
-      started: true,
-      priceRule: "regular",
-      startTime: "2021-09-21 14:00",
-      endTime: "2021-10-21 16:00",
-      items: 1
-    }, {
-      id: '03',
-      community: "cellar",
-      lottery: false,
-      specials: true,
-      started: true,
-      priceRule: "bourse",
-      startTime: "2021-09-21 14:00",
-      endTime: "2021-10-21 16:00",
-      items: 2
-    }, {
-      id: '04',
-      community: "cellar",
-      lottery: true,
-      specials: true,
-      started: true,
-      priceRule: "freeFall",
-      startTime: "2021-09-21 14:00",
-      endTime: "2021-10-21 16:00",
-      items: 2
-    }, {
-      id: '05',
-      community: "cellar",
-      lottery: false,
-      specials: true,
-      started: true,
-      priceRule: "multiple",
-      startTime: "2021-09-21 14:00",
-      endTime: "2021-10-21 16:00",
-      items: 2
-    }, {
-      id: '06',
-      community: "pet",
-      lottery: true,
-      specials: true,
-      started: true,
-      startTime: "2021-09-21 14:00",
-      endTime: "2021-10-21 16:00",
-      items: 2
-    }, {
-      id: '07',
-      community: "garden",
-      lottery: false,
-      specials: true,
-      started: true,
-      startTime: "2021-09-21 14:00",
-      endTime: "2021-10-21 16:00",
-      items: 2
-    }, {
-      id: '3',
-      community: "kitchen",
-      lottery: false,
-      started: false,
-      specials: true,
-      startTime: "2021-10-21 14:00",
-      endTime: "2021-10-21 16:00"
-    }, {
-      id: '4',
-      community: "cellar",
-      lottery: true,
-      specials: true,
-      started: false,
-      startTime: "2021-10-21 14:00",
-      endTime: "2021-10-21 16:00"
-    }]
-  },
-
   methods: {
+    updateCards: function(_t, startTimer) {
+      const self = this;
+
+      // Set offer card contents
+      self.setData({
+        _folders: {
+          offer_banner: app.folders.offer_banner,
+        },
+        _t: _t,
+        _cart: app.db.get('cart')
+      })
+
+      // Start or end timers
+      let timer = self.selectAllComponents('.timer');
+      if (startTimer) {
+        for (var i in timer) {
+          timer_intervals.push(timer[i].setTimer([], startTimer));
+        }
+      } else {
+        if (timer.length == 0) return;
+
+        timer[0].setTimer(timer_intervals, startTimer);
+        timer_intervals = [];
+      }
+    },
+
+    // Navigate to offer page
     toOffer: function(e) {
-      console.log(e);
+      const self = this;
       let data = e.currentTarget.dataset;
 
       if (!data.started) return;
 
       var url = routes.offer_regular;
-      if (data.community == "cellar") {
-        if (data.priceRule == "bourse") {
-          url = routes.offer_bourse;
-        } else if (data.priceRule != "regular") {
-          url = routes.offer_cellar;
-        }
+      if (communities[data.community] == "cellar") {
+        // if (data.type == "bourse") {
+        //   url = routes.offer_bourse;
+        // } else {
+        //   url = routes.offer_cellar;
+        // }
       }
-      
+
+      self.triggerEvent('navigatePage', { navigating: true });  
+
       wx.navigateTo({
-        // url: url + '?id=' + id,
-        url: url + '?id=' + data.offerId + '&community=' + data.community + '&rule=' + data.priceRule,
+        url: url + '?id=' + data.offerId,
       })
     }
   }

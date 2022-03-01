@@ -1,1 +1,127 @@
-/* pages/orders/detail/detail.wxss */
+.container {
+  padding-bottom: var(--env-);
+}
+
+.container.container-btn-bottom {
+  --container-btn-bottom-height-: calc(36rpx + 32rpx + 32rpx + 48rpx + 32rpx);
+}
+
+.page-header {
+  text-align: center;
+  padding-bottom: 0;
+}
+
+.product_container {
+  padding: 20rpx 0;
+  /* border-color: #E6E9EE; */
+  border-color: #424756;
+}
+
+.product-info {
+  min-height: 160rpx;
+  position: relative;
+}
+
+.product_container .product-info .product-title {
+  font-size: 28rpx;
+}
+
+.product_container .product-detail_container {
+  padding: 4rpx 0;
+  color: #9198AB;
+  font-size: 24rpx;
+}
+
+.product_container .product-count {
+  padding: 0 0 4rpx;
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+
+.product_container .product-price_container {
+  height: 160rpx;
+  align-self: start;
+  display: flex;
+  align-items: center;
+}
+
+.product_container .product-price {
+  /* color: #000000; */
+  font-size: 28rpx;
+  line-height: 38rpx;
+}
+
+.order-details_container:not(.price-detail) .detail {
+  align-items: flex-start;
+  justify-content: start;
+}
+
+.order-details_container:not(.price-detail) .detail_label {
+  width: 42.4%;
+  min-width: 42.4%;
+}
+
+.order-details_container:not(.price-detail) .detail_value {
+  width: 57.6%;
+}
+
+.order-details_container .detail_result {
+  overflow-wrap: anywhere;
+}
+
+.timeline {
+  padding: 16rpx 30rpx;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.timeline__detail {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.timeline__detail:not(:first-child):after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 2rpx;
+  background: #FF9898;
+  position: absolute;
+  left: 23rpx;
+  bottom: -50%;
+}
+
+.timeline__detail {
+  display: flex;
+  align-items: center;
+}
+
+.timeline__dot {
+  width: 26rpx;
+  height: 26rpx;
+  margin: 0 10rpx;
+  background: #FF9898;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline__detail:last-child .timeline__dot {
+  background: #FF4040;
+}
+
+.timeline__content {
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  line-height: 34rpx;
+}
+
+.timeline__date {
+  padding: 0 4rpx;
+  color: var(--grey-);
+}
+
+.timeline__status {
+  padding-left: 16rpx;
+}

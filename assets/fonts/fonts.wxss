@@ -1,4 +1,3 @@
-/* TODO need to upload all font files to server */
 page {
   font-family: "nunito", "arial";
 }
@@ -6,7 +5,7 @@ page {
 /* Font Setup - Gilroy */
 @font-face {
   font-family: 'gilroy';
-  src: url('/assets/fonts/Gilroy-Regular.otf?s0kbi6');
+  src: url('https://api-ziko.dev.mediasia.cn/storage/fonts/Gilroy-Regular.otf?s0kbi6');
   font-weight: 400;
   font-style: normal;
   font-display: block;
@@ -14,7 +13,7 @@ page {
 
 @font-face {
   font-family: 'gilroy';
-  src: url('/assets/fonts/Gilroy-Medium.otf?s0kbi6');
+  src: url('https://api-ziko.dev.mediasia.cn/storage/fonts/Gilroy-Medium.otf?s0kbi6');
   font-weight: 500;
   font-style: normal;
   font-display: block;
@@ -22,7 +21,7 @@ page {
 
 @font-face {
   font-family: 'gilroy';
-  src: url('/assets/fonts/Gilroy-Bold.otf?s0kbi6');
+  src: url('https://api-ziko.dev.mediasia.cn/storage/fonts/Gilroy-Bold.otf?s0kbi6');
   font-weight: 700;
   font-style: normal;
   font-display: block;
@@ -30,7 +29,7 @@ page {
 
 @font-face {
   font-family: 'gilroy';
-  src: url('/assets/fonts/Gilroy-ExtraBold.otf?s0kbi6');
+  src: url('https://api-ziko.dev.mediasia.cn/storage/fonts/Gilroy-ExtraBold.otf?s0kbi6');
   font-weight: 800;
   font-style: normal;
   font-display: block;
@@ -38,7 +37,7 @@ page {
 
 @font-face {
   font-family: 'gilroy';
-  src: url('/assets/fonts/Gilroy-Black.otf?s0kbi6');
+  src: url('https://api-ziko.dev.mediasia.cn/storage/fonts/Gilroy-Black.otf?s0kbi6');
   font-weight: 900;
   font-style: normal;
   font-display: block;
@@ -46,7 +45,7 @@ page {
 
 @font-face {
   font-family: 'gilroy';
-  src: url('/assets/fonts/Gilroy-Heavy.otf?s0kbi6');
+  src: url('https://api-ziko.dev.mediasia.cn/storage/fonts/Gilroy-Heavy.otf?s0kbi6');
   font-weight: 900;
   font-style: normal;
   font-display: block;
@@ -55,7 +54,7 @@ page {
 /* Font Setup - Nunito */
 @font-face {
   font-family: 'nunito';
-  src: url('/assets/fonts/Nunito-Light.ttf?0kbi6');
+  src: url('https://api-ziko.dev.mediasia.cn/storage/fonts/Nunito-Light.ttf?0kbi6');
   font-weight: 300;
   font-style: normal;
   font-display: block;
@@ -63,7 +62,7 @@ page {
 
 @font-face {
   font-family: 'nunito';
-  src: url('/assets/fonts/Nunito-Regular.ttf?0kbi6');
+  src: url('https://api-ziko.dev.mediasia.cn/storage/fonts/Nunito-Regular.ttf?0kbi6');
   font-weight: 400;
   font-style: normal;
   font-display: block;
@@ -71,7 +70,7 @@ page {
 
 @font-face {
   font-family: 'nunito';
-  src: url('/assets/fonts/Nunito-SemiBold.ttf?0kbi6');
+  src: url('https://api-ziko.dev.mediasia.cn/storage/fonts/Nunito-SemiBold.ttf?0kbi6');
   font-weight: 600;
   font-style: normal;
   font-display: block;
@@ -79,7 +78,7 @@ page {
 
 @font-face {
   font-family: 'nunito';
-  src: url('/assets/fonts/Nunito-Bold.ttf?0kbi6');
+  src: url('https://api-ziko.dev.mediasia.cn/storage/fonts/Nunito-Bold.ttf?0kbi6');
   font-weight: 700;
   font-style: normal;
   font-display: block;
@@ -87,7 +86,7 @@ page {
 
 @font-face {
   font-family: 'nunito';
-  src: url('/assets/fonts/Nunito-ExtraBold.ttf?0kbi6');
+  src: url('https://api-ziko.dev.mediasia.cn/storage/fonts/Nunito-ExtraBold.ttf?0kbi6');
   font-weight: 800;
   font-style: normal;
   font-display: block;
@@ -95,7 +94,7 @@ page {
 
 @font-face {
   font-family: 'nunito';
-  src: url('/assets/fonts/Nunito-Black.ttf?0kbi6');
+  src: url('https://api-ziko.dev.mediasia.cn/storage/fonts/Nunito-Black.ttf?0kbi6');
   font-weight: 900;
   font-style: normal;
   font-display: block;

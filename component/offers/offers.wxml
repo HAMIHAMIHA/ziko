@@ -1,75 +1,57 @@
 <view class="offers_container">
-  <!-- Date Picker -->
-  <view class="h-scroll_container scroll-date">
-    <scroll-view class="h-scroll uppercase" scroll-x="true" enable-flex="true">
-      <view class="h-scroll_item all selected">
-        <view class="item_container">
-          <view class="item_content">
-            <view class="gilroy_800 date">all</view>
-          </view>
-        </view>
-      </view>
-      <!-- TODO for dates -->
-      <view class="h-scroll_item item-date" wx:for="{{ 10 }}" wx:key="*this">
-        <view class="item_container">
-          <view class="item_content">
-            <view class="gilroy_500 day-of-week">mon</view>
-            <view class="gilroy_800 date">{{ item + 1 }}</view>
-          </view>
-        </view>
-      </view>
-    </scroll-view>
+  <view class="gilroy_700 offers_list" wx:if="{{ offers.length == 0 }}">
+    {{ _t.no_offers }}
   </view>
 
   <view class="gilroy_700 offers_list">
     <!-- Card for each offer -->
-    <view
-      class="uppercase offer_container"
+    <view class="uppercase offer_container"
       wx:for="{{ offers }}"
+      wx:for-item="offer"
       wx:key="id"
       bindtap="toOffer"
-      data-started="{{ item.started }}"
-      data-offer-id="{{ item.id }}"
-      data-community="{{ item.community }}"
-      data-price-rule="{{ item.priceRule }}"
+      data-started="{{ offer.started }}"
+      data-community="{{ offer.community.id }}"
+      data-offer-id="{{ offer.id }}"
+      data-type="{{ offer.type }}"
     >
       <!-- Banner image of card -->
       <view class="offer-banner">
         <view class="offer-banner_image">
-          <image src="/assets/images/offerBanner.png" mode="widthFix"></image>
+          <image src="{{ offer.banner }}" mode="widthFix" lazy-load="true"></image>
         </view>
         <view class="offer-banner_tag">
-          <view class="icon {{ 'icon-ziko-' + item.community + '_right'}}"></view>
+          <view class="icon {{ 'icon-ziko-' + _communities[offer.community.id] + '_right'}}"></view>
         </view>
       </view>
       <!-- End of banner -->
 
       <view class="offer-detail_container">
-        <view class="offer-detail_title">Octoberfest with a very {{ item.community + ' ' + item.priceRule }}</view>
+        <view class="offer-detail_title">{{ offer.name[_language] }}</view>
         <!-- Display for offers in progress -->
-        <view class="offer-detail offer-started" wx:if="{{ item.started }}">
+        <view class="offer-detail offer-started" wx:if="{{ offer.started }}">
           <view class="flex-between offer-detail_content">
+            <!-- Hide for v1 -->
             <!-- Specials -->
             <view class="flex-between_left flex-center offer-specials">
-              <view class="icon_container lottery" wx:if="{{ item.lottery }}">
+              <view class="icon_container lottery" wx:if="{{ offer.lottery }}">
                 <view class="icon icon-yuan"></view>
-                <view class="icon_text">lottery</view>
+                <view class="icon_text">{{ _t.lottery }}</view>
               </view>
-              <view class="icon_container specials" wx:if="{{ item.specials }}">
+              <view class="icon_container specials" wx:if="{{ offer.specials }}">
                 <view class="icon icon-gift"></view>
-                <view class="icon_text">specials</view>
+                <view class="icon_text">{{ _t.specials }}</view>
               </view>
             </view>
             <!-- End of Specials -->
 
             <!-- Bag -->
-            <view class="flex-between_rt offer-bag{{ item.items > 0 ? ' offer-bag_filled' : ''}}">
+            <view class="flex-between_rt offer-bag{{ _cart[offer.id].count > 0 ? ' offer-bag_filled' : ''}}">
               <view class="icon_container">
                 <view class="icon icon-bag"></view>
                 <view class="icon_text">
-                  <view wx:if="{{ item.items == 0}}">empty</view>
-                  <view wx:elif="{{ item.items == 1}}">{{item.items}} item</view>
-                  <view wx:else="{{ item.items > 1}}">{{item.items}} items</view>
+                  <view wx:if="{{ !_cart[offer.id] || _cart[offer.id].count == 0 }}">{{ _t.empty }}</view>
+                  <view wx:else>{{ _cart[offer.id].count == 1 ? _cart[offer.id].count + _t.item_unit : _cart[offer.id].count + _t.items_unit }}</view>
                 </view>
               </view>
             </view>
@@ -79,10 +61,10 @@
           <!-- Countdown -->
           <view class="flex-between offer-detail_content offer-countdown">
             <view class="flex-between_left">
-              remaining time
+              {{ _t.remaining_time }}
             </view>
             <view class="flex-between_rt">
-              <countdown></countdown>
+              <countdown class="timer" end-time="{{ offer.endingDate }}"></countdown>
             </view>
           </view>
           <!-- End of Countdown -->
@@ -92,15 +74,15 @@
             <view class=" flex-center offer-counts">
               <view class="icon_container">
                 <view class="icon icon-bag"></view>
-                <view class="icon_text">122 orders</view>
+                <view class="icon_text">{{ offer.orders != 1 ? offer.orders + _t.orders_unit : offer.orders + _t.order_unit }}</view>
               </view>
               <view class="icon_container">
                 <view class="icon icon-eye"></view>
-                <view class="icon_text">122 viewers</view>
+                <view class="icon_text">{{ offer.views ? offer.views : 0 }}{{ _t.viewers }}</view>
               </view>
             </view>
-            <view class="offer-delivery nunito_400">
-              Delivery: June 12th or 14th
+            <view class="offer-delivery nunito_400" wx:if="{{ offer.deliveryDates }}">
+              {{ _t.delivery }}: {{ offer.deliveryDates }}
             </view>
           </view>
           <!-- End of Current Status -->
@@ -109,16 +91,17 @@
 
         <!-- Display for offers waiting -->
         <view class="offer-detail offer-waiting" wx:else>
-          <view class=" offer-detail_content coming-soon">comming soon...</view>
+          <view class=" offer-detail_content coming-soon">{{ _t.coming_soon }}</view>
 
           <!-- Offer Time -->
           <view class="flex-between offer-detail_content offer-datetime">
             <view class="flex-between_left">
-              <view class="offer-date">Thu. 13 March,</view>
-              <view class="offer-time">2:00 PM - 4:00 PM</view>
+              <view class="offer-date">{{ offer.startDate.date_str }}</view>
+              <view class="offer-time">{{ offer.startDate.time }}</view>
             </view>
-            <view class="flex-between_rt">
-              <button class="offer-reminder">Get a reminder</button>
+            <!-- TEMP Hide for v1 -->
+            <view class="flex-between_rt" wx:if="{{ showing }}">
+              <button class="offer-reminder">{{ _t.get_reminder }}</button>
             </view>
           </view>
           <!-- End of Offer Time -->

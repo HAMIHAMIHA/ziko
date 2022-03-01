@@ -1,8 +1,16 @@
-const animate = require('../../../../utils/animation.js').tabbar;
+const animate = require('../../../../templates/offer/animation.js').tabbar;
+
+let countdown_timer = [];
+
+const _clearCountdown = (page) => {
+  let timer = page.selectComponent('#countdown');
+  timer.setTimer(countdown_timer, false);
+  countdown_timer = []
+}
 
 Page({
   data: {
-    pageSet: {
+    _setting: {
       swiperIndex: 1,
       nextOffer: 'test',
       currentTab: "product",
@@ -144,13 +152,25 @@ Page({
     }
   },
 
-  onLoad: function (options) {
+  onShow: function () {
+
+    // Start countdown
+    let timer = self.selectComponent('#countdown');
+    countdown_timer.push(timer.setTimer([], true));
+  },
+
+  onHide: function() {
+    _clearCountdown(this);
+  },
+
+  onUnload: function() {
+    _clearCountdown(this);
   },
 
   swiperChange: function(e) {
     const self = this;
     self.setData({
-      "pageSet.swiperIndex": (e.detail.current) + 1,
+      "_setting.swiperIndex": (e.detail.current) + 1,
     })
   },
 
@@ -159,7 +179,7 @@ Page({
 
     // TODO change to show and hide css on switch
     self.setData({
-      "pageSet.currentTab": e.currentTarget.dataset.toTab
+      "_setting.currentTab": e.currentTarget.dataset.toTab
     })
   },
   

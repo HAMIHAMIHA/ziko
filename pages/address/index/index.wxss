@@ -1,45 +1,69 @@
-.detail {
-  padding: 32rpx 0;
-  border-bottom: 2rpx solid #E6E7EB;
+.address-list:not(.container-btn-bottom) {
+  padding-bottom: var(--env-);
 }
 
-.detail:last-child {
-  border-bottom: 0;
+.white-box {
+  padding: 0;
+}
+
+.detail {
+  padding: 32rpx 30rpx;
+  position: relative;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+}
+
+.detail:after {
+  content: '';
+  width: calc(100% - 30rpx - 30rpx);
+  height: 0;
+  /* border-bottom: 2rpx solid #E6E7EB; */
+  border-bottom: 2rpx solid #545764;
+  position: absolute;
+  bottom: 0;
+  left: 30rpx;
+}
+
+.detail:last-child:after {
+  content: none;
+}
+
+.selected .detail.select {
+  background: #3F4250;
 }
 
 .address-name {
   padding-bottom: 8rpx;
   font-size: 32rpx;
   line-height: 38rpx;
+  transition: all 0.3s ease-in-out;
 }
 
 .address-detail {
   line-height: 28rpx;
+  transition: all 0.3s ease-in-out;
+}
+
+.selected .detail:not(.select) .address-name,
+.selected .detail:not(.select) .address-detail {
+  opacity: 0.4;
 }
 
 .contact-detail {
   padding-top: 8rpx;
-  color: #A3A8B7;
+  color: var(--grey-);
 }
 
-.detail .icon-edit {
+.detail .btn-icon {
   padding: 0;
   font-size: 32rpx;
-  opacity: 0.5;
+  opacity: 0.24;
 }
 
-.add-btn_container {
+.btn-outline_container {
   padding: 28rpx 30rpx;
 }
 
-.add-btn_container .add-btn {
-  width: unset;
-  padding: 28rpx 0;
-  background: transparent;
-  color: #0D0F18;
-  font-size: 32rpx;
-  text-align: center;
-  line-height: 36rpx;
-  border: 2rpx solid #0D0F18;
-  border-radius: 8rpx;
+.container-btn-bottom .btn-bottom button.disabled {
+  background: #d9d9da;
 }

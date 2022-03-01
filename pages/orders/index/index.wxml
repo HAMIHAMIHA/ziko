@@ -1,2 +1,103 @@
-<!--pages/orders/index/index.wxml-->
-<text>pages/orders/index/index.wxml</text>
+<block wx:if="{{ !user.id }}">
+<view class="login-container">
+  <view class="empty_message">{{ _t.need_login }}</view>
+  <!-- Get user Info -->
+  <button class="login-btn" bindtap="getUserProfile" wx:if="{{ !user.name && !wxUser.name }}">
+    {{ _t.get_profile }}
+  </button>
+  <!-- Get mobile number -->
+  <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else>
+    {{ _t.moile_login }}
+  </button>
+</view>
+</block>
+
+<block wx:else>
+<!-- Scroll Menu -->
+<view class="h-scroll_container scroll-menu">
+  <scroll-view class="h-scroll capatilize" scroll-x="true">
+    <block wx:for="{{ _pickers.order_status }}" wx:key="index" wx:for-item="status">
+      <view
+        class="h-scroll_item order-status{{ _picker_selected.order_status == index ? ' selected' : '' }}"
+        bindtap="changeFilter"
+        data-filter_type="order_status"
+        data-value="{{ index }}"
+      >
+        {{ _t.order_status[status] }}
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<!-- End of Scroll Menu -->
+
+<view class="container">
+  <!-- Community Picker -->
+  <view class="community-selector">
+    <picker
+      class="picker"
+      range="{{ _pickers.communities }}"
+      bindchange="changeFilter"
+      data-filter_type="community"
+    >
+      <view class="nunito_600 flex-between picker-btn">
+        <text>{{ _pickers.communities[_picker_selected.community] }}</text>
+        <text class="icon icon-arrow"></text>
+      </view>
+    </picker>
+  </view>
+  <!-- End of Community Picker -->
+
+  <!-- Empty State -->
+  <view class="cards-container" wx:if="{{ orders.length == 0 }}">
+    {{ _t.no_orders }}
+  </view>
+  <!-- End of Empty State -->
+
+  <!-- Order Card -->
+  <view class="cards-container">
+    <block wx:for="{{ orders }}" wx:key="id" wx:for-item="order">
+      <navigator class="card order-card{{ order.count == 0 ? ' disabled' : ''}}" url="{{ _routes.order + '?id=' + order.id }}">
+        <!-- Order Detail -->
+        <view class="order-info__detail">
+          <view class="flex-between order-info">
+            <view class="gilroy_700 order-time">{{ order.orderDate }}</view>
+            <view class="order-payment">{{ _t.payment_status[order.paymentStatus] }}</view>
+          </view>
+          <view class="flex-between order-info order_offer-name_container">
+            <view class="gilroy_700 uppercase order_offer-name">{{ order.offer.name[_language] }}</view>
+            <view class="nunito_600 uppercase order-status status-{{ order.trackingStatus }}">{{ _t.order_status[order.trackingStatus] }}</view>
+          </view>
+          <view class="order-community">({{ _t.community[_communities[order.community]] }})</view>
+          <view class="order-detail flex-between">
+            <view class="order-count" wx:if="{{ order.count > 0 }}">x{{ order.count == 1 ? order.count + _t.item_unit : order.count + _t.items_unit }}</view>
+            <view class="order-count" wx:else>{{ _t.payment_status[order.paymentStatus] }}</view>
+            <view class="order-price">
+              <text class="gilroy_800 order-total">￥{{ order.actualAmount }}</text>
+              <text class="gilroy_800 order-total__old" wx:if="{{ order.originalPrice }}">￥{{ order.originalPrice }}</text>
+            </view>
+          </view>
+        </view>
+        <!-- End of Order Detail -->
+
+        <!-- Order Lottery -->
+        <view class="order-info__lottery" wx:if="{{ order.lottery }}">
+          <view class="lottery-title">{{ _t.lottery_gift }}:</view>
+          <!-- <block wx:for="{{ order.lottery }}" wx:key="_id" wx:key="lottery"> -->
+          <block wx:for="12" wx:key="_id" wx:key="lottery">
+            <view class="lottery__container flex-between">
+              <view class="lottery">
+                <image class="lottery__image" src="/assets/images/receipeBanner.png" mode="aspectFill"></image>
+                <!-- <image src="{{ _folders.lottery + lottery.image.uri }}" mode="aspectFill"></image> -->
+                <view class="lottery__name">{{ lottery.name }}gold mask + 15% off</view>
+              </view>
+              <view class="lottery__count">x{{ lottery.count }}1</view>
+            </view>
+          </block>
+        </view>
+        <!-- End of Order Lottery -->
+      </navigator>
+    </block>
+  </view>
+  <!-- End of Order Card -->
+</view>
+</block>

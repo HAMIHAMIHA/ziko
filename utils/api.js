@@ -1,128 +1,192 @@
 const db = require('db.config.js');
 const config = require('properties.js');
+const { showLoading } = require('./common');
+
 let header = {};
 
-const loadingModal = (show, text) => {
-  if (text && show) {
-    wx.showLoading({
-      title: text
-    });
-  } else if (text && !show) {
-    wx.hideLoading();
-  }
-}
-
 //接口统一封装
-const api = (apiMethod, path, data, callback, loadingText) => {
-  if (db.get('token')) {
-    header = {'Authorization': `Bearer ${db.get('token')}`};
+const api = (apiMethod, path, data, callback) => {
+  if (db.get('userInfo').token) {
+    header = {'Authorization': `Bearer ${db.get('userInfo').token}`};
   }
   path = config.api_url + path;
 
   switch (apiMethod) {
     case "post":
-      post(path, data, callback, loadingText);
+      post(path, data, callback);
       break;
     case "put":
-      put(path, data, callback, loadingText);
+      put(path, data, callback);
       break;
     default:
-      get(path, callback, loadingText)
+      get(path, callback)
       break;
   }
 }
 
 //get请求
-const get = (path, callback, loadingText) => {
-  // loadingModal(true, loadingText);
-
+const get = (path, callback) => {
   wx.request({
     url: path,
     header: header,
     success: function (res) {
-      // loadingModal(false, loadingText);
-
       if (res.data.success === false) {
-        callback.error(res.data);
+        console.debug(res.data.message);
+        showLoading(false);
+        if (callback.error) {
+          callback.error(res.data.message);
+        }
       } else {
         callback.success(res.data);
       }
     },
     fail: function (res) {
-      console.debug('err', err);
+      showLoading(false);
+      console.debug('err', res);
     }
   });
 }
 
-//post请求
-const post = (path, data, callback, loadingText) => {
-  loadingModal(true, loadingText);
-
+// post请求
+const post = (path, data, callback) => {
   wx.request({
     url: path,
     header: header,
     data: data,
     method: 'POST',
     success: function (res) {
-        console.log(res);
       if (res.data.success === false) {
-        callback.error(res.data.message);
+        console.debug(res.data.message);
+        showLoading(false);
+        if (callback.error) {
+          callback.error(res.data.message);
+        }
       } else {
         callback.success(res.data);
       }
     },
     fail: function (res) {
-      console.debug('err', err);
+      showLoading(false);
+      console.debug('err', res);
     }
   });
 }
-//put请求
-const put = (path, data, callback, loadingText) => {
-  // loadingModal(true, loadingText);
 
+// put请求
+const put = (path, data, callback) => {
   wx.request({
     url: path,
     header: header,
     data: data,
     method: 'PUT',
     success: function (res) {
-      // loadingModal(false, loadingText);
-
-      // if (res.data.success) {
-      //   callback.success();
-      // } else {
-      //   callback.error(res.data)
-      // }
+      if (res.data.success === false) {
+        console.debug(res.data.message);
+        showLoading(false);
+        if (callback.error) {
+          callback.error(res.data.message);
+        }
+      } else {
+        callback.success(res.data);
+      }
     },
     fail: function (res) {
-      // loadingModal(false, loadingText);
-
-      // return {
-      //   status: false,
-      //   data: res.data,
-      //   msg: '接口调用失败',
-      // };
-    },
-    complete: function (res) { }
+      showLoading(false);
+      console.debug('err', res);
+    }
   });
 }
 
+// Upload Request
+const upload = (folder_path, file, callback) => {
+  let path = `${config.api_url}files/${folder_path}`;
+  let header = {
+    'Authorization': `Bearer ${db.get('userInfo').token}`
+  };
 
-const login = (data, callback) => {
-  api('post', 'customers/login', data, callback, null)
+  wx.uploadFile({
+    url: path,
+    filePath: file,
+    header: header,
+    name: folder_path,
+    success: function (res) {
+      if (res.statusCode != 200) {
+        showLoading(false);
+        console.debug(res.data.message);
+        if (callback.error) {
+          callback.error(res.data.message);
+        }
+        return;
+      }
+      callback.success(JSON.parse(res.data));
+    },
+    fail: function (res) {
+      showLoading(false);
+      console.debug('err', res);
+    }
+  })
 }
-
-const productCategoriesGet = (callback) => {
-  api('get', 'product-categories', null, callback, null)
-}
-
-const productTypesGet = (callback) => {
-  api('get', 'product-types', null, callback, null)
-}
-
 
 module.exports = {
-  // login: login,
-  // productCategoriesGet: productCategoriesGet,
-  // productTypesGet: productTypesGet
+  // Create order for payment
+  createOrder: (id, data, callback) => {
+    api('post', `orders/purchase/${id}`, data, callback);
+  },
+
+  // Get deliverable address areas
+  getAreas: (callback) => {
+    api('get', 'delivery-areas', null, callback);
+  },
+
+  // Get orders
+  getOrders: (filter, callback) => {
+    let suffix = `mine?sort=["createdAt","DESC"]&${filter.filter_str}`;
+    if (filter.id) suffix = `${filter.id}/mine`;
+    api('get', `orders/${suffix}`, null, callback);
+  },
+
+  // Get offer with product details
+  getOffers: (suffix, callback) => {
+    api('get', `offers/details${suffix}`, null, callback);
+  },
+
+  // Get product detail
+  getProduct: (id, callback) => {
+    api('get', `products/${id}`, data, callback);
+  },
+
+  // Get user information
+  getProfile: (callback) => {
+    api('get', 'customers/mine', null, callback);
+  },
+
+  // Get prepay id for wechat pay
+  orderPrePay: (id, callback) => {
+    api('get', `orders/${id}/prepay`, null, callback);
+  },
+
+  // Set view for offer
+  setOfferView: (id, callback) => {
+    api('get', `offers/${id}/viewed`, null, callback);
+  },
+
+  // Update user info
+  updateProfile: (data, callback) => {
+    api('put', `customers/mine`, data, callback);
+  },
+
+  // Upload profile picture
+  uploadProfilePicture: (file, callback) => {
+    upload('customer-picture', file, callback);
+  },
+
+  // Wechat login with mobile
+  wxLogin: (data, callback) => {
+    api('post', 'wechat/login', data, callback);
+  },
+
+  // Wechat get openid, and user info (if exist)
+  wxOpenid: (data, callback) => {
+    api('post', 'wechat/openid', data, callback);
+  },
 }

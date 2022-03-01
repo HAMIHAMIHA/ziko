@@ -1,27 +1,80 @@
-// app.js
 var api = require('utils/api.js'); //接口文档
-const i18n = require('utils/translate.js'); // 翻译功能
+const common = require('./utils/common');
 const db = require('utils/db.config.js'); // 本地存储
+const i18n = require('utils/internationalize/translate.js'); // 翻译功能
+
+const { folders } = require('./utils/properties');
+
+const getWxUserOpenId = (res) => {
+  const callback = {
+    success: res => {
+      let user = db.get('userInfo') ? db.get('userInfo') : {};
+      user.customer ? user.customer.openId = res.openId : user.customer = res;
+
+      db.set('userInfo', user);
+    }
+  }
+
+  api.wxOpenid({ code: res.code }, callback);
+}
 
 App({
   api: api,
-  routes: require('utils/routes.js').routes,
+  common: common,
+  db: db,
+  folders: folders,
   globalData: {
-    // token: null
+    token: null,
+    i18n: require('./utils/internationalize/internationalize.js').zh // Load a default language map first
   },
+  routes: require('utils/routes.js').routes,
 
   onLaunch() {
-    // 登录
-    wx.login({
-      success: res => {
-        console.log(res);
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    const self = this;
+    // Language setting
+    i18n.check();
+    self.globalData.i18n = i18n.translate();
+
+    // Check wx.login session
+    wx.checkSession({
+      success: function() {
+        if (db.get('userInfo').customer && db.get('userInfo').customer.openId) return;
+
+        console.debug('openid not found');
+        wx.login({
+          success: function(res) {
+            getWxUserOpenId(res);
+          }
+        })
+      },
+      fail: function() {
+        console.debug('openid session ended');
+        // Login with wechat if session not valid
+        wx.login({
+          success: function(res) {
+            getWxUserOpenId(res);
+          }
+        })
       }
     })
+  },
 
-    // Language setting
-    // i18n.check();
-    // self.globalData._t = i18n.translate();
+  setTabbar: function() {
+    // Get translated tabbar text when called
+    const self = this;
+    wx.setTabBarItem({
+      index: 0,
+      "text": self.globalData.i18n.home
+    })
 
+    wx.setTabBarItem({
+      index: 1,
+      "text": self.globalData.i18n.orders
+    })
+
+    wx.setTabBarItem({
+      index: 2,
+      "text": self.globalData.i18n.account
+    })
   }
 })

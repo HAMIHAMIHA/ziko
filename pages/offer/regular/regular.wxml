@@ -1,35 +1,39 @@
+<import src="../../../templates/offer/products.wxml" />
+<import src="../../../templates/offer/payButton.wxml" />
+
 <view class="container ziko-offer {{ 'community-' + _offer.community }}">
   <!-- Offer Countdown -->
   <view class="uppercase countdown">
-    <view class="nunito_600 countdown_text">remaining time</view>
-    <countdown class="gilroy_700 countdown_clock"></countdown>
+    <view class="nunito_600 countdown_text">{{ _t.remaining_time }}</view>
+    <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}"></countdown>
   </view>
   <!-- End of Offer Countdown -->
 
   <!-- Contact -->
-  <view class="float-contact_container" bindtap="contact">
+  <button class="float-contact_container" open-type="contact">
     <view class="icon icon-chat"></view>
-  </view>
+  </button>
   <!-- End of Contact -->
 
   <view class="banner_container">
     <!-- Detail Banner -->
     <view class="banner-image_container swiper_container">
       <swiper class="swiper" bindchange="swiperChange">
-        <block wx:for="{{ _offer.banner }}" wx:key="key" wx:for-item="banner">
+        <block wx:for="{{ _offer.media }}" wx:key="key" wx:for-item="media">
           <swiper-item class="swiper_item">
-            <image src="{{ banner.img }}" mode="aspectFill"></image>
+            <image src="{{ media ? _folders.offer_media + media.uri : '' }}" mode="aspectFill" lazy-load="true" ></image>
           </swiper-item>
         </block>
       </swiper>
       <view class="gilroy_700 indicator">
-        {{ pageSet.swiperIndex }} / {{ _offer.banner.length }}
+        {{ _setting.swiperIndex }} / {{ _offer.media.length }}
       </view>  
     </view>
     <!-- End of Detail Banner -->
 
     <!-- Offer Messages -->
-    <view class="messages_container"><scrollMessage></scrollMessage></view>
+    <!-- TEMP hide for v1 -->
+    <view class="messages_container" wx:if="{{ showing }}"><scrollMessage></scrollMessage></view>
     <!-- End of Offer Messages -->
   </view>
 
@@ -38,11 +42,11 @@
     <view class="flex-start gilroy_500 offer-count_container">
       <view class="icon_container">
         <view class="icon icon-bag"></view>
-        <view class="icon_text">100 Orders</view>
+        <view class="icon_text">{{ _offer.orders != 1 ? _offer.orders + _t.orders_unit : _offer.orders + _t.order_unit }}</view>
       </view>
       <view class="icon_container">
         <view class="icon icon-eye"></view>
-        <view class="icon_text">Viewers</view>
+        <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
       </view>
     </view>
     <!-- End of Offer Count -->
@@ -55,9 +59,9 @@
 
     <!-- Offer Detail -->
     <view class="offer-detail">
-      <view class="gilroy_700 uppercase offer-title">Offer Title</view>
+      <view class="gilroy_700 uppercase offer-title">{{ _offer.name[_language] }}</view>
       <view class="offer-description">
-        Offer description lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum placerat nisl auctor tellus, placerat neque placerat. Amet arcu ut nec, velit faucibus.
+        {{ _offer.description[_language] }}
       </view>
     </view>
     <!-- End of Offer Detail -->
@@ -65,40 +69,61 @@
 
   <!-- Offer Tabbar -->
   <view class="uppercase gilroy_700 flex-center tabbar">
-    <view class="tabbar_item{{ pageSet.currentTab == 'product' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="product" animation="{{ pageSet.animate.tab }}">
-      products
+    <view
+      class="tabbar_item{{ _setting.currentTab == 'product' ? ' selected' : '' }}"
+      bindtap="switchTab"
+      data-to-tab="product"
+      animation="{{ _setting.animate.tab }}"
+    >
+      {{ _t.products }}
     </view>
-    <view class="tabbar_item{{ pageSet.currentTab == 'receipe' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="receipe" animation="{{ pageSet.animate.tab }}">
-      Receipes
+    <!-- TEMP hide for v1 -->
+    <view
+      class="tabbar_item{{ _setting.currentTab == 'receipe' ? ' selected' : '' }}"
+      bindtap="switchTab"
+      data-to-tab="receipe"
+      animation="{{ _setting.animate.tab }}"
+      wx:if="{{ showing }}"
+    >
+      {{ _t.receipes }}
     </view>
-    <view class="tabbar_highlighter {{ pageSet.currentTab }}" animation="{{ pageSet.animate.highlight }}"></view>
+    <view class="tabbar_highlighter {{ _setting.currentTab }}" animation="{{ _setting.animate.highlight }}"></view>
   </view>
   <!-- End of Offer Tabbar -->
 
   <!-- Products -->
-  <view class="list_container" wx:if="{{ pageSet.currentTab == 'product' }}">
+  <view class="list_container" wx:if="{{ _setting.currentTab == 'product' }}">
     <!-- Offer Product List -->
-    <view class="offer-group offer-packs">
+    <view class="offer-group offer-packs" wx:if="{{ _offer.miniprogram.packs.length > 0 }}" mark:type="packs">
       <view class="uppercase title">
-        <text class="gilroy_500">our</text>
-        <text class="gilroy_700"> selected packs</text>
+        <text class="gilroy_500">{{ _t.our_selected_packs.fst }}</text>
+        <text class="gilroy_700">{{ _t.our_selected_packs.snd }}</text>
       </view>
 
-      <products products="{{ _offer.packs }}" pack="{{ true }}" units="{{ pageSet.units }}" community="{{ _offer.community }}"></products>
+      <template
+        is="products"
+        class="product-list"
+        data="{{ offer_id: _offer.id, cart: cart, product_list: _offer.miniprogram.packs, _is_pack: true, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
+      ></template>
     </view>
 
-    <view class="offer-group offer-singles">
+    <view class="offer-group offer-singles" wx:if="{{ _offer.miniprogram.items.length > 0 }}" mark:type="items">
       <view class="uppercase title">
-        <text class="gilroy_500">single</text>
-        <text class="gilroy_700"> items</text>
+        <text class="gilroy_500">{{ _t.single_items.fst }}</text>
+        <text class="gilroy_700">{{ _t.single_items.snd }}</text>
       </view>
 
-      <products products="{{ _offer.singles }}" pack="{{ false }}" units="{{ pageSet.units }}" community="{{ _offer.community }}"></products>
+      <template
+        is="products"
+        class="product-list"
+        data="{{ offer_id: _offer.id, cart: cart, product_list: _offer.miniprogram.items, _is_pack: false, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
+      ></template>
     </view>
     <!-- End of Offer Product List -->
 
     <!-- Offer Specials -->
-    <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}">
+    <!-- TEMP hide for v1 (Did not translate) -->
+    <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}" wx:if="{{ showing }}">
       <view class="offer-specials_title">
         <view class="icon icon-ziko-special"></view>
       </view>
@@ -115,7 +140,7 @@
 
           <view class="offer-special_detail">
             <text wx:if="{{special.get == 'reduction'}}">Get {{ special.rate }}% discount rate</text>
-            <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ pageSet.units }} item name for free</text>
+            <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ _setting.units }} item name for free</text>
           </view>
         </view>
       </view>
@@ -123,7 +148,8 @@
     <!-- End of Offer Specials -->
 
     <!-- Lottery -->
-    <view class="offer-lotteries" wx:if="{{ _offer.lotteries }}">
+    <!-- TEMP hide for v1 -->
+    <view class="offer-lotteries" wx:if="{{ _offer.lotteries }}" wx:if="{{ showing }}">
       <view class="lottery_regular">
         <lottery lotteries="{{ _offer.lotteries }}"></lottery>
       </view>
@@ -136,8 +162,8 @@
   <view class="list_container" wx:else>
     <view class="offer-group receipe-group">
       <view class="uppercase title">
-        <text class="gilroy_500">related</text>
-        <text class="gilroy_700"> receipes</text>
+        <text class="gilroy_500">{{ _t.related_receipes.fst }}</text>
+        <text class="gilroy_700">{{ _t.related_receipes.snd }}</text>
       </view>
 
       <receipes id="receipes-component"></receipes>
@@ -146,30 +172,9 @@
   <!-- End of Offer Receipes -->
 
   <!-- Pay Button -->
-  <view class="offer-payment">
-    <view class="payment-message">
-      <view class="icon_container">
-        <view class="icon icon-alert"></view>
-        <view class="icon_text">Hurry up to be in the top 20</view>
-      </view>
-    </view>
-    
-    <view class="flex-center payment_container">
-      <view class="flex-between payment-price_container">
-        <view class="icon_container payment-price">
-          <view class="icon icon-bigbag"></view>
-          <view class="icon_text">
-            <text class="price_final">¥1200</text>
-            <text class="payment-price_original">¥1500</text>
-          </view>
-        </view>
-        <view class="icon_container payment-tickets">
-          <view class="icon icon-ticket"></view>
-          <view class="nunito_600 icon_text payment-tickets_count">X3</view>
-        </view>
-      </view>
-      <button class="payment-button" hover-class="none">Pay</button>
-    </view>
-  </view>
+  <template
+    is="payment_container"
+    data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser }}"
+  ></template>
   <!-- End of Pay Button -->
 </view>

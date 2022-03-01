@@ -28,7 +28,7 @@
 
     <view class="offer-lottery_detail">
       <text wx:if="{{lottery.get == 'reduction'}}">Get {{ lottery.rate }}% discount rate</text>
-      <text wx:elif="{{ lottery.get == 'addon' }}">Get {{ lottery.addon.quantity }} x {{ lottery.addon.weight }}{{ pageSet.units }} item name for free</text>
+      <text wx:elif="{{ lottery.get == 'addon' }}">Get {{ lottery.addon.quantity }} x {{ lottery.addon.weight }}{{ _setting.units }} item name for free</text>
     </view>
   </view>
 </view>

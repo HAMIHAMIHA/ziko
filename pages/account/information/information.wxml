@@ -1,2 +1,77 @@
-<!--pages/account/information/information.wxml-->
-<text>pages/account/information/information.wxml</text>
+<view class="container container-grey container-btn-bottom">
+  <!-- Profile Input Group -->
+  <view class="white-box inputs_container contact-info {{ error_name }}">
+    <view class="nunito_700 header">{{ _t.contact_info }}</view>
+
+    <view class="detail field-0">
+      <view class="detail_label">{{ _t.name }}</view>
+      <view class="detail_input">
+        <input class="input" type="text" value="{{ name }}" bindinput="changeInput" data-key="name"></input>
+      </view>
+    </view>
+  </view>
+  <!-- End of Profile Input Group -->
+
+  <!-- Pets Input Group -->
+  <block wx:for="{{ pets }}" wx:for-item="pet" wx:key="index">
+    <view class="white-box inputs_container pet-info {{ errors[index] }}" mark:index="{{ index }}">
+      <view class="nunito_700 header">{{ _t.pet + ' ' + (index + 1) }}</view>
+      <view class="icon icon-trash btn-icon" bindtap="removePet"></view>
+
+      <view class="detail field-1">
+        <view class="detail_label">{{ _t.name }}</view>
+        <view class="detail_input">
+          <view class="input">
+            <input type="text" value="{{ pet.name }}" data-index="{{ index }}" bindinput="changeInput" data-key="pets[index].name"></input>
+          </view>
+        </view>
+      </view>
+
+      <view class="detail field-2">
+        <text class="detail_label">{{ _t.type }}</text>
+        <view class="detail_input">
+          <picker
+            class="input picker"
+            value="{{ _picker_select[index].type }}"
+            range="{{ _picker.pet_type }}"
+            bindchange="petPickerChange"
+            data-key="type"
+          >
+            <view class="picker_text">{{  _t.pet_type[pet.type] }}</view>
+            <text class="icon icon-arrow"></text>
+          </picker>
+        </view>
+      </view>
+
+      <view class="detail field-3">
+        <text class="detail_label">{{ _t.size }}</text>
+        <view class="detail_input">
+          <picker 
+            class="input picker"
+            value="{{ _picker_select[index].size }}"
+            range="{{ _picker.pet_size }}"
+            bindchange="petPickerChange"
+            data-pet_index="{{ index }}"
+            data-key="size"
+          >
+            <view class="picker_text">{{ _t.pet_size[pet.size] }}</view>
+            <text class="icon icon-arrow"></text>
+          </picker>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- End of Pets Input Group -->
+
+  <!-- Add Pet Button -->
+  <view class="btn-outline_container">
+    <button class="btn-outline nunito_600" hover-class="none" bindtap="addPet">{{ '+ ' + _t.add_pet }}</button>
+  </view>
+  <!-- End of Add Pet Button -->
+
+  <!-- Submit Button -->
+  <view class="btn-bottom">
+    <button class="nunito_600" bindtap="saveInformation">{{ _t.save }}</button>
+  </view>
+  <!-- End of Submit Button -->
+</view>

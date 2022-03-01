@@ -1,0 +1,23 @@
+<view class="container container-grey container-btn-bottom address-detail">
+  <!-- Fapiao Form -->
+  <view class="white-box">
+    <view class="nunito_700 header">{{ _t.fapiao }}</view>
+
+    <view class="details_container textarea_container">
+      <view class="detail">
+        <view class="detail_input">
+          <view class="input">
+            <textarea class="textarea" auto-height="true" model:value="{{ fapiao }}" type="text"></textarea>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- End of Fapiao Form -->
+
+  <!-- Submit Button -->
+  <view class="btn-bottom">
+    <button class="nunito_600" bindtap="saveInformation">{{ _t.save }}</button>
+  </view>
+  <!-- End of Submit Button -->
+</view>
