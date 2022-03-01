@@ -1,4 +1,3 @@
-/* TODO need to upload all font files to server */
 page {
   font-family: "nunito", "arial";
 }
