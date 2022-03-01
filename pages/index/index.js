@@ -106,64 +106,57 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
   let raw_offers = [];
 
   // Set up page data, Start new timers, Change date filters
-  let callback = {
-    success: res => {
-      raw_offers = raw_offers.concat(res);
+  let callback = res => {
+    raw_offers = raw_offers.concat(res);
 
-      let offers = [];
-      let days = page.data.days;
-      if (!filter_date) {
-        days = []; // create list for date picker
-      }
-      // console.log(res);
-
-      for (var i in raw_offers) {
-        let offer = raw_offers[i];
-        let date_value = formatWeekDate(offer.startingDate);
-
-        // Creating date filter list
-        if (!filter_date && findIndex(days, date_value.timestamp, "timestamp") == -1) {
-          days.push(date_value);
-        }
-
-        // Modify offer data to fit page display
-        offer.started = (new Date() >= new Date(offer.startingDate));
-        offer.startDate = date_value;
-        offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
-        offer.banner = app.folders.offer_banner + offer.banner[page.data._language].uri
-        offers.push(offer);
-      }
-
-      page.setData({
-        days: days,
-        offers: offers
-      })
-      _timerControl(page, true);
-      // _setDateFilters(page, res.offers, filter_date);
-      showLoading(false);
+    let offers = [];
+    let days = page.data.days;
+    if (!filter_date) {
+      days = []; // create list for date picker
     }
+    // console.log(res);
+
+    for (var i in raw_offers) {
+      let offer = raw_offers[i];
+      let date_value = formatWeekDate(offer.startingDate);
+
+      // Creating date filter list
+      if (!filter_date && findIndex(days, date_value.timestamp, "timestamp") == -1) {
+        days.push(date_value);
+      }
+
+      // Modify offer data to fit page display
+      offer.started = (new Date() >= new Date(offer.startingDate));
+      offer.startDate = date_value;
+      offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
+      offer.banner = app.folders.offer_banner + offer.banner[page.data._language].uri
+      offers.push(offer);
+    }
+
+    page.setData({
+      days: days,
+      offers: offers
+    })
+    _timerControl(page, true);
+    // _setDateFilters(page, res.offers, filter_date);
+    showLoading(false);
   };
-
-  // Get on going events
-  let firstCallback = {
-    success: res => {
-      // console.log(res);
-      raw_offers = res;
-
-      // Set up API
-      suffix = `?community=${ filter_id }${ _generateSuffix(2, filter_date) }`;
-
-      if (suffix) {
-        app.api.getOffers(suffix, callback);
-      } else {
-        callback.success([]);
-      }
-    }
-  }
 
   // Set up API
   suffix = `?community=${filter_id}${ _generateSuffix(1, filter_date) }`;
-  app.api.getOffers(suffix, firstCallback);
+  app.api.getOffers(suffix, res => {
+    // Get on going events
+    raw_offers = res;
+
+    // Set up API
+    suffix = `?community=${ filter_id }${ _generateSuffix(2, filter_date) }`;
+
+    if (suffix) {
+      app.api.getOffers(suffix).then(callback);
+    } else {
+      callback([]);
+    }
+  });
 }
 
 Page({

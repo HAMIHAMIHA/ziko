@@ -32,31 +32,28 @@ const _defaultFilters = (page, key, index_val) => {
 const getOrders = (page) => {
   showLoading(true);
 
-  const callback = {
-    success: res => {
-      showLoading(false);
+  const callback = res => {
+    showLoading(false);
 
-      // Count total items
-      let countItems = list => {
-        let count = 0;
-        for (var p in list) {
-          count += list[p].amount;
-        }
-        return count;
+    // Count total items
+    let countItems = list => {
+      let count = 0;
+      for (var p in list) {
+        count += list[p].amount;
       }
-
-      res.map( order => {
-        order.actualAmount = Math.round(order.actualAmount * 100) / 100;
-        order.orderDate = `${formatDate(order.orderDate)} ${formatTime(order.orderDate)}`;
-        order.count = countItems( [...order.packs, ...order.singleItems] )
-      })
-
-      page.setData({
-        orders: res
-      })
+      return count;
     }
-  }
 
+    res.map( order => {
+      order.actualAmount = Math.round(order.actualAmount * 100) / 100;
+      order.orderDate = `${formatDate(order.orderDate)} ${formatTime(order.orderDate)}`;
+      order.count = countItems( [...order.packs, ...order.singleItems] )
+    })
+
+    page.setData({
+      orders: res
+    })
+  }
   let community_id = Object.keys(communities).find(item => communities[item] == current.community);
   community_id = community_id ? community_id : ''; // Remove undefined
   let order_status = current.order_status;
@@ -66,7 +63,7 @@ const getOrders = (page) => {
     id: ''
   }
 
-  app.api.getOrders(filter, callback);
+  app.api.getOrders(filter).then(callback);
 }
 
 Page({
