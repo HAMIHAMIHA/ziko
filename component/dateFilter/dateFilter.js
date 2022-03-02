@@ -40,7 +40,7 @@ Component({
         date: new_date
       })
 
-      self.triggerEvent('filterOffers', {date: new_date});
+      self.triggerEvent('filterOffers', { date: new_date, change_date: true });
     }
   }
 })

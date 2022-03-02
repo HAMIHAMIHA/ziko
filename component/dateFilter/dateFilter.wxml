@@ -10,8 +10,8 @@
         </view>
       </view>
 
-      <block wx:for="{{ days }}" wx:key="time_str" wx:for-item="day">
-        <view class="h-scroll_item item-date{{ date == day.time_str ? ' selected' : '' }}" data-date="{{ day.time_str }}" bindtap="filterByDate">
+      <block wx:for="{{ days }}" wx:key="timestamp" wx:for-item="day">
+        <view class="h-scroll_item item-date{{ date == day.timestamp ? ' selected' : '' }}" data-date="{{ day.timestamp }}" bindtap="filterByDate">
           <view class="item_container">
             <view class="item_content">
               <view class="gilroy_500 day-of-week">{{ day.day }}</view>

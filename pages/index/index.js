@@ -32,33 +32,32 @@ const _generateSuffix = (step, filter_date) => {
 
   let key = 'general';
   let now = new Date();
+  let now_timestamp = now.getTime();
+
   if (filter_date) {
     let today = now.setHours(0, 0, 0, 0);
-    key = (filter_date == today) ? (filter_date > today) ? 'tomorrow' : 'yesturday' : 'today';
+    key = (filter_date === today) ? 'today' : (filter_date > today) ? 'tomorrow' : 'yesturday';
   }
 
+  // 1: event in progress, 2: comming event
   const filter_str_list = {
     general: {
-      1: [`,{"endingDate":{"$gte":"${ now }"}},{"startingDate":{"$lte":"${ now }"}}`, `["endingDate","ASC"]`],
-      2: [`,{"startingDate":{"$gt":"${ now }"}},{}`, `["startingDate","ASC"]`]
+      1: [`,{"endingDate":{"$gte":"${ now_timestamp }"}},{"startingDate":{"$lte":"${ now_timestamp }"}}`, `["endingDate","ASC"]`],
+      2: [`,{"startingDate":{"$gt":"${ now_timestamp }"}},{}`, `["startingDate","ASC"]`]
     },
     today: {
-      // TODO
       // filter_date.setHours(0, 0, 0, 0) < startingDate < now and now < endingDate => 1
       // startingDate > now and startingDate < filter_date.setHours(999) => 2
-
-      // 1: [`,{"endingDate":{"$gte":"${ now }"}},{"startingDate":{"$lte":"${ now }"}}`, `["endingDate","ASC"]`],
-      // 2: [`,{"startingDate":{"$gt":"${ now }"}},{}`, `["startingDate","ASC"]`]
+      1: [`,{"endingDate":{"$gte":"${ now_timestamp }"}},{"startingDate":{"$gte":"${ filter_date }", "$lte":"${ now_timestamp }"}}`, `["endingDate","ASC"]`],
+      2: [`,{"startingDate":{"$gt":"${ now_timestamp }", "$lte":"${ now.setHours(23, 59, 59, 999) }"}},{}`, `["startingDate","ASC"]`]
     },
     tomorrow: {
-      // TODO
       // filter_date.setHours(0, 0, 0, 0) < startingDate < filter_date.setHours(999) => 1
-      // 1: [`,{"endingDate":{"$gte":"${ now }"}},{"startingDate":{"$lte":"${ now }"}}`, `["endingDate","ASC"]`]
+      1: [`,{"startingDate":{"$gte":"${ filter_date }", "$lte":"${ new Date(filter_date).setHours(23, 59, 59, 999) }"}}`, `["endingDate","ASC"]`]
     },
     yesturday: {
-      // TODO
       // filter_date.setHours(0, 0, 0, 0) < startingDate < filter_date.setHours(999) and endingDate > now => 1
-      // 1: [`,{"endingDate":{"$gte":"${ now }"}},{"startingDate":{"$lte":"${ now }"}}`, `["endingDate","ASC"]`],
+      1: [`,{"endingDate":{"$gte":"${ now_timestamp }"}},{"startingDate":{"$gte":"${ filter_date }", "$lte":"${ new Date(filter_date).setHours(23, 59, 59, 999) }"}}`, `["endingDate","ASC"]`],
     }
   }
 
@@ -107,7 +106,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
 
   // Set up page data, Start new timers, Change date filters
   let callback = res => {
-    raw_offers = raw_offers.concat(res);
+    raw_offers = [...raw_offers, ...res];
 
     let offers = [];
     let days = page.data.days;
@@ -149,9 +148,10 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
     raw_offers = res;
 
     // Set up API
-    suffix = `?community=${ filter_id }${ _generateSuffix(2, filter_date) }`;
+    let date_suffix_str = _generateSuffix(2, filter_date);
+    suffix = `?community=${ filter_id }${ date_suffix_str }`;
 
-    if (suffix) {
+    if (date_suffix_str) {
       app.api.getOffers(suffix).then(callback);
     } else {
       callback([]);
@@ -226,7 +226,7 @@ Page({
     }
 
     // Get filtering date value
-    let date = (e.detail && e.detail.date) ? e.detail.date
+    let date = (e.detail && e.detail.change_date) ? e.detail.date
               : current_filter.date ? current_filter.date
               : '';
   
