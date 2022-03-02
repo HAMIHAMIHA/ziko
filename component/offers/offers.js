@@ -54,12 +54,12 @@ Component({
       if (!data.started) return;
 
       var url = routes.offer_regular;
-      if (communities[data.community] == "cellar") {
-        // if (data.type == "bourse") {
-        //   url = routes.offer_bourse;
-        // } else {
-        //   url = routes.offer_cellar;
-        // }
+      if (communities[data.community] === "cellar" && data.type !== "regular") {
+        if (data.type == "bourse") {
+          url = routes.offer_bourse;
+        } else {
+          url = routes.offer_cellar;
+        }
       }
 
       self.triggerEvent('navigatePage', { navigating: true });  
