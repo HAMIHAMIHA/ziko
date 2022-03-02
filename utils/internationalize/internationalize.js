@@ -57,13 +57,13 @@ export const languageMap_en = {
 
   // D
   days: [
+    "SUN.",
     "MON.",
     "TUE.",
     "WED.",
     "THU.",
     "FRI.",
     "SAT.",
-    "SUN."
   ],
   date_suffix: [ 'th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'],
   delete: "Delete",
@@ -317,13 +317,13 @@ export const languageMap_zh = {
 
   // D
   days: [
+    "星期日",
     "星期一",
     "星期二",
     "星期三",
     "星期四",
     "星期五",
     "星期六",
-    "星期日"
   ],
   date_suffix: [ '日', '日', '日', '日', '日', '日', '日', '日', '日', '日'],
   delete: "Delete",
