@@ -7,9 +7,12 @@ const routes = app.routes;
 let areas = [];
 
 const _getAddressAreas = () => {
-  app.api.getAreas().then( res => {
-    areas = res;
-  });
+  const callback = {
+    success: res => {
+      areas = res;
+    }
+  }
+  app.api.getAreas(callback);
 }
 
 Page({

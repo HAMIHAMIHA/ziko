@@ -6,14 +6,16 @@ const i18n = require('utils/internationalize/translate.js'); // 翻译功能
 const { folders } = require('./utils/properties');
 
 const getWxUserOpenId = (res) => {
-  const callback = res => {
-    let user = db.get('userInfo') ? db.get('userInfo') : {};
-    user.customer ? user.customer.openId = res.openId : user.customer = res;
+  const callback = {
+    success: res => {
+      let user = db.get('userInfo') ? db.get('userInfo') : {};
+      user.customer ? user.customer.openId = res.openId : user.customer = res;
 
-    db.set('userInfo', user);
+      db.set('userInfo', user);
+    }
   }
 
-  api.wxOpenid({ code: res.code }).then(callback);
+  api.wxOpenid({ code: res.code }, callback);
 }
 
 App({

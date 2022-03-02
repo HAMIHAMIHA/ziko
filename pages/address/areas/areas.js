@@ -42,16 +42,18 @@ const _find_current = (current_id) => {
 }
 
 const getAddressAreaList = page => {
-  const callback = res => {
-    all_areas = res;
-    let areas = _getAreas();
-    page.setData({
-      _temp : res,
-      _areas: areas,
-      _selected: _find_current(page.options.id) // TEMP need for when already selected
-    })
+  const callback = {
+    success: res => {
+      all_areas = res;
+      let areas = _getAreas();
+      page.setData({
+        _temp : res,
+        _areas: areas,
+        _selected: _find_current(page.options.id) // TEMP need for when already selected
+      })
+    }
   }
-  app.api.getAreas().then(callback);
+  app.api.getAreas(callback);
 }
 
 Page({

@@ -31,11 +31,13 @@ export const getUserInfo = function(page) {
 
 // General method to call api and login with wechat mobile number
 export const mobileLogin = function(page, code, loginCallback) {
-  const callback = res => {
-    res.wxUser = db.get('userInfo').wxUser;
-    db.set('userInfo', res);
-    page.setData({ user: res.customer })
-    loginCallback ? loginCallback() : null;
+  const callback = {
+    success: function(res) {
+      res.wxUser = db.get('userInfo').wxUser;
+      db.set('userInfo', res);
+      page.setData({ user: res.customer })
+      loginCallback ? loginCallback() : null;
+    }
   }
 
   const data = {
@@ -44,7 +46,7 @@ export const mobileLogin = function(page, code, loginCallback) {
     openId: db.get('userInfo').customer.openId
   }
 
-  getApp().api.wxLogin(data).then(callback);
+  getApp().api.wxLogin(data, callback);
 }
 
 export const getWxUserInfo = function(page) {
@@ -67,40 +69,44 @@ export const getWxUserInfo = function(page) {
 
 // Get user info from database
 export const refreshUserInfo = function(page, callback) {
-  const getProfileCallback = res => {
-    let user = db.get('userInfo');
-    user.customer = res.user;
-    db.set('userInfo', user);
-    page ?
-      page.setData({
-        user: res.user,
-        wxUser: user.wxUser
-      })
-      : null;
-  
-    callback ? 
-      callback(res.user)
-      : showLoading(false);
+  const getProfileCallback = {
+    success: function(res) {
+      let user = db.get('userInfo');
+      user.customer = res.user;
+      db.set('userInfo', user);
+      page ?
+        page.setData({
+          user: res.user,
+          wxUser: user.wxUser
+        })
+        : null;
+    
+      callback ? 
+        callback(res.user)
+        : showLoading(false);
+    }
   }
 
-  getApp().api.getProfile().then(getProfileCallback);
+  getApp().api.getProfile(getProfileCallback);
 }
 
 // General method to call api and update user profile
 export const updateUserInfo = function(new_info, back_url, switch_tab = false) {
-  const callback = res => {
-    showLoading(false);
-    let userInfo = db.get('userInfo');
-    userInfo.customer = res;
+  const callback = {
+    success: res => {
+      showLoading(false);
+      let userInfo = db.get('userInfo');
+      userInfo.customer = res;
 
-    db.set('userInfo', userInfo);
+      db.set('userInfo', userInfo);
 
-    if (back_url) {
-      navigateBack(back_url, switch_tab);
+      if (back_url) {
+        navigateBack(back_url, switch_tab);
+      }
     }
   }
 
-  getApp().api.updateProfile(new_info).then(callback);
+  getApp().api.updateProfile(new_info, callback);
 }
 
 // Go back to previous page or what should be previous page

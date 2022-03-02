@@ -57,9 +57,12 @@ const _setPageDefaultItems = page => {
 
 // Get area list from db
 const _getAddressAreas = () => {
-  app.api.getAreas().then(res => {
-    area_list = res;
-  });
+  const callback = {
+    success: res => {
+      area_list = res;
+    }
+  }
+  app.api.getAreas(callback);
 }
 
 // Set product into display format
@@ -81,40 +84,42 @@ const _setProducts = (offer, cart) => {
 
 // Get offer data
 const _getOffers = page => {
-  let callback = res => {
-    let offer = res[0];
-    offer.community = communities[offer.community.id];
-    offer = packProductDetail(offer);
-    let cart = app.db.get('cart')[offer.id];
+  let callback = {
+    success: res => {
+      let offer = res[0];
+      offer.community = communities[offer.community.id];
+      offer = packProductDetail(offer);
+      let cart = app.db.get('cart')[offer.id];
 
-    let delivery_dates = [];
+      let delivery_dates = [];
 
-    let dates = offer.deliveryDates.sort();
-    for (var i in dates) {
-      if (new Date(dates[i]) > new Date().setHours(23, 59, 59, 999)) {
-        delivery_dates.push(formatDate(dates[i]));
-      }
-    }
-
-    page.setData({
-      _offer: offer,
-      '_t.units': app.globalData.i18n.units[offer.community],
-      cart: cart,
-      products: _setProducts(offer, cart),
-      delivery_dates: delivery_dates,
-      delivery_date: 0,
-      _pay_set: {
-        total: cart.total,
-        minimum: {
-          price: offer.minimumOrderAmount,
-          items: offer.minimumCartItems,
+      let dates = offer.deliveryDates.sort();
+      for (var i in dates) {
+        if (new Date(dates[i]) > new Date().setHours(23, 59, 59, 999)) {
+          delivery_dates.push(formatDate(dates[i]));
         }
-      },
-    })
-    showLoading(false);
+      }
+
+      page.setData({
+        _offer: offer,
+        '_t.units': app.globalData.i18n.units[offer.community],
+        cart: cart,
+        products: _setProducts(offer, cart),
+        delivery_dates: delivery_dates,
+        delivery_date: 0,
+        _pay_set: {
+          total: cart.total,
+          minimum: {
+            price: offer.minimumOrderAmount,
+            items: offer.minimumCartItems,
+          }
+        },
+      })
+      showLoading(false);      
+    }
   }
 
-  app.api.getOffers(`?id=${page.options.id}`).then(callback);
+  app.api.getOffers(`?id=${page.options.id}`, callback);
 }
 
 Page({

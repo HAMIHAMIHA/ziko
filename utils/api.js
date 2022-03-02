@@ -1,188 +1,192 @@
-let db = require('db.config.js');
-let config = require('properties.js');
-let { showLoading } = require('./common');
+const db = require('db.config.js');
+const config = require('properties.js');
+const { showLoading } = require('./common');
 
-// Generate header and url
-const _unifyHeaders = (path) => {
-  let header = {};
+let header = {};
+
+//接口统一封装
+const api = (apiMethod, path, data, callback) => {
   if (db.get('userInfo').token) {
     header = {'Authorization': `Bearer ${db.get('userInfo').token}`};
   }
+  path = config.api_url + path;
 
-  return [header, config.api_url + path];
+  switch (apiMethod) {
+    case "post":
+      post(path, data, callback);
+      break;
+    case "put":
+      put(path, data, callback);
+      break;
+    default:
+      get(path, callback)
+      break;
+  }
 }
 
 //get请求
-const get = (path) => {
-  let [header, url] = _unifyHeaders(path);
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: url,
-      header: header,
-      success: function (res) {
+const get = (path, callback) => {
+  wx.request({
+    url: path,
+    header: header,
+    success: function (res) {
+      if (res.data.success === false) {
+        console.debug(res.data.message);
         showLoading(false);
-        if (res.data.success === false) {
-          console.debug(res.data.message);
-          if (reject) {
-            reject(res.data.message);
-          }
-        } else {
-          resolve(res.data);
+        if (callback.error) {
+          callback.error(res.data.message);
         }
-      },
-      fail: function (res) {
-        showLoading(false);
-        console.debug('err', res);
+      } else {
+        callback.success(res.data);
       }
-    });
+    },
+    fail: function (res) {
+      showLoading(false);
+      console.debug('err', res);
+    }
   });
 }
 
 // post请求
-const post = (path, data) => {
-  let [header, url] = _unifyHeaders(path);
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: url,
-      header: header,
-      data: data,
-      method: 'POST',
-      success: function (res) {
+const post = (path, data, callback) => {
+  wx.request({
+    url: path,
+    header: header,
+    data: data,
+    method: 'POST',
+    success: function (res) {
+      if (res.data.success === false) {
+        console.debug(res.data.message);
         showLoading(false);
-        if (res.data.success === false) {
-          console.debug(res.data.message);
-          if (reject) {
-            reject(res.data.message);
-          }
-        } else {
-          resolve(res.data);
+        if (callback.error) {
+          callback.error(res.data.message);
         }
-      },
-      fail: function (res) {
-        showLoading(false);
-        console.debug('err', res);
+      } else {
+        callback.success(res.data);
       }
-    });
+    },
+    fail: function (res) {
+      showLoading(false);
+      console.debug('err', res);
+    }
   });
 }
 
 // put请求
 const put = (path, data, callback) => {
-  let [header, url] = _unifyHeaders(path);
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: url,
-      header: header,
-      data: data,
-      method: 'PUT',
-      success: function (res) {
+  wx.request({
+    url: path,
+    header: header,
+    data: data,
+    method: 'PUT',
+    success: function (res) {
+      if (res.data.success === false) {
+        console.debug(res.data.message);
         showLoading(false);
-        if (res.data.success === false) {
-          console.debug(res.data.message);
-          if (reject) {
-            reject(res.data.message);
-          }
-        } else {
-          resolve(res.data);
+        if (callback.error) {
+          callback.error(res.data.message);
         }
-      },
-      fail: function (res) {
-        showLoading(false);
-        console.debug('err', res);
+      } else {
+        callback.success(res.data);
       }
-    });
+    },
+    fail: function (res) {
+      showLoading(false);
+      console.debug('err', res);
+    }
   });
 }
 
 // Upload Request
-const upload = (folder_path, file) => {
-  let path = `files/${folder_path}`;
-  let [header, url] = _unifyHeaders(path);
-  return new Promise((resolve, reject) => {
-    wx.uploadFile({
-      url: url,
-      filePath: file,
-      header: header,
-      name: folder_path,
-      success: function (res) {
-        if (res.statusCode != 200) {
-          showLoading(false);
-          console.debug(res.data.message);
-          if (reject) {
-            reject(res.data.message);
-          }
-          return;
-        }
-        resolve(JSON.parse(res.data));
-      },
-      fail: function (res) {
+const upload = (folder_path, file, callback) => {
+  let path = `${config.api_url}files/${folder_path}`;
+  let header = {
+    'Authorization': `Bearer ${db.get('userInfo').token}`
+  };
+
+  wx.uploadFile({
+    url: path,
+    filePath: file,
+    header: header,
+    name: folder_path,
+    success: function (res) {
+      if (res.statusCode != 200) {
         showLoading(false);
-        console.debug('err', res);
+        console.debug(res.data.message);
+        if (callback.error) {
+          callback.error(res.data.message);
+        }
+        return;
       }
-    })
-  });
+      callback.success(JSON.parse(res.data));
+    },
+    fail: function (res) {
+      showLoading(false);
+      console.debug('err', res);
+    }
+  })
 }
 
 module.exports = {
   // Create order for payment
-  createOrder: (id, data) => {
-    return post(`orders/purchase/${id}`, data);
+  createOrder: (id, data, callback) => {
+    api('post', `orders/purchase/${id}`, data, callback);
   },
 
   // Get deliverable address areas
-  getAreas: () => {
-    return get('delivery-areas');
+  getAreas: (callback) => {
+    api('get', 'delivery-areas', null, callback);
   },
 
   // Get orders
-  getOrders: (filter) => {
+  getOrders: (filter, callback) => {
     let suffix = `mine?sort=["createdAt","DESC"]&${filter.filter_str}`;
     if (filter.id) suffix = `${filter.id}/mine`;
-    return get(`orders/${suffix}`);
+    api('get', `orders/${suffix}`, null, callback);
   },
 
   // Get offer with product details
-  getOffers: (suffix) => {
-    return get(`offers/details${suffix}`);
+  getOffers: (suffix, callback) => {
+    api('get', `offers/details${suffix}`, null, callback);
   },
 
   // Get product detail
-  // getProduct: (id, callback) => {
-  //   get(`products/${id}`, data);
-  // },
+  getProduct: (id, callback) => {
+    api('get', `products/${id}`, data, callback);
+  },
 
   // Get user information
-  getProfile: () => {
-    return get('customers/mine');
+  getProfile: (callback) => {
+    api('get', 'customers/mine', null, callback);
   },
 
   // Get prepay id for wechat pay
-  orderPrePay: (id) => {
-    return get(`orders/${id}/prepay`);
+  orderPrePay: (id, callback) => {
+    api('get', `orders/${id}/prepay`, null, callback);
   },
 
   // Set view for offer
-  setOfferView: (id) => {
-    return get(`offers/${id}/viewed`);
+  setOfferView: (id, callback) => {
+    api('get', `offers/${id}/viewed`, null, callback);
   },
 
   // Update user info
-  updateProfile: (data) => {
-    return put(`customers/mine`, data);
+  updateProfile: (data, callback) => {
+    api('put', `customers/mine`, data, callback);
   },
 
   // Upload profile picture
-  uploadProfilePicture: (file) => {
-    return upload('customer-picture', file);
+  uploadProfilePicture: (file, callback) => {
+    upload('customer-picture', file, callback);
   },
 
   // Wechat login with mobile
-  wxLogin: (data) => {
-    return post('wechat/login', data);
+  wxLogin: (data, callback) => {
+    api('post', 'wechat/login', data, callback);
   },
 
   // Wechat get openid, and user info (if exist)
-  wxOpenid: (data) => {
-    return post('wechat/openid', data);
+  wxOpenid: (data, callback) => {
+    api('post', 'wechat/openid', data, callback);
   },
 }

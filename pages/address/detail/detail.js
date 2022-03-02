@@ -6,11 +6,14 @@ const address_type = ["office", "home", "other"];
 const validate_keys = ['type', 'contact', 'city', 'detailedAddress', 'phone'];
 
 const _getAddressAreas = (page, area_id) => {
-  app.api.getAreas().then(res => {
-    page.setData({
-      area: res[findIndex(res, area_id, 'id')]
-    })
-  });
+  const callback = {
+    success: res => {
+      page.setData({
+        area: res[findIndex(res, area_id, 'id')]
+      })
+    }
+  }
+  app.api.getAreas(callback);
 }
 
 // Get user profile

@@ -4,21 +4,23 @@ const translate = require('../../../utils/internationalize/translate.js'); // ç¿
 
 const _uploadProfileImage = (res, page) =>  {
   showLoading(true);
-  const callback = file => {
-    // Update profile image displaying
-    let user = page.data.user;
-    user.profilePicture = file;
-    page.setData({
-      user: user
-    })
+  const callback = {
+    success: file => {
+      // Update profile image displaying
+      let user = page.data.user;
+      user.profilePicture = file;
+      page.setData({
+        user: user
+      })
 
-    // Update user data
-    let profile_data = {
-      profilePicture: file
+      // Update user data
+      let profile_data = {
+        profilePicture: file
+      }
+      updateUserInfo(profile_data, null);
     }
-    updateUserInfo(profile_data, null);
   }
-  app.api.uploadProfilePicture(res.tempFiles[0].tempFilePath).then(callback);
+  app.api.uploadProfilePicture(res.tempFiles[0].tempFilePath, callback);
 }
 
 Page({

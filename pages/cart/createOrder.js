@@ -94,34 +94,36 @@ const _createOrderData = (page, value) => {
 export const makePayment = res => {
   let order_id = res.id;
 
-  const callback = res => {
-    showLoading(false);
+  const callback = {
+    success: res => {
+      showLoading(false);
 
-    wx.requestPayment({
-      timeStamp: `${res.timestamp}`,
-      nonceStr: `${res.nonce_str}`,
-      package: `prepay_id=${res.prepay_id}`,
-      signType: 'MD5',
-      paySign: res.signature,
-      success (res) { 
-        wx.redirectTo({
-          url: `${app.routes.order}?id=${order_id}&type=paid`,
-        })
-      },
-      fail (res) {
-        console.debug('payment error', res);
-        showToast(app.globalData.i18n.payment_cancelled);
-        
-        setTimeout( () => {
-          wx.navigateBack({
-            delta: 0,
+      wx.requestPayment({
+        timeStamp: `${res.timestamp}`,
+        nonceStr: `${res.nonce_str}`,
+        package: `prepay_id=${res.prepay_id}`,
+        signType: 'MD5',
+        paySign: res.signature,
+        success (res) { 
+          wx.redirectTo({
+            url: `${app.routes.order}?id=${order_id}&type=paid`,
           })
-        }, 1000)
-      }
-    })
+        },
+        fail (res) {
+          console.debug('payment error', res);
+          showToast(app.globalData.i18n.payment_cancelled);
+          
+          setTimeout( () => {
+            wx.navigateBack({
+              delta: 0,
+            })
+          }, 1000)
+        }
+      })
+    }
   }
 
-  app.api.orderPrePay(order_id).then(callback);
+  app.api.orderPrePay(order_id, callback);
 }
 
 // Create order to the backoffice
@@ -133,13 +135,16 @@ export const createOrder = (page, value) => {
 
   showLoading(true);
   // Create order, callback to connect to wechat pay
-  const createOrderCallback =  res => {
-    // Remove from cart
-    let cart = app.db.get('cart');
-    delete cart[offer_id];
-    app.db.set('cart', cart);
+  const createOrderCallback = {
+    success: res => {
+      // TODO remove from cart
+      let cart = app.db.get('cart');
+      delete cart[offer_id];
+      app.db.set('cart', cart);
 
-    makePayment(res);
+
+      makePayment(res);
+    }
   }
-  app.api.createOrder(offer_id, order).then(createOrderCallback);
+  app.api.createOrder(offer_id, order, createOrderCallback);
 }
