@@ -1,6 +1,3 @@
-const { showLoading } = require("../../utils/common");
-const { findIndex } = require("../../utils/util");
-
 Component({
   properties: {
     days: Array

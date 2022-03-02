@@ -7,12 +7,24 @@ let leave_triggered = false; // To track if leave page already triggered
 let current_filter = { type: 'map', group: '', date: '' }; // Default filter for page
 
 // Reset date filter to all
-const _resetDateFilters = (page) => {
+const _resetDateFilters = (page, new_list) => {
   let date_filter = page.selectComponent('#list_date_filters');
   if (current_filter.type == "map") {
     date_filter = page.selectComponent('#map_date_filter');
   }
-  date_filter.resetDateFilter();
+
+  // Set seleted data to all
+  if (date_filter) {
+    date_filter.resetDateFilter();
+  }
+
+  // Remove days list for refresh
+  if (new_list) {
+    console.log('new_list');
+    page.setData({
+      days: []
+    })
+  }
 }
 
 // Toggle timer intervals
@@ -74,7 +86,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
 
   page.setData({
     map: (filter_type == 'map'),
-    filter_group: filter_group
+    filter_group: filter_group,
   })
 
   // Change filter type if different from current
@@ -83,8 +95,8 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
   }
 
   // Reset date filter if filter type and filter group different from current
-  if (current_filter.type != filter_type && current_filter.group != filter_id) {
-    _resetDateFilters(self);
+  if (!filter_date) {
+    _resetDateFilters(page, current_filter.type != filter_type || current_filter.group != filter_id);
   }
 
   // Get data by filter group and filter date
@@ -113,6 +125,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
     if (!filter_date) {
       days = []; // create list for date picker
     }
+
     // console.log(res);
 
     for (var i in raw_offers) {
@@ -226,9 +239,7 @@ Page({
     }
 
     // Get filtering date value
-    let date = (e.detail && e.detail.change_date) ? e.detail.date
-              : current_filter.date ? current_filter.date
-              : '';
+    let date = (e.detail && e.detail.change_date) ? e.detail.date : '';
   
     // Filter
     _filterOfferData(self, data.filter_type, data.filter_group, data.filter_id, date);
@@ -269,7 +280,6 @@ Page({
         remaining_time: i18n.remaining_time,
         specials: i18n.specials,
         viewers: i18n.viewers,
-        // TODO days of week
       }
     })
   },

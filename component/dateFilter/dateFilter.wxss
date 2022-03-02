@@ -27,6 +27,7 @@
   color: #BFBFBF;
   text-align: center;
   display: block;
+  transition: all 0.3s ease-in-out;
 }
 
 .scroll-date .item_content {
