@@ -22,6 +22,7 @@
 
 /* Offer Banner */
 .offer-banner {
+  min-height: 288rpx;
   max-height: 288rpx;
   overflow: hidden;
   position: relative;
