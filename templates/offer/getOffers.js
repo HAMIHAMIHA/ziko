@@ -74,64 +74,59 @@ export const packProductDetail = function(offer) {
 export const getOffer = function(page, offer_id) {
   showLoading(true);
 
-  const callback = {
-    success: res => {
-      let offer = res[0];
-      offer.community = communities[offer.community.id];
-      offer = packProductDetail(offer);
+  const callback = res => {
+    let offer = res[0];
+    offer.community = communities[offer.community.id];
+    offer = packProductDetail(offer);
 
-      getUserInfo(page);
+    getUserInfo(page);
 
-      page.setData({
-        _folders: {
-          offer_media: app.folders.offer_media,
+    page.setData({
+      _folders: {
+        offer_media: app.folders.offer_media,
+      },
+      _offer_setting: {
+        folders: {
+          product_picture: app.folders.product_picture
         },
-        _offer_setting: {
-          folders: {
-            product_picture: app.folders.product_picture
-          },
-          language: app.db.get('language'),
-          routes: {
-            product: app.routes.product
-          },
+        language: app.db.get('language'),
+        routes: {
+          product: app.routes.product
         },
-        /* data="{{ _pay_set: _pay_set, original_price: original_price, tickets: tickets, special: '', _t: _t }}" */
-        _pay_set: {
-          cart: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].count : 0,
-          minimum: {
-            price: offer.minimumOrderAmount,
-            items: offer.minimumCartItems,
-          },
-          total: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].total : 0,
+      },
+      /* data="{{ _pay_set: _pay_set, original_price: original_price, tickets: tickets, special: '', _t: _t }}" */
+      _pay_set: {
+        cart: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].count : 0,
+        minimum: {
+          price: offer.minimumOrderAmount,
+          items: offer.minimumCartItems,
         },
-        _offer: offer,
-        cart: app.db.get('cart')[offer.id],
-      })
+        total: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].total : 0,
+      },
+      _offer: offer,
+      cart: app.db.get('cart')[offer.id],
+    })
 
-      // Change page translation
-      _getTranslations(page, offer.community);
-      page.startCountdown();
-      showLoading(false);
+    // Change page translation
+    _getTranslations(page, offer.community);
+    page.startCountdown();
+    showLoading(false);
 
-      // Update quantity button setting
-      let quantity_changers = page.selectAllComponents('.product-quantity');
-      quantity_changers.forEach( changer => {
-        let products = [...offer.miniprogram.packs, ...offer.miniprogram.items];
-        let product_id = changer.data.product_id;
-        let product = products[findIndex(products, product_id, '_id')];
-        changer.updateData(app.db.get('cart')[offer.id], product);
-      });
-    }
+    // Update quantity button setting
+    let quantity_changers = page.selectAllComponents('.product-quantity');
+    quantity_changers.forEach( changer => {
+      let products = [...offer.miniprogram.packs, ...offer.miniprogram.items];
+      let product_id = changer.data.product_id;
+      let product = products[findIndex(products, product_id, '_id')];
+      changer.updateData(app.db.get('cart')[offer.id], product);
+    });
   }
 
   // Update number of views for offer before getting offer
-  let viewCallback = {
-    success: res => {
-      // Get product by offer id
-      app.api.getOffers(`?id=${offer_id}`, callback);
-    }
-  }
-  app.api.setOfferView(offer_id, viewCallback);
+  app.api.setOfferView(offer_id).then(res => {
+    // Get product by offer id
+    app.api.getOffers(`?id=${offer_id}`).then(callback);
+  });
 }
 
 

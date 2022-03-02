@@ -10,43 +10,41 @@ const getOrders = (page) => {
 
   showLoading(true);
 
-  const callback = {
-    success: res => {
-      let community = communities[res.community];
-      let units = app.globalData.i18n.units[community];
-      let item_unit = app.globalData.i18n.item_unit;
-      let items_unit = app.globalData.i18n.items_unit;
+  const callback = res => {
+    let community = communities[res.community];
+    let units = app.globalData.i18n.units[community];
+    let item_unit = app.globalData.i18n.item_unit;
+    let items_unit = app.globalData.i18n.items_unit;
 
-      showLoading(false);
+    showLoading(false);
 
-      res.actualAmount = Math.round(res.actualAmount * 100) / 100;
-      res.deliveryDate = formatDate(res.deliveryDate);
-      res.packs.map(item => {
-        let details = [];
-        item.products.forEach( product => {
-          details.push(
-            `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? units : product.quantity == 1 ? item_unit : items_unit }`
-          );
-        })
-        item.products_info = details.join(', ');
-        item.type = 'pack'
-      });
-      res.singleItems.map( item => item.type = 'item');
-
-      res.products = [...res.packs, ...res.singleItems];
-
-      if (res.statusHistory) {
-        res.statusHistory.map( history => history.date = formatDate(history.date));
-      }
-
-      page.setData({
-        order: res,
-        "_t.units": app.globalData.i18n.units[community],
+    res.actualAmount = Math.round(res.actualAmount * 100) / 100;
+    res.deliveryDate = formatDate(res.deliveryDate);
+    res.packs.map(item => {
+      let details = [];
+      item.products.forEach( product => {
+        details.push(
+          `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? units : product.quantity == 1 ? item_unit : items_unit }`
+        );
       })
+      item.products_info = details.join(', ');
+      item.type = 'pack'
+    });
+    res.singleItems.map( item => item.type = 'item');
+
+    res.products = [...res.packs, ...res.singleItems];
+
+    if (res.statusHistory) {
+      res.statusHistory.map( history => history.date = formatDate(history.date));
     }
+
+    page.setData({
+      order: res,
+      "_t.units": app.globalData.i18n.units[community],
+    })
   }
 
-  app.api.getOrders({filter_str: null, id: order_id}, callback);
+  app.api.getOrders({filter_str: null, id: order_id}).then(callback);
 }
 
 Page({
