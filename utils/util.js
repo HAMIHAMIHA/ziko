@@ -44,7 +44,7 @@ module.exports = {
     const i18n = getApp().globalData.i18n;
 
     // Month, date, and day of week
-    const day = i18n.days[date.getDay() - 1];
+    const day = i18n.days[date.getDay()];
     const mth = i18n.month[date.getMonth() + 1];
     const date_val = formatNumber(date.getDate());
 
