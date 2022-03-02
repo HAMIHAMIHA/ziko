@@ -20,7 +20,6 @@ const _resetDateFilters = (page, new_list) => {
 
   // Remove days list for refresh
   if (new_list) {
-    console.log('new_list');
     page.setData({
       days: []
     })
@@ -137,11 +136,22 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
         days.push(date_value);
       }
 
+      let banner = '';
+      if (offer.banner) {
+        if (offer.banner[app.db.get('language')]) {
+          banner = offer.banner[app.db.get('language')].uri;
+        } else if (app.db.get('language') === 'zh' && offer.banner.en) {
+          banner = offer.banner.en.uri;
+        } else if (app.db.get('language') === 'en' && offer.banner.zh) {
+          banner = offer.banner.zh.uri;
+        }
+      }
+
       // Modify offer data to fit page display
       offer.started = (new Date() >= new Date(offer.startingDate));
       offer.startDate = date_value;
       offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
-      offer.banner = offer.banner ? app.folders.offer_banner + offer.banner[page.data._language].uri : '';
+      offer.banner = banner ? app.folders.offer_banner + banner : '';
       offers.push(offer);
     }
 
