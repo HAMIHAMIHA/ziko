@@ -1,5 +1,5 @@
 <!-- Date Picker -->
-<!-- <view class="date_container">
+<view class="date_container">
   <view class="h-scroll_container scroll-date">
     <scroll-view class="h-scroll uppercase" scroll-x="true" enable-flex="true">
       <view class="h-scroll_item all{{ date == '' ? ' selected' : '' }}" data-date="" bindtap="filterByDate">
@@ -22,4 +22,4 @@
       </block>
     </scroll-view>
   </view>
-</view> -->
+</view>

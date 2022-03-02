@@ -44,7 +44,7 @@ module.exports = {
     const i18n = getApp().globalData.i18n;
 
     // Month, date, and day of week
-    const day = i18n.days[date.getDay()];
+    const day = i18n.days[date.getDay() - 1];
     const mth = i18n.month[date.getMonth() + 1];
     const date_val = formatNumber(date.getDate());
 
@@ -56,7 +56,7 @@ module.exports = {
 
     return {
       day: day,
-      month: i18n.month[mth],
+      month: mth,
       date: date_val,
       time: getApp().db.get('language') == 'zh' ?  `${unit} ${time}` : `${time} ${unit}`,
       date_str: getApp().db.get('language') == 'zh' ? `${day} ${mth}${date_val}日` : `${day} ${date_val} ${mth},` ,
