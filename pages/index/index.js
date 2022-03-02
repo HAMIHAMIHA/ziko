@@ -134,7 +134,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
     }
 
     page.setData({
-      days: days,
+      days: days.sort( (a,b) => { return a.timestamp - b.timestamp }),
       offers: offers
     })
     _timerControl(page, true);
