@@ -31,14 +31,13 @@
         <!-- Display for offers in progress -->
         <view class="offer-detail offer-started" wx:if="{{ offer.started }}">
           <view class="flex-between offer-detail_content">
-            <!-- Hide for v1 -->
             <!-- Specials -->
             <view class="flex-between_left flex-center offer-specials">
-              <view class="icon_container lottery" wx:if="{{ offer.lottery }}">
+              <view class="icon_container lottery" wx:if="{{ offer.miniprogram.lotteryEnable && offer.miniprogram.lottery.draws.length > 0 }}">
                 <view class="icon icon-yuan"></view>
                 <view class="icon_text">{{ _t.lottery }}</view>
               </view>
-              <view class="icon_container specials" wx:if="{{ offer.specials }}">
+              <view class="icon_container specials" wx:if="{{ offer.miniprogram.zikoSpecials.length > 0 }}">
                 <view class="icon icon-gift"></view>
                 <view class="icon_text">{{ _t.specials }}</view>
               </view>
