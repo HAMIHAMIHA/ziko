@@ -27,6 +27,8 @@ export const _getTranslations = (page, community) => {
       item_unit: i18n.item_unit,
       items: i18n.items,
       minimum: i18n.minimum,
+      offer_special_names: i18n.offer_special_names,
+      offer_special_details: i18n.offer_special_details,
       order_unit: i18n.order_unit,
       orders_unit: i18n.orders_unit,
       our_selected_packs: i18n.our_selected_packs,
@@ -52,14 +54,19 @@ export const _getTranslations = (page, community) => {
   })
 }
 
-// Modify for pack product
+// Modify for pack product info string
 export const packProductDetail = function(offer) {
   let units = app.globalData.i18n.units[offer.community];
   let item_unit = app.globalData.i18n.item_unit;
   let items_unit = app.globalData.i18n.items_unit;
 
+  offer.total = 0;
+  offer.sold = 0;
   offer.miniprogram.packs.map( item => {
     let details = [];
+    offer.total += item.stock;
+    offer.sold += (item.stock - item.actualStock);
+
     item.products.forEach( product => {
       details.push(
         `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? units : product.quantity == 1 ? item_unit : items_unit }`
@@ -72,19 +79,48 @@ export const packProductDetail = function(offer) {
 
 // Get Offer
 export const getOffer = function(page, offer_id) {
-  showLoading(true);
-
   const callback = res => {
     let offer = res[0];
+    offer.media.map( m => m.uri = `${app.folders.offer_media}${m.uri}` )
+
+    // Banner
+    let banner = '';
+    if (offer.banner) {
+      if (offer.banner[app.db.get('language')]) {
+        banner = offer.banner[app.db.get('language')];
+      } else if (app.db.get('language') === 'zh' && offer.banner.en) {
+        banner = offer.banner.en;
+      } else if (app.db.get('language') === 'en' && offer.banner.zh) {
+        banner = offer.banner.zh;
+      }
+    }
+    banner.uri = `${app.folders.offer_banner}${banner.uri}`;
+    offer.media = [banner, ...offer.media];
     offer.community = communities[offer.community.id];
     offer = packProductDetail(offer);
+
+    // Add to total
+    offer.miniprogram.items.map( i => {
+      offer.total += i.stock;
+      offer.sold += (i.stock - i.actualStock);
+    })
+
+    // Special name
+    let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
+    let product_name_list = {};
+    offer_products.map( p => {
+      let p_name = '';
+      if (p.products) {
+        p_name = `${p.name[app.db.get('language')]}`;
+      } else {
+        p_name = `${p.product.name[app.db.get('language')]}`;
+      }
+      product_name_list[p.shortName] = p_name;
+    })
 
     getUserInfo(page);
 
     page.setData({
-      _folders: {
-        offer_media: app.folders.offer_media,
-      },
       _offer_setting: {
         folders: {
           product_picture: app.folders.product_picture
@@ -104,6 +140,7 @@ export const getOffer = function(page, offer_id) {
         total: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].total : 0,
       },
       _offer: offer,
+      _product_names: product_name_list,
       cart: app.db.get('cart')[offer.id],
     })
 
@@ -122,6 +159,7 @@ export const getOffer = function(page, offer_id) {
     });
   }
 
+  showLoading(true);
   // Update number of views for offer before getting offer
   app.api.setOfferView(offer_id).then(res => {
     // Get product by offer id

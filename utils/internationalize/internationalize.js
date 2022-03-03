@@ -141,6 +141,41 @@ export const languageMap_en = {
   // O
   offer: "Offer",
   offer_label: " Offer",
+  offer_special_details: {
+    discount: "% discount rate",
+    free_delivery: "free delivery",
+    get: "Get ",
+    for_free: {
+      prefix: "",
+      suffix: " for free",
+    },
+    voucher: {
+      single: " voucher",
+      multiple: " vouchers"
+    },
+  },
+  offer_special_names: {
+    first_order: {
+      prefix: "first ",
+      suffix: " orders",
+    },
+    item_x_in_cart: {
+      prefix: ' "',
+      suffix: '" in cart',
+    },
+    number_of_order: {
+      prefix: "above ",
+      suffix: " total orders",
+    },
+    order_for_amount: {
+      prefix: "order above ¥",
+      suffix: "",
+    },
+    x_total_sold_items: {
+      prefix: "",
+      suffix: " total sold items",
+    },
+  },
   offers: " offers",
   only_left: {
     fst: "Only ",
@@ -401,6 +436,41 @@ export const languageMap_zh = {
   // O
   offer: "Offer",
   offer_label: " Offer",
+  offer_special_details: {
+    discount: "% discount rate",
+    free_delivery: "free delivery",
+    get: "Get ",
+    for_free: {
+      prefix: "",
+      suffix: " for free",
+    },
+    voucher: {
+      single: " voucher",
+      multiple: " vouchers"
+    },
+  },
+  offer_special_names: {
+    first_order: {
+      prefix: "first ",
+      suffix: " orders",
+    },
+    item_x_in_cart: {
+      prefix: '"',
+      suffix: '" in cart',
+    },
+    number_of_order: {
+      prefix: "above ",
+      suffix: " total orders",
+    },
+    order_for_amount: {
+      prefix: "order above ¥",
+      suffix: "",
+    },
+    x_total_sold_items: {
+      prefix: "",
+      suffix: " total sold items",
+    },
+  },
   offers: " offers",
   only_left: {
     fst: "只剩 ",

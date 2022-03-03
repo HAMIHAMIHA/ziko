@@ -21,7 +21,7 @@
       <swiper class="swiper" bindchange="swiperChange">
         <block wx:for="{{ _offer.media }}" wx:key="key" wx:for-item="media">
           <swiper-item class="swiper_item">
-            <image src="{{ media ? _folders.offer_media + media.uri : '' }}" mode="aspectFill" lazy-load="true" ></image>
+            <image src="{{ media ? media.uri : '' }}" mode="aspectFill" lazy-load="true" ></image>
           </swiper-item>
         </block>
       </swiper>
@@ -122,27 +122,27 @@
     <!-- End of Offer Product List -->
 
     <!-- Offer Specials -->
-    <!-- TEMP hide for v1 (Did not translate) -->
-    <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.specials }}" wx:if="{{ showing }}">
+    <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}">
       <view class="offer-specials_title">
         <view class="icon icon-ziko-special"></view>
       </view>
       <view class="offer-specials_list">
-        <!-- TODO move to component if revceived data need to alter value -->
-        <view class="flex-center offer-special" wx:for="{{ _offer.specials }}" wx:key="id" wx:for-item="special">
-          <view class="gilroy_700 uppercase offer-special_title">
-            <text wx:if="{{special.type == 'first'}}">first {{ special.amount }} orders</text>
-            <text wx:elif="{{ special.type == 'totalAbove' }}">above {{ special.amount }} total orders</text>
-            <text wx:elif="{{ special.type == 'orderAbove' }}">order above ¥{{ special.amount }}</text>
-            <text wx:elif="{{ special.type == 'totalSold' }}">{{ special.amount }} total sold items</text>
-            <text wx:elif="{{ special.type == 'cart' }}">"{{ special.item }}" in cart</text>
+        <block wx:for="{{ _offer.miniprogram.zikoSpecials }}" wx:key="id" wx:for-item="special">
+          <view class="flex-center offer-special" >
+            <view class="gilroy_700 uppercase offer-special_title">
+              <text wx:if="{{ special.conditionType !== 'item_x_in_cart' }}">{{ _t.offer_special_names[special.conditionType].prefix }}{{ special.conditionValue }}{{ _t.offer_special_names[special.conditionType].suffix }}</text>
+              <text wx:else>{{ special.conditionValue != null ? special.conditionValue + ' ' : '' }}{{ _t.offer_special_names[special.conditionType].prefix }}{{ _product_names[special.conditionPack] }}{{ _t.offer_special_names[special.conditionType].suffix }}</text>
+            </view>
+            <view class="offer-special_detail">
+              <text wx:if="{{ special.gift.type == 'pack' }}">{{ _t.offer_special_details.get }}{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[special.gift.pack] }}{{ _t.offer_special_details.for_free.suffix }}</text>
+              <text wx:if="{{ special.gift.type == 'add_on' }}">{{ _t.offer_special_details.get }}{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[special.gift.singleItem] }}{{ _t.offer_special_details.for_free.suffix }}</text>
+              <text wx:if="{{ special.gift.type == 'voucher' }}">{{ _t.offer_special_details.get }}{{ special.gift.voucherValue }}{{ special.gift.voucherValue === 1 ? _t.offer_special_details.voucher.single : _t.offer_special_details.voucher.multiple }}</text>
+              <text wx:if="{{ special.gift.type == 'discount' }}">{{ _t.offer_special_details.get }}{{ special.gift.discountAmount }}{{ _t.offer_special_details.discount }}</text>
+              <text wx:if="{{ special.gift.type == 'free_delivery' }}">{{ _t.offer_special_details.get }}{{ _t.offer_special_details.free_delivery }}</text>
+              <text wx:if="{{ special.gift.type == 'custom' }}">{{ special.gift.custom[_language] }}</text>
+            </view>
           </view>
-
-          <view class="offer-special_detail">
-            <text wx:if="{{special.get == 'reduction'}}">Get {{ special.rate }}% discount rate</text>
-            <text wx:elif="{{ special.get == 'addon' }}">Get {{ special.addon.quantity }} x {{ special.addon.weight }}{{ _setting.units }} item name for free</text>
-          </view>
-        </view>
+        </block>
       </view>
     </view>
     <!-- End of Offer Specials -->
