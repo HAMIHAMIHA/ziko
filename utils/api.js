@@ -20,7 +20,6 @@ const get = (path) => {
       url: url,
       header: header,
       success: function (res) {
-        showLoading(false);
         if (res.data.success === false) {
           console.debug(res.data.message);
           if (reject) {
@@ -31,7 +30,6 @@ const get = (path) => {
         }
       },
       fail: function (res) {
-        showLoading(false);
         console.debug('err', res);
       }
     });
@@ -48,7 +46,6 @@ const post = (path, data) => {
       data: data,
       method: 'POST',
       success: function (res) {
-        showLoading(false);
         if (res.data.success === false) {
           console.debug(res.data.message);
           if (reject) {
@@ -59,7 +56,6 @@ const post = (path, data) => {
         }
       },
       fail: function (res) {
-        showLoading(false);
         console.debug('err', res);
       }
     });
@@ -67,7 +63,7 @@ const post = (path, data) => {
 }
 
 // put请求
-const put = (path, data, callback) => {
+const put = (path, data) => {
   let [header, url] = _unifyHeaders(path);
   return new Promise((resolve, reject) => {
     wx.request({
@@ -76,7 +72,6 @@ const put = (path, data, callback) => {
       data: data,
       method: 'PUT',
       success: function (res) {
-        showLoading(false);
         if (res.data.success === false) {
           console.debug(res.data.message);
           if (reject) {
@@ -87,7 +82,6 @@ const put = (path, data, callback) => {
         }
       },
       fail: function (res) {
-        showLoading(false);
         console.debug('err', res);
       }
     });
@@ -106,7 +100,6 @@ const upload = (folder_path, file) => {
       name: folder_path,
       success: function (res) {
         if (res.statusCode != 200) {
-          showLoading(false);
           console.debug(res.data.message);
           if (reject) {
             reject(res.data.message);
@@ -116,7 +109,6 @@ const upload = (folder_path, file) => {
         resolve(JSON.parse(res.data));
       },
       fail: function (res) {
-        showLoading(false);
         console.debug('err', res);
       }
     })
