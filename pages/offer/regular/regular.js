@@ -32,12 +32,6 @@ Page({
     Offers.unloadOfferPage();
   },
 
-  // Hide for v1
-  onReachBottom: function() {
-    // TODO If current tab is on receipe
-    Offers.updateReceipes(this);
-  },
-
   // Mobile login
   getPhoneNumber: function(e) {
     mobileLogin(this, e.detail.code, this.checkout);
@@ -69,6 +63,12 @@ Page({
     // TODO change to show and hide css on switch
     self.setData({
       "_setting.currentTab": e.currentTarget.dataset.toTab
+    })
+
+    ('#tabbar')
+    wx.pageScrollTo({
+      duration: 100,
+      scrollTop: 0,
     })
   },
 

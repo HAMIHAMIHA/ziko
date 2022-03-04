@@ -68,7 +68,7 @@
   </view>
 
   <!-- Offer Tabbar -->
-  <view class="uppercase gilroy_700 flex-center tabbar">
+  <view class="uppercase gilroy_700 flex-center tabbar" id="tabbar">
     <view
       class="tabbar_item{{ _setting.currentTab == 'product' ? ' selected' : '' }}"
       bindtap="switchTab"

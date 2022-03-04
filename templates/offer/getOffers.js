@@ -185,17 +185,6 @@ export const getOffer = function(page, offer_id) {
 // Hide for v1
 // Get offer messages
 
-
-// Hide for v1
-// Get offer receipes
-export const updateReceipes = (page) => {
-  // var receipecomp = page.selectComponent("#receipes-component");
-  // // TODO
-  // if (data) {
-  //   receipecomp.onReachBottom();
-  // }
-}
-
 export const unloadOfferPage = () => {
   let pages = getCurrentPages();
   let previous_page = pages[pages.length - 2];
