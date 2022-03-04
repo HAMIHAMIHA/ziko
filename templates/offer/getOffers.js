@@ -113,7 +113,7 @@ export const getOffer = function(page, offer_id) {
       offer.sold += (i.stock - i.actualStock);
     })
 
-    // Special name
+    // Product / Pack name
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
     let product_name_list = {};
     offer_products.map( p => {
@@ -125,6 +125,12 @@ export const getOffer = function(page, offer_id) {
       }
       product_name_list[p.shortName] = p_name;
     })
+
+    // Find if Offer Popup message needed
+    if (offer.miniprogram.zikoSpecials.length > 0) {
+      let specail_orders_list = [...offer.miniprogram.zikoSpecials].filter(special => special.conditionType === 'number_of_order').sort((s1, s2) => {s2.conditionValue - s1.conditionValue });
+      console.log(specail_orders_list);
+    }
 
     getUserInfo(page);
 
