@@ -171,7 +171,6 @@
     <!-- End of Offer Specials -->
 
     <!-- Lottery -->
-    <!-- TEMP hide for v1 (Did not translate) -->
     <view class="offer-lotteries" wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}">
       <view class="lottery_regular">
         <lottery lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}"></lottery>
