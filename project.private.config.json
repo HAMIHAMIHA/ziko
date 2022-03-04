@@ -17,14 +17,14 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=621edee4f06d31c51e3b8175",
+          "query": "id=6221c740f06d31c51e3ba287",
           "scene": null,
           "launchMode": "default"
         },
         {
           "name": "Cellar",
           "pathName": "pages/offer/cellar/cellar/cellar",
-          "query": "id=61dfc88f1e5f2a58a8457fc3",
+          "query": "id=62203281f06d31c51e3b8806",
           "launchMode": "default",
           "scene": null
         },

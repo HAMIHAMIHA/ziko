@@ -83,6 +83,7 @@ export const languageMap_en = {
   empty: "empty",
   en: "EN",
   explore: "explore",
+  extra_ticket: "extra ticket",
 
   // F
   fapiao : "Fapiao",
@@ -163,6 +164,7 @@ export const languageMap_en = {
       prefix: ' "',
       suffix: '" in cart',
     },
+    items_sold: "items sold",
     number_of_order: {
       prefix: "above ",
       suffix: " total orders",
@@ -171,6 +173,7 @@ export const languageMap_en = {
       prefix: "order above ¥",
       suffix: "",
     },
+    orders_sold:  "orders sold",
     x_total_sold_items: {
       prefix: "",
       suffix: " total sold items",
@@ -246,6 +249,7 @@ export const languageMap_en = {
     snd: " receipes"
   },
   remaining_time: "remaining time",
+  rmb: "rmb",
 
   // S
   save: "Save",
@@ -265,6 +269,7 @@ export const languageMap_en = {
   },
 
   // T
+  ticket: "ticket",
   total: "Total",
   total_units_available: "total units available",
   tracking_number: "Tracking number",
@@ -378,6 +383,7 @@ export const languageMap_zh = {
   empty: "empty",
   en: "英文",
   explore: "explore",
+  extra_ticket: "extra ticket",
 
   // F
   fapiao : "Fapiao",
@@ -458,6 +464,7 @@ export const languageMap_zh = {
       prefix: '"',
       suffix: '" in cart',
     },
+    items_sold: "items sold",
     number_of_order: {
       prefix: "above ",
       suffix: " total orders",
@@ -466,6 +473,7 @@ export const languageMap_zh = {
       prefix: "order above ¥",
       suffix: "",
     },
+    orders_sold:  "orders sold",
     x_total_sold_items: {
       prefix: "",
       suffix: " total sold items",
@@ -540,6 +548,7 @@ export const languageMap_zh = {
     snd: " receipes"
   },
   remaining_time: "remaining time",
+  rmb: "rmb",
 
   // S
   save: "Save",
@@ -559,6 +568,7 @@ export const languageMap_zh = {
   },
 
   // T
+  ticket: "ticket",
   total: "Total",
   total_units_available: "total units available",
   tracking_number: "Tracking number",

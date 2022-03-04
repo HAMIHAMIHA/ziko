@@ -30,6 +30,7 @@ export const _getTranslations = (page, community) => {
       offer_special_names: i18n.offer_special_names,
       offer_special_details: i18n.offer_special_details,
       order_unit: i18n.order_unit,
+      orders: i18n.orders,
       orders_unit: i18n.orders_unit,
       our_selected_packs: i18n.our_selected_packs,
       pay: i18n.pay,
@@ -50,6 +51,13 @@ export const _getTranslations = (page, community) => {
       products_left: i18n.products_left,
       storage_types: i18n.storage_types,
       units: i18n.units[community],
+    },
+    _t_lottery: {
+      extra_ticket: i18n.extra_ticket,
+      item_unit: i18n.item_unit,
+      items_unit: i18n.items_unit,
+      rmb: i18n.rmb,
+      ticket: i18n.ticket,
     }
   })
 }

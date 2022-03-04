@@ -866,11 +866,12 @@ button:not([size=mini]).float-contact_container {
 
 .offer-specials_list .offer-special,
 .offer-lotteries_list .offer-lottery {
-  height: 220rpx;
+  min-height: 220rpx;
   padding: 20rpx;
   text-align: center;
   border: 1px solid #000;
   flex-direction: column;
+  align-self: flex-start;
 }
 
 .offer-lotteries_list .offer-lottery {
@@ -890,29 +891,39 @@ button:not([size=mini]).float-contact_container {
   line-height: 36rpx;
 }
 
-.offer-lotteries .lottery-ticket_container {
+.offer-lotteries .lottery-tickets_container {
+  padding: 0 48rpx 40rpx;
   text-align: center;
 }
 
-.offer-lotteries .lottery-ticket {
+.offer-lotteries .lottery-ticket__container {
+  width: fit-content;
   height: fit-content;
-  position: relative;
+  margin: auto;
+  text-align: center;
 }
 
-.offer-lotteries .lottery-ticket_icon {
+.offer-lotteries .lottery-ticket__container + .lottery-ticket__container {
+  margin-top: 14rpx;
+}
+
+.offer-lotteries .lottery-ticket_detail {
+  margin-top: 32rpx;
+  font-size: 28rpx;
+  line-height: 32rpx;
+}
+
+.offer-lotteries .lottery-ticket {
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: -1;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .offer-lotteries .lottery-ticket_text {
-  padding: 5rpx 0;
-  margin: auto;
+  padding: 5rpx 30rpx;
   color: #221E1F;
+  text-align: center;
 }
 
 .offer-lotteries .lottery-ticket_text_top {
@@ -925,10 +936,11 @@ button:not([size=mini]).float-contact_container {
   line-height: 32rpx;
 }
 
-.offer-lotteries .lottery-ticket_detail {
-  padding: 32rpx 78rpx 40rpx;
-  font-size: 28rpx;
-  line-height: 32rpx;
+.offer-lotteries .lottery-ticket_image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 /* End of Offer Specials */
 

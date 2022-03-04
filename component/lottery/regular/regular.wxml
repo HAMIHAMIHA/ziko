@@ -1,34 +1,28 @@
 <view class="offer-lotteries_title">
   <view class="icon icon-ziko-lottery"></view>
 </view>
-<view class="lottery-ticket_container">
-  <view class="lottery-ticket">
-    <view class="lottery-ticket_icon">
-      <image src="/assets/icons/lotteryTicket.svg" mode="aspectFit"></image>
-    </view>
-    <view class="lottery-ticket_text">
-      <view class="uppercase lottery-ticket_text_top">1 ticket</view>
-      <view class="nunito_800 uppercase lottery-ticket_text_bottom">200rmb</view>
+<view class="lottery-tickets_container">
+  <view class="lottery-ticket__container">
+    <view class="lottery-ticket">
+      <view class="lottery-ticket_text">
+        <view class="uppercase lottery-ticket_text_top">1 {{ _t.ticket }}</view>
+        <view class="nunito_800 uppercase lottery-ticket_text_bottom">{{ lottery.conditionValue }}{{ lottery.conditionType === 'spend' ? _t.rmb : lottery.conditionValue > 1 ? _t.items_unit : _t.item_unit }}</view>
+      </view>
+      <image class="lottery-ticket_image" src="/assets/icons/lotteryTicket.svg" mode="aspectFill"></image>
     </view>
   </view>
-  <view class="lottery-ticket_detail">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet.
+
+  <view class="lottery-ticket__container" wx:if="{{ lottery.extraConditionType != null }}">
+    <view class="lottery-ticket">
+      <view class="lottery-ticket_text">
+        <view class="uppercase lottery-ticket_text_top">{{ _t.extra_ticket }}</view>
+        <view class="nunito_800 uppercase lottery-ticket_text_bottom">{{ lottery.extraConditionValue }}{{ lottery.extraConditionType === 'spend' ? _t.rmb : lottery.extraConditionValue > 1 ? _t.items_unit : _t.item_unit }}</view>
+      </view>
+      <image class="lottery-ticket_image" src="/assets/icons/lotteryTicket.svg" mode="aspectFill"></image>
+    </view>
   </view>
-</view>
 
-<view class="offer-lotteries_list">
-  <view class="flex-center offer-lottery" wx:for="{{ lotteries }}" wx:key="id" wx:for-item="lottery">
-    <view class="gilroy_700 uppercase offer-lottery_title">
-      <text wx:if="{{lottery.type == 'first'}}">{{ lottery.amount }} orders</text>
-      <text wx:elif="{{ lottery.type == 'totalAbove' }}">above {{ lottery.amount }} total orders</text>
-      <text wx:elif="{{ lottery.type == 'orderAbove' }}">order above ¥{{ lottery.amount }}</text>
-      <text wx:elif="{{ lottery.type == 'totalSold' }}">{{ lottery.amount }} total sold items</text>
-      <text wx:elif="{{ lottery.type == 'cart' }}">"{{ lottery.item }}" in cart</text>
-    </view>
-
-    <view class="offer-lottery_detail">
-      <text wx:if="{{lottery.get == 'reduction'}}">Get {{ lottery.rate }}% discount rate</text>
-      <text wx:elif="{{ lottery.get == 'addon' }}">Get {{ lottery.addon.quantity }} x {{ lottery.addon.weight }}{{ _setting.units }} item name for free</text>
-    </view>
+  <view class="lottery-ticket_detail" wx:if="{{ lottery.detail }}">
+    {{ lottery.detail }}
   </view>
 </view>

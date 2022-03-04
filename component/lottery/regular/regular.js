@@ -1,19 +1,13 @@
 Component({
   properties: {
-    lotteries: Array
+    lottery: Object,
+    _t: Object,
   },
 
   options: {
     addGlobalClass: true
   },
 
-  data: {
-
-  },
-
-  /**
-   * Component methods
-   */
   methods: {
 
   }
