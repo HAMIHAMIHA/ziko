@@ -20,32 +20,25 @@ let _doAppendMasonry = (page, items) => {
 
 Component({
   properties: {
-    items: {
-      type: Object,
-      value: mock,
-    },
-    // recipes: {
-    //   type: Object,
-    //   value: mock,
-    // },
+  },
+  data: {
+    items: mock,
   },
   options: {
     addGlobalClass: true
   },
-  
   ready: function () {
     let self = this;
     console.log('receipe show');
     _doAppendMasonry(self, self.data.items);
   },
-
   methods: {
-    // onReachBottom: function(data) {
-    //   let self = this;
+    onReachBottom: function(data) {
+      let self = this;
       
-    //   if (data) {
-    //     _doAppendMasonry(self, data);
-    //   }
-    // }
+      if (data) {
+        _doAppendMasonry(self, data);
+      }
+    }
   }
 })

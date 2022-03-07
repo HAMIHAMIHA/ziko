@@ -2,40 +2,14 @@
   <view class="masonry-list-left" style="{{ 'margin-right:' + intervalWidth }}">
     <view id="left-col-inner">
       <block wx:for="{{items}}" wx:key="id">
-        <view class="receipe_container" wx:if="{{item.columnPosition === 'left'}}">
-          <view class="receipe">
-            <view class="receipe-image">
-              <image src="/assets/images/receipeBanner.png" mode="widthFix"></image>
-            </view>
-            <view class="gilroy_700 uppercase receipe-title">
-              {{ item.title }}
-            </view>
-            <view class="receipe-info">
-              <view class="reveipe-prep-time">Preparation: {{ item.prep }}min</view>
-              <view class="reveipe-bake-time">Baking: {{ item.bake }}min</view>
-            </view>
-          </view>
-        </view>
+        <masonry-item wx:if="{{item.columnPosition === 'left'}}" item="{{item}}"></masonry-item>
       </block>
     </view>
   </view>
   <view class="masonry-list-right">
     <view id="right-col-inner">
       <block wx:for="{{items}}" wx:key="id">
-        <view class="receipe_container" wx:if="{{item.columnPosition === 'right'}}">
-          <view class="receipe">
-            <view class="receipe-image">
-              <image src="/assets/images/receipeBanner.png" mode="widthFix"></image>
-            </view>
-            <view class="gilroy_700 uppercase receipe-title">
-              {{ item.title }}
-            </view>
-            <view class="receipe-info">
-              <view class="reveipe-prep-time">Preparation: {{ item.prep }}min</view>
-              <view class="reveipe-bake-time">Baking: {{ item.bake }}min</view>
-            </view>
-          </view>
-        </view>
+        <masonry-item wx:if="{{item.columnPosition === 'right'}}" item="{{item}}"></masonry-item>
       </block>
     </view>
   </view>

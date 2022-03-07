@@ -8,16 +8,10 @@ Component({
       value: "20rpx"
     }
   },
-
   data: {
     items: [],
     stopMasonry: false
   },
-
-  options: {
-    addGlobalClass: true
-  },
-
   methods: {
     /**
      * 批量添加元素
@@ -43,16 +37,16 @@ Component({
      * @param {Number} start - 开始下标 
      * @param {Number} end  - 结束下标
      */
-    // delete(start, end) {
-    //   const { items } = this.data;
-    //   if (start < end && start < items.length - 1) {
-    //     let len = end- start;
-    //     let newItems = items.splice(start, len);
-    //     this._refresh(newItems)
-    //   } else {
-    //     console.error("[masonry]初始下标异常，删除失败！");
-    //   }
-    // },
+    delete(start, end) {
+      const { items } = this.data;
+      if (start < end && start < items.length - 1) {
+        let len = end- start;
+        let newItems = items.splice(start, len);
+        this._refresh(newItems)
+      } else {
+        console.error("[masonry]初始下标异常，删除失败！");
+      }
+    },
 
     /**
      * 更新数组中的某个元素
@@ -80,15 +74,15 @@ Component({
      * 
      * @param {Number} index - 数组下标
      */
-    // deleteItem(index) {
-    //   const { items } = this.data;
-    //   if (index <= items.length - 1) {
-    //     let newItems = items.splice(index, 1);
-    //     this._refresh(newItems)
-    //   } else {
-    //     console.error("[masonry]下标越界，删除失败！");
-    //   }
-    // },
+    deleteItem(index) {
+      const { items } = this.data;
+      if (index <= items.length - 1) {
+        let newItems = items.splice(index, 1);
+        this._refresh(newItems)
+      } else {
+        console.error("[masonry]下标越界，删除失败！");
+      }
+    },
 
     /**
      * 刷新瀑布流
@@ -147,11 +141,13 @@ Component({
         this.columnNodes.boundingClientRect().exec(arr => {
           const item = items[i]
           const rects = arr[0]
+          const leftColHeight = rects[0].height
+          const rightColHeight = rects[1].height
 
           this.setData({
             items: [...this.data.items, {
               ...item,
-              columnPosition: rects[0].height <= rects[1].height ? 'left' : 'right'
+              columnPosition: leftColHeight <= rightColHeight ? 'left' : 'right'
             }]
           }, () => {
             this._render(items, ++i, onComplete)
