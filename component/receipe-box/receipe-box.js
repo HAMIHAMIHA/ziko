@@ -1,9 +1,19 @@
+const app = getApp();
+
 Component({
   properties: {
-    item: { 
-      type: Object
+    item: Object,
+    _t: Object,
+  },
+  data: {
+    _routes: {
+      recipe: app.routes.recipe
+    },
+    _folders: {
+      recipe_picture: ''
     }
   },
+
   options: {
     addGlobalClass: true
   }
