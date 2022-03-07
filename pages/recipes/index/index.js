@@ -1,66 +1,35 @@
-// pages/recipes/index/index.js
+const app = getApp();
+
+// Set Translation text
+const _setTranslation = page => {
+  const i18n = app.globalData.i18n;
+
+  page.setData({
+    _t: {
+      baking: i18n.baking,
+      min: i18n.min,
+      preparation: i18n.preparation,
+      _language: app.db.get('language'),
+    }
+  })
+}
+
 Page({
-
-  /**
-   * Page initial data
-   */
-  data: {
-
+  onLoad: function() {
+    const self = this;
+    self.setData({
+      recipes: {}
+    })
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
-
+  onShow: function() {
+    const self = this;
+    _setTranslation(self);
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
+  changeRecipes: function() {
+    const self = this;
 
+    // self.selectComponent('#receipes-component').updateReceipeList(data);
   },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
-  }
 })

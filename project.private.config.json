@@ -18,8 +18,8 @@
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
           "query": "id=6221c740f06d31c51e3ba287",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "Cellar",
@@ -124,6 +124,13 @@
           "query": "id=61e00b33fa98797bdd5097f0",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "recipes list",
+          "pathName": "pages/recipes/index/index",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
         }
       ]
     }

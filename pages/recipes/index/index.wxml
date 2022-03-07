@@ -1,2 +1,30 @@
-<!--pages/recipes/index/index.wxml-->
-<text>pages/recipes/index/index.wxml</text>
+<view class="container">
+  <!-- Search -->
+  <view class="search-container">
+    <view class="search-input">
+      <text class="icon icon-search"></text>
+      <input type="search" placeholder="{{ _t.try_text }}" />
+    </view>
+    <button class="filter-btn icon icon-filters"></button>
+  </view>
+  <!-- End of Search -->
+
+  <!-- Filter List -->
+  <view class="filter-container">
+    <block wx:for="{{ filters }}" wx:key="_id" wx:for-item="filter">
+      <view class="filter-item">
+        <text class="filter-text">{{ filter.name[_t._language] }}</text>
+        <text class="filter-icon icon icon-x"></text>
+      </view>
+    </block>
+  </view>
+  <!-- End of Filter List -->
+
+  <!-- Offer Receipes -->
+  <view class="list_container">
+    <view class="offer-group receipe-group">
+      <receipes id="receipes-component" items="{{ recipes }}" _t="{{ _t }}"></receipes>
+    </view>
+  </view>
+  <!-- End of Offer Receipes -->
+</view>

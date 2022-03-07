@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "receipes": "/component/receipes/receipes"
+  }
 }
