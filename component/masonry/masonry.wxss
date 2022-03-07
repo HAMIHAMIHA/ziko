@@ -9,3 +9,35 @@
   display: flex;
   flex-direction: column;
 }
+
+/* Receipe */
+.receipe_container {
+  padding-top: 48rpx;
+}
+
+.receipe {
+  width: 100%;
+}
+
+.receipe-image {
+  width: 100%;
+  display: flex;
+  margin-bottom: 16rpx;
+}
+
+.receipe-image image {
+  width: 100%;
+  border-radius: 8rpx;
+}
+
+.receipe-title {
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+
+.receipe-info {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+/* End of Receipe */
