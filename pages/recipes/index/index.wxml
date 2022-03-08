@@ -27,4 +27,30 @@
     </view>
   </view>
   <!-- End of Offer Recipes -->
+
+  <!-- Filter -->
+  <view class="filter__container">
+    <!-- Filter Top -->
+    <view class="filter-top">
+      <button class="filter-back">
+        <text class="icon icon-arrow-left"></text>
+      </button>
+      <button class="filter-reset">
+        {{ _t.reset_filters }}
+      </button>
+    </view>
+    <!-- End of Filter Top -->
+
+    <!-- Filter List -->
+    <view class="filter-list">
+      <block wx:for="{{ filter_categories }}" wx:for-item="category">
+        <view class="filter__name">{{ category.name[_language] }}</view>
+        <block wx:for="{{ category.tags }}" wx:for-item="tag">
+          <view class="filter__tag">{{ tag.name[_language] }}</view>
+        </block>
+      </block>
+    </view>
+    <!-- End of Filter List -->
+  </view>
+  <!-- End of Filter -->
 </view>
