@@ -167,7 +167,8 @@ image {
 }
 
 /* Button Bottom */
-.container-btn-bottom .btn-bottom button {
+.container-btn-bottom .btn-bottom button,
+.btn-primary {
   width: calc(100vw - 30rpx - 30rpx);
   padding: 32rpx 0;
   background: #3F4250;
@@ -176,6 +177,9 @@ image {
   font-size: 32rpx;
   line-height: 36rpx;
   border-radius: 8rpx;
+}
+
+.container-btn-bottom .btn-bottom button {
   position: absolute;
   left: 30rpx;
   bottom: calc(48rpx + var(--env-));
