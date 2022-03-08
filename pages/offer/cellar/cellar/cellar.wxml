@@ -99,13 +99,11 @@
     >
       {{ _t.products }}
     </view>
-    <!-- TEMP hide for v1 -->
     <view
       class="tabbar_item{{ _setting.currentTab == 'receipe' ? ' selected' : '' }}"
       bindtap="switchTab"
       data-to-tab="receipe"
       animation="{{ _setting.animate.tab }}"
-      wx:if="{{ showing }}"
     >
       {{ _t.receipes }}
     </view>

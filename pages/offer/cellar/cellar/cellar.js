@@ -32,12 +32,6 @@ Page({
     Offers.unloadOfferPage();
   },
 
-  // Hide for v1
-  onReachBottom: function() {
-    // TODO If current tab is on receipe
-    Offers.updateReceipes(this);
-  },
-
   // Mobile login
   getPhoneNumber: function(e) {
     mobileLogin(this, e.detail.code, this.checkout);
