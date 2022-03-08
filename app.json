@@ -18,7 +18,6 @@
     "pages/product/product",
     "pages/recipes/index/index",
     "pages/recipes/detail/detail",
-    "pages/recipes/filter/filter",
     "pages/vouchers/index/index",
     "pages/vouchers/select/select"
   ],
