@@ -55,12 +55,11 @@
 
   <!-- SHORT CUTS -->
   <view class="gilroy_700 uppercase card short-cuts">
-    <navigator class="short-cuts__button" url="{{ _routes.orders }}" open-type="switchTab">
+    <navigator class="short-cuts__button{{ _user.new_orders ? ' new' : '' }}" url="{{ _routes.orders }}" open-type="switchTab">
       <view class="short-cut__icon icon icon-package"></view>
       <view class="short-cut__label">{{ _t.orders }}</view>
     </navigator>
-    <!-- Hide for v1 -->
-    <navigator class="short-cuts__button" url="{{ _routes.claims }}" wx:if="{{ showing }}">
+    <navigator class="short-cuts__button" url="{{ _routes.claims }}">
       <view class="short-cut__icon icon icon-box"></view>
       <view class="short-cut__label">{{ _t.claims }}</view>
     </navigator>
@@ -68,8 +67,7 @@
       <view class="short-cut__icon icon icon-headset"></view>
       <view class="short-cut__label">{{ _t.contact }}</view>
     </button>
-    <!-- Hide for v1 -->
-    <navigator class="short-cuts__button" url="{{ _routes.vouchers }}" wx:if="{{ showing }}">
+    <navigator class="short-cuts__button{{ _user.new_vouchers ? ' new' : '' }}" url="{{ _routes.vouchers }}">
       <view class="short-cut__icon icon icon-redpacket"></view>
       <view class="short-cut__label">{{ _t.vouchers }}</view>
     </navigator>

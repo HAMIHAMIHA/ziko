@@ -99,7 +99,6 @@ button:not([size=mini]).user-info__login {
   padding: 30rpx 35rpx;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-columns: repeat(2, 1fr); /* TEMP for v1 */
 }
 
 .short-cuts__button,
@@ -113,10 +112,31 @@ button:not([size=mini]).short-cuts__button {
 }
 
 .short-cut__icon {
-  margin-bottom: 18rpx;
+  width: 48rpx;
+  height: 48rpx;
+  margin: auto;
+  margin-bottom: 14rpx;
   color: #20A1FF;
-  font-size: 36rpx;
-  line-height: 1.2;
+  font-size: 48rpx;
+  position: relative;
+}
+
+.short-cuts__button.new .short-cut__icon:before {
+  height: 100%;
+}
+
+.short-cuts__button.new .short-cut__icon:after {
+  content: '';
+  position: absolute;
+  width: 14rpx;
+  height: 14rpx;
+  background: #F74A5C;
+  border: 1px solid #373A44;
+  border-radius: 50%;
+  position: absolute;
+  right: -8rpx;
+  top: -8rpx;
+  z-index: 1;
 }
 
 .short-cut__label {
