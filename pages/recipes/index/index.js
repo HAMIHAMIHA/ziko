@@ -26,7 +26,7 @@ Page({
     const self = this;
     _setTranslation(self);
 
-    updatePageLanguage();
+    self.updatePageLanguage();
   },
 
   updatePageLanguage: function() {
@@ -38,10 +38,10 @@ Page({
     // Translation and default values
     let i18n = app.globalData.i18n;
     self.setData({
-      _language: app.db.get('language'),
       _t: {
+        _language: app.db.get('language'),
         baking: i18n.baking,
-        min: i18n.min,
+        minutes: i18n.minutes,
         preparation: i18n.preparation,
       }
     })
@@ -50,6 +50,6 @@ Page({
   changeRecipes: function() {
     const self = this;
 
-    // self.selectComponent('#receipes-component').updateReceipeList(data);
+    // self.selectComponent('#recipes-component').updateRecipeList(data);
   },
 })

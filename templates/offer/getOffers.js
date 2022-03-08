@@ -58,6 +58,12 @@ export const _getTranslations = (page, community) => {
       items_unit: i18n.items_unit,
       rmb: i18n.rmb,
       ticket: i18n.ticket,
+    },
+    _t_recipes: {
+      _language: app.db.get('language'),
+      baking: i18n.baking,
+      minutes: i18n.minutes,
+      preparation: i18n.preparation,
     }
   })
 }

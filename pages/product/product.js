@@ -119,6 +119,12 @@ Page({
         products_left: i18n.products_left,
         related_recipes: i18n.related_recipes,
         storage_types: i18n.storage_types,
+      },
+      _t_recipes: {
+        _language: app.db.get('language'),
+        baking: i18n.baking,
+        minutes: i18n.minutes,
+        preparation: i18n.preparation,
       }
     })
 

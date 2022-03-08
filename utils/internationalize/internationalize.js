@@ -31,6 +31,7 @@ export const languageMap_en = {
   },
 
   // B
+  baking: "Baking",
 
   // C
   cart: "Cart",
@@ -115,6 +116,7 @@ export const languageMap_en = {
   // M
   minimum: "Min",
   minimum_in_cart: "Must have at least one item in cart",
+  minutes: "min",
   mobile_login: "Mobile login",
   month: {
     1: "January",
@@ -226,6 +228,7 @@ export const languageMap_en = {
   },
   phone_no: "Phone no",
   pm: "PM",
+  preparation: "Preparation",
   price_rules: {
     bourse: "Bourse",
     cave: "Cave",
@@ -243,10 +246,10 @@ export const languageMap_en = {
 
   // Q
   // R
-  receipes: "receipes",
-  related_receipes: {
+  recipes: "recipes",
+  related_recipes: {
     fst: "related",
-    snd: " receipes"
+    snd: " recipes"
   },
   remaining_time: "remaining time",
   rmb: "rmb",
@@ -331,6 +334,7 @@ export const languageMap_zh = {
   },
 
   // B
+  baking: "Baking",
 
   // C
   cart: "购物车",
@@ -415,6 +419,7 @@ export const languageMap_zh = {
   // M
   minimum: "Min",
   minimum_in_cart: "Must have at least one item in cart",
+  minutes: "min",
   mobile_login: "手机登录",
   month: {
     1: "1月",
@@ -525,6 +530,7 @@ export const languageMap_zh = {
   },
   phone_no: "Phone no",
   pm: "下午",
+  preparation: "Preparation",
   price_rules: {
     bourse: "Bourse",
     cave: "Cave",
@@ -542,10 +548,10 @@ export const languageMap_zh = {
 
   // Q
   // R
-  receipes: "receipes",
-  related_receipes: {
+  recipes: "recipes",
+  related_recipes: {
     fst: "related",
-    snd: " receipes"
+    snd: " recipes"
   },
   remaining_time: "remaining time",
   rmb: "rmb",

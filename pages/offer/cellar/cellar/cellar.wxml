@@ -209,7 +209,7 @@
         <text class="gilroy_700">{{ _t.related_recipes.snd }}</text>
       </view>
 
-      <recipes id="recipes-component"></recipes>
+      <recipes id="recipes-component" _t="{{ _t_recipes }}"></recipes>
     </view>
   </view>
   <!-- End of Offer Recipes -->

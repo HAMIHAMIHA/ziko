@@ -6,7 +6,8 @@ Component({
     intervalWidth: {
       type: String,
       value: "20rpx"
-    }
+    },
+    _t: Object
   },
   data: {
     items: [],
