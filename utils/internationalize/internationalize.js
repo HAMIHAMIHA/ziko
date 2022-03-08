@@ -82,7 +82,7 @@ export const languageMap_en = {
   edit_my_info: "Edit my information",
   empty: "empty",
   en: "EN",
-  explore: "explore",
+  explore: "Explore",
   extra_ticket: "extra ticket",
 
   // F

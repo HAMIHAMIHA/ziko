@@ -70,6 +70,16 @@ App({
 
     wx.setTabBarItem({
       index: 2,
+      "text": self.globalData.i18n.explore
+    })
+
+    wx.setTabBarItem({
+      index: 3,
+      "text": self.globalData.i18n.lottery
+    })
+
+    wx.setTabBarItem({
+      index: 4,
       "text": self.globalData.i18n.account
     })
   }
