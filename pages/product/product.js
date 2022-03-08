@@ -77,6 +77,12 @@ const getProductDetail = page => {
     })
 
     showLoading(false);
+
+    // TEMP
+    // _getRecipes()
+    page.setData({
+      recipes: {}
+    })
   }
 
   app.api.getOffers(`?id=${ page.options.offer_id }`).then(callback);
@@ -125,10 +131,6 @@ Page({
 
   checkout: function() {
     ModifyCart.checkoutItems(this.options.offer_id);
-  },
-  
-  onReachBottom: function() {
-    Offers.updateReceipes(this);
   },
 
   // Mobile login

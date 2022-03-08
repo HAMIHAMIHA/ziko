@@ -182,15 +182,6 @@ Page({
       "_setting.currentTab": e.currentTarget.dataset.toTab
     })
   },
-  
-  onReachBottom: function() {
-    let self = this;
-    var receipecomp = self.selectComponent("#receipes-component");
-    // TODO
-    if (data) {
-      receipecomp.onReachBottom();
-    }
-  },
 
   onShareAppMessage: function (res) {}
 })
