@@ -49,6 +49,6 @@
 }
 /* End of Pack Products */
 
-.product-reciepe {
+.product-recipe {
   border-top: 2rpx solid #424756;
 }

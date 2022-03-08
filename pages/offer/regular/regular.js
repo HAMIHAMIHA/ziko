@@ -57,7 +57,7 @@ Page({
     })
   },
 
-  // Switch between reciepe and products
+  // Switch between recipe and products
   switchTab: function(e) {
     const self = this;
     // TODO change to show and hide css on switch

@@ -113,7 +113,7 @@
   <!-- End of Pack Products -->
 
   <!-- Offer Receipes -->
-  <view class="list_container product-reciepe" wx:if="{{ recipes }}">
+  <view class="list_container product-recipe" wx:if="{{ recipes }}">
     <view class="offer-group receipe-group">
       <view class="uppercase title">
         <text class="gilroy_500">{{ _t.related_receipes.fst }}</text>
