@@ -1,4 +1,4 @@
-.receipes_container {
+.recipes_container {
   width: 100%;
   padding-bottom: 48rpx;
 }

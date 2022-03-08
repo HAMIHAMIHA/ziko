@@ -826,16 +826,16 @@ button:not([size=mini]).float-contact_container {
   left: 0;
 }
 
-.ziko-offer .tabbar_highlighter.receipe {
+.ziko-offer .tabbar_highlighter.recipe {
   transform: translateX(100%) !important;
 }
 /* End of Offer Product Tabbar */
 
-/* Offer Receipes */
-.receipe-group {
+/* Offer Recipes */
+.recipe-group {
   padding: 0 21rpx;
 }
-/* End of Offer Receipes */
+/* End of Offer Recipes */
 
 /* Offer Specials */
 .ziko-offer .offer-specials {

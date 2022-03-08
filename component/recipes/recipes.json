@@ -2,6 +2,6 @@
   "component": true,
   "usingComponents": {
     "masonry": "/component/masonry/masonry",
-    "receipe-box": "/component/receipe-box/receipe-box"
+    "recipe-box": "/component/recipe-box/recipe-box"
   }
 }

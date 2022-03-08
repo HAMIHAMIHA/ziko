@@ -1,0 +1,3 @@
+<view class="recipes_container">
+  <masonry generic:masonry-item="recipe-box" id="masonry" interval-width="18rpx" _t="{{ _t }}"></masonry>
+</view>

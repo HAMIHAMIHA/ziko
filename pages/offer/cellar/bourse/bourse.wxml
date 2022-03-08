@@ -92,8 +92,8 @@
     <view class="tabbar_item{{ _setting.currentTab == 'product' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="product" animation="{{ _setting.animate.tab }}">
       products
     </view>
-    <view class="tabbar_item{{ _setting.currentTab == 'receipe' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="receipe" animation="{{ _setting.animate.tab }}">
-      Receipes
+    <view class="tabbar_item{{ _setting.currentTab == 'recipe' ? ' selected' : '' }}" bindtap="switchTab" data-to-tab="recipe" animation="{{ _setting.animate.tab }}">
+      Recipes
     </view>
     <view class="tabbar_highlighter {{ _setting.currentTab }}" animation="{{ _setting.animate.highlight }}"></view>
   </view>
@@ -165,18 +165,18 @@
   </view>
   <!-- End of Products -->
 
-  <!-- Offer Receipes -->
+  <!-- Offer Recipes -->
   <view class="list_container" wx:else>
-    <view class="offer-group receipe-group">
+    <view class="offer-group recipe-group">
       <view class="uppercase title">
         <text class="gilroy_500">related</text>
-        <text class="gilroy_700"> receipes</text>
+        <text class="gilroy_700"> recipes</text>
       </view>
 
-      <receipes id="receipes-component"></receipes>
+      <recipes id="recipes-component"></recipes>
     </view>
   </view>
-  <!-- End of Offer Receipes -->
+  <!-- End of Offer Recipes -->
 
   <!-- Pay Button -->
   <view class="offer-payment disabled">

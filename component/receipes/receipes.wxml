@@ -1,3 +1,0 @@
-<view class="receipes_container">
-  <masonry generic:masonry-item="receipe-box" id="masonry" interval-width="18rpx"></masonry>
-</view>

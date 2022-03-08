@@ -112,18 +112,18 @@
   </block>
   <!-- End of Pack Products -->
 
-  <!-- Offer Receipes -->
+  <!-- Offer Recipes -->
   <view class="list_container product-recipe" wx:if="{{ recipes }}">
-    <view class="offer-group receipe-group">
+    <view class="offer-group recipe-group">
       <view class="uppercase title">
-        <text class="gilroy_500">{{ _t.related_receipes.fst }}</text>
-        <text class="gilroy_700">{{ _t.related_receipes.snd }}</text>
+        <text class="gilroy_500">{{ _t.related_recipes.fst }}</text>
+        <text class="gilroy_700">{{ _t.related_recipes.snd }}</text>
       </view>
 
-      <receipes id="receipes-component"></receipes>
+      <recipes id="recipes-component"></recipes>
     </view>
   </view>
-  <!-- End of Offer Receipes -->
+  <!-- End of Offer Recipes -->
 
   <!-- Pay Button -->
   <view wx:if="{{ (_setting.type != 'packProduct') }}">

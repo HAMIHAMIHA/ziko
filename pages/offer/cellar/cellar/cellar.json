@@ -2,7 +2,7 @@
   "usingComponents": {
     "countdown": "/component/countdown/countdown",
     "quantity": "/component/quantity/quantity",
-    "receipes": "/component/receipes/receipes",
+    "recipes": "/component/recipes/recipes",
     "scrollMessage": "/component/scrollMessage/scrollMessage",
     "lottery": "/component/lottery/lottery"
   }

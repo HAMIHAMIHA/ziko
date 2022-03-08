@@ -86,7 +86,7 @@
           <block wx:for="12" wx:key="_id" wx:key="lottery">
             <view class="lottery__container flex-between">
               <view class="lottery">
-                <image class="lottery__image" src="/assets/images/receipeBanner.png" mode="aspectFill"></image>
+                <image class="lottery__image" src="/assets/images/recipeBanner.png" mode="aspectFill"></image>
                 <!-- <image src="{{ _folders.lottery + lottery.image.uri }}" mode="aspectFill"></image> -->
                 <view class="lottery__name">{{ lottery.name }}gold mask + 15% off</view>
               </view>

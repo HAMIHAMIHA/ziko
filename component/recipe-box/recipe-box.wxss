@@ -1,28 +1,28 @@
-.receipe_container {
+.recipe_container {
   padding-top: 48rpx;
 }
 
-.receipe {
+.recipe {
   width: 100%;
 }
 
-.receipe-image {
+.recipe-image {
   width: 100%;
   display: flex;
   margin-bottom: 16rpx;
 }
 
-.receipe-image image {
+.recipe-image image {
   width: 100%;
   border-radius: 8rpx;
 }
 
-.receipe-title {
+.recipe-title {
   font-size: 24rpx;
   line-height: 32rpx;
 }
 
-.receipe-info {
+.recipe-info {
   margin-top: 8rpx;
   font-size: 24rpx;
   line-height: 32rpx;

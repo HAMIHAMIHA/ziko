@@ -20,11 +20,11 @@
   </view>
   <!-- End of Filter List -->
 
-  <!-- Offer Receipes -->
+  <!-- Offer Recipes -->
   <view class="list_container">
-    <view class="offer-group receipe-group">
-      <receipes id="receipes-component" items="{{ recipes }}" _t="{{ _t }}"></receipes>
+    <view class="offer-group recipe-group">
+      <recipes id="recipes-component" items="{{ recipes }}" _t="{{ _t }}"></recipes>
     </view>
   </view>
-  <!-- End of Offer Receipes -->
+  <!-- End of Offer Recipes -->
 </view>
