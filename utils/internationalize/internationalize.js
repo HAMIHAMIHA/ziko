@@ -18,7 +18,8 @@ export const languageMap_en = {
   },
   addresses: "Addresses",
   address_empty: "Please select address",
-  add_address: "添加地址",
+  add_address: "Add address",
+  add_contact: "Add contact",
   add_new_address: "Add new address",
   add_pet: "Add pet",
   all: "All",
@@ -243,6 +244,7 @@ export const languageMap_en = {
     fst: "",
     snd: " left"
   },
+  profile_info: "Profile information",
 
   // Q
   // R
@@ -322,6 +324,7 @@ export const languageMap_zh = {
   addresses: "Addresses",
   address_empty: "请选择地址",
   add_address: "添加地址",
+  add_contact: "添加联系方式",
   add_new_address: "添加新地址",
   add_pet: "添加宠物",
   all: "全部",
@@ -545,6 +548,7 @@ export const languageMap_zh = {
     fst: "剩余",
     snd: ""
   },
+  profile_info: "Personal information",
 
   // Q
   // R

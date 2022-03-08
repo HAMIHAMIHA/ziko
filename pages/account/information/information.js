@@ -26,13 +26,20 @@ const _validatePets = (page, pets) => {
   }
 
   page.setData({
-    errors: errors
+    'errors.pets': errors
   })
 
   return valid;
 }
 
 Page({
+  data: {
+    errors: {
+      contacts: [],
+      pets: [],
+    }
+  },
+
   onShow: function () {
     const self = this;
     let i18n = app.globalData.i18n;
@@ -58,12 +65,15 @@ Page({
     // Set page translation
     self.setData({
       _t: {
+        add_contact: i18n.add_contact,
         add_pet: i18n.add_pet,
         contact_info: i18n.contact_info,
         name: i18n.name,
         pet: i18n.pet,
         pet_type: i18n.pet_type,
         pet_size: i18n.pet_size,
+        phone_no: i18n.phone_no,
+        profile_info: i18n.profile_info,
         save: i18n.save,
         size: i18n.size,
         type: i18n.type,

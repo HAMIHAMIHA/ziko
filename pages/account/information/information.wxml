@@ -1,7 +1,7 @@
 <view class="container container-grey container-btn-bottom">
   <!-- Profile Input Group -->
   <view class="white-box inputs_container contact-info {{ error_name }}">
-    <view class="nunito_700 header">{{ _t.contact_info }}</view>
+    <view class="nunito_700 header">{{ _t.profile_info }}</view>
 
     <view class="detail field-0">
       <view class="detail_label">{{ _t.name }}</view>
@@ -12,9 +12,42 @@
   </view>
   <!-- End of Profile Input Group -->
 
+  <!-- Contact Information Group -->
+  <block wx:for="{{ pets }}" wx:for-item="contact" wx:key="index">
+    <view class="white-box inputs_container pet-info {{ errors.contacts[index] }}" mark:index="{{ index }}">
+      <view class="nunito_700 header">{{ _t.contact_info + ' ' + (index + 1) }}</view>
+      <view class="icon icon-trash btn-icon" bindtap="removePet"></view>
+
+      <view class="detail field-1">
+        <view class="detail_label">{{ _t.name }}</view>
+        <view class="detail_input">
+          <view class="input">
+            <input type="text" value="{{ contact.name }}" data-index="{{ index }}" bindinput="changeInput" data-key="contacts[index].name"></input>
+          </view>
+        </view>
+      </view>
+
+      <view class="detail field-2">
+        <view class="detail_label">{{ _t.phone_no }}</view>
+        <view class="detail_input">
+          <view class="input">
+            <input type="text" value="{{ contact.phone }}" data-index="{{ index }}" bindinput="changeInput" data-key="contacts[index].phone"></input>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- End of Contact Information Group -->
+
+  <!-- Add Pet Button -->
+  <view class="btn-outline_container">
+    <button class="btn-outline nunito_600" hover-class="none" bindtap="addContact">{{ '+ ' + _t.add_contact }}</button>
+  </view>
+  <!-- End of Add Pet Button -->
+
   <!-- Pets Input Group -->
   <block wx:for="{{ pets }}" wx:for-item="pet" wx:key="index">
-    <view class="white-box inputs_container pet-info {{ errors[index] }}" mark:index="{{ index }}">
+    <view class="white-box inputs_container pet-info {{ errors.pets[index] }}" mark:index="{{ index }}">
       <view class="nunito_700 header">{{ _t.pet + ' ' + (index + 1) }}</view>
       <view class="icon icon-trash btn-icon" bindtap="removePet"></view>
 
