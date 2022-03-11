@@ -4,6 +4,6 @@
     "quantity": "/component/quantity/quantity",
     "recipes": "/component/recipes/recipes",
     "scrollMessage": "/component/scrollMessage/scrollMessage",
-    "lottery": "/component/lottery/lottery"
+    "lottery-header": "/component/lottery/header/header"
   }
 }

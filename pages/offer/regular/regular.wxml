@@ -148,7 +148,7 @@
     <!-- Lottery -->
     <view class="offer-lotteries" wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}">
       <view class="lottery_regular">
-        <lottery lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}"></lottery>
+        <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}"></lottery-header>
 
         <view class="offer-lotteries_list">
           <block wx:for="{{ _offer.miniprogram.lottery.draws }}" wx:key="id" wx:for-item="draw">

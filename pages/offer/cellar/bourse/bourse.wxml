@@ -158,7 +158,7 @@
     <!-- Lottery -->
     <view class="offer-lotteries" wx:if="{{ _offer.lotteries }}">
       <view class="lottery_regular">
-        <lottery lotteries="{{ _offer.lotteries }}"></lottery>
+        <lottery-header lotteries="{{ _offer.lotteries }}"></lottery-header>
       </view>
     </view>
     <!-- End of Lottery -->
