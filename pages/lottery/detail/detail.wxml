@@ -1,2 +1,32 @@
-<!--pages/lottery/detail/detail.wxml-->
-<text>pages/lottery/detail/detail.wxml</text>
+<view class="container">
+  <!-- Offer Countdown -->
+  <view class="uppercase countdown">
+    <view class="nunito_600 countdown_text">{{ _t.remaining_time }}</view>
+    <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}"></countdown>
+    <button class="share-btn icon icon-share"></button>
+  </view>
+  <!-- End of Offer Countdown -->
+
+  <!-- Offer Info -->
+  <view class="offer__info">
+    <view class="offer__name">{{ _offer.name }}</view>
+    <view class="offer__type">{{ _t.community[_offer.type] }}</view>
+    <view class="tickets">
+      <text class="label">{{ _t.your_tickets }}: </text>
+      <text class="icon icon-ticket"></text>
+      <view class="ticket-count">x{{ _offer.tickets }}</view>
+    </view>
+  </view>
+  <!-- End of Offer Info -->
+
+  <!-- Lottery List -->
+  <view class="lottery__container">
+    <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}"></lottery-header>
+    <lottery-cellar _offer="{{ _offer }}" _t="{{ _t }}"></lottery-cellar> <!-- TODO -->
+  </view>
+  <!-- End of Lottery List -->
+
+  <navigator class="terms" url="{{ _routes.terms }}">{{ _t.terms_and_conditions }}</navigator>
+
+  <button class="btn-primary">{{ _t.go_to_offer }}</button>
+</view>

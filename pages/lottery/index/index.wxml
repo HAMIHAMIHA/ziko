@@ -1,2 +1,116 @@
-<!--pages/lottery/index/index.wxml-->
-<text>pages/lottery/index/index.wxml</text>
+<view class="container">
+  <!-- List View -->
+  <view class="list">
+    <!-- Scroll Menu -->
+    <view class="h-scroll_container scroll-menu">
+      <scroll-view class="h-scroll" scroll-x="true">
+        <block wx:for="{{ _filters.list }}" wx:key="filter_group" wx:for-item="filter">
+          <view
+            class="h-scroll_item {{ filter.class_name }} {{ filter_group == filter.filter_group ? ' selected' : '' }}"
+            bindtap="filterOffers"
+            data-filter_type="list"
+            data-filter_group="{{ filter.filter_group }}"
+            data-filter_id="{{ filter.id }}"
+          >
+            <view class="icon icon-{{ filter.icon }}"></view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+
+    <!-- List Contents -->
+    <dateFilter
+      id="list_date_filters"
+      days="{{ days }}"
+      bind:filterOffers="filterOffers"
+    ></dateFilter>
+    <!-- <offers id="list_offers" offers="{{ offers }}" bind:navigatePage="navigatePage"></offers> -->
+
+
+    <view class="offers_container">
+      <view class="gilroy_700 offers_list" wx:if="{{ offers.length == 0 }}">
+        {{ _t.no_offers }}
+      </view>
+
+      <view class="gilroy_700 offers_list">
+        <!-- Card for each offer -->
+        <view class="uppercase offer_container"
+          wx:for="{{ offers }}"
+          wx:for-item="offer"
+          wx:key="id"
+          bindtap="toOffer"
+          data-started="{{ offer.started }}"
+          data-community="{{ offer.community.id }}"
+          data-offer-id="{{ offer.id }}"
+          data-type="{{ offer.type }}"
+        >
+          <!-- Banner image of card -->
+          <view class="offer-banner">
+            <view class="offer-banner_image">
+              <image src="{{ offer.banner }}" mode="widthFix" lazy-load="true"></image>
+            </view>
+            <view class="offer-banner_tag">
+              <view class="icon {{ 'icon-ziko-' + _communities[offer.community.id] + '_right'}}"></view>
+            </view>
+          </view>
+          <!-- End of banner -->
+
+          <view class="offer-detail_container">
+            <view class="offer-detail_title">{{ offer.name[_language] }}</view>
+            <view class="offer-detail">
+              <view class="flex-between offer-detail_content">
+                <view class="offer-ticket__container">
+                  <view class="ticket">
+                    <text class="ticket_icon icon icon-ticket"></text>
+                    <text class="ticket_count">{{ offer.ticket_count }} {{ _t.tickets }}</text>
+                  </view>
+                  <view class="ticket__remaining">
+                    <text class="ticket_count">{{ _t.remaining_draws }}: {{ offer.remaining_draws }}</text>
+                  </view>
+                  <view class="ticket__won" wx:if="{{ offer.won }}">
+                    <text class="ticket_icon icon icon-crown"></text>
+                    <text class="ticket_count">{{ _t.you_win }}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+
+            <!-- Display for offers in progress -->
+            <view class="offer-detail offer-started" wx:if="{{ offer.status === 1 }}">
+              <view class="flex-between offer-detail_content offer-countdown">
+                <view class="flex-between_left">
+                  {{ _t.remaining_time }}
+                </view>
+                <view class="flex-between_rt">
+                  <countdown class="timer" end-time="{{ offer.endingDate }}"></countdown>
+                </view>
+              </view>
+            </view>
+            <!-- End of offer in progress -->
+
+            <!-- Current Status -->
+            <view class="offer-detail offer-ended" wx:if="{{ offer.status === 2 }}">
+              <view class=" offer-detail_content coming-soon">{{ _t.coming_soon }}</view>
+            </view>
+            <!-- End of Current Status -->
+
+            <!-- Display for offers waiting -->
+            <view class="offer-detail offer-waiting" wx:else>
+              <view class=" offer-detail_content coming-soon">{{ _t.coming_soon }}</view>
+
+              <!-- Offer Time -->
+              <view class="flex-between offer-detail_content offer-datetime">
+                <view class="flex-between_rt">
+                  <button class="offer-reminder">{{ _t.get_reminder }}</button>
+                </view>
+              </view>
+              <!-- End of Offer Time -->
+            </view>
+            <!-- End of offers waiting -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- End of List View -->
+</view>
