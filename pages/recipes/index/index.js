@@ -2,6 +2,9 @@ const app = getApp();
 
 // Set Translation text
 const _setTranslation = page => {
+  // Translate tabbar
+  app.setTabbar();
+
   const i18n = app.globalData.i18n;
 
   page.setData({
@@ -25,26 +28,8 @@ Page({
   onShow: function() {
     const self = this;
     _setTranslation(self);
+    // _getPageData() // TODO recipes / favourites
 
-    self.updatePageLanguage();
-  },
-
-  updatePageLanguage: function() {
-    const self = this;
-
-    // Translate tabbar
-    app.setTabbar();
-
-    // Translation and default values
-    let i18n = app.globalData.i18n;
-    self.setData({
-      _t: {
-        _language: app.db.get('language'),
-        baking: i18n.baking,
-        minutes: i18n.minutes,
-        preparation: i18n.preparation,
-      }
-    })
   },
 
   changeRecipes: function() {
