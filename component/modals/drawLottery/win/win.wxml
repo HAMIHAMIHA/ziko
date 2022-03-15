@@ -1,0 +1,33 @@
+<modal>
+  <view class="header" slot="header">
+    <image src="/assets/images/lottery-win.jpg" open-type="aspectFill"></image>
+    <view class="header-text">{{ _t.you_win }}!</view>
+  </view>
+
+  <view class="content" slot="content">
+    <view class="content-head">
+      <view class="content-title">{{ _t.just_won_lottery }}</view>
+      <view class="content-message">{{ _t.pick_up_your_item }}</view>
+    </view>
+    <view class="content-body">
+      <view class="content-label">
+        {{ _t.unlocked_at }} {{ draw.conditionValue }} {{ draw.conditionType === 'number_of_order' ? _t.orders : _t.items_sold }}
+      </view>
+      <view class="content-image_container">
+        <image class="content-image_background" src="/assets/images/starBackground.png" open-type="aspectFill"></image>
+        <image class="content-image" src="{{ _folder.gift + draw.picture.uri }}" open-type="aspectFill"></image>
+      </view>
+
+      <view class="content-detail">
+        <view class="content-name">{{ draw.name }}</view>
+        <view class="content-draw">{{ _t.draw }}{{ draw.count }}</view>
+        <view class="content-info">{{ draw.offer.name[_language] }} ({{ _t.offer_type[draw.offer.type] }})</view>
+      </view>
+
+      <view class="content-note">{{ _t.prize_will_be_delivered }}</view>
+    </view>
+    <view class="content-foot"> 
+      <button class="content-confirm" bindtap="getPrize">{{ _t.get }}</button>
+    </view>
+  </view>
+</modal>

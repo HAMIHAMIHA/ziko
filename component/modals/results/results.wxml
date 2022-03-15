@@ -1,0 +1,40 @@
+<modal>
+  <view class="header" slot="header">
+    <image src="/assets/images/lottery-win.jpg" open-type="aspectFill"></image>
+    <view class="header-text">{{ _t.congrats }}!</view>
+  </view>
+
+  <view class="content_container">
+    <view class="content" slot="content">
+      <view class="content-head">
+        <view class="content-title">{{ _t.just_won_items }}</view>
+        <view class="content-message">{{ _t.pick_up_your_item }}</view>
+      </view>
+      <block wx:for="{{ draws }}" wx:for-item="draw">
+        <view class="content-body{{ draw.checked ? ' checked' : '' }}">
+          <view class="content-label">
+            {{ _t.unlocked_at }} {{ draw.conditionValue }} {{ draw.conditionType === 'number_of_order' ? _t.orders : _t.items_sold }}
+          </view>
+          <view class="content-image_container">
+            <image class="content-image_background" src="/assets/images/starBackground.png" open-type="aspectFill"></image>
+            <image class="content-image" src="{{ _folder.gift + draw.gift.picture.uri }}" open-type="aspectFill" wx:if="{{ draw.picture.uri }}"></image>
+          </view>
+
+          <view class="content-detail">
+            <view class="content-name">{{ draw.gift.name[_language] }}</view>
+            <view class="content-info">{{ draw.gift.info }}</view>
+          </view>
+
+          <view class="icon icon-check"></view>
+        </view>
+      </block>
+
+      <view class="content-foot">
+        <button class="content-confirm" bindtap="getPrize" wx:if="{{ !draw.checked }}">{{ _t.get }}</button>
+        <button class="content-confirm" bindtap="nextItem" wx:else>{{ _t.next }}</button>
+
+        <view class="content-total">{{ current_index }}/{{ draws.length + 1 }}</view>
+      </view>
+    </view>
+  </view>
+</modal>

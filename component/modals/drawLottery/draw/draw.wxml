@@ -1,0 +1,8 @@
+<modal>
+  <view slot="content">
+    <view class="upper content-title">{{ _t.new_lottery_drawn }}</view>
+    <image src="/assets/images/lottery-box.gif" wx:if="{{ rotating }}"></image>
+    <image src="/assets/images/lottery-box.png" wx:else></image>
+    <button class="draw-btn">{{ _t.lets_go }}</button>
+  </view>
+</modal>

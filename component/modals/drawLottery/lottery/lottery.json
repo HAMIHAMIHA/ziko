@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "draw": "/component/modals/drawLottery/draw/draw",
+    "win": "/component/modals/drawLottery/win/win",
+    "sorry": "/component/modals/drawLottery/sorry/sorry"
+  }
+}

@@ -1,21 +1,12 @@
 <view class="modal-component {{ (show ? 'show': 'hide') }}" catchtouchmove="preventSlide" animation="{{animation}}">
   <view class="mask" bindtap="closeModal"></view>
   <view class="modal-container">
-    <view class="card" scroll-y="{{ scrollY }}">
+    <slot name="header"></slot>
+    <view class="card">
       <view class="close-btn" bindtap="closeModal">
         <view class="icon icon-close"></view>
       </view>
-      <scroll-view class="card-scroll-container" scroll-y="{{ scrollY }}" scroll-top="{{ scrollTop }}">
-        <view class="card-detail" style="{{ containerPadding ? 'padding:' + containerPadding + ';' : ''}}">
-          <view class="header" wx:if="{{ header }}">
-            {{ header }}
-          </view>
-
-          <view class="modal-content">
-            <slot></slot>
-          </view>
-        </view>
-      </scroll-view>
+      <slot name="content"></slot>
     </view>
   </view>
 </view>

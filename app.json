@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/account/index/index",
     "pages/account/information/information",
@@ -21,7 +21,6 @@
     "pages/vouchers/index/index",
     "pages/vouchers/select/select"
   ],
-
   "tabBar": {
     "borderStyle": "white",
     "color": "#CBCFDE",
@@ -60,14 +59,12 @@
       }
     ]
   },
-
-  "window":{
+  "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#11141B",
     "navigationBarTitleText": "Zikoland",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle": "white"
   },
-
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

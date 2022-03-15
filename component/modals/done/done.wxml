@@ -1,0 +1,11 @@
+<modal>
+  <view slot="content">
+    <view class="content-head">
+      <view class="upper content-title">{{ _t.title }}</view>
+      <view class="content-message">{{ _t.message }}</view>
+    </view>
+    <view class="content-foot"> 
+      <button class="draw-btn">{{ _t.back_to_orders }}</button>
+    </view>
+  </view>
+</modal>
