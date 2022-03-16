@@ -1,20 +1,27 @@
-<view class="container">
+<view class="container {{ choose_filter ? ' choose-filter' : '' }}">
   <!-- Search -->
   <view class="search-container">
     <view class="search-input">
       <text class="icon icon-search"></text>
-      <input type="search" placeholder="{{ _t.try_text }}" />
+      <input
+        class="search" 
+        placeholder-class="search-placeholder"
+        placeholder="123{{ _t.try_text }}"
+        bindconfirm="searchKeyword"
+        confirm-type="search"
+        disabled="{{ choose_filter }}"
+      />
     </view>
-    <button class="filter-btn icon icon-filters"></button>
+    <button class="filter-btn icon icon-filters" bindtap="showFilter"></button>
   </view>
   <!-- End of Search -->
 
   <!-- Filter List -->
-  <view class="filter-container">
+  <view class="filter-container" >
     <block wx:for="{{ filters }}" wx:key="_id" wx:for-item="filter">
       <view class="filter-item">
         <text class="filter-text">{{ filter.name[_t._language] }}</text>
-        <text class="filter-icon icon icon-x"></text>
+        <text class="filter-icon icon icon-x" bindtap="removeTag" data-filter_index="{{ index }}"></text>
       </view>
     </block>
   </view>
@@ -32,25 +39,31 @@
   <view class="filter__container">
     <!-- Filter Top -->
     <view class="filter-top">
-      <button class="filter-back">
+      <button class="filter-back" bindtap="hideFilter">
         <text class="icon icon-arrow-left"></text>
       </button>
-      <button class="filter-reset">
-        {{ _t.reset_filters }}
+      <button class="filter-reset" bindtap="resetFilters">
+        {{ _t.reset_filters }}reset filers
       </button>
     </view>
     <!-- End of Filter Top -->
 
     <!-- Filter List -->
-    <view class="filter-list">
-      <block wx:for="{{ filter_categories }}" wx:for-item="category">
-        <view class="filter__name">{{ category.name[_language] }}</view>
-        <block wx:for="{{ category.tags }}" wx:for-item="tag">
-          <view class="filter__tag">{{ tag.name[_language] }}</view>
-        </block>
+    <scroll-view class="filter-list" scroll-y="true" scroll-top="{{ _filter_scroll_top }}">
+      <block wx:for="{{ filter_categories }}" wx:key="_id" wx:for-item="category"  wx:for-index="category_idx">
+        <view class="filter__group">
+          <view class="nunito_700 filter__name">{{ category.name[_t._language] }}</view>
+          <view class="filter__tag-list">
+            <block wx:for="{{ category.tags }}" wx:key="_id" wx:for-item="tag">
+              <view class="nunito_600 filter__tag{{ selected_filters[category._id][tag._id] ? ' selected' : '' }}" bindtap="selectFilter" data-cat_id="{{ category._id }}" data-tag_id="{{ tag._id }}">{{ tag.name[_t._language] }}</view>
+            </block>
+          </view>
+        </view>
       </block>
-    </view>
+    </scroll-view>
     <!-- End of Filter List -->
+
+    <button class="filter-bottom btn-primary" hover-class="hover-class" bindtap="saveFilter">save filters{{ _t.save_filters }}</button>
   </view>
   <!-- End of Filter -->
 </view>

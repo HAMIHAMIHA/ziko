@@ -1,23 +1,172 @@
 /* Search */
 .search-container {
-
+  padding: 24rpx 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .search-container .search-input {
-
+  width: 100%;
+  margin-right: 16rpx;
+  padding: 14rpx 26rpx;
+  background: var(--ziko-default-);
+  color: #000000;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
 }
-.search-container .search-input .icon-search {
 
+.search-container .search-input .icon-search {
+  margin-right: 20rpx;
+  font-size: 36rpx;
+  flex: 0 0 36rpx;
 }
 
 .search-container .search-input .search {
-  
+  width: 100%;
 }
 
-.search-container .filter-btn {
+.search-container .search-input .search-placeholder {
+  color: #b8bcc9;
+}
 
+.search-container button:not([size=mini]).filter-btn {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--ziko-default-);
+  font-size: 40rpx;
+  flex: 0 0 40rpx;
 }
 /* End of Search */
 
-/* Filter List */
+/* Search Filter List */
+.filter-container {
+  padding: 0 28rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  display: flex;
+  column-gap: 16rpx;
+  row-gap: 16rpx;
+  flex-wrap: wrap;
+}
 
+.filter-container .filter-item {
+  padding: 12rpx 24rpx;
+  padding-right: 18rpx;
+  background: #262F3E;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.filter-container .filter-icon {
+  margin-left: 8rpx;
+  padding: 6rpx;
+  background: #A2A9B5;
+  color: #262F3E;
+  font-size: 12rpx;
+  border-radius: 50%;
+}
+/* End of Search Filter List */
+
+.recipe-group .recipes_container {
+  padding-top: 0;
+}
+
+/* Filter List */
+.choose-filter .search-container,
+.choose-filter .filter-container,
+.choose-filter .list_container {
+  /* visibility: hidden; */
+  pointer-events: none;
+}
+
+.filter__container {
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  padding: 36rpx 30rpx calc(44rpx + var(--env-));
+  background: #0A0B12;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  right: -100%;
+  /* transform: scale(0);
+  transform-origin: right; */
+  transition: all 0.3s ease-in;
+}
+
+.choose-filter .filter__container {
+  right: 0;
+}
+
+.filter__container .filter-top button:not([size=mini]) {
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--ziko-defailt-);
+  font-size: 28rpx;
+  line-height: 34rpx;
+}
+
+.filter__container .filter-top {
+  padding-bottom: 12rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter__container .filter-back {
+  font-size: 36rpx;
+}
+
+.filter__container .filter-list {
+  --container-padding: calc(36rpx + 44rpx);
+  --top-height: calc(12rpx + 36rpx);
+  --button-height: calc(16rpx + 32rpx + 32rpx + 36rpx);
+  max-height: calc(100vh - var(--container-padding) - var(--top-height) - var(--button-height));
+}
+
+.filter__container .filter__group {
+  margin: 48rpx 0;
+}
+
+.filter__container .filter__name {
+  font-size: 36rpx;
+  line-height: 44rpx;
+}
+
+.filter__container .filter__tag-list {
+  padding-top: 24rpx;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  display: flex;
+  column-gap: 8rpx;
+  row-gap: 12rpx;
+  flex-wrap: wrap;
+}
+
+.filter__container .filter__tag {
+  padding: 12rpx 24rpx;
+  color: #9FA8BA;
+  border: 1px solid #9FA8BA;
+  border-radius: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+.filter__container .filter__tag.selected {
+  background: var(--ziko-default-);
+  color: #12151E;
+  border-color: var(--ziko-default-);
+}
+
+.filter__container button:not([size=mini]).filter-bottom {
+  position: absolute;
+  bottom: calc(44rpx + var(--env-));
+}
 /* End of Filter List */

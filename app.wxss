@@ -168,7 +168,8 @@ image {
 
 /* Button Bottom */
 .container-btn-bottom .btn-bottom button,
-.btn-primary {
+.btn-primary,
+button:not([size=mini]).btn-primary {
   width: calc(100vw - 30rpx - 30rpx);
   padding: 32rpx 0;
   background: #3F4250;
@@ -837,7 +838,7 @@ button:not([size=mini]).float-contact_container {
 
 /* Offer Recipes */
 .recipe-group {
-  padding: 0 21rpx;
+  padding: 0 30rpx;
 }
 /* End of Offer Recipes */
 
