@@ -4,6 +4,12 @@ const app = getApp();
 
 const _setPageTranslation = page => {
   const i18n = app.globalData.i18n;
+
+  // Change page nav title
+  wx.setNavigationBarTitle({
+    title: i18n.recipe_detail
+  })
+
   page.setData({
     _language: app.db.get('language'),
     _t: {

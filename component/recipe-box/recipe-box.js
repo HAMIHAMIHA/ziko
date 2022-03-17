@@ -10,8 +10,12 @@ Component({
       recipe: app.routes.recipe
     },
     _folders: {
-      recipe_picture: ''
+      recipe_picture: app.folders.recipe_picture
     }
+  },
+
+  ready: function() {
+    console.log(this.data);
   },
 
   options: {

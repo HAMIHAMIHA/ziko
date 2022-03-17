@@ -138,14 +138,23 @@ module.exports = {
     return get(`offers/details${suffix}`);
   },
 
+  // Get recipe categories
+  // getRecipeCategories: () => {
+  //   return get('recipe-tag-categories');
+  // },
+
+  // Get recipe tags
+  getRecipeTags: () => {
+    return get('recipe-tags/details');
+  },
+
   // Get recipes detail
   getRecipes: (filter) => {
     let suffix = '';
-    // let suffix = `?filter={"activity":{"$in":["${activityData.ids.join('","')}"]}}&user=${app.globalData.userInfo.id}`; published
     if (filter.id) {
       suffix = `/${filter.id}/details`;
     } else {
-      suffix = `?filter=${filter.detail}`
+      suffix = filter.detail
     }
     return get(`recipes${suffix}`);
   },

@@ -6,7 +6,8 @@
       <input
         class="search" 
         placeholder-class="search-placeholder"
-        placeholder="123{{ _t.try_text }}"
+        placeholder="{{ _t.try_text.fst }}{{ sample_name }}{{ _t.try_text.snd }}"
+        model:value="{{ keyword }}"
         bindconfirm="searchKeyword"
         confirm-type="search"
         disabled="{{ choose_filter }}"
@@ -30,7 +31,7 @@
   <!-- Offer Recipes -->
   <view class="list_container">
     <view class="offer-group recipe-group">
-      <recipes id="recipes-component" items="{{ recipes }}" _t="{{ _t }}"></recipes>
+      <recipes id="recipes-component" _t="{{ _t }}"></recipes>
     </view>
   </view>
   <!-- End of Offer Recipes -->
@@ -50,12 +51,12 @@
 
     <!-- Filter List -->
     <scroll-view class="filter-list" scroll-y="true" scroll-top="{{ _filter_scroll_top }}">
-      <block wx:for="{{ filter_categories }}" wx:key="_id" wx:for-item="category"  wx:for-index="category_idx">
+      <block wx:for="{{ filter_categories }}" wx:key="id" wx:for-item="category"  wx:for-index="category_idx">
         <view class="filter__group">
           <view class="nunito_700 filter__name">{{ category.name[_t._language] }}</view>
           <view class="filter__tag-list">
-            <block wx:for="{{ category.tags }}" wx:key="_id" wx:for-item="tag">
-              <view class="nunito_600 filter__tag{{ selected_filters[category._id][tag._id] ? ' selected' : '' }}" bindtap="selectFilter" data-cat_id="{{ category._id }}" data-tag_id="{{ tag._id }}">{{ tag.name[_t._language] }}</view>
+            <block wx:for="{{ category.tags }}" wx:key="id" wx:for-item="tag">
+              <view class="nunito_600 filter__tag{{ selected_filters[category.id][tag.id] ? ' selected' : '' }}" bindtap="selectFilter" data-cat_id="{{ category.id }}" data-tag_id="{{ tag.id }}">{{ tag.name[_t._language] }}</view>
             </block>
           </view>
         </view>

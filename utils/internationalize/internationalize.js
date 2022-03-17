@@ -250,6 +250,8 @@ export const languageMap_en = {
 
   // Q
   // R
+  recipe_detail: "Recipe detail",
+  recipe_list: "Recipe list",
   recipes: "recipes",
   related_current_offers: {
     fst: "related",
@@ -287,6 +289,10 @@ export const languageMap_en = {
   total_units_available: "total units available",
   tracking_number: "Tracking number",
   type: "Type",
+  try_text: {
+    fst: 'Try "',
+    snd: '"'
+  },
 
   // U
   units: {
@@ -562,6 +568,8 @@ export const languageMap_zh = {
 
   // Q
   // R
+  recipe_detail: "Recipe detail",
+  recipe_list: "Recipe list",
   recipes: "recipes",
   related_current_offers: {
     fst: "related",
@@ -599,6 +607,10 @@ export const languageMap_zh = {
   total_units_available: "total units available",
   tracking_number: "Tracking number",
   type: "Type",
+  try_text: {
+    fst: 'Try "',
+    snd: '"'
+  },
 
   // U
   units: {

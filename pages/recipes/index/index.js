@@ -2,6 +2,8 @@ const app = getApp();
 
 const { findIndex } = require('../../../utils/util.js');
 
+let rand_number = -1;
+
 // Set Translation text
 const _setTranslation = page => {
   // Translate tabbar
@@ -19,37 +21,116 @@ const _setTranslation = page => {
       baking: i18n.baking,
       min: i18n.min,
       preparation: i18n.preparation,
+      try_text: i18n.try_text,
       _language: app.db.get('language'),
     }
   })
+}
+
+// Get recipes
+const _getRecipes = (page, is_new) => {
+  let recipes = [];
+  const recipeCallback = res => {
+    recipes = recipes.concat(res);
+
+    if (is_new) {
+      rand_number = Math.floor(Math.random() * recipes.length);
+      page.selectComponent('#recipes-component').setRecipes(recipes);
+    } else {
+      page.selectComponent('#recipes-component').updateRecipes(recipes);
+    }
+
+    page.setData({
+      recipes: recipes,
+      sample_name: recipes[rand_number].name[app.db.get('language')]
+    })
+  }
+
+
+  let search_cases = []; // Used for and operator in suffix
+  // Tag search
+  let filters = page.data.filters;
+  let tags = [];
+  if (filters.length > 0) {
+    filters.forEach( f => tags.push( f.id ));
+    search_cases.push(`{"tags":{"$in":["${tags.join('","')}"]}}`);
+  }
+
+  // Keyword search
+  let keyword = page.data.keyword;
+  if (keyword != "") {
+    search_cases.push(`{"$or":[{"name.en":{"$regex":"${keyword}","$options":"i"}},{"name.zh":{"$regex":"${keyword}","$options":"i"}}]}`)
+  }
+
+  let suffix = `?status=available&sort=["createdAt","DESC"]`; 
+  if (search_cases.length > 0) {
+    suffix += `&filter={"$and":[${search_cases.join(',')}]}`;
+  }
+
+  // Get pinned recipes
+  app.api.getRecipes({ detail: `${suffix}&pinTop=true` }).then( res => {
+    recipes = res;
+    // Get rest of recipes
+    app.api.getRecipes({ detail: `${suffix}&pinTop=false` }).then(recipeCallback)
+  })
+}
+
+// Init get page data
+async function _getPageContents(page) {
+  await app.api.getRecipeTags().then( res => {
+    let categories = [];
+    let selected_filters = {};
+    res.forEach(tag => {
+      let c_idx = findIndex(categories, tag.category.id, 'id');
+      if (c_idx === -1) {
+        let category = tag.category;
+        category.tags = [{
+          name: tag.name,
+          id: tag.id,
+        }];
+        categories.push(tag.category);
+        selected_filters[category.id] = { [tag.id]: false };
+      } else {
+        let category = categories[c_idx];
+        category.tags.push({
+          name: tag.name,
+          id: tag.id,
+        })
+
+        selected_filters[category.id][tag.id] = false;
+      }
+    })
+
+    page.setData({
+      filter_categories: categories,
+      selected_filters: selected_filters,
+    })
+  })
+
+  _getRecipes(page, true);
 }
 
 Page({
   data: {
     choose_filter: false,
     selected_filters: {}, // filter ids for selected style in filter list
-    filters: [],
+    filters: [], 
+    keyword: '',
   },
 
   onLoad: function() {
     const self = this;
     self.setData({
       recipes: {},
-      filters:[{"name":{"zh":"name1","en":"name1"},"_id":1, cat_id:1}],
-      filter_categories: [
-        {"name":{"zh":"cat1","en":"cat1"},"tags":[{"name":{"zh":"name1","en":"name1"},"_id":1},{"name":{"zh":"name2","en":"name2"},"_id":2},{"name":{"zh":"name3","en":"name3"},"_id":3},{"name":{"zh":"name4","en":"name4"},"_id":4},{"name":{"zh":"name5","en":"name5"},"_id":5},{"name":{"zh":"name6","en":"name6"},"_id":6},{"name":{"zh":"name7","en":"name7"},"_id":7},{"name":{"zh":"name8","en":"name8"},"_id":8}],"_id":1},{"name":{"zh":"cat2","en":"cat2"},"tags":[{"name":{"zh":"name1","en":"name1"},"_id":1},{"name":{"zh":"name2","en":"name2"},"_id":2},{"name":{"zh":"name3","en":"name3"},"_id":3},{"name":{"zh":"name4","en":"name4"},"_id":4},{"name":{"zh":"name5","en":"name5"},"_id":5},{"name":{"zh":"name6","en":"name6"},"_id":6},{"name":{"zh":"name7","en":"name7"},"_id":7},{"name":{"zh":"name8","en":"name8"},"_id":8}],"_id":2},{"name":{"zh":"cat3","en":"cat3"},"tags":[{"name":{"zh":"name1","en":"name1"},"_id":1},{"name":{"zh":"name2","en":"name2"},"_id":2},{"name":{"zh":"name3","en":"name3"},"_id":3},{"name":{"zh":"name4","en":"name4"},"_id":4},{"name":{"zh":"name5","en":"name5"},"_id":5},{"name":{"zh":"name6","en":"name6"},"_id":6},{"name":{"zh":"name7","en":"name7"},"_id":7},{"name":{"zh":"name8","en":"name8"},"_id":8}],"_id":3},{"name":{"zh":"cat4","en":"cat4"},"tags":[{"name":{"zh":"name1","en":"name1"},"_id":1},{"name":{"zh":"name2","en":"name2"},"_id":2},{"name":{"zh":"name3","en":"name3"},"_id":3},{"name":{"zh":"name4","en":"name4"},"_id":4},{"name":{"zh":"name5","en":"name5"},"_id":5},{"name":{"zh":"name6","en":"name6"},"_id":6},{"name":{"zh":"name7","en":"name7"},"_id":7},{"name":{"zh":"name8","en":"name8"},"_id":8}],"_id":4},{"name":{"zh":"cat5","en":"cat5"},"tags":[{"name":{"zh":"name1","en":"name1"},"_id":1},{"name":{"zh":"name2","en":"name2"},"_id":2},{"name":{"zh":"name3","en":"name3"},"_id":3},{"name":{"zh":"name4","en":"name4"},"_id":4},{"name":{"zh":"name5","en":"name5"},"_id":5},{"name":{"zh":"name6","en":"name6"},"_id":6},{"name":{"zh":"name7","en":"name7"},"_id":7},{"name":{"zh":"name8","en":"name8"},"_id":8}],"_id":5}
-      ],
-      selected_filters: {
-        "1":{"1":false,"2":false,"3":false,"4":false,"5":false,"6":false,"7":false,"8":false},"2":{"1":false,"2":false,"3":false,"4":false,"5":false,"6":false,"7":false,"8":false},"3":{"1":false,"2":false,"3":false,"4":false,"5":false,"6":false,"7":false,"8":false},"4":{"1":false,"2":false,"3":false,"4":false,"5":false,"6":false,"7":false,"8":false},"5":{"1":false,"2":false,"3":false,"4":false,"5":false,"6":false,"7":false,"8":false}
-      }
+      filters:[],
     })
+
+    _getPageContents(self);
   },
 
   onShow: function() {
     const self = this;
     _setTranslation(self);
-    // _getPageData() // TODO recipes / favourites
-
   },
 
   showFilter: function() {
@@ -67,9 +148,9 @@ Page({
     let selected = self.data.selected_filters;
     categories.forEach( cat => {
       cat.tags.forEach( tag => {
-        selected[cat._id][tag._id] = false;
+        selected[cat.id][tag.id] = false;
         if (tag.selected) {
-          selected[cat._id][tag._id] = true;
+          selected[cat.id][tag.id] = true;
         }
       });
     });
@@ -122,12 +203,12 @@ Page({
     let filter = self.data.filters[filter_index];
 
     let categories = self.data.filter_categories;
-    let c_idx = findIndex(categories, filter.cat_id, '_id');
-    let t_idx = findIndex(categories[c_idx].tags, filter._id, '_id');
+    let c_idx = findIndex(categories, filter.cat_id, 'id');
+    let t_idx = findIndex(categories[c_idx].tags, filter.id, 'id');
     categories[c_idx].tags[t_idx].selected = false;
 
     let selected = self.data.selected_filters;
-    selected[filter.cat_id][filter._id] = false;
+    selected[filter.cat_id][filter.id] = false;
 
     let filters = self.data.filters;
     filters.splice(filter_index, 1);
@@ -138,7 +219,7 @@ Page({
       filters: filters,
     })
 
-    // TODO update recipe
+    _getRecipes(self, false);
   },
   
   saveFilter: function() {
@@ -152,12 +233,12 @@ Page({
     categories.forEach( cat => {
       cat.tags.forEach( tag => {
         tag.selected = false;
-        let f_idx = filters.findIndex(filter => filter._id === tag._id && filter.cat_id === cat._id);
-        if (selected[cat._id][tag._id]) {
+        let f_idx = filters.findIndex(filter => filter.id === tag.id && filter.cat_id === cat.id);
+        if (selected[cat.id][tag.id]) {
           tag.selected = true;
           if (f_idx === -1) {
             let t = tag;
-            t.cat_id = cat._id;
+            t.cat_id = cat.id;
             filters.push(t)
           }
         } else {
@@ -174,18 +255,16 @@ Page({
       filters: filters,
     });
 
-    // TODO get recipes, change Recipe
-
-    
+    _getRecipes(self, false);
   },
 
   searchKeyword: function() {
 
   },
 
-  changeRecipes: function() {
+  searchKeyword: function() {
     const self = this;
 
-    // self.selectComponent('#recipes-component').updateRecipeList(data);
+    _getRecipes(self, false);
   },
 })
