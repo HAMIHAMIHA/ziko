@@ -32,6 +32,7 @@ Component({
         _cart: app.db.get('cart')
       })
 
+      console.log(startTimer);
       // Start or end timers
       let timer = self.selectAllComponents('.timer');
       if (startTimer) {

@@ -107,6 +107,8 @@ export const languageMap_en = {
 
   // J
   // K
+  kcal: "kCal",
+
   // L
   list: "list",
   loading: 'Loading...',
@@ -249,6 +251,10 @@ export const languageMap_en = {
   // Q
   // R
   recipes: "recipes",
+  related_current_offers: {
+    fst: "related",
+    snd: " current offers"
+  },
   related_recipes: {
     fst: "related",
     snd: " recipes"
@@ -258,9 +264,11 @@ export const languageMap_en = {
 
   // S
   save: "Save",
+  see_all_offers: "See all offers",
   select: "Select",
   select_address: "Select Address",
   select_area: "Select Area",
+  servings: "Servings",
   single_items: {
     fst: "single",
     snd: " items"
@@ -412,6 +420,8 @@ export const languageMap_zh = {
 
   // J
   // K
+  kcal: "kCal",
+
   // L
   list: "列表",
   loading: 'Loading...',
@@ -553,6 +563,10 @@ export const languageMap_zh = {
   // Q
   // R
   recipes: "recipes",
+  related_current_offers: {
+    fst: "related",
+    snd: " current offers"
+  },
   related_recipes: {
     fst: "related",
     snd: " recipes"
@@ -562,9 +576,11 @@ export const languageMap_zh = {
 
   // S
   save: "Save",
+  see_all_offers: "See all offers",
   select: "Select",
   select_address: "Select Address",
   select_area: "Select Area",
+  servings: "Servings",
   single_items: {
     fst: "single",
     snd: " items"

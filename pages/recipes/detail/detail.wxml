@@ -3,15 +3,14 @@
     <!-- Detail Banner -->
     <view class="banner-image_container swiper_container">
       <swiper class="swiper" bindchange="swiperChange">
-        <block wx:for="{{ _recipe.media }}" wx:key="key" wx:for-item="media">
+        <block wx:for="{{ _recipe.media }}" wx:key="_id" wx:for-item="media">
           <swiper-item class="swiper_item">
             <image src="{{ media ? media.uri : '' }}" mode="aspectFill" lazy-load="true" ></image>
-            <!-- <video src="{{ media ? media.uri : '' }}" mode="aspectFill" lazy-load="true" ></video> --><!-- TODO -->
           </swiper-item>
         </block>
       </swiper>
       <view class="gilroy_700 indicator">
-        {{ _setting.swiperIndex }} / {{ _recipe.media.length }}
+        {{ _setting.swiper_index }} / {{ _recipe.media.length }}
       </view>  
     </view>
     <!-- End of Detail Banner -->
@@ -22,59 +21,59 @@
     <view class="recipe-general__container">
       <!-- Recipe General Data -->
       <view class="recipe-general__detail">
-        <view class="uppercase recipe-general__label">prep{{ _t.preparation }}</view>
+        <view class="recipe-general__label">{{ _t.preparation }}</view>
         <view class="nunito_600 recipe-general__value">
-          {{ _recipe.preparationTime }}{{ _t.minutes }}12
+          {{ _recipe.preparationTime }}{{ _t.minutes }}
         </view>
       </view>
       <view class="recipe-general__detail">
-        <view class="uppercase recipe-general__label">prep{{ _t.baking }}</view>
+        <view class="recipe-general__label">{{ _t.baking }}</view>
         <view class="nunito_600 recipe-general__value">
-          {{ _recipe.bakingTime }}{{ _t.minutes }}12
+          {{ _recipe.bakingTime }}{{ _t.minutes }}
         </view>
       </view>
       <view class="recipe-general__detail">
-        <view class="uppercase recipe-general__label">prep{{ _t.servings }}</view>
+        <view class="recipe-general__label">{{ _t.servings }}</view>
         <view class="nunito_600 recipe-general_valuel">
-          {{ _recipe.serving }}12
+          {{ _recipe.serving }}
         </view>
       </view>
       <view class="recipe-general__detail">
-        <view class="uppercase recipe-general__label">prep{{ _t.kcal }}</view>
+        <view class="recipe-general__label">{{ _t.kcal }}</view>
         <view class="nunito_600 recipe-general_valuel">
-          {{ _recipe.calories }}12
+          {{ _recipe.calories }}
         </view>
       </view>
       <!-- End of Recipe General Data -->
-    </view>
 
-    <!-- Share -->
-    <button class="share" open-type="share">
-      <view class="icon icon-share"></view>
-    </button>
-    <!-- End of Share -->
+      <!-- Share -->
+      <button class="share" open-type="share">
+        <view class="icon icon-share"></view>
+      </button>
+      <!-- End of Share -->
+    </view>
 
     <!-- Recipe Detail -->
     <view class="recipe-detail__container">
-      <view class="recipe-detail__title">
+      <view class="nunito_700 recipe-detail__title">
         {{ _recipe.name[_language] }}
       </view>
 
-      <rich-text class="recipe-detail__description" node="{{ _recipe.description[_language] }}"></rich-text>
+      <rich-text class="recipe-detail__description" nodes="{{ _recipe.description[_language] }}"></rich-text>
     </view>
     <!-- End of Recipe Detail -->
   </view>
   <!-- End of Recipe -->
 
   <!-- Offer List -->
-  <view class="offers__container">
+  <view class="offer-container">
     <view class="uppercase title">
-      <text class="gilroy_500">{{ _t.our_selected_packs.fst }}</text>
-      <text class="gilroy_700">{{ _t.our_selected_packs.snd }}</text>
+      <text class="gilroy_500">{{ _t.related_current_offers.fst }}</text>
+      <text class="gilroy_700">{{ _t.related_current_offers.snd }}</text>
     </view>
 
-    <offers id="list_offers" offers="{{ offers }}" bind:navigatePage="navigatePage"></offers>
-    <navigator class="btn-primary nunito_600" url="{{ _routes.home }}" open-type="switchTab">{{ _t.see_all_offers }}see</navigator>
+    <offers id="list_offers" offers="{{ offers }}"></offers>
+    <navigator class="btn-primary nunito_600" url="{{ _routes.home }}" open-type="switchTab">{{ _t.see_all_offers }}</navigator>
   </view>
   <!-- End of Offer List -->
 </view>

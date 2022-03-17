@@ -138,10 +138,17 @@ module.exports = {
     return get(`offers/details${suffix}`);
   },
 
-  // Get product detail
-  // getProduct: (id, callback) => {
-  //   get(`products/${id}`, data);
-  // },
+  // Get recipes detail
+  getRecipes: (filter) => {
+    let suffix = '';
+    // let suffix = `?filter={"activity":{"$in":["${activityData.ids.join('","')}"]}}&user=${app.globalData.userInfo.id}`; published
+    if (filter.id) {
+      suffix = `/${filter.id}/details`;
+    } else {
+      suffix = `?filter=${filter.detail}`
+    }
+    return get(`recipes${suffix}`);
+  },
 
   // Get user information
   getProfile: () => {

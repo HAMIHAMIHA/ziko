@@ -1,15 +1,44 @@
 {
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "coverView": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "lazyloadPlaceholderEnable": false,
+    "useMultiFrameRuntime": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "disableUseStrict": false,
+    "showES6CompileOption": false,
+    "useCompilerPlugins": false,
+    "ignoreUploadUnusedFiles": true,
+    "useStaticServer": true,
+    "minifyWXML": true
+  },
+  "description": "Project configuration file, more information: https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "condition": {
     "plugin": {
-      "current": -1,
       "list": []
     },
     "game": {
-      "current": -1,
       "list": []
     },
     "gamePlugin": {
-      "current": -1,
       "list": []
     },
     "miniprogram": {
@@ -18,14 +47,12 @@
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
           "query": "id=6221c740f06d31c51e3ba287",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "Cellar",
           "pathName": "pages/offer/cellar/cellar/cellar",
           "query": "id=62203281f06d31c51e3b8806",
-          "launchMode": "default",
           "scene": null
         },
         {
@@ -38,14 +65,12 @@
           "name": "Pack Detail",
           "pathName": "pages/product/product",
           "query": "id=61dd4fe8e1a38b5729ef4ed5&offer_id=61dd4fe8e1a38b5729ef4ec2&type=pack",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "Pack Product Detail",
           "pathName": "pages/product/product",
           "query": "id=61ee1d890ed57617e879142f&offer_id=61ee1d890ed57617e879141e&type=pack",
-          "launchMode": "default",
           "scene": null
         },
         {
@@ -58,21 +83,18 @@
           "name": "Cart",
           "pathName": "pages/cart/cart",
           "query": "id=61efcaf5b45ef63ce171e12c",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "Address",
           "pathName": "pages/address/index/index",
           "query": "action=select",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "Address Detail",
           "pathName": "pages/address/detail/detail",
           "query": "id=",
-          "launchMode": "default",
           "scene": null
         },
         {
@@ -109,7 +131,6 @@
           "name": "order detail",
           "pathName": "pages/orders/detail/detail",
           "query": "id=61ea7f0405e0d302865876be",
-          "launchMode": "default",
           "scene": null
         },
         {
@@ -122,49 +143,21 @@
           "name": "areas",
           "pathName": "pages/address/areas/areas",
           "query": "id=61e00b33fa98797bdd5097f0",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "recipes list",
           "pathName": "pages/recipes/index/index",
           "query": "",
-          "scene": null,
-          "launchMode": "default"
+          "scene": null
+        },
+        {
+          "name": "Recipe",
+          "pathName": "pages/recipes/detail/detail",
+          "query": "id=621ee1b3f06d31c51e3b81cb",
+          "scene": null
         }
       ]
     }
-  },
-  "setting": {
-    "urlCheck": true,
-    "es6": false,
-    "enhance": true,
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "coverView": true,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "lazyloadPlaceholderEnable": false,
-    "useMultiFrameRuntime": false,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "disableUseStrict": false,
-    "showES6CompileOption": false,
-    "useCompilerPlugins": false,
-    "ignoreUploadUnusedFiles": true,
-    "useStaticServer": true,
-    "minifyWXML": true
-  },
-  "description": "Project configuration file, more information: https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
+  }
 }
