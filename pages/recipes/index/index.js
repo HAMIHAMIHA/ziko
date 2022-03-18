@@ -19,7 +19,7 @@ const _setTranslation = page => {
   page.setData({
     _t: {
       baking: i18n.baking,
-      min: i18n.min,
+      minutes: i18n.minutes,
       preparation: i18n.preparation,
       try_text: i18n.try_text,
       _language: app.db.get('language'),
