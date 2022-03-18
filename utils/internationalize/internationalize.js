@@ -143,6 +143,7 @@ export const languageMap_en = {
   need_login: "You need to login first",
   no_offers: "No offers yet",
   no_orders: "No orders yet",
+  no_recipes: "No related recipes",
 
   // O
   offer: "Offer",
@@ -462,6 +463,7 @@ export const languageMap_zh = {
   need_login: "You need to login first",
   no_offers: "No offers yet",
   no_orders: "No orders yet",
+  no_recipes: "No related recipes",
 
   // O
   offer: "Offer",

@@ -10,7 +10,8 @@ Page({
     _setting: {
       swiperIndex: 1,
       currentTab: "product",
-      animate: animate
+      animate: animate,
+      // recipe_loaded: false,
     }
   },
 
@@ -29,6 +30,7 @@ Page({
   },
   onUnload: function() {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
+
     Offers.unloadOfferPage();
   },
 
@@ -59,17 +61,7 @@ Page({
 
   // Switch between recipe and products
   switchTab: function(e) {
-    const self = this;
-    // TODO change to show and hide css on switch
-    self.setData({
-      "_setting.currentTab": e.currentTarget.dataset.toTab
-    })
-
-    ('#tabbar')
-    wx.pageScrollTo({
-      duration: 100,
-      scrollTop: 0,
-    })
+    Offers.switchTabs(this, e.currentTarget.dataset.toTab);
   },
 
   // Checkout offer

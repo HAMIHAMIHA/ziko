@@ -57,13 +57,9 @@ Page({
     })
   },
 
-  // Switch between recipes and products
+  // Switch between recipe and products
   switchTab: function(e) {
-    const self = this;
-    // TODO change to show and hide css on switch
-    self.setData({
-      "_setting.currentTab": e.currentTarget.dataset.toTab
-    })
+    Offers.switchTabs(this, e.currentTarget.dataset.toTab);
   },
   
   // Checkout offer

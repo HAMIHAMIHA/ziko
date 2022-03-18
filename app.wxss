@@ -722,6 +722,27 @@ button:not([size=mini]).float-contact_container {
 }
 /* End of Offer Payment */
 
+/*  */
+.ziko-offer .content-container {
+  width: 100vw;
+  max-width: 100vw;
+  height: fit-content;
+  overflow: hidden;
+}
+
+.ziko-offer .content-container__block {
+  width: 200vw;
+  height: var(--height);
+  display: flex;
+  transform: translateX(var(--left));
+  transition: all 0.3s ease-in;
+}
+
+.ziko-offer .content-container__block .list_container {
+  height: fit-content;
+  flex: 0 0 100vw;
+}
+
 /* Offer Product List */
 .ziko-offer .offer-group {
   /* padding: 0 30rpx; */
@@ -733,6 +754,11 @@ button:not([size=mini]).float-contact_container {
   line-height: 38rpx;
   text-align: center;
   letter-spacing: 0.2em;
+}
+
+.ziko-offer .no-recipes {
+  padding-top: 24rpx;
+  text-align: center;
 }
 
 .ziko-offer .offer-singles .title {

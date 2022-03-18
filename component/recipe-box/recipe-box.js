@@ -14,10 +14,6 @@ Component({
     }
   },
 
-  ready: function() {
-    console.log(this.data);
-  },
-
   options: {
     addGlobalClass: true
   }
