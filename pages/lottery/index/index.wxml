@@ -70,7 +70,7 @@
               </view>
               <!-- End of Detail - Info -->
 
-              <view class="flex-center offer-ticket_win" -wx:if="{{ offer.lotteries.win }}">
+              <view class="flex-center offer-ticket_win" wx:if="{{ offer.lotteries.win }}">
                 <text class="ticket_icon icon icon-crown"></text>
                 <text class="font_red ticket_count">{{ _t.you_win }}</text>
               </view>
