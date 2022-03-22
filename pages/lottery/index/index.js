@@ -1,12 +1,12 @@
-const { showLoading } = require("../../../utils/common");
+const { showLoading, getUserInfo } = require("../../../utils/common");
 const index_data = require("../../../utils/constants");
 const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../../utils/util");
 
 const app = getApp();
+
 let current_filter = { group: '', date: '' }; // Default filter for page
-
-
 let timer_intervals = [];
+let raw_offers = [], lotteries = [], orders = [];
 
 const _setPageTranslation = function(page) {
   // Translate tabbar
@@ -22,23 +22,13 @@ const _setPageTranslation = function(page) {
     _language: app.db.get('language'),
     _t: {
       all: i18n.all,
-      coming_soon: i18n.coming_soon,
+      closed: i18n.closed,
       community: i18n.community,
-      delivery: i18n.delivery,
-      empty: i18n.empty,
-      explore: i18n.explore,
-      get_reminder: i18n.get_reminder,
-      item_unit: i18n.item_unit,
-      items_unit: i18n.items_unit,
-      list: i18n.list,
-      lottery: i18n.lottery,
       no_offers: i18n.no_offers,
-      offers: i18n.offers,
-      orders_unit: i18n.orders_unit,
-      order_unit: i18n.order_unit,
+      tickets: i18n.tickets,
+      remaining_draws: i18n.remaining_draws,
       remaining_time: i18n.remaining_time,
-      specials: i18n.specials,
-      viewers: i18n.viewers,
+      you_win: i18n.you_win,
     }
   })
 }
@@ -79,7 +69,6 @@ const _timerControl = (page, timer_switch) => {
 
 // Rules for generating api url
 const _generateSuffix = (step, filter_date) => {
-  // ,{"miniprogram.lotteryEnable": "true"}
   let key = 'general';
   let now = new Date();
   let now_timestamp = now.getTime();
@@ -116,26 +105,72 @@ const _generateSuffix = (step, filter_date) => {
         `["endingDate","ASC"]`
       ],
       [
-        [
-          {"startingDate":
-            {
-              "$gte":`${ filter_date }`,
-              "$lte":`${ new Date(filter_date).setHours(23, 59, 59, 999) }`
-            }
-          },{
-            "endingDate":{"$lte":`${ now_timestamp }`}
-          }
-        ],
+        [{"startingDate":{"$gte":`${ filter_date }`,"$lte":`${ new Date(filter_date).setHours(23, 59, 59, 999)}`}},{"endingDate":{"$lte":`${ now_timestamp }`}}],
         `["startingDate","DESC"]`
       ]
     ],
   }
-
-
   let filter_str = filter_str_list[key][step];
-
-  let filter_conditions = {"$and":[{"$or":[{"channel":"all"},{"channel":"miniprogram"}]}, ...filter_str[0]]}
+  let filter_conditions = {"$and":[{"$or":[{"channel":"all"},{"channel":"miniprogram"}]},{"miniprogram.lotteryEnable":"true"}, ...filter_str[0]]}
   return filter_str ? `&filter=${JSON.stringify(filter_conditions)}&sort=${filter_str[1]}` : null;
+}
+
+const _setOffers = (page, filter_date) => {
+  let offers = [];
+  let days = page.data.days;
+  if (!filter_date) {
+    days = []; // create list for date picker
+  }
+
+  raw_offers.forEach( offer => {
+    let date_value = formatWeekDate(offer.startingDate);
+
+    // Creating date filter list
+    if (!filter_date && findIndex(days, date_value.timestamp, "timestamp") == -1) {
+      days.push(date_value);
+    }
+
+    let banner = '';
+    if (offer.banner) {
+      if (offer.banner[app.db.get('language')]) {
+        banner = offer.banner[app.db.get('language')].uri;
+      } else if (app.db.get('language') === 'zh' && offer.banner.en) {
+        banner = offer.banner.en.uri;
+      } else if (app.db.get('language') === 'en' && offer.banner.zh) {
+        banner = offer.banner.zh.uri;
+      }
+    }
+
+    let lottery_drawn = lotteries.filter( l => { return l.offer.id === offer.id && l.winners.order != null });
+    let offer_orders = orders.filter( o => { return o.offer.id === offer.id });
+    let wins = offer_orders.filter( o => { return o.gifts && o.gifts.type === 'lottery'});
+    
+
+    let offer_tickets = 0;
+    if (offer_orders.length > 0) {
+      // offer_orders.forEach( o => offer_tickets += o.ticketAmount) // TODO find the right value
+    }
+
+    // Modify offer data to fit page display
+    offer.ended = (new Date() >= new Date(offer.endingDate));
+    offer.startDate = date_value;
+    offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
+    offer.banner = banner ? app.folders.offer_banner + banner : '';
+    console.log(offer_tickets);
+    offer.lotteries = {
+      remaining_draws: (offer.miniprogram.lottery.draws.length - lottery_drawn.length),
+      win: wins.length > 0,
+      draws: offer_tickets
+    }
+    offers.push(offer);
+  })
+
+  page.setData({
+    days: days.sort( (a,b) => { return a.timestamp - b.timestamp }),
+    offers: offers
+  })
+  _timerControl(page, true);
+  showLoading(false);
 }
 
 // Get offer data by filters
@@ -160,58 +195,6 @@ const _filterOfferData = (page, filter_group, filter_id, filter_date) => {
 
   // Loading module
   showLoading(true);
-  
-  let raw_offers = [];
-
-  // Set up page data, Start new timers, Change date filters
-  let callback = res => {
-    raw_offers = [...raw_offers, ...res];
-
-    // // Filter only offers with lottery
-    // res = res.filter(offer => {
-    //   return offer.miniprogram.lotteryEnable
-    // })
-
-    let offers = [];
-    let days = page.data.days;
-    if (!filter_date) {
-      days = []; // create list for date picker
-    }
-
-    raw_offers.forEach( offer => {
-      let date_value = formatWeekDate(offer.startingDate);
-
-      // Creating date filter list
-      if (!filter_date && findIndex(days, date_value.timestamp, "timestamp") == -1) {
-        days.push(date_value);
-      }
-
-      let banner = '';
-      if (offer.banner) {
-        if (offer.banner[app.db.get('language')]) {
-          banner = offer.banner[app.db.get('language')].uri;
-        } else if (app.db.get('language') === 'zh' && offer.banner.en) {
-          banner = offer.banner.en.uri;
-        } else if (app.db.get('language') === 'en' && offer.banner.zh) {
-          banner = offer.banner.zh.uri;
-        }
-      }
-
-      // Modify offer data to fit page display
-      offer.started = (new Date() >= new Date(offer.startingDate));
-      offer.startDate = date_value;
-      offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
-      offer.banner = banner ? app.folders.offer_banner + banner : '';
-      offers.push(offer);
-    })
-
-    page.setData({
-      days: days.sort( (a,b) => { return a.timestamp - b.timestamp }),
-      offers: offers
-    })
-    _timerControl(page, true);
-    showLoading(false);
-  };
 
   // Set up API
   suffix = `?community=${filter_id}${ _generateSuffix(0, filter_date) }`;
@@ -223,11 +206,24 @@ const _filterOfferData = (page, filter_group, filter_id, filter_date) => {
     let date_suffix_str = _generateSuffix(1, filter_date);
     suffix = `?community=${ filter_id }${ date_suffix_str }`;
 
-    if (date_suffix_str) {
-      app.api.getOffers(suffix).then(callback);
-    } else {
-      callback([]);
-    }
+    app.api.getOffers(suffix).then(res => {
+      raw_offers = [...raw_offers, ...res];
+      app.api.getLotteries().then( res => {
+        lotteries = res;
+
+        // Get user orders if user is logged in
+        if (page.data.user.id) {
+          app.api.getOrders({
+            filter_str: `filter={"$or":[{"channel":"all"},{"channel":"miniprogram"}]}&paymentStatus=paid`
+          }).then( res => {
+            orders = res;
+            _setOffers(page, filter_date);
+          })
+        } else {
+          _setOffers(page, filter_date);
+        }
+      })
+    });
   });
 }
 
@@ -240,10 +236,12 @@ Page({
     _filters: {
       list: index_data.list_filter
     },
+    _communities: index_data.communities
   },
 
   onLoad: function() {
     const self = this;
+    getUserInfo(self);
     self.filterOffers({detail: { change_date: false }});
   },
 
@@ -274,11 +272,7 @@ Page({
 
   // To lottery detail
   toLottery: function(e) {
-    const self = this;
     let data = e.currentTarget.dataset;
-
-    if (!data.started) return;
-
     wx.navigateTo({
       url: app.routes.lottery_detail + '?id=' + data.offerId,
     })

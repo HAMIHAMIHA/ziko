@@ -41,6 +41,7 @@ export const languageMap_en = {
   chosen_delivery_date:"Chosen delivery date",
   city:"City",
   claims:"Claims",
+  closed: "Closed",
   comment:"Comment",
   coming_soon:"coming soon...",
   community: {
@@ -262,6 +263,7 @@ export const languageMap_en = {
     fst: "related",
     snd: " recipes"
   },
+  remaining_draws: "Remaining draws",
   remaining_time: "remaining time",
   rmb: "rmb",
 
@@ -286,6 +288,7 @@ export const languageMap_en = {
 
   // T
   ticket: "ticket",
+  tickets: "tickets",
   total: "Total",
   total_units_available: "total units available",
   tracking_number: "Tracking number",
@@ -313,6 +316,8 @@ export const languageMap_en = {
   // W
   // X
   // Y
+  you_win: "You Win !",
+
   // Z
   zh: "ZH",
   zipcode: "Zipcode",
@@ -361,6 +366,7 @@ export const languageMap_zh = {
   chosen_delivery_date:"Chosen delivery date",
   city:"City",
   claims:"Claims",
+  closed: "Closed",
   comment:"Comment",
   coming_soon:"coming soon...",
   community: {
@@ -581,6 +587,7 @@ export const languageMap_zh = {
     fst: "related",
     snd: " recipes"
   },
+  remaining_draws: "Remaining draws",
   remaining_time: "remaining time",
   rmb: "rmb",
 
@@ -605,6 +612,7 @@ export const languageMap_zh = {
 
   // T
   ticket: "ticket",
+  tickets: "tickets",
   total: "Total",
   total_units_available: "total units available",
   tracking_number: "Tracking number",
@@ -632,6 +640,8 @@ export const languageMap_zh = {
   // W
   // X
   // Y
+  you_win: "You Win !",
+
   // Z
   zh: "中文",
   zipcode: "Zipcode",

@@ -138,10 +138,9 @@ module.exports = {
     return get(`offers/details${suffix}`);
   },
 
-  // Get recipe categories
-  // getRecipeCategories: () => {
-  //   return get('recipe-tag-categories');
-  // },
+  getLotteries: () => {
+    return get('lottery-draws/details');
+  },
 
   // Get recipe tags
   getRecipeTags: () => {

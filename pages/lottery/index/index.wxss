@@ -99,110 +99,44 @@
   padding: 24rpx 32rpx;
 }
 
-.offer-detail_content .icon {
-  font-size: 30rpx;
-}
-
 .offer-detail_content + .offer-detail_content {
   border-top: 2rpx solid rgba(255, 255, 255, 0.1);
 }
 /* End of Offer Detail - General */
 
-/* Offer Detail - Specials */
-.offer-specials .icon_container {
-  font-size: 20rpx;
-  line-height: 24rpx;
-}
-
-.offer-specials .icon_container + .icon_container {
-  padding-left: 24rpx;
+/* Offer Detail - Info */
+.offer-specials {
+  font-size: 24rpx;
+  line-height: 32rpx;
+  flex: 0 0 64%;
 }
 
 .offer-specials .icon {
   margin-right: 8rpx;
-  padding: 10rpx;
+  padding: 4rpx;
   background: #ffdb59;
   color: #252831;
+  font-size: 40rpx;
   border-radius: 50%;
 }
-/* End of Offer Detail - Specials */
 
-/* Offer Detail - Bag */
-.offer-bag {
-  font-size: 20rpx;
-  line-height: 24rpx;
-  opacity: 0.4;
+.offer-specials .icon_container .icon_text {
+  padding-left: 0;
 }
 
-.offer-bag .icon_text {
-  padding-left: 16rpx;
-}
-
-.offer-bag.offer-bag_filled {
-  opacity: 1;
-}
-
-.offer-bag.offer-bag_filled .icon {
-  position: relative;
-}
-
-.offer-bag.offer-bag_filled .icon:after {
-  content: '';
-  width: 12rpx;
-  height: 12rpx;
-  background: #FF4040;
-  border: 2rpx solid #252831;
-  border-radius: 50%;
-  position: absolute;
-  right: -6rpx;
-  top: -6rpx;
-}
-/* End of Offer Detail - Bag */
-
-/* Offer Detail - Status */
-.offer-counts {
+.offer-specials .ticket-count_label {
   color: #9D9FA4;
 }
 
-.offer-counts .icon_container + .icon_container {
-  padding-left: 30rpx;
+.offer-ticket_win .ticket_icon {
+  padding-right: 8rpx;
+  font-size: 32rpx;
+  color: #ffc700;
 }
+/* End of Offer Detail - Info */
 
-.offer-counts .icon_container .icon_text {
-  padding-left: 8rpx;
-}
-/* End of Offer Detail - Status */
-
-/* Offer Detail - Delivery */
-.offer-delivery {
-  padding: 26rpx 20rpx 0;
-  color: #9D9FA4;
-  line-height: 32rpx;
+/* Offer Detail - Closed */
+.offer-closed {
   text-align: center;
-  text-transform: none;
 }
-/* End of Offer Detail - Delivery */
-
-/* Offer Detail - Coming Soon */
-.offer-waiting .coming-soon {
-  padding-top: 8rpx;
-  color: #9D9FA4;
-}
-/* End of Offer Detail - Coming Soon */
-
-/* Offer Detail - Datetime */
-.offer-date {
-  line-height: 29rpx;
-}
-
-.offer-reminder {
-  width: fit-content !important;
-  padding: 16rpx 24rpx;
-  background: #3F4250;
-  color: var(--ziko-default-);
-  font-size: 28rpx;
-  line-height: 36rpx;
-  text-transform: none;
-  border-radius: 8rpx;
-}
-/* End of Offer Detail - Datetime */
+/* End of Offer Detail - Closed */
