@@ -38,7 +38,7 @@
           wx:for="{{ offers }}"
           wx:for-item="offer"
           wx:key="id"
-          bindtap="toOffer"
+          bindtap="toLottery"
           data-started="{{ offer.started }}"
           data-community="{{ offer.community.id }}"
           data-offer-id="{{ offer.id }}"
@@ -75,8 +75,8 @@
               </view>
             </view>
 
-            <!-- Display for offers in progress -->
-            <view class="offer-detail offer-started" wx:if="{{ offer.status === 1 }}">
+            <!-- Current Status -->
+            <view class="offer-detail offer-started" wx:if="{{ offer.started }}">
               <view class="flex-between offer-detail_content offer-countdown">
                 <view class="flex-between_left">
                   {{ _t.remaining_time }}
@@ -85,12 +85,6 @@
                   <countdown class="timer" end-time="{{ offer.endingDate }}"></countdown>
                 </view>
               </view>
-            </view>
-            <!-- End of offer in progress -->
-
-            <!-- Current Status -->
-            <view class="offer-detail offer-ended" wx:if="{{ offer.status === 2 }}">
-              <view class=" offer-detail_content coming-soon">{{ _t.coming_soon }}</view>
             </view>
             <!-- End of Current Status -->
 

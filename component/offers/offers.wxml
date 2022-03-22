@@ -98,8 +98,7 @@
               <view class="offer-date">{{ offer.startDate.date_str }}</view>
               <view class="offer-time">{{ offer.startDate.time }}</view>
             </view>
-            <!-- TEMP Hide for v1 -->
-            <view class="flex-between_rt" wx:if="{{ showing }}">
+            <view class="flex-between_rt">
               <button class="offer-reminder">{{ _t.get_reminder }}</button>
             </view>
           </view>

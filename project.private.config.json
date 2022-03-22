@@ -156,6 +156,12 @@
           "pathName": "pages/recipes/detail/detail",
           "query": "id=621ee1b3f06d31c51e3b81cb",
           "scene": null
+        },
+        {
+          "name": "lotteries",
+          "pathName": "pages/lottery/index/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -160,7 +160,6 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
       offers: offers
     })
     _timerControl(page, true);
-    // _setDateFilters(page, res.offers, filter_date);
     showLoading(false);
   };
 

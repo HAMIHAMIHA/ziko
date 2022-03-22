@@ -259,12 +259,9 @@ Page({
   },
 
   searchKeyword: function() {
-
-  },
-
-  searchKeyword: function() {
     const self = this;
-
     _getRecipes(self, false);
   },
+
+  onShareAppMessage: function (res) {},
 })
