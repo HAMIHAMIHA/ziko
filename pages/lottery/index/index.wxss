@@ -106,8 +106,8 @@
 
 /* Offer Detail - Info */
 .offer-specials {
-  font-size: 24rpx;
-  line-height: 32rpx;
+  font-size: 12px;
+  line-height: 16px;
   flex: 0 0 64%;
 }
 

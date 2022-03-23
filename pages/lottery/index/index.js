@@ -148,7 +148,7 @@ const _setOffers = (page, filter_date) => {
 
     let offer_tickets = 0;
     if (offer_orders.length > 0) {
-      // offer_orders.forEach( o => offer_tickets += o.ticketAmount) // TODO find the right value
+      offer_orders.forEach( o => offer_tickets += o.ticketAmount)
     }
 
     // Modify offer data to fit page display
