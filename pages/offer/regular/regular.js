@@ -11,7 +11,6 @@ Page({
       swiperIndex: 1,
       currentTab: "product",
       animate: animate,
-      // recipe_loaded: false,
     }
   },
 

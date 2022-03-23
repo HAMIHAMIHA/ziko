@@ -69,8 +69,6 @@ export const _getTranslations = (page, community) => {
   })
 }
 
-// Get related recipes
-
 // Get recipes
 const _getRecipes = (page, offer) => {
   let recipes = [];

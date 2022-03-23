@@ -78,6 +78,7 @@ export const languageMap_en = {
   },
   delivery_fee: "Delivery fee",
   discover: "Discover",
+  draw: "draw",
 
   // E
   edit_address: "Edit address",
@@ -97,6 +98,7 @@ export const languageMap_en = {
   get_reminder: "Get a reminder",
   get_profile: "Authorize wechat nickname",
   getting_user_profile: "To complete your user profile",
+  go_to_offer: "Go to offer",
 
   // H
   home: "The land",
@@ -114,7 +116,10 @@ export const languageMap_en = {
   list: "list",
   loading: 'Loading...',
   lottery: "Lottery",
+  lottery_detail: "Lottery detail",
   lottery_gift: "Lottery gift:",
+  lottery_prizes: "Lottery prizes",
+  lottery_stages: "lottery stages",
   lottery_tickets: "Lottery tickets",
 
   // M
@@ -145,6 +150,7 @@ export const languageMap_en = {
   no_offers: "No offers yet",
   no_orders: "No orders yet",
   no_recipes: "No related recipes",
+  no_winner_yet: "No winner yet",
 
   // O
   offer: "Offer",
@@ -251,6 +257,8 @@ export const languageMap_en = {
   profile_info: "Profile information",
 
   // Q
+  quantity_bottle_sold: "quantity bottle sold",
+
   // R
   recipe_detail: "Recipe detail",
   recipe_list: "Recipe list",
@@ -287,6 +295,7 @@ export const languageMap_en = {
   },
 
   // T
+  terms_and_conditions: "Terms and conditions",
   ticket: "ticket",
   tickets: "tickets",
   total: "Total",
@@ -307,6 +316,7 @@ export const languageMap_en = {
     pet:"g",
     kg:"kg",
   },
+  unlocked: "Unlocked",
   use_voucher: "Use Voucher",
 
   // V
@@ -314,8 +324,11 @@ export const languageMap_en = {
   vouchers: "Vouchers",
 
   // W
+  winner: "winner",
+
   // X
   // Y
+  your_tickets: "Your tickets",
   you_win: "You Win !",
 
   // Z
@@ -403,6 +416,7 @@ export const languageMap_zh = {
   },
   delivery_fee: "Delivery fee",
   discover: "查看",
+  draw: "draw",
 
   // E
   edit_address: "Edit address",
@@ -422,6 +436,7 @@ export const languageMap_zh = {
   get_reminder: "Get a reminder",
   get_profile: "授权微信昵称",
   getting_user_profile: "用于完善会员资料",
+  go_to_offer: "Go to offer",
 
   // H
   home: "地图",
@@ -439,7 +454,10 @@ export const languageMap_zh = {
   list: "列表",
   loading: 'Loading...',
   lottery: "Lottery",
+  lottery_detail: "Lottery detail",
   lottery_gift: "Lottery gift:",
+  lottery_prizes: "Lottery prizes",
+  lottery_stages: "lottery stages",
   lottery_tickets: "Lottery tickets",
 
   // M
@@ -470,6 +488,7 @@ export const languageMap_zh = {
   no_offers: "No offers yet",
   no_orders: "No orders yet",
   no_recipes: "No related recipes",
+  no_winner_yet: "No winner yet",
 
   // O
   offer: "Offer",
@@ -575,6 +594,8 @@ export const languageMap_zh = {
   profile_info: "Personal information",
 
   // Q
+  quantity_bottle_sold: "quantity bottle sold",
+
   // R
   recipe_detail: "Recipe detail",
   recipe_list: "Recipe list",
@@ -611,6 +632,7 @@ export const languageMap_zh = {
   },
 
   // T
+  terms_and_conditions: "Terms and conditions",
   ticket: "ticket",
   tickets: "tickets",
   total: "Total",
@@ -631,6 +653,7 @@ export const languageMap_zh = {
     pet:"克",
     kg:"kg",
   },
+  unlocked: "Unlocked",
   use_voucher: "Use Voucher",
 
   // V
@@ -638,8 +661,11 @@ export const languageMap_zh = {
   vouchers: "Vouchers",
 
   // W
+  winner: "winner",
+
   // X
   // Y
+  your_tickets: "Your tickets",
   you_win: "You Win !",
 
   // Z

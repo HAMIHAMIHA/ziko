@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "countdown": "/component/countdown/countdown",
+    "lottery-header": "/component/lottery/header/header",
+    "lottery-cellar": "/component/lottery/cellar/cellar"
+  }
 }

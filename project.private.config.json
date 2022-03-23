@@ -162,6 +162,12 @@
           "pathName": "pages/lottery/index/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "lottery",
+          "pathName": "pages/lottery/detail/detail",
+          "query": "id=61dfc88f1e5f2a58a8457fc3",
+          "scene": null
         }
       ]
     }

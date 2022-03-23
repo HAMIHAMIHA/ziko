@@ -3,6 +3,7 @@ Component({
     _offer: Object,
     _t: Object
   },
+
   methods: {
 
   }

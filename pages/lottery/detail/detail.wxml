@@ -1,16 +1,17 @@
-<view class="container">
+<view class="container ziko-offer">
   <!-- Offer Countdown -->
   <view class="uppercase countdown">
     <view class="nunito_600 countdown_text">{{ _t.remaining_time }}</view>
-    <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}"></countdown>
-    <button class="share-btn icon icon-share"></button>
+    <view class="gilroy_700 countdown_clock" wx:if="{{ _offer.ended }}">{{ _t.closed }}</view>
+    <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}" wx:else></countdown>
+    <button class="share-btn icon icon-share" open-type="share"></button>
   </view>
   <!-- End of Offer Countdown -->
 
   <!-- Offer Info -->
   <view class="offer__info">
-    <view class="offer__name">{{ _offer.name }}</view>
-    <view class="offer__type">{{ _t.community[_offer.type] }}</view>
+    <view class="gilroy_700 uppercase offer__name">{{ _offer.name[_language] }}</view>
+    <view class="offer__type">{{ _t.community[_offer.community] }}</view>
     <view class="tickets">
       <text class="label">{{ _t.your_tickets }}: </text>
       <text class="icon icon-ticket"></text>
@@ -20,9 +21,11 @@
   <!-- End of Offer Info -->
 
   <!-- Lottery List -->
-  <view class="lottery__container">
-    <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}"></lottery-header>
-    <lottery-cellar _offer="{{ _offer }}" _t="{{ _t }}"></lottery-cellar> <!-- TODO -->
+  <view class="offer-lotteries">
+    <view class="lottery__container">
+      <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}"></lottery-header>
+      <lottery-cellar _offer="{{ _offer }}" _t="{{ _t_prize }}"></lottery-cellar> <!-- TODO -->
+    </view>
   </view>
   <!-- End of Lottery List -->
 

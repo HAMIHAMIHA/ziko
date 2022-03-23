@@ -138,8 +138,9 @@ module.exports = {
     return get(`offers/details${suffix}`);
   },
 
-  getLotteries: () => {
-    return get('lottery-draws/details');
+  getLotteries: (filter) => {
+    let url = filter ? `lottery-draws/details?${filter}` : 'lottery-draws/details';
+    return get(url);
   },
 
   // Get recipe tags
