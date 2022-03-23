@@ -3,6 +3,7 @@ const index_data = require("../../../utils/constants");
 const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../../utils/util");
 
 const app = getApp();
+let _refresh_data = true, _leave_triggered = false;
 
 let current_filter = { group: '', date: '' }; // Default filter for page
 let timer_intervals = [];
@@ -156,7 +157,6 @@ const _setOffers = (page, filter_date) => {
     offer.startDate = date_value;
     offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
     offer.banner = banner ? app.folders.offer_banner + banner : '';
-    console.log(offer_tickets);
     offer.lotteries = {
       remaining_draws: (offer.miniprogram.lottery.draws.length - lottery_drawn.length),
       win: wins.length > 0,
@@ -242,12 +242,16 @@ Page({
   onLoad: function() {
     const self = this;
     getUserInfo(self);
-    self.filterOffers({detail: { change_date: false }});
   },
 
   onShow: function() {
     const self = this;
     _setPageTranslation(self);
+
+    _leave_triggered = false;
+    if (_refresh_data) {
+      self.filterOffers({detail: { change_date: false }});
+    }
   },
 
   // Filter offers by selected group
@@ -273,9 +277,20 @@ Page({
   // To lottery detail
   toLottery: function(e) {
     let data = e.currentTarget.dataset;
+    _refresh_data = false;
+    _leave_triggered = true;
     wx.navigateTo({
       url: app.routes.lottery_detail + '?id=' + data.offerId,
     })
+  },
+
+  onHide: function() {
+    if (_leave_triggered) return;
+    _refresh_data = true;
+  },
+
+  onUnload: function() {
+    _refresh_data = true;
   },
 
   onShareAppMessage: function (res) {},
