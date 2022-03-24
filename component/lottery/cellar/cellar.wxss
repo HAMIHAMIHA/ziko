@@ -180,7 +180,11 @@
 }
 
 .lotteries_prize .draw__container .offer-lottery_detail {
-  padding: 0 24rpx;
+  min-height: 60rpx;
+  padding: 0 66rpx;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 /* Unlocked */
