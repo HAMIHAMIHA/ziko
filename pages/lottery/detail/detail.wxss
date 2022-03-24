@@ -1,3 +1,7 @@
+.container.ziko-offer {
+  padding-bottom: calc(66rpx + var(--env-));
+}
+
 /* Remaining Time */
 .countdown {
   background: #11141B;
@@ -26,9 +30,46 @@
   text-align: center;
 }
 
+.offer__info .offer__name {
+  padding-bottom: 8rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+
+.offer__info .offer__type {
+  padding-bottom: 24rpx;
+  font-size: 24rpxv;
+  line-height: 32rpx;
+}
+
 .offer__info .tickets {
+  font-size: 28rpx;
+  line-height: 34rpx;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+.offer__info .tickets .icon-ticket {
+  padding-left: 8rpx;
+  padding-right: 4rpx;
+  color: #FFDB59;
+  font-size: 40rpx;
+}
+
+.lottery-label {
+  padding-bottom: 32rpx;
+  font-size: 32rpx;
+  line-height: 40rpx;
+  letter-spacing: 0.2em;
+  text-align: center;
+}
 /* End of Offer Info */
+
+.terms {
+  padding-bottom: 32rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  text-align: center;
+  text-decoration: underline;
+}

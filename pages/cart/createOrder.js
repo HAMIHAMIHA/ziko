@@ -97,6 +97,11 @@ export const makePayment = res => {
   const callback = res => {
     showLoading(false);
 
+    wx.redirectTo({
+      url: `${app.routes.order}?id=${order_id}&type=paid`,
+    })
+    return;
+
     wx.requestPayment({
       timeStamp: `${res.timestamp}`,
       nonceStr: `${res.nonce_str}`,

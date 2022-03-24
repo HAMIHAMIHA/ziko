@@ -1,35 +1,40 @@
-<view class="offer-lotteries_list">
-  <view class="progress__container">
-    <view class="progress__title" wx:if="{{ offer_page }}">{{ _t.lottery_stages }}</view>
-    <view class="progress__title" wx:else>{{ _t.quantity_bottle_sold }}</view>
+<view class="uppercase progress__container">
+  <view class="gilroy_800 lottery-label" wx:if="{{ offer_page }}">{{ _t.lottery_stages }}</view>
+  <view class="gilroy_800 lottery-label" wx:else>{{ _t.quantity_bottle_sold }}</view>
 
-    <!-- Progress block -->
-    <view class="progress">
-      <view class="progress__bottle">
-        <!-- <image src=""></image> -->
-      </view>
-      <view class="progress__label">{{ _t.item_quantity }}</view>
-      <view class="progress-bar__container">
-        <block wx:for="{{ offer.lotterDraws }}" wx:key="_id" wx:for-item="draw">
-          <view class="progress-axis">{{ draw.value }}</view>
-          <view class="progress-label">{{ _t.draw }} {{ index + 1 }}</view>
-        </block>
-        <view class="progress-bar" style="--filled-width:{{ offer.sold / offer.lotteries[offer.lotteries.length - 1].value * 100 }}%;"></view>
-      </view>
+  <!-- Progress block -->
+  <view class="progress" style="--filled-:{{ _offer.lottery_progress }}%;">
+    <view class="progress__bottle">
+      <view class="icon icon-wine"></view>
     </view>
-    <!-- End of progress block -->
+    <view class="gilroy_700 progress__label">{{ _t.item_quantity }}</view>
+    <view class="progress-bar__container">
+      <block wx:for="{{ _offer.miniprogram.lottery.draws }}" wx:key="_id" wx:for-item="draw">
+        <view 
+          class="progress-bar__values{{ index === 0 ? ' progress-bar_first' : (index + 1) === _offer.miniprogram.lottery.draws.length ? ' progress-bar_last' : '' }}"
+          style="--size-:{{ draw.size }}%;"
+        >
+          <view class="nunito_500 progress-axis">{{ draw.conditionValue }}</view>
+          <view class="gilroy_800 progress-label {{ draw.unlocked ? 'unlocked' : 'locked' }}" wx:if="{{ index > 0 }}">{{ _t.draw }} {{ index }}</view>
+        </view>
+      </block>
+      <view class="progress-bar"></view>
+    </view>
   </view>
+  <!-- End of progress block -->
+</view>
 
-  <!-- Lottery List -->
-  <view class="lotteries_prize">
-    <view class="lottery-label">{{ _t.lottery_prizes }}</view>
+<!-- Lottery List -->
+<view class="lotteries_prize">
+  <view class="gilroy_800 uppercase lottery-label">{{ _t.lottery_prizes }}</view>
+  <view class="offer-lotteries_list">
     <block wx:for="{{ _offer.miniprogram.lottery.draws }}" wx:key="id" wx:for-item="draw">
       <!-- Lottery block -->
-      <view class="draw__container {{ draw.conditionValue >= _offer.amountSold ? 'unlocked' : 'locked' }}">
-        <view class="draw-label">{{ _t.draw }} {{ index + 1 }}</view>
+      <view class="draw__container {{ draw.unlocked ? 'unlocked' : 'locked' }}" wx:if="{{ index > 0}}">
+        <view class="nunito_700 uppercase draw-label">{{ _t.draw }} {{ index }}</view>
         <view class="flex-center offer-lottery">
-          <view class="offer-lottery_status">{{ draw.conditionValue >= _offer.amountSold ? _t.unlocked : _t.locked }}</view>
-          <view class="gilroy_700 uppercase offer-lottery_title">
+          <view class="uppercase nunito_700 offer-lottery_status">{{ draw.unlocked ? _t.unlocked : _t.locked }}</view>
+          <view class="nunito_500 uppercase offer-lottery_title">
             <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ draw.conditionValue }} {{ _t.orders }}</text>
             <text wx:else>{{ draw.conditionValue }} {{ _t.offer_special_names.items_sold }}</text>
           </view>
@@ -41,30 +46,29 @@
 
           <view class="offer-lottery_detail">
             <block wx:for="{{ draw.gifts }}" wx:for-item="gift" wx:key="_id">
-              <text wx:if="{{ index > 0 }}"> + </text>
-              <text wx:else>{{ _t.offer_special_details.get }}</text>
+              <text wx:if="{{ index > 1 }}"> + </text>
               <text wx:if="{{ gift.type === 'pack' }}">{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[gift.pack] }}{{ _t.offer_special_details.for_free.suffix }}</text>
               <text wx:if="{{ gift.type === 'add_on' }}">{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[gift.singleItem] }}{{ _t.offer_special_details.for_free.suffix }}</text>
               <text wx:if="{{ gift.type === 'voucher' }}">{{ gift.voucherValue }}{{ gift.voucherValue === 1 ? _t.offer_special_details.voucher.single : _t.offer_special_details.voucher.multiple }}</text>
               <text wx:if="{{ gift.type === 'discount' }}">{{ gift.discountAmount }}{{ _t.offer_special_details.discount }}</text>
-              <text wx:if="{{ gift.type === 'custom' }}">{{ gift.custom[_language] }}</text>
+              <text wx:if="{{ gift.type === 'custom' }}">{{ gift.custom[_t._language] }}</text>
             </block>
           </view>
 
           <!-- Winner block -->
           <view class="offer-lottery_winner">
-            <view class="winner-empty" wx:if="{{ draw.winner.length === 0 }}">{{ _t.no_winner_yet }}</view>
+            <view class="nunito_600 uppercase winner-label winner-empty" wx:if="{{ draw.winners.length === 0 }}">{{ _t.no_winner_yet }}</view>
             <view wx:else>
-              <block wx:for="{{ draw.winner }}" wx:key="_id" wx:for-item="winner">
+              <view class="nunito_600 uppercase winner-label">{{ _t.winner }}</view>
+              <block wx:for="{{ draw.winners }}" wx:key="_id" wx:for-item="winner">
                 <view class="winner_container">
-                  <view class="winner-label">{{ _t.winner }}</view>
                   <view class="winner" wx:if="{{ winner.order.customer.id === _current_user }}">
-                    <text class="ticket_icon icon icon-crown"></text>
-                    <text class="ticket_count">{{ _t.you_win }}</text>
+                    <text class="icon icon-crown"></text>
+                    <text class="uppercase nunito_600 win-text">{{ _t.you_win }}</text>
                   </view>
                   <view class="winner" wx:else>
-                    <image class="winner-image" src="{{ _folders.profile_picture + winner.order.customer.profilePicture.uri }}" />
-                    <view class="winner-name">{{ winner.name }}</view>
+                    <image class="winner-image" src="{{ _folders.profile_picture + winner.order.customer.profilePicture.uri }}" mode="aspectFill" />
+                    <view class="gilroy_400 winner-name">{{ winner.name }}name</view>
                   </view>
                 </view>
               </block>

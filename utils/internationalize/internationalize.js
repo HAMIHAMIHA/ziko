@@ -104,6 +104,7 @@ export const languageMap_en = {
   home: "The land",
 
   // I
+  item_quantity: "item quantity",
   item_unit: " item",
   items: "Items",
   items_unit: " items",
@@ -115,6 +116,7 @@ export const languageMap_en = {
   // L
   list: "list",
   loading: 'Loading...',
+  locked: "locked",
   lottery: "Lottery",
   lottery_detail: "Lottery detail",
   lottery_gift: "Lottery gift:",
@@ -442,6 +444,7 @@ export const languageMap_zh = {
   home: "地图",
 
   // I
+  item_quantity: "item quantity",
   item_unit: " item",
   items: "Items",
   items_unit: " items",
@@ -453,6 +456,7 @@ export const languageMap_zh = {
   // L
   list: "列表",
   loading: 'Loading...',
+  locked: "locked",
   lottery: "Lottery",
   lottery_detail: "Lottery detail",
   lottery_gift: "Lottery gift:",
