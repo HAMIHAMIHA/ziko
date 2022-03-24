@@ -56,14 +56,6 @@
   color: #FFDB59;
   font-size: 40rpx;
 }
-
-.lottery-label {
-  padding-bottom: 32rpx;
-  font-size: 32rpx;
-  line-height: 40rpx;
-  letter-spacing: 0.2em;
-  text-align: center;
-}
 /* End of Offer Info */
 
 .terms {

@@ -961,7 +961,7 @@ button:not([size=mini]).float-contact_container {
   line-height: 28rpx;
 }
 
-.offer-lotteries .lottery-ticket_text_bottom {
+.offer-lotteries extraConditionType.lottery-ticket_text_bottom {
   font-size: 24rpx;
   line-height: 32rpx;
 }

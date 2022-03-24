@@ -3,6 +3,7 @@ import { communities } from "../../utils/constants";
 import { findIndex } from "../../utils/util";
 
 const app = getApp();
+let lotteries = [];
 
 // Clear countdown timer interval
 export const _clearCountdown = (page, countdown_timer) => {
@@ -59,6 +60,23 @@ export const _getTranslations = (page, community) => {
       items_unit: i18n.items_unit,
       rmb: i18n.rmb,
       ticket: i18n.ticket,
+    },
+    _t_prize: {
+      _language: app.db.get('language'),
+      extra_ticket: i18n.extra_ticket,
+      draw: i18n.draw,
+      item_quantity: i18n.item_quantity,
+      locked: i18n.locked,
+      lottery_prizes: i18n.lottery_prizes,
+      lottery_stages: i18n.lottery_stages,
+      no_winner_yet: i18n.no_winner_yet,
+      offer_special_details: i18n.offer_special_details,
+      offer_special_names: i18n.offer_special_names,
+      orders: i18n.orders,
+      quantity_bottle_sold: i18n.quantity_bottle_sold,
+      unlocked: i18n.unlocked,
+      winner: i18n.winner,
+      you_win: i18n.you_win,
     },
     _t_recipes: {
       _language: app.db.get('language'),
@@ -168,10 +186,12 @@ export const getOffer = function(page, offer_id) {
       offer.sold += (i.stock - i.actualStock);
     })
 
+    offer.sold = 0;
     // Product / Pack name
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
     let product_name_list = {};
     offer_products.map( p => {
+      offer.sold += (p.stock - p.actualStock);
       let p_name = '';
       if (p.products) {
         p_name = `${p.name[app.db.get('language')]}`;
@@ -180,6 +200,42 @@ export const getOffer = function(page, offer_id) {
       }
       product_name_list[p.shortName] = p_name;
     })
+
+    if (offer.miniprogram.lotteryEnable && offer.community === "cellar") {
+      offer.miniprogram.lottery.draws.sort( (a, b) => {
+        return a.conditionValue - b.conditionValue;
+      })
+
+      offer.last_val = offer.miniprogram.lottery.draws[offer.miniprogram.lottery.draws.length - 1].conditionValue;
+      if ( offer.miniprogram.lottery.draws[0].conditionType === "number_of_order" ) {
+        offer.lottery_progress = offer.orders / offer.last_val * 100;
+      } else {
+        offer.lottery_progress = offer.sold / offer.last_val * 100;
+      }
+
+      let prev = 0;
+      offer.miniprogram.lottery.draws.forEach( draw => {
+        let winners = [];
+        lotteries.forEach( l => {
+          if (l.offerDrawId === draw._id){
+            winners.push(...l.winners)
+          }
+        });
+  
+        // Set size of axis mark
+        draw.size = (draw.conditionValue - prev + 1) / offer.last_val * 100;
+        prev = draw.conditionValue
+  
+        draw.winners = winners
+        draw.unlocked = ((draw.conditionType === "number_of_order" && offer.orders >= draw.conditionValue) ||  (draw.conditionType === "x_item_sold" && offer.sold >= draw.conditionValue));
+      })
+
+      offer.miniprogram.lottery.draws = [{
+        conditionValue: 0,
+        size: 1 / offer.last_val * 100,
+        _id: '000'
+      }, ...offer.miniprogram.lottery.draws]
+    }
 
     // Find if Offer Popup message needed
     if (offer.miniprogram.zikoSpecials.length > 0) {
@@ -232,8 +288,15 @@ export const getOffer = function(page, offer_id) {
   showLoading(true);
   // Update number of views for offer before getting offer
   app.api.setOfferView(offer_id).then(res => {
-    // Get product by offer id
-    app.api.getOffers(`?id=${offer_id}`).then(callback);
+    
+    app.api.getLotteries(`offer=${offer_id}`).then( res => {
+      lotteries = res;
+      app.api.getOrders({ filter_str: `offer=${offer_id}` }).then( res => {
+
+        // Get product by offer id
+        app.api.getOffers(`?id=${offer_id}`).then(callback);
+      })
+    });
   });
 }
 

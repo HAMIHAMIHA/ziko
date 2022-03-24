@@ -3,6 +3,14 @@
   text-align: center;
 }
 
+.lottery-label {
+  padding-bottom: 32rpx;
+  font-size: 32rpx;
+  line-height: 40rpx;
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+
 /* Progress */
 .progress__container .progress {
   margin-bottom: 64rpx;
@@ -169,6 +177,10 @@
   padding-bottom: 24rpx;
   font-size: 20rpx;
   line-height: 24rpx;
+}
+
+.lotteries_prize .draw__container .offer-lottery_detail {
+  padding: 0 24rpx;
 }
 
 /* Unlocked */
