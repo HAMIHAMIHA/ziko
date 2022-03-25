@@ -266,3 +266,11 @@
   color: #FF4040;
 }
 /* End of Lottery List */
+
+.terms {
+  padding-top: 48rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  text-align: center;
+  text-decoration: underline;
+}

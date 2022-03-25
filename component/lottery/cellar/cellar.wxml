@@ -82,3 +82,5 @@
   </view>
   <!-- End of Lottery List -->
 </view>
+
+<navigator class="nunito_600 terms" url="{{ _routes.terms }}">{{ _t.terms_and_conditions }}</navigator>

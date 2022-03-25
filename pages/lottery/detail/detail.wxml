@@ -21,15 +21,14 @@
   <!-- End of Offer Info -->
 
   <!-- Lottery List -->
-  <view class="offer-lotteries">
+  <view class="offer-lotteries cellar-lotteries">
     <view class="lottery__container">
       <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}"></lottery-header>
-      <lottery-cellar _offer="{{ _offer }}" _product_names="{{ _product_names }}" _t="{{ _t_prize }}"></lottery-cellar> <!-- TODO -->
+      <lottery-cellar _offer="{{ _offer }}" _product_names="{{ _product_names }}" _t="{{ _t_prize }}"></lottery-cellar>
     </view>
   </view>
   <!-- End of Lottery List -->
 
-  <navigator class="nunito_600 terms" url="{{ _routes.terms }}">{{ _t.terms_and_conditions }}</navigator>
   <button
     class="btn-primary"
     hover-class="hover-class"

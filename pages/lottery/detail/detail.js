@@ -20,7 +20,6 @@ const _setPageTranslation = function(page) {
       community: i18n.community,
       go_to_offer: i18n.go_to_offer,
       remaining_time: i18n.remaining_time,
-      terms_and_conditions: i18n.terms_and_conditions,
       your_tickets: i18n.your_tickets,
     },
     _t_lottery: {
@@ -42,6 +41,7 @@ const _setPageTranslation = function(page) {
       offer_special_names: i18n.offer_special_names,
       orders: i18n.orders,
       quantity_bottle_sold: i18n.quantity_bottle_sold,
+      terms_and_conditions: i18n.terms_and_conditions,
       unlocked: i18n.unlocked,
       winner: i18n.winner,
       you_win: i18n.you_win,

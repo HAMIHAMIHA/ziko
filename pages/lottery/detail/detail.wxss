@@ -57,11 +57,3 @@
   font-size: 40rpx;
 }
 /* End of Offer Info */
-
-.terms {
-  padding-bottom: 32rpx;
-  font-size: 24rpx;
-  line-height: 36rpx;
-  text-align: center;
-  text-decoration: underline;
-}
