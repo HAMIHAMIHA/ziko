@@ -12,8 +12,8 @@
         <view class="icon_container payment-price">
           <view class="icon icon-bigbag"></view>
           <view class="icon_text">
-            <text class="price_final">¥{{ _pay_set.total }}</text>
-            <text class="payment-price_original" wx:if="{{ _pay_set.original_price }}">¥{{ _pay_set.original_price }}1500</text>
+            <text class="price_final">¥{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total ? _pay_set.reducedTotal : _pay_set.total }}</text>
+            <text class="payment-price_original" wx:if="{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total }}">¥{{ _pay_set.total }}</text>
           </view>
         </view>
         <!-- TEMP hide for v1 -->

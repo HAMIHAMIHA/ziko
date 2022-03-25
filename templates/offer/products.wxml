@@ -33,7 +33,7 @@
 
           <!-- Price -->
           <view class="gilroy_800 product-price_container">
-            <text class="product-price" wx:if="{{ list_item.newPrice }}">¥{{ list_item.newPrice }}</text>
+            <text class="product-price" wx:if="{{ cart.products[list_item._id].price && cart.products[list_item._id].price != list_item.price }}">¥{{ cart.products[list_item._id].price }}</text>
             <text class="product-price">¥{{ list_item.price }}</text>
           </view>
           <!-- End of Price -->
@@ -52,13 +52,16 @@
     </view>
 
     <!-- Cellar Target Tags -->
-    <!-- Hide for v1 (did not translate) -->
-    <view class="product-targets" wx:if="{{ targets }}">
+    <!-- Freefall Targets -->
+    <view class="product-targets" wx:if="{{ list_item.freeFall && list_item.freeFall.quantityTrigger }}">
+      <view class="product-target_container">
+        -¥{{ list_item.freeFall.dropAmount }}{{ _t.freefall.fst }}{{ list_item.freeFall.quantityTrigger }}{{ list_item.freeFall.quantityTrigger > 1 ? _t.items_unit : _t.item_unit }}{{ _t.freefall.snd }}
+      </view>
+    </view>
+    <!-- Multiple Targets -->
+    <view class="product-targets" wx:elif="{{ list_item.multipleItem.length > 0 }}">
       <view class="product-target_container" wx:for="{{ targets }}" wx:key="*this" wx:for-item="target">
-        <!-- Freefall Targets -->
-        <text wx:if="{{ targetType == 'freefall' }}">-¥{{ target.rate }} every {{ target.amount }} sold</text>
-        <!-- Multiple Targets -->
-        <text wx:else>x{{ target.amount }} btl ¥{{ target.rate }} each </text>
+        <text>x{{ target.amount }} btl ¥{{ target.rate }} each </text>
       </view>
     </view>
     <!-- End of Cellar Target Tags -->

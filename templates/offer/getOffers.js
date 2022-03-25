@@ -53,6 +53,8 @@ export const _getTranslations = (page, community) => {
       products_left: i18n.products_left,
       storage_types: i18n.storage_types,
       units: i18n.units[community],
+      freefall: i18n.freefall,
+      multiple: i18n.multiple
     },
     _t_lottery: {
       extra_ticket: i18n.extra_ticket,
@@ -74,6 +76,7 @@ export const _getTranslations = (page, community) => {
       offer_special_names: i18n.offer_special_names,
       orders: i18n.orders,
       quantity_bottle_sold: i18n.quantity_bottle_sold,
+      terms_and_conditions: i18n.terms_and_conditions,
       unlocked: i18n.unlocked,
       winner: i18n.winner,
       you_win: i18n.you_win,
@@ -190,8 +193,15 @@ export const getOffer = function(page, offer_id) {
     // Product / Pack name
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
     let product_name_list = {};
-    offer_products.map( p => {
+    offer_products.forEach( p => {
       offer.sold += (p.stock - p.actualStock);
+
+      // Check for free fall price
+      if (p.freeFall && p.freeFall.quantityTrigger) {
+        // TODO check for cart price need to drop more
+      }
+
+      // Get list of product names for special and lottery message
       let p_name = '';
       if (p.products) {
         p_name = `${p.name[app.db.get('language')]}`;
@@ -201,7 +211,8 @@ export const getOffer = function(page, offer_id) {
       product_name_list[p.shortName] = p_name;
     })
 
-    if (offer.miniprogram.lotteryEnable && offer.community === "cellar") {
+    // Cellar Lottery detail
+    if (offer.miniprogram.lotteryEnable && offer.community === "cellar" && offer.miniprogram.lottery.draws.length > 0) {
       offer.miniprogram.lottery.draws.sort( (a, b) => {
         return a.conditionValue - b.conditionValue;
       })
@@ -253,6 +264,7 @@ export const getOffer = function(page, offer_id) {
         routes: {
           product: app.routes.product
         },
+        // type: offer.type
       },
       _pay_set: {
         cart: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].count : 0,
@@ -261,6 +273,7 @@ export const getOffer = function(page, offer_id) {
           items: offer.minimumCartItems,
         },
         total: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].total : 0,
+        reducedTotal: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].reducedTotal : 0,
       },
       _offer: offer,
       _product_names: product_name_list,

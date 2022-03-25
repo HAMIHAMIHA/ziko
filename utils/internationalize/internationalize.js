@@ -92,6 +92,10 @@ export const languageMap_en = {
   // F
   fapiao : "Fapiao",
   fapiao_info : "Fapiao information",
+  freefall: {
+    fst: " every ",
+    snd: " sold",
+  },
   fidelity_points: "Fidelity points",
 
   // G
@@ -432,6 +436,10 @@ export const languageMap_zh = {
   // F
   fapiao : "Fapiao",
   fapiao_info : "发票信息",
+  freefall: {
+    fst: "每售出",
+    snd: "",
+  },
   fidelity_points: "Fidelity points",
 
   // G
