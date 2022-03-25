@@ -831,6 +831,23 @@ button:not([size=mini]).float-contact_container {
 }
 /* End of Offer Product List */
 
+/* Product Targets */
+.product-targets {
+  padding: 8rpx 30rpx 20rpx calc(160rpx + 24rpx);
+  font-size: 20rpx;
+  line-height: 24rpx;
+  display: flex;
+  align-items: center;
+  column-gap: 8rpx;
+  row-gap: 8rpx;
+  flex-wrap: wrap;
+}
+
+.product-target_container {
+  padding: 4rpx 8rpx;
+  background: #2E3448;
+}
+
 /* Offer Product Tabbar */
 .ziko-offer .tabbar {
   width: 100%;
