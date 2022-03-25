@@ -878,6 +878,10 @@ button:not([size=mini]).float-contact_container {
   padding: 24rpx 30rpx 32rpx;
 }
 
+.ziko-offer .offer-lotteries.cellar-lotteries {
+  padding-bottom: 48rpx;
+}
+
 .ziko-offer .offer-specials_title,
 .ziko-offer .offer-lotteries_title {
   padding: 40rpx;
