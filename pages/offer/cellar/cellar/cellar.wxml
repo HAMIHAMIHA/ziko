@@ -67,7 +67,7 @@
 
     <!-- Offer Detail -->
     <view class="offer-detail">
-      <view class="gilroy_700 offer-title">{{ _offer.name[_language] }}</view>
+      <view class="uppercase gilroy_700 offer-title">{{ _offer.name[_language] }}</view>
       <view class="gilroy_700 uppercase offer-price-rule" wx:if="{{  _offer.type && _offer.type != 'regular' }}">{{ _t.price_rules[_offer.type] }}</view>
       <view class="offer-description">
         {{ _offer.description[_language] }}
@@ -170,7 +170,7 @@
         <!-- End of Offer Specials -->
 
         <!-- Lottery -->
-        <view class="offer-lotteries" wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}">
+        <view class="offer-lotteries cellar-lotteries" wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}">
           <view class="lottery_regular">
             <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}"></lottery-header>
             <lottery-cellar _offer="{{ _offer }}" _product_names="{{ _product_names }}" _t="{{ _t_prize }}"></lottery-cellar> <!-- TODO -->

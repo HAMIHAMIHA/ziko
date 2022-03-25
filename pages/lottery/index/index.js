@@ -250,6 +250,7 @@ Page({
 
     _leave_triggered = false;
     if (_refresh_data) {
+      showLoading(true);
       self.filterOffers({detail: { change_date: false }});
     }
   },
