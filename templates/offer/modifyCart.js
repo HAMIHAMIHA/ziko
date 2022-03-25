@@ -14,10 +14,10 @@ export const modifyCartItems = (page, event) => {
   let old_amount = cart_offer.products[product._id] ? cart_offer.products[product._id].amount : 0;
 
   let new_price;
+  // Free fall price change
   if (product.freeFall && product.freeFall.quantityTrigger) {
     let reduce = Math.floor(product.stock - product.actualStock + new_amount / product.freeFall.quantityTrigger) * product.freeFall.dropAmount;
     new_price = Math.max((product.price - reduce), product.freeFall.lowestPrice);
-    console.log('new', new_price);
 
     let prev_price = 0;
     if (cart_offer.products[product._id]) {
@@ -26,7 +26,6 @@ export const modifyCartItems = (page, event) => {
       prev_price = product.price * old_amount
     }
 
-    console.log('prev', prev_price);
     cart_offer.reducedTotal += (new_price * new_amount) - prev_price;
   }
 
@@ -40,8 +39,6 @@ export const modifyCartItems = (page, event) => {
     index_in_offer: event.currentTarget.dataset.idx, 
   };
 
-  console.log('cart',cart_offer);
-
   // Remove product from list if reduced to 0
   if (new_amount == 0) {
     delete cart_offer.products[product._id]
@@ -50,8 +47,6 @@ export const modifyCartItems = (page, event) => {
   // Save to storage cart
   current_cart[offer.id] = cart_offer;
   app.db.set('cart', current_cart);
-
-  console.log(app.db.get('cart'));
 
   // Show new total on page
   page.setData({
