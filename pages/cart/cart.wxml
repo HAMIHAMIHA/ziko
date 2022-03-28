@@ -80,7 +80,7 @@
       </view>
       <view class="detail">
         <text class="detail_label">{{ _t.delivery_fee }}</text>
-        <text class="detail_result">{{ free_delivery ? _t.free_delivery : delivery_fee > 0 ? '¥' + delivery_fee : '' }}</text>
+        <text class="detail_result">{{ free_delivery || delivery_fee === 0 ? _t.free_delivery : delivery_fee > 0 ? '¥' + delivery_fee : '' }}</text>
       </view>
       <view class="nunito_700 detail">
         <text class="detail_label">{{ _t.total }}</text>

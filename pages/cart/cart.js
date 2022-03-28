@@ -158,7 +158,7 @@ Page({
   data: {
     discount: 1,
     voucher: 0,
-    delivery_fee: 0,
+    delivery_fee: -1,
     free_delivery: false,
   },
 

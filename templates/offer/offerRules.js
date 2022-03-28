@@ -28,7 +28,6 @@ export const getNewFreefall = (offer, product, new_amount) => {
 export const checkOfferSpecial = (page, offer) => {
   // Specials
   const _setGift = (gift) => {
-    console.log('s gift', gift);
     const special = {
       discount: () => {
         page.setData({
