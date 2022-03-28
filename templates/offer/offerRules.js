@@ -85,7 +85,9 @@ export const checkOfferSpecial = (page, offer) => {
 }
 
 export const checkOfferTicket = (page, offer) => {
-  let cart = db.get('cart')[offer.id];
+  let cart = db.get('cart')[offer.id] ? db.get('cart')[offer.id] : null;
+  if (!cart) return; // Don't check for tickets if there is no item in cart
+
   const _checkCondition = {
     buy_for: (condition) => {
       let item_count = 0;
@@ -96,7 +98,7 @@ export const checkOfferTicket = (page, offer) => {
       return item_count >= offer.miniprogram.lottery[condition];
     },
     spend: (condition) => {
-      return cart.reducedTotal >= offer.miniprogram.lottery[condition];
+      return cart.reducedTotal ? cart.reducedTotal >= offer.miniprogram.lottery[condition] : cart.total >= offer.miniprogram.lottery[condition];
     }
   }
 
