@@ -1,3 +1,5 @@
+import { checkOfferSpecial } from "./offerRules";
+
 const app = getApp();
 
 export const modifyCartItems = (page, event) => {
@@ -35,6 +37,7 @@ export const modifyCartItems = (page, event) => {
     amount: new_amount,
     type: type,
     price: new_price ? new_price : product.price,
+    shortName: product.shortName,
     index_in_offer: event.currentTarget.dataset.idx, 
   };
 
@@ -49,6 +52,11 @@ export const modifyCartItems = (page, event) => {
     '_pay_set.total': cart_offer.total,
     '_pay_set.reducedTotal': cart_offer.reducedTotal,
   })
+
+  // Special
+  if (offer.miniprogram.zikoSpecials.length > 0) {
+    checkOfferSpecial(page, offer);
+  }
 }
 
 export const checkoutItems = (offer_id) => {

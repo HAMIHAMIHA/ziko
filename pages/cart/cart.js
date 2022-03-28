@@ -1,8 +1,9 @@
 const { packProductDetail } = require("../../templates/offer/getOffers");
 const { modifyCartItems } = require("../../templates/offer/modifyCart");
+const { getNewFreefall, checkOfferSpecial } = require("../../templates/offer/offerRules");
 const { changeFocus, showLoading, getUserInfo } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
-const { formatDate, getNewFreefall } = require("../../utils/util");
+const { formatDate } = require("../../utils/util");
 const { createOrder } = require("./createOrder");
 const { getDeliveryFee } = require("./findDeliveryFee");
 
@@ -31,6 +32,7 @@ const _setPageDefaultItems = page => {
       contact_label: i18n.contact_label,
       delivery_fee: i18n.delivery_fee,
       fapiao: i18n.fapiao,
+      free_delivery: i18n.free_delivery,
       fidelity_points: i18n.fidelity_points,
       items: i18n.items,
       item_unit: i18n.item_unit,
@@ -98,7 +100,9 @@ const _getOffers = page => {
 
     // Set price with the newest purchase
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
+    offer.sold += (i.stock - i.actualStock);
 
+    // Free fall total
     if (offer.type === "free_fall") {
       offer_products.forEach( p => {
         // Check for free fall price 
@@ -109,6 +113,14 @@ const _getOffers = page => {
           getNewFreefall(offer.id, p, cart_stock);
         }
       })
+    }
+
+    // TODO Multiple total
+    if (offer.type === "multiple") {
+    }
+
+    // TODO Multiple total
+    if (offer.type === "bourder") {
     }
 
     let cart = app.db.get('cart')[offer.id];
@@ -130,6 +142,12 @@ const _getOffers = page => {
         }
       },
     })
+
+    // Special
+    if (offer.miniprogram.zikoSpecials.length > 0) {
+      checkOfferSpecial(page, offer);
+    }
+
     showLoading(false);
   }
 
@@ -137,6 +155,13 @@ const _getOffers = page => {
 }
 
 Page({
+  data: {
+    discount: 1,
+    voucher: 0,
+    delivery_fee: 0,
+    free_delivery: false,
+  },
+
   onShow: function () {
     const self = this;
 

@@ -80,11 +80,11 @@
       </view>
       <view class="detail">
         <text class="detail_label">{{ _t.delivery_fee }}</text>
-        <text class="detail_result">{{ delivery_fee >= 0 ? '¥' + delivery_fee : '' }}</text>
+        <text class="detail_result">{{ free_delivery || delivery_fee === 0 ? _t.free_delivery : '¥' + delivery_fee }}</text>
       </view>
       <view class="nunito_700 detail">
         <text class="detail_label">{{ _t.total }}</text>
-        <text class="detail_result">¥{{ _pay_set.reducedTotal ? _pay_set.reducedTotal : _pay_set.total }}</text>
+        <text class="detail_result">¥{{ free_delivery ? _pay_set.reducedTotal ? (_pay_set.reducedTotal + voucher) * discount : (_pay_set.total + voucher) * discount : _pay_set.reducedTotal ? (_pay_set.reducedTotal + delivery_fee + voucher) * discount : (_pay_set.total + delivery_fee + voucher) * discount }}</text>
       </view>
     </view>
 

@@ -1,6 +1,7 @@
 import { getUserInfo, showLoading } from "../../utils/common";
 import { communities } from "../../utils/constants";
-import { findIndex, getNewFreefall } from "../../utils/util";
+import { findIndex } from "../../utils/util";
+import { getNewFreefall } from "./offerRules";
 
 const app = getApp();
 let lotteries = [];

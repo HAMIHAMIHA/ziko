@@ -92,6 +92,7 @@ export const languageMap_en = {
   // F
   fapiao : "Fapiao",
   fapiao_info : "Fapiao information",
+  free_delivery: "Free delivery",
   freefall: {
     fst: " every ",
     snd: " sold",
@@ -436,6 +437,7 @@ export const languageMap_zh = {
   // F
   fapiao : "Fapiao",
   fapiao_info : "发票信息",
+  free_delivery: "免运费",
   freefall: {
     fst: "每售出",
     snd: "",
