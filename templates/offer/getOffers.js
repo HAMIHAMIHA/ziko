@@ -1,6 +1,6 @@
 import { getUserInfo, showLoading } from "../../utils/common";
 import { communities } from "../../utils/constants";
-import { findIndex } from "../../utils/util";
+import { findIndex, getNewFreefall } from "../../utils/util";
 
 const app = getApp();
 let lotteries = [];
@@ -184,7 +184,7 @@ export const getOffer = function(page, offer_id) {
     offer = packProductDetail(offer);
 
     // Add to total
-    offer.miniprogram.items.map( i => {
+    offer.miniprogram.items.forEach( i => {
       offer.total += i.stock;
       offer.sold += (i.stock - i.actualStock);
     })
@@ -196,9 +196,13 @@ export const getOffer = function(page, offer_id) {
     offer_products.forEach( p => {
       offer.sold += (p.stock - p.actualStock);
 
-      // Check for free fall price
+      // Check for free fall price 
       if (p.freeFall && p.freeFall.quantityTrigger) {
-        // TODO check for cart price need to drop more
+        let cart = app.db.get('cart');
+        // Change all product price
+        let cart_stock = cart[offer.id] && cart[offer.id].products[p._id] ? cart[offer.id].products[p._id].amount : 0;
+
+        getNewFreefall(offer.id, p, cart_stock);
       }
 
       // Get list of product names for special and lottery message

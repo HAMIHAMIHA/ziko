@@ -83,4 +83,33 @@ module.exports = {
       return res;
     }).join(', ');
   },
+  
+  getNewFreefall: (offer, product, new_amount) => {
+    console.log(product);
+    let cart = app.db.get('cart');
+    let cart_offer = cart[offer] ? cart[offer] : { count: 0, products: {}, total: 0, reducedTotal: 0 };
+    let old_amount = cart_offer.products[product._id] ? cart_offer.products[product._id].amount : 0;
+
+    let new_price;
+    // Free fall price change
+    let reduce = Math.floor(product.stock - product.actualStock + new_amount / product.freeFall.quantityTrigger) * product.freeFall.dropAmount;
+    new_price = Math.max((product.price - reduce), product.freeFall.lowestPrice);
+
+    let prev_price = 0;
+    if (cart_offer.products[product._id]) {
+      prev_price = cart_offer.products[product._id].price * old_amount
+      cart_offer.products[product._id].price = new_price;
+    } else {
+      prev_price = product.price * old_amount
+      cart_offer.products[product._id] = { price: new_price, amount: new_amount };
+    }
+
+    cart_offer.reducedTotal += (new_price * new_amount) - prev_price;
+    console.log(cart_offer.reducedTotal);
+
+    console.log('cart_offer', cart_offer);
+
+    cart[offer] = cart_offer;
+    app.db.set('cart', cart)
+  }
 }

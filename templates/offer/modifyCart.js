@@ -12,7 +12,6 @@ export const modifyCartItems = (page, event) => {
   // Saving values needed later
   let product = offer.miniprogram[type][event.currentTarget.dataset.idx];
   let old_amount = cart_offer.products[product._id] ? cart_offer.products[product._id].amount : 0;
-
   let new_price;
   // Free fall price change
   if (product.freeFall && product.freeFall.quantityTrigger) {
@@ -38,11 +37,6 @@ export const modifyCartItems = (page, event) => {
     price: new_price ? new_price : product.price,
     index_in_offer: event.currentTarget.dataset.idx, 
   };
-
-  // Remove product from list if reduced to 0
-  if (new_amount == 0) {
-    delete cart_offer.products[product._id]
-  }
 
   // Save to storage cart
   current_cart[offer.id] = cart_offer;
