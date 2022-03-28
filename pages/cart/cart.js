@@ -2,7 +2,7 @@ const { packProductDetail } = require("../../templates/offer/getOffers");
 const { modifyCartItems } = require("../../templates/offer/modifyCart");
 const { changeFocus, showLoading, getUserInfo } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
-const { formatDate } = require("../../utils/util");
+const { formatDate, getNewFreefall } = require("../../utils/util");
 const { createOrder } = require("./createOrder");
 const { getDeliveryFee } = require("./findDeliveryFee");
 
@@ -69,6 +69,7 @@ const _setProducts = (offer, cart) => {
   let products = [];
   for (var id in cart.products) {
     let item = cart.products[id];
+    if (!item.type) continue;
 
     let offer_product = offer_detail[item.type][item.index_in_offer];
     offer_product.amount = item.amount;
@@ -85,7 +86,6 @@ const _getOffers = page => {
     let offer = res[0];
     offer.community = communities[offer.community.id];
     offer = packProductDetail(offer);
-    let cart = app.db.get('cart')[offer.id];
 
     let delivery_dates = [];
 
@@ -96,6 +96,23 @@ const _getOffers = page => {
       }
     }
 
+    // Set price with the newest purchase
+    let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
+
+    if (offer.type === "free_fall") {
+      offer_products.forEach( p => {
+        // Check for free fall price 
+        if (p.freeFall && p.freeFall.quantityTrigger) {
+          let cart = app.db.get('cart');
+          // Change all product price
+          let cart_stock = cart[offer.id] && cart[offer.id].products[p._id] ? cart[offer.id].products[p._id].amount : 0;
+          getNewFreefall(offer.id, p, cart_stock);
+        }
+      })
+    }
+
+    let cart = app.db.get('cart')[offer.id];
+
     page.setData({
       _offer: offer,
       '_t.units': app.globalData.i18n.units[offer.community],
@@ -104,7 +121,9 @@ const _getOffers = page => {
       delivery_dates: delivery_dates,
       delivery_date: 0,
       _pay_set: {
+        _static_total: cart.total,
         total: cart.total,
+        reducedTotal: cart.reducedTotal,
         minimum: {
           price: offer.minimumOrderAmount,
           items: offer.minimumCartItems,

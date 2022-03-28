@@ -92,7 +92,7 @@ module.exports = {
 
     let new_price;
     // Free fall price change
-    let reduce = Math.floor(product.stock - product.actualStock + new_amount / product.freeFall.quantityTrigger) * product.freeFall.dropAmount;
+    let reduce = Math.floor((product.stock - product.actualStock + new_amount) / product.freeFall.quantityTrigger) * product.freeFall.dropAmount;
     new_price = Math.max((product.price - reduce), product.freeFall.lowestPrice);
 
     let prev_price = 0;
@@ -105,9 +105,6 @@ module.exports = {
     }
 
     cart_offer.reducedTotal += (new_price * new_amount) - prev_price;
-    console.log(cart_offer.reducedTotal);
-
-    console.log('cart_offer', cart_offer);
 
     cart[offer] = cart_offer;
     app.db.set('cart', cart)

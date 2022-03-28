@@ -11,6 +11,7 @@ const _createOrderData = (page, value) => {
   let items = [];
   for (var i in page_data.products) {
     let product = page_data.products[i];
+    if (product.amount == 0) continue;
 
     // Set up singleItems list for order
     if (product.type == 'items') {
@@ -97,6 +98,8 @@ export const makePayment = res => {
   const callback = res => {
     showLoading(false);
 
+
+    // TEMP
     wx.redirectTo({
       url: `${app.routes.order}?id=${order_id}&type=paid`,
     })
