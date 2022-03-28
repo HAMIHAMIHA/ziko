@@ -1,6 +1,6 @@
 const { packProductDetail } = require("../../templates/offer/getOffers");
 const { modifyCartItems } = require("../../templates/offer/modifyCart");
-const { getNewFreefall, checkOfferSpecial } = require("../../templates/offer/offerRules");
+const { getNewFreefall, checkOfferSpecial, checkOfferTicket } = require("../../templates/offer/offerRules");
 const { changeFocus, showLoading, getUserInfo } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
 const { formatDate } = require("../../utils/util");
@@ -146,6 +146,11 @@ const _getOffers = page => {
     // Special
     if (offer.miniprogram.zikoSpecials.length > 0) {
       checkOfferSpecial(page, offer);
+    }
+
+    // Lottery
+    if (offer.miniprogram.lotteryEnable) {
+      checkOfferTicket(page, offer);
     }
 
     showLoading(false);

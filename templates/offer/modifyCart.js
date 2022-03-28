@@ -1,4 +1,4 @@
-import { checkOfferSpecial } from "./offerRules";
+import { checkOfferTicket } from "./offerRules";
 
 const app = getApp();
 
@@ -53,9 +53,9 @@ export const modifyCartItems = (page, event) => {
     '_pay_set.reducedTotal': cart_offer.reducedTotal,
   })
 
-  // Special
-  if (offer.miniprogram.zikoSpecials.length > 0) {
-    checkOfferSpecial(page, offer);
+  // Lottery
+  if (offer.miniprogram.lotteryEnable) {
+    checkOfferTicket(page, offer);
   }
 }
 

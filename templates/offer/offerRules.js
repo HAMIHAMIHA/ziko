@@ -25,8 +25,8 @@ export const getNewFreefall = (offer, product, new_amount) => {
   db.set('cart', cart)
 }
 
+// Specials
 export const checkOfferSpecial = (page, offer) => {
-  // Specials
   const _setGift = (gift) => {
     const special = {
       discount: () => {
@@ -82,4 +82,34 @@ export const checkOfferSpecial = (page, offer) => {
 
     _checkCondition(s);
   });
+}
+
+export const checkOfferTicket = (page, offer) => {
+  let cart = db.get('cart')[offer.id];
+  const _checkCondition = {
+    buy_for: (condition) => {
+      let item_count = 0;
+      Object.values(cart.products).forEach( p => {
+        item_count += p.amount;
+      })
+
+      return item_count >= offer.miniprogram.lottery[condition];
+    },
+    spend: (condition) => {
+      return cart.reducedTotal >= offer.miniprogram.lottery[condition];
+    }
+  }
+
+  let ticket = 0;
+  if (_checkCondition[offer.miniprogram.lottery.conditionType]('conditionValue')) {
+    ticket++
+  }
+
+  if (offer.miniprogram.lottery.extraConditionType && _checkCondition[offer.miniprogram.lottery.extraConditionType]('extraConditionValue')) {
+    ticket++
+  }
+
+  page.setData({
+    tickets: ticket,
+  })
 }

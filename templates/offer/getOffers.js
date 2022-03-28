@@ -1,7 +1,7 @@
 import { getUserInfo, showLoading } from "../../utils/common";
 import { communities } from "../../utils/constants";
 import { findIndex } from "../../utils/util";
-import { getNewFreefall } from "./offerRules";
+import { checkOfferTicket, getNewFreefall } from "./offerRules";
 
 const app = getApp();
 let lotteries = [];
@@ -206,6 +206,11 @@ export const getOffer = function(page, offer_id) {
         getNewFreefall(offer.id, p, cart_stock);
       }
 
+      // Lottery
+      if (offer.miniprogram.lotteryEnable) {
+        checkOfferTicket(page, offer);
+      }
+
       // Get list of product names for special and lottery message
       let p_name = '';
       if (p.products) {
@@ -306,7 +311,6 @@ export const getOffer = function(page, offer_id) {
   showLoading(true);
   // Update number of views for offer before getting offer
   app.api.setOfferView(offer_id).then(res => {
-    
     app.api.getLotteries(`offer=${offer_id}`).then( res => {
       lotteries = res;
       app.api.getOrders({ filter_str: `offer=${offer_id}` }).then( res => {
