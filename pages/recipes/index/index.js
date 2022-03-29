@@ -1,5 +1,6 @@
 const app = getApp();
 
+const { showLoading } = require('../../../utils/common.js');
 const { findIndex } = require('../../../utils/util.js');
 
 let rand_number = -1;
@@ -29,6 +30,7 @@ const _setTranslation = page => {
 
 // Get recipes
 const _getRecipes = (page, is_new) => {
+  showLoading(true);
   let recipes = [];
   const recipeCallback = res => {
     recipes = recipes.concat(res);
@@ -44,6 +46,7 @@ const _getRecipes = (page, is_new) => {
       recipes: recipes,
       sample_name: recipes[rand_number].name[app.db.get('language')]
     })
+    showLoading(false);
   }
 
 
@@ -77,6 +80,7 @@ const _getRecipes = (page, is_new) => {
 
 // Init get page data
 async function _getPageContents(page) {
+  showLoading(true);
   await app.api.getRecipeTags().then( res => {
     let categories = [];
     let selected_filters = {};

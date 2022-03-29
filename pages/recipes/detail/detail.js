@@ -1,3 +1,4 @@
+const { showLoading } = require("../../../utils/common");
 const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../../utils/util");
 
 const app = getApp();
@@ -70,10 +71,13 @@ const getOffers = (page, id) => {
 
     let offer_comp = page.selectComponent('#list_offers');
     offer_comp.updateCards(page.data._t_offers, true);
+
+    showLoading(false);
   });
 }
 
 const getRecipeDetail = (page, id) => {
+  showLoading(true);
   app.api.getRecipes({id: id}).then( res => {
     // Banner image
     res.mainPicture[app.db.get('language')].uri = `${app.folders.recipe_picture}${res.mainPicture[app.db.get('language')].uri}`;
