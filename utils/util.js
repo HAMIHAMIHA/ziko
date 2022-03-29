@@ -10,14 +10,19 @@ module.exports = {
     return list.findIndex(item => item[key] == find);
   },
 
-  formatDate: dateLong => {
-    // Output date to yyyy-mm-dd format
-    const date = new Date(dateLong);
+  formatDate: (format, date) => {
+    let date_str = format;
+    date = new Date(date);
     const year = date.getFullYear();
-    const month = date.getMonth() + 1
-    const day = date.getDate();
-  
-    return [year, month, day].map(formatNumber).join('-')
+    const month = date.getMonth() + 1;
+    const day = formatNumber(date.getDate())
+
+    let new_date = date_str.replace('yyyy', year)
+                      .replace('mth', getApp().globalData.i18n.month[month])
+                      .replace('mm', formatNumber(month))
+                      .replace('dd', day);
+
+    return new_date;
   },
 
   // Output time to hh:mm format
@@ -28,6 +33,7 @@ module.exports = {
   
     return [hour, minute].map(formatNumber).join(':')
   },
+
 
   formatTimer: dateLong => {
     // Time calculations for days, hours, minutes and seconds

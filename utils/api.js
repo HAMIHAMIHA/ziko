@@ -1,6 +1,5 @@
 let db = require('db.config.js');
 let config = require('properties.js');
-let { showLoading } = require('./common');
 
 // Generate header and url
 const _unifyHeaders = (path) => {
@@ -165,9 +164,9 @@ module.exports = {
   },
 
   // Get user vouchers
-  getVouchers: (status, community) => {
-    let filter = community ? `&filter={"$and":[{"communities":{"$in":"${community}"}},{"expirationDate":{"$gt":"${new Date()}"}}]}` : '';
-    return get(`vouchers/mine?status=${status}${filter}`);
+  getVouchers: (status, check_available) => {
+    let filter = check_available ? `&filter={"expirationDate":{"$gt":"${new Date()}"}}` : '';
+    return get(`vouchers/mine?status=${status}${filter}&sort=["createdAt","ASC"]`);
   },
 
   // Get prepay id for wechat pay

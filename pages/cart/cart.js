@@ -1,6 +1,6 @@
 const { packProductDetail } = require("../../templates/offer/getOffers");
 const { modifyCartItems } = require("../../templates/offer/modifyCart");
-const { getNewFreefall, checkOfferSpecial, checkOfferTicket } = require("../../templates/offer/offerRules");
+const OfferRules = require("../../templates/offer/offerRules");
 const { changeFocus, showLoading, getUserInfo, showToast } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
 const { formatDate } = require("../../utils/util");
@@ -8,7 +8,7 @@ const { createOrder } = require("./createOrder");
 const { getDeliveryFee } = require("./findDeliveryFee");
 
 const app = getApp();
-let area_list = [], communtiy;
+let area_list = [], community, vouchers = [];
 
 // Page default data
 const _setPageDefaultItems = page => {
@@ -86,7 +86,9 @@ const _setProducts = (offer, cart) => {
 const _getOffers = page => {
   let offer;
   let callback = res => {
-    communtiy = offer.community.id;
+    vouchers = res;
+
+    community = offer.community.id;
     offer.community = communities[offer.community.id];
     offer = packProductDetail(offer);
 
@@ -95,7 +97,7 @@ const _getOffers = page => {
     let dates = offer.deliveryDates.sort();
     for (var i in dates) {
       if (new Date(dates[i]) > new Date().setHours(23, 59, 59, 999)) {
-        delivery_dates.push(formatDate(dates[i]));
+        delivery_dates.push(formatDate('yyyy-mm-dd', dates[i]));
       }
     }
 
@@ -111,7 +113,7 @@ const _getOffers = page => {
           let cart = app.db.get('cart');
           // Change all product price
           let cart_stock = cart[offer.id] && cart[offer.id].products[p._id] ? cart[offer.id].products[p._id].amount : 0;
-          getNewFreefall(offer.id, p, cart_stock);
+          OfferRules.getNewFreefall(offer.id, p, cart_stock);
         }
       })
     }
@@ -126,13 +128,6 @@ const _getOffers = page => {
 
     let cart = app.db.get('cart')[offer.id];
 
-    // Get usable voucher length
-    let vouchers = res.filter(v => {
-      console.log(v);
-      console.log(cart.reducedTotal);
-      return cart.reducedTotal ? v.amount > cart.reducedTotal : v.amount > cart.total;
-    });
-
     page.setData({
       _offer: offer,
       '_t.units': app.globalData.i18n.units[offer.community],
@@ -140,7 +135,7 @@ const _getOffers = page => {
       products: _setProducts(offer, cart),
       delivery_dates: delivery_dates,
       delivery_date: 0,
-      voucher_count: vouchers.length,
+      _vouchers: vouchers,
       _pay_set: {
         _static_total: cart.total,
         total: cart.total,
@@ -153,14 +148,17 @@ const _getOffers = page => {
       },
     })
 
+    // Get usable voucher length
+    OfferRules.checkVouchers(page, vouchers, community);
+
     // Special
     if (offer.miniprogram.zikoSpecials.length > 0) {
-      checkOfferSpecial(page, offer);
+      OfferRules.checkOfferSpecial(page, offer);
     }
 
     // Lottery
     if (offer.miniprogram.lotteryEnable) {
-      checkOfferTicket(page, offer);
+      OfferRules.checkOfferTicket(page, offer);
     }
 
     showLoading(false);
@@ -209,7 +207,7 @@ Page({
   // Change checkout amount
   changeAmount: function(e) {
     const self = this;
-    modifyCartItems(self, e);
+    modifyCartItems(self, e, true);
 
     let cart = app.db.get('cart')[self.options.id];
   
@@ -223,6 +221,9 @@ Page({
       let area = self.data.user.addresses[self.data.address_selected].area;
       getDeliveryFee(self, area, area_list);
     }
+
+    // Check for usable vouchers
+    OfferRules.checkVouchers(self, vouchers, community);
   },
 
   next: function(e) {
@@ -265,6 +266,7 @@ Page({
 
   calculateDeliveryFee: function(area) {
     getDeliveryFee(this, area, area_list);
+    OfferRules.checkVouchers(this, vouchers, community);
   },
 
   pay: function(e) {

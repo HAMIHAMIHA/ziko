@@ -30,6 +30,7 @@ export const languageMap_en = {
     fst: "",
     snd: " available"
   },
+  available_for: "Available for",
 
   // B
   baking: "Baking",
@@ -86,6 +87,7 @@ export const languageMap_en = {
   edit_my_info: "Edit my information",
   empty: "empty",
   en: "EN",
+  expire_on: "Expire on",
   explore: "Explore",
   extra_ticket: "extra ticket",
 
@@ -97,6 +99,7 @@ export const languageMap_en = {
     fst: " every ",
     snd: " sold",
   },
+  from: "From",
   fidelity_points: "Fidelity points",
 
   // G
@@ -243,6 +246,7 @@ export const languageMap_en = {
     large: "Large"
   },
   phone_no: "Phone no",
+  please_select_voucher: "Please select a Voucher or Ziko gift card",
   pm: "PM",
   preparation: "Preparation",
   price_rules: {
@@ -265,6 +269,7 @@ export const languageMap_en = {
   quantity_bottle_sold: "quantity bottle sold",
 
   // R
+  reveived: "Received",
   recipe_detail: "Recipe detail",
   recipe_list: "Recipe list",
   recipes: "recipes",
@@ -286,6 +291,7 @@ export const languageMap_en = {
   select: "Select",
   select_address: "Select Address",
   select_area: "Select Area",
+  select_voucher: "Select Voucher",
   servings: "Servings",
   single_items: {
     fst: "single",
@@ -327,6 +333,13 @@ export const languageMap_en = {
   // V
   viewers: " Viewers",
   vouchers: "Vouchers",
+  voucher_source: {
+    refund: "Order refund",
+    claim: "Claim",
+    lottery: "Offer lottery",
+    gift: "Ziko gift card",
+    other: "Ziko customer hero",
+  },
 
   // W
   winner: "winner",
@@ -373,6 +386,7 @@ export const languageMap_zh = {
     fst: "还剩",
     snd: ""
   },
+  available_for: "Available for",
 
   // B
   baking: "Baking",
@@ -429,6 +443,7 @@ export const languageMap_zh = {
   edit_my_info: "编辑我的信息",
   empty: "empty",
   en: "英文",
+  expire_on: "Expire on",
   explore: "explore",
   extra_ticket: "extra ticket",
 
@@ -440,6 +455,7 @@ export const languageMap_zh = {
     fst: "每售出",
     snd: "",
   },
+  from: "From",
   fidelity_points: "Fidelity points",
 
   // G
@@ -585,6 +601,7 @@ export const languageMap_zh = {
     large: "Large"
   },
   phone_no: "Phone no",
+  please_select_voucher: "Please select a Voucher or Ziko gift card",
   pm: "下午",
   preparation: "Preparation",
   price_rules: {
@@ -607,6 +624,7 @@ export const languageMap_zh = {
   quantity_bottle_sold: "quantity bottle sold",
 
   // R
+  reveived: "Received",
   recipe_detail: "Recipe detail",
   recipe_list: "Recipe list",
   recipes: "recipes",
@@ -628,6 +646,7 @@ export const languageMap_zh = {
   select: "Select",
   select_address: "Select Address",
   select_area: "Select Area",
+  select_voucher: "Select Voucher",
   servings: "Servings",
   single_items: {
     fst: "single",
@@ -669,6 +688,13 @@ export const languageMap_zh = {
   // V
   viewers: " 浏览",
   vouchers: "Vouchers",
+  voucher_source: {
+    refund: "Order refund",
+    claim: "Claim",
+    lottery: "Offer lottery",
+    gift: "Ziko gift card",
+    other: "Ziko customer hero",
+  },
 
   // W
   winner: "winner",

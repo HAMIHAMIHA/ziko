@@ -128,3 +128,15 @@ export const checkOfferTicket = (page, offer) => {
     '_pay_set.tickets': total_tickets,
   })
 }
+
+// Voucher check
+export const checkVouchers = (page, vouchers, community) => {
+  let vouchers_filtered = vouchers.filter(v => {
+    let c_idx = v.communities.findIndex( c => c === community );
+    return v.amount <= page.data._pay_set.finalFee && c_idx > -1;
+  });
+
+  page.setData({
+    voucher_count: vouchers_filtered.length
+  })
+}

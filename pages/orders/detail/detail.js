@@ -19,7 +19,7 @@ const getOrders = (page) => {
     showLoading(false);
 
     res.actualAmount = Math.round(res.actualAmount * 100) / 100;
-    res.deliveryDate = formatDate(res.deliveryDate);
+    res.deliveryDate = formatDate('yyyy-mm-dd', res.deliveryDate);
     res.packs.map(item => {
       let details = [];
       item.products.forEach( product => {
