@@ -164,6 +164,12 @@ module.exports = {
     return get('customers/mine');
   },
 
+  // Get user vouchers
+  getVouchers: (status, community) => {
+    let filter = community ? `&filter={"$and":[{"communities":{"$in":"${community}"}},{"expirationDate":{"$gt":"${new Date()}"}}]}` : '';
+    return get(`vouchers/mine?status=${status}${filter}`);
+  },
+
   // Get prepay id for wechat pay
   orderPrePay: (id) => {
     return get(`orders/${id}/prepay`);

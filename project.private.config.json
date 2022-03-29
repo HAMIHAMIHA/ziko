@@ -46,7 +46,7 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=623300fec64fc9f745a6df34",
+          "query": "id=623c0438c64fc9f745a6f707",
           "scene": null
         },
         {
@@ -167,6 +167,12 @@
           "name": "lottery",
           "pathName": "pages/lottery/detail/detail",
           "query": "id=623c15a6c64fc9f745a7038e",
+          "scene": null
+        },
+        {
+          "name": "select voucher",
+          "pathName": "pages/vouchers/select/select",
+          "query": "",
           "scene": null
         }
       ]

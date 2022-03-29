@@ -21,7 +21,7 @@
         </view>
       </view>
 
-      <view class="gilroy_500 font_red voucher_price">
+      <view class="gilroy_500 voucher_price">
          $100
       </view>
     </view>

@@ -89,14 +89,22 @@ export const checkOfferTicket = (page, offer) => {
   let cart = db.get('cart')[offer.id] ? db.get('cart')[offer.id] : null;
   if (!cart) return; // Don't check for tickets if there is no item in cart
 
-  const _checkCondition = {
-    buy_for: (condition) => {
-      let item_count = 0;
-      Object.values(cart.products).forEach( p => {
-        item_count += p.amount;
-      })
+  // Same check for but item or pack
+  const _compareProduct = (condition) => {
+    let item_count = 0;
+    Object.values(cart.products).forEach( p => {
+      item_count += p.amount;
+    })
 
-      return Math.floor(item_count / offer.miniprogram.lottery[condition]);
+    return Math.floor(item_count / offer.miniprogram.lottery[condition]);
+  }
+
+  const _checkCondition = {
+    buy: (condition) => {
+      return _compareProduct(condition);
+    },
+    pack_bought: (condition) => {
+      return _compareProduct(condition);
     },
     spend: (condition) => {
       if (cart.reducedTotal) {
@@ -108,9 +116,11 @@ export const checkOfferTicket = (page, offer) => {
   }
 
   let total_tickets = 0;
-  total_tickets += _checkCondition[offer.miniprogram.lottery.conditionType]('conditionValue');
+  if (_checkCondition[offer.miniprogram.lottery.conditionType]) {
+    total_tickets += _checkCondition[offer.miniprogram.lottery.conditionType]('conditionValue');
+  }
 
-  if (offer.miniprogram.lottery.extraConditionType) {
+  if (offer.miniprogram.lottery.extraConditionType && _checkCondition[offer.miniprogram.lottery.extraConditionType]) {
     total_tickets += _checkCondition[offer.miniprogram.lottery.extraConditionType]('extraConditionValue');
   }
 

@@ -54,11 +54,10 @@
     </view>
 
     <view class="white-box details_container">
-      <!-- Hide for v1 -->
-      <view class="detail" wx:if="{{ showing }}">
+      <view class="detail" bindtap="toSelectVoucher">
         <text class="detail_label">{{ _t.use_voucher }}</text>
         <view class="nunito_600 detail_result">
-          <text>{{ _t.available.fst + product.remaining + _t.available.snd }}</text>
+          <text>{{ _t.available.fst + voucher_count + _t.available.snd }}</text>
           <text class="icon icon-arrow-right"></text>
         </view>
       </view>
@@ -84,12 +83,12 @@
       </view>
       <view class="nunito_700 detail">
         <text class="detail_label">{{ _t.total }}</text>
-        <text class="detail_result">¥{{ free_delivery ? _pay_set.reducedTotal ? (_pay_set.reducedTotal - voucher) * discount : (_pay_set.total - voucher) * discount : _pay_set.reducedTotal ? (_pay_set.reducedTotal + delivery_fee - voucher) * discount : (_pay_set.total + delivery_fee - voucher) * discount }}</text>
+        <text class="detail_result">¥{{ (_pay_set.finalFee - voucher) * discount }}</text>
       </view>
     </view>
 
     <view class="white-box details_container">
-      <view class="detail">
+      <view class="detail" wx:if="{{ _offer.miniprogram.lotteyEnable }}">
         <text class="detail_label">{{ _t.lottery_tickets }}</text>
         <text class="detail_result">x{{ _pay_set.tickets }}</text>
       </view>

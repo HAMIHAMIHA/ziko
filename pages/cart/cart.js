@@ -1,14 +1,14 @@
 const { packProductDetail } = require("../../templates/offer/getOffers");
 const { modifyCartItems } = require("../../templates/offer/modifyCart");
 const { getNewFreefall, checkOfferSpecial, checkOfferTicket } = require("../../templates/offer/offerRules");
-const { changeFocus, showLoading, getUserInfo } = require("../../utils/common");
+const { changeFocus, showLoading, getUserInfo, showToast } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
 const { formatDate } = require("../../utils/util");
 const { createOrder } = require("./createOrder");
 const { getDeliveryFee } = require("./findDeliveryFee");
 
 const app = getApp();
-let area_list = [];
+let area_list = [], communtiy;
 
 // Page default data
 const _setPageDefaultItems = page => {
@@ -49,7 +49,7 @@ const _setPageDefaultItems = page => {
     },
     _routes: {
       address: app.routes.address,
-      fapiao: app.routes.fapiao
+      fapiao: app.routes.fapiao,
     },
     _setting: {
       folders: app.folders.product_picture
@@ -84,8 +84,9 @@ const _setProducts = (offer, cart) => {
 
 // Get offer data
 const _getOffers = page => {
+  let offer;
   let callback = res => {
-    let offer = res[0];
+    communtiy = offer.community.id;
     offer.community = communities[offer.community.id];
     offer = packProductDetail(offer);
 
@@ -125,6 +126,13 @@ const _getOffers = page => {
 
     let cart = app.db.get('cart')[offer.id];
 
+    // Get usable voucher length
+    let vouchers = res.filter(v => {
+      console.log(v);
+      console.log(cart.reducedTotal);
+      return cart.reducedTotal ? v.amount > cart.reducedTotal : v.amount > cart.total;
+    });
+
     page.setData({
       _offer: offer,
       '_t.units': app.globalData.i18n.units[offer.community],
@@ -132,6 +140,7 @@ const _getOffers = page => {
       products: _setProducts(offer, cart),
       delivery_dates: delivery_dates,
       delivery_date: 0,
+      voucher_count: vouchers.length,
       _pay_set: {
         _static_total: cart.total,
         total: cart.total,
@@ -156,8 +165,10 @@ const _getOffers = page => {
 
     showLoading(false);
   }
-
-  app.api.getOffers(`?id=${page.options.id}`).then(callback);
+  app.api.getOffers(`?id=${page.options.id}`).then( res => {
+    offer = res[0];
+    app.api.getVouchers("validated", offer.community.id).then(callback);
+  });
 }
 
 Page({
@@ -239,6 +250,17 @@ Page({
     self.setData({
       [changing_key]: !self.data[changing_key]
     })
+  },
+
+  toSelectVoucher: function() {
+    const self = this;
+    if (self.data.voucher_count > 0) {
+      wx.navigateTo({
+        url: `${app.routes.vouchers_select}?community=${community}`,
+      })
+    } else {
+      showToast(app.globalData.i18n.no_vouchers)
+    }
   },
 
   calculateDeliveryFee: function(area) {
