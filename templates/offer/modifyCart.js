@@ -1,4 +1,4 @@
-import { checkOfferTicket } from "./offerRules";
+import { checkOfferTicket, getNewFreefall } from "./offerRules";
 
 const app = getApp();
 
@@ -6,28 +6,23 @@ export const modifyCartItems = (page, event, checkout = false) => {
   const offer = page.data._offer;
   const type = event.mark.type;
   const new_amount = event.detail.amount;
+  const product = offer.miniprogram[type][event.currentTarget.dataset.idx];
+
+  // Saving values needed later
+  let old_amount = -1, new_price;
+
+  // Free fall price change
+  if (product.freeFall && product.freeFall.quantityTrigger) {
+    [old_amount, new_price] = getNewFreefall(offer.id, product, new_amount);
+  }
 
   // Create empty array for offer if not in cart
   let current_cart = app.db.get('cart') ? app.db.get('cart') : {};
   let cart_offer = current_cart[offer.id] ? current_cart[offer.id] : { count: 0, products: {}, total: 0, reducedTotal: 0 };
 
-  // Saving values needed later
-  let product = offer.miniprogram[type][event.currentTarget.dataset.idx];
-  let old_amount = cart_offer.products[product._id] ? cart_offer.products[product._id].amount : 0;
-  let new_price;
-  // Free fall price change
-  if (product.freeFall && product.freeFall.quantityTrigger) {
-    let reduce = Math.floor(product.stock - product.actualStock + new_amount / product.freeFall.quantityTrigger) * product.freeFall.dropAmount;
-    new_price = Math.max((product.price - reduce), product.freeFall.lowestPrice);
-
-    let prev_price = 0;
-    if (cart_offer.products[product._id]) {
-      prev_price = cart_offer.products[product._id].price * old_amount
-    } else {
-      prev_price = product.price * old_amount
-    }
-
-    cart_offer.reducedTotal += (new_price * new_amount) - prev_price;
+  // If old_amount is not already found
+  if (old_amount < 0) {
+    old_amount = cart_offer.products[product._id] ? cart_offer.products[product._id].amount : 0;
   }
 
   // Set up values for product in cart

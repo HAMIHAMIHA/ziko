@@ -197,13 +197,9 @@ export const getOffer = function(page, offer_id) {
     offer_products.forEach( p => {
       offer.sold += (p.stock - p.actualStock);
 
-      // Check for free fall price 
+      // Check for and Change all free fall product price 
       if (p.freeFall && p.freeFall.quantityTrigger) {
-        let cart = app.db.get('cart');
-        // Change all product price
-        let cart_stock = cart[offer.id] && cart[offer.id].products[p._id] ? cart[offer.id].products[p._id].amount : 0;
-
-        getNewFreefall(offer.id, p, cart_stock);
+        getNewFreefall(offer.id, p);
       }
 
       // Get list of product names for special and lottery message

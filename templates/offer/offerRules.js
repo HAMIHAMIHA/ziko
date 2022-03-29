@@ -1,15 +1,17 @@
 import db from "../../utils/db.config";
 
-export const getNewFreefall = (offer, product, new_amount) => {
+export const getNewFreefall = (offer, product, amount = -1) => {
   let cart = db.get('cart') ? db.get('cart') : {};
   let cart_offer = cart[offer] ? cart[offer] : { count: 0, products: {}, total: 0, reducedTotal: 0 };
   let old_amount = cart_offer.products[product._id] ? cart_offer.products[product._id].amount : 0;
+  let new_amount = amount >= 0 ? amount : old_amount;
 
   let new_price;
   // Free fall price change
   let reduce = Math.floor((product.stock - product.actualStock + new_amount) / product.freeFall.quantityTrigger) * product.freeFall.dropAmount;
   new_price = Math.max((product.price - reduce), product.freeFall.lowestPrice);
 
+  // Calculate new total
   let prev_price = 0;
   if (cart_offer.products[product._id]) {
     prev_price = cart_offer.products[product._id].price * old_amount
@@ -21,8 +23,12 @@ export const getNewFreefall = (offer, product, new_amount) => {
 
   cart_offer.reducedTotal += (new_price * new_amount) - prev_price;
 
+  // Update local storage
   cart[offer] = cart_offer;
-  db.set('cart', cart)
+  db.set('cart', cart);
+
+  // Return value if needed
+  return [old_amount, new_price];
 }
 
 // Specials
@@ -85,6 +91,7 @@ export const checkOfferSpecial = (page, offer) => {
   });
 }
 
+// Calcualte possible tickets with items in cart
 export const checkOfferTicket = (page, offer) => {
   let cart = db.get('cart')[offer.id] ? db.get('cart')[offer.id] : null;
   if (!cart) return; // Don't check for tickets if there is no item in cart

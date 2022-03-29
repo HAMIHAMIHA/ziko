@@ -108,12 +108,9 @@ const _getOffers = page => {
     // Free fall total
     if (offer.type === "free_fall") {
       offer_products.forEach( p => {
-        // Check for free fall price 
+        // Check for and Change all free fall product price 
         if (p.freeFall && p.freeFall.quantityTrigger) {
-          let cart = app.db.get('cart');
-          // Change all product price
-          let cart_stock = cart[offer.id] && cart[offer.id].products[p._id] ? cart[offer.id].products[p._id].amount : 0;
-          OfferRules.getNewFreefall(offer.id, p, cart_stock);
+          getNewFreefall(offer.id, p);
         }
       })
     }
