@@ -1,28 +1,70 @@
-<view class="container container-grey container-btn-bottom">
-  <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
-    <view
-      class="detail{{ select_index == index ? ' select' : '' }}"
-      wx:for="{{ user.addresses }}"
-      wx:for-item="address"
-      wx:key="_id"
-      bindtap="selectAddress"
-      data-index="{{ index }}"
-    >
-      <view class="address_container">
-        <view class="nunito_700 address-name">{{ _t.address + ' ' + (index + 1) }}</view>
-        <view class="address-detail">{{ address.detailedAddress }}</view>
-        <view class="contact-detail">{{ address.contact || address.contact != null ? address.contact : '' }}</view>
-        <view class="contact-detail">{{ address.phone }}</view>
+<!-- Scroll Menu -->
+<view class="h-scroll_container scroll-menu">
+  <scroll-view class="h-scroll capatilize" scroll-x="true">
+    <block wx:for="{{ _pickers.voucher_status }}" wx:key="index" wx:for-item="status">
+      <view
+        class="h-scroll_item order-status{{ _picker_selected.status == index ? ' selected' : '' }}"
+        bindtap="changeFilter"
+        data-filter_type="order_status"
+        data-value="{{ index }}"
+      >
+      <!-- All, Unused, Used -->
+        {{ _t.voucher_status[status] }}
       </view>
-      <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.address_detail + '?id=' + address._id }}"></navigator>
-    </view>
-  </view>
-
-  <view class="btn-outline_container">
-    <navigator class="btn-outline nunito_600" hover-class="none" url="{{ _routes.address_detail }}">{{ '+ ' + _t.add_new_address }}</navigator>
-  </view>
-
-  <view class="btn-bottom" wx:if="{{ _setting.selecting }}">
-    <button class="nunito_600" bindtap="select">{{ _t.select }}</button>
-  </view>
+    </block>
+  </scroll-view>
 </view>
+<!-- End of Scroll Menu -->
+
+<!-- Voucher List -->
+<view class="container container-grey container-btn-bottom">
+  <view class="voucher-content_container">
+    <view class="gilroy_700 header">{{ _t.please_select_voucher }}</view>
+    <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher">
+    <!-- 
+            "pending",
+            "validated",
+            "declined",
+            "used"
+            =>>> expired, used, valid
+    -->
+      <view class="white-box flex-between voucher_container{{ voucher.status }}">
+        <view class="voucher_detail">
+          <view class="voucher_detail-content voucher_for">
+            <text class="gilroy_500 voucher_label">{{ _t.available_for }}: </text>
+            <text class="voucher_text">{{ voucher.community }}</text>
+          </view>
+          <view class="voucher_detail-content voucher_recs">
+            <text class="gilroy_500 voucher_label">{{ _t.reveived }}: </text>
+            <text class="voucher_text">{{ voucher.createdAt }}</text>
+          </view>
+          <view class="voucher_detail-content voucher_exp">
+            <text class="gilroy_500 voucher_label">{{ _t.expire_on }}: </text>
+            <text class="voucher_text">{{ voucher.status === "expired" ? _t.expired : voucher.expirationDate }}</text>
+          </view>
+          <view class="voucher_detail-content voucher_from">
+            <text class="gilroy_500 voucher_label">{{ _t.from }}: </text>
+            <text class="voucher_text">{{ voucher.reason }}</text>
+          </view>
+
+          <view class="voucher_detail-content voucher_nav" wx:if="{{ voucher.status === 'used' }}">
+            <view class="voucher_text">{{ _t.to_order }}</view>
+          </view>
+        </view>
+
+        <view class="gilroy_800 voucher_price">￥{{ voucher.amount }}</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="btn-bottom contact-box">
+      <view class="">{{ _t.checkout_message }}</view>
+      <view class="contact-button_container">
+        <button class="contact-button" open-type="contact">
+          <text class="icon icon-headset"></text>
+          <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
+        </button>
+      </view>
+    </view>
+</view>
+<!-- End of Voucher List -->
