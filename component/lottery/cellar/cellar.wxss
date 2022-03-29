@@ -41,14 +41,14 @@
 
 /* Progress - bar */
 .progress-bar__container {
+  height: calc(70rpx + 24rpx + 28rpx);
   display: flex;
-  justify-content: space-between;
   position: relative;
 }
 
 .progress-bar__container .progress-bar__values {
-  flex: var(--size-);
-  position: relative;
+  left: var(--position-);
+  position: absolute;
 }
 
 .progress-bar__container .progress-bar_first {
@@ -56,7 +56,7 @@
 }
 
 .progress-bar__container .progress-bar_last {
-  text-align: right;
+  transform: translateX(-100%);
 }
 
 .progress-bar__values .progress-axis {
@@ -126,12 +126,13 @@
   background: #51596D;
   border-radius: 40px;
   position: absolute;
-  bottom: 38rpx;
+  bottom: calc(70rpx - 20rpx);
 }
 
 .progress-bar__container .progress-bar:before {
   content: "";
   width: var(--filled-);
+  max-width: 100%;
   height: 20rpx;
   background: #FF4040;
   border-radius: 40px;
