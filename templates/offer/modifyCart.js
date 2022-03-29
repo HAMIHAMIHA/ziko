@@ -1,4 +1,4 @@
-import { checkOfferTicket, getMultiple, getNewFreefall } from "./offerRules";
+import { checkOfferTicket, getRulePrice } from "./offerRules";
 
 const app = getApp();
 
@@ -13,12 +13,12 @@ export const modifyCartItems = (page, event, checkout = false) => {
 
   // Free fall price change
   if (product.freeFall && product.freeFall.quantityTrigger) {
-    [old_amount, new_price] = getNewFreefall(offer.id, product, new_amount);
+    [old_amount, new_price] = getRulePrice("free_fall", offer.id, product, new_amount);
   }
 
   // Check for multiple price
   if (product.multipleItem) {
-    [old_amount, new_price] = getMultiple(offer.id, product, new_amount)
+    [old_amount, new_price] = getRulePrice("multiple", offer.id, product, new_amount)
   }
 
   // Create empty array for offer if not in cart

@@ -1,6 +1,6 @@
 const { packProductDetail } = require("../../templates/offer/getOffers");
 const { modifyCartItems } = require("../../templates/offer/modifyCart");
-const { getNewFreefall, getMultiple } = require("../../templates/offer/offerRules");
+const { getRulePrice } = require("../../templates/offer/offerRules");
 const { changeFocus, showLoading, getUserInfo, showToast } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
 const { formatDate } = require("../../utils/util");
@@ -110,12 +110,12 @@ const _getOffers = page => {
       offer_products.forEach( p => {
         // Check for and Change all free fall product price 
         if (p.freeFall && p.freeFall.quantityTrigger) {
-          getNewFreefall(offer.id, p);
+          getRulePrice("free_fall", offer.id, p);
         }
 
         // Check for multiple price
         if (p.multipleItem) {
-          getMultiple(offer.id, p)
+          getRulePrice("multiple", offer.id, p)
         }
       })
     }

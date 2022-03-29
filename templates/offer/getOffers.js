@@ -1,7 +1,7 @@
 import { getUserInfo, showLoading } from "../../utils/common";
 import { communities } from "../../utils/constants";
 import { findIndex } from "../../utils/util";
-import { checkOfferTicket, getMultiple, getNewFreefall } from "./offerRules";
+import { checkOfferTicket, getRulePrice } from "./offerRules";
 
 const app = getApp();
 let lotteries = [];
@@ -199,12 +199,12 @@ export const getOffer = function(page, offer_id) {
 
       // Check for and Change all free fall product price 
       if (p.freeFall && p.freeFall.quantityTrigger) {
-        getNewFreefall(offer.id, p);
+        getRulePrice("free_fall", offer.id, p);
       }
 
       // Check for multiple price
       if (p.multipleItem) {
-        getMultiple(offer.id, p)
+        getRulePrice("multiple", offer.id, p)
       }
 
       // Get list of product names for special and lottery message
