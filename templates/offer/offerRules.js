@@ -1,34 +1,63 @@
 import db from "../../utils/db.config";
 
+// Calculate new total
+const _getNewTotal = (cart_offer, product, amounts, new_price) => {
+  let prev_price = 0;
+  if (cart_offer.products[product._id]) {
+    prev_price = cart_offer.products[product._id].price * amounts.old
+    cart_offer.products[product._id].price = new_price;
+  } else {
+    prev_price = product.price * amounts.old
+    cart_offer.products[product._id] = { price: new_price, amount: amounts.new };
+  }
+  cart_offer.reducedTotal += (new_price * amounts.new) - prev_price;
+  return cart_offer;
+}
+
 export const getNewFreefall = (offer, product, amount = -1) => {
-  let cart = db.get('cart') ? db.get('cart') : {};
-  let cart_offer = cart[offer] ? cart[offer] : { count: 0, products: {}, total: 0, reducedTotal: 0 };
-  let old_amount = cart_offer.products[product._id] ? cart_offer.products[product._id].amount : 0;
-  let new_amount = amount >= 0 ? amount : old_amount;
+  const cart = db.get('cart') ? db.get('cart') : {};
+  const cart_offer = cart[offer] ? cart[offer] : { count: 0, products: {}, total: 0, reducedTotal: 0 };
+  let amounts = { old: cart_offer.products[product._id] ? cart_offer.products[product._id].amount : 0 };
+  amounts.new = amount >= 0 ? amount : amounts.old;
 
   let new_price;
   // Free fall price change
-  let reduce = Math.floor((product.stock - product.actualStock + new_amount) / product.freeFall.quantityTrigger) * product.freeFall.dropAmount;
+  let reduce = Math.floor((product.stock - product.actualStock + amounts.new) / product.freeFall.quantityTrigger) * product.freeFall.dropAmount;
   new_price = Math.max((product.price - reduce), product.freeFall.lowestPrice);
 
-  // Calculate new total
-  let prev_price = 0;
-  if (cart_offer.products[product._id]) {
-    prev_price = cart_offer.products[product._id].price * old_amount
-    cart_offer.products[product._id].price = new_price;
-  } else {
-    prev_price = product.price * old_amount
-    cart_offer.products[product._id] = { price: new_price, amount: new_amount };
-  }
-
-  cart_offer.reducedTotal += (new_price * new_amount) - prev_price;
-
   // Update local storage
-  cart[offer] = cart_offer;
+  cart[offer] = _getNewTotal(cart_offer, product, amounts, new_price);
   db.set('cart', cart);
 
   // Return value if needed
-  return [old_amount, new_price];
+  return [amounts.old, new_price];
+}
+
+// Multiple
+export const getMultiple = (offer, product, amount = -1) => {
+  const cart = db.get('cart') ? db.get('cart') : {};
+  const cart_offer = cart[offer] ? cart[offer] : { count: 0, products: {}, total: 0, reducedTotal: 0 };
+  let amounts = { old: cart_offer.products[product._id] ? cart_offer.products[product._id].amount : 0 };
+  amounts.new = amount >= 0 ? amount : amounts.old;
+  let new_price = product.price;
+
+  // Find max multiple reached
+  let m_val = 0;
+  product.multipleItem.forEach( m => {
+    console.log(m);
+    if (amounts.new >= m.quantity && m_val < m.quantity) {
+      console.log(m);
+      new_price = m.unitPrice;
+      return;
+    }
+  })
+
+  // Update local storage
+  cart[offer] = _getNewTotal(cart_offer, product, amounts, new_price);
+  db.set('cart', cart);
+
+  // Return value if needed
+  return [amounts.old, new_price];
 }
 
 // Specials
