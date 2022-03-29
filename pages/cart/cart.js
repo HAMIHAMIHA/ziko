@@ -136,6 +136,7 @@ const _getOffers = page => {
         _static_total: cart.total,
         total: cart.total,
         reducedTotal: cart.reducedTotal,
+        finalFee: cart.reducedTotal ? cart.reducedTotal : cart.total,
         minimum: {
           price: offer.minimumOrderAmount,
           items: offer.minimumCartItems,

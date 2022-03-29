@@ -285,14 +285,18 @@ export const getOffer = function(page, offer_id) {
       cart: app.db.get('cart')[offer.id],
     })
 
-    // Lottery
+    // Lottery Ticket amount check
     if (offer.miniprogram.lotteryEnable) {
       checkOfferTicket(page, offer);
     }
 
     // Change page translation
     _getTranslations(page, offer.community);
+
+    // Count down
     page.startCountdown();
+
+    // Hide loading modal
     showLoading(false);
 
     // Update quantity button setting
@@ -339,13 +343,13 @@ export function switchTabs(page, tab) {
   }
 
   let left = (tab === "recipe") ? "-100vw" : "0";
-  _getHeight().then( res =>
+  _getHeight().then( res => {
     page.setData({
       "_setting.currentTab": tab,
       "_setting.height": `${res}px`,
       "_setting.left": left
     })
-  );
+  });
 }
 
 // Get offer messages

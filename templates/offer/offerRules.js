@@ -36,7 +36,8 @@ export const checkOfferSpecial = (page, offer) => {
       },
       free_delivery: () => {
         page.setData({
-          free_delivery: true
+          free_delivery: true,
+          '_pay_set.finalFee': page.data._pay_set.reducedTotal ? page.data._pay_set.reducedTotal : page.data._pay_set.total,
         })
       },
     }
