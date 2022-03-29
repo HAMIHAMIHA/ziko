@@ -208,6 +208,9 @@ Page({
   onHide: function(e) {
     const self = this;
     self.navigatePage({ detail: {} });
+
+    // Stop all timers
+    _timerControl(self, false);
   },
 
   // Close modal or reset page view to map when leaving page by tabbar click
