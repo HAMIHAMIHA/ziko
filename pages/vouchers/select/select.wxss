@@ -8,19 +8,27 @@
 }
 
 .voucher_container {
-  padding: 24rpx;
+  padding: 20rpx;
   margin-top: 16rpx;
   border-radius: 4px;
+  border: 2px solid #252831;
+  transition: all 0.1s ease-in;
 }
 
 .voucher_container.selected {
-  padding: 22rpx;
-  border: 4rpx solid #1890FF;
+  border-color: #1890FF;
+}
+
+.voucher_container.disabled {
+  background: #181C25;
+  border-color: #181C25;
+  pointer-events: none;
 }
 
 .voucher_detail {
   font-size: 24rpx;
   line-height: 28rpx;
+  letter-spacing: 0.01em;
 }
 
 .voucher_detail-content + .voucher_detail-content {
@@ -34,4 +42,8 @@
 .voucher_price {
   font-size: 36rpx;
   line-height: 40rpx;
+}
+
+.voucher_container.disabled .voucher_price {
+ color: #A3A8B7;
 }

@@ -333,6 +333,7 @@ export const languageMap_en = {
   // V
   viewers: " Viewers",
   vouchers: "Vouchers",
+  voucher_empty: " Voucher not selected",
   voucher_source: {
     refund: "Order refund",
     claim: "Claim",
@@ -688,6 +689,7 @@ export const languageMap_zh = {
   // V
   viewers: " 浏览",
   vouchers: "Vouchers",
+  voucher_empty: " Voucher not selected",
   voucher_source: {
     refund: "Order refund",
     claim: "Claim",

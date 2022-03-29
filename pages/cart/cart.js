@@ -172,7 +172,10 @@ const _getOffers = page => {
 Page({
   data: {
     discount: 1,
-    voucher: 0,
+    voucher: {
+      amount: 0,
+      id: null,
+    },
     delivery_fee: -1,
     free_delivery: false,
   },

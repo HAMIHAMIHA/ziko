@@ -83,7 +83,7 @@
       </view>
       <view class="nunito_700 detail">
         <text class="detail_label">{{ _t.total }}</text>
-        <text class="detail_result">¥{{ (_pay_set.finalFee - voucher) * discount }}</text>
+        <text class="detail_result">¥{{ (_pay_set.finalFee - voucher.amount) * discount }}</text>
       </view>
     </view>
 

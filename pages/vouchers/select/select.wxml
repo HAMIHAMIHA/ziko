@@ -2,7 +2,7 @@
   <view class="content_container">
     <view class="gilroy_700 header">{{ _t.please_select_voucher }}</view>
     <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher">
-      <view class="white-box flex-between voucher_container{{ voucher.selectable ? selected_voucher === voucher.id ? ' selected' : '' : ' diabled' }}" bindtap="selectVoucher" data-id="{{ voucher.id }}">
+      <view class="white-box flex-between voucher_container{{ voucher.selectable ? selected_voucher === voucher.id ? ' selected' : '' : ' disabled' }}" bindtap="selectVoucher" data-id="{{ voucher.id }}" data-index="{{ index }}">
         <view class="voucher_detail">
           <view class="voucher_detail-content voucher_for">
             <text class="gilroy_500 voucher_label">{{ _t.available_for }}: </text>
@@ -22,7 +22,7 @@
           </view>
         </view>
 
-        <view class="gilroy_500 voucher_price">￥{{ voucher.amount }}</view>
+        <view class="gilroy_800 voucher_price">￥{{ voucher.amount }}</view>
       </view>
     </block>
   </view>

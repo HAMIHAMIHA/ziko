@@ -83,17 +83,30 @@ const _getVouchers = (page, community) => {
 
 
 Page({
-  data: {
-    _communities: communities,
-  },
-
   onShow: function() {
     const self = this;
-
     _setPageTranslation(self);
     _getVouchers(self, self.options.community);
   },
 
+  selectVoucher: function(e) {
+    const self = this;
+
+    // Deselect voucher
+    if (self.data.selected_voucher === e.currentTarget.dataset.id) {
+      self.setData({
+        selected_voucher: '',
+        voucher_index: '',
+      })
+      return;
+    }
+
+    // Select voucher
+    self.setData({
+      selected_voucher: e.currentTarget.dataset.id,
+      voucher_index: e.currentTarget.dataset.index,
+    })
+  },
 
   select: function() {
     const self = this;
@@ -101,16 +114,9 @@ Page({
     let pages = getCurrentPages();
     let prev = pages[pages.length - 2];
 
-    // Check if an area is selected
-    if (self.data.select_index == -1) {
-      showToast(app.globalData.i18n.address_empty);
-      return;
-    }
-    let selected_address = self.data.user.addresses[self.data.select_index];
-
-    // Check if selected area is in the filtered area list
-    if (selected_address && findIndex(areaList, selected_address.area, 'id') == -1) {
-      showToast(app.globalData.i18n.area_invalid);
+    // Check if voucher is selected
+    if (!self.data.selected_voucher) {
+      showToast(app.globalData.i18n.voucher_empty);
       return;
     }
 
@@ -119,12 +125,13 @@ Page({
     options.back = true;
     prev.options = options
 
-    // Set selected address data
+    // Set selected voucher data
     prev.setData({
-
+      voucher: {
+        id: self.data.selected_voucher,
+        amount: self.data.vouchers[self.data.voucher_index].amount,
+      }
     })
-
-    prev.setVoucher('voucher');
 
     // Go back to previous page
     wx.navigateBack({
