@@ -158,7 +158,7 @@
                 <view class="offer-special_detail">
                   <text wx:if="{{ special.gift.type == 'pack' }}">{{ _t.offer_special_details.get }}{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[special.gift.pack] }}{{ _t.offer_special_details.for_free.suffix }}</text>
                   <text wx:if="{{ special.gift.type == 'add_on' }}">{{ _t.offer_special_details.get }}{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[special.gift.singleItem] }}{{ _t.offer_special_details.for_free.suffix }}</text>
-                  <text wx:if="{{ special.gift.type == 'voucher' }}">{{ _t.offer_special_details.get }}{{ special.gift.voucherValue }}{{ special.gift.voucherValue === 1 ? _t.offer_special_details.voucher.single : _t.offer_special_details.voucher.multiple }}</text>
+                  <text wx:if="{{ special.gift.type == 'voucher' }}">{{ _t.offer_special_details.get }}￥{{ special.gift.voucherValue }}{{ _t.offer_special_details.voucher }}</text>
                   <text wx:if="{{ special.gift.type == 'discount' }}">{{ _t.offer_special_details.get }}{{ special.gift.discountAmount }}{{ _t.offer_special_details.discount }}</text>
                   <text wx:if="{{ special.gift.type == 'free_delivery' }}">{{ _t.offer_special_details.get }}{{ _t.offer_special_details.free_delivery }}</text>
                   <text wx:if="{{ special.gift.type == 'custom' }}">{{ special.gift.custom[_language] }}</text>

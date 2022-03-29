@@ -157,6 +157,7 @@ export const languageMap_en = {
   no_offers: "No offers yet",
   no_orders: "No orders yet",
   no_recipes: "No related recipes",
+  no_vouchers: "No vouchers",
   no_winner_yet: "No winner yet",
 
   // O
@@ -170,10 +171,7 @@ export const languageMap_en = {
       prefix: "",
       suffix: " for free",
     },
-    voucher: {
-      single: " voucher",
-      multiple: " vouchers"
-    },
+    voucher: " voucher",
   },
   offer_special_names: {
     first_order: {
@@ -502,6 +500,7 @@ export const languageMap_zh = {
   no_offers: "No offers yet",
   no_orders: "No orders yet",
   no_recipes: "No related recipes",
+  no_vouchers: "No vouchers",
   no_winner_yet: "No winner yet",
 
   // O
@@ -515,10 +514,7 @@ export const languageMap_zh = {
       prefix: "",
       suffix: " for free",
     },
-    voucher: {
-      single: " voucher",
-      multiple: " vouchers"
-    },
+    voucher: " voucher",
   },
   offer_special_names: {
     first_order: {
