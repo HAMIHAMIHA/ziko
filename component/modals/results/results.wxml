@@ -4,7 +4,7 @@
     <view class="header-text">{{ _t.congrats }}!</view>
   </view>
 
-  <view class="content_container">
+  <view class="lottery-content_container">
     <view class="content" slot="content">
       <view class="content-head">
         <view class="content-title">{{ _t.just_won_items }}</view>

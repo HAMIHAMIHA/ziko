@@ -1,5 +1,5 @@
 <view class="container container-grey container-btn-bottom">
-  <view class="content_container">
+  <view class="voucher-content_container">
     <view class="gilroy_700 header">{{ _t.please_select_voucher }}</view>
     <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher">
       <view class="white-box flex-between voucher_container{{ voucher.selectable ? selected_voucher === voucher.id ? ' selected' : '' : ' disabled' }}" bindtap="selectVoucher" data-id="{{ voucher.id }}" data-index="{{ index }}">
