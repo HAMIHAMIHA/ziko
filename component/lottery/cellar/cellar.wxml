@@ -12,7 +12,7 @@
       <block wx:for="{{ _offer.miniprogram.lottery.draws }}" wx:key="_id" wx:for-item="draw">
         <view 
           class="progress-bar__values{{ index === 0 ? ' progress-bar_first' : (index + 1) === _offer.miniprogram.lottery.draws.length ? ' progress-bar_last' : '' }}"
-          style="--size-:{{ draw.size }}%;"
+          style="--position-:{{ draw.position }}%;"
         >
           <view class="nunito_500 progress-axis">{{ draw.conditionValue }}</view>
           <view class="gilroy_800 progress-label {{ draw.unlocked ? 'unlocked' : 'locked' }}" wx:if="{{ index > 0 }}">{{ _t.draw }} {{ index }}</view>
