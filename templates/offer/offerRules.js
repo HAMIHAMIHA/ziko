@@ -95,23 +95,25 @@ export const checkOfferTicket = (page, offer) => {
         item_count += p.amount;
       })
 
-      return item_count >= offer.miniprogram.lottery[condition];
+      return Math.floor(item_count / offer.miniprogram.lottery[condition]);
     },
     spend: (condition) => {
-      return cart.reducedTotal ? cart.reducedTotal >= offer.miniprogram.lottery[condition] : cart.total >= offer.miniprogram.lottery[condition];
+      if (cart.reducedTotal) {
+        return Math.floor(cart.reducedTotal / offer.miniprogram.lottery[condition]);
+      } else {
+        return Math.floor(cart.total / offer.miniprogram.lottery[condition]);
+      }
     }
   }
 
-  let ticket = 0;
-  if (_checkCondition[offer.miniprogram.lottery.conditionType]('conditionValue')) {
-    ticket++
-  }
+  let total_tickets = 0;
+  total_tickets += _checkCondition[offer.miniprogram.lottery.conditionType]('conditionValue');
 
-  if (offer.miniprogram.lottery.extraConditionType && _checkCondition[offer.miniprogram.lottery.extraConditionType]('extraConditionValue')) {
-    ticket++
+  if (offer.miniprogram.lottery.extraConditionType) {
+    total_tickets += _checkCondition[offer.miniprogram.lottery.extraConditionType]('extraConditionValue');
   }
 
   page.setData({
-    tickets: ticket,
+    '_pay_set.tickets': total_tickets,
   })
 }

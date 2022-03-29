@@ -206,11 +206,6 @@ export const getOffer = function(page, offer_id) {
         getNewFreefall(offer.id, p, cart_stock);
       }
 
-      // Lottery
-      if (offer.miniprogram.lotteryEnable) {
-        checkOfferTicket(page, offer);
-      }
-
       // Get list of product names for special and lottery message
       let p_name = '';
       if (p.products) {
@@ -289,6 +284,11 @@ export const getOffer = function(page, offer_id) {
       _product_names: product_name_list,
       cart: app.db.get('cart')[offer.id],
     })
+
+    // Lottery
+    if (offer.miniprogram.lotteryEnable) {
+      checkOfferTicket(page, offer);
+    }
 
     // Change page translation
     _getTranslations(page, offer.community);

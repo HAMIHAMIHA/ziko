@@ -88,13 +88,13 @@
       </view>
     </view>
 
-    <!-- Hide for v1 -->
-    <view class="white-box details_container" wx:if="{{ showing }}">
+    <view class="white-box details_container">
       <view class="detail">
         <text class="detail_label">{{ _t.lottery_tickets }}</text>
-        <text class="detail_result">x{{ offer.tickets }}3</text>
+        <text class="detail_result">x{{ _pay_set.tickets }}</text>
       </view>
-      <view class="detail">
+      <!-- Hide for v1 -->
+      <view class="detail" wx:if="{{ showing }}">
         <text class="detail_label">{{ _t.fidelity_points }}</text>
         <text class="detail_result">+{{ offer.fidelity_points }}30</text>
       </view>
