@@ -2,7 +2,7 @@ import { checkOfferTicket } from "./offerRules";
 
 const app = getApp();
 
-export const modifyCartItems = (page, event) => {
+export const modifyCartItems = (page, event, checkout = false) => {
   const offer = page.data._offer;
   const type = event.mark.type;
   const new_amount = event.detail.amount;
@@ -52,6 +52,15 @@ export const modifyCartItems = (page, event) => {
     '_pay_set.total': cart_offer.total,
     '_pay_set.reducedTotal': cart_offer.reducedTotal,
   })
+
+  // Add to checkout page total
+  if (checkout) {
+    let total = page.data._pay_set.reducedTotal ? page.data._pay_set.reducedTotal : page.data._pay_set.total;
+    let deilvery = Math.max(0, page.data.delivery_fee);
+    page.setData({
+      '_pay_set.finalFee': total + deilvery,
+    })
+  }
 
   // Lottery
   if (offer.miniprogram.lotteryEnable) {

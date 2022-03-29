@@ -106,7 +106,7 @@
         {
           "name": "Select Vouchers",
           "pathName": "pages/vouchers/select/select",
-          "query": "",
+          "query": "community=60541eb87b87f1126ecf53e3",
           "scene": null
         },
         {
