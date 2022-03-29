@@ -85,9 +85,9 @@ const _getOffer = function(page, offer_id) {
 
     offer.last_val = offer.miniprogram.lottery.draws[offer.miniprogram.lottery.draws.length - 1].conditionValue;
     if ( offer.miniprogram.lottery.draws[0].conditionType === "number_of_order" ) {
-      offer.lottery_progress = offer.orders / offer.last_val * 100;
+      offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
     } else {
-      offer.lottery_progress = offer.sold / offer.last_val * 100;
+      offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
     }
 
     let prev = 0;
@@ -100,7 +100,7 @@ const _getOffer = function(page, offer_id) {
       });
 
       // Set size of axis mark
-      draw.size = (draw.conditionValue - prev + 1) / offer.last_val * 100;
+      draw.size = Math.round((draw.conditionValue - prev + 1) / offer.last_val * 100);
       prev = draw.conditionValue
 
       draw.winners = winners
@@ -109,7 +109,7 @@ const _getOffer = function(page, offer_id) {
 
     offer.miniprogram.lottery.draws = [{
         conditionValue: 0,
-        size: 1 / offer.last_val * 100,
+        size: Math(1 / offer.last_val * 100),
         _id: '000'
       }, ...offer.miniprogram.lottery.draws]
 
