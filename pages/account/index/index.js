@@ -30,7 +30,8 @@ Page({
       account_info: app.routes.account_info,
       fapiao: app.routes.fapiao,
       address: app.routes.address,
-      orders: app.routes.orders
+      orders: app.routes.orders,
+      vouchers: app.routes.vouchers,
     }
   },
 

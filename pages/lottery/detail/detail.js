@@ -100,7 +100,7 @@ const _getOffer = function(page, offer_id) {
       });
 
       // Set size of axis mark
-      draw.size = Math.round((draw.conditionValue - prev + 1) / offer.last_val * 100);
+      draw.position = Math.round(draw.conditionValue / offer.last_val * 100);
       prev = draw.conditionValue
 
       draw.winners = winners
@@ -109,7 +109,7 @@ const _getOffer = function(page, offer_id) {
 
     offer.miniprogram.lottery.draws = [{
         conditionValue: 0,
-        size: Math(1 / offer.last_val * 100),
+        position: 0,
         _id: '000'
       }, ...offer.miniprogram.lottery.draws]
 
