@@ -124,6 +124,15 @@ export const checkOfferTicket = (page, offer) => {
     return Math.floor(item_count / offer.miniprogram.lottery[condition]);
   }
 
+  // Check for possible price for the offer
+  const _checkSpent = (condition) => {
+    if (cart.reducedTotal) {
+      return Math.floor(cart.reducedTotal / offer.miniprogram.lottery[condition]);
+    } else {
+      return Math.floor(cart.total / offer.miniprogram.lottery[condition]);
+    }
+  }
+
   const _checkCondition = {
     buy: (condition) => {
       return _compareProduct(condition);
@@ -131,13 +140,18 @@ export const checkOfferTicket = (page, offer) => {
     pack_bought: (condition) => {
       return _compareProduct(condition);
     },
+    buy_for: (condition) => {
+      return _compareProduct(condition);
+    },
+    first_order: (condition) => {
+      return condition > offer.orders;
+    },
     spend: (condition) => {
-      if (cart.reducedTotal) {
-        return Math.floor(cart.reducedTotal / offer.miniprogram.lottery[condition]);
-      } else {
-        return Math.floor(cart.total / offer.miniprogram.lottery[condition]);
-      }
-    }
+      return _checkSpent(condition);
+    },
+    spend_for: (condition) => {
+      return _checkSpent(condition);
+    },
   }
 
   let total_tickets = 0;
@@ -145,7 +159,9 @@ export const checkOfferTicket = (page, offer) => {
     total_tickets += _checkCondition[offer.miniprogram.lottery.conditionType]('conditionValue');
   }
 
+  console.log(offer.miniprogram.lottery);
   if (offer.miniprogram.lottery.extraConditionType && _checkCondition[offer.miniprogram.lottery.extraConditionType]) {
+    console.log('find extra');
     total_tickets += _checkCondition[offer.miniprogram.lottery.extraConditionType]('extraConditionValue');
   }
 
