@@ -56,7 +56,10 @@
     <view class="white-box details_container">
       <view class="detail" bindtap="toSelectVoucher">
         <text class="detail_label">{{ _t.use_voucher }}</text>
-        <view class="nunito_600 detail_result">
+        <view class="nunito_600 font_red detail_result" wx:if="{{ voucher.amount > 0 }}">
+          -￥{{ voucher.amount }}
+        </view>
+        <view class="nunito_600 detail_result" wx:else>
           <text>{{ _t.available.fst + voucher_count + _t.available.snd }}</text>
           <text class="icon icon-arrow-right"></text>
         </view>
@@ -71,7 +74,7 @@
           bindchange="bindPickerChange"
           data-key="delivery_date"
         >
-          <view class="picker">
+          <view class="flex-center picker">
             <text>{{ delivery_dates[delivery_date] }}</text>
             <text class="icon icon-arrow"></text>
           </view>

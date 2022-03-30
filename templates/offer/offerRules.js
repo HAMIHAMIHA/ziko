@@ -21,7 +21,7 @@ export const getRulePrice = (rule, offer, product, amount = -1) => {
   amounts.new = amount >= 0 ? amount : amounts.old;
 
   // Merge rules
-  let new_price;
+  let new_price = 0;
   const _rule_check = {
     free_fall: () => {
       // Free fall price change

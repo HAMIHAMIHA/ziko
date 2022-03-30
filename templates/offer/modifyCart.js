@@ -17,7 +17,7 @@ export const modifyCartItems = (page, event, checkout = false) => {
   }
 
   // Check for multiple price
-  if (product.multipleItem) {
+  if (product.multipleItem && product.multipleItem.length > 0) {
     [old_amount, new_price] = getRulePrice("multiple", offer.id, product, new_amount)
   }
 

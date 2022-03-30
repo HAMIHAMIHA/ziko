@@ -108,20 +108,20 @@ const _getOffers = page => {
     // Free fall total
     if (offer.type === "free_fall") {
       offer_products.forEach( p => {
-        // Check for and Change all free fall product price 
+        // Check for and change all free fall product price 
         if (p.freeFall && p.freeFall.quantityTrigger) {
-          getRulePrice("free_fall", offer.id, p);
-        }
-
-        // Check for multiple price
-        if (p.multipleItem) {
-          getRulePrice("multiple", offer.id, p)
+          OfferRules.getRulePrice("free_fall", offer.id, p);
         }
       })
     }
 
-    // TODO Multiple total
+    // Multiple total
     if (offer.type === "multiple") {
+      offer_products.forEach( p => {
+        if (p.multipleItem && p.multipleItem.length > 0) {
+          OfferRules.getRulePrice("multiple", offer.id, p)
+        }
+      })
     }
 
     // TODO Multiple total
@@ -167,7 +167,7 @@ const _getOffers = page => {
   }
   app.api.getOffers(`?id=${page.options.id}`).then( res => {
     offer = res[0];
-    app.api.getVouchers("validated", offer.community.id).then(callback);
+    app.api.getVouchers("validated", true).then(callback);
   });
 }
 
@@ -265,7 +265,7 @@ Page({
         url: `${app.routes.vouchers_select}?community=${community}`,
       })
     } else {
-      showToast(app.globalData.i18n.no_vouchers)
+      showToast(app.globalData.i18n.no_vouchers_selected)
     }
   },
 

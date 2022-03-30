@@ -203,7 +203,7 @@ export const getOffer = function(page, offer_id) {
       }
 
       // Check for multiple price
-      if (p.multipleItem) {
+      if (p.multipleItem && p.multipleItem.length > 0) {
         getRulePrice("multiple", offer.id, p)
       }
 
