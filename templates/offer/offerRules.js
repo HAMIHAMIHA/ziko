@@ -55,7 +55,7 @@ export const checkOfferSpecial = (page, offer) => {
     const special = {
       discount: () => {
         page.setData({
-          discount: (100 - gift.conditionValue) / 100
+          discount: (100 - gift.discountAmount) / 100
         })
       },
       free_delivery: () => {
@@ -90,7 +90,7 @@ export const checkOfferSpecial = (page, offer) => {
         item_x_in_cart: () => {
           let idx = -1;
           Object.values(db.get('cart')[offer.id].products).forEach( (p, i) => {
-            if (p.shortName === s.conditionPack && (s.conditionValue > 0 && p.amount >= s.conditionValue)) {
+            if (p.shortName === s.conditionPack && (!s.conditionValue && p.amount >= s.conditionValue)) {
               idx = i;
               return;
             }
@@ -158,7 +158,7 @@ export const checkOfferTicket = (page, offer) => {
 export const checkVouchers = (page, vouchers, community) => {
   let vouchers_filtered = vouchers.filter(v => {
     let c_idx = v.communities.findIndex( c => c === community );
-    return v.amount <= page.data._pay_set.finalFee && c_idx > -1;
+    return v.amount <= page.data._pay_set.finalFee && c_idx > -1 && v.status != 'used';
   });
 
   page.setData({

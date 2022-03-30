@@ -86,6 +86,7 @@ const _createOrderData = (page, value) => {
     status: "available",
     fapiao: page_data.fapiao ? page_data.fapiao : false,
     paymentMethod: "wechat",
+    vouchers: page_data.voucher.id
   }
 
   return order;

@@ -4,6 +4,8 @@ const { formatDate, formatTime } = require("../../../utils/util");
 
 const app = getApp();
 
+let prev_page;
+
 // Translate page content
 const _setPageTranslation = page => {
   let i18n = app.globalData.i18n;
@@ -28,9 +30,7 @@ const _setPageTranslation = page => {
 
 // Get vouchers and show only usable vouchers
 const _getVouchers = (page, community) => {
-  let pages = getCurrentPages();
-  let prev = pages[pages.length - 2];
-  let pay_data = prev.data._pay_set;
+  let pay_data = prev_page.data._pay_set;
 
   const callback = res => {
     let vouchers = [];
@@ -70,8 +70,13 @@ const _getVouchers = (page, community) => {
       return v1.selectable ? -1 : 1; 
     })
 
+    // Check if voucher selected
+    let v_idx = vouchers.findIndex( v => v.id === prev_page.data.voucher.id );
+
     page.setData({
-      vouchers
+      vouchers,
+      selected_voucher: prev_page.data.voucher.id,
+      voucher_index: v_idx,
     })
 
     showLoading(false);
@@ -85,6 +90,9 @@ const _getVouchers = (page, community) => {
 Page({
   onShow: function() {
     const self = this;
+
+    let pages = getCurrentPages();
+    prev_page = pages[pages.length - 2];
     _setPageTranslation(self);
     _getVouchers(self, self.options.community);
   },
@@ -95,8 +103,8 @@ Page({
     // Deselect voucher
     if (self.data.selected_voucher === e.currentTarget.dataset.id) {
       self.setData({
-        selected_voucher: '',
-        voucher_index: '',
+        selected_voucher: null,
+        voucher_index: -1,
       })
       return;
     }
@@ -111,25 +119,16 @@ Page({
   select: function() {
     const self = this;
 
-    let pages = getCurrentPages();
-    let prev = pages[pages.length - 2];
-
-    // Check if voucher is selected
-    if (!self.data.selected_voucher) {
-      showToast(app.globalData.i18n.voucher_empty);
-      return;
-    }
-
     // Prevent on show clear page data when going back
-    let options = prev.options
+    let options = prev_page.options
     options.back = true;
-    prev.options = options
+    prev_page.options = options
 
     // Set selected voucher data
-    prev.setData({
+    prev_page.setData({
       voucher: {
         id: self.data.selected_voucher,
-        amount: self.data.vouchers[self.data.voucher_index].amount,
+        amount: self.data.voucher_index > -1 ? self.data.vouchers[self.data.voucher_index].amount : 0,
       }
     })
 

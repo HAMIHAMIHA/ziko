@@ -265,7 +265,7 @@ Page({
         url: `${app.routes.vouchers_select}?community=${community}`,
       })
     } else {
-      showToast(app.globalData.i18n.no_vouchers_selected)
+      showToast(app.globalData.i18n.no_vouchers)
     }
   },
 
