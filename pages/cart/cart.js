@@ -1,6 +1,6 @@
 const { packProductDetail } = require("../../templates/offer/getOffers");
 const { modifyCartItems } = require("../../templates/offer/modifyCart");
-const { getRulePrice } = require("../../templates/offer/offerRules");
+const OfferRules = require("../../templates/offer/offerRules");
 const { changeFocus, showLoading, getUserInfo, showToast } = require("../../utils/common");
 const { communities } = require("../../utils/constants");
 const { formatDate } = require("../../utils/util");
