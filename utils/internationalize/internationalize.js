@@ -151,6 +151,10 @@ export const languageMap_en = {
     11: "November",
     12: "December",
   },
+  multiple: {
+    btl: " btl ",
+    each: " each"
+  },
   my_favorite_recipes: "My favorite recipes",
   my_orders: "My Orders",
 
@@ -508,6 +512,10 @@ export const languageMap_zh = {
     11: "11月",
     12: "12月",
 },
+  multiple: {
+    btl: " btl ",
+    each: " each"
+  },
   my_favorite_recipes: "My favorite recipes",
   my_orders: "My Orders",
 

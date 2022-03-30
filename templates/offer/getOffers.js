@@ -55,7 +55,7 @@ export const _getTranslations = (page, community) => {
       storage_types: i18n.storage_types,
       units: i18n.units[community],
       freefall: i18n.freefall,
-      multiple: i18n.multiple
+      multiple: i18n.multiple,
     },
     _t_lottery: {
       extra_ticket: i18n.extra_ticket,

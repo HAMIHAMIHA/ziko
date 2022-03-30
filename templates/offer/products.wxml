@@ -60,8 +60,8 @@
     </view>
     <!-- Multiple Targets -->
     <view class="product-targets" wx:elif="{{ list_item.multipleItem.length > 0 }}">
-      <view class="product-target_container" wx:for="{{ targets }}" wx:key="*this" wx:for-item="target">
-        <text>x{{ target.amount }} btl ¥{{ target.rate }} each </text>
+      <view class="product-target_container" wx:for="{{ list_item.multipleItem }}" wx:key="*this" wx:for-item="multiple">
+        <text>x{{ multiple.quantity }}{{ _t.multiple.btl }}{{ multiple.unitPrice }}{{ _t.multiple.each }}</text>
       </view>
     </view>
     <!-- End of Cellar Target Tags -->
