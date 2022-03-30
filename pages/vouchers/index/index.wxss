@@ -1,1 +1,43 @@
-/* pages/vouchers/index/index.wxss */
+.container.container-btn-bottom {
+  --scroll-menu-height-: calc(30rpx + 30rpx + 34rpx);
+  --container-btn-bottom-height-: calc(34rpx + 42rpx + 24rpx + 24rpx + 48rpx);
+  min-height: calc(100vh - 16rpx - var(--scroll-menu-height-) - var(--container-btn-bottom-height-) - var(--env-));
+  padding-bottom: calc(var(--container-btn-bottom-height-) + var(--env-));
+}
+
+.voucher_nav .voucher_text {
+  width: fit-content;
+  margin-top: 24rpx;
+  text-decoration: underline;
+}
+
+.contact-box {
+  padding: 48rpx 32rpx;
+  text-align: center;
+}
+
+.container-btn-bottom .btn-bottom {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: calc(48rpx + var(--env-));
+}
+
+.container-btn-bottom .btn-bottom .contact-message {
+  padding-bottom: 24rpx;
+  font-size: 28rpx;
+  line-height: 34rpx;
+}
+
+.container-btn-bottom .btn-bottom button.contact-button {
+  width: fit-content;
+  margin: auto;
+  padding: 24rpx 48rpx;
+  left: unset;
+  bottom: unset;
+  position: relative;
+}
+
+.container-btn-bottom .btn-bottom button.contact-button .icon {
+  padding-right: 16rpx;
+}

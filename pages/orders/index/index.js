@@ -160,6 +160,6 @@ Page({
         order_status: pickers.order_status,
       },
       _communities: communities
-    })  
+    })
   }
 })

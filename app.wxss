@@ -101,6 +101,10 @@ image {
 }
 
 /* Ziko Colors */
+.zikoland:after {
+  background: var(--ziko-default-);
+}
+
 .ziko-kitchen,
 .ziko-kitchen:after {
   background: linear-gradient(104.65deg, #A1803B 1.33%, #FDE28F 54.78%, #D8BC74 100%);
@@ -995,6 +999,91 @@ button:not([size=mini]).float-contact_container {
   z-index: -1;
 }
 /* End of Offer Specials */
+
+/* Scroll Menu */
+/* Scroll Menu - Account */
+.scroll-menu_account {
+  background: #2F323A;
+  color: #7C8497;
+  font-size: 28rpx;
+  line-height: 34rpx;
+}
+
+.scroll-menu_account .h-scroll_item {
+  margin: 0 12rpx;
+  padding: 30rpx 4rpx;
+  position: relative;
+}
+
+.scroll-menu_account .h-scroll_item:first-child {
+  margin-left: 16rpx;
+}
+
+.scroll-menu_account .h-scroll_item:last-child {
+  margin-right: 16rpx;
+}
+
+.scroll-menu_account .h-scroll_item:after {
+  content: "";
+  width: 100%;
+  height: 4rpx;
+  background: var(--ziko-default-);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.3s ease-in-out;
+}
+
+.scroll-menu_account .h-scroll_item.selected {
+  color: var(--ziko-default-);
+}
+
+.scroll-menu_account .h-scroll_item.selected:after {
+  transform: scaleX(1);
+}
+
+/* Scroll Menu - Community */
+.scroll-menu_community {
+  border-bottom: 2rpx solid #292D3A;
+  box-shadow: 0 12rpx 24rpx rgba(9, 11, 17, 0.65);
+}
+
+.scroll-menu_community .h-scroll_item {
+  margin: 0 24rpx;
+  padding: 24rpx 0;
+  position: relative;
+}
+
+.scroll-menu_community .h-scroll_item:first-child {
+  margin-left: 34rpx;
+}
+
+.scroll-menu_community .h-scroll_item:last-child {
+  margin-right: 34rpx;
+}
+
+.scroll-menu_community .icon {
+  font-size: 84rpx;
+}
+
+/* Scroll Menu selected */
+.scroll-menu_community .h-scroll_item:after {
+  content: "";
+  width: 100%;
+  height: 4rpx;
+  position: absolute;
+  bottom: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.3s ease-in-out;
+}
+
+.scroll-menu_community .h-scroll_item.selected:after {
+  transform: scaleX(1);
+}
+/* End of Scroll Menu */
 
 /* Share */
 .container .share {

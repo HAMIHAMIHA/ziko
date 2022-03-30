@@ -1,66 +1,110 @@
-// pages/vouchers/index/index.js
+const { showLoading } = require("../../../utils/common");
+const { voucher_status, communities } = require("../../../utils/constants");
+const { formatDate, formatTime } = require("../../../utils/util");
+
+const app = getApp();
+const _voucher_status = ['all', 'unused', 'used'];
+
+let _vouchers = [];
+
+// Set page translation
+const _setPageTranslation = page => {
+    let i18n = app.globalData.i18n;
+
+    // Change page nav title
+    wx.setNavigationBarTitle({
+      title: i18n.vouchers
+    })
+
+    page.setData({
+      _language: app.db.get('language'),
+      _t: {
+        available_for: i18n.available_for,
+        contact_customer_hero: i18n.contact_customer_hero,
+        expire_on: i18n.expire_on,
+        from: i18n.from,
+        reveived: i18n.reveived,
+        select: i18n.select,
+        to_order: i18n.to_order,
+        voucher_question: i18n.voucher_question,
+        voucher_status: i18n.voucher_status,
+      },
+    })
+}
+
+const _getVouchers = (page, status) => {
+  const callback = res => {
+    let vouchers = [];
+
+    res.forEach(v => {
+      if (v.status === 'pending' || v.status === 'declined') return;
+
+      let voucher = {};
+
+      // Voucher basic data
+      voucher.id = v.id;
+      voucher.amount = v.amount;
+      voucher.status = v.status; /* validated, used, expired */
+      voucher.createdAt = `${formatDate('yyyy/mm/dd', v.createdAt)} ${formatTime(v.createdAt)}`;
+      voucher.expirationDate = formatDate('yyyy-mm-dd', v.expirationDate);
+      voucher.order = v.order;
+      voucher.reason = app.globalData.i18n.voucher_source[v.reason];
+
+      // Check if voucher expired
+      if (v.expirationDate > new Date()) {
+        voucher.status = "expired";
+      }
+
+      // Available for community
+      let community_list = [];
+      v.communities.forEach( c => {
+        community_list.push(app.globalData.i18n.community[communities[c]])
+      })
+      voucher.community = community_list.join(' / ')
+
+      vouchers.push(voucher)
+    });
+
+    // Show vouchers in order with selectables at bottom by crate time
+    vouchers.sort( (v1, v2) => {
+      return v2.createdAt - v1.createdAt
+    })
+
+    page.setData({
+      vouchers
+    })
+
+    showLoading(false);
+  }
+
+  showLoading(true);
+  app.api.getVouchers(status, false).then(callback);
+}
+
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    _pickers: {
+      _voucher_status
+    },
+    _routes: {
+      order: app.routes.order,
+    },
+    current_status: "all",
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
+  onShow: function() {
+    const self = this;
 
+    _setPageTranslation(self);
+    _getVouchers(self, '');
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
+  changeFilter: function(e) {
+    const self = this;
 
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
+    self.setData({
+      current_status: e.currentTarget.dataset.value
+    })
+    _getVouchers(self, voucher_status[e.currentTarget.dataset.value]);
   }
 })

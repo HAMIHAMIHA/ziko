@@ -315,6 +315,7 @@ export const languageMap_en = {
   tickets: "tickets",
   total: "Total",
   total_units_available: "total units available",
+  to_order: "Go to order",
   tracking_number: "Tracking number",
   type: "Type",
   try_text: {
@@ -338,12 +339,18 @@ export const languageMap_en = {
   viewers: " Viewers",
   vouchers: "Vouchers",
   voucher_empty: " Voucher not selected",
+  voucher_question: "Is there a problem with your vouchers?",
   voucher_source: {
     refund: "Order refund",
     claim: "Claim",
     lottery: "Offer lottery",
     gift: "Ziko gift card",
     other: "Ziko customer hero",
+  },
+  voucher_status: {
+    all: "All",
+    unused: "Unused",
+    used: "Used",
   },
 
   // W
@@ -675,6 +682,7 @@ export const languageMap_zh = {
   tickets: "tickets",
   total: "Total",
   total_units_available: "total units available",
+  to_order: "Go to order",
   tracking_number: "Tracking number",
   type: "Type",
   try_text: {
@@ -698,12 +706,18 @@ export const languageMap_zh = {
   viewers: " 浏览",
   vouchers: "Vouchers",
   voucher_empty: " Voucher not selected",
+  voucher_question: "Is there a problem with your vouchers?",
   voucher_source: {
     refund: "Order refund",
     claim: "Claim",
     lottery: "Offer lottery",
     gift: "Ziko gift card",
     other: "Ziko customer hero",
+  },
+  voucher_status: {
+    all: "All",
+    unused: "Unused",
+    used: "Used",
   },
 
   // W

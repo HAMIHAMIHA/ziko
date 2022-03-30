@@ -87,3 +87,9 @@ export const communities = {
   "60541eb87b87f1126ecf53e3": 'cellar',
   "60541ebc7b87f1126ecf53e4": 'pet',
 }
+
+export const voucher_status = {
+  "all": "",
+  "used": "used",
+  "unused": "validated",
+}

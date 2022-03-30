@@ -1,14 +1,12 @@
 <!-- Scroll Menu -->
-<view class="h-scroll_container scroll-menu">
+<view class="nunito_700 h-scroll_container scroll-menu_account">
   <scroll-view class="h-scroll capatilize" scroll-x="true">
-    <block wx:for="{{ _pickers.voucher_status }}" wx:key="index" wx:for-item="status">
+    <block wx:for="{{ _pickers._voucher_status }}" wx:key="index" wx:for-item="status">
       <view
-        class="h-scroll_item order-status{{ _picker_selected.status == index ? ' selected' : '' }}"
+        class="h-scroll_item order-status{{ current_status === status ? ' selected' : '' }}"
         bindtap="changeFilter"
-        data-filter_type="order_status"
-        data-value="{{ index }}"
+        data-value="{{ status }}"
       >
-      <!-- All, Unused, Used -->
         {{ _t.voucher_status[status] }}
       </view>
     </block>
@@ -17,18 +15,11 @@
 <!-- End of Scroll Menu -->
 
 <!-- Voucher List -->
+<view class="no-vouchers">{{ _t.no_vouchers }}</view>
 <view class="container container-grey container-btn-bottom">
   <view class="voucher-content_container">
-    <view class="gilroy_700 header">{{ _t.please_select_voucher }}</view>
     <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher">
-    <!-- 
-            "pending",
-            "validated",
-            "declined",
-            "used"
-            =>>> expired, used, valid
-    -->
-      <view class="white-box flex-between voucher_container{{ voucher.status }}">
+      <view class="white-box flex-between voucher_container {{ voucher.status }}">
         <view class="voucher_detail">
           <view class="voucher_detail-content voucher_for">
             <text class="gilroy_500 voucher_label">{{ _t.available_for }}: </text>
@@ -48,7 +39,7 @@
           </view>
 
           <view class="voucher_detail-content voucher_nav" wx:if="{{ voucher.status === 'used' }}">
-            <view class="voucher_text">{{ _t.to_order }}</view>
+            <navigator class="voucher_text" url="{{ _routes.order + '/' + voucher.order }}">{{ _t.to_order }} ></navigator>
           </view>
         </view>
 
@@ -57,14 +48,12 @@
     </block>
   </view>
 
-  <view class="btn-bottom contact-box">
-      <view class="">{{ _t.checkout_message }}</view>
-      <view class="contact-button_container">
-        <button class="contact-button" open-type="contact">
-          <text class="icon icon-headset"></text>
-          <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
-        </button>
-      </view>
+  <view class="btn-bottom">
+      <view class="contact-message">{{ _t.voucher_question }}</view>
+      <button class="contact-button" open-type="contact">
+        <text class="icon icon-headset"></text>
+        <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
+      </button>
     </view>
 </view>
 <!-- End of Voucher List -->

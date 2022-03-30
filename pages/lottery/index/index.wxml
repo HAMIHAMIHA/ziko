@@ -2,7 +2,7 @@
   <!-- List View -->
   <view class="list">
     <!-- Scroll Menu -->
-    <view class="h-scroll_container scroll-menu">
+    <view class="h-scroll_container scroll-menu_community">
       <scroll-view class="h-scroll" scroll-x="true">
         <block wx:for="{{ _filters.list }}" wx:key="filter_group" wx:for-item="filter">
           <view

@@ -14,7 +14,7 @@
 
 <block wx:else>
 <!-- Scroll Menu -->
-<view class="h-scroll_container scroll-menu">
+<view class="nunito_700 h-scroll_container scroll-menu_account">
   <scroll-view class="h-scroll capatilize" scroll-x="true">
     <block wx:for="{{ _pickers.order_status }}" wx:key="index" wx:for-item="status">
       <view

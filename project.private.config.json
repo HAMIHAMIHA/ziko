@@ -50,12 +50,6 @@
           "scene": null
         },
         {
-          "name": "Cellar",
-          "pathName": "pages/offer/cellar/cellar/cellar",
-          "query": "id=623c494bc64fc9f745a72831",
-          "scene": null
-        },
-        {
           "name": "Bourse",
           "pathName": "pages/offer/cellar/bourse/bourse",
           "query": "",
@@ -82,7 +76,7 @@
         {
           "name": "Cart",
           "pathName": "pages/cart/cart",
-          "query": "id=623d4b0ec64fc9f745a72f7b",
+          "query": "id=6243d0cbc64fc9f745a77c27",
           "scene": null
         },
         {
@@ -170,9 +164,9 @@
           "scene": null
         },
         {
-          "name": "select voucher",
-          "pathName": "pages/vouchers/select/select",
-          "query": "",
+          "name": "cellar",
+          "pathName": "pages/offer/cellar/cellar/cellar",
+          "query": "id=6243d0cbc64fc9f745a77c27",
           "scene": null
         }
       ]
