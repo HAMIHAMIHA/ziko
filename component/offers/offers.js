@@ -55,7 +55,8 @@ Component({
       if (!data.started) return;
 
       var url = routes.offer_regular;
-      if (communities[data.community] === "cellar" && data.type !== "regular") {
+      if (communities[data.community] === "cellar" && data.type && data.type !== "regular") {
+        console.log('cellar', data.type);
         if (data.type == "bourse") {
           url = routes.offer_bourse;
         } else {
