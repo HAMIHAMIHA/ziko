@@ -46,7 +46,7 @@
 
           <view class="offer-lottery_detail">
             <block wx:for="{{ draw.gifts }}" wx:for-item="gift" wx:key="_id">
-              <text wx:if="{{ index > 1 }}"> + </text>
+              <text wx:if="{{ index > 0 }}"> + </text>
               <text wx:if="{{ gift.type === 'pack' }}">{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[gift.pack] }}{{ _t.offer_special_details.for_free.suffix }}</text>
               <text wx:if="{{ gift.type === 'add_on' }}">{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[gift.singleItem] }}{{ _t.offer_special_details.for_free.suffix }}</text>
               <text wx:if="{{ gift.type === 'voucher' }}">￥{{ gift.voucherValue }}{{ _t.offer_special_details.voucher }}</text>

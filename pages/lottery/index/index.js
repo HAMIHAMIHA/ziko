@@ -288,10 +288,12 @@ Page({
   onHide: function() {
     if (_leave_triggered) return;
     _refresh_data = true;
+    _timerControl(page, false);
   },
 
   onUnload: function() {
     _refresh_data = true;
+    _timerControl(page, false);
   },
 
   onShareAppMessage: function (res) {},
