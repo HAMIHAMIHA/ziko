@@ -10,6 +10,8 @@ Page({
     _setting: {
       swiperIndex: 1,
       currentTab: "product",
+      height: '0px',
+      left: '0',
       animate: animate,
     }
   },

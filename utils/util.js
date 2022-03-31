@@ -34,7 +34,6 @@ module.exports = {
     return [hour, minute].map(formatNumber).join(':')
   },
 
-
   formatTimer: dateLong => {
     // Time calculations for days, hours, minutes and seconds
     var days = Math.floor(dateLong / (1000 * 60 * 60 * 24)) * 24;

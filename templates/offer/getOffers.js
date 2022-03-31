@@ -265,6 +265,7 @@ export const getOffer = function(page, offer_id) {
 
     getUserInfo(page);
 
+    // Set page data
     page.setData({
       _current_user: app.db.get('userInfo').customer.id,
       _offer_setting: {
@@ -301,6 +302,13 @@ export const getOffer = function(page, offer_id) {
 
     // Count down
     page.startCountdown();
+
+    // Set products height on load
+    wx.createSelectorQuery().select('#products').boundingClientRect().exec( res => {
+      page.setData({
+        "_setting.height": `${res[0].height}px`,
+      })
+    })
 
     // Hide loading modal
     showLoading(false);

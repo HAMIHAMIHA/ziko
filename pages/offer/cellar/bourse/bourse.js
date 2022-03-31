@@ -10,6 +10,8 @@ Page({
       swiperIndex: 1,
       nextOffer: '',
       currentTab: "product",
+      height: '0px',
+      left: '0',
       animate: animate,
     }
   },
