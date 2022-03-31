@@ -15,7 +15,7 @@ Component({
     updateRecipes: function(recipes) {
       let self = this;
       self.selectComponent('#masonry').start(recipes).then(() => {
-        console.debut('refresh completed')
+        console.debug('refresh completed')
       })
     }
   }

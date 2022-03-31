@@ -115,12 +115,14 @@
   <!-- End of Pack Products -->
 
   <!-- Offer Recipes -->
-  <view class="list_container product-recipe" wx:if="{{ recipes }}">
+  <view class="list_container product-recipe">
     <view class="offer-group recipe-group">
       <view class="uppercase title">
         <text class="gilroy_500">{{ _t.related_recipes.fst }}</text>
         <text class="gilroy_700">{{ _t.related_recipes.snd }}</text>
       </view>
+
+      <view class="no-recipes" wx:if="{{ recipes.length == 0 }}">{{ _t.no_recipes }}</view>
 
       <recipes id="recipes-component" _t="{{ _t_recipes }}"></recipes>
     </view>

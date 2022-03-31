@@ -178,6 +178,7 @@ Page({
         item_unit: i18n.item_unit,
         items_unit: i18n.items_unit,
         minimum: i18n.minimum,
+        no_recipes: i18n.no_recipes,
         only_left: i18n.only_left,
         pay: i18n.pay,
         price_rules: i18n.price_rules,
