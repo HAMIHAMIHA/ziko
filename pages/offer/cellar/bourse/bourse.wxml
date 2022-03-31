@@ -97,21 +97,24 @@
     </view>
 
     <view class="uppercase progress__container">
-      <view class="gilroy_800 lottery-label">{{ _t.quantity_bottle_sold }}</view>
+      <view class="gilroy_800 bourse-label">{{ _t.lower_price_together }}</view>
 
       <!-- Progress block -->
-      <view class="progress" style="--filled-:{{ _offer.lottery_progress }}%;">
+      <view class="progress" style="--filled-:{{ _bourse_info.progress }}%;">
         <view class="gilroy_700 progress__label">{{ _t.item_quantity }}</view>
         <view class="progress-bar__container">
-          <block wx:for="{{ _offer.miniprogram.lottery.draws }}" wx:key="_id" wx:for-item="draw">
+          <block wx:for="{{ _bourse_info.list }}" wx:key="_id" wx:for-item="bourse">
             <view 
-              class="progress-bar__values{{ index === 0 ? ' progress-bar_first' : (index + 1) === _offer.miniprogram.lottery.draws.length ? ' progress-bar_last' : '' }}"
-              style="--position-:{{ draw.position }}%;"
+              class="progress-bar__values{{ bourse.first ? ' progress-bar_first' : '' }}"
+              style="--position-:{{ bourse.position }}%; --color:{{ bourse.color }};"
             >
-              <view class="nunito_500 progress-axis">{{ draw.conditionValue }}</view>
-              <view class="gilroy_800 progress-label {{ draw.unlocked ? 'unlocked' : 'locked' }}" wx:if="{{ index > 0 }}">{{ _t.draw }} {{ index }}</view>
+              <view class="nunito_500 progress-axis">{{ bourse.from }}</view>
+              <view class="gilroy_800 progress-label{{ bourse.unlocked ? ' unlocked' : '' }}">￥{{ bourse.unitPrice }}</view>
             </view>
           </block>
+          <view class="progress-bar__values progress-bar_last" style="--position-: 100%;">
+            <view class="nunito_500 progress-axis">{{ _bourse_info.list[_bourse_info.list.length - 1].to }}</view>
+          </view>
           <view class="progress-bar"></view>
         </view>
       </view>

@@ -131,7 +131,8 @@ export const languageMap_en = {
   lottery_prizes: "Lottery prizes",
   lottery_stages: "lottery stages",
   lottery_tickets: "Lottery tickets",
-
+  lower_price_together: "Lower the price together",
+  
   // M
   minimum: "Min",
   minimum_in_cart: "Must have at least one item in cart",
@@ -499,6 +500,7 @@ export const languageMap_zh = {
   lottery_prizes: "Lottery prizes",
   lottery_stages: "lottery stages",
   lottery_tickets: "Lottery tickets",
+  lower_price_together: "Lower the price together",
 
   // M
   minimum: "Min",

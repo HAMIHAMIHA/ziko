@@ -93,3 +93,5 @@ export const voucher_status = {
   "used": "used",
   "unused": "validated",
 }
+
+export const bourse_colors = ['#F1B85F', '#D599BD', '#6DBDB4', '#6CB3E7', '#8181E5', '#E78A94'];

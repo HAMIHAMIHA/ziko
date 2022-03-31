@@ -26,8 +26,10 @@ export const _getTranslations = (page, community) => {
   page.setData({
     _language: app.db.get('language'),
     _t: {
-      item_unit: i18n.item_unit,
       items: i18n.items,
+      item_unit: i18n.item_unit,
+      item_quantity: i18n.item_quantity,
+      lower_price_together: i18n.lower_price_together,
       minimum: i18n.minimum,
       no_recipes: i18n.no_recipes,
       offer_special_names: i18n.offer_special_names,
@@ -221,6 +223,7 @@ export const getOffer = function(page, offer_id) {
     // Check for bourse unit price
     if (offer.type === 'bourse') {
       getBoursePrice(offer, null);
+      page.setBourseGraph(offer);
     }
 
     // Cellar Lottery detail

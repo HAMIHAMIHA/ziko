@@ -60,14 +60,13 @@ export const getBoursePrice = (offer, product, amount = -1) => {
   let new_price = offer.miniprogram.items[0].price; // Set orignal price in case 0 is not in calculation
   let new_total_sold = offer.sold + cart_offer.count - amounts.old + amounts.new;
   offer.miniprogram.bourses.forEach( b => {
-    if (new_total_sold <= b.to && new_total_sold >= b.from) {
+    if (new_price > b.unitPrice && new_total_sold >= b.from) {
       new_price = b.unitPrice;
     }
   })
 
   // Changing unit price for each product in cart and total price for order
   let cart_total = 0;
-  // let cart_total = cart_offer.reducedTotal ? cart_offer.reducedTotal : cart_offer.total;
   offer.miniprogram.items.forEach( p => {
     let cart_product = cart_offer.products[p._id] ? cart_offer.products[p._id] : { amount: 0, price: p.price };
     if (p._id === product) {

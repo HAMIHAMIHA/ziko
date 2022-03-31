@@ -1,1 +1,126 @@
-/* pages/offer/cellar/bourse/bourse.wxss */
+.bourse-label {
+  padding-bottom: 32rpx;
+  font-size: 32rpx;
+  line-height: 40rpx;
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+
+/* Progress */
+.progress__container .progress {
+  margin-bottom: 64rpx;
+  padding: 48rpx 24rpx;
+  background: #21252F;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.progress .progress__label {
+  padding-bottom: 32rpx;
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+
+/* Progress - bar */
+.progress-bar__container {
+  height: calc(70rpx + 24rpx + 28rpx);
+  display: flex;
+  position: relative;
+}
+
+.progress-bar__container .progress-bar__values {
+  left: var(--position-);
+  position: absolute;
+}
+
+.progress-bar__container .progress-bar_first {
+  text-align: left;
+}
+
+.progress-bar__container .progress-bar_last {
+  transform: translateX(-100%);
+}
+
+.progress-bar__values .progress-axis {
+  padding-bottom: 70rpx;
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+
+.progress-bar__values .progress-axis:after {
+  content: "";
+  width: 1px;
+  height: 20rpx;
+  margin: auto;
+  padding-top: 4rpx;
+  background: #9A9EA6;
+  display: block;
+}
+
+.progress-bar__values.progress-bar_first .progress-axis:after {
+  margin-left: 0;
+}
+
+.progress-bar__values.progress-bar_last .progress-axis:after {
+  margin-right: 0;
+}
+
+.progress-bar__values .progress-label {
+  width: fit-content;
+  padding: 4rpx 6rpx;
+  background: #909297;
+  color: #000;
+  font-size: 18rpx;
+  line-height: 22rpx;
+  white-space: nowrap;
+  border-radius: 4px;
+  position: absolute;
+  right: 50%;
+  bottom: 0;
+}
+
+.progress-bar__values.progress-bar_last .progress-label {
+  right: 0;
+}
+
+.progress-label:before {
+  content: "";
+  width: 12rpx;
+  height: 6rpx;
+  clip-path: polygon(74% 38%, 100% 0%, 100% 100%, 0 100%, 38% 75%);
+  background: #909297;
+  position: absolute;
+  right: 4rpx;
+  top: -6rpx;
+}
+
+.progress-label.unlocked {
+  background: #ffffff;
+}
+
+.progress-label.unlocked:before {
+  background: #ffffff;
+}
+
+.progress-bar__container .progress-bar {
+  width: 100%;
+  height: 20rpx;
+  background: #51596D;
+  border-radius: 40px;
+  position: absolute;
+  bottom: calc(70rpx - 20rpx);
+}
+
+.progress-bar__container .progress-bar:before {
+  content: "";
+  width: var(--filled-);
+  max-width: 100%;
+  height: 20rpx;
+  background: #FF4040;
+  border-radius: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* End of Progress - bar */
+/* End of Progress */

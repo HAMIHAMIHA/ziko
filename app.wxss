@@ -766,7 +766,7 @@ button:not([size=mini]).float-contact_container {
   text-align: center;
 }
 
-.ziko-offer .offer-singles .title {
+.ziko-offer .offer-packs + .offer-singles .title {
   padding-top: 16rpx;
 }
 
@@ -897,7 +897,8 @@ button:not([size=mini]).float-contact_container {
   color: #000000;
 }
 
-.ziko-offer .offer-lotteries {
+.ziko-offer .offer-lotteries,
+.ziko-offer .offer-bourse {
   padding: 24rpx 30rpx 32rpx;
 }
 
