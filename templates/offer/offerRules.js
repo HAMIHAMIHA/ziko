@@ -159,9 +159,7 @@ export const checkOfferTicket = (page, offer) => {
     total_tickets += _checkCondition[offer.miniprogram.lottery.conditionType]('conditionValue');
   }
 
-  console.log(offer.miniprogram.lottery);
   if (offer.miniprogram.lottery.extraConditionType && _checkCondition[offer.miniprogram.lottery.extraConditionType]) {
-    console.log('find extra');
     total_tickets += _checkCondition[offer.miniprogram.lottery.extraConditionType]('extraConditionValue');
   }
 
