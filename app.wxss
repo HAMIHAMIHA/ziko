@@ -823,7 +823,8 @@ button:not([size=mini]).float-contact_container {
   color: var(--ziko-default-);
 }
 
-.product_container .product-price + .product-price {
+.product_container .product-price + .product-price,
+.product-info_container .product-price + .product-price {
   padding-left: 8rpx;
   color: #626778;
   text-decoration: line-through;

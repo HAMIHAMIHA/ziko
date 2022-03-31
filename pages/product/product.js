@@ -1,11 +1,50 @@
 const Offers = require('../../templates/offer/getOffers.js');
 const ModifyCart = require('../../templates/offer/modifyCart.js');
+const { checkOfferTicket, getRulePrice } = require('../../templates/offer/offerRules.js');
 const { showLoading, getUserInfo, mobileLogin, getWxUserInfo } = require('../../utils/common.js');
 const { communities } = require('../../utils/constants.js');
 const { findIndex } = require('../../utils/util.js');
 
 const app = getApp();
 const routes = app.routes;
+
+// Get recipes
+const _getRecipes = (page, product_item) => {
+  let recipes = [];
+  const recipeCallback = res => {
+    recipes = recipes.concat(res);
+    page.setData({
+      recipes: recipes,
+    })
+    page.selectComponent('#recipes-component').updateRecipes(recipes);
+    showLoading(false);
+  }
+
+  // Products search
+  let products = [];
+  let _updateProducts = item => {
+    let p_idx = products.findIndex( p => { p === item.product.id });
+    if (p_idx === -1) {
+      products.push(item.product.id);
+    }
+  }
+
+  // Packs product
+  if (page.options.type == 'pack') {
+    product_item.products.forEach(_updateProducts)
+  } else {
+    _updateProducts(product_item);
+  }
+
+  let suffix = `?status=available&sort=["createdAt","DESC"]&filter={"products":{"$in":["${products.join('","')}"]}}`;
+  console.log(suffix);
+  // Get pinned recipes
+  app.api.getRecipes({ detail: `${suffix}&pinTop=true` }).then( res => {
+    recipes = res;
+    // Get rest of recipes
+    app.api.getRecipes({ detail: `${suffix}&pinTop=false` }).then(recipeCallback)
+  })
+}
 
 const getProductDetail = page => {
   showLoading(true);
@@ -51,21 +90,27 @@ const getProductDetail = page => {
 
     // Get user data
     getUserInfo(page)
+
+    // Check for and Change all free fall product price 
+    if (product.freeFall && product.freeFall.quantityTrigger) {
+      getRulePrice("free_fall", offer_id, product);
+    }
+
+    // Check for multiple price
+    if (product.multipleItem && product.multipleItem.length > 0) {
+      getRulePrice("multiple", offer_id, product)
+    }
+
+    // Lottery Ticket amount check
+    if (res[0].miniprogram.lotteryEnable) {
+      checkOfferTicket(page, res[0]);
+    }
     
     page.setData({
       _folders: {
         product_picture: app.folders.product_picture,
       },
-      "_t.general_unit": general_unit,
-      "_t.units": app.globalData.i18n.units[community],
-      _setting: {
-        community: community,
-        type: type,
-      },
       _offer: res[0],
-      product: product,
-      product_index: product_index,
-      amount: app.db.get('cart')[offer_id] ? app.db.get('cart')[offer_id].products[id] ? app.db.get('cart')[offer_id].products[id].amount : 0 : 0,
       _pay_set: {
         cart: app.db.get('cart')[offer_id] ? app.db.get('cart')[offer_id].count : 0,
         minimum: {
@@ -73,13 +118,22 @@ const getProductDetail = page => {
           items: res[0].minimumCartItems,
         },
         total: app.db.get('cart')[offer_id] ? app.db.get('cart')[offer_id].total : 0,
+        reducedTotal: app.db.get('cart')[offer_id] ? app.db.get('cart')[offer_id].reducedTotal : 0,
       },
+      _setting: {
+        community: community,
+        type: type,
+      },
+      "_t.general_unit": general_unit,
+      "_t.units": app.globalData.i18n.units[community],
+      cart: app.db.get('cart')[offer_id],
+      product: product,
+      product_index: product_index,
     })
 
-    showLoading(false);
+    // Get recipes
+    _getRecipes(page, product)
 
-    // TEMP
-    // _getRecipes()
     page.setData({
       recipes: {}
     })

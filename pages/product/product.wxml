@@ -42,14 +42,16 @@
 
         <!-- Price -->
         <view class="gilroy_800 product-price_container" wx:if="{{ _setting.type != 'packProduct' }}">
-          <text class="product-price">¥{{ product.price ? product.price : product.product.price }}</text>
+          <text class="product-price" wx:if="{{ cart.products[product._id].price && cart.products[product._id].price != product.price }}">¥{{ cart.products[product._id].price }}</text>
+          <text class="product-price">¥{{ product.price }}</text>
+          <!-- <text class="product-price">¥{{ product.price ? product.price : product.product.price }}</text> -->
         </view>
         <!-- End of Price -->
       </view>
     </view>
     <block wx:if="{{ (_setting.type != 'packProduct') }}">
       <quantity
-        amount="{{ amount }}"
+        amount="{{ cart.products[product._id].amount }}"
         community="{{ _setting.community }}"
         stock="{{ product.actualStock }}"
         bind:changeAmount="changeAmount"

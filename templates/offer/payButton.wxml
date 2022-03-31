@@ -16,7 +16,6 @@
             <text class="payment-price_original" wx:if="{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total }}">¥{{ _pay_set.total }}</text>
           </view>
         </view>
-        <!-- TEMP hide for v1 -->
         <view class="icon_container payment-tickets" wx:if="{{ _pay_set.tickets > 0 }}">
           <view class="icon icon-ticket"></view>
           <view class="nunito_600 icon_text payment-tickets_count">X{{ _pay_set.tickets }}</view>
