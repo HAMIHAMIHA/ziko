@@ -235,7 +235,11 @@ export const getOffer = function(page, offer_id) {
         let winners = [];
         lotteries.forEach( l => {
           if (l.offerDrawId === draw._id){
-            winners.push(...l.winners)
+            l.winners.forEach( w => {
+              if (w.order && w.order.customer) {
+                winners.push(w.order.customer);
+              }
+            })
           }
         });
   
