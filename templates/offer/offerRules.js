@@ -65,17 +65,20 @@ export const getBoursePrice = (offer, product, amount = -1) => {
     }
   })
 
-  console.log(offer.miniprogram.bourses);
+  console.log(cart_offer);
+  console.log(offer.sold);
+
   // Changing unit price for each product in cart and total price for order
-  let cart_total = cart_offer.reducedTotal ? cart_offer.reducedTotal : cart_offer.total;
+  let cart_total = 0;
+  // let cart_total = cart_offer.reducedTotal ? cart_offer.reducedTotal : cart_offer.total;
   offer.miniprogram.items.forEach( p => {
     let cart_product = cart_offer.products[p._id] ? cart_offer.products[p._id] : { amount: 0, price: p.price };
     if (p._id === product) {
-      cart_total -= amounts.old * cart_product.price;
-      cart_product.amount = amounts.new;
+      cart_total = cart_total + new_price * amounts.new;
+    } else {
+      cart_total += new_price * cart_product.amount;
     }
 
-    cart_total += new_price * cart_product.amount;
     cart_product.price = new_price;
     cart_offer.products[p._id] = cart_product;
   });

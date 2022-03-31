@@ -1,6 +1,6 @@
 const Offers = require('../../templates/offer/getOffers.js');
 const ModifyCart = require('../../templates/offer/modifyCart.js');
-const { checkOfferTicket, getRulePrice } = require('../../templates/offer/offerRules.js');
+const { checkOfferTicket, getRulePrice, getBoursePrice } = require('../../templates/offer/offerRules.js');
 const { showLoading, getUserInfo, mobileLogin, getWxUserInfo } = require('../../utils/common.js');
 const { communities } = require('../../utils/constants.js');
 const { findIndex } = require('../../utils/util.js');
@@ -37,7 +37,6 @@ const _getRecipes = (page, product_item) => {
   }
 
   let suffix = `?status=available&sort=["createdAt","DESC"]&filter={"products":{"$in":["${products.join('","')}"]}}`;
-  console.log(suffix);
   // Get pinned recipes
   app.api.getRecipes({ detail: `${suffix}&pinTop=true` }).then( res => {
     recipes = res;
@@ -54,8 +53,10 @@ const getProductDetail = page => {
     const id = page.options.id;
     const type = page.options.type;
 
-    const community = communities[res[0].community.id];
-    const offer_products = res[0].miniprogram;
+    let offer = res[0];
+
+    const community = communities[offer.community.id];
+    const offer_products = offer.miniprogram;
 
     // Find product index in packs or items
     let product_index = -1;
@@ -101,21 +102,31 @@ const getProductDetail = page => {
       getRulePrice("multiple", offer_id, product)
     }
 
+    // Check for bourse
+    if (offer.type === 'bourse') {
+      offer.sold = 0
+      offer.miniprogram.items.forEach( i => {
+        offer.sold += (i.stock - i.actualStock);
+      })
+
+      getBoursePrice(offer, null);
+    }
+
     // Lottery Ticket amount check
-    if (res[0].miniprogram.lotteryEnable) {
-      checkOfferTicket(page, res[0]);
+    if (offer.miniprogram.lotteryEnable) {
+      checkOfferTicket(page, offer);
     }
     
     page.setData({
       _folders: {
         product_picture: app.folders.product_picture,
       },
-      _offer: res[0],
+      _offer: offer,
       _pay_set: {
         cart: app.db.get('cart')[offer_id] ? app.db.get('cart')[offer_id].count : 0,
         minimum: {
-          price: res[0].minimumOrderAmount,
-          items: res[0].minimumCartItems,
+          price: offer.minimumOrderAmount,
+          items: offer.minimumCartItems,
         },
         total: app.db.get('cart')[offer_id] ? app.db.get('cart')[offer_id].total : 0,
         reducedTotal: app.db.get('cart')[offer_id] ? app.db.get('cart')[offer_id].reducedTotal : 0,
