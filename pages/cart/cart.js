@@ -103,7 +103,9 @@ const _getOffers = page => {
 
     // Set price with the newest purchase
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
-    offer.sold += (i.stock - i.actualStock);
+    offer.sold = offer_products.reduce( (i1, i2) => {
+      return i1.stock - i1.actualStock + i2.stock - i2.actualStock
+    });
 
     // Free fall total
     if (offer.type === "free_fall") {
@@ -216,6 +218,8 @@ Page({
 
     let cart = app.db.get('cart')[self.options.id];
   
+    console.log(self.data._offer);
+
     self.setData({
       cart: cart,
       products: _setProducts(self.data._offer, cart)
