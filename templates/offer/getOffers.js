@@ -1,7 +1,7 @@
 import { getUserInfo, showLoading } from "../../utils/common";
 import { communities } from "../../utils/constants";
 import { findIndex } from "../../utils/util";
-import { checkOfferTicket, getRulePrice } from "./offerRules";
+import { checkOfferTicket, getBoursePrice, getRulePrice } from "./offerRules";
 
 const app = getApp();
 let lotteries = [];
@@ -194,6 +194,7 @@ export const getOffer = function(page, offer_id) {
     // Product / Pack name
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
     let product_name_list = {};
+
     offer_products.forEach( p => {
       offer.sold += (p.stock - p.actualStock);
 
@@ -205,7 +206,7 @@ export const getOffer = function(page, offer_id) {
       // Check for multiple price
       if (p.multipleItem && p.multipleItem.length > 0) {
         getRulePrice("multiple", offer.id, p)
-      }
+      }      
 
       // Get list of product names for special and lottery message
       let p_name = '';
@@ -216,6 +217,11 @@ export const getOffer = function(page, offer_id) {
       }
       product_name_list[p.shortName] = p_name;
     })
+
+    // Check for bourse unit price
+    if (offer.type === 'bourse') {
+      getBoursePrice(offer, null);
+    }
 
     // Cellar Lottery detail
     if (offer.miniprogram.lotteryEnable && offer.community === "cellar" && offer.miniprogram.lottery.draws.length > 0) {

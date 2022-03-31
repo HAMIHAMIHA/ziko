@@ -906,7 +906,8 @@ button:not([size=mini]).float-contact_container {
 }
 
 .ziko-offer .offer-specials_title,
-.ziko-offer .offer-lotteries_title {
+.ziko-offer .offer-lotteries_title,
+.ziko-offer .offer-bourse_title {
   padding: 40rpx;
   font-size: 52rpx;
   text-align: center;

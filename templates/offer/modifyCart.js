@@ -1,4 +1,4 @@
-import { checkOfferTicket, getRulePrice } from "./offerRules";
+import { checkOfferTicket, getBoursePrice, getRulePrice } from "./offerRules";
 
 const app = getApp();
 
@@ -19,6 +19,11 @@ export const modifyCartItems = (page, event, checkout = false) => {
   // Check for multiple price
   if (product.multipleItem && product.multipleItem.length > 0) {
     [old_amount, new_price] = getRulePrice("multiple", offer.id, product, new_amount)
+  }
+
+  // Check for bourse unit price
+  if (offer.type === 'bourse') {
+    [old_amount, new_price] = getBoursePrice(offer, product._id, new_amount);
   }
 
   // Create empty array for offer if not in cart

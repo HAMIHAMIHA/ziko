@@ -14,6 +14,7 @@ const _getNewTotal = (cart_offer, product, amounts, new_price) => {
   return cart_offer;
 }
 
+// Multiple / Free fall
 export const getRulePrice = (rule, offer, product, amount = -1) => {
   const cart = db.get('cart') ? db.get('cart') : {};
   const cart_offer = cart[offer] ? cart[offer] : { count: 0, products: {}, total: 0, reducedTotal: 0 };
@@ -46,6 +47,43 @@ export const getRulePrice = (rule, offer, product, amount = -1) => {
   db.set('cart', cart);
 
   // Return value if needed
+  return [amounts.old, new_price];
+}
+
+export const getBoursePrice = (offer, product, amount = -1) => {
+  const cart = db.get('cart') ? db.get('cart') : {};
+  const cart_offer = cart[offer.id] ? cart[offer.id] : { count: 0, products: {}, total: 0, reducedTotal: 0 };
+  let amounts = { old: product && cart_offer.products[product] ? cart_offer.products[product].amount : 0 };
+  amounts.new = amount >= 0 ? amount : amounts.old;
+
+  // Find current bourse price
+  let new_price = offer.miniprogram.items[0].price; // Set orignal price in case 0 is not in calculation
+  let new_total_sold = offer.sold + cart_offer.count - amounts.old + amounts.new;
+  offer.miniprogram.bourses.forEach( b => {
+    if (new_total_sold <= b.to && new_total_sold >= b.from) {
+      new_price = b.unitPrice;
+    }
+  })
+
+  console.log(offer.miniprogram.bourses);
+  // Changing unit price for each product in cart and total price for order
+  let cart_total = cart_offer.reducedTotal ? cart_offer.reducedTotal : cart_offer.total;
+  offer.miniprogram.items.forEach( p => {
+    let cart_product = cart_offer.products[p._id] ? cart_offer.products[p._id] : { amount: 0, price: p.price };
+    if (p._id === product) {
+      cart_total -= amounts.old * cart_product.price;
+      cart_product.amount = amounts.new;
+    }
+
+    cart_total += new_price * cart_product.amount;
+    cart_product.price = new_price;
+    cart_offer.products[p._id] = cart_product;
+  });
+
+  cart_offer.reducedTotal = cart_total;
+  cart[offer.id] = cart_offer;
+  db.set('cart', cart);
+
   return [amounts.old, new_price];
 }
 

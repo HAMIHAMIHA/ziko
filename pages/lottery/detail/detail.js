@@ -83,6 +83,7 @@ const _getOffer = function(page, offer_id) {
       return a.conditionValue - b.conditionValue;
     })
 
+    console.log( offer.miniprogram.lottery.draws);
     offer.last_val = offer.miniprogram.lottery.draws[offer.miniprogram.lottery.draws.length - 1].conditionValue;
     if ( offer.miniprogram.lottery.draws[0].conditionType === "number_of_order" ) {
       offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
@@ -186,11 +187,11 @@ Page({
     if (!data.started) return;
 
     var url = app.routes.offer_regular;
-    if (data.community === "cellar") {
+    if (communities[data.community] === "cellar" && data.type && data.type !== "regular") {
       if (data.type == "bourse") {
-        url = app.routes.offer_bourse;
+        url = routes.offer_bourse;
       } else {
-        url = app.routes.offer_cellar;
+        url = routes.offer_cellar;
       }
     }
 

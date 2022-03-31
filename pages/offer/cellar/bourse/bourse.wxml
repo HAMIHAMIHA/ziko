@@ -89,6 +89,36 @@
     <!-- End of Offer Cellar Count -->
   </view>
 
+
+  <!-- Bourse Part -->
+  <view class="offer-bourse">
+    <view class="offer-bourse_title">
+      <view class="icon icon-ziko-bourse"></view>
+    </view>
+
+    <view class="uppercase progress__container">
+      <view class="gilroy_800 lottery-label">{{ _t.quantity_bottle_sold }}</view>
+
+      <!-- Progress block -->
+      <view class="progress" style="--filled-:{{ _offer.lottery_progress }}%;">
+        <view class="gilroy_700 progress__label">{{ _t.item_quantity }}</view>
+        <view class="progress-bar__container">
+          <block wx:for="{{ _offer.miniprogram.lottery.draws }}" wx:key="_id" wx:for-item="draw">
+            <view 
+              class="progress-bar__values{{ index === 0 ? ' progress-bar_first' : (index + 1) === _offer.miniprogram.lottery.draws.length ? ' progress-bar_last' : '' }}"
+              style="--position-:{{ draw.position }}%;"
+            >
+              <view class="nunito_500 progress-axis">{{ draw.conditionValue }}</view>
+              <view class="gilroy_800 progress-label {{ draw.unlocked ? 'unlocked' : 'locked' }}" wx:if="{{ index > 0 }}">{{ _t.draw }} {{ index }}</view>
+            </view>
+          </block>
+          <view class="progress-bar"></view>
+        </view>
+      </view>
+      <!-- End of progress block -->
+    </view>
+  </view>
+
   <!-- Offer Tabbar -->
   <view class="uppercase gilroy_700 flex-center tabbar">
     <view

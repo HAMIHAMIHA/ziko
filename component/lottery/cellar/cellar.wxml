@@ -3,7 +3,7 @@
   <view class="gilroy_800 lottery-label" wx:else>{{ _t.quantity_bottle_sold }}</view>
 
   <!-- Progress block -->
-  <view class="progress" style="--filled-:{{ _offer.lottery_progress }}%;">
+  <view class="progress" style="--filled-:{{ _offer.lottery_progress }}%;" wx:if="{{ _offer.community === 'cellar' }}">
     <view class="progress__bottle">
       <view class="icon icon-wine"></view>
     </view>
