@@ -51,7 +51,7 @@ const _setPageTranslation = function(page) {
 
 // Clear countdown timer interval
 const _clearCountdown = (page, countdown_timer) => {
-  if (page.data._offer.ended) return;
+  if (page.data._offer && page.data._offer.ended) return;
   let timer = page.selectComponent('#countdown');
   timer.setTimer(countdown_timer, false);
   return [];
@@ -96,7 +96,7 @@ const _getOffer = function(page, offer_id) {
       lotteries.forEach( l => {
         if (l.offerDrawId === draw._id){
           l.winners.forEach( w => {
-            if (w.order && w.order.customer) {
+            if (w.order && w.order.customer && winners.findIndex( winner => { return winner.id === w.order.customer.id }) === -1) {
               winners.push(w.order.customer);
             }
           })
@@ -123,6 +123,7 @@ const _getOffer = function(page, offer_id) {
     });
 
     page.setData({
+      _current_user: app.db.get('userInfo').customer.id,
       _offer: offer,
       _product_names: product_name_list,
       _tickets: tickets,

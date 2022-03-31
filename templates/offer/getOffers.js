@@ -236,7 +236,7 @@ export const getOffer = function(page, offer_id) {
         lotteries.forEach( l => {
           if (l.offerDrawId === draw._id){
             l.winners.forEach( w => {
-              if (w.order && w.order.customer) {
+              if (w.order && w.order.customer && winners.findIndex( winner => { return winner.id === w.order.customer.id }) === -1) {
                 winners.push(w.order.customer);
               }
             })
@@ -266,6 +266,7 @@ export const getOffer = function(page, offer_id) {
     getUserInfo(page);
 
     page.setData({
+      _current_user: app.db.get('userInfo').customer.id,
       _offer_setting: {
         folders: {
           product_picture: app.folders.product_picture

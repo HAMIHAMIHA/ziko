@@ -62,13 +62,13 @@
               <view class="nunito_600 uppercase winner-label">{{ _t.winner }}</view>
               <block wx:for="{{ draw.winners }}" wx:key="_id" wx:for-item="winner">
                 <view class="winner_container">
-                  <view class="winner" wx:if="{{ winner.order.customer.id === _current_user }}">
+                  <view class="winner" wx:if="{{ winner.id === _current_user }}">
                     <text class="icon icon-crown"></text>
                     <text class="uppercase nunito_600 win-text">{{ _t.you_win }}</text>
                   </view>
                   <view class="winner" wx:else>
-                    <image class="winner-image" src="{{ _folders.profile_picture + winner.order.customer.profilePicture.uri }}" mode="aspectFill" />
-                    <view class="gilroy_400 winner-name">{{ winner.name }}name</view>
+                    <image class="winner-image" src="{{ _folders.profile_picture + winner.profilePicture.uri }}" mode="aspectFill" />
+                    <view class="gilroy_400 winner-name">{{ winner.name }}</view>
                   </view>
                 </view>
               </block>

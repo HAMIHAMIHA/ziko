@@ -234,6 +234,7 @@
 
 .lotteries_prize .offer-lottery .offer-lottery_winner .winner {
   margin: auto;
+  margin-top: 14rpx;
   display: flex;
   align-items: center;
 }
@@ -241,8 +242,7 @@
 .lotteries_prize .offer-lottery .offer-lottery_winner .winner-image {
   width: 36rpx;
   height: 36rpx;
-  padding-top: 14rpx;
-  padding-right: 8rpx;
+  margin-right: 8rpx;
   border-radius: 50%;
 }
 
