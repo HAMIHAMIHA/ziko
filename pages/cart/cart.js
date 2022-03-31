@@ -126,7 +126,7 @@ const _getOffers = page => {
       })
     }
 
-    // TODO Multiple total
+    // Bourse total
     if (offer.type === "bourder") {
       OfferRules.getBoursePrice(offer, null);
     }
