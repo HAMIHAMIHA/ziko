@@ -128,6 +128,7 @@ const _getOffers = page => {
 
     // TODO Multiple total
     if (offer.type === "bourder") {
+      OfferRules.getBoursePrice(offer, null);
     }
 
     let cart = app.db.get('cart')[offer.id];
