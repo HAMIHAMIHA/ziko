@@ -65,9 +65,6 @@ export const getBoursePrice = (offer, product, amount = -1) => {
     }
   })
 
-  console.log(cart_offer);
-  console.log(offer.sold);
-
   // Changing unit price for each product in cart and total price for order
   let cart_total = 0;
   // let cart_total = cart_offer.reducedTotal ? cart_offer.reducedTotal : cart_offer.total;

@@ -5,12 +5,6 @@ Component({
   options: {
     addGlobalClass: true
   },
-  ready: function () {
-    // let self = this;
-    // console.log('recipe show');
-    // // data.items = get api
-    // _doAppendMasonry(self, self.data.items);
-  },
   methods: {
     setRecipes: function(recipes) {
       let self = this;
@@ -21,7 +15,7 @@ Component({
     updateRecipes: function(recipes) {
       let self = this;
       self.selectComponent('#masonry').start(recipes).then(() => {
-        console.log('refresh completed')
+        console.debut('refresh completed')
       })
     }
   }
