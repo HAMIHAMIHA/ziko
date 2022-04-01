@@ -1,5 +1,9 @@
+.offer-bourse {
+  background: #0C0D10;
+}
+
 .bourse-label {
-  padding-bottom: 32rpx;
+  padding-bottom: 48rpx;
   font-size: 32rpx;
   line-height: 40rpx;
   letter-spacing: 0.2em;
@@ -8,7 +12,7 @@
 
 /* Progress */
 .progress__container .progress {
-  margin-bottom: 64rpx;
+  margin-bottom: 48rpx;
   padding: 48rpx 24rpx;
   background: #21252F;
   text-align: center;
@@ -65,7 +69,7 @@
   margin-right: 0;
 }
 
-.progress-bar__values .progress-label {
+.progress-bar__container .progress-label {
   width: fit-content;
   padding: 4rpx 6rpx;
   background: #909297;
@@ -75,31 +79,16 @@
   white-space: nowrap;
   border-radius: 4px;
   position: absolute;
-  right: 50%;
+  left: var(--tag-position-);
   bottom: 0;
 }
 
-.progress-bar__values.progress-bar_last .progress-label {
+.progress-bar__container.progress-bar_last .progress-label {
   right: 0;
 }
 
-.progress-label:before {
-  content: "";
-  width: 12rpx;
-  height: 6rpx;
-  clip-path: polygon(74% 38%, 100% 0%, 100% 100%, 0 100%, 38% 75%);
-  background: #909297;
-  position: absolute;
-  right: 4rpx;
-  top: -6rpx;
-}
-
 .progress-label.unlocked {
-  background: #ffffff;
-}
-
-.progress-label.unlocked:before {
-  background: #ffffff;
+  background: var(--color);
 }
 
 .progress-bar__container .progress-bar {
@@ -111,12 +100,23 @@
   bottom: calc(70rpx - 20rpx);
 }
 
-.progress-bar__container .progress-bar:before {
-  content: "";
+.progress-bar__container .progress-bar__progress {
   width: var(--filled-);
   max-width: 100%;
   height: 20rpx;
-  background: #FF4040;
+  overflow: hidden;
+  background: transparent;
+  border-radius: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-bar__container .progress-bar__progress:before {
+  content: "";
+  width: calc(100vw - 24rpx - 24rpx - 30rpx - 30rpx);
+  height: 20rpx;
+  background: var(--bg-color-);
   border-radius: 40px;
   position: absolute;
   top: 0;

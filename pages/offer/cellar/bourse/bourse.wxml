@@ -100,22 +100,24 @@
       <view class="gilroy_800 bourse-label">{{ _t.lower_price_together }}</view>
 
       <!-- Progress block -->
-      <view class="progress" style="--filled-:{{ _bourse_info.progress }}%;">
+      <view class="progress" style="--filled-:{{ _bourse_info.progress }}%;--bg-color-:{{ _bourse_info.bg_color }};">
         <view class="gilroy_700 progress__label">{{ _t.item_quantity }}</view>
         <view class="progress-bar__container">
           <block wx:for="{{ _bourse_info.list }}" wx:key="_id" wx:for-item="bourse">
             <view 
               class="progress-bar__values{{ bourse.first ? ' progress-bar_first' : '' }}"
-              style="--position-:{{ bourse.position }}%; --color:{{ bourse.color }};"
+              style="--position-:{{ bourse.position }}%;"
             >
               <view class="nunito_500 progress-axis">{{ bourse.from }}</view>
-              <view class="gilroy_800 progress-label{{ bourse.unlocked ? ' unlocked' : '' }}">￥{{ bourse.unitPrice }}</view>
             </view>
+            <view class="gilroy_800 progress-label{{ bourse.unlocked ? ' unlocked' : '' }}" style="--tag-position-:{{ ((bourse.position + bourse.end_position) / 2)  }}%;--color:{{ bourse.color }};">￥{{ bourse.unitPrice }}</view>
           </block>
           <view class="progress-bar__values progress-bar_last" style="--position-: 100%;">
             <view class="nunito_500 progress-axis">{{ _bourse_info.list[_bourse_info.list.length - 1].to }}</view>
           </view>
-          <view class="progress-bar"></view>
+          <view class="progress-bar">
+            <view class="progress-bar__progress"></view>
+          </view>
         </view>
       </view>
       <!-- End of progress block -->

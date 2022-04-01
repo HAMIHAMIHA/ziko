@@ -97,19 +97,28 @@ Page({
     let last = bourses[bourses.length - 1];
     let progress = Math.round(offer.sold / last.to * 100);
 
+    // linear-gradient(90deg, rgba(241,184,95,1) 0%, rgba(213,153,189,1) 1%, rgba(109,189,180,1) 3%, rgba(108,179,231,1) 5%, rgba(129,129,229,1) 10%, rgba(231,138,148,1) 15%);
+
+    let bg_list = [];
     bourses.map( (b, index) => {
       if (index === bourses.length - 1) {
         b.last = true;
       }
       b.color = colors[index % colors.length];
       b.position = Math.round(b.from / last.to * 100);
-      b.unlocked = offer.sold >= b.from;
+      b.end_position = Math.round(b.to / last.to * 100);
+      // b.unlocked = offer.sold >= b.from;
+      b.unlocked = true;
+      bg_list.push(`${b.color} ${b.end_position}%`);
     })
+
+    console.log(bourses);
 
     self.setData({
       _bourse_info: {
         progress,
-        list: bourses
+        list: bourses,
+        bg_color: `linear-gradient(90deg, ${ bg_list.join(', ') })`
       }
     })
   },
