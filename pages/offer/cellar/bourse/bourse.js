@@ -107,8 +107,7 @@ Page({
       b.color = colors[index % colors.length];
       b.position = Math.round(b.from / last.to * 100);
       b.end_position = Math.round(b.to / last.to * 100);
-      // b.unlocked = offer.sold >= b.from;
-      b.unlocked = true;
+      b.unlocked = offer.sold >= b.from;
       bg_list.push(`${b.color} ${b.end_position}%`);
     })
 
