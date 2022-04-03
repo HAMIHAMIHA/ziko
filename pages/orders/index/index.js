@@ -31,7 +31,6 @@ const _defaultFilters = (page, key, index_val) => {
 const getOrders = (page) => {
   showLoading(true);
 
-  let i18n = app.globalData.i18n;
   let _lang = app.db.get('language');
   const _getGiftValue = {
     add_on: (gift, offer) => {
@@ -61,30 +60,14 @@ const getOrders = (page) => {
       }
   
     }, 
-    voucher: (gift) => {
-      return {
-        name: `￥${ gift.voucherValue }${ i18n.offer_special_details.voucher }`,
-        picture: '',
-        count: 1,
-        _id: gift._id
-      }
+    voucher: () => {
+      return;
     }, 
-    discount: (gift) => {
-      gift.discountAmount
-      return {
-        name: `${gift.discountAmount}${i18n.offer_special_details.discount_off}`,
-        picture: '',
-        count: 1,
-        _id: gift._id
-      }
+    discount: () => {
+      return;
     }, 
     free_delivery: () => {
-      return {
-        name: i18n.offer_special_details.free_delivery,
-        picture: '',
-        count: 1,
-        _id: gift._id
-      }
+      return;
     }, 
   }
 
@@ -109,11 +92,13 @@ const getOrders = (page) => {
       let gifts = [];
       order.gifts.forEach( gift => {
         let gift_info = _getGiftValue[gift.type](gift, order.offer);
-        let gifts_idx = findIndex(gifts, gift_info, '_id');
-        if (gifts_idx === -1) {
-          gifts.push(gift_info)
-        } else {
-          gifts[gifts_idx].count +=1;
+        if (gift_info) {
+          let gifts_idx = findIndex(gifts, gift_info, '_id');
+          if (gifts_idx === -1) {
+            gifts.push(gift_info)
+          } else {
+            gifts[gifts_idx].count +=1;
+          }
         }
       })
       order.gifts = gifts;
