@@ -101,7 +101,6 @@ const getOrders = (page) => {
     }
 
     res.map( order => {
-      console.log(order.actualAmount, order.totalAmount);
       order.actualAmount = Math.round(order.actualAmount * 100) / 100;
       order.orderDate = `${formatDate('yyyy-mm-dd', order.orderDate)} ${formatTime(order.orderDate)}`;
       order.count = countItems( [...order.packs, ...order.singleItems] )

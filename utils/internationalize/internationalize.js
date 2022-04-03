@@ -94,6 +94,7 @@ export const languageMap_en = {
   // F
   fapiao : "Fapiao",
   fapiao_info : "Fapiao information",
+  free: "Free",
   free_delivery: "Free delivery",
   freefall: {
     fst: " every ",
@@ -106,6 +107,10 @@ export const languageMap_en = {
   get_reminder: "Get a reminder",
   get_profile: "Authorize wechat nickname",
   getting_user_profile: "To complete your user profile",
+  gift_source: {
+    lottery: "Ziko lottery gift",
+    ziko_special: "Ziko special gift",
+  },
   go_to_offer: "Go to offer",
 
   // H
@@ -365,6 +370,8 @@ export const languageMap_en = {
 
   // Z
   zh: "ZH",
+  ziko_lottery: "Ziko Lottery",
+  ziko_special: "Ziko Special",
   zipcode: "Zipcode",
 }
 
@@ -464,6 +471,7 @@ export const languageMap_zh = {
   // F
   fapiao : "Fapiao",
   fapiao_info : "发票信息",
+  free: "Free",
   free_delivery: "免运费",
   freefall: {
     fst: "每售出",
@@ -476,6 +484,10 @@ export const languageMap_zh = {
   get_reminder: "Get a reminder",
   get_profile: "授权微信昵称",
   getting_user_profile: "用于完善会员资料",
+  gift_source: {
+    lottery: "Ziko lottery gift",
+    ziko_special: "Ziko special gift",
+  },
   go_to_offer: "Go to offer",
 
   // H
@@ -734,5 +746,7 @@ export const languageMap_zh = {
 
   // Z
   zh: "中文",
+  ziko_lottery: "Ziko Lottery",
+  ziko_special: "Ziko Special",
   zipcode: "Zipcode",
 }

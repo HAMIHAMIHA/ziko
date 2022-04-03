@@ -39,16 +39,47 @@
         <!-- End of Price -->
       </view>
     </view>
+    <view class="order-products product_container gift_container" wx:for="{{ order.gifts }}" wx:key="_id" wx:for-item="gift">
+      <view class="flex-between product">
+        <view class="flex-start flex-align-start product_left">
+          <view class="product-image">
+            <image src="{{ gift.picture }}" mode="aspectFill" wx:if="{{ gift.picture }}"></image>
+            <view class="icon icon-gift" wx:else></view>
+          </view>
+          <view class="product-info">
+            <view class="info_container">
+              <view class="nunito_700 product-title">{{ gift.name }}</view>
+              <!-- Gift Products Detail -->
+              <view class="gilroy_500 product-detail_container" wx:if="{{ product.pro == 'pack' }}">{{ gift.product_info }}</view>
+              <!-- End of Gift Products Detail -->
+
+              <!-- Gift Count -->
+              <view class="gilroy_500 product-count gift-count">
+                {{ 'x' + gift.count }}
+              </view>
+              <!-- End of Gift Count -->
+            </view>
+          </view>
+        </view>
+        <!-- Price -->
+        <view class="nunito_600 product-price_container">
+          <view class="product-price gift-price">{{ _t.free }}</view>
+          <view class="gift-source">{{ _t.gift_source[gift.origin] }}</view>
+        </view>
+        <!-- End of Price -->
+      </view>
+    </view>
   </view>
 
   <view class="white-box order-details_container price-detail">
-    <!-- Hide for v1 -->
-    <view class="nunito_600 detail" wx:if="{{ showing }}">
-      <text class="detail_label">{{ _t.use_voucher }}</text>
-      <view class="detail_result">
-        <text>-100</text>
+    <block wx:for="{{ order.vouchers }}" wx:key="_id" wx:for-item="{{ voucher }}">
+      <view class="nunito_600 detail">
+        <text class="detail_label">{{ _t.use_voucher }}</text>
+        <view class="font_red detail_result">
+          <text>-{{ voucher.amount }}</text>
+        </view>
       </view>
-    </view>
+    </block>
     <view class="nunito_600 detail">
       <text class="detail_label">{{ _t.chosen_delivery_date }}</text>
       <view class="detail_result">
@@ -57,12 +88,15 @@
     </view>
     <view class="nunito_600 detail">
       <text class="detail_label">{{ _t.delivery_fee }}</text>
-      <text class="detail_result">¥{{ order.deliveryFee }}</text>
+      <text class="detail_result">{{ order.deliveryFee > 0 ? '¥' + order.deliveryFee : _t.free_delivery }}</text>
     </view>
-    <!-- Hide for v1 (did not translate) -->
-    <view class="detail" wx:if="{{ showing }}">
-      <text class="nunito_600 detail_label">Ziko Special</text>
-      <text class="detail_result">¥1000</text>
+    <view class="detail" wx:if="{{ order.lottery_discount > 0 }}">
+      <text class="nunito_600 detail_label">{{ _t.ziko_lottery }}</text>
+      <text class="font_red detail_result">-¥{{ order.lottery_discount }}</text>
+    </view>
+    <view class="detail" wx:if="{{ order.special_discount > 0 }}">
+      <text class="nunito_600 detail_label">{{ _t.ziko_special }}</text>
+      <text class="font_red detail_result">-¥{{ order.special_discount }}</text>
     </view>
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.total }}</text>
@@ -85,15 +119,14 @@
     </view>
   </view>
 
-  <!-- Hide for v1 -->
-  <view class="white-box order-details_container" wx:if="{{ showing }}">
-    <view class="detail">
+  <view class="white-box order-details_container" wx:if="{{ order.ticketAmount > 0 || order.fidlityPoints > 0 }}">
+    <view class="detail" wx:if="{{ order.ticketAmount > 0 }}">
       <text class="nunito_600 detail_label">{{ _t.lottery_tickets }}</text>
-      <text class="detail_result">x3{{ order.ticket }}</text>
+      <text class="detail_result">{{ order.ticket }}</text>
     </view>
-    <view class="detail">
+    <view class="detail" wx:if="{{ order.fidlityPoints > 0 }}">
       <text class="nunito_600 detail_label">{{ _t.fidelity_points }}</text>
-      <text class="detail_result">+{{ order.fidlityPoints }}30</text>
+      <text class="detail_result">+{{ order.fidlityPoints }}</text>
     </view>
   </view>
 
