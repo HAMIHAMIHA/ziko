@@ -84,6 +84,7 @@ export const languageMap_en = {
   // E
   edit_address: "Edit address",
   edit_my_address: "Edit my addresses",
+  edit_my_contacts: "Edit my contacts",
   edit_my_info: "Edit my information",
   empty: "empty",
   en: "EN",
@@ -461,6 +462,7 @@ export const languageMap_zh = {
   // E
   edit_address: "Edit address",
   edit_my_address: "编辑我的地址",
+  edit_my_contacts: "编辑我的联系方式",
   edit_my_info: "编辑我的信息",
   empty: "empty",
   en: "英文",

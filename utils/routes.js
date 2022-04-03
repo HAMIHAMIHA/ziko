@@ -7,6 +7,8 @@ const routes = {
   address_detail: "/pages/address/detail/detail",
   address_areas: "/pages/address/areas/areas",
   cart: "/pages/cart/cart",
+  contacts: "/pages/contacts/index/index",
+  contact: "/pages/contacts/detail/detail",
   lottery: "/pages/lottery/index/index",
   lottery_detail: "/pages/lottery/detail/detail",
   offer_bourse: "/pages/offer/cellar/bourse/bourse",

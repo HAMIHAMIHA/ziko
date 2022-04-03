@@ -46,6 +46,7 @@
   <!-- PROFILE INFO -->
   <view class="nunito_600 card profile-info{{ user.id ? '' : ' disabled' }}">
     <navigator class="profile-info__button" url="{{ _routes.account_info }}">{{ _t.edit_my_info }}</navigator>
+    <navigator class="profile-info__button" url="{{ _routes.contacts }}">{{ _t.edit_my_contacts }}</navigator>
     <navigator class="profile-info__button" url="{{ _routes.address }}">{{ _t.edit_my_address }}</navigator>
     <navigator class="profile-info__button" url="{{ _routes.fapiao }}">{{ _t.fapiao_info }}</navigator>
     <!-- Hide for v1 -->

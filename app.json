@@ -8,6 +8,8 @@
     "pages/address/detail/detail",
     "pages/address/areas/areas",
     "pages/cart/cart",
+    "pages/contacts/index/index",
+    "pages/contacts/detail/detail",
     "pages/lottery/index/index",
     "pages/lottery/detail/detail",
     "pages/offer/cellar/bourse/bourse",

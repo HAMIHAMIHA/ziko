@@ -1,0 +1,7 @@
+.header {
+  padding-bottom: 10rpx;
+}
+
+.inputs_container {
+  padding: 0;
+}

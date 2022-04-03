@@ -28,6 +28,7 @@ Page({
     },
     _routes: {
       account_info: app.routes.account_info,
+      contacts: app.routes.contacts,
       fapiao: app.routes.fapiao,
       address: app.routes.address,
       orders: app.routes.orders,
@@ -85,6 +86,7 @@ Page({
         claims: i18n.claims,
         contact: i18n.contact,
         edit_my_address: i18n.edit_my_address,
+        edit_my_contacts: i18n.edit_my_contacts,
         edit_my_info: i18n.edit_my_info,
         en: i18n.en,
         fapiao_info: i18n.fapiao_info,
