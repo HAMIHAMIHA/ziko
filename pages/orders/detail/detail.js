@@ -98,6 +98,8 @@ Page({
     getOrders(self);
   },
 
+  // wx.navigateToMiniProgram(Object object)
+
   makePayment: function() {
     const self = this;
     makePayment({ id: self.options.id });

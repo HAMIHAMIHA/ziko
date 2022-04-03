@@ -1,12 +1,11 @@
 const { mobileLogin, getUserInfo, showLoading, getWxUserInfo } = require("../../../utils/common");
 const { communities } = require("../../../utils/constants");
-const { formatDate, formatTime } = require("../../../utils/util");
+const { formatDate, formatTime, findIndex } = require("../../../utils/util");
 
 const app = getApp();
 const pickers = {
   community: ['all', 'cellar', 'garden', 'kitchen', 'pet'],
   order_status: ['all', 'delivered', 'on_the_way', 'prepared', 'delayed'],
-  // payment_status: ['all', 'refund', 'refund', 'refund', 'refund'],
 }
 
 let current = { community: '', order_status: '', payment_status: '' };
@@ -32,6 +31,63 @@ const _defaultFilters = (page, key, index_val) => {
 const getOrders = (page) => {
   showLoading(true);
 
+  let i18n = app.globalData.i18n;
+  let _lang = app.db.get('language');
+  const _getGiftValue = {
+    add_on: (gift, offer) => {
+      let product_idx = offer.miniprogram.items.findIndex( i => i.shortName === gift.singleItem);
+      return {
+        name: offer.miniprogram.packs[product_idx].name[_lang],
+        picture: `${app.folders.product_picture}${offer.miniprogram.packs[product_idx].mainPicture[_lang].uri}`,
+        count: 1,
+        _id: gift._id
+      }
+    }, 
+    pack: (gift, offer) => {
+      let product_idx = offer.miniprogram.packs.findIndex( i => i.shortName === gift.pack);
+      return {
+        name: offer.miniprogram.packs[product_idx].name[_lang],
+        picture: '/assets/images/packDefault.png',
+        count: 1,
+        _id: gift._id
+      }
+    }, 
+    custom: (gift) => {
+      return {
+        name: gift.custom[_lang],
+        picture: '',
+        count: 1,
+        _id: gift._id
+      }
+  
+    }, 
+    voucher: (gift) => {
+      return {
+        name: `￥${ gift.voucherValue }${ i18n.offer_special_details.voucher }`,
+        picture: '',
+        count: 1,
+        _id: gift._id
+      }
+    }, 
+    discount: (gift) => {
+      gift.discountAmount
+      return {
+        name: `${gift.discountAmount}${i18n.offer_special_details.discount_off}`,
+        picture: '',
+        count: 1,
+        _id: gift._id
+      }
+    }, 
+    free_delivery: () => {
+      return {
+        name: i18n.offer_special_details.free_delivery,
+        picture: '',
+        count: 1,
+        _id: gift._id
+      }
+    }, 
+  }
+
   const callback = res => {
     showLoading(false);
 
@@ -45,13 +101,27 @@ const getOrders = (page) => {
     }
 
     res.map( order => {
+      console.log(order.actualAmount, order.totalAmount);
       order.actualAmount = Math.round(order.actualAmount * 100) / 100;
       order.orderDate = `${formatDate('yyyy-mm-dd', order.orderDate)} ${formatTime(order.orderDate)}`;
       order.count = countItems( [...order.packs, ...order.singleItems] )
+
+      // Gfit info
+      let gifts = [];
+      order.gifts.forEach( gift => {
+        let gift_info = _getGiftValue[gift.type](gift, order.offer);
+        let gifts_idx = findIndex(gifts, gift_info, '_id');
+        if (gifts_idx === -1) {
+          gifts.push(gift_info)
+        } else {
+          gifts[gifts_idx].count +=1;
+        }
+      })
+      order.gifts = gifts;
     })
 
     page.setData({
-      orders: res
+      orders: res,
     })
   }
   let community_id = Object.keys(communities).find(item => communities[item] == current.community);

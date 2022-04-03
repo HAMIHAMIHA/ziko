@@ -97,8 +97,6 @@ Page({
     let last = bourses[bourses.length - 1];
     let progress = Math.round(offer.sold / last.to * 100);
 
-    // linear-gradient(90deg, rgba(241,184,95,1) 0%, rgba(213,153,189,1) 1%, rgba(109,189,180,1) 3%, rgba(108,179,231,1) 5%, rgba(129,129,229,1) 10%, rgba(231,138,148,1) 15%);
-
     let bg_list = [];
     bourses.map( (b, index) => {
       if (index === bourses.length - 1) {
@@ -110,8 +108,6 @@ Page({
       b.unlocked = offer.sold >= b.from;
       bg_list.push(`${b.color} ${b.end_position}%`);
     })
-
-    console.log(bourses);
 
     self.setData({
       _bourse_info: {

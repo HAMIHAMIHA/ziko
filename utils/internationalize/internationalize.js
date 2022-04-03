@@ -173,6 +173,7 @@ export const languageMap_en = {
   offer_label: " Offer",
   offer_special_details: {
     discount: "% discount rate",
+    discount_off: "% off",
     free_delivery: "free delivery",
     get: "Get ",
     for_free: {
@@ -542,6 +543,7 @@ export const languageMap_zh = {
   offer_label: " Offer",
   offer_special_details: {
     discount: "% discount rate",
+    discount_off: "% off",
     free_delivery: "free delivery",
     get: "Get ",
     for_free: {

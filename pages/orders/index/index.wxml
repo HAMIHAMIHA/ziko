@@ -73,24 +73,23 @@
             <view class="order-count" wx:else>{{ _t.payment_status[order.paymentStatus] }}</view>
             <view class="order-price">
               <text class="gilroy_800 order-total">￥{{ order.actualAmount }}</text>
-              <text class="gilroy_800 order-total__old" wx:if="{{ order.originalPrice }}">￥{{ order.originalPrice }}</text>
+              <text class="gilroy_800 order-total__old" wx:if="{{ order.actualAmount !== order.totalAmount }}">￥{{ order.totalAmount }}</text>
             </view>
           </view>
         </view>
         <!-- End of Order Detail -->
 
         <!-- Order Lottery -->
-        <view class="order-info__lottery" wx:if="{{ order.lottery }}">
-          <view class="lottery-title">{{ _t.lottery_gift }}:</view>
-          <!-- <block wx:for="{{ order.lottery }}" wx:key="_id" wx:key="lottery"> -->
-          <block wx:for="12" wx:key="_id" wx:key="lottery">
-            <view class="lottery__container flex-between">
-              <view class="lottery">
-                <image class="lottery__image" src="/assets/images/recipeBanner.png" mode="aspectFill"></image>
-                <!-- <image src="{{ _folders.lottery + lottery.image.uri }}" mode="aspectFill"></image> -->
-                <view class="lottery__name">{{ lottery.name }}gold mask + 15% off</view>
+        <view class="order-info__gift" wx:if="{{ order.gifts.length > 0 }}">
+          <view class="gift-title">{{ _t.lottery_gift }}</view>
+          <block wx:for="{{ order.gifts }}" wx:key="_id" wx:for-item="gift">
+            <view class="gift__container flex-between">
+              <view class="gift">
+                <image class="gift__image" src="{{ gift.picture }}" mode="aspectFill" wx:if="{{ gift.picture }}"></image>
+                <view class="gift__image icon icon-gift" wx:else></view>
+                <view class="gift__name">{{ gift.name }}</view>
               </view>
-              <view class="lottery__count">x{{ lottery.count }}1</view>
+              <view class="gift__count">x{{ gift.count }}</view>
             </view>
           </block>
         </view>

@@ -145,39 +145,40 @@
 /* End of Order Detail */
 
 /* Order Lottery */
-.order-info__lottery {
+.order-info__gift {
   padding: 24rpx;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.lottery-title {
+.gift-title {
   padding-bottom: 16rpx;
   color: var(--grey-);
   font-size: 24rpx;
   line-height: 32rpx;
 }
 
-.lottery__container {
+.gift__container {
   padding-bottom: 8rpx;
 }
 
-.lottery {
+.gift {
   display: flex;
   align-items: center;
 }
 
-.lottery__image {
+.gift__image {
   width: 48rpx;
   height: 48rpx;
+  font-size: 48rpx;
 }
 
-.lottery__name {
+.gift__name {
   padding-left: 20rpx;
   font-size: 24rpx;
   line-height: 28rpx;
 }
 
-.lottery__count {
+.gift__count {
   color: var(--grey-);
   font-size: 24rpx;
   line-height: 28rpx;
