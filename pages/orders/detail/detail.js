@@ -84,13 +84,13 @@ const getOrders = (page) => {
     
       }, 
       voucher: (gift) => {
-        return {
+        return ['gift', {
           name: `￥${ gift.voucherValue }${ i18n.offer_special_details.voucher }`,
           picture: '',
           count: 1,
           origin: gift.origin,
           _id: gift._id
-        }
+        }]
       }, 
       discount: (gift) => {
         return [gift.origin, res.totalAmount * (gift.discountAmount / 100)];

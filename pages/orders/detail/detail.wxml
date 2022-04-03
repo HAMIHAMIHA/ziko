@@ -72,11 +72,11 @@
   </view>
 
   <view class="white-box order-details_container price-detail">
-    <block wx:for="{{ order.vouchers }}" wx:key="_id" wx:for-item="{{ voucher }}">
+    <block wx:for="{{ order.vouchers }}" wx:key="id" wx:for-item="voucher">
       <view class="nunito_600 detail">
         <text class="detail_label">{{ _t.use_voucher }}</text>
         <view class="font_red detail_result">
-          <text>-{{ voucher.amount }}</text>
+          <text>-￥{{ voucher.amount }}</text>
         </view>
       </view>
     </block>
