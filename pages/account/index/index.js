@@ -63,7 +63,9 @@ Page({
     getUserInfo(self);
 
     // Page Data (order + vouchers)
-    _getPageData(self);
+    if (app.db.get('userInfo') && app.db.get('userInfo').token) {
+      _getPageData(self);
+    }
   },
 
   // Get Profile info

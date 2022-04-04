@@ -1,59 +1,75 @@
-<!-- Scroll Menu -->
-<view class="nunito_700 h-scroll_container scroll-menu_account">
-  <scroll-view class="h-scroll capatilize" scroll-x="true">
-    <block wx:for="{{ _pickers._voucher_status }}" wx:key="index" wx:for-item="status">
-      <view
-        class="h-scroll_item order-status{{ current_status === status ? ' selected' : '' }}"
-        bindtap="changeFilter"
-        data-value="{{ status }}"
-      >
-        {{ _t.voucher_status[status] }}
-      </view>
-    </block>
-  </scroll-view>
-</view>
-<!-- End of Scroll Menu -->
-
-<!-- Voucher List -->
-<view class="no-vouchers">{{ _t.no_vouchers }}</view>
-<view class="container container-grey container-btn-bottom">
-  <view class="voucher-content_container">
-    <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher">
-      <view class="white-box flex-between voucher_container {{ voucher.status }}">
-        <view class="voucher_detail">
-          <view class="voucher_detail-content voucher_for">
-            <text class="gilroy_500 voucher_label">{{ _t.available_for }}: </text>
-            <text class="voucher_text">{{ voucher.community }}</text>
-          </view>
-          <view class="voucher_detail-content voucher_recs">
-            <text class="gilroy_500 voucher_label">{{ _t.reveived }}: </text>
-            <text class="voucher_text">{{ voucher.createdAt }}</text>
-          </view>
-          <view class="voucher_detail-content voucher_exp">
-            <text class="gilroy_500 voucher_label">{{ _t.expire_on }}: </text>
-            <text class="voucher_text">{{ voucher.status === "expired" ? _t.expired : voucher.expirationDate }}</text>
-          </view>
-          <view class="voucher_detail-content voucher_from">
-            <text class="gilroy_500 voucher_label">{{ _t.from }}: </text>
-            <text class="voucher_text">{{ voucher.reason }}</text>
-          </view>
-
-          <view class="voucher_detail-content voucher_nav" wx:if="{{ voucher.status === 'used' }}">
-            <navigator class="voucher_text" url="{{ _routes.order + '/' + voucher.order }}">{{ _t.to_order }} ></navigator>
-          </view>
-        </view>
-
-        <view class="gilroy_800 voucher_price">￥{{ voucher.amount }}</view>
-      </view>
-    </block>
+<block wx:if="{{ !user.id }}">
+  <view class="login-container">
+    <view class="empty_message">{{ _t.need_login }}</view>
+    <!-- Get user Info -->
+    <button class="login-btn" bindtap="getUserProfile" wx:if="{{ !user.name && !wxUser.name }}">
+      {{ _t.get_profile }}
+    </button>
+    <!-- Get mobile number -->
+    <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else>
+      {{ _t.moile_login }}
+    </button>
   </view>
+</block>
 
-  <view class="btn-bottom">
-      <view class="contact-message">{{ _t.voucher_question }}</view>
-      <button class="contact-button" open-type="contact">
-        <text class="icon icon-headset"></text>
-        <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
-      </button>
+<block wx:else>
+  <!-- Scroll Menu -->
+  <view class="nunito_700 h-scroll_container scroll-menu_account">
+    <scroll-view class="h-scroll capatilize" scroll-x="true">
+      <block wx:for="{{ _pickers._voucher_status }}" wx:key="index" wx:for-item="status">
+        <view
+          class="h-scroll_item order-status{{ current_status === status ? ' selected' : '' }}"
+          bindtap="changeFilter"
+          data-value="{{ status }}"
+        >
+          {{ _t.voucher_status[status] }}
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <!-- End of Scroll Menu -->
+
+  <!-- Voucher List -->
+  <view class="no-vouchers">{{ _t.no_vouchers }}</view>
+  <view class="container container-grey container-btn-bottom">
+    <view class="voucher-content_container">
+      <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher">
+        <view class="white-box flex-between voucher_container {{ voucher.status }}">
+          <view class="voucher_detail">
+            <view class="voucher_detail-content voucher_for">
+              <text class="gilroy_500 voucher_label">{{ _t.available_for }}: </text>
+              <text class="voucher_text">{{ voucher.community }}</text>
+            </view>
+            <view class="voucher_detail-content voucher_recs">
+              <text class="gilroy_500 voucher_label">{{ _t.reveived }}: </text>
+              <text class="voucher_text">{{ voucher.createdAt }}</text>
+            </view>
+            <view class="voucher_detail-content voucher_exp">
+              <text class="gilroy_500 voucher_label">{{ _t.expire_on }}: </text>
+              <text class="voucher_text">{{ voucher.status === "expired" ? _t.expired : voucher.expirationDate }}</text>
+            </view>
+            <view class="voucher_detail-content voucher_from">
+              <text class="gilroy_500 voucher_label">{{ _t.from }}: </text>
+              <text class="voucher_text">{{ voucher.reason }}</text>
+            </view>
+
+            <view class="voucher_detail-content voucher_nav" wx:if="{{ voucher.status === 'used' }}">
+              <navigator class="voucher_text" url="{{ _routes.order + '?id=' + voucher.order }}">{{ _t.to_order }} ></navigator>
+            </view>
+          </view>
+
+          <view class="gilroy_800 voucher_price">￥{{ voucher.amount }}</view>
+        </view>
+      </block>
     </view>
-</view>
+
+    <view class="btn-bottom">
+        <view class="contact-message">{{ _t.voucher_question }}</view>
+        <button class="contact-button" open-type="contact">
+          <text class="icon icon-headset"></text>
+          <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
+        </button>
+      </view>
+  </view>
+</block>
 <!-- End of Voucher List -->

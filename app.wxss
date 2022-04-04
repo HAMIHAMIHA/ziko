@@ -464,6 +464,34 @@ button:not([size=mini]).float-contact_container {
 }
 /* End of Icons */
 
+/* Login */
+.login-container {
+  width: 100vw;
+  height: 100vh;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.login-container .empty_message {
+  text-align: center;
+  margin-bottom: 48rpx;
+}
+
+.login-container button:not([size=mini]).login-btn {
+  width: fit-content;
+  padding: 12rpx 32rpx;
+  background: #33363E;
+  color: var(--ziko-default-);
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+}
+/* End of Login */
+
 /* Lottery Alert */
 .lottery-alert {
   width: 100%;

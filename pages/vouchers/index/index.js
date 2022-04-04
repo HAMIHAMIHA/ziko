@@ -1,4 +1,4 @@
-const { showLoading } = require("../../../utils/common");
+const { mobileLogin, getUserInfo, showLoading, getWxUserInfo } = require("../../../utils/common");
 const { voucher_status, communities } = require("../../../utils/constants");
 const { formatDate, formatTime } = require("../../../utils/util");
 
@@ -23,6 +23,9 @@ const _setPageTranslation = page => {
         contact_customer_hero: i18n.contact_customer_hero,
         expire_on: i18n.expire_on,
         from: i18n.from,
+        get_profile: i18n.get_profile,
+        moile_login: i18n.mobile_login,
+        need_login: i18n.need_login,
         reveived: i18n.reveived,
         select: i18n.select,
         to_order: i18n.to_order,
@@ -95,9 +98,25 @@ Page({
 
   onShow: function() {
     const self = this;
-
     _setPageTranslation(self);
-    _getVouchers(self, '');
+    getUserInfo(self);
+    if (app.db.get('userInfo') && app.db.get('userInfo').customer && app.db.get('userInfo').customer.id) {
+      self.getVouchers();
+    }
+  },
+
+  getVouchers: function() {
+    _getVouchers(this, '');
+  },
+
+  // Get Profile info
+  getUserProfile: function(e) {
+    getWxUserInfo(this);
+  },
+
+  // Mobile login
+  getPhoneNumber: function(e) {
+    mobileLogin(this, e.detail.code, this.getVouchers);
   },
 
   changeFilter: function(e) {

@@ -1,15 +1,15 @@
 <block wx:if="{{ !user.id }}">
-<view class="login-container">
-  <view class="empty_message">{{ _t.need_login }}</view>
-  <!-- Get user Info -->
-  <button class="login-btn" bindtap="getUserProfile" wx:if="{{ !user.name && !wxUser.name }}">
-    {{ _t.get_profile }}
-  </button>
-  <!-- Get mobile number -->
-  <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else>
-    {{ _t.moile_login }}
-  </button>
-</view>
+  <view class="login-container">
+    <view class="empty_message">{{ _t.need_login }}</view>
+    <!-- Get user Info -->
+    <button class="login-btn" bindtap="getUserProfile" wx:if="{{ !user.name && !wxUser.name }}">
+      {{ _t.get_profile }}
+    </button>
+    <!-- Get mobile number -->
+    <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else>
+      {{ _t.moile_login }}
+    </button>
+  </view>
 </block>
 
 <block wx:else>

@@ -142,7 +142,12 @@ const _getOffer = function(page, offer_id) {
     offer = res[0];
     app.api.getLotteries(`offer=${offer_id}`).then( res => {
       lotteries = res;
-      app.api.getOrders({ filter_str: `offer=${offer_id}` }).then(setPageData)
+
+      if (app.db.get('userInfo') && app.db.get('userInfo').token) {
+        app.api.getOrders({ filter_str: `offer=${offer_id}` }).then(setPageData)
+      } else {
+        setPageData([]);
+      }
     });
   });
 }

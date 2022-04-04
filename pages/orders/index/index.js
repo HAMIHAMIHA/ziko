@@ -135,7 +135,7 @@ Page({
 
     getUserInfo(self);
   
-    if (app.db.get('userInfo').customer.id) {
+    if (app.db.get('userInfo') && app.db.get('userInfo').customer && app.db.get('userInfo').customer.id) {
       if (!self.options.back) {
         self.initOrders();
       } else {
@@ -204,8 +204,8 @@ Page({
         get_profile: i18n.get_profile,
         item_unit: i18n.item_unit,
         items_unit: i18n.items_unit,
-        moile_login: i18n.mobile_login,
         lottery_gift: i18n.lottery_gift,
+        moile_login: i18n.mobile_login,
         need_login: i18n.need_login,
         no_orders: i18n.no_orders,
         order_status: i18n.order_status,

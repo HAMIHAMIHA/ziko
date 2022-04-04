@@ -340,11 +340,7 @@ export const getOffer = function(page, offer_id) {
   app.api.setOfferView(offer_id).then(res => {
     app.api.getLotteries(`offer=${offer_id}`).then( res => {
       lotteries = res;
-      app.api.getOrders({ filter_str: `offer=${offer_id}` }).then( res => {
-
-        // Get product by offer id
-        app.api.getOffers(`?id=${offer_id}`).then(callback);
-      })
+      app.api.getOffers(`?id=${offer_id}`).then(callback);
     });
   });
 }
