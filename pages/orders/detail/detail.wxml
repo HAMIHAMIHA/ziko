@@ -140,13 +140,13 @@
     </view>
 
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.phone_no }}</text>
-      <view class="detail_value">{{ order.customerAddress.phone }}</view>
+      <text class="nunito_600 detail_label">{{ _t.contact_label }}</text>
+      <view class="detail_value">{{ order.customerAddress.contact ? order.customerAddress.contact : "" }}</view>
     </view>
 
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.contact_label }}</text>
-      <view class="detail_value">{{ order.customerAddress.contact ? order.customerAddress.contact : "" }}</view>
+      <text class="nunito_600 detail_label">{{ _t.phone_no }}</text>
+      <view class="detail_value">{{ order.customerAddress.phone }}</view>
     </view>
   </view>
 

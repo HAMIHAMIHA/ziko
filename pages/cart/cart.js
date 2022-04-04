@@ -49,6 +49,7 @@ const _setPageDefaultItems = page => {
     },
     _routes: {
       address: app.routes.address,
+      contacts: app.routes.contacts,
       fapiao: app.routes.fapiao,
     },
     _setting: {
@@ -204,7 +205,8 @@ Page({
     _getAddressAreas();
 
     self.setData({
-      address_selected: -1
+      address_selected: -1,
+      contact_selected: -1
     })
   },
 

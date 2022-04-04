@@ -65,7 +65,7 @@
           <text class="icon icon-arrow-right"></text>
         </view>
       </view>
-      <view class="detail field-1">
+      <view class="detail field-2">
         <text class="detail_label">{{ _t.choose_delivery_date }}</text>
         <picker
           class="nunito_600 detail_result"
@@ -115,6 +115,16 @@
         </view>
       </view>
 
+      <view class="detail field-1">
+        <text class="detail_label">{{ _t.contact_label }}</text>
+        <view class="detail_input input_goto">
+          <navigator class="input picker" hover-class="none" url="{{ _routes.contacts + '?action=select&selected_contact=' + contact_selected }}">
+            <text>{{ user.contacts[contact_selected].name }}</text>
+            <text class="icon icon-arrow-right"></text>
+          </navigator>
+        </view>
+      </view>
+
       <view class="detail">
         <text class="detail_label">{{ _t.phone_no }}</text>
         <view class="detail_input">
@@ -122,24 +132,7 @@
             class="input"
             type="text"
             name="phone"
-            value="{{ user.addresses[address_selected].phone }}"
-            confirm-type="next"
-            confirm-hold="true"
-            data-next_item="contact"
-            bindconfirm="next"
-          />
-        </view>
-      </view>
-
-      <view class="detail">
-        <text class="detail_label">{{ _t.contact_label }}</text>
-        <view class="detail_input">
-          <input
-            class="input"
-            type="text"
-            name="contact"
-            value="{{ user.addresses[address_selected].contact }}"
-            focus="{{ _focus == 'contact' ? true : false }}"
+            value="{{ user.contacts[contact_selected].phone }}"
           />
         </view>
       </view>

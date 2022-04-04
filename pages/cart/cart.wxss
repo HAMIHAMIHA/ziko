@@ -7,7 +7,7 @@
 }
 
 /* Error for delivery date */
-.error-field-1 .field-1 {
+.error-field-2 .field-2 {
   color: #FF4040;
 }
 

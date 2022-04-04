@@ -76,10 +76,8 @@ Page({
 
     // Set selected address data
     prev.setData({
-      address_selected: self.data.select_index
+      contact_selected: self.data.select_index
     })
-
-    prev.calculateDeliveryFee(selected_address.area);
 
     // Go back to previous page
     wx.navigateBack({

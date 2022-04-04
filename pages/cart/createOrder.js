@@ -52,9 +52,14 @@ const _createOrderData = (page, value) => {
     error += ' error-field-0'
   };
 
+  // Check for contact
+  if (page_data.contact_selected < 0) {
+    error += ' error-field-1'
+  };
+
   // Check for date
   if (!page_data.delivery_dates[page_data.delivery_date]) {
-    error += ' error-field-1'
+    error += ' error-field-2'
   };
 
   // Remove error
@@ -65,6 +70,7 @@ const _createOrderData = (page, value) => {
   if (error) return;
 
   let selected_address = page_data.user.addresses[page_data.address_selected];
+  let selected_contact = page_data.user.contacts[page_data.contact_selected];
   let order = {
     customerDaily: null,
     customerAddress: {
@@ -73,8 +79,8 @@ const _createOrderData = (page, value) => {
       zipCode: selected_address.zipCode,
       area: selected_address.area,
       detailedAddress: selected_address.detailedAddress,
+      contact: selected_contact.name,
       phone: value.phone,
-      contact: value.contact,
     },
     comment: value.comment,
     deliveryDate: new Date(page_data.delivery_dates[page_data.delivery_date]),
