@@ -2,41 +2,29 @@ const { changeFocus, navigateBack, showLoading, updateUserInfo, refreshUserInfo 
 const { findIndex } = require("../../../utils/util");
 
 const app = getApp();
-const address_type = ["office", "home", "other"];
-const validate_keys = ['type', 'contact', 'city', 'detailedAddress', 'phone'];
-
-const _getAddressAreas = (page, area_id) => {
-  app.api.getAreas().then(res => {
-    page.setData({
-      area: res[findIndex(res, area_id, 'id')]
-    })
-  });
-}
+const validate_keys = ['name', 'phone'];
 
 // Get user profile
 const getUserInfo = (page) => {
   const callback = user => {
     // Set default address info
-    let count = user.addresses ? user.addresses.length : 0;
-    let address = {};
-    let picker_selected = '';
+    let count = user.contacts ? user.contacts.length : 0;
+    let contact = {};
 
     // Set address info if edit
     if (page.options.id) {
-      count = findIndex(user.addresses, page.options.id, '_id');
-      address = user.addresses[count];
-      _getAddressAreas(page, address.area);
-      picker_selected = `${address_type.indexOf(address.type)}`
+      count = findIndex(user.contacts, page.options.id, '_id');
+      contact = user.contacts[count];
     } else {
-      address.contact = user.name;
+      contact.name = user.name;
+      contact.phone = user.phone;
     }
 
     showLoading(false);
 
     page.setData({
       _count: count,
-      _picker_selected: picker_selected,
-      address: address
+      contact: contact
     })
   }
 
@@ -50,10 +38,6 @@ const _validateInputs = (page, data) => {
     (data[validate_keys[i]] == null || data[validate_keys[i]] == '') ? error += `error-field-${i} ` : '';
   }
 
-  if (!page.data.area || JSON.stringify(page.data.area) == "{}") {
-    error += 'error-field-5 ';
-  }
-
   page.setData({
     error: error
   })
@@ -62,23 +46,21 @@ const _validateInputs = (page, data) => {
 }
 
 // Create address data for api
-const _generateUserAddress = (page, action, new_address) => {
-  let address = app.db.get('userInfo').customer.addresses;
+const _generateUserContact = (page, action, new_contact) => {
+  let contacts = app.db.get('userInfo').customer.contacts;
 
   if (action == 'reset') {
     let addr_index = page.data._count;
-    address.splice(addr_index, 1)
+    contacts.splice(addr_index, 1)
   } else {
     if (page.options.id) {
-      address[page.data._count] = new_address;
+      contacts[page.data._count] = new_contact;
     } else {
-      address ? address.push(new_address) : address = [new_address];
+      contacts && contacts.length > 0 ? contacts.push(new_contact) : contacts = [new_contact];
     }
   }
 
-  console.log(new_address);
-
-  return address;
+  return contacts;
 }
 
 Page({
@@ -92,52 +74,21 @@ Page({
 
     // Change page nav title
     wx.setNavigationBarTitle({
-      title: self.options.id ? i18n.edit_address : i18n.add_address
+      title: self.options.id ? i18n.edit_contact : i18n.add_contact
     })
-
-    // Format picker values based on langauge
-    let address_picker = [];
-    for (var type in address_type) {
-      let type_variable = address_type[type];
-      address_picker.push(i18n.address_type[type_variable]);
-    }
 
     // Set page translation
     self.setData({
-      _picker: {
-        address_type: address_picker
-      },
       _t: {
-        address: i18n.address,
-        address_type: i18n.address_type,
-        area: i18n.area,
         contact: i18n.contact,
-        city: i18n.city,
-        comment: i18n.comment,
         delete: i18n.delete,
+        name: i18n.name,
         phone_no: i18n.phone_no,
         save: i18n.save,
-        type: i18n.type,
-        zipcode: i18n.zipcode,
       },
-      _routes: {
-        address_areas: app.routes.address_areas,
-      }
     })
 
     getUserInfo(self);
-  },
-
-  // Change picker result
-  bindPickerChange: function(e) {
-    const self = this;
-
-    let new_index = e.detail.value;
-
-    self.setData({
-      'address.type': address_type[new_index],
-      _picker_selected: new_index,
-    })
   },
 
   // Change input focus
@@ -146,13 +97,13 @@ Page({
   },
 
   // Save address info
-  updateAddress: function(e) {
+  updateContact: function(e) {
     const self = this;
     let action = e.type;
 
     // Go back to address page if delete new address
     if (action == 'reset' && !self.options.id) {
-      navigateBack(app.routes.address, false);
+      navigateBack(app.routes.contacts, false);
       return;
     }
  
@@ -161,12 +112,10 @@ Page({
 
     showLoading(true);
 
-    // Add address to addrss list
-    let address = e.detail.value;
-    address ? address.type = self.data.address.type : '';
-    address ? address.area = self.data.area.id : '';
-    let address_list = _generateUserAddress(self, action, address);
-
-    updateUserInfo({ addresses: address_list }, app.routes.address);
+    // Update contact info to BO
+    let contact = e.detail.value;
+    console.log(e.detail.value);
+    let contact_list = _generateUserContact(self, action, contact);
+    updateUserInfo({ contacts: contact_list }, app.routes.contacts);
   }
 })

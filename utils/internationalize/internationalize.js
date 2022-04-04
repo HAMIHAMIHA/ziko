@@ -21,6 +21,7 @@ export const languageMap_en = {
   add_address: "Add address",
   add_contact: "Add contact",
   add_new_address: "Add new address",
+  add_new_contact: "Add new contact",
   add_pet: "Add pet",
   all: "All",
   am: "AM",
@@ -53,7 +54,9 @@ export const languageMap_en = {
     kitchen:"Kitchen",
     pet:"Pet",
   },
-  contact:"Contact",
+  contact: "Contact",
+  contacts: "Contacts",
+  contact_empty: "Contact is not selected",
   contact_customer_hero:"Contact our customer hero!",
   contact_label:"Contact",
   contact_info:"Contact information",
@@ -83,6 +86,7 @@ export const languageMap_en = {
 
   // E
   edit_address: "Edit address",
+  edit_contact: "Edit contact",
   edit_my_address: "Edit my addresses",
   edit_my_contacts: "Edit my contacts",
   edit_my_info: "Edit my information",
@@ -303,6 +307,7 @@ export const languageMap_en = {
   select: "Select",
   select_address: "Select Address",
   select_area: "Select Area",
+  select_contact: "Select Contact",
   select_voucher: "Select Voucher",
   servings: "Servings",
   single_items: {
@@ -399,6 +404,7 @@ export const languageMap_zh = {
   add_address: "添加地址",
   add_contact: "添加联系方式",
   add_new_address: "添加新地址",
+  add_new_contact: "Add new contact",
   add_pet: "添加宠物",
   all: "全部",
   am: "上午",
@@ -432,6 +438,8 @@ export const languageMap_zh = {
     pet:"Pet",
   },
   contact:"联系我们",
+  contacts: "Contacts",
+  contact_empty: "Contact is not selected",
   contact_customer_hero:"Contact our customer hero!",
   contact_label:"Contact",
   contact_info:"Contact information",
@@ -461,7 +469,8 @@ export const languageMap_zh = {
 
   // E
   edit_address: "Edit address",
-  edit_my_address: "编辑我的地址",
+  edit_contact: "编辑联系方式",
+  dit_my_address: "编辑我的地址",
   edit_my_contacts: "编辑我的联系方式",
   edit_my_info: "编辑我的信息",
   empty: "empty",
@@ -680,6 +689,7 @@ export const languageMap_zh = {
   select: "Select",
   select_address: "Select Address",
   select_area: "Select Area",
+  select_contact: "Select Contact",
   select_voucher: "Select Voucher",
   servings: "Servings",
   single_items: {

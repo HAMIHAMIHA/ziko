@@ -2,24 +2,23 @@
   <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
     <view
       class="detail{{ select_index == index ? ' select' : '' }}"
-      wx:for="{{ user.addresses }}"
-      wx:for-item="address"
+      wx:for="{{ user.contacts }}"
+      wx:for-item="contact"
       wx:key="_id"
-      bindtap="selectAddress"
+      bindtap="selectContact"
       data-index="{{ index }}"
     >
       <view class="address_container">
-        <view class="nunito_700 address-name">{{ _t.address + ' ' + (index + 1) }}</view>
-        <view class="address-detail">{{ address.detailedAddress }}</view>
-        <view class="contact-detail">{{ address.contact || address.contact != null ? address.contact : '' }}</view>
-        <view class="contact-detail">{{ address.phone }}</view>
+        <view class="nunito_700 address-name">{{ _t.contact + ' ' + (index + 1) }}</view>
+        <view class="address-detail">{{ contact.name }}</view>
+        <view class="contact-detail">{{ contact.phone }}</view>
       </view>
-      <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.address_detail + '?id=' + address._id }}"></navigator>
+      <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.contact + '?id=' + contact._id }}"></navigator>
     </view>
   </view>
 
   <view class="btn-outline_container">
-    <navigator class="btn-outline nunito_600" hover-class="none" url="{{ _routes.address_detail }}">{{ '+ ' + _t.add_new_address }}</navigator>
+    <navigator class="btn-outline nunito_600" hover-class="none" url="{{ _routes.contact }}">{{ '+ ' + _t.add_new_contact }}</navigator>
   </view>
 
   <view class="btn-bottom" wx:if="{{ _setting.selecting }}">
