@@ -74,6 +74,7 @@ const _getVouchers = (page, status) => {
       vouchers
     })
 
+    if (!status) { app.db.set('vouchers', res.filter(r => { return r.status === 'validated' }).length) }
     showLoading(false);
   }
 

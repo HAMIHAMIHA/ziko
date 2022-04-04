@@ -39,46 +39,6 @@ Page({
   setBourseGraph: function(offer) {
     const self = this;
     const colors = bourse_colors;
-    /*
-    // Cellar Lottery detail
-    if (offer.miniprogram.lotteryEnable && offer.community === "cellar" && offer.miniprogram.lottery.draws.length > 0) {
-      
-
-      offer.last_val = offer.miniprogram.lottery.draws[offer.miniprogram.lottery.draws.length - 1].conditionValue;
-      if ( offer.miniprogram.lottery.draws[0].conditionType === "number_of_order" ) {
-        offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
-      } else {
-        offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
-      }
-
-      let prev = 0;
-      offer.miniprogram.lottery.draws.forEach( draw => {
-        let winners = [];
-        lotteries.forEach( l => {
-          if (l.offerDrawId === draw._id){
-            l.winners.forEach( w => {
-              if (w.order && w.order.customer && winners.findIndex( winner => { return winner.id === w.order.customer.id }) === -1) {
-                winners.push(w.order.customer);
-              }
-            })
-          }
-        });
-  
-        // Set size of axis mark
-        draw.position = Math.round(draw.conditionValue / offer.last_val * 100);
-        prev = draw.conditionValue
-  
-        draw.winners = winners
-        draw.unlocked = ((draw.conditionType === "number_of_order" && offer.orders >= draw.conditionValue) ||  (draw.conditionType === "x_item_sold" && offer.sold >= draw.conditionValue));
-      })
-
-      offer.miniprogram.lottery.draws = [{
-        conditionValue: 0,
-        position: 0,
-        _id: '000'
-      }, ...offer.miniprogram.lottery.draws]
-    }
-    */
 
     let bourses = offer.miniprogram.bourses.sort( (a, b) => {
       return b.unitPrice - a.unitPrice;

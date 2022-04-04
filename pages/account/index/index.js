@@ -2,6 +2,18 @@ const app = getApp();
 const { mobileLogin, getUserInfo, updateUserInfo, showLoading, getWxUserInfo } = require('../../../utils/common.js');
 const translate = require('../../../utils/internationalize/translate.js'); // 翻译功能
 
+// Page data
+const _getPageData = (page) => {
+  console.log('get page');
+  app.api.getVouchers('validated', false).then( res => {
+    console.log(res);
+    page.setData({
+      new_vouchers: res.length - app.db.get('vouchers')
+    })
+  });
+  // TODO get order and voucher list for comparsion
+}
+
 const _uploadProfileImage = (res, page) =>  {
   showLoading(true);
   const callback = file => {
@@ -48,7 +60,10 @@ Page({
     self.updatePageLanguage();
 
     // Set user Data
-    getUserInfo(self)
+    getUserInfo(self);
+
+    // Page Data (order + vouchers)
+    _getPageData(self);
   },
 
   // Get Profile info

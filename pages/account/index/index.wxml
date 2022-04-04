@@ -68,7 +68,7 @@
       <view class="short-cut__icon icon icon-headset"></view>
       <view class="short-cut__label">{{ _t.contact }}</view>
     </button>
-    <navigator class="short-cuts__button{{ _user.new_vouchers ? ' new' : '' }}" url="{{ _routes.vouchers }}">
+    <navigator class="short-cuts__button{{ new_vouchers > 0 ? ' new' : '' }}" url="{{ _routes.vouchers }}">
       <view class="short-cut__icon icon icon-redpacket"></view>
       <view class="short-cut__label">{{ _t.vouchers }}</view>
     </navigator>

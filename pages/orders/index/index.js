@@ -107,6 +107,8 @@ const getOrders = (page) => {
     page.setData({
       orders: res,
     })
+
+    app.db.set('orders', res); // Save for comparsion in profile page
   }
   let community_id = Object.keys(communities).find(item => communities[item] == current.community);
   community_id = community_id ? community_id : ''; // Remove undefined

@@ -94,6 +94,7 @@ const getRecipeDetail = (page, id) => {
       _recipe: res,
     })
 
+    // TODO related offers
     getOffers(page, id);
   })
 }
@@ -115,6 +116,16 @@ Page({
   onShow: function() {
     const self = this;
     _setPageTranslation(self);
+  },
+
+  onHide: function() {
+    // TODO unload timers
+    // countdown_timer = _clearCountdown(this, countdown_timer);
+  },
+
+  onUnload: function() {
+    // TODO unload timers
+    // countdown_timer = _clearCountdown(this, countdown_timer);
   },
 
   // Change swiper indicatior
