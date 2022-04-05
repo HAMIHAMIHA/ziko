@@ -56,6 +56,7 @@ export const languageMap_en = {
     kitchen:"Kitchen",
     pet:"Pet",
   },
+  congrats: "Congrats",
   contact: "Contact",
   contacts: "Contacts",
   contact_empty: "Contact is not selected",
@@ -178,6 +179,7 @@ export const languageMap_en = {
   // N
   name: "Name",
   need_login: "You need to login first",
+  next: "next",
   no_offers: "No offers yet",
   no_orders: "No orders yet",
   no_recipes: "No related recipes",
@@ -222,6 +224,37 @@ export const languageMap_en = {
     x_total_sold_items: {
       prefix: "",
       suffix: " total sold items",
+    },
+  },
+  offer_special_result: {
+    first_order: {
+      prefix: "first ",
+      suffix: " buyers",
+    },
+    item_x_in_cart: {
+      prefix: '"',
+      suffix: '" bought',
+    },
+    items_sold: "items sold",
+    number_of_order: {
+      prefix: "> ",
+      suffix: " total orders",
+    },
+    order_for_amount: {
+      prefix: "order > CNY",
+      suffix: "",
+    },
+    x_total_sold_items: {
+      prefix: "",
+      suffix: " total items sold",
+    },
+    ziko_lottery: {
+      prefix: "Ziko Lottery",
+      suffix: "",
+    },
+    ziko_special: {
+      prefix: "Ziko Special",
+      suffix: "",
     },
   },
   offers: " offers",
@@ -451,6 +484,7 @@ export const languageMap_zh = {
     kitchen:"Kitchen",
     pet:"Pet",
   },
+  congrats: "Congrats",
   contact:"联系我们",
   contacts: "Contacts",
   contact_empty: "Contact is not selected",
@@ -527,6 +561,7 @@ export const languageMap_zh = {
   items_unit: " items",
 
   // J
+  just_won_items: "You just won some items!",
   just_won_lottery: "You just won at the lottery!",
   
   // K
@@ -573,6 +608,7 @@ export const languageMap_zh = {
   // N
   name: "Name",
   need_login: "You need to login first",
+  next: "next",
   no_offers: "No offers yet",
   no_orders: "No orders yet",
   no_recipes: "No related recipes",
@@ -617,6 +653,37 @@ export const languageMap_zh = {
     x_total_sold_items: {
       prefix: "",
       suffix: " total sold items",
+    },
+  },
+  offer_special_result: {
+    first_order: {
+      prefix: "first ",
+      suffix: " buyers",
+    },
+    item_x_in_cart: {
+      prefix: '"',
+      suffix: '" bought',
+    },
+    items_sold: "items sold",
+    number_of_order: {
+      prefix: "> ",
+      suffix: " total orders",
+    },
+    order_for_amount: {
+      prefix: "order > CNY",
+      suffix: "",
+    },
+    x_total_sold_items: {
+      prefix: "",
+      suffix: " total items sold",
+    },
+    ziko_lottery: {
+      prefix: "Ziko Lottery",
+      suffix: "",
+    },
+    ziko_special: {
+      prefix: "Ziko Special",
+      suffix: "",
     },
   },
   offers: " offers",

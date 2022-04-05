@@ -80,7 +80,6 @@ const getOrders = (page) => {
           origin: gift.origin,
           _id: gift._id
         }]
-    
       }, 
       voucher: (gift) => {
         return ['gift', {

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "result": "/component/modals/results/results"
+    "result": "/component/modals/results/results",
+    "done": "/component/modals/done/done"
   }
 }
