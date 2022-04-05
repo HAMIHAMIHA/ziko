@@ -561,18 +561,33 @@ button:not([size=mini]).float-contact_container {
   overflow: hidden;
 }
 
+.modal-container .bg-black {
+  background: #242331;
+}
+
 .modal-container .content-head {
   padding: 64rpx 0 48rpx;
   background: #242331;
 }
 
 .modal-container .content-body {
-  padding: 48rpx 0;
+  padding-top: 48rpx;
 }
 
 .modal-container .content-title {
   font-size: 36rpx;
   line-height: 44rpx;
+}
+
+.modal-container .content-message {
+  margin-top: 8rpx;
+  margin-bottom: 48rpx;
+  font-size: 32rpx;
+  line-height: 44rpx;
+}
+
+.modal-container .content_detailed .content-message {
+  margin-bottom: 0;
 }
 
 .modal-container .content-label {
@@ -654,11 +669,8 @@ button:not([size=mini]).float-contact_container {
   line-height: 38rpx;
 }
 
-.modal-container .content-message {
-  margin-top: 8rpx;
-  margin-bottom: 48rpx;
-  font-size: 32rpx;
-  line-height: 44rpx;
+.modal-container .content-foot {
+  padding-bottom: 48rpx;
 }
 
 .modal-container button:not([size=mini]).content-confirm {

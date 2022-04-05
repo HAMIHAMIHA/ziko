@@ -4,13 +4,15 @@
     <view class="gilroy_800 uppercase header-text">{{ _t.sorry }}</view>
   </view>
 
-  <view class="content" slot="content">
+  <view class="content bg-black" slot="content">
     <view class="content-head">
       <view class="gilroy_800 content-title">{{ _t.not_this_time }}</view>
       <view class="content-message">
         <view>{{ draw.winners.name }} {{ _t.has_won_the_lottery }}</view>
         <view>{{ _t.better_luck_next_time }}</view>
       </view>
+    </view>
+    <view class="content-foot">
       <button class="nunito_800 uppercase content-confirm">{{ _t.back_to_order }}</button>
     </view>
   </view>

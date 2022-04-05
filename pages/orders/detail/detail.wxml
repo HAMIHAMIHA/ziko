@@ -193,4 +193,5 @@
     </button>
   </view>
 </view>
-<lottery-draw></lottery-draw>
+
+<result></result>

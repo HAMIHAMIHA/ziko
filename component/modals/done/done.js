@@ -1,23 +1,9 @@
-// component/modals/draw/draw.js
 Component({
-  /**
-   * Component properties
-   */
   properties: {
-
+    _t: Object,
   },
 
-  /**
-   * Component initial data
-   */
-  data: {
-
-  },
-
-  /**
-   * Component methods
-   */
-  methods: {
-
+  options: {
+    addGlobalClass: true
   }
 })

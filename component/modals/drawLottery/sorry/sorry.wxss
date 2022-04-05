@@ -1,0 +1,3 @@
+.content-head {
+  padding-bottom: 0 !important;
+}

@@ -1,23 +1,24 @@
-<modal>
+<modal class="modal-star">
   <view class="header" slot="header">
-    <image src="/assets/images/lottery-win.jpg" open-type="aspectFill"></image>
-    <view class="header-text">{{ _t.congrats }}!</view>
+    <image class="header-image" src="/assets/images/lottery-win.jpg" open-type="aspectFill"></image>
+    <view class="gilroy_800 uppercase header-text">{{ _t.congrats }}!</view>
   </view>
 
   <view class="lottery-content_container">
-    <view class="content" slot="content">
+    <view class="content content_detailed" slot="content">
       <view class="content-head">
-        <view class="content-title">{{ _t.just_won_items }}</view>
+        <view class="gilroy_800 content-title">{{ _t.just_won_items }}</view>
         <view class="content-message">{{ _t.pick_up_your_item }}</view>
       </view>
       <block wx:for="{{ draws }}" wx:for-item="draw">
         <view class="content-body{{ draw.checked ? ' checked' : '' }}">
-          <view class="content-label">
+          <view class="nunito_800 uppercase content-label">
             {{ _t.unlocked_at }} {{ draw.conditionValue }} {{ draw.conditionType === 'number_of_order' ? _t.orders : _t.items_sold }}
           </view>
           <view class="content-image_container">
             <image class="content-image_background" src="/assets/images/starBackground.png" open-type="aspectFill"></image>
-            <image class="content-image" src="{{ _folder.gift + draw.gift.picture.uri }}" open-type="aspectFill" wx:if="{{ draw.picture.uri }}"></image>
+            <image class="content-image" src="{{ _folder.gift + draw.gift.picture.uri }}" open-type="aspectFill" wx:if="{{ draw.gift.picture }}"></image>
+            <view class="content-image icon icon-gift" wx:else></view>
           </view>
 
           <view class="content-detail">

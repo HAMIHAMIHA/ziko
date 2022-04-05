@@ -18,7 +18,20 @@ const _getPageTranslation = (page) => {
 }
 
 Component({
-  // data: {
+  data: {
+    _t: {
+      community: app.globalData.i18n.community,
+      draw: app.globalData.i18n.draw,
+      get: app.globalData.i18n.get,
+      items_sold: app.globalData.i18n.offer_special_names.items_sold,
+      just_won_lottery: app.globalData.i18n.just_won_lottery,
+      orders: app.globalData.i18n.offer_special_names.orders,
+      pick_up_your_item: app.globalData.i18n.pick_up_your_item,
+      prize_will_be_delivered: app.globalData.i18n.prize_will_be_delivered,
+      unlocked_at: app.globalData.i18n.unlocked_at,
+      you_win: app.globalData.i18n.you_win,
+    },
+  },
   //   draw: {
   //     count: 6, // index + 1
   //     conditionType: "number_of_order",

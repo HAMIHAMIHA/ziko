@@ -4,8 +4,8 @@
     <view class="gilroy_800 uppercase header-text">{{ _t.you_win }}!</view>
   </view>
 
-  <view class="content" slot="content">
-    <view class="content-head">
+  <view class="content content_detailed" slot="content">
+    <view class="content-head bg-black">
       <view class="gilroy_800 content-title">{{ _t.just_won_lottery }}</view>
       <view class="content-message">{{ _t.pick_up_your_item }}</view>
     </view>
@@ -26,6 +26,8 @@
       </view>
 
       <view class="content-note">{{ _t.prize_will_be_delivered }}</view>
+    </view>
+    <view class="content-foot">
       <button class="nunito_800 uppercase content-confirm" bindtap="getPrize">{{ _t.get }}</button>
     </view>
   </view>
