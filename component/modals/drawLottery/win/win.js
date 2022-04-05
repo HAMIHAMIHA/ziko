@@ -39,9 +39,14 @@ Component({
       winners: [],
       _id: "623c0438c64fc9f745a6f72f",
       offer: {
+        name: 'La bourse du pinard',
         community: 'cellar'
       }
     },
+  },
+
+  options: {
+    addGlobalClass: true
   },
 
   methods: {

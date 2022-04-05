@@ -1,1 +1,4 @@
-/* component/modals/lottery/lottery.wxss */
+.content .content-body .content-label {
+  color: #00A337;
+  background: #E0FAE7;
+}

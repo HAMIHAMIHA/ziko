@@ -1,34 +1,32 @@
 <modal>
   <view class="header" slot="header">
     <image class="header-image" src="/assets/images/lottery-win.jpg" open-type="aspectFill"></image>
-    <view class="header-text">{{ _t.you_win }}!</view>
+    <view class="gilroy_800 uppercase header-text">{{ _t.you_win }}!</view>
   </view>
 
   <view class="content" slot="content">
     <view class="content-head">
-      <view class="content-title">{{ _t.just_won_lottery }}</view>
+      <view class="gilroy_800 content-title">{{ _t.just_won_lottery }}</view>
       <view class="content-message">{{ _t.pick_up_your_item }}</view>
     </view>
     <view class="content-body">
-      <view class="content-label">
+      <view class="nunito_800 uppercase content-label">
         {{ _t.unlocked_at }}{{ draw.conditionValue }} {{ draw.conditionType === 'number_of_order' ? _t.orders : _t.items_sold }}
       </view>
       <view class="content-image_container">
         <image class="content-image_background" src="/assets/images/starBackground.png" open-type="aspectFill"></image>
         <image class="content-image" src="{{ draw.gifts.picture }}" open-type="aspectFill" wx:if="{{ draw.gifts.picture }}"></image>
-        <view class="icon icon-gift" wx:else></view>
+        <view class="content-image icon icon-gift" wx:else></view>
       </view>
 
       <view class="content-detail">
-        <view class="content-name">{{ draw.gifts.name }}</view>
-        <view class="content-draw">{{ _t.draw }}{{ draw.count }}</view>
-        <view class="content-info">{{ draw.offer.name[_language] }} ({{ _t.community[draw.offer.community] }})</view>
+        <view class="gilroy_700 uppercase content-name">{{ draw.gifts.name }}</view>
+        <view class="content-draw">{{ _t.draw }} {{ draw.count }}</view>
+        <view class="content-info">{{ draw.offer.name }} ({{ _t.community[draw.offer.community] }})</view>
       </view>
 
       <view class="content-note">{{ _t.prize_will_be_delivered }}</view>
-    </view>
-    <view class="content-foot"> 
-      <button class="content-confirm" bindtap="getPrize">{{ _t.get }}</button>
+      <button class="nunito_800 uppercase content-confirm" bindtap="getPrize">{{ _t.get }}</button>
     </view>
   </view>
 </modal>

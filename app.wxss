@@ -507,6 +507,148 @@ button:not([size=mini]).float-contact_container {
 }
 /* End of Lottery Alert */
 
+/* Modal */
+.modal-container .card {
+  padding-top: 170rpx;
+  position: relative;
+}
+
+.modal-container .modal-content {
+  position: relative;
+}
+
+.modal-container .header {
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.modal-container .header .header-image {
+  width: 526rpx;
+  height: 210rpx;
+}
+
+.modal-container .header .header-text {
+  font-size: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  letter-spacing: 0.05em;
+  position: absolute;
+  top: 110rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.modal-container .content {
+  background: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.modal-container .content-head {
+  padding: 64rpx 0 48rpx;
+  background: #242331;
+}
+
+.modal-container .content-body {
+  padding: 48rpx 0;
+}
+
+.modal-container .content-label {
+  width: fit-content;
+  margin: auto;
+  padding: 4rpx 16rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  color: #6D5C1E;
+  background: #FFD12D;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.modal-container .content-image_container {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.modal-container .content-image_background {
+  width: 264rpx;
+  height: 264rpx;
+  position: absolute;
+  left: 50%;
+  top: -28rpx;
+  transform: translateX(-50%);
+}
+
+.modal-container .content-image {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 24rpx 0;
+  background: #FFFFFF;
+  z-index: 1;
+}
+
+.modal-container .content-image.icon {
+  width: 130rpx;
+  height: 130rpx;
+  padding: 15rpx;
+  color: #11141B;
+  font-size: 130rpx;
+}
+
+.modal-container .content-detail {
+  position: relative;
+  z-index: 1;
+}
+
+.modal-container .content-detail {
+  color: #9D9FA4;
+  font-size: 26rpx;
+  line-height: 32rpx;
+}
+
+.modal-container .content-detail .content-name {
+  color: #11141B;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  letter-spacing: 0.05em;
+}
+
+.modal-container .content-detail .content-draw {
+  padding-top: 8rpx;
+}
+
+.modal-container .content-detail .content-info {
+  padding-bottom: 16rpx;
+}
+
+.modal-container .content-note {
+  margin: 32rpx;
+  color: #11141B;
+  font-size: 28rpx;
+  line-height: 38rpx;
+}
+
+.modal-container button:not([size=mini]).content-confirm {
+  width: fit-content;
+  padding: 12rpx 48rpx;
+  background: #EB4949;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  border-radius: 34px;
+}
+/* End of Modal */
+
 /* Offer Cellar Count */
 .ziko-offer .cellar-total_container {
   padding: 24rpx 30rpx;
@@ -1199,6 +1341,10 @@ button:not([size=mini]).float-contact_container {
   border-radius: 4px;
   border: 2px solid #252831;
   transition: all 0.1s ease-in;
+}
+
+.voucher_container:first-child {
+  margin-top: 0;
 }
 
 .voucher_container.selected {
