@@ -73,7 +73,6 @@ const getOrders = (page) => {
         }]
       }, 
       custom: (gift) => {
-        console.log(gift);
         return ['gift', {
           name: gift.custom[_lang],
           picture: '',

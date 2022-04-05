@@ -14,10 +14,10 @@ page {
   pointer-events: all;
 }
 
-.modal-component.hide {
+/* .modal-component.hide {
   opacity: 0;
   pointer-events: none;
-}
+} */
 
 .mask {
   width: 100vw;
@@ -35,22 +35,15 @@ page {
   overflow: hidden;
   position: fixed;
   left: 50vw;
-  top: calc((100vh + var(--nav-height) - var(--env)) / 2); /* Make sure rating card is centered */
-  transform: translate(-50%, -50%);
+  /* top: calc((100vh + var(--nav-height) - var(--env)) / 2); */
+  /* Make sure rating card is centered */
+  transform: translate(-50%, 0%);
   z-index: 10001;
   box-sizing: border-box;
 }
 
 .card {
   position: relative;
-}
-
-.card-scroll-container {
-  max-height: calc(100vh - var(--nav-height) - 96rpx + 2px - var(--env));
-}
-
-.modal-container .card-detail {
-  padding: 64rpx 48rpx;
 }
 
 .close-btn {

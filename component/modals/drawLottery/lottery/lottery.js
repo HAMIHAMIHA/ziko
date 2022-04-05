@@ -1,22 +1,7 @@
-// component/modals/drawLottery/lottery/lottery.js
 Component({
-  /**
-   * Component properties
-   */
-  properties: {
-
+  data:{
+    
   },
-
-  /**
-   * Component initial data
-   */
-  data: {
-
-  },
-
-  /**
-   * Component methods
-   */
   methods: {
     showResult: function(e) {
       const self = this;

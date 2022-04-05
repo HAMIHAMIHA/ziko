@@ -20,7 +20,8 @@ Component({
   },
 
   options: {
-    addGlobalClass: true
+    addGlobalClass: true,
+    multipleSlots: true,
   },
 
   methods: {

@@ -73,3 +73,5 @@
   </view>
   <!-- End of Map popup -->
 </view>
+
+<lottery-draw></lottery-draw>

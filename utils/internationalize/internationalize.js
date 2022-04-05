@@ -109,6 +109,7 @@ export const languageMap_en = {
   fidelity_points: "Fidelity points",
 
   // G
+  get: "Get",
   get_reminder: "Get a reminder",
   get_profile: "Authorize wechat nickname",
   getting_user_profile: "To complete your user profile",
@@ -128,6 +129,8 @@ export const languageMap_en = {
   items_unit: " items",
 
   // J
+  just_won_lottery: "You just won at the lottery!",
+
   // K
   kcal: "kCal",
 
@@ -210,6 +213,7 @@ export const languageMap_en = {
       prefix: "order above ¥",
       suffix: "",
     },
+    orders: "orders",
     orders_sold:  "orders sold",
     x_total_sold_items: {
       prefix: "",
@@ -262,6 +266,7 @@ export const languageMap_en = {
     large: "Large"
   },
   phone_no: "Phone no",
+  pick_up_your_item: "Pick up your items",
   please_select_voucher: "Please select a Voucher or Ziko gift card",
   pm: "PM",
   preparation: "Preparation",
@@ -272,6 +277,7 @@ export const languageMap_en = {
     multiple_items: "Multiple",
     regular: "",
   },
+  prize_will_be_delivered: "Your price will be delivered with your order.",
   problem_with_order: "Is there a problem with your order?",
   product_detail: "Product detail",
   products: "products",
@@ -346,6 +352,7 @@ export const languageMap_en = {
     kg:"kg",
   },
   unlocked: "Unlocked",
+  unlocked_at: "unlocked at ",
   use_voucher: "Use Voucher",
 
   // V
@@ -492,6 +499,7 @@ export const languageMap_zh = {
   fidelity_points: "Fidelity points",
 
   // G
+  get: "Get",
   get_reminder: "Get a reminder",
   get_profile: "授权微信昵称",
   getting_user_profile: "用于完善会员资料",
@@ -511,6 +519,8 @@ export const languageMap_zh = {
   items_unit: " items",
 
   // J
+  just_won_lottery: "You just won at the lottery!",
+  
   // K
   kcal: "kCal",
 
@@ -593,6 +603,7 @@ export const languageMap_zh = {
       prefix: "order above ¥",
       suffix: "",
     },
+    orders: "orders",
     orders_sold:  "orders sold",
     x_total_sold_items: {
       prefix: "",
@@ -644,6 +655,7 @@ export const languageMap_zh = {
     large: "Large"
   },
   phone_no: "Phone no",
+  pick_up_your_item: "Pick up your items",
   please_select_voucher: "Please select a Voucher or Ziko gift card",
   pm: "下午",
   preparation: "Preparation",
@@ -728,6 +740,7 @@ export const languageMap_zh = {
     kg:"kg",
   },
   unlocked: "Unlocked",
+  unlocked_at: "unlocked at ",
   use_voucher: "Use Voucher",
 
   // V

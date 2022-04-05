@@ -1,10 +1,10 @@
-<view class="modal-component {{ (show ? 'show': 'hide') }}" catchtouchmove="preventSlide" animation="{{animation}}">
+<view class="modal-component {{ (show ? 'show': 'hide') }}" catchtouchmove="preventSlide" animation="{{ animation }}">
   <view class="mask" bindtap="closeModal"></view>
   <view class="modal-container">
-    <slot name="header"></slot>
     <view class="card">
+      <slot name="header"></slot>
       <view class="close-btn" bindtap="closeModal">
-        <view class="icon icon-close"></view>
+        <view class="icon icon-x"></view>
       </view>
       <slot name="content"></slot>
     </view>

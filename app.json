@@ -67,6 +67,9 @@
     "navigationBarTitleText": "Zikoland",
     "navigationBarTextStyle": "white"
   },
+  "usingComponents": {
+    "lottery-draw": "/component/modals/drawLottery/lottery/lottery"
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

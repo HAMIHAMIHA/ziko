@@ -1,6 +1,6 @@
 <modal>
   <view class="header" slot="header">
-    <image src="/assets/images/lottery-win.jpg" open-type="aspectFill"></image>
+    <image class="header-image" src="/assets/images/lottery-win.jpg" open-type="aspectFill"></image>
     <view class="header-text">{{ _t.you_win }}!</view>
   </view>
 
@@ -11,17 +11,18 @@
     </view>
     <view class="content-body">
       <view class="content-label">
-        {{ _t.unlocked_at }} {{ draw.conditionValue }} {{ draw.conditionType === 'number_of_order' ? _t.orders : _t.items_sold }}
+        {{ _t.unlocked_at }}{{ draw.conditionValue }} {{ draw.conditionType === 'number_of_order' ? _t.orders : _t.items_sold }}
       </view>
       <view class="content-image_container">
         <image class="content-image_background" src="/assets/images/starBackground.png" open-type="aspectFill"></image>
-        <image class="content-image" src="{{ _folder.gift + draw.picture.uri }}" open-type="aspectFill"></image>
+        <image class="content-image" src="{{ draw.gifts.picture }}" open-type="aspectFill" wx:if="{{ draw.gifts.picture }}"></image>
+        <view class="icon icon-gift" wx:else></view>
       </view>
 
       <view class="content-detail">
-        <view class="content-name">{{ draw.name }}</view>
+        <view class="content-name">{{ draw.gifts.name }}</view>
         <view class="content-draw">{{ _t.draw }}{{ draw.count }}</view>
-        <view class="content-info">{{ draw.offer.name[_language] }} ({{ _t.offer_type[draw.offer.type] }})</view>
+        <view class="content-info">{{ draw.offer.name[_language] }} ({{ _t.community[draw.offer.community] }})</view>
       </view>
 
       <view class="content-note">{{ _t.prize_will_be_delivered }}</view>
