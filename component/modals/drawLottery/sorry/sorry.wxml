@@ -1,19 +1,17 @@
-<modal>
+<modal class="modal-container_header">
   <view class="header" slot="header">
-    <image src="/assets/images/lottery-sorry.jpg" open-type="aspectFill"></image>
-    <view class="header-text">{{ _t.sorry }}!</view>
+    <image class="header-image" src="/assets/images/lottery-sorry.jpg" open-type="aspectFill"></image>
+    <view class="gilroy_800 uppercase header-text">{{ _t.sorry }}</view>
   </view>
 
   <view class="content" slot="content">
     <view class="content-head">
-      <view class="content-title">{{ _t.not_this_time }}</view>
+      <view class="gilroy_800 content-title">{{ _t.not_this_time }}</view>
       <view class="content-message">
-        <text>{{ winners.name }} {{ _t.has_won_the_lottery }}</text>
-        <text>{{ _t.better_luck_next_time }}</text>
+        <view>{{ draw.winners.name }} {{ _t.has_won_the_lottery }}</view>
+        <view>{{ _t.better_luck_next_time }}</view>
       </view>
-    </view>
-    <view class="content-foot"> 
-      <button class="draw-btn">{{ _t.back_to_orders }}</button>
+      <button class="nunito_800 uppercase content-confirm">{{ _t.back_to_order }}</button>
     </view>
   </view>
 </modal>

@@ -53,9 +53,13 @@ page {
   font-size: 16rpx;
   border-radius: 50%;
   position: fixed;
-  top: calc(28rpx + 170rpx);
+  top: calc(28rpx + 76rpx);
   right: 28rpx;
   z-index: 100001;
+}
+
+.modal-star .close-btn {
+  top: calc(28rpx + 170rpx);
 }
 
 .modal-btn-container .btn {

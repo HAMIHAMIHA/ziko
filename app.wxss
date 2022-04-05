@@ -509,8 +509,15 @@ button:not([size=mini]).float-contact_container {
 
 /* Modal */
 .modal-container .card {
-  padding-top: 170rpx;
   position: relative;
+}
+
+.modal-container_header .modal-container .card {
+  padding-top: 76rpx;
+}
+
+.modal-star .modal-container .card {
+  padding-top: 170rpx;
 }
 
 .modal-container .modal-content {
@@ -530,6 +537,10 @@ button:not([size=mini]).float-contact_container {
 
 .modal-container .header .header-image {
   width: 526rpx;
+  height: 116rpx;
+}
+
+.modal-star .modal-container .header .header-image {
   height: 210rpx;
 }
 
@@ -539,7 +550,7 @@ button:not([size=mini]).float-contact_container {
   text-align: center;
   letter-spacing: 0.05em;
   position: absolute;
-  top: 110rpx;
+  bottom: 60rpx;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -557,6 +568,11 @@ button:not([size=mini]).float-contact_container {
 
 .modal-container .content-body {
   padding: 48rpx 0;
+}
+
+.modal-container .content-title {
+  font-size: 36rpx;
+  line-height: 44rpx;
 }
 
 .modal-container .content-label {
@@ -636,6 +652,13 @@ button:not([size=mini]).float-contact_container {
   color: #11141B;
   font-size: 28rpx;
   line-height: 38rpx;
+}
+
+.modal-container .content-message {
+  margin-top: 8rpx;
+  margin-bottom: 48rpx;
+  font-size: 32rpx;
+  line-height: 44rpx;
 }
 
 .modal-container button:not([size=mini]).content-confirm {

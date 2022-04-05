@@ -1,11 +1,7 @@
 const app = getApp();
 
-Component({
-  properties: {
-    // lottery: Object
-  },
-
-  data: {
+const _getPageTranslation = (page) => {
+  page.setData({
     _t: {
       community: app.globalData.i18n.community,
       draw: app.globalData.i18n.draw,
@@ -18,38 +14,49 @@ Component({
       unlocked_at: app.globalData.i18n.unlocked_at,
       you_win: app.globalData.i18n.you_win,
     },
-    draw: {
-      count: 6, // index + 1
-      conditionType: "number_of_order",
-      conditionValue: 5,
-      gifts: {
-        custom: {zh: "Pork shoulder minced 250 g", en: "Pork shoulder minced 250 g zh"},
-        name: "Pork shoulder minced 250 g",
-        picture: '',
-        discountAmount: null,
-        offerDrawId: "623be7a2c64fc9f745a6ece0",
-        origin: "ziko_special",
-        pack: null,
-        singleItem: null,
-        type: "custom",
-        voucherExpiration: null,
-        voucherValue: null,
-        _id: "6249f20cc64fc9f745a7b158",
-      },
-      winners: [],
-      _id: "623c0438c64fc9f745a6f72f",
-      offer: {
-        name: 'La bourse du pinard',
-        community: 'cellar'
-      }
-    },
-  },
+  })
+}
+
+Component({
+  // data: {
+  //   draw: {
+  //     count: 6, // index + 1
+  //     conditionType: "number_of_order",
+  //     conditionValue: 5,
+  //     gifts: {
+  //       custom: {zh: "Pork shoulder minced 250 g", en: "Pork shoulder minced 250 g zh"},
+  //       name: "Pork shoulder minced 250 g",
+  //       picture: '',
+  //       discountAmount: null,
+  //       offerDrawId: "623be7a2c64fc9f745a6ece0",
+  //       origin: "ziko_special",
+  //       pack: null,
+  //       singleItem: null,
+  //       type: "custom",
+  //       voucherExpiration: null,
+  //       voucherValue: null,
+  //       _id: "6249f20cc64fc9f745a7b158",
+  //     },
+  //     winners: [],
+  //     _id: "623c0438c64fc9f745a6f72f",
+  //     offer: {
+  //       name: 'La bourse du pinard',
+  //       community: 'cellar'
+  //     }
+  //   },
+  // },
 
   options: {
     addGlobalClass: true
   },
 
   methods: {
-
+    showModal: function(draw) {
+      const self = this;
+      _getPageTranslation(self);
+      page.setData({
+        draw: draw
+      })
+    }
   }
 })

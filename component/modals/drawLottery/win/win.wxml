@@ -1,4 +1,4 @@
-<modal>
+<modal class="modal-container_header modal-star">
   <view class="header" slot="header">
     <image class="header-image" src="/assets/images/lottery-win.jpg" open-type="aspectFill"></image>
     <view class="gilroy_800 uppercase header-text">{{ _t.you_win }}!</view>

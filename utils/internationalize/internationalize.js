@@ -34,7 +34,9 @@ export const languageMap_en = {
   available_for: "Available for",
 
   // B
+  back_to_order: "back to my order",
   baking: "Baking",
+  better_luck_next_time: "Better luck next time!",
 
   // C
   cart: "Cart",
@@ -121,7 +123,8 @@ export const languageMap_en = {
 
   // H
   home: "The land",
-
+  has_won_the_lottery: " has won the lottery.",
+ 
   // I
   item_quantity: "item quantity",
   item_unit: " item",
@@ -180,6 +183,7 @@ export const languageMap_en = {
   no_recipes: "No related recipes",
   no_vouchers: "No vouchers",
   no_winner_yet: "No winner yet",
+  not_this_time : "Not this time...",
 
   // O
   offer: "Offer",
@@ -321,6 +325,7 @@ export const languageMap_en = {
     snd: " items"
   },
   size: "Size",
+  sorry: "Sorry",
   specials: "Specials",
   storage_types: {
     dry: "Dry",
@@ -424,7 +429,9 @@ export const languageMap_zh = {
   available_for: "Available for",
 
   // B
+  back_to_order: "back to my order",
   baking: "Baking",
+  better_luck_next_time: "Better luck next time!",
 
   // C
   cart: "购物车",
@@ -511,6 +518,7 @@ export const languageMap_zh = {
 
   // H
   home: "地图",
+  has_won_the_lottery: " has won the lottery.",
 
   // I
   item_quantity: "item quantity",
@@ -570,6 +578,7 @@ export const languageMap_zh = {
   no_recipes: "No related recipes",
   no_vouchers: "No vouchers",
   no_winner_yet: "No winner yet",
+  not_this_time : "Not this time...",
 
   // O
   offer: "Offer",
@@ -709,6 +718,7 @@ export const languageMap_zh = {
     snd: " items"
   },
   size: "Size",
+  sorry: "Sorry",
   specials: "Specials",
   storage_types: {
     dry: "Dry",
