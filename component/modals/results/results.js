@@ -40,11 +40,13 @@ Component({
 
       if (self.data.current + 1 < self.data.gifts.length) {
         self.setData({
-          current: self.data.current++,
+          current: self.data.current + 1,
         })
       } else {
         self.selectComponent('#modal_template').closeModal();
-        self.triggerEvent('showCollected');
+        setTimeout(() => {
+          self.triggerEvent('showCollected');
+        }, 150);
       }
     }
   }

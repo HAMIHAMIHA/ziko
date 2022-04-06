@@ -63,6 +63,17 @@ const getOrders = (page) => {
       pack: (gift, offer) => {
         let product_idx = offer.miniprogram.packs.findIndex( i => i.shortName === gift.pack);
         let prod = offer.miniprogram.packs[product_idx];
+
+        let details = [];
+
+        // prod.products.forEach( product => {
+        //   details.push(
+        //     `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? units : product.quantity == 1 ? item_unit : items_unit }`
+        //   );
+        // })
+        // let products_info = details.join(', ');
+        let products_info = 'test'; // TEMP
+
         return ['gift', {
           _id: gift._id,
           count: 1,
@@ -70,7 +81,7 @@ const getOrders = (page) => {
           origin: gift.origin,
           name: prod.name[_lang],
           picture: '/assets/images/packDefault.png',
-          product_info: prod.products_info,
+          product_info: products_info,
           shortName: gift.pack,
         }]
       }, 
@@ -246,7 +257,6 @@ Page({
 
   showCollected: function() {
     const self = this;
-    console.log('collected');
     self.selectComponent('#order_collected').show();
   },
 })

@@ -195,5 +195,5 @@
 </view>
 
 <result id="order_gifts" _t="{{ _t_gifts }}" bind:showCollected="showCollected"></result>
-<!-- <done id="order_complete" _t="{{ _t_complete }}"></done> -->
+<done id="order_complete" _t="{{ _t_complete }}"></done>
 <done id="order_collected" _t="{{ _t_collected }}"></done>

@@ -1,1 +1,3 @@
-/* component/modals/done/done.wxss */
+.content-message {
+  margin-bottom: 0 !important;
+}

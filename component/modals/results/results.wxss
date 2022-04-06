@@ -18,8 +18,15 @@
   opacity: 0.4;
 }
 
+.content-body .content-detail .content-info {
+  padding: 8rpx 0 16rpx;
+}
+
 .content-total {
+  padding-top: 32rpx;
   color: #11141B;
+  font-size: 32rpx;
+  line-height: 32rpx;
 }
 
 .icon-check {

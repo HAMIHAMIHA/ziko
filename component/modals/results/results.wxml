@@ -23,7 +23,7 @@
           </view>
 
           <view class="content-detail">
-            <view class="content-name{{ gift.special.conditionType === 'ziko_special' ? ' font_red' : '' }}">{{ gift.name }}</view>
+            <view class="gilroy_700 uppercase content-name{{ gift.special.conditionType === 'ziko_special' ? ' font_red' : '' }}">{{ gift.name }}</view>
             <view class="content-info">{{ gift.product_info }}</view>
           </view>
 
@@ -36,7 +36,7 @@
       <button class="nunito_800 uppercase content-confirm" bindtap="getPrize" wx:if="{{ !gifts[current].checked }}">{{ _t.get }}</button>
       <button class="nunito_800 uppercase content-confirm" bindtap="nextItem" wx:else>{{ _t.next }}</button>
 
-      <view class="content-total">{{ current + 1 }}/{{ gifts.length }}</view>
+      <view class="gilroy_700 content-total">{{ current + 1 }}/{{ gifts.length }}</view>
     </view>
   </view>
 </modal>
