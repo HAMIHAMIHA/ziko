@@ -237,7 +237,10 @@ export const languageMap_en = {
       prefix: '"',
       suffix: '" bought',
     },
-    items_sold: "items sold",
+    items_sold: {
+      prefix: '',
+      suffix: " items sold"
+    },
     number_of_order: {
       prefix: "> ",
       suffix: " total orders",
@@ -666,8 +669,10 @@ export const languageMap_zh = {
       prefix: '"',
       suffix: '" bought',
     },
-    items_sold: "items sold",
-    number_of_order: {
+    items_sold: {
+      prefix: '',
+      suffix: " items sold"
+    },    number_of_order: {
       prefix: "> ",
       suffix: " total orders",
     },

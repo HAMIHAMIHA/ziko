@@ -648,10 +648,13 @@ button:not([size=mini]).float-contact_container {
 }
 
 .modal-container .content-detail .content-name {
-  color: #11141B;
   font-size: 32rpx;
   line-height: 32rpx;
   letter-spacing: 0.05em;
+}
+
+.modal-container .content-detail .content-name:not(.font_red) {
+  color: #11141B;
 }
 
 .modal-container .content-detail .content-draw {

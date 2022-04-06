@@ -115,7 +115,7 @@ const getOrders = (page) => {
         }
 
         // Find special
-        let special_idx = res.offer.miniprogram.zikoSpecials.findIndex( s => s.gift.custom[app.db.get('language')] === gift_info.name || s.gift.pack === gift_info.shortName ||  s.gift.singleItem === gift_info.shortName);
+        let special_idx = res.offer.miniprogram.zikoSpecials.findIndex( s => (s.gift.custom && s.gift.custom[app.db.get('language')] === gift_info.name ) || (s.gift.pack && s.gift.pack === gift_info.shortName ) || (s.gift.singleItem && s.gift.singleItem === gift_info.shortName));
         if (special_idx > -1) {
           gift_info.special = res.offer.miniprogram.zikoSpecials[special_idx];
         }
@@ -131,9 +131,12 @@ const getOrders = (page) => {
       modal_gifts = [...gifts];
       if (special_discount > 0) {
         modal_gifts = modal_gifts.concat({
+          _id: 'ziko_special000',
           name: `￥${special_discount}`,
-          conditionType: 'ziko_special',
-          conditionValue: 0
+          special: {
+            conditionType: 'ziko_special',
+            conditionValue: ''
+          }
         })
       }
     })

@@ -13,17 +13,18 @@
       <block wx:for="{{ gifts }}" wx:key="_id" wx:for-item="gift">
         <view class="content-body{{ draw.checked ? ' checked' : '' }}">
           <view class="nunito_800 uppercase content-label">
-            {{ _t.offer_special_result[gift.special.conditionType].prefix }} {{ gift.special.conditionValue }} {{ _t.offer_special_result[gift.special.conditionType].suffix }}
+            {{ _t.offer_special_result[gift.special.conditionType].prefix }}{{ gift.special.conditionValue }}{{ _t.offer_special_result[gift.special.conditionType].suffix }}
           </view>
+
           <view class="content-image_container">
             <image class="content-image_background" src="/assets/images/starBackground.png" open-type="aspectFill"></image>
-            <image class="content-image" src="{{ _folder.gift + draw.gift.picture }}" open-type="aspectFill" wx:if="{{ draw.gift.picture }}"></image>
+            <image class="content-image" src="{{ gift.picture }}" open-type="aspectFill" wx:if="{{ gift.picture }}"></image>
             <view class="content-image icon icon-gift" wx:else></view>
           </view>
 
           <view class="content-detail">
-            <view class="content-name">{{ gift.name }}</view>
-            <view class="content-info">{{ gift.info }}</view>
+            <view class="content-name{{ gift.special.conditionType === 'ziko_special' ? ' font_red' : '' }}">{{ gift.name }}</view>
+            <view class="content-info">{{ gift.product_info }}</view>
           </view>
 
           <view class="icon icon-check"></view>

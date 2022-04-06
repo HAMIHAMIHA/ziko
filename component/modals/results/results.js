@@ -92,6 +92,8 @@ Component({
     showResults: function(gifts) {
       const self =this;
 
+      console.log(gifts);
+
       self.setData({
         gifts
       })
