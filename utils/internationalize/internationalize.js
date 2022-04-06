@@ -135,6 +135,7 @@ export const languageMap_en = {
   items_unit: " items",
 
   // J
+  just_won_items: "You just won some items!",
   just_won_lottery: "You just won at the lottery!",
 
   // K
@@ -334,6 +335,7 @@ export const languageMap_en = {
   recipe_detail: "Recipe detail",
   recipe_list: "Recipe list",
   recipes: "recipes",
+  reduction: "Reduction",
   related_current_offers: {
     fst: "related",
     snd: " current offers"
@@ -767,6 +769,7 @@ export const languageMap_zh = {
   recipe_detail: "Recipe detail",
   recipe_list: "Recipe list",
   recipes: "recipes",
+  reduction: "Reduction",
   related_current_offers: {
     fst: "related",
     snd: " current offers"

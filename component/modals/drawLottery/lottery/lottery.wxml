@@ -1,3 +1,3 @@
 <!-- <draw id="draw_modal" bind:showResult="{{ showResult }}"></draw> -->
-<!-- <win id="win_modal"></win> -->
+<win id="win_modal"></win>
 <sorry id="sorry_modal"></sorry>

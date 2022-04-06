@@ -8,8 +8,41 @@
 
 .content-body {
   width: 100%;
+  position: relative;
+  transition: all 0.5s ease-in;
+}
+
+.content-body.checked .content-label,
+.content-body.checked .content-image_container,
+.content-body.checked .content-detail {
+  opacity: 0.4;
 }
 
 .content-total {
   color: #11141B;
+}
+
+.icon-check {
+  width: fit-content;
+  font-size: 54rpx;
+  padding: 24rpx;
+  background: #45D66D;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%)  scale(0);
+  z-index: 10;
+}
+
+@keyframes check-scale {
+  0% { transform: translate(-50%, -50%)  scale(0); }
+  50% { transform: translate(-50%, -50%)  scale(1.5); }
+  100% { transform: translate(-50%, -50%)  scale(1); }
+}
+
+.content-body.checked .icon-check {
+  transform: translate(-50%, -50%)  scale(1);
+  animation-name: check-scale;
+  animation-duration: 0.5s;
 }

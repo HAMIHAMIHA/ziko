@@ -133,6 +133,8 @@ const getOrders = (page) => {
         modal_gifts = modal_gifts.concat({
           _id: 'ziko_special000',
           name: `￥${special_discount}`,
+          picture: '/assets/images/redPacket.png',
+          product_info: app.globalData.i18n.reduction,
           special: {
             conditionType: 'ziko_special',
             conditionValue: ''
@@ -215,12 +217,12 @@ Page({
         ziko_special: i18n.ziko_special,
       },
       _t_gifts: {
-        congrats: app.globalData.i18n.congrats,
-        get: app.globalData.i18n.get,
-        just_won_items: app.globalData.i18n.just_won_items,
-        next: app.globalData.i18n.next,
-        offer_special_result: app.globalData.i18n.offer_special_result,
-        pick_up_your_item: app.globalData.i18n.pick_up_your_item,
+        congrats: i18n.congrats,
+        get: i18n.get,
+        just_won_items: i18n.just_won_items,
+        next: i18n.next,
+        offer_special_result: i18n.offer_special_result,
+        pick_up_your_item: i18n.pick_up_your_item,
       },
       _t_complete: {
         back_to_order: i18n.back_to_order,
@@ -244,6 +246,7 @@ Page({
 
   showCollected: function() {
     const self = this;
-    // self.selectComponent('#order_collected').show();
+    console.log('collected');
+    self.selectComponent('#order_collected').show();
   },
 })

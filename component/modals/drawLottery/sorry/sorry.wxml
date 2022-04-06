@@ -1,6 +1,6 @@
 <modal class="modal-container_header">
   <view class="header" slot="header">
-    <image class="header-image" src="/assets/images/lottery-sorry.jpg" open-type="aspectFill"></image>
+    <image class="header-image" src="/assets/images/lottery-sorry.jpg" mode="aspectFill"></image>
     <view class="gilroy_800 uppercase header-text">{{ _t.sorry }}</view>
   </view>
 

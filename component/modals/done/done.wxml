@@ -1,11 +1,11 @@
-<modal>
+<modal id="modal_template">
   <view class="content bg-black" slot="content">
     <view class="content-head">
       <view class="gilroy_800 content-title">{{ _t.title }}</view>
       <view class="content-message">{{ _t.message }}</view>
     </view>
     <view class="content-foot"> 
-      <button class="nunito_800 uppercase content-confirm">{{ _t.back_to_orders }}</button>
+      <button class="nunito_800 uppercase content-confirm" bindtap="close">{{ _t.back_to_order }}</button>
     </view>
   </view>
 </modal>

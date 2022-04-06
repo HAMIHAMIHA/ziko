@@ -1,6 +1,6 @@
 <modal class="modal-container_header modal-star">
   <view class="header" slot="header">
-    <image class="header-image" src="/assets/images/lottery-win.jpg" open-type="aspectFill"></image>
+    <image class="header-image" src="/assets/images/lottery-win.jpg" mode="aspectFill"></image>
     <view class="gilroy_800 uppercase header-text">{{ _t.you_win }}!</view>
   </view>
 
@@ -14,8 +14,8 @@
         {{ _t.unlocked_at }}{{ draw.conditionValue }} {{ draw.conditionType === 'number_of_order' ? _t.orders : _t.items_sold }}
       </view>
       <view class="content-image_container">
-        <image class="content-image_background" src="/assets/images/starBackground.png" open-type="aspectFill"></image>
-        <image class="content-image" src="{{ draw.gifts.picture }}" open-type="aspectFill" wx:if="{{ draw.gifts.picture }}"></image>
+        <image class="content-image_background" src="/assets/images/starBackground.png" mode="aspectFill"></image>
+        <image class="content-image" src="{{ draw.gifts.picture }}" mode="aspectFit" wx:if="{{ draw.gifts.picture }}"></image>
         <view class="content-image icon icon-gift" wx:else></view>
       </view>
 

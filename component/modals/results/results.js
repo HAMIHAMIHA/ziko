@@ -3,84 +3,9 @@ const app = getApp();
 Component({
   properties: {
     _t: Object,
-    // gifts: Object,
-    // specials: Object,
   },
 
   data: {
-    // gifts: [{
-    //   count: 6, // index + 1
-    //   conditionType: "number_of_order",
-    //   conditionValue: 5,
-    //   gifts: {
-    //     custom: {zh: "Pork shoulder minced 250 g", en: "Pork shoulder minced 250 g zh"},
-    //     name: "Pork shoulder minced 250 g",
-    //     picture: '',
-    //     discountAmount: null,
-    //     offerDrawId: "623be7a2c64fc9f745a6ece0",
-    //     origin: "ziko_special",
-    //     pack: null,
-    //     singleItem: null,
-    //     type: "custom",
-    //     voucherExpiration: null,
-    //     voucherValue: null,
-    //     _id: "6249f20cc64fc9f745a7b158",
-    //   },
-    //   winners: [],
-    //   _id: "623c0438c64fc9f745a6f72f",
-    //   offer: {
-    //     name: 'La bourse du pinard',
-    //     community: 'cellar'
-    //   }
-    // },{
-    //   count: 6, // index + 1
-    //   conditionType: "number_of_order",
-    //   conditionValue: 5,
-    //   gifts: {
-    //     custom: {zh: "Pork shoulder minced 250 g", en: "Pork shoulder minced 250 g zh"},
-    //     name: "Pork shoulder minced 250 g",
-    //     picture: '',
-    //     discountAmount: null,
-    //     offerDrawId: "623be7a2c64fc9f745a6ece0",
-    //     origin: "ziko_special",
-    //     pack: null,
-    //     singleItem: null,
-    //     type: "custom",
-    //     voucherExpiration: null,
-    //     voucherValue: null,
-    //     _id: "6249f20cc64fc9f745a7b158",
-    //   },
-    //   winners: [],
-    //   _id: "623c0438c64fc9f745a6f72f",
-    //   offer: {
-    //     name: 'La bourse du pinard',
-    //     community: 'cellar'
-    //   }
-    // },{
-    //   count: 6, // index + 1
-    //   conditionType: "number_of_order",
-    //   conditionValue: 5,
-    //   gifts: {
-    //     custom: {zh: "Pork shoulder minced 250 g", en: "Pork shoulder minced 250 g zh"},
-    //     name: "Pork shoulder minced 250 g",
-    //     picture: '',
-    //     discountAmount: null,
-    //     offerDrawId: "623be7a2c64fc9f745a6ece0",
-    //     origin: "ziko_special",
-    //     pack: null,
-    //     singleItem: null,
-    //     type: "custom",
-    //     voucherExpiration: null,
-    //     voucherValue: null,
-    //     _id: "6249f20cc64fc9f745a7b158",
-    //   },
-    //   winners: [],
-    //   _id: "623c0438c64fc9f745a6f72f",
-    //   offer: {
-    //     name: 'La bourse du pinard',
-    //     community: 'cellar'
-    //   }
-    // },],
     current: 0,
   },
 
@@ -92,14 +17,35 @@ Component({
     showResults: function(gifts) {
       const self =this;
 
-      console.log(gifts);
-
       self.setData({
         gifts
       })
 
       self.selectComponent('#modal_template').showModal();
-      console.log('show');
+    },
+
+    getPrize: function() {
+      const self = this;
+
+      let gifts = self.data.gifts;
+      gifts[self.data.current].checked = true
+
+      self.setData({
+        gifts
+      })
+    },
+
+    nextItem: function(e) {
+      const self = this;
+
+      if (self.data.current + 1 < self.data.gifts.length) {
+        self.setData({
+          current: self.data.current++,
+        })
+      } else {
+        self.selectComponent('#modal_template').closeModal();
+        self.triggerEvent('showCollected');
+      }
     }
   }
 })

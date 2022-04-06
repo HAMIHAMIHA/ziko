@@ -1,6 +1,6 @@
-<modal class="modal-star" id="modal_template">
+<modal class="modal-container_header modal-star" id="modal_template">
   <view class="header" slot="header">
-    <image class="header-image" src="/assets/images/lottery-win.jpg" open-type="aspectFill"></image>
+    <image class="header-image" src="/assets/images/lottery-win.jpg" mode="aspectFill"></image>
     <view class="gilroy_800 uppercase header-text">{{ _t.congrats }}</view>
   </view>
 
@@ -11,14 +11,14 @@
     </view>
     <view class="content-body_container" style="--width-: {{ 100 * gifts.length }}%; --left-: {{ 100 * current }}%;">
       <block wx:for="{{ gifts }}" wx:key="_id" wx:for-item="gift">
-        <view class="content-body{{ draw.checked ? ' checked' : '' }}">
+        <view class="content-body{{ gift.checked ? ' checked' : '' }}">
           <view class="nunito_800 uppercase content-label">
             {{ _t.offer_special_result[gift.special.conditionType].prefix }}{{ gift.special.conditionValue }}{{ _t.offer_special_result[gift.special.conditionType].suffix }}
           </view>
 
           <view class="content-image_container">
-            <image class="content-image_background" src="/assets/images/starBackground.png" open-type="aspectFill"></image>
-            <image class="content-image" src="{{ gift.picture }}" open-type="aspectFill" wx:if="{{ gift.picture }}"></image>
+            <image class="content-image_background" src="/assets/images/starBackground.png" mode="aspectFill"></image>
+            <image class="content-image" src="{{ gift.picture }}" mode="aspectFit" wx:if="{{ gift.picture }}"></image>
             <view class="content-image icon icon-gift" wx:else></view>
           </view>
 
@@ -33,8 +33,8 @@
     </view>
 
     <view class="content-foot">
-      <button class="content-confirm" bindtap="getPrize" wx:if="{{ !draw.checked }}">{{ _t.get }}</button>
-      <button class="content-confirm" bindtap="nextItem" wx:else>{{ _t.next }}</button>
+      <button class="nunito_800 uppercase content-confirm" bindtap="getPrize" wx:if="{{ !gifts[current].checked }}">{{ _t.get }}</button>
+      <button class="nunito_800 uppercase content-confirm" bindtap="nextItem" wx:else>{{ _t.next }}</button>
 
       <view class="content-total">{{ current + 1 }}/{{ gifts.length }}</view>
     </view>

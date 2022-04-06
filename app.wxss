@@ -555,6 +555,26 @@ button:not([size=mini]).float-contact_container {
   transform: translateX(-50%);
 }
 
+.modal-container .close-btn {
+  padding: 12rpx;
+  background: #FFFFFF;
+  color: #242331;
+  font-size: 16rpx;
+  border-radius: 50%;
+  position: fixed;
+  top: 28rpx;
+  right: 28rpx;
+  z-index: 100001;
+}
+
+.modal-container_header .close-btn {
+  top: calc(28rpx + 76rpx);
+}
+
+.modal-container_header.modal-star .close-btn {
+  top: calc(28rpx + 170rpx);
+}
+
 .modal-container .content {
   background: #FFFFFF;
   border-radius: 8px;
@@ -624,7 +644,6 @@ button:not([size=mini]).float-contact_container {
   width: 160rpx;
   height: 160rpx;
   margin: 24rpx 0;
-  background: #FFFFFF;
   z-index: 1;
 }
 
@@ -632,6 +651,7 @@ button:not([size=mini]).float-contact_container {
   width: 130rpx;
   height: 130rpx;
   padding: 15rpx;
+  background: #FFFFFF;
   color: #11141B;
   font-size: 130rpx;
 }
