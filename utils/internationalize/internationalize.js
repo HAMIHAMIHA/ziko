@@ -24,6 +24,7 @@ export const languageMap_en = {
   add_new_contact: "Add new contact",
   add_pet: "Add pet",
   all: "All",
+  all_done: "All done!",
   am: "AM",
   area: "Area",
   area_invalid: "Area is not supported",
@@ -46,6 +47,7 @@ export const languageMap_en = {
   city:"City",
   claims:"Claims",
   closed: "Closed",
+  collected_all_items: "You collected all your items",
   comment:"Comment",
   coming_soon:"coming soon...",
   community: {
@@ -248,10 +250,6 @@ export const languageMap_en = {
       prefix: "",
       suffix: " total items sold",
     },
-    ziko_lottery: {
-      prefix: "Ziko Lottery",
-      suffix: "",
-    },
     ziko_special: {
       prefix: "Ziko Special",
       suffix: "",
@@ -262,10 +260,8 @@ export const languageMap_en = {
     fst: "Only ",
     snd: " left!"
   },
+  order_confirmed: "Your order is confirmed",
   order_detail: "Order detail",
-  orders: "Orders",
-  orders_unit: " Orders",
-  order_unit: " Order",
   order_no: "Order no",
   order_status: {
     all: "All",
@@ -275,6 +271,9 @@ export const languageMap_en = {
     paid: "Paid",
     prepared: "Prepared",
   },
+  order_unit: " Order",
+  orders: "Orders",
+  orders_unit: " Orders",
   our_selected_packs: {
     fst: "our",
     snd: " selected packs"
@@ -347,6 +346,7 @@ export const languageMap_en = {
   // S
   save: "Save",
   see_all_offers: "See all offers",
+  see_you_soon: "See you soon for the lottery result!",
   select: "Select",
   select_address: "Select Address",
   select_area: "Select Area",
@@ -452,6 +452,7 @@ export const languageMap_zh = {
   add_new_contact: "Add new contact",
   add_pet: "添加宠物",
   all: "全部",
+  all_done: "All done!",
   am: "上午",
   area: "地区",
   area_invalid: "Area is not supported",
@@ -474,6 +475,7 @@ export const languageMap_zh = {
   city:"City",
   claims:"Claims",
   closed: "Closed",
+  collected_all_items: "You collected all your items",
   comment:"Comment",
   coming_soon:"coming soon...",
   community: {
@@ -691,10 +693,8 @@ export const languageMap_zh = {
     fst: "只剩 ",
     snd: " !"
   },
+  order_confirmed: "Your order is confirmed",
   order_detail: "Order detail",
-  orders: "订单",
-  orders_unit: " Orders",
-  order_unit: " Order",
   order_no: "Order no",
   order_status: {
     all: "All",
@@ -704,6 +704,9 @@ export const languageMap_zh = {
     paid: "Paid",
     prepared: "Prepared",
   },
+  order_unit: " Order",
+  orders: "订单",
+  orders_unit: " Orders",
   our_selected_packs: {
     fst: "our",
     snd: " selected packs"
@@ -774,6 +777,7 @@ export const languageMap_zh = {
   // S
   save: "Save",
   see_all_offers: "See all offers",
+  see_you_soon: "See you soon for the lottery result!",
   select: "Select",
   select_address: "Select Address",
   select_area: "Select Area",

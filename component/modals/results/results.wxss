@@ -1,1 +1,15 @@
-/* component/modals/results/results.wxss */
+.content-body_container {
+  width: var(--width-);
+  display: flex;
+  position: relative;
+  right: var(--left-);
+  transition: all 0.3s ease-in-out;
+}
+
+.content-body {
+  width: 100%;
+}
+
+.content-total {
+  color: #11141B;
+}

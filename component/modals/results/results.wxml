@@ -1,4 +1,4 @@
-<modal class="modal-star">
+<modal class="modal-star" id="modal_template">
   <view class="header" slot="header">
     <image class="header-image" src="/assets/images/lottery-win.jpg" open-type="aspectFill"></image>
     <view class="gilroy_800 uppercase header-text">{{ _t.congrats }}</view>
@@ -9,31 +9,33 @@
       <view class="gilroy_800 content-title">{{ _t.just_won_items }}</view>
       <view class="content-message">{{ _t.pick_up_your_item }}</view>
     </view>
-    <block wx:for="{{ gifts }}" wx:key="_id" wx:for-item="gift">
-      <view class="content-body{{ draw.checked ? ' checked' : '' }}">
-        <view class="nunito_800 uppercase content-label">
-          {{ _t.offer_special_list[draw.conditionType].prefix }} {{ draw.conditionValue }} {{ _t.offer_special_list[draw.conditionType].suffix }}
-        </view>
-        <view class="content-image_container">
-          <image class="content-image_background" src="/assets/images/starBackground.png" open-type="aspectFill"></image>
-          <image class="content-image" src="{{ _folder.gift + draw.gift.picture.uri }}" open-type="aspectFill" wx:if="{{ draw.gift.picture }}"></image>
-          <view class="content-image icon icon-gift" wx:else></view>
-        </view>
+    <view class="content-body_container" style="--width-: {{ 100 * gifts.length }}%; --left-: {{ 100 * current }}%;">
+      <block wx:for="{{ gifts }}" wx:key="_id" wx:for-item="gift">
+        <view class="content-body{{ draw.checked ? ' checked' : '' }}">
+          <view class="nunito_800 uppercase content-label">
+            {{ _t.offer_special_result[gift.special.conditionType].prefix }} {{ gift.special.conditionValue }} {{ _t.offer_special_result[gift.special.conditionType].suffix }}
+          </view>
+          <view class="content-image_container">
+            <image class="content-image_background" src="/assets/images/starBackground.png" open-type="aspectFill"></image>
+            <image class="content-image" src="{{ _folder.gift + draw.gift.picture }}" open-type="aspectFill" wx:if="{{ draw.gift.picture }}"></image>
+            <view class="content-image icon icon-gift" wx:else></view>
+          </view>
 
-        <view class="content-detail">
-          <view class="content-name">{{ draw.gift.name[_language] }}</view>
-          <view class="content-info">{{ draw.gift.info }}</view>
-        </view>
+          <view class="content-detail">
+            <view class="content-name">{{ gift.name }}</view>
+            <view class="content-info">{{ gift.info }}</view>
+          </view>
 
-        <view class="icon icon-check"></view>
-      </view>
-    </block>
+          <view class="icon icon-check"></view>
+        </view>
+      </block>
+    </view>
 
     <view class="content-foot">
       <button class="content-confirm" bindtap="getPrize" wx:if="{{ !draw.checked }}">{{ _t.get }}</button>
       <button class="content-confirm" bindtap="nextItem" wx:else>{{ _t.next }}</button>
 
-      <view class="content-total">{{ current_index }}/{{ draws.length + 1 }}</view>
+      <view class="content-total">{{ current + 1 }}/{{ gifts.length }}</view>
     </view>
   </view>
 </modal>

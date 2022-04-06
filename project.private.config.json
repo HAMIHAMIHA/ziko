@@ -124,7 +124,7 @@
         {
           "name": "order detail",
           "pathName": "pages/orders/detail/detail",
-          "query": "id=62441bb9c64fc9f745a78b71",
+          "query": "id=623beaeac64fc9f745a6f135&type=paid",
           "scene": null
         },
         {

@@ -16,8 +16,6 @@ const getOrders = (page) => {
     let item_unit = app.globalData.i18n.item_unit;
     let items_unit = app.globalData.i18n.items_unit;
 
-    showLoading(false);
-
     res.actualAmount = Math.round(res.actualAmount * 100) / 100;
     res.deliveryDate = formatDate('yyyy-mm-dd', res.deliveryDate);
     res.packs.map(item => {
@@ -43,7 +41,7 @@ const getOrders = (page) => {
     const _getGiftValue = {
       add_on: (gift, offer) => {
         let product_idx = offer.miniprogram.items.findIndex( i => i.shortName === gift.singleItem);
-        let prod = offer.miniprogram.packs[product_idx];
+        let prod = offer.miniprogram.items[product_idx];
         let prod_info = product.product.storageType != 'none' ? `(${ _t.storage_types[product.product.storageType]})` : '';
         if (product.weight) {
           prod_info += product.quantity ? `${product.quantity} x ${product.weight}${i18n.units}` : `${product.weight}${i18n.units}`;
@@ -52,42 +50,46 @@ const getOrders = (page) => {
         }
   
         return ['gift', {
+          _id: gift._id,
+          count: 1,
           name: prod.name[_lang],
+          offerDrawId: gift.offerDrawId,
+          origin: gift.origin,
           picture: `${app.folders.product_picture}${prod.mainPicture[_lang].uri}`,
           product_info: prod_info,
-          origin: gift.origin,
-          count: 1,
-          _id: gift._id
+          shortName: gift.singleItem,
         }]
       }, 
       pack: (gift, offer) => {
         let product_idx = offer.miniprogram.packs.findIndex( i => i.shortName === gift.pack);
         let prod = offer.miniprogram.packs[product_idx];
         return ['gift', {
+          _id: gift._id,
+          count: 1,
+          offerDrawId: gift.offerDrawId,
+          origin: gift.origin,
           name: prod.name[_lang],
           picture: '/assets/images/packDefault.png',
           product_info: prod.products_info,
-          origin: gift.origin,
-          count: 1,
-          _id: gift._id
+          shortName: gift.pack,
         }]
       }, 
       custom: (gift) => {
         return ['gift', {
-          name: gift.custom[_lang],
-          picture: '',
+          _id: gift._id,
           count: 1,
+          name: gift.custom[_lang],
           origin: gift.origin,
-          _id: gift._id
+          picture: '',
         }]
       }, 
       voucher: (gift) => {
         return ['gift', {
+          _id: gift._id,
+          count: 1,
           name: `￥${ gift.voucherValue }${ i18n.offer_special_details.voucher }`,
           picture: '',
-          count: 1,
           origin: gift.origin,
-          _id: gift._id
         }]
       }, 
       discount: (gift) => {
@@ -99,7 +101,7 @@ const getOrders = (page) => {
     }
 
     // Gfit info
-    let gifts = [], lottery_discount = 0, special_discount = 0;
+    let gifts = [], lottery_discount = 0, special_discount = 0, modal_gifts = [];
     res.gifts.forEach( gift => {
       let [gift_type, gift_info] = _getGiftValue[gift.type](gift, res.offer);
 
@@ -111,12 +113,28 @@ const getOrders = (page) => {
         } else {
           gifts[gifts_idx].count +=1;
         }
+
+        // Find special
+        let special_idx = res.offer.miniprogram.zikoSpecials.findIndex( s => s.gift.custom[app.db.get('language')] === gift_info.name || s.gift.pack === gift_info.shortName ||  s.gift.singleItem === gift_info.shortName);
+        if (special_idx > -1) {
+          gift_info.special = res.offer.miniprogram.zikoSpecials[special_idx];
+        }
       } else if (gift_type === 'ziko_special') {
         special_discount += gift_info;
       } else if (gift_type === 'lottery') {
         lottery_discount += gift_info;
       } else {
         order.deliveryFee = 0
+      }
+
+      // Set up for use in popups
+      modal_gifts = [...gifts];
+      if (special_discount > 0) {
+        modal_gifts = modal_gifts.concat({
+          name: `￥${special_discount}`,
+          conditionType: 'ziko_special',
+          conditionValue: 0
+        })
       }
     })
 
@@ -127,6 +145,16 @@ const getOrders = (page) => {
       order: res,
       "_t.units": app.globalData.i18n.units[community],
     })
+
+    if (page.options.type === 'paid') {
+      if (modal_gifts.length > 0) {
+        page.selectComponent('#order_gifts').showResults(modal_gifts);
+      } else {
+        page.selectComponent('#order_complete').show();
+      }
+    }
+
+    showLoading(false);
   }
 
   app.api.getOrders({filter_str: null, id: order_id}).then(callback);
@@ -182,16 +210,37 @@ Page({
         use_voucher: i18n.use_voucher,
         ziko_lottery: i18n.ziko_lottery,
         ziko_special: i18n.ziko_special,
+      },
+      _t_gifts: {
+        congrats: app.globalData.i18n.congrats,
+        get: app.globalData.i18n.get,
+        just_won_items: app.globalData.i18n.just_won_items,
+        next: app.globalData.i18n.next,
+        offer_special_result: app.globalData.i18n.offer_special_result,
+        pick_up_your_item: app.globalData.i18n.pick_up_your_item,
+      },
+      _t_complete: {
+        back_to_order: i18n.back_to_order,
+        message: i18n.order_confirmed,
+        title: i18n.all_done,
+      },
+      _t_collected: {
+        back_to_order: i18n.back_to_order,
+        message: i18n.see_you_soon,
+        title: i18n.collected_all_items,
       }
     })
 
     getOrders(self);
   },
 
-  // wx.navigateToMiniProgram(Object object)
-
   makePayment: function() {
     const self = this;
     makePayment({ id: self.options.id });
-  }
+  },
+
+  showCollected: function() {
+    const self = this;
+    // self.selectComponent('#order_collected').show();
+  },
 })
