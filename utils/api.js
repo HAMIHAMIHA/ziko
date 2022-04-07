@@ -158,6 +158,11 @@ module.exports = {
     return get(`recipes${suffix}`);
   },
 
+  // Get recipe offers
+  getRecipeOffers: (id) => {
+    return get(`recipes/${id}/related-offers`)
+  },
+
   // Get user information
   getProfile: () => {
     return get('customers/mine');

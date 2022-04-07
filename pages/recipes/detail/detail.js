@@ -41,7 +41,7 @@ const _setPageTranslation = page => {
 }
 
 const getOffers = (page, id) => {
-  app.api.getOffers(`?filter={"$and":[{"$or":[{"channel":"all"},{"channel":"miniprogram"}]},{"endingDate":{"$gte":"${ new Date().getTime() }"}},{"startingDate":{"$lte":"${ new Date().getTime() }"}}]}`).then(res => {
+  app.api.getRecipeOffers(id).then(res => {
     let offers = [];
     res.forEach( offer => {
       let date_value = formatWeekDate(offer.startingDate);
@@ -67,7 +67,7 @@ const getOffers = (page, id) => {
 
     page.setData({
       offers: offers,
-    })
+    });
 
     let offer_comp = page.selectComponent('#list_offers');
     offer_comp.updateCards(page.data._t_offers, true);
@@ -94,7 +94,6 @@ const getRecipeDetail = (page, id) => {
       _recipe: res,
     })
 
-    // TODO related offers
     getOffers(page, id);
   })
 }
@@ -119,13 +118,15 @@ Page({
   },
 
   onHide: function() {
-    // TODO unload timers
-    // countdown_timer = _clearCountdown(this, countdown_timer);
+    // Stop all timers
+  let offers = this.selectComponent('#list_offers');
+  offers.updateCards(this.data._t_offers, false);
   },
 
   onUnload: function() {
-    // TODO unload timers
-    // countdown_timer = _clearCountdown(this, countdown_timer);
+    // Stop all timers
+    let offers = this.selectComponent('#list_offers');
+    offers.updateCards(this.data._t_offers, false);
   },
 
   // Change swiper indicatior
