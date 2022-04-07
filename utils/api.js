@@ -137,6 +137,11 @@ module.exports = {
     return get(`offers/details${suffix}`);
   },
 
+  // Get buyers for offer
+  getOfferBuyers: id => {
+    return get(`offers/${id}/buyers?channel=miniprogram`);
+  },
+
   getLotteries: (filter) => {
     let url = filter ? `lottery-draws/details?${filter}` : 'lottery-draws/details';
     return get(url);

@@ -31,6 +31,7 @@ export const _getTranslations = (page, community) => {
       item_quantity: i18n.item_quantity,
       lower_price_together: i18n.lower_price_together,
       minimum: i18n.minimum,
+      next_lottery_in: i18n.next_lottery_in,
       no_recipes: i18n.no_recipes,
       offer_special_names: i18n.offer_special_names,
       offer_special_details: i18n.offer_special_details,
@@ -267,11 +268,6 @@ export const getOffer = function(page, offer_id) {
       }, ...offer.miniprogram.lottery.draws]
     }
 
-    // Find if Offer Popup message needed
-    if (offer.miniprogram.zikoSpecials.length > 0) {
-      let specail_orders_list = [...offer.miniprogram.zikoSpecials].filter(special => special.conditionType === 'number_of_order').sort((s1, s2) => {s2.conditionValue - s1.conditionValue });
-    }
-
     getUserInfo(page);
 
     // Set page data
@@ -333,6 +329,9 @@ export const getOffer = function(page, offer_id) {
 
     // Get related recipes
     _getRecipes(page, offer);
+
+    // Get buyers
+    getOfferBuyers(page, offer_id)
   }
 
   showLoading(true);
@@ -372,7 +371,52 @@ export function switchTabs(page, tab) {
 }
 
 // Get offer messages
+export function getOfferBuyers(page, offer_id) {
+  const callback = res => {
+    console.log(res);
+    // TODO offer.sold ++, offer.orders ++, product.actualStock--, price check
 
+
+
+    let i18n = app.globalData.i18n;
+
+    let offer = page.data._offer;
+    console.log(offer);
+
+    // Set next lottery
+    if (offer.miniprogram.lotteryEnable) {
+      // Check which ones are unlocked
+      let unlocked = -1;
+      let text = '';
+      offer.miniprogram.lottery.draws.forEach( (d, i) => {
+        if (d.conditionType === "number_of_order" && offer.orders >= d.conditionValue && unlocked < i) {
+          unlocked = i;
+          text = 'orders_sold';
+        } else if (d.conditionType === "x_item_sold" && offer.sold >= d.conditionValue && unlocked < i) {
+          unlocked = i;
+          text = 'items_sold';
+        }
+      })
+
+      // Set next lottery message
+      let next;
+      if (unlocked + 1 < offer.miniprogram.lottery.draws.length) {
+        next = offer.miniprogram.lottery.draws[unlocked + 1];
+        next.text = text;
+      }
+
+      page.setData({
+        next_lottery: next
+      })
+    }
+    console.log(offer.miniprogram);
+
+  }
+
+  app.api.getOfferBuyers(offer_id).then(callback);
+}
+
+// Stop timer on page unload
 export const unloadOfferPage = () => {
   let pages = getCurrentPages();
   let previous_page = pages[pages.length - 2];
