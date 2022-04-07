@@ -36,7 +36,7 @@ App({
       success: function() {
         if (db.get('userInfo').customer && db.get('userInfo').customer.openId) return;
 
-        console.debug('openid not found');
+        console.debug('customer not found');
         wx.login({
           success: function(res) {
             getWxUserOpenId(res);
@@ -82,5 +82,18 @@ App({
       index: 4,
       "text": self.globalData.i18n.account
     })
+  },
+
+  checkForLottery: function() {
+    // Start checking for lottery
+
+    // TODO need api with lottery draw + orders with tickets > 0
+    let t = setInterval(() => {
+      // if (db.get('userInfo').customer) {
+      //   api.getLotteries().then( res => {
+
+      //   })
+      // }
+    }, 1000)
   }
 })
