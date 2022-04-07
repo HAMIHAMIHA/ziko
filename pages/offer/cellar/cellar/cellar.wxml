@@ -3,7 +3,7 @@
 
 <view class="container ziko-offer {{ 'community-' + _offer.community }}">
   <!-- Lottery Alert -->
-  <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" -wx:if="{{ next_lottery }}">
+  <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ next_lottery }}">
     <view class="icon icon-flash"></view>
     <view class="icon_text">{{ _t.next_lottery_in }}{{ next_lottery.conditionValue }} {{ _t.offer_special_names[next_lottery.text] }}</view>
   </view>

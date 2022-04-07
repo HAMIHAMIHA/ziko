@@ -3,10 +3,9 @@
 
 <view class="container ziko-offer {{ 'community-' + _offer.community }}">
   <!-- Lottery Alert -->
-  <!-- TEMP hide for v1 (Did not translate) -->
-  <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ _setting.nextOffer != '' }}" wx:if="{{ showing }}">
+  <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ next_lottery }}">
     <view class="icon icon-flash"></view>
-    <view class="icon_text">next lottery in 50 items sold</view>
+    <view class="icon_text">{{ _t.next_lottery_in }}{{ next_lottery.conditionValue }} {{ _t.offer_special_names[next_lottery.text] }}</view>
   </view>
   <!-- End of Lottery Alert -->
 
@@ -231,6 +230,11 @@
       </view>
       <!-- End of Offer Recipes -->
     </view>
+  </view>
+
+  <view class="bourse-alert" wx:if="{{ _bourse_info.progress < 100 }}">
+    <view class="icon icon-alert"></view>
+    <view class="nunito_500 bourse-alert_message">{{ _t.bourse_payment_message }}</view>
   </view>
 
   <!-- Pay Button -->

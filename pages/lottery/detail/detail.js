@@ -79,11 +79,12 @@ const _getOffer = function(page, offer_id) {
       product_name_list[item.shortName] = p_name;
     })
 
+    // Sort order of draws occurence
     offer.miniprogram.lottery.draws.sort( (a, b) => {
       return a.conditionValue - b.conditionValue;
     })
 
-    console.log( offer.miniprogram.lottery.draws);
+    // TODO maybe need to change according to different conditions
     offer.last_val = offer.miniprogram.lottery.draws[offer.miniprogram.lottery.draws.length - 1].conditionValue;
     if ( offer.miniprogram.lottery.draws[0].conditionType === "number_of_order" ) {
       offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
@@ -108,6 +109,7 @@ const _getOffer = function(page, offer_id) {
       draw.position = Math.round(draw.conditionValue / offer.last_val * 100);
       prev = draw.conditionValue
 
+      // Draw status and winner
       draw.winners = winners
       draw.unlocked = ((draw.conditionType === "number_of_order" && offer.orders >= draw.conditionValue) ||  (draw.conditionType === "x_item_sold" && offer.sold >= draw.conditionValue));
     })

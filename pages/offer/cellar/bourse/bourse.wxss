@@ -10,6 +10,27 @@
   text-align: center;
 }
 
+/* Alert */
+.bourse-alert {
+  margin: 32rpx 30rpx;
+  padding: 12rpx 14rpx;
+  background: #FF4040;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.bourse-alert .icon {
+  padding-right: 10rpx;
+  font-size: 32rpx;
+}
+
+.bourse-alert .bourse-alert_message {
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+/* End of Alert */
+
 /* Progress */
 .progress__container .progress {
   margin-bottom: 48rpx;

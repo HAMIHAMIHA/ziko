@@ -38,6 +38,7 @@ export const languageMap_en = {
   back_to_order: "back to my order",
   baking: "Baking",
   better_luck_next_time: "Better luck next time!",
+  bourse_payment_message: "If the price continues to fall after your purchase, the difference will be refunded on your WeChatPay.",
 
   // C
   cart: "Cart",
@@ -472,6 +473,7 @@ export const languageMap_zh = {
   back_to_order: "back to my order",
   baking: "Baking",
   better_luck_next_time: "Better luck next time!",
+  bourse_payment_message: "If the price continues to fall after your purchase, the difference will be refunded on your WeChatPay.",
 
   // C
   cart: "购物车",
