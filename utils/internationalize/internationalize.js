@@ -132,6 +132,7 @@ export const languageMap_en = {
   // I
   item_quantity: "item quantity",
   item_unit: " item",
+  item: "item",
   items: "Items",
   items_unit: " items",
 
@@ -266,6 +267,7 @@ export const languageMap_en = {
     fst: "Only ",
     snd: " left!"
   },
+  ordered: " ordered ",
   order_confirmed: "Your order is confirmed",
   order_detail: "Order detail",
   order_no: "Order no",
@@ -287,6 +289,7 @@ export const languageMap_en = {
 
   // P
   pay: "Pay",
+  pack: "pack",
   payment_cancelled: "Payment Cancelled",
   payment_status: {
     paid: "Paid",
@@ -567,6 +570,7 @@ export const languageMap_zh = {
   // I
   item_quantity: "item quantity",
   item_unit: " item",
+  item: "item",
   items: "Items",
   items_unit: " items",
 
@@ -704,6 +708,7 @@ export const languageMap_zh = {
     fst: "只剩 ",
     snd: " !"
   },
+  ordered: " ordered ",
   order_confirmed: "Your order is confirmed",
   order_detail: "Order detail",
   order_no: "Order no",
@@ -725,6 +730,7 @@ export const languageMap_zh = {
 
   // P
   pay: "Pay",
+  pack: "pack",
   payment_cancelled: "Payment Cancelled",
   payment_status: {
     paid: "Paid",

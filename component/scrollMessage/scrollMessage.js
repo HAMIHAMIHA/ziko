@@ -3,19 +3,9 @@
 const animation = require('../../templates/offer/animation.js').message;
 // End of Set up Animation
 
-const finalMsg = [
-  "message1 message1",
-  "message mesag asg asgkljsd agl messagesag asg asgkljsd agl messagesag asg asgkljsd agl messagesag asg asgkljsd agl message2",
-  "mesag asg asgkljsd aessage2",
-  "message2",
-  "message1 message2",
-  "mesag asg asgkljsd aessage2"
-]
-
 var messagesShowing;
 var current;
 var interval;
-
 
 var nextCurrent = function(messages) {
   current = [current[1], current[2], current[3], current[4], current[5],
@@ -24,9 +14,6 @@ var nextCurrent = function(messages) {
 }
 
 Component({
-  properties: {
-  },
-
   data: {
     swiperAutoplay: false,
     animation: {
@@ -37,19 +24,35 @@ Component({
   },
 
   pageLifetimes: {
-    show () {
+  },
+
+  lifetimes: {
+    attached() {
+      console.log('attached');
+      // Reset message
+      messagesShowing = 1;
+      current = [-4, -3, -2, -1, 0, 1];
+      clearInterval(interval);
+    }
+  },
+
+  options: {
+    addGlobalClass: true
+  },
+
+  methods: {
+    show: function(messages) {
       const self = this;
 
-      // TEMP Set message data
-      var messages = finalMsg;
       while (messages.length <= 5) {
-        messages = messages.concat(finalMsg);
+        messages = messages.concat(messages);
       }
 
       self.setData({
         messages: messages
       })
-      // End of TEMP
+
+      console.log('started');
 
       // Add Animation For Showing messages
       interval = setInterval(
@@ -78,23 +81,8 @@ Component({
           }
       }, 3000)
       // End of Animation
-    }
-  },
+    },
 
-  lifetimes: {
-    attached() {
-      // Reset message
-      messagesShowing = 1;
-      current = [-4, -3, -2, -1, 0, 1];
-      clearInterval(interval);
-    }
-  },
-
-  options: {
-    addGlobalClass: true
-  },
-
-  methods: {
     messageSwiperChange: function(e) {
       const self = this;
 
@@ -105,6 +93,10 @@ Component({
     },
 
     messageHeightChange: function() {
+    },
+
+    clearMessageInterval: function() {
+      clearInterval(interval);
     }
   }
 })

@@ -32,8 +32,7 @@
     <!-- End of Detail Banner -->
 
     <!-- Offer Messages -->
-    <!-- TEMP hide for v1 -->
-    <view class="messages_container" wx:if="{{ showing }}"><scrollMessage></scrollMessage></view>
+    <view class="messages_container"><scrollMessage id="scroll_messages"></scrollMessage></view>
     <!-- End of Offer Messages -->
   </view>
 

@@ -373,10 +373,31 @@ export function switchTabs(page, tab) {
 
 // Get offer messages
 export function getOfferBuyers(page, offer_id) {
+  let _t = app.globalData.i18n;
   let offer = page.data._offer;
+  let messages = page.data.messages;
 
   const callback = res => {
-    if (res.length === offer.orders) return; // Check if there is a new purchase
+    // Set up messages
+    if (messages.length < res.length) {
+      let new_messagaes = res.slice(messages.length, res.length);
+      new_messagaes.forEach( order => {
+        let message = `${order.name}${ _t.ordered }`;
+        let cart = [];
+        order.cart.forEach( c => {
+          cart.push(`${ _t[c.type] } ${ c.shortName }`);
+        })
+        message += cart.join(', ');
+        messages.push(message);
+      })
+
+      if (messages.length > 0) {
+        page.selectComponent('#scroll_messages').show(messages);
+      }
+    }
+
+    // Check if there is a new purchase and update offer page contents
+    if (res.length === offer.orders) return;
 
     let new_purchases = res.slice((offer.orders - 1), res.length); // Only check purchases not included in offer data
 
@@ -486,8 +507,9 @@ export function clearBuyerInterval() {
 }
 
 // Stop timer on page unload
-export const unloadOfferPage = () => {
+export const unloadOfferPage = (page) => {
   let pages = getCurrentPages();
   let previous_page = pages[pages.length - 2];
   (previous_page && previous_page.filterOffers) ? previous_page.filterOffers({}) : '';
+  page.selectComponent('#scroll_messages').clearMessageInterval();
 }

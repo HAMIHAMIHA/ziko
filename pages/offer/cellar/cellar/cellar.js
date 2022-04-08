@@ -13,7 +13,8 @@ Page({
       height: '0px',
       left: '0',
       animate: animate,
-    }
+    },
+    messages: [],
   },
 
   onShow: function () {
@@ -33,7 +34,7 @@ Page({
   onUnload: function() {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
     Offers.clearBuyerInterval();
-    Offers.unloadOfferPage();
+    Offers.unloadOfferPage(this);
   },
 
   // Mobile login
