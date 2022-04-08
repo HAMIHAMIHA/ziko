@@ -5,6 +5,7 @@ import { checkOfferTicket, getBoursePrice, getRulePrice } from "./offerRules";
 
 const app = getApp();
 let lotteries = [];
+let purchase_timer;
 
 // Clear countdown timer interval
 export const _clearCountdown = (page, countdown_timer) => {
@@ -241,7 +242,7 @@ export const getOffer = function(page, offer_id) {
         offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
       }
 
-      let prev = 0;
+      let prev = 0; // Used to calculate position for tag
       offer.miniprogram.lottery.draws.forEach( draw => {
         let winners = [];
         lotteries.forEach( l => {
@@ -256,7 +257,7 @@ export const getOffer = function(page, offer_id) {
   
         // Set size of axis mark
         draw.position = Math.round(draw.conditionValue / offer.last_val * 100);
-        prev = draw.conditionValue
+        prev = draw.conditionValue;
   
         draw.winners = winners
         draw.unlocked = ((draw.conditionType === "number_of_order" && offer.orders >= draw.conditionValue) ||  (draw.conditionType === "x_item_sold" && offer.sold >= draw.conditionValue));
@@ -282,7 +283,6 @@ export const getOffer = function(page, offer_id) {
         routes: {
           product: app.routes.product
         },
-        // type: offer.type
       },
       _pay_set: {
         cart: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].count : 0,
@@ -331,8 +331,8 @@ export const getOffer = function(page, offer_id) {
     // Get related recipes
     _getRecipes(page, offer);
 
-    // Get buyers
-    getOfferBuyers(page, offer_id)
+    // Start interval for updating user purchase
+    startBuyerInterval(page, offer_id);
   }
 
   showLoading(true);
@@ -373,48 +373,116 @@ export function switchTabs(page, tab) {
 
 // Get offer messages
 export function getOfferBuyers(page, offer_id) {
+  let offer = page.data._offer;
+
   const callback = res => {
-    console.log(res);
-    // TODO offer.sold ++, offer.orders ++, product.actualStock--, price check
+    if (res.length === offer.orders) return; // Check if there is a new purchase
 
+    let new_purchases = res.slice((offer.orders - 1), res.length); // Only check purchases not included in offer data
 
+    // Update offer orders amount
+    offer.orders = res.length;
 
-    let i18n = app.globalData.i18n;
+    let new_sold = 0;
+    new_purchases.forEach( order => {
+      order.cart.forEach( item => {
+        // Change stock amount in offer
+        let list_name = 'packs';
+        if (item.type === 'item') {
+          list_name = 'items';
+        }
+        let item_idx = offer.miniprogram[list_name].findIndex( i => i.shortName === item.shortName );
+        offer.miniprogram[list_name][item_idx].actualStock -= item.amount;
 
-    let offer = page.data._offer;
-    console.log(offer);
+        // Calculate newly sold amount
+        new_sold += item.amount;
+      });
+      offer.sold += new_sold; // Update offer total sold
+    })
+
+    // Check for bourse unit price
+    if (offer.type === 'bourse') {
+      getBoursePrice(offer, null);
+      page.setBourseGraph(offer);
+    }
 
     // Set next lottery
     if (offer.miniprogram.lotteryEnable) {
       // Check which ones are unlocked
-      let unlocked = -1;
+      let unlocked = 0;
+      let first_locked = -1;
       let text = '';
+
       offer.miniprogram.lottery.draws.forEach( (d, i) => {
+        if (!d.conditionType) return;
         if (d.conditionType === "number_of_order" && offer.orders >= d.conditionValue && unlocked < i) {
-          unlocked = i;
-          text = 'orders_sold';
+          unlocked++;
+          d.unlocked = true;
         } else if (d.conditionType === "x_item_sold" && offer.sold >= d.conditionValue && unlocked < i) {
-          unlocked = i;
-          text = 'items_sold';
+          unlocked++;
+          d.unlocked = true;
+        } else if (first_locked === -1) {
+          first_locked = i;
+          text = d.conditionType === "x_item_sold" ? 'items_sold' : 'orders_sold';
         }
       })
 
       // Set next lottery message
-      let next;
-      if (unlocked + 1 < offer.miniprogram.lottery.draws.length) {
-        next = offer.miniprogram.lottery.draws[unlocked + 1];
+      let next = null;
+      if (first_locked > -1) {
+        next = offer.miniprogram.lottery.draws[first_locked];
         next.text = text;
       }
 
       page.setData({
         next_lottery: next
       })
+  
+      // Update lottery progress
+      if (offer.miniprogram.lottery.draws[0].conditionType === "number_of_order" ) {
+        offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
+      } else {
+        offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
+      }
     }
-    console.log(offer.miniprogram);
 
+    let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
+    offer_products.forEach( p => {
+      // Check for and Change all free fall product price 
+      if (p.freeFall && p.freeFall.quantityTrigger) {
+        getRulePrice("free_fall", offer.id, p);
+      }
+
+      // Check for multiple price
+      if (p.multipleItem && p.multipleItem.length > 0) {
+        getRulePrice("multiple", offer.id, p)
+      }
+    })
+
+    // Set page data
+    page.setData({
+      "_pay_set.reducedTotal": app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].reducedTotal : 0,
+      _offer: offer,
+      cart: app.db.get('cart')[offer.id],
+    })
+
+    // Refresh components
+    let lottery_list = page.selectComponent('#lottery_list');
+    if (lottery_list) lottery_list.refresh(offer);
   }
 
   app.api.getOfferBuyers(offer_id).then(callback);
+}
+
+// Start interval for checking offer buyer update
+export function startBuyerInterval(page, offer_id) {
+  purchase_timer = setInterval( () => {
+    getOfferBuyers(page, offer_id);
+  }, 1000)
+}
+
+export function clearBuyerInterval() {
+  clearInterval(purchase_timer);
 }
 
 // Stop timer on page unload

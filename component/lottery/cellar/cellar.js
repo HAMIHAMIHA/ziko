@@ -22,6 +22,10 @@ Component({
   },
 
   methods: {
-
+    refresh: function(_offer) {
+      this.setData({
+        _offer
+      })
+    }
   }
 })

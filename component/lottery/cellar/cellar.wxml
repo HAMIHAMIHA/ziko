@@ -67,7 +67,8 @@
                     <text class="uppercase nunito_600 win-text">{{ _t.you_win }}</text>
                   </view>
                   <view class="winner" wx:else>
-                    <image class="winner-image" src="{{ _folders.profile_picture + winner.profilePicture.uri }}" mode="aspectFill" />
+                    <image class="winner-image" src="{{ _folders.profile_picture + winner.profilePicture.uri }}" mode="aspectFill" wx:if="{{ winner.profilePicture }}"/>
+                    <text wx:else class="winner-image icon icon-ziko"></text>
                     <view class="gilroy_400 winner-name">{{ winner.name }}</view>
                   </view>
                 </view>

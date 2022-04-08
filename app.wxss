@@ -743,6 +743,7 @@ button:not([size=mini]).float-contact_container {
 
 .ziko-offer .cellar-total_progress_fill {
   width: var(--progress-fill-);
+  max-width: 100%;
   height: 8rpx;
   background: linear-gradient(270deg, #4060FF -0.3%, #4080FF 25.3%, #8040FF 51.42%, #105EFA 100%);
   border-radius: 20rpx;

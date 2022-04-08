@@ -243,6 +243,7 @@
   width: 36rpx;
   height: 36rpx;
   margin-right: 8rpx;
+  font-size: 36rpx;
   border-radius: 50%;
 }
 

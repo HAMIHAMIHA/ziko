@@ -28,9 +28,11 @@ Page({
   // Stop countdown timer on leaving page
   onHide: function() {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
+    Offers.clearBuyerInterval();
   },
   onUnload: function() {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
+    Offers.clearBuyerInterval();
     Offers.unloadOfferPage();
   },
 

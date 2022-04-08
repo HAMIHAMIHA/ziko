@@ -70,6 +70,7 @@
   padding-bottom: 70rpx;
   font-size: 24rpx;
   line-height: 28rpx;
+  transform: translateX(-50%);
 }
 
 .progress-bar__values .progress-axis:after {
@@ -82,8 +83,16 @@
   display: block;
 }
 
+.progress-bar__values.progress-bar_first .progress-axis {
+  transform: translateX(0);
+}
+
 .progress-bar__values.progress-bar_first .progress-axis:after {
   margin-left: 0;
+}
+
+.progress-bar__values.progress-bar_last .progress-axis {
+  transform: translateX(0);
 }
 
 .progress-bar__values.progress-bar_last .progress-axis:after {
@@ -102,6 +111,7 @@
   position: absolute;
   left: var(--tag-position-);
   bottom: 0;
+  transform: translateX(-50%);
 }
 
 .progress-bar__container.progress-bar_last .progress-label {
@@ -113,12 +123,14 @@
 }
 
 .progress-bar__container .progress-bar {
+  /* width: calc(100vw - 30rpx - 30rpx - 24rpx - 24rpx); */
   width: 100%;
   height: 20rpx;
   background: #51596D;
   border-radius: 40px;
   position: absolute;
   bottom: calc(70rpx - 20rpx);
+  box-sizing: border-box;
 }
 
 .progress-bar__container .progress-bar__progress {
