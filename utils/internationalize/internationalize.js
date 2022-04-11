@@ -262,6 +262,15 @@ export const languageMap_en = {
       prefix: "Ziko Special",
       suffix: "",
     },
+    ziko_lottery: {
+      prefix: "Ziko Lottery",
+      suffix: "",
+    },
+    // TEMP
+    todo: {
+      prefix: "waiting for api",
+      suffix: "",
+    },
   },
   offers: " offers",
   only_left: {
@@ -413,7 +422,7 @@ export const languageMap_en = {
   voucher_question: "Is there a problem with your vouchers?",
   voucher_source: {
     refund: "Order refund",
-    claim: "Claim",
+    claim: "Ziko gift card",
     lottery: "Offer lottery",
     gift: "Ziko gift card",
     other: "Ziko customer hero",
@@ -706,6 +715,15 @@ export const languageMap_zh = {
       prefix: "Ziko Special",
       suffix: "",
     },
+    ziko_lottery: {
+      prefix: "Ziko Lottery",
+      suffix: "",
+    },
+    // TEMP
+    todo: {
+      prefix: "waiting for api",
+      suffix: "",
+    },
   },
   offers: " offers",
   only_left: {
@@ -855,7 +873,7 @@ export const languageMap_zh = {
   voucher_question: "Is there a problem with your vouchers?",
   voucher_source: {
     refund: "Order refund",
-    claim: "Claim",
+    claim: "Ziko gift card",
     lottery: "Offer lottery",
     gift: "Ziko gift card",
     other: "Ziko customer hero",
