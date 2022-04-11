@@ -60,7 +60,7 @@
       <view class="short-cut__icon icon icon-package"></view>
       <view class="short-cut__label">{{ _t.orders }}</view>
     </navigator>
-    <navigator class="short-cuts__button" url="{{ _routes.claims }}">
+    <navigator class="short-cuts__button" url="{{ _routes.claims }}" wx:if="{{ showing }}">
       <view class="short-cut__icon icon icon-box"></view>
       <view class="short-cut__label">{{ _t.claims }}</view>
     </navigator>

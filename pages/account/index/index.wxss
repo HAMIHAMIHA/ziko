@@ -98,7 +98,8 @@ button:not([size=mini]).user-info__login {
 .short-cuts {
   padding: 30rpx 35rpx;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-columns: repeat(3, 1fr); /* TEMP */
 }
 
 .short-cuts__button,
