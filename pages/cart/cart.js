@@ -104,9 +104,11 @@ const _getOffers = page => {
 
     // Set price with the newest purchase
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
-    offer.sold = offer_products.reduce( (i1, i2) => {
-      return i1.stock - i1.actualStock + i2.stock - i2.actualStock
+    let total_sold = 0;
+    offer_products.forEach( i => {
+      total_sold += i.stock - i.actualStock;
     });
+    offer.sold = total_sold;
 
     // Free fall total
     if (offer.type === "free_fall") {
