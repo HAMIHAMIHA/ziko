@@ -85,14 +85,13 @@ const _createOrderData = (page, value) => {
     comment: value.comment,
     deliveryDate: new Date(page_data.delivery_dates[page_data.delivery_date]),
     deliverySelection: "auto",
-    vouchers: [],
+    vouchers:  page_data.voucher ? page_data.voucher.id : '',
     voucherSelection: "manual",
     packs: packs,
     singleItems: items,
     status: "available",
     fapiao: page_data.fapiao ? page_data.fapiao : false,
     paymentMethod: "wechat",
-    vouchers: page_data.voucher.id
   }
 
   return order;
@@ -146,15 +145,48 @@ export const createOrder = (page, value) => {
 
   if (!order) return;
 
-  showLoading(true);
-  // Create order, callback to connect to wechat pay
-  const createOrderCallback =  res => {
-    // Remove from cart
-    let cart = app.db.get('cart');
-    delete cart[offer_id];
-    app.db.set('cart', cart);
+  const _createOrder = () => {
+    showLoading(true);
+    // Create order, callback to connect to wechat pay
+    const createOrderCallback =  res => {
+      // Remove from cart
+      let cart = app.db.get('cart');
+      delete cart[offer_id];
+      app.db.set('cart', cart);
 
-    makePayment(res);
+      makePayment(res);
+    }
+    app.api.createOrder(offer_id, order).then(createOrderCallback);
   }
-  app.api.createOrder(offer_id, order).then(createOrderCallback);
+
+  // Check if subscription needed
+  let subscribe = [app.subscribe.delivered];
+  if (page.data._offer.miniprogram.zikoSpecials.filter(s => { return s.conditionType === 'x_total_sold_items' || s.conditionType === "number_of_order"; }).length > 0) {
+    subscribe.push(app.subscribe.special_gift);
+  }
+
+  if (page.data._offer.miniprogram.lotteryEnable) {
+    subscribe.push(app.subscribe.lottery_draw);
+  }
+
+  console.log(subscribe);
+
+  if (subscribe.length > 0) {
+    // Request subscription before checkout if lottery / special included
+    wx.requestSubscribeMessage({
+      tmplIds: subscribe,
+      complete: (res) => {
+        console.log(res);
+        // Get subscription
+        Object.keys(res).forEach( i => {
+          console.log(i); // return errMsg, subscription id
+          // if (indexOf i in subscribe && == 'accept') save with offer_id to BO
+          // TODO if needed for api
+        })
+        _createOrder();
+      }
+    })
+  } else {
+    _createOrder();
+  }
 }

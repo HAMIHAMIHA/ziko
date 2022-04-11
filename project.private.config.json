@@ -52,7 +52,7 @@
         {
           "name": "Bourse",
           "pathName": "pages/offer/cellar/bourse/bourse",
-          "query": "id=624587f7c64fc9f745a7964b",
+          "query": "id=624fe1b287346366836270e8",
           "scene": null
         },
         {
@@ -76,7 +76,7 @@
         {
           "name": "Cart",
           "pathName": "pages/cart/cart",
-          "query": "id=6243d0cbc64fc9f745a77c27",
+          "query": "id=624fe1b287346366836270e8",
           "scene": null
         },
         {
@@ -124,7 +124,7 @@
         {
           "name": "order detail",
           "pathName": "pages/orders/detail/detail",
-          "query": "id=61efa619eecf5e0fb13a4a54&type=paid",
+          "query": "id=6254af6e7f8b1b81ba8349f7&type=paid",
           "scene": null
         },
         {

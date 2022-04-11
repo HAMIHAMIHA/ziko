@@ -3,7 +3,7 @@ const common = require('./utils/common');
 const db = require('utils/db.config.js'); // 本地存储
 const i18n = require('utils/internationalize/translate.js'); // 翻译功能
 
-const { folders } = require('./utils/properties');
+const { folders, subscribe } = require('./utils/properties');
 
 const getWxUserOpenId = (res) => {
   api.wxOpenid({ code: res.code }).then(res => {
@@ -19,6 +19,7 @@ App({
   common: common,
   db: db,
   folders: folders,
+  subscribe,
   globalData: {
     token: null,
     i18n: require('./utils/internationalize/internationalize.js').zh // Load a default language map first

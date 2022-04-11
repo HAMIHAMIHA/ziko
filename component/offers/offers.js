@@ -68,5 +68,19 @@ Component({
         url: url + '?id=' + data.offerId,
       })
     },
+
+    getReminder: function(e) {
+      // Request subscription before checkout if lottery / special included
+      wx.requestSubscribeMessage({
+        tmplIds: [app.subscribe.offer],
+        complete: (res) => {
+          console.log(res);
+          // Get subscription
+          if (res[app.subscribe.offer] === "accept") {
+            // TODO need api with offer_id [e.currentTarget.dataset.offer_id]
+          }
+        }
+      })
+    }
   }
 })

@@ -99,7 +99,7 @@
               <view class="offer-time">{{ offer.startDate.time }}</view>
             </view>
             <view class="flex-between_rt">
-              <button class="offer-reminder">{{ _t.get_reminder }}</button>
+              <button class="offer-reminder" bindtap="getReminder" data-offer_id="{{ offer.id }}">{{ _t.get_reminder }}</button>
             </view>
           </view>
           <!-- End of Offer Time -->
