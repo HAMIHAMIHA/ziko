@@ -42,20 +42,25 @@ const getOrders = (page) => {
       add_on: (gift, offer) => {
         let product_idx = offer.miniprogram.items.findIndex( i => i.shortName === gift.singleItem);
         let prod = offer.miniprogram.items[product_idx];
-        let prod_info = product.product.storageType != 'none' ? `(${ _t.storage_types[product.product.storageType]})` : '';
-        if (product.weight) {
-          prod_info += product.quantity ? `${product.quantity} x ${product.weight}${i18n.units}` : `${product.weight}${i18n.units}`;
-        } else {
-          prod_info += product.quantity ? product.quantity > 1 ? `${product.quantity}${_t.items_unit}` : `${product.quantity}${_t.item_unit}` : '';
-        }
+        // TODO
+        // console.log(prod);
+        let prod_info = 'waiting for api';
+        // let prod_info = prod.product.storageType != 'none' ? `(${ _t.storage_types[prod.product.storageType]})` : '';
+        // if (prod.weight) {
+        //   prod_info += prod.quantity ? `${prod.quantity} x ${prod.weight}${i18n.units}` : `${prod.weight}${i18n.units}`;
+        // } else {
+        //   prod_info += prod.quantity ? prod.quantity > 1 ? `${prod.quantity}${_t.items_unit}` : `${prod.quantity}${_t.item_unit}` : '';
+        // }
   
         return ['gift', {
           _id: gift._id,
           count: 1,
-          name: prod.name[_lang],
+          name: 'waiting for api',
+          // name: prod.name[_lang],
           offerDrawId: gift.offerDrawId,
           origin: gift.origin,
-          picture: `${app.folders.product_picture}${prod.mainPicture[_lang].uri}`,
+          // picture: `${app.folders.product_picture}${prod.mainPicture[_lang].uri}`,
+          picture: '',
           product_info: prod_info,
           shortName: gift.singleItem,
         }]
@@ -65,14 +70,14 @@ const getOrders = (page) => {
         let prod = offer.miniprogram.packs[product_idx];
 
         let details = [];
-
+        // TODO
         // prod.products.forEach( product => {
         //   details.push(
         //     `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? units : product.quantity == 1 ? item_unit : items_unit }`
         //   );
         // })
         // let products_info = details.join(', ');
-        let products_info = 'test'; // TEMP
+        let products_info = 'waiting for api'; // TEMP
 
         return ['gift', {
           _id: gift._id,
@@ -135,7 +140,7 @@ const getOrders = (page) => {
       } else if (gift_type === 'lottery') {
         lottery_discount += gift_info;
       } else {
-        order.deliveryFee = 0
+        res.deliveryFee = 0
       }
 
       // Set up for use in popups

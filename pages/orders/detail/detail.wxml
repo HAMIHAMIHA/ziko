@@ -50,7 +50,7 @@
             <view class="info_container">
               <view class="nunito_700 product-title">{{ gift.name }}</view>
               <!-- Gift Products Detail -->
-              <view class="gilroy_500 product-detail_container" wx:if="{{ product.pro == 'pack' }}">{{ gift.product_info }}</view>
+              <view class="gilroy_500 product-detail_container">{{ gift.product_info }}</view>
               <!-- End of Gift Products Detail -->
 
               <!-- Gift Count -->
