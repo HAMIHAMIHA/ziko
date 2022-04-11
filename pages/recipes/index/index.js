@@ -21,7 +21,10 @@ const _setTranslation = page => {
     _t: {
       baking: i18n.baking,
       minutes: i18n.minutes,
+      no_recipe_found: i18n.no_recipe_found,
       preparation: i18n.preparation,
+      reset_filters: i18n.reset_filters,
+      save_filters: i18n.save_filters,
       try_text: i18n.try_text,
       _language: app.db.get('language'),
     }
@@ -34,17 +37,14 @@ const _getRecipes = (page, is_new) => {
   let recipes = [];
   const recipeCallback = res => {
     recipes = recipes.concat(res);
-
-    if (is_new) {
+    if (is_new || rand_number > recipes.length) {
       rand_number = Math.floor(Math.random() * recipes.length);
-      page.selectComponent('#recipes-component').setRecipes(recipes);
-    } else {
-      page.selectComponent('#recipes-component').updateRecipes(recipes);
     }
+    page.selectComponent('#recipes-component').updateRecipes(recipes);
 
     page.setData({
       recipes: recipes,
-      sample_name: recipes[rand_number].name[app.db.get('language')]
+      sample_name: recipes.length > 0 ? recipes[rand_number].name[app.db.get('language')] : ''
     })
     showLoading(false);
   }
@@ -128,13 +128,12 @@ Page({
       recipes: {},
       filters:[],
     })
-
-    _getPageContents(self);
   },
 
   onShow: function() {
     const self = this;
     _setTranslation(self);
+    _getPageContents(self);
   },
 
   showFilter: function() {
