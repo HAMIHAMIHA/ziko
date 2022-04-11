@@ -30,10 +30,12 @@ Page({
   onHide: function() {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
     Offers.clearBuyerInterval();
+    this.selectComponent('#scroll_messages').clearMessageInterval();
   },
   onUnload: function() {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
     Offers.clearBuyerInterval();
+    this.selectComponent('#scroll_messages').clearMessageInterval();
 
     Offers.unloadOfferPage(this);
   },
