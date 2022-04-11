@@ -19,6 +19,10 @@
 }
 /* End of Offer Card */
 
+.offers_list.no_offer {
+  text-align: center;
+}
+
 /* Offer Banner */
 .offer-banner {
   min-height: 288rpx;
