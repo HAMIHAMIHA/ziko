@@ -37,16 +37,17 @@ const getOrders = (page) => {
       let product_idx = offer.miniprogram.items.findIndex( i => i.shortName === gift.singleItem);
       return {
         name: offer.miniprogram.packs[product_idx].name[_lang],
-        picture: `${app.folders.product_picture}${offer.miniprogram.packs[product_idx].mainPicture[_lang].uri}`,
+        picture: '/assets/images/packDefault.png',
         count: 1,
         _id: gift._id
       }
     }, 
     pack: (gift, offer) => {
       let product_idx = offer.miniprogram.packs.findIndex( i => i.shortName === gift.pack);
+      console.log(offer.miniprogram.items[product_idx]);
       return {
         name: offer.miniprogram.packs[product_idx].name[_lang],
-        picture: '/assets/images/packDefault.png',
+        // picture: `${app.folders.product_picture}${offer.miniprogram.items[product_idx].product.mainPicture[_lang].uri}`,
         count: 1,
         _id: gift._id
       }

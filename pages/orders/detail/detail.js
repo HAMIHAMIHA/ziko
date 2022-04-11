@@ -97,6 +97,10 @@ const getOrders = (page) => {
           name: gift.custom[_lang],
           origin: gift.origin,
           picture: '',
+          special: {
+            conditionType: 'todo',
+            conditionValue: ''
+          }
         }]
       }, 
       voucher: (gift) => {
@@ -106,6 +110,10 @@ const getOrders = (page) => {
           name: `￥${ gift.voucherValue }${ i18n.offer_special_details.voucher }`,
           picture: '',
           origin: gift.origin,
+          special: {
+            conditionType: 'todo',
+            conditionValue: ''
+          }
         }]
       }, 
       discount: (gift) => {
