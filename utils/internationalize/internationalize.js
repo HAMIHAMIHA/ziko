@@ -189,6 +189,7 @@ export const languageMap_en = {
   no_offers: "No offers yet",
   no_orders: "No orders yet",
   no_recipes: "No related recipes",
+  no_recipe_found: "No recipes found",
   no_vouchers: "No vouchers",
   no_winner_yet: "No winner yet",
   not_this_time : "Not this time...",
@@ -351,10 +352,12 @@ export const languageMap_en = {
   },
   remaining_draws: "Remaining draws",
   remaining_time: "remaining time",
+  reset_filters: "Reset filters",
   rmb: "rmb",
 
   // S
   save: "Save",
+  save_filters: "Save filters",
   see_all_offers: "See all offers",
   see_you_soon: "See you soon for the lottery result!",
   select: "Select",
@@ -627,6 +630,7 @@ export const languageMap_zh = {
   no_offers: "No offers yet",
   no_orders: "No orders yet",
   no_recipes: "No related recipes",
+  no_recipe_found: "No recipes found",
   no_vouchers: "No vouchers",
   no_winner_yet: "No winner yet",
   not_this_time : "Not this time...",
@@ -790,10 +794,12 @@ export const languageMap_zh = {
   },
   remaining_draws: "Remaining draws",
   remaining_time: "remaining time",
+  reset_filters: "Reset filters",
   rmb: "rmb",
 
   // S
   save: "Save",
+  save_filters: "Save filters",
   see_all_offers: "See all offers",
   see_you_soon: "See you soon for the lottery result!",
   select: "Select",

@@ -30,6 +30,7 @@ const _setPageTranslation = page => {
       item_unit: i18n.item_unit,
       items_unit: i18n.items_unit,
       lottery: i18n.lottery,
+      no_offers: i18n.no_offers,
       offers: i18n.offers,
       orders_unit: i18n.orders_unit,
       order_unit: i18n.order_unit,
