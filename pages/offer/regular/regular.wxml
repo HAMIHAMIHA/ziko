@@ -130,7 +130,7 @@
               <view class="flex-center offer-special" >
                 <view class="gilroy_700 uppercase offer-special_title">
                   <text wx:if="{{ special.conditionType !== 'item_x_in_cart' }}">{{ _t.offer_special_names[special.conditionType].prefix }}{{ special.conditionValue }}{{ _t.offer_special_names[special.conditionType].suffix }}</text>
-                  <text wx:else>{{ special.conditionValue != null ? special.conditionValue + ' ' : '' }}{{ _t.offer_special_names[special.conditionType].prefix }}{{ _product_names[special.conditionPack] }}{{ _t.offer_special_names[special.conditionType].suffix }}</text>
+                  <text wx:else>{{ _t.offer_special_names[special.conditionType].prefix }}{{ _product_names[special.conditionPack] }}{{ _t.offer_special_names[special.conditionType].suffix }}</text>
                 </view>
                 <view class="offer-special_detail">
                   <text wx:if="{{ special.gift.type == 'pack' }}">{{ _t.offer_special_details.get }}{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[special.gift.pack] }}{{ _t.offer_special_details.for_free.suffix }}</text>
@@ -138,7 +138,7 @@
                   <text wx:if="{{ special.gift.type == 'voucher' }}">{{ _t.offer_special_details.get }}￥{{ special.gift.voucherValue }}{{ _t.offer_special_details.voucher }}</text>
                   <text wx:if="{{ special.gift.type == 'discount' }}">{{ _t.offer_special_details.get }}{{ special.gift.discountAmount }}{{ _t.offer_special_details.discount }}</text>
                   <text wx:if="{{ special.gift.type == 'free_delivery' }}">{{ _t.offer_special_details.get }}{{ _t.offer_special_details.free_delivery }}</text>
-                  <text wx:if="{{ special.gift.type == 'custom' }}">{{ special.gift.custom[_language] }}</text>
+                  <text wx:if="{{ special.gift.type == 'custom' }}">{{ _t.offer_special_details.get }}{{ special.gift.custom[_language] }}</text>
                 </view>
               </view>
             </block>
