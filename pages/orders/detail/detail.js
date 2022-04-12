@@ -263,6 +263,14 @@ Page({
     getOrders(self);
   },
 
+  onHide: function() {
+    this.options.type = ''
+  },
+
+  onUnload: function() {
+    this.options.type = ''
+  },
+
   makePayment: function() {
     const self = this;
     makePayment({ id: self.options.id });
