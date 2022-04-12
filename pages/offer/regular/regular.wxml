@@ -147,32 +147,10 @@
         <!-- End of Offer Specials -->
 
         <!-- Lottery -->
-        <view class="offer-lotteries" wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}">
+        <view class="offer-lotteries cellar-lotteries" wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}">
           <view class="lottery_regular">
             <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}"></lottery-header>
-
-            <view class="offer-lotteries_list">
-              <block wx:for="{{ _offer.miniprogram.lottery.draws }}" wx:key="id" wx:for-item="draw">
-                <view class="flex-center offer-lottery">
-                  <view class="gilroy_700 uppercase offer-lottery_title">
-                    <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ draw.conditionValue }} {{ _t.orders }}</text>
-                    <text wx:else>{{ draw.conditionValue }} {{ _t.offer_special_names.items_sold }}</text>
-                  </view>
-
-                  <view class="offer-lottery_detail">
-                    <block wx:for="{{ draw.gifts }}" wx:for-item="gift" wx:key="_id">
-                      <text wx:if="{{ index > 0 }}"> + </text>
-                      <text wx:else>{{ _t.offer_special_details.get }}</text>
-                      <text wx:if="{{ gift.type === 'pack' }}">{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[gift.pack] }}{{ _t.offer_special_details.for_free.suffix }}</text>
-                      <text wx:if="{{ gift.type === 'add_on' }}">{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[gift.singleItem] }}{{ _t.offer_special_details.for_free.suffix }}</text>
-                      <text wx:if="{{ gift.type === 'voucher' }}">￥{{ gift.voucherValue }}{{ _t.offer_special_details.voucher }}</text>
-                      <text wx:if="{{ gift.type === 'discount' }}">{{ gift.discountAmount }}{{ _t.offer_special_details.discount }}</text>
-                      <text wx:if="{{ gift.type === 'custom' }}">{{ gift.custom[_language] }}</text>
-                    </block>
-                  </view>
-                </view>
-              </block>
-            </view>
+            <lottery-cellar _current_user="{{ _current_user }}" _offer="{{ _offer }}" _product_names="{{ _product_names }}" _t="{{ _t_prize }}" id="lottery_list"></lottery-cellar>
           </view>
         </view>
         <!-- End of Lottery -->

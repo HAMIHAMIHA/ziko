@@ -230,7 +230,7 @@ export const getOffer = function(page, offer_id) {
     }
 
     // Cellar Lottery detail
-    if (offer.miniprogram.lotteryEnable && offer.community === "cellar" && offer.miniprogram.lottery.draws.length > 0) {
+    if (offer.miniprogram.lotteryEnable && offer.miniprogram.lottery.draws.length > 0) {
       offer.miniprogram.lottery.draws.sort( (a, b) => {
         return a.conditionValue - b.conditionValue;
       })

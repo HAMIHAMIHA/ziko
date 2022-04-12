@@ -5,7 +5,8 @@ Component({
     _current_user: String,
     _offer: Object,
     _product_names: Object,
-    _t: Object
+    _t: Object,
+    offer_page: Boolean,
   },
 
   data: {

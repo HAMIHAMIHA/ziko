@@ -1,9 +1,9 @@
-<view class="uppercase progress__container">
+<view class="uppercase progress__container" wx:if="{{ _offer.community === 'cellar' }}">
   <view class="gilroy_800 lottery-label" wx:if="{{ offer_page }}">{{ _t.lottery_stages }}</view>
   <view class="gilroy_800 lottery-label" wx:else>{{ _t.quantity_bottle_sold }}</view>
 
   <!-- Progress block -->
-  <view class="progress" style="--filled-:{{ _offer.lottery_progress }}%;" wx:if="{{ _offer.community === 'cellar' }}">
+  <view class="progress" style="--filled-:{{ _offer.lottery_progress }}%;">
     <view class="progress__bottle">
       <view class="icon icon-wine"></view>
     </view>
@@ -28,9 +28,9 @@
 <view class="lotteries_prize">
   <view class="gilroy_800 uppercase lottery-label">{{ _t.lottery_prizes }}</view>
   <view class="offer-lotteries_list">
-    <block wx:for="{{ _offer.miniprogram.lottery.draws }}" wx:key="id" wx:for-item="draw">
+    <block wx:for="{{ _offer.miniprogram.lottery.draws }}" wx:key="_id" wx:for-item="draw">
       <!-- Lottery block -->
-      <view class="draw__container {{ draw.unlocked ? 'unlocked' : 'locked' }}" wx:if="{{ index > 0}}">
+      <view class="draw__container {{ draw.unlocked ? 'unlocked' : 'locked' }}" wx:if="{{ index > 0 }}">
         <view class="nunito_700 uppercase draw-label">{{ _t.draw }} {{ index }}</view>
         <view class="flex-center offer-lottery">
           <view class="uppercase nunito_700 offer-lottery_status">{{ draw.unlocked ? _t.unlocked : _t.locked }}</view>
