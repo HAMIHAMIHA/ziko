@@ -194,11 +194,11 @@ Page({
     if (!data.started) return;
 
     var url = app.routes.offer_regular;
-    if (communities[data.community] === "cellar" && data.type && data.type !== "regular") {
+    if (data.community === "cellar" && data.type && data.type !== "regular") {
       if (data.type == "bourse") {
-        url = routes.offer_bourse;
+        url = app.routes.offer_bourse;
       } else {
-        url = routes.offer_cellar;
+        url = app.routes.offer_cellar;
       }
     }
 
