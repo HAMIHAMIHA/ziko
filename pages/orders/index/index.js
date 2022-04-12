@@ -44,7 +44,7 @@ const getOrders = (page) => {
     }, 
     pack: (gift, offer) => {
       let product_idx = offer.miniprogram.packs.findIndex( i => i.shortName === gift.pack);
-      console.log(offer.miniprogram.items[product_idx]);
+      // console.log(offer.miniprogram.items[product_idx]);
       return {
         name: offer.miniprogram.packs[product_idx].name[_lang],
         // picture: `${app.folders.product_picture}${offer.miniprogram.items[product_idx].product.mainPicture[_lang].uri}`,
