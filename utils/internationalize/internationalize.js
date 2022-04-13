@@ -348,7 +348,7 @@ export const languageMap_en = {
   quantity_bottle_sold: "quantity bottle sold",
 
   // R
-  reveived: "Received",
+  received: "Received",
   recipe_detail: "Recipe detail",
   recipe_list: "Recipe list",
   recipes: "recipes",
@@ -801,7 +801,7 @@ export const languageMap_zh = {
   quantity_bottle_sold: "quantity bottle sold",
 
   // R
-  reveived: "Received",
+  received: "Received",
   recipe_detail: "Recipe detail",
   recipe_list: "Recipe list",
   recipes: "recipes",
