@@ -26,7 +26,7 @@ const _setPageTranslation = page => {
         get_profile: i18n.get_profile,
         moile_login: i18n.mobile_login,
         need_login: i18n.need_login,
-        reveived: i18n.reveived,
+        received: i18n.received,
         select: i18n.select,
         to_order: i18n.to_order,
         voucher_question: i18n.voucher_question,

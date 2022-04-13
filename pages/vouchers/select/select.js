@@ -22,7 +22,7 @@ const _setPageTranslation = page => {
       expire_on: i18n.expire_on,
       from: i18n.from,
       please_select_voucher: i18n.please_select_voucher,
-      reveived: i18n.reveived,
+      received: i18n.received,
       select: i18n.select,
     }
   })

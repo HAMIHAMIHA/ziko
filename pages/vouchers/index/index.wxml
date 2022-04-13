@@ -42,7 +42,7 @@
                 <text class="voucher_text">{{ voucher.community }}</text>
               </view>
               <view class="voucher_detail-content voucher_recs">
-                <text class="gilroy_500 voucher_label">{{ _t.reveived }}: </text>
+                <text class="gilroy_500 voucher_label">{{ _t.received }}: </text>
                 <text class="voucher_text">{{ voucher.createdAt }}</text>
               </view>
               <view class="voucher_detail-content voucher_exp">
