@@ -5,12 +5,48 @@ const i18n = require('utils/internationalize/translate.js'); // 翻译功能
 
 const { folders, subscribe } = require('./utils/properties');
 
+
+export async function _checkUserToken() {
+  // Check user token
+  const checkExpired = expire => {
+    let current_session = expire ? new Date(expire) : new Date();
+    if (current_session <= new Date()) {
+      return true;
+    }
+    return false;
+  }
+
+  let user_info = db.get('userInfo');
+  if (!user_info.token) {
+    console.debug('User Not Logged in');
+    return;
+  }
+
+  // TODO need to test
+  // Check if token session still valid
+  if (checkExpired(user_info.expireAt)) {
+    if (checkExpired(user_info.refreshExpireAt)) {
+      // Clear user auth token
+      db.set('userInfo', { customer: user_info.customer });
+      return;
+    } else {
+      console.debug("Refresh User Session");
+      return api.refreshToken({ refreshToken: user_info.refreshToken }).then( res => {
+        db.set('userInfo', res);
+        return;
+      })
+    }
+  }
+  console.debug('User Exist');
+  return;
+}
+
 const getWxUserOpenId = (res) => {
   api.wxOpenid({ code: res.code }).then(res => {
     let user = db.get('userInfo') ? db.get('userInfo') : {};
     user.customer ? user.customer.openId = res.openId : user.customer = res;
-
     db.set('userInfo', user);
+    _checkUserToken();
   });
 }
 
