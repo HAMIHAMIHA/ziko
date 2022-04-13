@@ -13,7 +13,6 @@ Page({
     })
 
     refreshUserInfo(null, res =>{
-      console.log(res);
       self.setData({
         fapiao: res.fapiaoInformation ? res.fapiaoInformation : '',
       })

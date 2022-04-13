@@ -125,8 +125,6 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
       days = []; // create list for date picker
     }
 
-    // console.log(res);
-
     for (var i in raw_offers) {
       let offer = raw_offers[i];
       let date_value = formatWeekDate(offer.startingDate);

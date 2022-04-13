@@ -28,7 +28,6 @@ Component({
 
   lifetimes: {
     attached() {
-      console.log('attached');
       // Reset message
       messagesShowing = 1;
       current = [-4, -3, -2, -1, 0, 1];
@@ -51,8 +50,6 @@ Component({
       self.setData({
         messages: messages
       })
-
-      console.log('started');
 
       // Add Animation For Showing messages
       interval = setInterval(

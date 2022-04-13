@@ -223,8 +223,6 @@ Page({
 
     let cart = app.db.get('cart')[self.options.id];
   
-    console.log(self.data._offer);
-
     self.setData({
       cart: cart,
       products: _setProducts(self.data._offer, cart)

@@ -76,8 +76,6 @@ const _generateUserAddress = (page, action, new_address) => {
     }
   }
 
-  console.log(new_address);
-
   return address;
 }
 

@@ -114,7 +114,6 @@ Page({
 
     // Update contact info to BO
     let contact = e.detail.value;
-    console.log(e.detail.value);
     let contact_list = _generateUserContact(self, action, contact);
     updateUserInfo({ contacts: contact_list }, app.routes.contacts);
   }
