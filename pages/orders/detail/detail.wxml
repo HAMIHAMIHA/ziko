@@ -1,4 +1,4 @@
-<view class="container container-grey{{ order.paymentStatus == 'pending' ? ' container-btn-bottom' : '' }}">
+<view class="container container-grey{{ order.paymentStatus == 'pending' || order.trackingStatus == 'delivered' ? ' container-btn-bottom' : '' }}">
   <view class="white-box order-products_container">
     <view class="nunito_700 header page-header">{{ order.offer.name[_language] }}</view>
     <view class="nunito_700 header">{{ _t.items }}</view>
@@ -190,6 +190,13 @@
   <view class="btn-bottom" wx:if="{{ order.paymentStatus == 'pending' }}">
     <button class="nunito_600" bindtap="makePayment">
       {{ _t.pay }}
+    </button>
+  </view>
+
+  <!-- Receive button for delivered orders -->
+  <view class="btn-bottom" wx:elif="{{ order.trackingStatus == 'delivered' }}">
+    <button class="nunito_600" bindtap="confirmReceive">
+      {{ _t.received }}
     </button>
   </view>
 </view>

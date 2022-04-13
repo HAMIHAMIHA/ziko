@@ -233,6 +233,7 @@ Page({
         pay: i18n.pay,
         phone_no: i18n.phone_no,
         problem_with_order: i18n.problem_with_order,
+        received: i18n.received,
         storage_types: i18n.storage_types,
         total: i18n.total,
         tracking_number: i18n.tracking_number,
@@ -280,4 +281,17 @@ Page({
     const self = this;
     self.selectComponent('#order_collected').show();
   },
+
+  confirmReceive: function() {
+    const self = this;
+    app.api.updateOrder(self.options.id, { trackingStatus: 'received '}).then( res => {
+      let order = self.data.order;
+      // TODO: waiting
+      // order.trackingStatus = res.trackingStatus;
+      order.trackingStatus = 'received';
+      self.setData({
+        order
+      })
+    })
+  }
 })
