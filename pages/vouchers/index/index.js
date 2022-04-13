@@ -100,7 +100,7 @@ Page({
     const self = this;
     _setPageTranslation(self);
     getUserInfo(self);
-    if (app.db.get('userInfo') && app.db.get('userInfo').customer && app.db.get('userInfo').customer.id) {
+    if (app.db.get('userInfo') && app.db.get('userInfo').token) {
       self.getVouchers();
     }
   },
