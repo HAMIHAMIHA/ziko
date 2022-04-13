@@ -37,7 +37,7 @@ const _getRecipes = (page, is_new) => {
   let recipes = [];
   const recipeCallback = res => {
     recipes = recipes.concat(res);
-    if (is_new || rand_number > recipes.length) {
+    if (is_new || rand_number >= recipes.length) {
       rand_number = Math.floor(Math.random() * recipes.length);
     }
     page.selectComponent('#recipes-component').updateRecipes(recipes);
@@ -143,6 +143,7 @@ Page({
     })
   },
 
+  // Close filter slide without saving changes
   hideFilter: function() {
     const self = this;
 
@@ -165,6 +166,7 @@ Page({
     })    
   },
 
+  // Reset all filters to not selected
   resetFilters: function() {
     const self = this;
     let selected = self.data.selected_filters;
@@ -180,6 +182,7 @@ Page({
     })
   },
 
+  // Select filters
   selectFilter: function(e) {
     const self = this;
     let selected = self.data.selected_filters;
@@ -187,9 +190,8 @@ Page({
       const [c_key, c_val] = cat;
       Object.keys(c_val).forEach( tag => {
         if (e.currentTarget.dataset.cat_id == c_key) {
-          selected[c_key][tag] = false;
           if (e.currentTarget.dataset.tag_id == tag) {
-            selected[c_key][tag] = true;
+            selected[c_key][tag] = !selected[c_key][tag];
           }
         }
       })
@@ -200,6 +202,7 @@ Page({
     })
   },
 
+  // Remove tag
   removeTag: function(e) {
     const self = this;
     let filter_index = e.currentTarget.dataset.filter_index;
@@ -224,7 +227,8 @@ Page({
 
     _getRecipes(self, false);
   },
-  
+
+  // Save filter with selected tags
   saveFilter: function() {
     const self = this;
 
