@@ -156,7 +156,11 @@ export const createOrder = (page, value) => {
 
       makePayment(res);
     }
-    app.api.createOrder(offer_id, order).then(createOrderCallback);
+    app.api.createOrder(offer_id, order).then(createOrderCallback).catch( error => {
+      let message = error.replace('missing pack', app.globalData.i18n.missing_pack).replace('missing item', app.globalData.i18n.missing_item);
+      showToast(message);
+      showLoading(false);
+    });
   }
 
   // Check if subscription needed
@@ -168,8 +172,6 @@ export const createOrder = (page, value) => {
   if (page.data._offer.miniprogram.lotteryEnable) {
     subscribe.push(app.subscribe.lottery_draw);
   }
-
-  console.log(subscribe);
 
   if (subscribe.length > 0) {
     // Request subscription before checkout if lottery / special included

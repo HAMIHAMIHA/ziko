@@ -159,6 +159,8 @@ export const languageMap_en = {
   minimum: "Min",
   minimum_in_cart: "Must have at least one item in cart",
   minutes: "min",
+  missing_pack: "Missing pack",
+  missing_item: "Missing item",
   mobile_login: "Mobile login",
   month: {
     1: "January",
@@ -609,6 +611,8 @@ export const languageMap_zh = {
   minimum: "Min",
   minimum_in_cart: "Must have at least one item in cart",
   minutes: "min",
+  missing_pack: "Missing pack",
+  missing_item: "Missing item",
   mobile_login: "手机登录",
   month: {
     1: "1月",
