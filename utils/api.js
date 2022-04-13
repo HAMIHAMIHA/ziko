@@ -208,4 +208,9 @@ module.exports = {
   wxOpenid: (data) => {
     return post('wechat/openid', data);
   },
+
+  // Refresh user login token
+  refreshToken: (data) => {
+    return post('wechat/refresh', data)
+  },
 }
