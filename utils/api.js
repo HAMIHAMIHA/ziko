@@ -132,6 +132,11 @@ module.exports = {
     return get(`orders/${suffix}`);
   },
 
+  // Update order
+  updateOrder: (id, data) => {
+    return put(`orders/${id}/mine`, data);
+  },
+
   // Get offer with product details
   getOffers: (suffix) => {
     return get(`offers/details${suffix}`);
