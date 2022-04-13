@@ -4,14 +4,29 @@ const translate = require('../../../utils/internationalize/translate.js'); // ç¿
 
 // Page data
 const _getPageData = (page) => {
-  console.log('get page');
+  // Voucher list for comparsion
   app.api.getVouchers('validated', false).then( res => {
-    console.log(res);
+    if (!app.db.get('vouchers')) return; // Don't check for extra if there is no voucher history in storage
     page.setData({
       new_vouchers: res.length - app.db.get('vouchers')
     })
   });
-  // TODO get order and voucher list for comparsion
+
+  // Order list for comparsion
+  let order_filter = { filter_str: `filter={"$or":[{"channel":"all"},{"channel":"miniprogram"}]}` };
+  app.api.getOrders(order_filter).then( orders => {
+    if (!app.db.get('orderDeliveries')) return; // Don't check for extra if there is no voucher history in storage
+    orders.slice((orders.length - app.db.get('orderDeliveries').length), orders.length);
+
+    let deliveries = [];
+    orders.forEach( order => {
+      deliveries.push(order.trackingStatus);
+    })
+
+    page.setData({
+      new_orders: `${deliveries}` !== `${app.db.get('orderDeliveries')}`
+    })
+  })
 }
 
 const _uploadProfileImage = (res, page) =>  {

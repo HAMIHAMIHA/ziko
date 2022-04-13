@@ -56,7 +56,7 @@
 
   <!-- SHORT CUTS -->
   <view class="gilroy_700 uppercase card short-cuts">
-    <navigator class="short-cuts__button{{ _user.new_orders ? ' new' : '' }}" url="{{ _routes.orders }}" open-type="switchTab">
+    <navigator class="short-cuts__button{{  new_orders ? ' new' : '' }}" url="{{ _routes.orders }}" open-type="switchTab">
       <view class="short-cut__icon icon icon-package"></view>
       <view class="short-cut__label">{{ _t.orders }}</view>
     </navigator>

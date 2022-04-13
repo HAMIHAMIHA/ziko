@@ -85,6 +85,7 @@ const getOrders = (page) => {
       return count;
     }
 
+    let order_deliveries = [];
     res.map( order => {
       order.actualAmount = Math.round(order.actualAmount * 100) / 100;
       order.orderDate = `${formatDate('yyyy-mm-dd', order.orderDate)} ${formatTime(order.orderDate)}`;
@@ -104,21 +105,30 @@ const getOrders = (page) => {
         }
       })
       order.gifts = gifts;
+
+
+      // Save delivery status for checking in future
+      if (!current.community && !current.order_status && !current.payment_status) {
+        order_deliveries.push(order.trackingStatus);
+      }
     })
 
     page.setData({
       orders: res,
-    })
+    });
 
-    app.db.set('orders', res); // Save for comparsion in profile page
+    // Save for comparsion in profile page
+    if (!current.community && !current.order_status && !current.payment_status) {
+      app.db.set('orderDeliveries', order_deliveries);
+    }
   }
+
   let community_id = Object.keys(communities).find(item => communities[item] == current.community);
   community_id = community_id ? community_id : ''; // Remove undefined
   let order_status = current.order_status;
 
   let filter = {
-    filter_str: `community=${ community_id }&trackingStatus=${ order_status }`,
-    id: ''
+    filter_str: `filter={"$or":[{"channel":"all"},{"channel":"miniprogram"}]}&community=${ community_id }&trackingStatus=${ order_status }`,
   }
 
   app.api.getOrders(filter).then(callback);
@@ -137,7 +147,7 @@ Page({
 
     getUserInfo(self);
   
-    if (app.db.get('userInfo') && app.db.get('userInfo').customer && app.db.get('userInfo').customer.id) {
+    if (app.db.get('userInfo') && app.db.get('userInfo').token) {
       if (!self.options.back) {
         self.initOrders();
       } else {
