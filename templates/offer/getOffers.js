@@ -417,6 +417,9 @@ export function getOfferBuyers(page, offer_id) {
 
         // Calculate newly sold amount
         new_sold += item.amount;
+
+        // Check if winner of lottery
+        // TODO
       });
       offer.sold += new_sold; // Update offer total sold
     })

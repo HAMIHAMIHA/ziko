@@ -36,7 +36,7 @@ const getOrders = (page) => {
     add_on: (gift, offer) => {
       let product_idx = offer.miniprogram.items.findIndex( i => i.shortName === gift.singleItem);
       return {
-        name: '',
+        name: 'addon waiting for api',
         // name: offer.miniprogram.packs[product_idx].name[_lang],
         picture: '/assets/images/packDefault.png',
         count: 1,
@@ -45,10 +45,10 @@ const getOrders = (page) => {
     }, 
     pack: (gift, offer) => {
       let product_idx = offer.miniprogram.packs.findIndex( i => i.shortName === gift.pack);
-      console.log(offer.miniprogram.items[product_idx]);
+      console.log(offer.miniprogram.packs[product_idx]);
       return {
         name: offer.miniprogram.packs[product_idx].name[_lang],
-        // picture: `${app.folders.product_picture}${offer.miniprogram.items[product_idx].product.mainPicture[_lang].uri}`,
+        picture: '/assets/images/packDefault.png',
         count: 1,
         _id: gift._id
       }
@@ -60,17 +60,32 @@ const getOrders = (page) => {
         count: 1,
         _id: gift._id
       }
-  
     }, 
-    voucher: () => {
-      return;
-    }, 
-    discount: () => {
-      return;
-    }, 
-    free_delivery: () => {
-      return;
-    }, 
+    voucher: (gift) => {
+      return {
+        name: `￥${ gift.voucherValue }${ app.globalData.i18n.offer_special_details.voucher }`,
+        picture: '',
+        count: 1,
+        _id: gift._id
+      }
+    },
+    discount: (gift) => {
+      gift.discountAmount
+      return {
+        name: `${ gift.discountAmount }${ app.globalData.i18n.offer_special_details.discount_off }`,
+        picture: '',
+        count: 1,
+        _id: gift._id
+      }
+    },
+    free_delivery: (gift) => {
+      return {
+        name: app.globalData.i18n.offer_special_details.free_delivery,
+        picture: '',
+        count: 1,
+        _id: gift._id
+      }
+    },
   }
 
   const callback = res => {

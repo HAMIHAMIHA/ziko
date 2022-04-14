@@ -255,6 +255,17 @@ Page({
     }
   },
 
+  onHide: function() {
+    if (_leave_triggered) return;
+    _refresh_data = true;
+    _timerControl(this, false);
+  },
+
+  onUnload: function() {
+    _refresh_data = true;
+    _timerControl(this, false);
+  },
+
   // Filter offers by selected group
   filterOffers: function(e) {
     const self = this;
@@ -283,17 +294,6 @@ Page({
     wx.navigateTo({
       url: app.routes.lottery_detail + '?id=' + data.offerId,
     })
-  },
-
-  onHide: function() {
-    if (_leave_triggered) return;
-    _refresh_data = true;
-    _timerControl(this, false);
-  },
-
-  onUnload: function() {
-    _refresh_data = true;
-    _timerControl(this, false);
   },
 
   onShareAppMessage: function (res) {},

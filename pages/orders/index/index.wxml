@@ -87,7 +87,7 @@
               <view class="gift">
                 <image class="gift__image" src="{{ gift.picture }}" mode="aspectFill" wx:if="{{ gift.picture }}"></image>
                 <view class="gift__image icon icon-gift" wx:else></view>
-                <view class="gift__name">{{ gift.name }}</view>
+                <view class="capitalize gift__name">{{ gift.name }}</view>
               </view>
               <view class="gift__count">x{{ gift.count }}</view>
             </view>

@@ -46,7 +46,7 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=623c07bec64fc9f745a6ff6e",
+          "query": "id=62555d5a7f8b1b81ba836d28",
           "scene": null
         },
         {
@@ -166,7 +166,7 @@
         {
           "name": "cellar",
           "pathName": "pages/offer/cellar/cellar/cellar",
-          "query": "id=624e6e0b8734636683622abd",
+          "query": "id=6255fc917f8b1b81ba83750c",
           "scene": null
         }
       ]
