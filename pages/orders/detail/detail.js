@@ -117,10 +117,31 @@ const getOrders = (page) => {
         }]
       }, 
       discount: (gift) => {
-        return [gift.origin, res.totalAmount * (gift.discountAmount / 100)];
+        return [gift.origin, {
+          _id: gift._id,
+          count: 1,
+          name: `${ gift.discountAmount }${ i18n.offer_special_details.discount_off  }`,
+          price: res.totalAmount * (gift.discountAmount / 100),
+          picture: '',
+          origin: gift.origin,
+          special: {
+            conditionType: 'todo',
+            conditionValue: ''
+          }
+        }]
       }, 
-      free_delivery: () => {
-        return ['delivery', 0];
+      free_delivery: (gift) => {
+        return ['delivery', {
+          _id: gift._id,
+          count: 1,
+          name: `${ i18n.offer_special_details.free_delivery }`,
+          picture: '',
+          origin: gift.origin,
+          special: {
+            conditionType: 'todo',
+            conditionValue: ''
+          }
+        }]
       }, 
     }
 
@@ -128,12 +149,13 @@ const getOrders = (page) => {
     let gifts = [], lottery_discount = 0, special_discount = 0, modal_gifts = [];
     res.gifts.forEach( gift => {
       let [gift_type, gift_info] = _getGiftValue[gift.type](gift, res.offer);
+      modal_gifts.push(gift_info);
 
       // Show in gift list
       if (gift_type === 'gift') {
         let gifts_idx = findIndex(gifts, gift_info, '_id');
         if (gifts_idx === -1) {
-          gifts.push(gift_info)
+          gifts.push(gift_info);
         } else {
           gifts[gifts_idx].count +=1;
         }
@@ -144,27 +166,27 @@ const getOrders = (page) => {
           gift_info.special = res.offer.miniprogram.zikoSpecials[special_idx];
         }
       } else if (gift_type === 'ziko_special') {
-        special_discount += gift_info;
+        special_discount += gift_info.price;
       } else if (gift_type === 'lottery') {
-        lottery_discount += gift_info;
+        lottery_discount += gift_info.price;
       } else {
         res.deliveryFee = 0
       }
 
       // Set up for use in popups
-      modal_gifts = [...gifts];
-      if (special_discount > 0) {
-        modal_gifts = modal_gifts.concat({
-          _id: 'ziko_special000',
-          name: `￥${special_discount}`,
-          picture: '/assets/images/redPacket.png',
-          product_info: app.globalData.i18n.reduction,
-          special: {
-            conditionType: 'ziko_special',
-            conditionValue: ''
-          }
-        })
-      }
+      // modal_gifts = [...gifts];
+      // if (special_discount > 0) {
+      //   modal_gifts = modal_gifts.concat({
+      //     _id: 'ziko_special000',
+      //     name: `￥${special_discount}`,
+      //     picture: '/assets/images/redPacket.png',
+      //     product_info: app.globalData.i18n.reduction,
+      //     special: {
+      //       conditionType: 'ziko_special',
+      //       conditionValue: ''
+      //     }
+      //   })
+      // }
     })
 
     res.gifts = gifts;

@@ -15,7 +15,7 @@ Component({
 
   methods: {
     showResults: function(gifts) {
-      const self =this;
+      const self = this;
 
       self.setData({
         gifts
