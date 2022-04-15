@@ -848,6 +848,7 @@ button:not([size=mini]).float-contact_container {
   padding-top: 20rpx;
   font-size: 28rpx;
   line-height: 36rpx;
+  word-break: break-word;
 }
 /* End of Offer Detail */
 

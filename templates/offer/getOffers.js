@@ -397,7 +397,7 @@ export function getOfferBuyers(page, offer_id) {
     }
 
     // Check if there is a new purchase and update offer page contents
-    if (res.length === offer.orders) return;
+    // if (res.length === offer.orders) return;
 
     let new_purchases = res.slice((offer.orders - 1), res.length); // Only check purchases not included in offer data
 
@@ -430,14 +430,34 @@ export function getOfferBuyers(page, offer_id) {
       page.setBourseGraph(offer);
     }
 
-    // Set next lottery
+    // Set next lottery or special
+    // Save special and lottery with number sold condition and number order condition to one list
+    let gift_list = offer.miniprogram.zikoSpecials.filter(s => { return s.conditionType === 'first_order' || s.conditionType === 'x_total_sold_items' || s.conditionType === "number_of_order"; });
+    console.log('special', offer.miniprogram.zikoSpecials)
+    console.log('special count down', gift_list);
     if (offer.miniprogram.lotteryEnable) {
+      console.log('lottery', offer.miniprogram.lottery.draws);
+      gift_list = gift_list.concat(offer.miniprogram.lottery.draws.slice(1))
+    }
+
+    console.log('all', gift_list);
+
+    if (gift_list.length > 0) {
+      // Switch position for number sold or number orders from special into lottery
+      gift_list.sort( (a, b) => {
+        if (b.conditionType === 'first_order') b.conditionType = "number_of_order";
+        if (a.conditionType === b.conditionType) {
+          return a.conditionValue - b.conditionValue;
+        }
+      })
+
+      console.log('sorted', gift_list);
       // Check which ones are unlocked
       let unlocked = 0;
       let first_locked = -1;
       let text = '';
 
-      offer.miniprogram.lottery.draws.forEach( (d, i) => {
+      gift_list.forEach( (d, i) => {
         if (!d.conditionType) return;
         if (d.conditionType === "number_of_order" && offer.orders >= d.conditionValue && unlocked < i) {
           unlocked++;
