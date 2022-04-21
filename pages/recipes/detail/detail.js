@@ -87,8 +87,13 @@ const getRecipeDetail = (page, id) => {
     })
     res.media = [res.mainPicture[app.db.get('language')], ...res.otherMedia];
 
+    console.log(res.description);
     // Description
+    res.description.en = res.description.en.replace(/\<h2><\/h2>/gi,  '<h2 class="empty-line"><br/><\/h2> ' );
+    res.description.en = res.description.en.replace(/\<p><\/p>/gi,  '<p class="empty-line"><br/><\/p> ' );
     res.description.en = res.description.en.replace(/\<img/gi,  '<img class="rich-img" ' );
+    res.description.zh = res.description.zh.replace(/\<h2><\/h2>/gi,  '<h2 class="empty-line"><br/><\/h2> ' );
+    res.description.zh = res.description.zh.replace(/\<p><\/p>/gi,  '<p class="empty-line"><br/><\/p> ' );
     res.description.zh = res.description.zh.replace(/\<img/gi,  '<img class="rich-img" ' );
 
     page.setData({
