@@ -53,7 +53,10 @@ const _setPageDefaultItems = page => {
       fapiao: app.routes.fapiao,
     },
     _setting: {
-      folders: app.folders.product_picture
+      folders: {
+        pack: app.folders.pack_picture,
+        product: app.folders.product_picture
+      }
     }
   })
 }

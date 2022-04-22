@@ -46,7 +46,7 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=62555d5a7f8b1b81ba836d28",
+          "query": "id=62622b46a3b9a9f268a87315",
           "scene": null
         },
         {
@@ -76,7 +76,7 @@
         {
           "name": "Cart",
           "pathName": "pages/cart/cart",
-          "query": "id=624fe1b287346366836270e8",
+          "query": "id=62621b52a3b9a9f268a870e5",
           "scene": null
         },
         {
@@ -124,7 +124,7 @@
         {
           "name": "order detail",
           "pathName": "pages/orders/detail/detail",
-          "query": "id=6254af6e7f8b1b81ba8349f7&type=paid",
+          "query": "id=62622b64a3b9a9f268a87333&type=paid",
           "scene": null
         },
         {
@@ -148,7 +148,7 @@
         {
           "name": "Recipe",
           "pathName": "pages/recipes/detail/detail",
-          "query": "id=621ee1b3f06d31c51e3b81cb",
+          "query": "id=623bf18dc64fc9f745a6f4c0",
           "scene": null
         },
         {

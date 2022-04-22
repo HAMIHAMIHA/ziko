@@ -277,6 +277,7 @@ export const getOffer = function(page, offer_id) {
       _current_user: app.db.get('userInfo').customer.id,
       _offer_setting: {
         folders: {
+          pack_picture: app.folders.pack_picture,
           product_picture: app.folders.product_picture
         },
         language: app.db.get('language'),
@@ -397,7 +398,7 @@ export function getOfferBuyers(page, offer_id) {
     }
 
     // Check if there is a new purchase and update offer page contents
-    // if (res.length === offer.orders) return;
+    if (res.length === offer.orders) return;
 
     let new_purchases = res.slice((offer.orders - 1), res.length); // Only check purchases not included in offer data
 

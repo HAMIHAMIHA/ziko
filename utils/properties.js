@@ -13,6 +13,7 @@ module.exports = {
     offer_banner: `${FILE_URL}offer-banner/`,
     offer_media: `${FILE_URL}offer-media/`,
     product_picture: `${FILE_URL}product-cover/`,
+    pack_picture: `${FILE_URL}pack-illustration/`,
     recipe_picture: `${FILE_URL}recipe-cover/`,
     recipe_media: `${FILE_URL}recipe-other-media/`,
   },

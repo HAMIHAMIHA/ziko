@@ -80,7 +80,7 @@ const getOrders = (page) => {
           offerDrawId: gift.offerDrawId,
           origin: gift.origin,
           name: prod.name[_lang],
-          picture: '/assets/images/packDefault.png',
+          picture: prod.illustation ? `${app.folders.pack_picture}${prod.illustation.file.response.uri}` : '/assets/images/packDefault.png',
           product_info: products_info,
           shortName: gift.pack,
         }]
@@ -116,7 +116,7 @@ const getOrders = (page) => {
           _id: gift._id,
           count: 1,
           name: `${ gift.discountAmount }${ i18n.offer_special_details.discount_off  }`,
-          price: res.totalAmount * (gift.discountAmount / 100),
+          price: parseFloat((res.totalAmount * (gift.discountAmount / 100)).toFixed(2)),
           picture: '',
           origin: gift.origin,
           special: {
@@ -209,6 +209,7 @@ const getOrders = (page) => {
 Page({
   data: {
     _folders: {
+      pack_picture: app.folders.pack_picture,
       product_picture: app.folders.product_picture,
     }
   },
