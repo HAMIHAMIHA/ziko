@@ -35,11 +35,11 @@ const _calculateFee = (fee_detail, cart) => {
   // Rules other than free value (modified from Antoine's code)
   let rules = fee_detail.rules.filter(item => item.type != 'free_after_value');
   let max = 0;
-  let fee = 0;
+  let fee = fee_detail.rules.filter(item => item.type === 'flat')[0].fee;
 
   rules.forEach( rule => {
     let quantity = rule.quantity ? rule.quantity : 0;
-    if (max <= quantity && quantity <= cart.count ) {
+    if (max <= quantity && quantity <= cart.count) {
       max = quantity;
       fee = rule.fee ? rule.fee : 0;
     }
@@ -53,6 +53,7 @@ export const getDeliveryFee = function(page, area, area_list) {
   let fee_index = _findClosestRule(fees, area, area_list);
   let new_fee = _calculateFee(fees[fee_index], page.data.cart);
 
+  console.log(new_fee);
   let total = page.data._pay_set.reducedTotal ? page.data._pay_set.reducedTotal : page.data._pay_set.total;
 
   page.setData({
