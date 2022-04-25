@@ -81,7 +81,7 @@
 
           <!-- Order Lottery -->
           <view class="order-info__gift" wx:if="{{ order.gifts.length > 0 }}">
-            <view class="gift-title">{{ _t.lottery_gift }}</view>
+            <view class="gift-title">{{ _t.gift }}</view>
             <block wx:for="{{ order.gifts }}" wx:key="_id" wx:for-item="gift">
               <view class="gift__container flex-between">
                 <view class="gift">

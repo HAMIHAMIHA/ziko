@@ -227,9 +227,9 @@ Page({
       _t: {
         community: i18n.community,
         get_profile: i18n.get_profile,
+        gift: i18n.gift,
         item_unit: i18n.item_unit,
         items_unit: i18n.items_unit,
-        lottery_gift: i18n.lottery_gift,
         moile_login: i18n.mobile_login,
         need_login: i18n.need_login,
         no_orders: i18n.no_orders,

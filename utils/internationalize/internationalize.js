@@ -119,6 +119,7 @@ export const languageMap_en = {
   get_reminder: "Get a reminder",
   get_profile: "Authorize wechat nickname",
   getting_user_profile: "To complete your user profile",
+  gift: "Gift: ",
   gift_source: {
     lottery: "Ziko lottery gift",
     ziko_special: "Ziko special gift",
@@ -149,7 +150,6 @@ export const languageMap_en = {
   locked: "locked",
   lottery: "Lottery",
   lottery_detail: "Lottery detail",
-  lottery_gift: "Lottery gift:",
   lottery_prizes: "Lottery prizes",
   lottery_stages: "lottery stages",
   lottery_tickets: "Lottery tickets",
@@ -571,6 +571,7 @@ export const languageMap_zh = {
   get_reminder: "Get a reminder",
   get_profile: "授权微信昵称",
   getting_user_profile: "用于完善会员资料",
+  gift: "Gift: ",
   gift_source: {
     lottery: "Ziko lottery gift",
     ziko_special: "Ziko special gift",
@@ -601,7 +602,6 @@ export const languageMap_zh = {
   locked: "locked",
   lottery: "Lottery",
   lottery_detail: "Lottery detail",
-  lottery_gift: "Lottery gift:",
   lottery_prizes: "Lottery prizes",
   lottery_stages: "lottery stages",
   lottery_tickets: "Lottery tickets",
