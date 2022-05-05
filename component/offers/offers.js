@@ -74,10 +74,9 @@ Component({
       wx.requestSubscribeMessage({
         tmplIds: [app.subscribe.offer],
         complete: (res) => {
-          console.log(res);
           // Get subscription
           if (res[app.subscribe.offer] === "accept") {
-            // TODO need api with offer_id [e.currentTarget.dataset.offer_id]
+            app.api.setNotificationOffer(e.currentTarget.dataset.offer_id);
           }
         }
       })
