@@ -129,6 +129,7 @@ export const languageMap_en = {
   // H
   home: "The land",
   has_won_the_lottery: " has won the lottery.",
+  hurry_top_message: "Hurry up to be the top ",
  
   // I
   item_quantity: "item quantity",
@@ -581,6 +582,7 @@ export const languageMap_zh = {
   // H
   home: "地图",
   has_won_the_lottery: " has won the lottery.",
+  hurry_top_message: "Hurry up to be the top ",
 
   // I
   item_quantity: "item quantity",

@@ -1,7 +1,7 @@
 <import src="../../../templates/offer/products.wxml" />
 <import src="../../../templates/offer/payButton.wxml" />
 
-<view class="container ziko-offer {{ 'community-' + _offer.community }}">
+<view class="container ziko-offer {{ 'community-' + _offer.community }}{{ next_lottery ? ' bottom-message' : '' }}">
   <!-- Offer Countdown -->
   <view class="uppercase countdown">
     <view class="nunito_600 countdown_text">{{ _t.remaining_time }}</view>
@@ -178,7 +178,7 @@
   <!-- Pay Button -->
   <template
     is="payment_container"
-    data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser }}"
+    data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_lottery: next_lottery }}"
   ></template>
   <!-- End of Pay Button -->
 </view>

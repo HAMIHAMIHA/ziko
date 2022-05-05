@@ -28,6 +28,7 @@ export const _getTranslations = (page, community) => {
     _language: app.db.get('language'),
     _t: {
       bourse_payment_message: i18n.bourse_payment_message,
+      hurry_top_message: i18n.hurry_top_message,
       items: i18n.items,
       item_unit: i18n.item_unit,
       item_quantity: i18n.item_quantity,
@@ -167,7 +168,7 @@ export const packProductDetail = function(offer) {
 }
 
 // Get Offer
-export const getOffer = function(page, offer_id) {
+export async function getOffer(page, offer_id) {
   const callback = res => {
     let offer = res[0];
 
@@ -270,11 +271,9 @@ export const getOffer = function(page, offer_id) {
       }, ...offer.miniprogram.lottery.draws]
     }
 
-    getUserInfo(page);
-
     // Set page data
     page.setData({
-      _current_user: app.db.get('userInfo').customer.id,
+      _current_user: app.db.get('userInfo').customer ? app.db.get('userInfo').customer.id : '',
       _offer_setting: {
         folders: {
           pack_picture: app.folders.pack_picture,
@@ -296,7 +295,7 @@ export const getOffer = function(page, offer_id) {
       },
       _offer: offer,
       _product_names: product_name_list,
-      cart: app.db.get('cart')[offer.id],
+      cart: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id] : null,
     })
 
     // Lottery Ticket amount check
@@ -337,8 +336,10 @@ export const getOffer = function(page, offer_id) {
   }
 
   showLoading(true);
+  await getUserInfo(page);
+
   // Update number of views for offer before getting offer
-  app.api.setOfferView(offer_id).then(res => {
+  app.api.setOfferView(offer_id).then(() => {
     app.api.getLotteries(`offer=${offer_id}`).then( res => {
       lotteries = res;
       app.api.getOffers(`?id=${offer_id}`).then(callback);
@@ -398,6 +399,11 @@ export function getOfferBuyers(page, offer_id) {
     }
 
     // Check if there is a new purchase and update offer page contents
+
+    // TEMP
+    // offer.orders = Math.min(offer.orders + 1, 7);
+    // offer.sold = Math.min(offer.sold + 1, 7);
+
     if (res.length === offer.orders) return;
 
     let new_purchases = res.slice((offer.orders - 1), res.length); // Only check purchases not included in offer data
@@ -431,35 +437,28 @@ export function getOfferBuyers(page, offer_id) {
       page.setBourseGraph(offer);
     }
 
+    let specials = (offer.type || offer.type === 'regular' || offer.communty != 'cellar') ? JSON.parse(JSON.stringify(offer.miniprogram.zikoSpecials)) : [];
     // Set next lottery or special
     // Save special and lottery with number sold condition and number order condition to one list
-    let gift_list = offer.miniprogram.zikoSpecials.filter(s => { return s.conditionType === 'first_order' || s.conditionType === 'x_total_sold_items' || s.conditionType === "number_of_order"; });
-    console.log('special', offer.miniprogram.zikoSpecials)
-    console.log('special count down', gift_list);
+    let gift_list = specials.filter(s => { return s.conditionType === 'first_order' || s.conditionType === 'x_total_sold_items' || s.conditionType === "number_of_order" });
     if (offer.miniprogram.lotteryEnable) {
-      console.log('lottery', offer.miniprogram.lottery.draws);
       gift_list = gift_list.concat(offer.miniprogram.lottery.draws.slice(1))
     }
-
-    console.log('all', gift_list);
 
     if (gift_list.length > 0) {
       // Switch position for number sold or number orders from special into lottery
       gift_list.sort( (a, b) => {
-        if (b.conditionType === 'first_order') b.conditionType = "number_of_order";
-        if (a.conditionType === b.conditionType) {
-          return a.conditionValue - b.conditionValue;
-        }
+        if (a.conditionType === 'first_order') a.conditionType = "number_of_order";
+        if (a.conditionType === 'x_total_sold_items') a.conditionType = "x_item_sold";
+        return a.conditionValue - b.conditionValue;
       })
 
-      console.log('sorted', gift_list);
       // Check which ones are unlocked
       let unlocked = 0;
       let first_locked = -1;
       let text = '';
 
       gift_list.forEach( (d, i) => {
-        if (!d.conditionType) return;
         if (d.conditionType === "number_of_order" && offer.orders >= d.conditionValue && unlocked < i) {
           unlocked++;
           d.unlocked = true;
@@ -475,7 +474,7 @@ export function getOfferBuyers(page, offer_id) {
       // Set next lottery message
       let next = null;
       if (first_locked > -1) {
-        next = offer.miniprogram.lottery.draws[first_locked];
+        next = gift_list[first_locked];
         next.text = text;
       }
 
@@ -508,7 +507,7 @@ export function getOfferBuyers(page, offer_id) {
     page.setData({
       "_pay_set.reducedTotal": app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].reducedTotal : 0,
       _offer: offer,
-      cart: app.db.get('cart')[offer.id],
+      cart: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id] : null,
     })
 
     // Refresh components

@@ -15,16 +15,12 @@ Page({
       left: '0',
       animate: animate,
     },
-    messages: [],
   },
 
   onShow: function () {
     const self = this;
     // Get Offer
     Offers.getOffer(self, self.options.id);
-  
-    // Message counts
-    let messageIndex = []
   },
 
   // Stop countdown timer on leaving page

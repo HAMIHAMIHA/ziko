@@ -21,9 +21,6 @@ Page({
     const self = this;
     // Get Offer
     Offers.getOffer(self, self.options.id);
-
-    // Message counts
-    let messageIndex = []
   },
 
   // Stop countdown timer on leaving page

@@ -866,9 +866,12 @@ button:not([size=mini]).float-contact_container {
 /* Offer Payment */
 .ziko-offer:not(.ziko-product) {
   --message-height: calc(28rpx + 14rpx + 14rpx);
-  /* TODO add message height 28rpx + 14rpx + 14rpx if have message */
   padding-bottom: calc(106rpx + var(--env-));
   position: relative;
+}
+
+.ziko-offer.bottom-message {
+  padding-bottom: calc(106rpx + var(--message-height) + var(--env-));
 }
 
 .ziko-offer .offer-payment {
