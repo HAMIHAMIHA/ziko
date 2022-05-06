@@ -189,6 +189,11 @@ module.exports = {
     return get(`orders/${id}/prepay`);
   },
 
+  // Set wechat notification for future offers
+  setNotificationOffer: id => {
+    return post(`offers/${id}/watch`, { watch: true })
+  },
+
   // Set view for offer
   setOfferView: (id) => {
     return get(`offers/${id}/viewed`);
