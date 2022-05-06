@@ -22,7 +22,6 @@ export async function _checkUserToken() {
     return;
   }
 
-  // TODO need to test
   // Check if token session still valid
   if (checkExpired(user_info.expireAt)) {
     if (checkExpired(user_info.refreshExpireAt)) {

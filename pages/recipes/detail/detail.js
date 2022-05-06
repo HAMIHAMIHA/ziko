@@ -59,7 +59,7 @@ const getOffers = (page, id) => {
       }
 
       // Modify offer data to fit page display
-      offer.started = (new Date() >= new Date(offer.startingDate));
+      offer.startTime = new Date(offer.startingDate).getTime();
       offer.startDate = date_value;
       offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
       offer.banner = banner ? app.folders.offer_banner + banner : '';

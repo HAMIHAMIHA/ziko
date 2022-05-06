@@ -146,7 +146,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
       }
 
       // Modify offer data to fit page display
-      offer.started = (new Date() >= new Date(offer.startingDate));
+      offer.startTime = new Date(offer.startingDate).getTime();
       offer.startDate = date_value;
       offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
       offer.banner = banner ? app.folders.offer_banner + banner : '';

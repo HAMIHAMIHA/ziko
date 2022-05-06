@@ -4,6 +4,7 @@ const app = getApp();
 const routes = app.routes;
 
 let timer_intervals = [];
+let now_timer;
 
 Component({
   properties: {
@@ -25,6 +26,7 @@ Component({
 
       // Set offer card contents
       self.setData({
+        now: new Date().getTime(),
         _folders: {
           offer_banner: app.folders.offer_banner,
         },
@@ -35,13 +37,29 @@ Component({
       // Start or end timers
       let timer = self.selectAllComponents('.timer');
       if (startTimer) {
+        timer_intervals = [];
         for (var i in timer) {
           timer_intervals.push(timer[i].setTimer([], startTimer));
         }
+
+        now_timer = setInterval( () => {
+          let new_timers = self.selectAllComponents('.timer');
+          if (timer.length < new_timers.length) {
+            new_timers.slice(timer.length, new_timers.length).forEach( t => {
+              timer_intervals.push(t.setTimer([], startTimer));
+            })
+            timer = new_timers;
+          }
+
+          self.setData({
+            now: new Date().getTime(),
+          })
+        }, 1000)
       } else {
-        if (timer.length == 0) return;
+        if (!timer.length) return;
 
         timer[0].setTimer(timer_intervals, startTimer);
+        clearInterval(now_timer);
         timer_intervals = [];
       }
     },
@@ -51,7 +69,7 @@ Component({
       const self = this;
       let data = e.currentTarget.dataset;
 
-      if (!data.started) return;
+      if (!data.started || new Date(data.end_time).getTime() <= new Date().getTime()) return;
 
       var url = routes.offer_regular;
       if (communities[data.community] === "cellar" && data.type && data.type !== "regular") {

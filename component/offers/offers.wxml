@@ -10,7 +10,8 @@
       wx:for-item="offer"
       wx:key="id"
       bindtap="toOffer"
-      data-started="{{ offer.started }}"
+      data-started="{{ now >= offer.startTime }}"
+      data-end_time="{{ offer.endingDate }}"
       data-community="{{ offer.community.id }}"
       data-offer-id="{{ offer.id }}"
       data-type="{{ offer.type }}"
@@ -29,7 +30,7 @@
       <view class="offer-detail_container">
         <view class="offer-detail_title">{{ offer.name[_language] }}</view>
         <!-- Display for offers in progress -->
-        <view class="offer-detail offer-started" wx:if="{{ offer.started }}">
+        <view class="offer-detail offer-started" wx:if="{{ now >= offer.startTime }}">
           <view class="flex-between offer-detail_content">
             <!-- Specials -->
             <view class="flex-between_left flex-center offer-specials">
