@@ -50,10 +50,18 @@ const _calculateFee = (fee_detail, cart) => {
 
 export const getDeliveryFee = function(page, area, area_list) {
   fees = page.data._offer.fees;
+
+  if (page.data.free_delivery) {
+    page.setData({
+      '_pay_set.finalFee': page.data._pay_set.reducedTotal ? page.data._pay_set.reducedTotal : page.data._pay_set.total,
+      delivery_fee: 0
+    })
+    return;
+  }
+
   let fee_index = _findClosestRule(fees, area, area_list);
   let new_fee = _calculateFee(fees[fee_index], page.data.cart);
 
-  console.log(new_fee);
   let total = page.data._pay_set.reducedTotal ? page.data._pay_set.reducedTotal : page.data._pay_set.total;
 
   page.setData({
