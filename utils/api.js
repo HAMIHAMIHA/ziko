@@ -163,7 +163,7 @@ module.exports = {
     if (filter.id) {
       suffix = `/${filter.id}/details`;
     } else {
-      suffix = filter.detail
+      suffix = `/details${filter.detail}`;
     }
     return get(`recipes${suffix}`);
   },
