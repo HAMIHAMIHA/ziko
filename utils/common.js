@@ -9,7 +9,7 @@ export const changeFocus = function(page, e) {
 }
 
 // Check user session and set user to page data
-export const getUserInfo = function(page) {
+export async function getUserInfo(page) {
   let user = db.get('userInfo');
   // Check if token session still valid
   let current_session = user.expireAt ? new Date(user.expireAt) : 0;
