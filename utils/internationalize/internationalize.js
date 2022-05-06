@@ -269,11 +269,6 @@ export const languageMap_en = {
       prefix: "Ziko Lottery",
       suffix: "",
     },
-    // TEMP
-    todo: {
-      prefix: "waiting for api",
-      suffix: "",
-    },
   },
   offers: " offers",
   only_left: {
@@ -723,11 +718,6 @@ export const languageMap_zh = {
     },
     ziko_lottery: {
       prefix: "Ziko Lottery",
-      suffix: "",
-    },
-    // TEMP
-    todo: {
-      prefix: "waiting for api",
       suffix: "",
     },
   },

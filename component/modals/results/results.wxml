@@ -13,7 +13,7 @@
       <block wx:for="{{ gifts }}" wx:key="_id" wx:for-item="gift">
         <view class="content-body{{ gift.checked ? ' checked' : '' }}">
           <view class="nunito_800 uppercase content-label">
-            {{ _t.offer_special_result[gift.special.conditionType].prefix }}{{ gift.special.conditionValue }}{{ _t.offer_special_result[gift.special.conditionType].suffix }}
+          {{ _t.offer_special_result[gift.special.conditionType].prefix }}{{ gift.special.conditionType === 'item_x_in_cart' ? gift.special.conditionName : gift.special.conditionValue }}{{ _t.offer_special_result[gift.special.conditionType].suffix }}
           </view>
 
           <view class="content-image_container">

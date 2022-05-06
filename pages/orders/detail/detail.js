@@ -92,10 +92,6 @@ const getOrders = (page) => {
           name: gift.custom[_lang],
           origin: gift.origin,
           picture: '',
-          special: {
-            conditionType: 'todo',
-            conditionValue: ''
-          }
         }]
       }, 
       voucher: (gift) => {
@@ -105,10 +101,6 @@ const getOrders = (page) => {
           name: `￥${ gift.voucherValue }${ i18n.offer_special_details.voucher }`,
           picture: '',
           origin: gift.origin,
-          special: {
-            conditionType: 'todo',
-            conditionValue: ''
-          }
         }]
       }, 
       discount: (gift) => {
@@ -119,10 +111,6 @@ const getOrders = (page) => {
           price: parseFloat((res.totalAmount * (gift.discountAmount / 100)).toFixed(2)),
           picture: '',
           origin: gift.origin,
-          special: {
-            conditionType: 'todo',
-            conditionValue: ''
-          }
         }]
       }, 
       free_delivery: (gift) => {
@@ -132,10 +120,6 @@ const getOrders = (page) => {
           name: `${ i18n.offer_special_details.free_delivery }`,
           picture: '',
           origin: gift.origin,
-          special: {
-            conditionType: 'todo',
-            conditionValue: ''
-          }
         }]
       }, 
     }
@@ -146,6 +130,20 @@ const getOrders = (page) => {
       let [gift_type, gift_info] = _getGiftValue[gift.type](gift, res.offer);
       modal_gifts.push(gift_info);
 
+      // Find special or lottey
+      if (gift.origin === 'ziko_special') {
+        let special_idx = res.offer.miniprogram.zikoSpecials.findIndex( s => s._id === gift.offerDrawId );
+        gift_info.special = res.offer.miniprogram.zikoSpecials[special_idx];
+      } else {
+        let lottery_idx = res.offer.miniprogram.lottery.draws.findIndex( d => d._id === gift.offerDrawId);
+        gift_info.special = res.offer.miniprogram.lottery.draws[lottery_idx];
+      }
+
+      if (gift_info.special.conditionType === 'item_x_in_cart') {
+        let cond_prod = res.products[res.products.findIndex(p => p.shortName === gift_info.special.conditionPack)];
+        gift_info.special.conditionName = cond_prod.name ? cond_prod.name[_lang] : cond_prod.product.name[_lang];
+      }
+
       // Show in gift list
       if (gift_type === 'gift') {
         let gifts_idx = findIndex(gifts, gift_info, '_id');
@@ -153,12 +151,6 @@ const getOrders = (page) => {
           gifts.push(gift_info);
         } else {
           gifts[gifts_idx].count +=1;
-        }
-
-        // Find special
-        let special_idx = res.offer.miniprogram.zikoSpecials.findIndex( s => (s.gift.custom && s.gift.custom[app.db.get('language')] === gift_info.name ) || (s.gift.pack && s.gift.pack === gift_info.shortName ) || (s.gift.singleItem && s.gift.singleItem === gift_info.shortName));
-        if (special_idx > -1) {
-          gift_info.special = res.offer.miniprogram.zikoSpecials[special_idx];
         }
       } else if (gift_type === 'ziko_special') {
         special_discount += gift_info.price;
