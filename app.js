@@ -41,12 +41,12 @@ export async function _checkUserToken() {
   return;
 }
 
-const getWxUserOpenId = (res) => {
+async function getWxUserOpenId(res) {
   api.wxOpenid({ code: res.code }).then(res => {
     let user = db.get('userInfo') ? db.get('userInfo') : {};
     user.customer ? user.customer.openId = res.openId : user.customer = res;
     db.set('userInfo', user);
-    _checkUserToken();
+    return _checkUserToken();
   });
 }
 
@@ -62,33 +62,35 @@ App({
   },
   routes: require('utils/routes.js').routes,
 
-  onLaunch() {
+  async onLaunch() {
     const self = this;
     // Language setting
     i18n.check();
     self.globalData.i18n = i18n.translate();
 
     // Check wx.login session
-    wx.checkSession({
-      success: function() {
-        if (db.get('userInfo').customer && db.get('userInfo').customer.openId) return;
-
-        console.debug('customer not found');
-        wx.login({
-          success: function(res) {
-            getWxUserOpenId(res);
-          }
-        })
-      },
-      fail: function() {
-        console.debug('openid session ended');
-        // Login with wechat if session not valid
-        wx.login({
-          success: function(res) {
-            getWxUserOpenId(res);
-          }
-        })
-      }
+    return new Promise ( resolve => {
+      wx.checkSession({
+        success: function() {
+          if (db.get('userInfo').customer && db.get('userInfo').customer.openId) return;
+  
+          console.debug('customer not found');
+          wx.login({
+            success: function(res) {
+              getWxUserOpenId(res);
+            }
+          })
+        },
+        fail: function() {
+          console.debug('openid session ended');
+          // Login with wechat if session not valid
+          wx.login({
+            success: function(res) {
+              getWxUserOpenId(res);
+            }
+          })
+        }
+      })
     })
   },
 
