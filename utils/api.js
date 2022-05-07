@@ -133,8 +133,8 @@ module.exports = {
   },
 
   // Update order
-  updateOrder: (id, data) => {
-    return put(`orders/${id}/mine`, data);
+  updateOrder: (id) => {
+    return post(`orders/${id}/received`, {});
   },
 
   // Get offer with product details
@@ -147,6 +147,7 @@ module.exports = {
     return get(`offers/${id}/buyers?channel=miniprogram`);
   },
 
+  // Get lottery
   getLotteries: (filter) => {
     let url = filter ? `lottery-draws/details?${filter}` : 'lottery-draws/details';
     return get(url);

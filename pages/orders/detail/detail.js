@@ -294,10 +294,8 @@ Page({
 
   confirmReceive: function() {
     const self = this;
-    app.api.updateOrder(self.options.id, { trackingStatus: 'received '}).then( res => {
+    app.api.updateOrder(self.options.id).then( res => {
       let order = self.data.order;
-      // TODO: waiting
-      // order.trackingStatus = res.trackingStatus;
       order.trackingStatus = 'received';
       self.setData({
         order
