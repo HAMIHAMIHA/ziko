@@ -75,8 +75,20 @@ Component({
     },]
   },
   methods: {
+    show: function(res) {
+      const self = this;
+
+      console.log(res);
+      console.log('show lottery');
+
+      // TODO get components show sorry or win
+    },
+
     showResult: function(e) {
       const self = this;
+
+      console.log(res);
+      console.log('show lottery results');
 
       // TODO get components show sorry or win
     }
