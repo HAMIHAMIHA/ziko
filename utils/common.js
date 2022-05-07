@@ -16,7 +16,10 @@ export async function getUserInfo(page) {
   if (!current_session || current_session <= new Date()) {
     console.debug('token session ended');
     if (user && user.customer) {
-      user.customer = { openId: user.customer.openId };
+      user = {
+        wxUser: user.wxUser,
+        customer: { openid: user.customer.openid },
+      }
     }
     db.set('userInfo', user);
 
@@ -36,12 +39,14 @@ export const mobileLogin = function(page, code, loginCallback) {
     db.set('userInfo', res);
     page.setData({ user: res.customer })
     loginCallback ? loginCallback() : null;
+
+    getApp().checkForLotteryNotification();
   }
 
   const data = {
     code: code,
     name: db.get('userInfo').customer.name ? db.get('userInfo').customer.name : db.get('userInfo').wxUser.name,
-    openId: db.get('userInfo').customer.openId
+    openId: db.get('userInfo').customer.openid
   }
 
   getApp().api.wxLogin(data).then(callback);
