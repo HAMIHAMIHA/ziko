@@ -5,6 +5,7 @@ const i18n = require('utils/internationalize/translate.js'); // 翻译功能
 
 const { folders, subscribe } = require('./utils/properties');
 
+let lottery_notification;
 
 export async function _checkUserToken() {
   // Check user token
@@ -25,8 +26,12 @@ export async function _checkUserToken() {
   // Check if token session still valid
   if (checkExpired(user_info.expireAt)) {
     if (checkExpired(user_info.refreshExpireAt)) {
-      // Clear user auth token
-      db.set('userInfo', { customer: user_info.customer });
+      // Clear user info
+      
+      db.set('userInfo', {
+        customer: { openid: user_info.customer.openid },
+        wxUser: user_info.wxUser,
+      });
       return;
     } else {
       console.debug("Refresh User Session");
@@ -40,13 +45,36 @@ export async function _checkUserToken() {
   return;
 }
 
-async function getWxUserOpenId(res) {
-  api.wxOpenid({ code: res.code }).then(res => {
+async function _getWxUserOpenId(session_res) {
+  if (db.get('userInfo').customer && db.get('userInfo').customer.openid) return;
+  api.wxOpenid({ code: session_res.code }).then(res => {
     let user = db.get('userInfo') ? db.get('userInfo') : {};
-    user.customer ? user.customer.openId = res.openId : user.customer = res;
+    user.customer ? user.customer.openid = res.openid : user.customer = res;
     db.set('userInfo', user);
-    return _checkUserToken();
+    return;
   });
+}
+
+// async function _checkUserSession() {
+const _checkUserSession = () => {
+  return new Promise( resolve => {
+    // Check wx.login session
+    wx.checkSession({
+      success: function() {
+        console.debug('open id session exist');
+        wx.login({
+          success: resolve
+        })
+      },
+      fail: function() {
+        console.debug('openid session ended');
+        // Login with wechat if session not valid
+        wx.login({
+          success: resolve
+        })
+      }
+    })
+  })
 }
 
 App({
@@ -67,30 +95,29 @@ App({
     i18n.check();
     self.globalData.i18n = i18n.translate();
 
-    // Check wx.login session
-    return new Promise ( resolve => {
-      wx.checkSession({
-        success: function() {
-          if (db.get('userInfo').customer && db.get('userInfo').customer.openId) return;
-  
-          console.debug('customer not found');
-          wx.login({
-            success: function(res) {
-              getWxUserOpenId(res);
-            }
-          })
-        },
-        fail: function() {
-          console.debug('openid session ended');
-          // Login with wechat if session not valid
-          wx.login({
-            success: function(res) {
-              getWxUserOpenId(res);
-            }
-          })
-        }
+    _checkUserSession().then(res => {
+      _getWxUserOpenId(res).then( () => {
+        _checkUserToken().then( () => {
+          self.checkForLotteryNotification();
+        })
       })
     })
+  },
+  checkForLotteryNotification: () => {
+    if (!db.get('userInfo').token) return;
+
+    const getLotteryNotif = () => {
+      api.getLotteryNotifications().then( res => {
+        // if (!res.length) return;
+        let page = getCurrentPages()[0];
+        page.selectComponent('#lottery_modal').show(res);
+      })
+    }
+  
+    getLotteryNotif();
+    lottery_notification = setInterval( () => {
+      getLotteryNotif();
+    }, 5000)
   },
 
   setTabbar: function() {
