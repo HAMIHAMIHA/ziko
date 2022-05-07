@@ -39,3 +39,5 @@
     data-type="{{ _offer.type }}"
   >{{ _t.go_to_offer }}</button>
 </view>
+
+<lottery-draw id="lottery_modal"></lottery-draw>

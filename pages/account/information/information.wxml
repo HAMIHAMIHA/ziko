@@ -75,3 +75,5 @@
   </view>
   <!-- End of Submit Button -->
 </view>
+
+<lottery-draw id="lottery_modal"></lottery-draw>

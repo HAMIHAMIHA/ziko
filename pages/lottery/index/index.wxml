@@ -24,8 +24,6 @@
       days="{{ days }}"
       bind:filterOffers="filterOffers"
     ></dateFilter>
-    <!-- <offers id="list_offers" offers="{{ offers }}" bind:navigatePage="navigatePage"></offers> -->
-
 
     <view class="offers_container">
       <view class="gilroy_700 offers_list" wx:if="{{ offers.length == 0 }}">
@@ -101,3 +99,5 @@
   </view>
   <!-- End of List View -->
 </view>
+
+<lottery-draw id="lottery_modal"></lottery-draw>

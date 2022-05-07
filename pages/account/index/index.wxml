@@ -82,3 +82,5 @@
   </view>
   <!-- END OF LANGUAGE BUTTON -->
 </view>
+
+<lottery-draw id="lottery_modal"></lottery-draw>

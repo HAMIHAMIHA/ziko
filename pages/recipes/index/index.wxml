@@ -69,3 +69,5 @@
   </view>
   <!-- End of Filter -->
 </view>
+
+<lottery-draw id="lottery_modal"></lottery-draw>

@@ -97,7 +97,7 @@
         <text class="detail_label">{{ _t.lottery_tickets }}</text>
         <text class="detail_result">x{{ _pay_set.tickets }}</text>
       </view>
-      <!-- Hide for v1 -->
+      <!-- Hide for temp -->
       <view class="detail" wx:if="{{ showing }}">
         <text class="detail_label">{{ _t.fidelity_points }}</text>
         <text class="detail_result">+{{ offer.fidelity_points }}30</text>
@@ -186,3 +186,5 @@
     </view>
   </form>
 </view>
+
+<lottery-draw id="lottery_modal"></lottery-draw>

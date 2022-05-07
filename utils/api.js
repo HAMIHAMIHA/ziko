@@ -153,6 +153,12 @@ module.exports = {
     return get(url);
   },
 
+  // Get lottery notifications
+  getLotteryNotifications: () => {
+    return get('lottery-notifications/mine?channel=miniprogram');
+    // return get('lottery-notifications/mine?channel=miniprogram&read=false');
+  },
+
   // Get recipe tags
   getRecipeTags: () => {
     return get('recipe-tags/details');

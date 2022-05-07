@@ -75,3 +75,5 @@
     <!-- End of Voucher List -->
   </view>
 </block>
+
+<lottery-draw id="lottery_modal"></lottery-draw>

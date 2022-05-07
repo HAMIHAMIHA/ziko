@@ -77,3 +77,5 @@
   </view>
   <!-- End of Offer List -->
 </view>
+
+<lottery-draw id="lottery_modal"></lottery-draw>

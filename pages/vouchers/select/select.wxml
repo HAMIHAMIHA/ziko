@@ -31,3 +31,5 @@
     <button class="nunito_600" hover-class="none" bindtap="select">{{ _t.select }}</button>
   </view>
 </view>
+
+<lottery-draw id="lottery_modal"></lottery-draw>

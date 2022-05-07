@@ -243,3 +243,5 @@
   ></template>
   <!-- End of Pay Button -->
 </view>
+
+<lottery-draw id="lottery_modal"></lottery-draw>

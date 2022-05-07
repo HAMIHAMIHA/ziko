@@ -25,3 +25,5 @@
     <button class="nunito_600" bindtap="select">{{ _t.select }}</button>
   </view>
 </view>
+
+<lottery-draw id="lottery_modal"></lottery-draw>

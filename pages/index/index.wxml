@@ -74,4 +74,4 @@
   <!-- End of Map popup -->
 </view>
 
-<lottery-draw></lottery-draw>
+<lottery-draw id="lottery_modal"></lottery-draw>

@@ -100,3 +100,5 @@
     <!-- End of Order Card -->
   </view>
 </block>
+
+<lottery-draw id="lottery_modal"></lottery-draw>
