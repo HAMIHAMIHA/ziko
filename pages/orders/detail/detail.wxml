@@ -6,7 +6,7 @@
       <view class="flex-between product">
         <view class="flex-start flex-align-start product_left">
           <view class="product-image">
-            <image src="{{ _folders.pack_picture + product.illustation.file.response.uri }}" mode="aspectFill" wx:if="{{ product.type == 'pack' && product.illustation }}"></image>
+            <image src="{{ _folders.pack_picture + product.illustation.uri }}" mode="aspectFill" wx:if="{{ product.type == 'pack' && product.illustation }}"></image>
             <image src="/assets/images/packDefault.png" mode="aspectFill" wx:elif="{{ product.type == 'pack' }}"></image>
             <image src="{{ _folders.product_picture + product.product.mainPicture[_language].uri }}" mode="aspectFill" wx:else></image>
           </view>
