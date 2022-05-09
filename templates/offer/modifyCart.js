@@ -12,12 +12,12 @@ export const modifyCartItems = (page, event, checkout = false) => {
   let old_amount = -1, new_price;
 
   // Free fall price change
-  if (product.freeFall && product.freeFall.quantityTrigger) {
+  if (offer.type === "free_fall" && product.freeFall && product.freeFall.quantityTrigger) {
     [old_amount, new_price] = getRulePrice("free_fall", offer.id, product, new_amount);
   }
 
   // Check for multiple price
-  if (product.multipleItem && product.multipleItem.length > 0) {
+  if (offer.type === "multiple_items" && product.multipleItem && product.multipleItem.length > 0) {
     [old_amount, new_price] = getRulePrice("multiple", offer.id, product, new_amount)
   }
 

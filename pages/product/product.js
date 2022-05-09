@@ -93,12 +93,12 @@ const getProductDetail = page => {
     getUserInfo(page)
 
     // Check for and Change all free fall product price 
-    if (product.freeFall && product.freeFall.quantityTrigger) {
+    if (offer.type === "free_fall" && product.freeFall && product.freeFall.quantityTrigger) {
       getRulePrice("free_fall", offer_id, product);
     }
 
     // Check for multiple price
-    if (product.multipleItem && product.multipleItem.length > 0) {
+    if (offer.type === "multiple_items" && product.multipleItem && product.multipleItem.length > 0) {
       getRulePrice("multiple", offer_id, product)
     }
 
@@ -119,7 +119,7 @@ const getProductDetail = page => {
     
     page.setData({
       _folders: {
-        pack_picture: app.folders.pack_picture,
+        pack_pictur: app.folders.pack_pictur,
         product_picture: app.folders.product_picture,
       },
       _offer: offer,

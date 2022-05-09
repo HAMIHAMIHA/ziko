@@ -124,7 +124,7 @@ const _getOffers = page => {
     }
 
     // Multiple total
-    if (offer.type === "multiple") {
+    if (offer.type === "multiple_items") {
       offer_products.forEach( p => {
         if (p.multipleItem && p.multipleItem.length > 0) {
           OfferRules.getRulePrice("multiple", offer.id, p)

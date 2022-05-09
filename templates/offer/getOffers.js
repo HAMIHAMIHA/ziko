@@ -205,12 +205,12 @@ export async function getOffer(page, offer_id) {
       offer.sold += (p.stock - p.actualStock);
 
       // Check for and Change all free fall product price 
-      if (p.freeFall && p.freeFall.quantityTrigger) {
+      if (offer.type === "free_fall" && p.freeFall && p.freeFall.quantityTrigger) {
         getRulePrice("free_fall", offer.id, p);
       }
 
       // Check for multiple price
-      if (p.multipleItem && p.multipleItem.length > 0) {
+      if (offer.type === "multiple_items" && p.multipleItem && p.multipleItem.length > 0) {
         getRulePrice("multiple", offer.id, p)
       }      
 
@@ -283,6 +283,7 @@ export async function getOffer(page, offer_id) {
         routes: {
           product: app.routes.product
         },
+        type: offer.type,
       },
       _pay_set: {
         cart: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].count : 0,
@@ -496,12 +497,12 @@ export function getOfferBuyers(page, offer_id) {
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
     offer_products.forEach( p => {
       // Check for and Change all free fall product price 
-      if (p.freeFall && p.freeFall.quantityTrigger) {
+      if (offer.type === "free_fall" && p.freeFall && p.freeFall.quantityTrigger) {
         getRulePrice("free_fall", offer.id, p);
       }
 
       // Check for multiple price
-      if (p.multipleItem && p.multipleItem.length > 0) {
+      if (offer.type === "multiple_items" && p.multipleItem && p.multipleItem.length > 0) {
         getRulePrice("multiple", offer.id, p)
       }
     })

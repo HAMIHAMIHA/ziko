@@ -54,13 +54,13 @@
 
     <!-- Cellar Target Tags -->
     <!-- Freefall Targets -->
-    <view class="product-targets" wx:if="{{ list_item.freeFall && list_item.freeFall.quantityTrigger }}">
+    <view class="product-targets" wx:if="{{ _offer_setting.type === 'free_fall' && list_item.freeFall && list_item.freeFall.quantityTrigger }}">
       <view class="product-target_container">
         -¥{{ list_item.freeFall.dropAmount }}{{ _t.freefall.fst }}{{ list_item.freeFall.quantityTrigger }}{{ list_item.freeFall.quantityTrigger > 1 ? _t.items_unit : _t.item_unit }}{{ _t.freefall.snd }}
       </view>
     </view>
     <!-- Multiple Targets -->
-    <view class="product-targets" wx:elif="{{ list_item.multipleItem.length > 0 }}">
+    <view class="product-targets" wx:elif="{{ _offer_setting.type === 'multiple_items' && list_item.multipleItem.length > 0 }}">
       <view class="product-target_container" wx:for="{{ list_item.multipleItem }}" wx:key="*this" wx:for-item="multiple">
         <text>x{{ multiple.quantity }}{{ _t.multiple.btl }}{{ multiple.unitPrice }}{{ _t.multiple.each }}</text>
       </view>
