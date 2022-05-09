@@ -447,14 +447,17 @@ export function getOfferBuyers(page, offer_id) {
 
     if (gift_list.length > 0) {
       // Switch position for number sold or number orders from special into lottery
+      gift_list.map( gift => {
+        if (gift.conditionType === 'first_order') gift.conditionType = "number_of_order"
+        if (gift.conditionType === 'x_total_sold_items') gift.conditionType = "x_item_sold";
+      })
+
       gift_list.sort( (a, b) => {
-        if (a.conditionType === 'first_order') a.conditionType = "number_of_order";
-        if (a.conditionType === 'x_total_sold_items') a.conditionType = "x_item_sold";
         return a.conditionValue - b.conditionValue;
       })
 
       // Check which ones are unlocked
-      let unlocked = 0;
+      let unlocked = -1;
       let first_locked = -1;
       let text = '';
 
@@ -483,7 +486,7 @@ export function getOfferBuyers(page, offer_id) {
       })
   
       // Update lottery progress
-      if (offer.miniprogram.lottery.draws[0].conditionType === "number_of_order" ) {
+      if (gift_list[0].conditionType === "number_of_order" ) {
         offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
       } else {
         offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
