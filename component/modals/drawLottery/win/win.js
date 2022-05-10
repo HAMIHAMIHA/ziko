@@ -96,8 +96,7 @@ Component({
       let draw = lottery.offer.miniprogram.lottery.draws[draw_idx]
       draw.count = draw_idx + 1;
 
-      draw.gift = _getGiftValue[draw.gifts[0].type](draw.gifts[0])
-
+      draw.gift = _getGiftValue[draw.gifts[0].type](draw.gifts[0], lottery.offer)
       self.setData({
         draw,
         offer: lottery.offer

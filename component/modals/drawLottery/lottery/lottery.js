@@ -32,10 +32,13 @@ Component({
     },
 
     closeModal: function() {
+      console.log('check before close');
       const self = this;
       if ((current_index + 1) < lotteries.length) {
         current_index++;
         _showDrawModal(self)
+      } else {
+        app.checkForLotteryNotification();
       }
     },
 

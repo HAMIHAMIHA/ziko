@@ -110,6 +110,7 @@ App({
         if (!res.length) return;
         let page = getCurrentPages()[0];
         page.selectComponent('#lottery_modal').show(res);
+        clearInterval(lottery_notification)
       })
     }
   
