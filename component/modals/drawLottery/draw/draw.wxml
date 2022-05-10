@@ -1,7 +1,14 @@
-<modal>
-  <view slot="content">
-    <view class="upper content-title">{{ _t.new_lottery_drawn }}</view>
-    <image src="/assets/images/lottery-box.png"></image>
-    <button class="draw-btn">{{ _t.lets_go }}</button>
+<modal id="modal_template" bind:closeCheck="closeCheck">
+  <view class="modal-container" slot="content">
+    <view class="uppercase gilroy_900 content-title">{{ _t.new_lottery_drawn }}</view>
+    <view class="draw-box-container">
+      <image class="draw-box" src="/assets/images/lottery-box.png" bindtap="makeDraw"></image>
+      <view class="draw-detail">
+        <view class="icon {{ 'icon-ziko-' + _communities[lottery.offer.community] + '_sides'}}"></view>
+        <view class="uppercase gilroy_800 draw-offer">{{ lottery.offer.name[_language] }}</view>
+        <view class="nunito_500 draw-participants">{{ lottery.contestants }}{{ _t.participants }}</view>
+      </view>
+    </view>
+    <button class="uppercase nunito_800 draw-btn" bindtap="makeDraw">{{ _t.lets_go }}</button>
   </view>
 </modal>

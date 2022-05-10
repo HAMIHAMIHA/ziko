@@ -1,1 +1,62 @@
-/* component/modals/draw/draw.wxss */
+.modal-container {
+  padding: 64rpx 0;
+  background: #FF4853;
+  border: 3px solid #FF7C7C;
+  border-radius: 8px;
+}
+
+.modal-container .content-title {
+  padding: 0 108rpx;
+  font-size:48rpx;
+  line-height: 60rpx;
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+
+.modal-container .draw-box-container {
+  padding: 46rpx;
+  position: relative;
+}
+
+.draw-box-container .draw-box {
+  width: 100%;
+  height: 270px;
+}
+
+.draw-box-container .draw-detail {
+  width: 100%;
+  padding-top: 55rpx;
+  color: #11141B;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.draw-detail .icon {
+  font-size: 80rpx;
+  margin-bottom: 16rpx;
+}
+
+.draw-detail .draw-offer {
+  padding-bottom: 16rpx;
+  font-size: 32rpx;
+  line-height: 40rpx;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.draw-detail .draw-participants {
+  font-size: 24rpx;
+  line-height: 30rpx;
+}
+
+.draw-btn {
+  width: fit-content !important;
+  padding: 12rpx 16rpx;
+  background: #FFFFFF;
+  border-radius: 34px;
+  color: #CD4141;
+  font-size: 24rpx;
+  line-height: 36rpx;
+}

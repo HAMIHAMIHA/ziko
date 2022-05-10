@@ -1,4 +1,4 @@
-<modal class="modal-container_header modal-star">
+<modal class="modal-container_header modal-star" id="modal_template" bind:closeCheck="closeCheck">
   <view class="header" slot="header">
     <image class="header-image" src="/assets/images/lottery-win.jpg" mode="aspectFill"></image>
     <view class="gilroy_800 uppercase header-text">{{ _t.you_win }}!</view>
@@ -15,20 +15,20 @@
       </view>
       <view class="content-image_container">
         <image class="content-image_background" src="/assets/images/starBackground.png" mode="aspectFill"></image>
-        <image class="content-image" src="{{ draw.gifts.picture }}" mode="aspectFit" wx:if="{{ draw.gifts.picture }}"></image>
+        <image class="content-image" src="{{ draw.gift.picture }}" mode="aspectFit" wx:if="{{ draw.gift.picture }}"></image>
         <view class="content-image icon icon-gift" wx:else></view>
       </view>
 
       <view class="content-detail">
-        <view class="gilroy_700 uppercase content-name">{{ draw.gifts.name }}</view>
+        <view class="gilroy_700 uppercase content-name">{{ draw.gift.name }}</view>
         <view class="content-draw">{{ _t.draw }} {{ draw.count }}</view>
-        <view class="content-info">{{ draw.offer.name }} ({{ _t.community[draw.offer.community] }})</view>
+        <view class="content-info">{{ offer.name[_language] }} ({{ _communities[offer.community] }})</view>
       </view>
 
       <view class="content-note">{{ _t.prize_will_be_delivered }}</view>
     </view>
     <view class="content-foot">
-      <button class="nunito_800 uppercase content-confirm" bindtap="getPrize">{{ _t.get }}</button>
+      <button class="nunito_800 uppercase content-confirm" bindtap="closeModal">{{ _t.get }}</button>
     </view>
   </view>
 </modal>

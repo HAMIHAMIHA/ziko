@@ -46,7 +46,7 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=626644f76ba59b3e6aa34525",
+          "query": "id=62789b7b2fe4c58690a4f995",
           "scene": null
         },
         {
@@ -166,7 +166,13 @@
         {
           "name": "cellar",
           "pathName": "pages/offer/cellar/cellar/cellar",
-          "query": "id=6255fc917f8b1b81ba83750c",
+          "query": "id=627896082fe4c58690a4f640",
+          "scene": null
+        },
+        {
+          "name": "pages/orders/detail/detail",
+          "pathName": "pages/orders/detail/detail",
+          "query": "type=paid&id=6255fd657f8b1b81ba837655",
           "scene": null
         }
       ]

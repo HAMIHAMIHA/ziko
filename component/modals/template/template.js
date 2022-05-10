@@ -36,7 +36,7 @@ Component({
       })
     },
   
-    closeModal: function() {
+    closeModal: function(check = true) {
       const self = this;
       animation.opacity(0).step();
       self.setData({
@@ -44,6 +44,10 @@ Component({
         animation: animation.export(),
         scrollTop: 0
       })
+
+      if (check) {
+        self.triggerEvent('closeCheck')
+      }
     },
 
     preventSlide: function() {}

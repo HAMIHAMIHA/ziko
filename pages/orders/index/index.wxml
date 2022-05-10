@@ -56,7 +56,7 @@
     <!-- Order Card -->
     <view class="cards-container">
       <block wx:for="{{ orders }}" wx:key="id" wx:for-item="order">
-        <navigator class="card order-card{{ order.count == 0 ? ' disabled' : ''}}" url="{{ _routes.order + '?id=' + order.id }}">
+        <navigator class="card order-card{{ order.count == 0 ? ' disabled' : ''}}" url="{{ _routes.order + '?type=paid&id=' + order.id }}">
           <!-- Order Detail -->
           <view class="order-info__detail">
             <view class="flex-between order-info">

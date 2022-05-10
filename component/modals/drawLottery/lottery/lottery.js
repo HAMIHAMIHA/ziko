@@ -1,96 +1,56 @@
+const app = getApp();
+
+let lotteries = [];
+let current_index = 0;
+let lottery_winners;
+
+const _showDrawModal = page => {
+  const _sePagetData = () => {
+    page.setData({
+      current_index: current_index
+    })
+    page.selectComponent('#draw_modal').show(lotteries[current_index]);
+  }
+
+  lottery_winners = [];
+  if (!lotteries[current_index].winner) {
+    app.api.getLotteries(`offerDrawId=${lotteries[current_index].offerDrawId}`).then( res => {
+      lottery_winners = res[0].winners;
+      _sePagetData();
+    })
+  } else {
+    _sePagetData();
+  }
+}
+
 Component({
-  data:{
-    draw: [{
-      count: 6, // index + 1
-      conditionType: "number_of_order",
-      conditionValue: 5,
-      gifts: {
-        custom: {zh: "Pork shoulder minced 250 g", en: "Pork shoulder minced 250 g zh"},
-        name: "Pork shoulder minced 250 g",
-        picture: '',
-        discountAmount: null,
-        offerDrawId: "623be7a2c64fc9f745a6ece0",
-        origin: "ziko_special",
-        pack: null,
-        singleItem: null,
-        type: "custom",
-        voucherExpiration: null,
-        voucherValue: null,
-        _id: "6249f20cc64fc9f745a7b158",
-      },
-      winners: [],
-      _id: "623c0438c64fc9f745a6f72f",
-      offer: {
-        name: 'La bourse du pinard',
-        community: 'cellar'
-      }
-    },{
-      count: 6, // index + 1
-      conditionType: "number_of_order",
-      conditionValue: 5,
-      gifts: {
-        custom: {zh: "Pork shoulder minced 250 g", en: "Pork shoulder minced 250 g zh"},
-        name: "Pork shoulder minced 250 g",
-        picture: '',
-        discountAmount: null,
-        offerDrawId: "623be7a2c64fc9f745a6ece0",
-        origin: "ziko_special",
-        pack: null,
-        singleItem: null,
-        type: "custom",
-        voucherExpiration: null,
-        voucherValue: null,
-        _id: "6249f20cc64fc9f745a7b158",
-      },
-      winners: [],
-      _id: "623c0438c64fc9f745a6f72f",
-      offer: {
-        name: 'La bourse du pinard',
-        community: 'cellar'
-      }
-    },{
-      count: 6, // index + 1
-      conditionType: "number_of_order",
-      conditionValue: 5,
-      gifts: {
-        custom: {zh: "Pork shoulder minced 250 g", en: "Pork shoulder minced 250 g zh"},
-        name: "Pork shoulder minced 250 g",
-        picture: '',
-        discountAmount: null,
-        offerDrawId: "623be7a2c64fc9f745a6ece0",
-        origin: "ziko_special",
-        pack: null,
-        singleItem: null,
-        type: "custom",
-        voucherExpiration: null,
-        voucherValue: null,
-        _id: "6249f20cc64fc9f745a7b158",
-      },
-      winners: [],
-      _id: "623c0438c64fc9f745a6f72f",
-      offer: {
-        name: 'La bourse du pinard',
-        community: 'cellar'
-      }
-    },]
-  },
   methods: {
     show: function(res) {
       const self = this;
+      lotteries = res;
+      _showDrawModal(self);
+    },
 
-      console.log(res);
-      console.log('show lottery');
-
-      // TODO get components show sorry or win
+    closeModal: function() {
+      const self = this;
+      if ((current_index + 1) < lotteries.length) {
+        current_index++;
+        _showDrawModal(self)
+      }
     },
 
     showResult: function(e) {
       const self = this;
 
-      console.log(res);
-      console.log('show lottery results');
+      let lottery = lotteries[self.data.current_index];
 
-      // TODO get components show sorry or win
+      app.api.updateLotteryNotification(lottery.id).then( () => {
+        if (lottery.winner) {
+          self.selectComponent('#win_modal').showModal(lottery);
+        } else {
+          self.selectComponent('#sorry_modal').showModal(lottery_winners);
+        }
+      })
     }
   }
 })

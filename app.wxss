@@ -588,10 +588,12 @@ button:not([size=mini]).float-contact_container {
 .modal-container .content-head {
   padding: 64rpx 0 48rpx;
   background: #242331;
+o  text-align: center;
 }
 
 .modal-container .content-body {
   padding-top: 48rpx;
+  text-align: center;
 }
 
 .modal-container .content-title {

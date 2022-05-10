@@ -132,11 +132,6 @@ module.exports = {
     return get(`orders/${suffix}`);
   },
 
-  // Update order
-  updateOrder: (id) => {
-    return post(`orders/${id}/received`, {});
-  },
-
   // Get offer with product details
   getOffers: (suffix) => {
     return get(`offers/details${suffix}`);
@@ -204,6 +199,16 @@ module.exports = {
   // Set view for offer
   setOfferView: (id) => {
     return get(`offers/${id}/viewed`);
+  },
+
+  // Update lottery notification
+  updateLotteryNotification: (id) => {
+    return post(`lottery-notifications/${id}/read`, {});
+  },
+
+  // Update order
+  updateOrder: (id) => {
+    return post(`orders/${id}/received`, {});
   },
 
   // Update user info

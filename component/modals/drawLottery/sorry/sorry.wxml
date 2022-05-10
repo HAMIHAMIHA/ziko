@@ -1,4 +1,4 @@
-<modal class="modal-container_header">
+<modal class="modal-container_header" id="modal_template" bind:closeCheck="closeCheck">
   <view class="header" slot="header">
     <image class="header-image" src="/assets/images/lottery-sorry.jpg" mode="aspectFill"></image>
     <view class="gilroy_800 uppercase header-text">{{ _t.sorry }}</view>
@@ -8,12 +8,12 @@
     <view class="content-head">
       <view class="gilroy_800 content-title">{{ _t.not_this_time }}</view>
       <view class="content-message">
-        <view>{{ draw.winners.name }} {{ _t.has_won_the_lottery }}</view>
+        <view>{{ winner_message }}</view>
         <view>{{ _t.better_luck_next_time }}</view>
       </view>
     </view>
     <view class="content-foot">
-      <button class="nunito_800 uppercase content-confirm">{{ _t.back_to_order }}</button>
+      <button class="nunito_800 uppercase content-confirm" bindtap="toOrder">{{ _t.back_to_order }}</button>
     </view>
   </view>
 </modal>

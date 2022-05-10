@@ -146,6 +146,7 @@ export const languageMap_en = {
   kcal: "kCal",
 
   // L
+  lets_go: "let's go",
   list: "list",
   loading: 'Loading...',
   locked: "locked",
@@ -189,6 +190,7 @@ export const languageMap_en = {
   need_login: "You need to login first",
   next: "next",
   next_lottery_in: "next lottery in ",
+  new_lottery_drawn: "a new lottery has been drawn!",
   no_offers: "No offers yet",
   no_orders: "No orders yet",
   no_recipes: "No related recipes",
@@ -296,6 +298,7 @@ export const languageMap_en = {
   },
 
   // P
+  participants: " participants",
   pay: "Pay",
   pack: "pack",
   payment_cancelled: "Payment Cancelled",
@@ -594,6 +597,7 @@ export const languageMap_zh = {
   kcal: "kCal",
 
   // L
+  lets_go: "let's go",
   list: "列表",
   loading: 'Loading...',
   locked: "locked",
@@ -637,6 +641,7 @@ export const languageMap_zh = {
   need_login: "You need to login first",
   next: "next",
   next_lottery_in: "next lottery in ",
+  new_lottery_drawn: "a new lottery has been drawn!",
   no_offers: "No offers yet",
   no_orders: "No orders yet",
   no_recipes: "No related recipes",
@@ -747,6 +752,7 @@ export const languageMap_zh = {
   },
 
   // P
+  participants: " participants",
   pay: "Pay",
   pack: "pack",
   payment_cancelled: "Payment Cancelled",

@@ -108,7 +108,7 @@ App({
 
     const getLotteryNotif = () => {
       api.getLotteryNotifications().then( res => {
-        // if (!res.length) return;
+        if (!res.length) return;
         let page = getCurrentPages()[0];
         page.selectComponent('#lottery_modal').show(res);
       })
@@ -116,7 +116,7 @@ App({
   
     getLotteryNotif();
     lottery_notification = setInterval( () => {
-      getLotteryNotif();
+      // getLotteryNotif();
     }, 5000)
   },
 
