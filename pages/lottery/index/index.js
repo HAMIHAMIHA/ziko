@@ -142,10 +142,11 @@ const _setOffers = (page, filter_date) => {
       }
     }
 
-    let lottery_drawn = lotteries.filter( l => { return l.offer.id === offer.id && l.winners.order != null });
+    let lottery_drawn = lotteries.filter( l => { return l.offer.id === offer.id && l.winners.length });
     let offer_orders = orders.filter( o => { return o.offer.id === offer.id });
-    let wins = offer_orders.filter( o => { return o.gifts && o.gifts.type === 'lottery'});
-    
+    let wins = offer_orders.filter( o => {
+      return o.gifts.filter( g => g.origin === 'lottery').length;
+    });
 
     let offer_tickets = 0;
     if (offer_orders.length > 0) {
@@ -239,11 +240,6 @@ Page({
     _communities: index_data.communities
   },
 
-  onLoad: function() {
-    const self = this;
-    getUserInfo(self);
-  },
-
   onShow: function() {
     const self = this;
     _setPageTranslation(self);
@@ -251,6 +247,7 @@ Page({
     _leave_triggered = false;
     if (_refresh_data) {
       showLoading(true);
+      getUserInfo(self);
       self.filterOffers({detail: { change_date: false }});
     }
   },
