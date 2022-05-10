@@ -3,6 +3,71 @@ import { communities } from "../../../utils/constants";
 
 const app = getApp();
 let countdown_timer = [];
+let purchase_timer;
+
+const getOfferBuyers = (page, offer_id) => {
+  let offer = page.data._offer;
+
+  const callback = res => {
+    // Check if there is a new purchase and update page contents
+    if (res.length === offer.orders) return;
+
+    // Update offer orders amount
+    offer.orders = res.length;
+
+    let new_sold = 0;
+    res.forEach( order => {
+      order.cart.forEach( item => {
+        // Calculate newly sold amount
+        new_sold += item.amount;
+
+        // Check if winner of lottery
+        order.gifts.forEach( g => {
+          let draw_idx = offer.miniprogram.lottery.draws.findIndex( d => g.offerDrawId === d._id);
+          offer.miniprogram.lottery.draws[draw_idx].winners = [{
+            name: order.name,
+            profilePicture: order.profilePicture,
+            id: order.customer,
+          }]
+        });
+      })
+    })
+
+    offer.sold = new_sold; // Update offer total sold
+
+    // Check for lottery draw unlocked
+    offer.miniprogram.lottery.draws.forEach( (draw, i) => {
+      offer.miniprogram.lottery.draws[i].unlocked = ((draw.conditionType === "number_of_order" && offer.orders >= draw.conditionValue) ||  (draw.conditionType === "x_item_sold" && offer.sold >= draw.conditionValue));
+    })
+
+    // Update bottle filled
+    if ( offer.miniprogram.lottery.draws[1].conditionType === "number_of_order" ) {
+      offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
+    } else {
+      offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
+    }
+
+    // Set page data
+    page.setData({
+      _offer: offer,
+    })
+
+    // Refresh components
+    page.selectComponent('#lottery_list').refresh(offer);
+  }
+
+  app.api.getOfferBuyers(offer_id).then(callback);
+}
+
+const startBuyerInterval = (page, offer_id) => {
+  purchase_timer = setInterval( () => {
+    if (new Date(page.data._offer.endingDate) > new Date()) {
+      getOfferBuyers(page, offer_id);
+    } else {
+      clearInterval(purchase_timer);
+    }
+  }, 1000)
+}
 
 // Translate page content
 const _setPageTranslation = function(page) {
@@ -92,7 +157,6 @@ const _getOffer = function(page, offer_id) {
       offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
     }
 
-    let prev = 0;
     offer.miniprogram.lottery.draws.forEach( draw => {
       let winners = [];
       lotteries.forEach( l => {
@@ -107,7 +171,6 @@ const _getOffer = function(page, offer_id) {
 
       // Set size of axis mark
       draw.position = Math.round(draw.conditionValue / offer.last_val * 100);
-      prev = draw.conditionValue
 
       // Draw status and winner
       draw.winners = winners
@@ -134,6 +197,8 @@ const _getOffer = function(page, offer_id) {
  
     if (!offer.ended) {
       page.startCountdown();
+      getOfferBuyers(page, offer_id);
+      startBuyerInterval(page, offer_id);
     }
     showLoading(false);
   }
