@@ -63,6 +63,7 @@ const getOffers = (page, id) => {
       offer.startDate = date_value;
       offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
       offer.banner = banner ? app.folders.offer_banner + banner : '';
+      offer.orders = offer.orderCount;
       offers.push(offer);
     })
 
