@@ -116,8 +116,8 @@ App({
   
     getLotteryNotif();
     lottery_notification = setInterval( () => {
-      // getLotteryNotif();
-    }, 5000)
+      getLotteryNotif();
+    }, 1000)
   },
 
   setTabbar: function() {
@@ -147,18 +147,5 @@ App({
       index: 4,
       "text": self.globalData.i18n.account
     })
-  },
-
-  checkForLottery: function() {
-    // Start checking for lottery
-
-    // TODO need api with lottery draw + orders with tickets > 0
-    let t = setInterval(() => {
-      // if (db.get('userInfo').customer) {
-      //   api.getLotteries().then( res => {
-
-      //   })
-      // }
-    }, 1000)
   }
 })

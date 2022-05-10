@@ -31,7 +31,7 @@
 }
 
 .offer__info .offer__name {
-  padding-bottom: 8rpx;
+  padding: 0 40rpx 8rpx;
   font-size: 32rpx;
   line-height: 32rpx;
 }

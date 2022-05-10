@@ -39,7 +39,8 @@
 }
 
 .draw-detail .draw-offer {
-  padding-bottom: 16rpx;
+  margin: 0 48rpx;
+  padding: 0 80rpx 16rpx;
   font-size: 32rpx;
   line-height: 40rpx;
   text-align: center;
