@@ -18,7 +18,7 @@ export async function getUserInfo(page) {
     if (user && user.customer) {
       user = {
         wxUser: user.wxUser,
-        customer: { openid: user.customer.openid },
+        customer: { openId: user.customer.openId },
       }
     }
     db.set('userInfo', user);
@@ -35,6 +35,7 @@ export async function getUserInfo(page) {
 // General method to call api and login with wechat mobile number
 export const mobileLogin = function(page, code, loginCallback) {
   const callback = res => {
+    res.customer.openId = res.customer.openid;
     res.wxUser = db.get('userInfo').wxUser;
     db.set('userInfo', res);
     page.setData({ user: res.customer })
@@ -46,7 +47,7 @@ export const mobileLogin = function(page, code, loginCallback) {
   const data = {
     code: code,
     name: db.get('userInfo').customer.name ? db.get('userInfo').customer.name : db.get('userInfo').wxUser.name,
-    openId: db.get('userInfo').customer.openid
+    openId: db.get('userInfo').customer.openId
   }
 
   getApp().api.wxLogin(data).then(callback);

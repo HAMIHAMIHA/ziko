@@ -27,9 +27,8 @@ export async function _checkUserToken() {
   if (checkExpired(user_info.expireAt)) {
     if (checkExpired(user_info.refreshExpireAt)) {
       // Clear user info
-      
       db.set('userInfo', {
-        customer: { openid: user_info.customer.openid },
+        customer: { openId: user_info.customer.openId },
         wxUser: user_info.wxUser,
       });
       return;
@@ -46,10 +45,10 @@ export async function _checkUserToken() {
 }
 
 async function _getWxUserOpenId(session_res) {
-  if (db.get('userInfo').customer && db.get('userInfo').customer.openid) return;
+  if (db.get('userInfo').customer && db.get('userInfo').customer.openId) return;
   api.wxOpenid({ code: session_res.code }).then(res => {
     let user = db.get('userInfo') ? db.get('userInfo') : {};
-    user.customer ? user.customer.openid = res.openid : user.customer = res;
+    user.customer ? user.customer.openId = res.openId : user.customer = res;
     db.set('userInfo', user);
     return;
   });
@@ -67,7 +66,7 @@ const _checkUserSession = () => {
         })
       },
       fail: function() {
-        console.debug('openid session ended');
+        console.debug('openId session ended');
         // Login with wechat if session not valid
         wx.login({
           success: resolve
