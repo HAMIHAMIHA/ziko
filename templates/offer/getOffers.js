@@ -404,10 +404,9 @@ export function getOfferBuyers(page, offer_id) {
     // TEMP
     // offer.orders = Math.min(offer.orders + 1, 7);
     // offer.sold = Math.min(offer.sold + 1, 7);
-
     if (res.length === offer.orders) return;
 
-    let new_purchases = res.slice((offer.orders - 1), res.length); // Only check purchases not included in offer data
+    let new_purchases = res.slice(offer.orders, res.length); // Only check purchases not included in offer data
 
     // Update offer orders amount
     offer.orders = res.length;
@@ -427,7 +426,15 @@ export function getOfferBuyers(page, offer_id) {
         new_sold += item.amount;
 
         // Check if winner of lottery
-        // TODO
+        order.gifts.forEach( g => {
+          let draw_idx = offer.miniprogram.lottery.draws.findIndex( d => g.offerDrawId === d._id);
+
+          offer.miniprogram.lottery.draws[draw_idx].winners = [{
+            name: order.name,
+            profilePicture: order.profilePicture,
+            id: order.customer_id,
+          }]
+        })
       });
       offer.sold += new_sold; // Update offer total sold
     })
