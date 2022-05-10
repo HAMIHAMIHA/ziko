@@ -32,10 +32,19 @@ const _calculateFee = (fee_detail, cart) => {
     }
   }
 
+  // Check if free quantity exist and reched
+  let free_quantities = fee_detail.rules.filter(item => item.type == "free_after_quantity");
+  for (var i in free_quantities) {
+    let rule = free_quantities[i];
+    if (cart.count >= rule.quantity) {
+      return 0;
+    }
+  }
+
   // Rules other than free value (modified from Antoine's code)
-  let rules = fee_detail.rules.filter(item => item.type != 'free_after_value');
+  let rules = fee_detail.rules.filter(item => item.type != 'free_after_value' && item.type != "free_after_quantity");
   let max = 0;
-  let fee = fee_detail.rules.filter(item => item.type === 'flat')[0].fee;
+  let fee = fee_detail.rules.filter(item => item.type === 'flat').length ? fee_detail.rules.filter(item => item.type === 'flat')[0].fee : rules[0].fee;
 
   rules.forEach( rule => {
     let quantity = rule.quantity ? rule.quantity : 0;
@@ -50,6 +59,7 @@ const _calculateFee = (fee_detail, cart) => {
 
 export const getDeliveryFee = function(page, area, area_list) {
   fees = page.data._offer.fees;
+  console.log(fees);
 
   if (page.data.free_delivery) {
     page.setData({
