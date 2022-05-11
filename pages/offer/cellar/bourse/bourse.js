@@ -15,6 +15,7 @@ Page({
       left: '0',
       animate: animate,
     },
+    messages: [],
   },
 
   onShow: function () {

@@ -432,12 +432,12 @@ export function getOfferBuyers(page, offer_id) {
           offer.miniprogram.lottery.draws[draw_idx].winners = [{
             name: order.name,
             profilePicture: order.profilePicture,
-            id: order.customer_id,
+            id: order.customer,
           }]
         })
       });
-      offer.sold += new_sold; // Update offer total sold
     })
+    offer.sold += new_sold; // Update offer total sold
 
     // Check for bourse unit price
     if (offer.type === 'bourse') {
@@ -522,8 +522,7 @@ export function getOfferBuyers(page, offer_id) {
     })
 
     // Refresh components
-    let lottery_list = page.selectComponent('#lottery_list');
-    if (lottery_list) lottery_list.refresh(offer);
+    page.selectComponent('#lottery_list').refresh(offer);
   }
 
   app.api.getOfferBuyers(offer_id).then(callback);

@@ -150,7 +150,7 @@ module.exports = {
 
   // Get lottery notifications
   getLotteryNotifications: () => {
-    return get('lottery-notifications/mine?channel=miniprogram&read=false');
+    return get('lottery-notifications/mine?channel=miniprogram');
   },
 
   // Get recipe tags
