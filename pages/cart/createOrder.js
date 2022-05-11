@@ -1,7 +1,12 @@
 const { showLoading, showToast } = require("../../utils/common");
-const { communities } = require("../../utils/constants");
 
 const app = getApp();
+
+const notification = {
+  "YWhLHqNqQokYM_5oGm90K8K0XidbkxTlZK59zla-6iA": "shouldNotifyLottery",
+  "ngdzPAw-FqzVyPgwmaQRk5AITV69LEhYtoT4n5KC_6o": "shouldNotifySpecial",
+  "kx6MC4envuMzJTdfq-ys36L4Q5BMu9HsEHsK2W612bo": "shouldNotifyDelivery",
+}
 
 const _createOrderData = (page, value) => {
   let page_data = page.data;
@@ -164,31 +169,32 @@ export const createOrder = (page, value) => {
   }
 
   // Check if subscription needed
+  // Delivery
   let subscribe = [app.subscribe.delivered];
+  // Special
   if (page.data._offer.miniprogram.zikoSpecials.filter(s => { return s.conditionType === 'x_total_sold_items' || s.conditionType === "number_of_order"; }).length > 0) {
     subscribe.push(app.subscribe.special_gift);
   }
 
+  // Lottery
   if (page.data._offer.miniprogram.lotteryEnable) {
     subscribe.push(app.subscribe.lottery_draw);
   }
+  // Request subscription before checkout if lottery / special included
+  wx.requestSubscribeMessage({
+    tmplIds: subscribe,
+    complete: (res) => {
+      // Get subscription
+      Object.keys(res).forEach( i => {
+        if (i === 'errMsg') return;
 
-  if (subscribe.length > 0) {
-    // Request subscription before checkout if lottery / special included
-    wx.requestSubscribeMessage({
-      tmplIds: subscribe,
-      complete: (res) => {
-        console.log(res);
-        // Get subscription
-        Object.keys(res).forEach( i => {
-          console.log(i); // return errMsg, subscription id
-          // if (indexOf i in subscribe && == 'accept') save with offer_id to BO
-          // TODO if needed for api
-        })
-        _createOrder();
-      }
-    })
-  } else {
-    _createOrder();
-  }
+        if (res[i] === 'accept') {
+          console.log(notification[i]);
+          order[notification[i]] = true;
+        }
+      })
+
+      _createOrder();
+    }
+  })
 }
