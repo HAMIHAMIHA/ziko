@@ -1,46 +1,19 @@
 {
   "setting": {
     "urlCheck": true,
-    "es6": false,
-    "enhance": true,
-    "postcss": true,
     "preloadBackgroundData": false,
-    "minified": true,
     "coverView": true,
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
-    "uglifyFileName": false,
     "checkInvalidKey": true,
-    "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "lazyloadPlaceholderEnable": false,
-    "useMultiFrameRuntime": false,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "disableUseStrict": false,
+    "useMultiFrameRuntime": true,
     "showES6CompileOption": false,
-    "useCompilerPlugins": false,
-    "ignoreUploadUnusedFiles": true,
-    "useStaticServer": true,
-    "minifyWXML": true
+    "useStaticServer": true
   },
   "description": "Project configuration file, more information: https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
     "miniprogram": {
       "list": [
         {
