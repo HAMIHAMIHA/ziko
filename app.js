@@ -5,8 +5,6 @@ const i18n = require('utils/internationalize/translate.js'); // 翻译功能
 
 const { folders, subscribe } = require('./utils/properties');
 
-let lottery_notification;
-
 export async function _checkUserToken() {
   // Check user token
   const checkExpired = expire => {
@@ -84,7 +82,8 @@ App({
   subscribe,
   globalData: {
     token: null,
-    i18n: require('./utils/internationalize/internationalize.js').zh // Load a default language map first
+    i18n: require('./utils/internationalize/internationalize.js').zh, // Load a default language map first
+    pause_lottery_check: false,
   },
   routes: require('utils/routes.js').routes,
 
@@ -102,20 +101,23 @@ App({
       })
     })
   },
-  checkForLotteryNotification: () => {
+
+  checkForLotteryNotification: function() {
+    const self = this;
     if (!db.get('userInfo').token) return;
 
     const getLotteryNotif = () => {
+      if (self.globalData.pause_lottery_check) return;
       api.getLotteryNotifications().then( res => {
-        if (!res.length) return;
-        let page = getCurrentPages()[0];
+        if (!res.length) return; // If there's no new notification
+        let page = getCurrentPages()[getCurrentPages().length - 1];
         page.selectComponent('#lottery_modal').show(res);
-        clearInterval(lottery_notification)
+        self.globalData.pause_lottery_check = true;
       })
     }
   
     getLotteryNotif();
-    lottery_notification = setInterval( () => {
+    setInterval( () => {
       getLotteryNotif();
     }, 1000)
   },

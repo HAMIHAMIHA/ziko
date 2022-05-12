@@ -28,7 +28,7 @@
       <view class="content-note">{{ _t.prize_will_be_delivered }}</view>
     </view>
     <view class="content-foot">
-      <button class="nunito_800 uppercase content-confirm" bindtap="closeModal">{{ _t.get }}</button>
+      <button class="nunito_800 uppercase content-confirm" bindtap="getPrize">{{ _t.get }}</button>
     </view>
   </view>
 </modal>

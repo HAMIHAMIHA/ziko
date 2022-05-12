@@ -31,7 +31,9 @@ Component({
     },
 
     closeCheck: function() {
-      this.triggerEvent('closeModal');
-    }
+      app.api.updateLotteryNotification(this.data.lottery.id).then( () => {
+        app.globalData.pause_lottery_check = false;
+      })
+    },
   }
 })

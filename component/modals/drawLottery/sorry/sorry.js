@@ -15,11 +15,17 @@ Component({
   },
 
   methods: {
-    showModal: function(winners) {
+    showModal: function(lottery, winners) {
       const self = this;
+
+      let winner_names = '';
+      winners.forEach((w, i) => {
+        winner_names = i ? `${winner_names}, ${w.name}` : w.name;
+      });
 
       let winner_message = `${ winners[0].order.customer.name }${ app.globalData.i18n.has_won_the_lottery }`;
       self.setData({
+        lottery,
         winner_message
       })
 
@@ -27,10 +33,13 @@ Component({
     },
 
     closeCheck: function() {
-      this.triggerEvent('closeModal');
+      app.api.updateLotteryNotification(this.data.lottery.id).then( () => {
+        app.globalData.pause_lottery_check = false;
+      })
     },
 
     toOrder: function() {
+      this.selectComponent('#modal_template').closeModal();
       wx.switchTab({
         url: app.routes.orders
       })

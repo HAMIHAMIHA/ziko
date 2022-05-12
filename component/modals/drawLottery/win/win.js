@@ -99,18 +99,21 @@ Component({
       draw.gift = _getGiftValue[draw.gifts[0].type](draw.gifts[0], lottery.offer)
       self.setData({
         draw,
+        lottery,
         offer: lottery.offer
       })
 
       self.selectComponent('#modal_template').showModal();
     },
     
-    closeModal: function() {
+    getPrize: function() {
       this.selectComponent('#modal_template').closeModal();
     },
 
     closeCheck: function() {
-      this.triggerEvent('closeModal');
+      app.api.updateLotteryNotification(this.data.lottery.id).then( () => {
+        app.globalData.pause_lottery_check = false;
+      })
     },
   }
 })
