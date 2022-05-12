@@ -119,7 +119,7 @@ const getProductDetail = page => {
     
     page.setData({
       _folders: {
-        pack_pictur: app.folders.pack_pictur,
+        pack_picture: app.folders.pack_picture,
         product_picture: app.folders.product_picture,
       },
       _offer: offer,
