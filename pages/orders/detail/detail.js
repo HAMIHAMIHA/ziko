@@ -145,8 +145,8 @@ const getOrders = (page) => {
       }
 
       // Show in gift list
+      let gifts_idx = findIndex(gifts, gift_info, '_id');
       if (gift_type === 'gift') {
-        let gifts_idx = findIndex(gifts, gift_info, '_id');
         if (gifts_idx === -1) {
           gifts.push(gift_info);
         } else {
@@ -157,6 +157,7 @@ const getOrders = (page) => {
       } else if (gift_type === 'lottery') {
         lottery_discount += gift_info.price;
       } else {
+        gifts.push(gift_info);
         res.deliveryFee = 0
       }
 
