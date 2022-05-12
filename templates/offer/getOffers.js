@@ -151,11 +151,9 @@ export const packProductDetail = function(offer) {
   let items_unit = app.globalData.i18n.items_unit;
 
   offer.total = 0;
-  offer.sold = 0;
   offer.miniprogram.packs.map( item => {
     let details = [];
     offer.total += item.stock;
-    offer.sold += (item.stock - item.actualStock);
 
     item.products.forEach( product => {
       details.push(
@@ -191,9 +189,12 @@ export async function getOffer(page, offer_id) {
     offer = packProductDetail(offer);
 
     // Add to total
+    offer.addon_sold = 0;
     offer.miniprogram.items.forEach( i => {
       offer.total += i.stock;
-      offer.sold += (i.stock - i.actualStock);
+      if (offer.type === 'bourse') {
+        offer.addon_sold += (i.stock - i.actualStock);
+      }
     })
 
     offer.sold = 0;
@@ -426,15 +427,17 @@ export function getOfferBuyers(page, offer_id) {
         new_sold += item.amount;
 
         // Check if winner of lottery
-        order.gifts.forEach( g => {
-          let draw_idx = offer.miniprogram.lottery.draws.findIndex( d => g.offerDrawId === d._id);
+        if (offer.miniprogram.lotteryEnable) {
+          order.gifts.forEach( g => {
+            let draw_idx = offer.miniprogram.lottery.draws.findIndex( d => g.offerDrawId === d._id);
 
-          offer.miniprogram.lottery.draws[draw_idx].winners = [{
-            name: order.name,
-            profilePicture: order.profilePicture,
-            id: order.customer,
-          }]
-        })
+            offer.miniprogram.lottery.draws[draw_idx].winners = [{
+              name: order.name,
+              profilePicture: order.profilePicture,
+              id: order.customer,
+            }]
+          })
+        }
       });
     })
     offer.sold += new_sold; // Update offer total sold
@@ -521,8 +524,10 @@ export function getOfferBuyers(page, offer_id) {
       cart: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id] : null,
     })
 
-    // Refresh components
-    page.selectComponent('#lottery_list').refresh(offer);
+    // Refresh lottery components
+    if (offer.miniprogram.lotteryEnable) {
+      page.selectComponent('#lottery_list').refresh(offer);
+    }
   }
 
   app.api.getOfferBuyers(offer_id).then(callback);
