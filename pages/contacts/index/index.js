@@ -29,7 +29,9 @@ Page({
 
     // Get user info
     showLoading(true);
-    refreshUserInfo(self, null);
+    refreshUserInfo(self, () => {
+      showLoading(false);
+    });
 
     // Set page Data
     if (self.options.selected_contact != undefined) {

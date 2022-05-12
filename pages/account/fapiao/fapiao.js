@@ -1,4 +1,4 @@
-const { navigateBack, refreshUserInfo, updateUserInfo, showLoading } = require("../../../utils/common");
+const { refreshUserInfo, updateUserInfo, showLoading } = require("../../../utils/common");
 
 const app = getApp();
 
@@ -16,6 +16,7 @@ Page({
       self.setData({
         fapiao: res.fapiaoInformation ? res.fapiaoInformation : '',
       })
+      showLoading(false);
     });
 
     // Set page translation

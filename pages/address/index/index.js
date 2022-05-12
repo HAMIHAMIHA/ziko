@@ -39,7 +39,10 @@ Page({
 
     // Get user info
     showLoading(true);
-    refreshUserInfo(self, null);
+    refreshUserInfo(self, () => {
+      showLoading(false);
+    });
+
     _getAddressAreas();
 
     // Set page Data

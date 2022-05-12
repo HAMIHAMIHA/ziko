@@ -84,9 +84,9 @@ export const refreshUserInfo = function(page, callback) {
       })
       : null;
   
-    callback ? 
+    if (callback) {
       callback(res.user)
-      : showLoading(false);
+    }
   }
 
   getApp().api.getProfile().then(getProfileCallback);
