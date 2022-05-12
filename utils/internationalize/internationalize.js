@@ -259,6 +259,10 @@ export const languageMap_en = {
       prefix: "order > CNY",
       suffix: "",
     },
+    x_item_sold: {
+      prefix: "",
+      suffix: " item sold",
+    },
     x_total_sold_items: {
       prefix: "",
       suffix: " total items sold",
@@ -701,13 +705,18 @@ export const languageMap_zh = {
     items_sold: {
       prefix: '',
       suffix: " items sold"
-    },    number_of_order: {
+    },
+    number_of_order: {
       prefix: "> ",
       suffix: " total orders",
     },
     order_for_amount: {
       prefix: "order > CNY",
       suffix: "",
+    },
+    x_item_sold: {
+      prefix: "",
+      suffix: " item sold",
     },
     x_total_sold_items: {
       prefix: "",
