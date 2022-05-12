@@ -32,13 +32,13 @@ export const map_filters = [
     xPos: 120,
     yPos: 365,
     shape: "polygon(2% 43%, 94% 100%, 100% 19%, 71% 2%)",
-  }, {
-    name: "baby",
-    width: 240,
-    height: 191,
-    xPos: 0,
-    yPos: 477,
-    shape: "polygon(46% 4%, 100% 42%, 19% 100%, 0 100%, 0 35%)",
+  // }, {
+  //   name: "baby",
+  //   width: 240,
+  //   height: 191,
+  //   xPos: 0,
+  //   yPos: 477,
+  //   shape: "polygon(46% 4%, 100% 42%, 19% 100%, 0 100%, 0 35%)",
   }
 ]
 

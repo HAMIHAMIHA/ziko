@@ -2,7 +2,7 @@
   <!-- Map View -->
   <view class="map" wx:if="{{ map }}">
     <view class="map-container">
-      <image src="{{ _folders.asset + 'map.png' }}" mode="widthFix" lazy-load="true"></image>
+      <image src="{{ _folders.asset + 'map.jpeg' }}" mode="widthFix" lazy-load="true"></image>
       <view class="map-areas">
         <block wx:for="{{ _filters.map }}" wx:key="index" wx:for-item="filter">
           <view 
