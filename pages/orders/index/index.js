@@ -7,8 +7,10 @@ const pickers = {
   community: ['all', 'cellar', 'garden', 'kitchen', 'pet'],
   order_status: ['all', 'delivered', 'on_the_way', 'prepared', 'delayed'],
 }
+const PAGE_RANGE = 10;
 
 let current = { community: '', order_status: '', payment_status: '' };
+let current_load = 0;
 
 // Change selected filters
 const _defaultFilters = (page, key, index_val) => {
@@ -126,8 +128,14 @@ const getOrders = (page) => {
       }
     })
 
+    console.log(page.data.orders, res);
+    console.log(current_load);
+    let orders = current_load ? [...page.data.orders, ...res] : res;
     page.setData({
-      orders: res,
+      orders,
+    }, function() {
+      current_load += PAGE_RANGE;
+      console.log(current_load);
     });
 
     // Save for comparsion in profile page
@@ -141,7 +149,7 @@ const getOrders = (page) => {
   let order_status = current.order_status;
 
   let filter = {
-    filter_str: `filter={"$or":[{"channel":"all"},{"channel":"miniprogram"}]}&community=${ community_id }&trackingStatus=${ order_status }`,
+    filter_str: `filter={"$or":[{"channel":"all"},{"channel":"miniprogram"}]}&community=${ community_id }&trackingStatus=${ order_status }&range=[${current_load}, ${ current_load + PAGE_RANGE - 1}]`,
   }
 
   app.api.getOrders(filter).then(callback);
@@ -174,6 +182,10 @@ Page({
     this.options.back = true;
   },
 
+  onReachBottom: function() {
+    // getOrders(this);
+  },
+
   initOrders: function() {
     const self = this;
     // Set page filter and get order
@@ -195,6 +207,7 @@ Page({
   // change filter content
   changeFilter: function(e) {
     const self = this;
+    current_load = 0;
 
     let filter_type = e.currentTarget.dataset.filter_type;
     let value = filter_type == 'community' ? e.detail.value : e.currentTarget.dataset.value;
