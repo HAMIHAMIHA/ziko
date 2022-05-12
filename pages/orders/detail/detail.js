@@ -57,7 +57,7 @@ const getOrders = (page) => {
           name: prod.product.name[_lang],
           offerDrawId: gift.offerDrawId,
           origin: gift.origin,
-          picture: `${app.folders.product_picture}${prod.product.mainPicture[_lang].uri}`,
+          picture: prod.product.mainPicture ? `${app.folders.product_picture}${prod.product.mainPicture[_lang].uri}` : '',
           product_info: prod_info,
           shortName: gift.singleItem,
         }]

@@ -54,7 +54,7 @@ Component({
           let prod = offer.miniprogram.items[product_idx];
           return {
             name: prod.product.name[_lang],
-            picture: `${app.folders.product_picture}${prod.product.mainPicture[_lang].uri}`,
+            picture: prod.product.mainPicture ? `${app.folders.product_picture}${prod.product.mainPicture[_lang].uri}` : '',
           }
         },
         pack: (gift, offer) => {
