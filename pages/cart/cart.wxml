@@ -1,3 +1,5 @@
+<wxs module="fixDecimals" src="/utils/fixDecimals.wxs"></wxs>
+
 <view class="container container-grey container-btn-bottom {{ error }}">
   <form bindsubmit="pay">
     <view class="white-box order-products_container">
@@ -88,7 +90,7 @@
       </view>
       <view class="nunito_700 detail">
         <text class="detail_label">{{ _t.total }}</text>
-        <text class="detail_result">¥{{ (_pay_set.finalFee - voucher.amount) * discount }}</text>
+        <text class="detail_result">¥{{ fixDecimals.toFix((_pay_set.finalFee - voucher.amount) * discount) }}</text>
       </view>
     </view>
 
