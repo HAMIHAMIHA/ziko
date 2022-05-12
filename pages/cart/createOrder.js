@@ -152,6 +152,9 @@ export const createOrder = (page, value) => {
 
   const _createOrder = () => {
     showLoading(true);
+
+    app.globalData.pause_lottery_check = true;
+
     // Create order, callback to connect to wechat pay
     const createOrderCallback =  res => {
       // Remove from cart

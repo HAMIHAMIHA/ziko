@@ -186,6 +186,7 @@ const getOrders = (page) => {
     })
 
     if (page.options.type === 'paid') {
+      app.globalData.pause_lottery_check = false;
       if (modal_gifts.length > 0) {
         page.selectComponent('#order_gifts').showResults(modal_gifts);
       } else {
