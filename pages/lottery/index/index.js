@@ -85,30 +85,18 @@ const _generateSuffix = (step, filter_date) => {
         [{"startingDate":{"$lte":`${ now_timestamp }`}},{"endingDate":{"$gt":`${ now_timestamp }`}}],
         `["endingDate","ASC"]`
       ],
-      [
-        [{"startingDate":{"$lte":`${ now_timestamp }`}},{"endingDate":{"$lte":`${ now_timestamp }`}}],
-        `["startingDate","DESC"]`
-      ]
     ],
     today: [
       [
         [{"startingDate":{"$gte":`${ filter_date }`,"$lte":`${ now_timestamp }`}},{"endingDate":{"$gt":`${ now_timestamp }`}}],
         `["endingDate","ASC"]`
       ],
-      [
-        [{"startingDate":{"$gte":`${ filter_date }`,"$lte":`${ now_timestamp }`}},{"endingDate":{"$lte":`${ now_timestamp }`}}],
-        `["startingDate","DESC"]`
-      ]
     ],
     other: [
       [
         [{"startingDate":{"$gte":`${ filter_date }`, "$lte":`${ new Date(filter_date).setHours(23, 59, 59, 999) }`}},{"endingDate":{"$gt":`${ now_timestamp }`}}],
         `["endingDate","ASC"]`
       ],
-      [
-        [{"startingDate":{"$gte":`${ filter_date }`,"$lte":`${ new Date(filter_date).setHours(23, 59, 59, 999)}`}},{"endingDate":{"$lte":`${ now_timestamp }`}}],
-        `["startingDate","DESC"]`
-      ]
     ],
   }
   let filter_str = filter_str_list[key][step];
@@ -194,37 +182,26 @@ const _filterOfferData = (page, filter_group, filter_id, filter_date) => {
   current_filter.group = filter_id;
   current_filter.date = filter_date;
 
-  // Loading module
-  showLoading(true);
-
   // Set up API
   suffix = `?community=${filter_id}${ _generateSuffix(0, filter_date) }`;
   app.api.getOffers(suffix).then(res => {
     // Get on going events
     raw_offers = res;
+    app.api.getLotteries().then( res => {
+      lotteries = res;
 
-    // Set up API
-    let date_suffix_str = _generateSuffix(1, filter_date);
-    suffix = `?community=${ filter_id }${ date_suffix_str }`;
-
-    app.api.getOffers(suffix).then(res => {
-      raw_offers = [...raw_offers, ...res];
-      app.api.getLotteries().then( res => {
-        lotteries = res;
-
-        // Get user orders if user is logged in
-        if (page.data.user.id) {
-          app.api.getOrders({
-            filter_str: `filter={"$or":[{"channel":"all"},{"channel":"miniprogram"}]}&paymentStatus=paid`
-          }).then( res => {
-            orders = res;
-            _setOffers(page, filter_date);
-          })
-        } else {
+      // Get user orders if user is logged in
+      if (page.data.user.id) {
+        app.api.getOrders({
+          filter_str: `filter={"$or":[{"channel":"all"},{"channel":"miniprogram"}]}&paymentStatus=paid`
+        }).then( res => {
+          orders = res;
           _setOffers(page, filter_date);
-        }
-      })
-    });
+        })
+      } else {
+        _setOffers(page, filter_date);
+      }
+    })
   });
 }
 
