@@ -126,8 +126,8 @@ Page({
 
   onHide: function() {
     // Stop all timers
-  let offers = this.selectComponent('#list_offers');
-  offers.updateCards(this.data._t_offers, false);
+    let offers = this.selectComponent('#list_offers');
+    offers.updateCards(this.data._t_offers, false);
   },
 
   onUnload: function() {
