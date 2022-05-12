@@ -14,13 +14,15 @@
 }
 
 .modal-container .draw-box-container {
-  padding: 46rpx;
+  margin: 46rpx;
+  padding: 35% 0;
   position: relative;
 }
 
 .draw-box-container .draw-box {
-  width: 100%;
-  height: 270px;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .draw-box-container .draw-detail {
