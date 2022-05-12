@@ -89,7 +89,10 @@ const getOrders = (page) => {
   }
 
   const callback = res => {
-    showLoading(false);
+    if (!res.length) {
+      showLoading(false);
+      return;
+    }
 
     // Count total items
     let countItems = list => {
@@ -121,27 +124,24 @@ const getOrders = (page) => {
       })
       order.gifts = gifts;
 
-
       // Save delivery status for checking in future
       if (!current.community && !current.order_status && !current.payment_status) {
         order_deliveries.push(order.trackingStatus);
       }
     })
 
-    console.log(page.data.orders, res);
-    console.log(current_load);
     let orders = current_load ? [...page.data.orders, ...res] : res;
     page.setData({
       orders,
     }, function() {
-      current_load += PAGE_RANGE;
-      console.log(current_load);
+      current_load = orders.length;
     });
 
     // Save for comparsion in profile page
     if (!current.community && !current.order_status && !current.payment_status) {
       app.db.set('orderDeliveries', order_deliveries);
     }
+    showLoading(false);
   }
 
   let community_id = Object.keys(communities).find(item => communities[item] == current.community);
@@ -149,7 +149,7 @@ const getOrders = (page) => {
   let order_status = current.order_status;
 
   let filter = {
-    filter_str: `filter={"$or":[{"channel":"all"},{"channel":"miniprogram"}]}&community=${ community_id }&trackingStatus=${ order_status }&range=[${current_load}, ${ current_load + PAGE_RANGE - 1}]`,
+    filter_str: `channel=miniprogram&community=${ community_id }&trackingStatus=${ order_status }&range=[${current_load}, ${ current_load + PAGE_RANGE - 1}]`,
   }
 
   app.api.getOrders(filter).then(callback);
@@ -158,7 +158,7 @@ const getOrders = (page) => {
 Page({
   data: {
     _routes: { order: app.routes.order },
-    _picker_selected: { community: '', order_status: '' }
+    _picker_selected: { community: '', order_status: '' },
   },
 
   onShow: function () {
@@ -183,7 +183,7 @@ Page({
   },
 
   onReachBottom: function() {
-    // getOrders(this);
+    getOrders(this);
   },
 
   initOrders: function() {

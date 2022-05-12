@@ -195,7 +195,7 @@ const getOrders = (page) => {
     showLoading(false);
   }
 
-  app.api.getOrders({filter_str: null, id: order_id}).then(callback);
+  app.api.getOrders({ id: order_id }).then(callback);
 }
 
 Page({

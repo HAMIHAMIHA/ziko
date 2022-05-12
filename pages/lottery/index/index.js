@@ -193,7 +193,7 @@ const _filterOfferData = (page, filter_group, filter_id, filter_date) => {
       // Get user orders if user is logged in
       if (page.data.user.id) {
         app.api.getOrders({
-          filter_str: `filter={"$or":[{"channel":"all"},{"channel":"miniprogram"}]}&paymentStatus=paid`
+          filter_str: `channel=miniprogram&paymentStatus=paid`
         }).then( res => {
           orders = res;
           _setOffers(page, filter_date);

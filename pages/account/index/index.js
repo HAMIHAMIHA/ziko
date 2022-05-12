@@ -13,7 +13,7 @@ const _getPageData = (page) => {
   });
 
   // Order list for comparsion
-  let order_filter = { filter_str: `filter={"$or":[{"channel":"all"},{"channel":"miniprogram"}]}` };
+  let order_filter = { filter_str: `channel=miniprogram` };
   app.api.getOrders(order_filter).then( orders => {
     if (!app.db.get('orderDeliveries')) return; // Don't check for extra if there is no voucher history in storage
     orders.slice((orders.length - app.db.get('orderDeliveries').length), orders.length);
