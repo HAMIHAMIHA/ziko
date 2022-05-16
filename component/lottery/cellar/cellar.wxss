@@ -237,6 +237,7 @@
   margin-top: 14rpx;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .lotteries_prize .offer-lottery .offer-lottery_winner .winner-image {
