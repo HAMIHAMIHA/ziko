@@ -33,6 +33,7 @@ export const modifyCartItems = (page, event, checkout = false) => {
   // If old_amount is not already found
   if (old_amount < 0) {
     old_amount = cart_offer.products[product._id] ? cart_offer.products[product._id].amount : 0;
+    cart_offer.reducedTotal += (product.price * (new_amount - old_amount));
   }
 
   // Set up values for product in cart

@@ -10,7 +10,7 @@ const _getNewTotal = (cart_offer, product, amounts, new_price) => {
     prev_price = product.price * amounts.old
     cart_offer.products[product._id] = { price: new_price, amount: amounts.new };
   }
-  cart_offer.reducedTotal += (new_price * amounts.new) - prev_price;
+  cart_offer.reducedTotal = cart_offer.reducedTotal ? cart_offer.reducedTotal + (new_price * amounts.new) - prev_price : cart_offer.total + (new_price * amounts.new);
   return cart_offer;
 }
 
@@ -58,7 +58,7 @@ export const getBoursePrice = (offer, product, amount = -1) => {
 
   // Find current bourse price
   let new_price = offer.miniprogram.items[0].price; // Set orignal price in case 0 is not in calculation
-  let new_total_sold = offer.sold + cart_offer.count - amounts.old + amounts.new;
+  let new_total_sold = offer.addon_sold + cart_offer.count - amounts.old + amounts.new;
   offer.miniprogram.bourses.forEach( b => {
     if (new_price > b.unitPrice && new_total_sold >= b.from) {
       new_price = b.unitPrice;
@@ -79,10 +79,24 @@ export const getBoursePrice = (offer, product, amount = -1) => {
     cart_offer.products[p._id] = cart_product;
   });
 
+  offer.miniprogram.packs.forEach( p => {
+    let cart_product = cart_offer.products[p._id] ? cart_offer.products[p._id] : { amount: 0, price: p.price };
+    if (p._id === product) {
+      cart_total = cart_total + p.price * amounts.new;
+    } else {
+      cart_total += p.price * cart_product.amount;
+    }
+
+    cart_offer.products[p._id] = cart_product;
+  })
+
   cart_offer.reducedTotal = cart_total;
   cart[offer.id] = cart_offer;
   db.set('cart', cart);
 
+  if (product && cart_offer.products[product].type === 'packs') {
+    return [amounts.old, product.price];
+  }
   return [amounts.old, new_price];
 }
 

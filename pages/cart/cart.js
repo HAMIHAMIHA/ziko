@@ -108,8 +108,12 @@ const _getOffers = page => {
     // Set price with the newest purchase
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
     let total_sold = 0;
+    offer.addon_sold = 0;
     offer_products.forEach( i => {
       total_sold += i.stock - i.actualStock;
+      if (offer.type === 'bourse' && i.type === 'items') {
+        offer.addon_sold += (i.stock - i.actualStock);
+      }
     });
     offer.sold = total_sold;
 
@@ -225,7 +229,7 @@ Page({
     modifyCartItems(self, e, true);
 
     let cart = app.db.get('cart')[self.options.id];
-  
+
     self.setData({
       cart: cart,
       products: _setProducts(self.data._offer, cart)
