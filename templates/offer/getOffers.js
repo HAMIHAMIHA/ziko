@@ -162,6 +162,72 @@ export const packProductDetail = function(offer) {
     })
     item.products_info = details.join(', ');
   })
+
+  return offer;
+}
+
+const _setHurryPopup = function(offer, page) {
+  let gift_list = [];
+  if (offer.type === 'regular' || !offer.type) {
+    // Set next special for regular offers
+    gift_list = JSON.parse(JSON.stringify(offer.miniprogram.zikoSpecials)).filter(s => { return s.conditionType === 'first_order'});
+  } else if (offer.miniprogram.lotteryEnable) {
+    // Set next lottery for special cellar offers
+    gift_list = offer.miniprogram.lottery.draws.slice(1)
+  }
+
+  if (gift_list.length) {
+    // Switch position for number sold or number orders from special into lottery
+    gift_list.map( gift => {
+      if (gift.conditionType === 'first_order') gift.conditionType = "number_of_order"
+      if (gift.conditionType === 'x_total_sold_items') gift.conditionType = "x_item_sold";
+    })
+
+    gift_list.sort( (a, b) => {
+      return a.conditionValue - b.conditionValue;
+    })
+
+    // Check which ones are unlocked
+    let unlocked = -1;
+    let first_locked = -1;
+    let text = '';
+
+    gift_list.forEach( (d, i) => {
+      if (d.conditionType === "number_of_order" && offer.orders >= d.conditionValue && unlocked < i) {
+        unlocked++;
+        d.unlocked = true;
+      } else if (d.conditionType === "x_item_sold" && offer.sold >= d.conditionValue && unlocked < i) {
+        unlocked++;
+        d.unlocked = true;
+      } else if (first_locked === -1) {
+        first_locked = i;
+        text = d.conditionType === "x_item_sold" ? 'items_sold' : 'orders_sold';
+      }
+    })
+
+    // Set next lottery message
+    let next = null;
+    console.log(gift_list);
+    if (first_locked > -1) {
+      console.log(gift_list);
+      next = gift_list[first_locked];
+      next.text = text;
+    }
+
+    console.log(next);
+
+    page.setData({
+      next_lottery: next
+    })
+
+    // Update lottery progress
+    if (gift_list[0].conditionType === "number_of_order" ) {
+      offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
+    } else {
+      offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
+    }
+  }
+
   return offer;
 }
 
@@ -244,7 +310,6 @@ export async function getOffer(page, offer_id) {
         offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
       }
 
-      let prev = 0; // Used to calculate position for tag
       offer.miniprogram.lottery.draws.forEach( draw => {
         let winners = [];
         lotteries.forEach( l => {
@@ -259,10 +324,9 @@ export async function getOffer(page, offer_id) {
   
         // Set size of axis mark
         draw.position = Math.round(draw.conditionValue / offer.last_val * 100);
-        prev = draw.conditionValue;
-  
-        draw.winners = winners
-        draw.unlocked = ((draw.conditionType === "number_of_order" && offer.orders >= draw.conditionValue) ||  (draw.conditionType === "x_item_sold" && offer.sold >= draw.conditionValue));
+
+        draw.winners = winners;
+        draw.unlocked = ((draw.conditionType === "number_of_order" && offer.orders >= draw.conditionValue) || (draw.conditionType === "x_item_sold" && offer.sold >= draw.conditionValue));
       })
 
       offer.miniprogram.lottery.draws = [{
@@ -271,6 +335,8 @@ export async function getOffer(page, offer_id) {
         _id: '000'
       }, ...offer.miniprogram.lottery.draws]
     }
+    
+    offer = _setHurryPopup(offer, page);
 
     // Set page data
     page.setData({
@@ -451,61 +517,7 @@ export function getOfferBuyers(page, offer_id) {
       page.setBourseGraph(offer);
     }
 
-    let specials = (offer.type || offer.type === 'regular' || offer.communty != 'cellar') ? JSON.parse(JSON.stringify(offer.miniprogram.zikoSpecials)) : [];
-    // Set next lottery or special
-    // Save special and lottery with number sold condition and number order condition to one list
-    let gift_list = specials.filter(s => { return s.conditionType === 'first_order' || s.conditionType === 'x_total_sold_items' || s.conditionType === "number_of_order" });
-    if (offer.miniprogram.lotteryEnable) {
-      gift_list = gift_list.concat(offer.miniprogram.lottery.draws.slice(1))
-    }
-
-    if (gift_list.length > 0) {
-      // Switch position for number sold or number orders from special into lottery
-      gift_list.map( gift => {
-        if (gift.conditionType === 'first_order') gift.conditionType = "number_of_order"
-        if (gift.conditionType === 'x_total_sold_items') gift.conditionType = "x_item_sold";
-      })
-
-      gift_list.sort( (a, b) => {
-        return a.conditionValue - b.conditionValue;
-      })
-
-      // Check which ones are unlocked
-      let unlocked = -1;
-      let first_locked = -1;
-      let text = '';
-
-      gift_list.forEach( (d, i) => {
-        if (d.conditionType === "number_of_order" && offer.orders >= d.conditionValue && unlocked < i) {
-          unlocked++;
-          d.unlocked = true;
-        } else if (d.conditionType === "x_item_sold" && offer.sold >= d.conditionValue && unlocked < i) {
-          unlocked++;
-          d.unlocked = true;
-        } else if (first_locked === -1) {
-          first_locked = i;
-          text = d.conditionType === "x_item_sold" ? 'items_sold' : 'orders_sold';
-        }
-      })
-
-      // Set next lottery message
-      let next = null;
-      if (first_locked > -1) {
-        next = gift_list[first_locked];
-        next.text = text;
-      }
-
-      page.setData({
-        next_lottery: next
-      })
-  
-      // Update lottery progress
-      if (gift_list[0].conditionType === "number_of_order" ) {
-        offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
-      } else {
-        offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
-      }
-    }
+    offer = _setHurryPopup(offer, page);
 
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
     offer_products.forEach( p => {
