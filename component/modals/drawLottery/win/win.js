@@ -52,9 +52,11 @@ Component({
         add_on: (gift, offer) => {
           let product_idx = offer.miniprogram.items.findIndex( i => i.shortName === gift.singleItem);
           let prod = offer.miniprogram.items[product_idx];
+          console.log(prod);
+          // console.log(prod.product);
           return {
-            name: prod.product.name[_lang],
-            picture: prod.product.mainPicture ? `${app.folders.product_picture}${prod.product.mainPicture[_lang].uri}` : '',
+            // name: prod.product.name[_lang],
+            // picture: prod.product.mainPicture ? `${app.folders.product_picture}${prod.product.mainPicture[_lang].uri}` : '',
           }
         },
         pack: (gift, offer) => {
@@ -96,10 +98,15 @@ Component({
       let draw = lottery.offer.miniprogram.lottery.draws[draw_idx]
       draw.count = draw_idx + 1;
 
-      draw.gift = _getGiftValue[draw.gifts[0].type](draw.gifts[0], lottery.offer)
+      draw.gifts.map(gift => {
+        gift = _getGiftValue[gift.type](gift, lottery.offer)
+      })
+
       self.setData({
         draw,
         lottery,
+        _current: 0,
+        _max_number: draw.gifts.length - 1,
         offer: lottery.offer
       })
 
@@ -111,9 +118,17 @@ Component({
     },
 
     closeCheck: function() {
-      app.api.updateLotteryNotification(this.data.lottery.id).then( () => {
-        app.globalData.pause_lottery_check = false;
-      })
+      const self = this;
+      if (self.data._current === self.data._max_number) {
+        app.api.updateLotteryNotification(this.data.lottery.id).then( () => {
+          app.globalData.pause_lottery_check = false;
+        })
+      } else {
+        self.setData({
+          _current: self.data._current + 1,
+        })
+        self.selectComponent('#modal_template').showModal();
+      }
     },
   }
 })

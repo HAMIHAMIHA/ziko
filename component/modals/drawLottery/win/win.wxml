@@ -29,6 +29,7 @@
     </view>
     <view class="content-foot">
       <button class="nunito_800 uppercase content-confirm" bindtap="getPrize">{{ _t.get }}</button>
+      <view class="gilroy_700 content-total" wx:if="{{ _max_number }}">{{ _current + 1 }}/{{ _total + 1 }}</view>
     </view>
   </view>
 </modal>
