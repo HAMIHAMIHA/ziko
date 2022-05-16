@@ -413,12 +413,14 @@ export function getOfferBuyers(page, offer_id) {
     offer.orders = res.length;
 
     let new_sold = 0;
+    let new_add_on_sold = 0;
     new_purchases.forEach( order => {
       order.cart.forEach( item => {
         // Change stock amount in offer
         let list_name = 'packs';
         if (item.type === 'item') {
           list_name = 'items';
+          new_add_on_sold += item.amount;
         }
         let item_idx = offer.miniprogram[list_name].findIndex( i => i.shortName === item.shortName );
         offer.miniprogram[list_name][item_idx].actualStock -= item.amount;
@@ -444,6 +446,7 @@ export function getOfferBuyers(page, offer_id) {
 
     // Check for bourse unit price
     if (offer.type === 'bourse') {
+      offer.addon_sold += new_add_on_sold;
       getBoursePrice(offer, null);
       page.setBourseGraph(offer);
     }
