@@ -80,7 +80,7 @@ const getOrders = (page) => {
           offerDrawId: gift.offerDrawId,
           origin: gift.origin,
           name: prod.name[_lang],
-          picture: prod.illustation ? `${app.folders.pack_picture}${prod.illustation.uri}` : '/assets/images/packDefault.png',
+          picture: prod.illustation ? prod.illustation.file ?  `${app.folders.pack_picture}${prod.illustation.file.response.uri}` : `${app.folders.pack_picture}${prod.illustation.uri}` : '/assets/images/packDefault.png',
           product_info: products_info,
           shortName: gift.pack,
         }]
@@ -183,6 +183,7 @@ const getOrders = (page) => {
     page.setData({
       order: res,
       "_t.units": app.globalData.i18n.units[community],
+      need_reveived: page.options.status === 'delivered' ? true : false,
     })
 
     if (page.options.type === 'paid') {
@@ -205,7 +206,8 @@ Page({
     _folders: {
       pack_picture: app.folders.pack_picture,
       product_picture: app.folders.product_picture,
-    }
+    },
+    need_reveived: false
   },
 
   onShow: function () {
@@ -296,10 +298,13 @@ Page({
 
   confirmReceive: function() {
     const self = this;
-    app.api.updateOrder(self.options.id).then( res => {
-      self.setData({
-        order: res
-      })
+    self.setData({
+      need_reveived: false
     })
+    // app.api.updateOrder(self.options.id).then( res => {
+    //   self.setData({
+    //     order: res
+    //   })
+    // })
   }
 })

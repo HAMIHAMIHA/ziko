@@ -1,4 +1,4 @@
-<view class="container container-grey{{ order.paymentStatus == 'pending' || order.trackingStatus == 'delivered' ? ' container-btn-bottom' : '' }}">
+<view class="container container-grey{{ order.paymentStatus == 'pending' || need_reveived ? ' container-btn-bottom' : '' }}">
   <view class="white-box order-products_container">
     <view class="nunito_700 header page-header">{{ order.offer.name[_language] }}</view>
     <view class="nunito_700 header">{{ _t.items }}</view>
@@ -6,7 +6,9 @@
       <view class="flex-between product">
         <view class="flex-start flex-align-start product_left">
           <view class="product-image">
-            <image src="{{ _folders.pack_picture + product.illustation.uri }}" mode="aspectFill" wx:if="{{ product.type == 'pack' && product.illustation }}"></image>
+            <image src="{{ _folders.pack_picture + product.illustation.file.response.uri }}" mode="aspectFill" wx:if="{{ product.type == 'pack' && product.illustation.file }}"></image>
+            <image src="{{ _folders.pack_picture + product.illustation.uri }}" mode="aspectFill" wx:elif="{{ product.type == 'pack' && product.illustation }}"></image>
+            <view wx:elif="{{ product.type == 'pack' && product.illustation }}">1</view>
             <image src="/assets/images/packDefault.png" mode="aspectFill" wx:elif="{{ product.type == 'pack' }}"></image>
             <image src="{{ _folders.product_picture + product.product.mainPicture[_language].uri }}" mode="aspectFill" wx:else></image>
           </view>
@@ -195,7 +197,7 @@
   </view>
 
   <!-- Receive button for delivered orders -->
-  <view class="btn-bottom" wx:elif="{{ order.trackingStatus == 'delivered' }}">
+  <view class="btn-bottom" wx:elif="{{ need_reveived }}">
     <button class="nunito_600" bindtap="confirmReceive">
       {{ _t.received }}
     </button>
