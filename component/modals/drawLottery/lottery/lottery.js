@@ -13,7 +13,7 @@ Component({
 
       lottery_winners = [];
       if (!res[0].winner) {
-        app.api.getLotteries(`offerDrawId=${res[0].offerDrawId}`).then( res => {
+        app.api.getLotteries(`offerDrawId=${res[0].offerDrawId}&offer=${res[0].offer.id}`).then( res => {
           lottery_winners = res[0].winners;
           _showDraw();
         })
