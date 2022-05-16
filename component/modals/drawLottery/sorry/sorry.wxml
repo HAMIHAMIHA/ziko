@@ -13,7 +13,7 @@
       </view>
     </view>
     <view class="content-foot">
-      <button class="nunito_800 uppercase content-confirm" bindtap="toOrder">{{ _t.back_to_order }}</button>
+      <button class="nunito_800 uppercase content-confirm" bindtap="closeModal">{{ _t.close_it }}</button>
     </view>
   </view>
 </modal>
