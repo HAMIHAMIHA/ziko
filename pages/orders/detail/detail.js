@@ -128,10 +128,10 @@ const getOrders = (page) => {
     let gifts = [], lottery_discount = 0, special_discount = 0, modal_gifts = [];
     res.gifts.forEach( gift => {
       let [gift_type, gift_info] = _getGiftValue[gift.type](gift, res.offer);
-      modal_gifts.push(gift_info);
 
       // Find special or lottey
       if (gift.origin === 'ziko_special') {
+        modal_gifts.push(gift_info);
         let special_idx = res.offer.miniprogram.zikoSpecials.findIndex( s => s._id === gift.offerDrawId );
         gift_info.special = res.offer.miniprogram.zikoSpecials[special_idx];
       } else {
