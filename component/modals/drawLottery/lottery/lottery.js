@@ -24,7 +24,6 @@ Component({
 
     showResult: function(e) {
       const self = this;
-      console.log(lottery);
 
       if (lottery.winner) {
         self.selectComponent('#win_modal').showModal(lottery);
