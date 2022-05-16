@@ -207,6 +207,8 @@ const _getOffer = function(page, offer_id) {
   // Get product by offer id
   app.api.getOffers(`?id=${offer_id}`).then( res => {
     offer = res[0];
+    offer.orders = offer.miniprogramOrders;
+
     app.api.getLotteries(`offer=${offer_id}`).then( res => {
       lotteries = res;
 
