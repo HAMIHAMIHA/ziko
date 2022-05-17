@@ -116,6 +116,7 @@ export const checkOfferSpecial = (page, offer) => {
         })
       },
     }
+    console.log(gift.type);
 
     return special[gift.type] ? special[gift.type]() : '';
   }
@@ -130,7 +131,7 @@ export const checkOfferSpecial = (page, offer) => {
           return offer.orders >= special.conditionValue;
         },
         order_for_amount: () => {
-          return (page.data._pay_set.reducedTotal - page.data.voucher) >= special.conditionValue;
+          return (page.data._pay_set.reducedTotal - page.data.voucher.amount) >= special.conditionValue;
         },
         x_total_sold_items: () => {
           let sold = [...page.data._offer.miniprogram.packs, ...page.data._offer.miniprogram.items].reduce((p1, p2) => {
