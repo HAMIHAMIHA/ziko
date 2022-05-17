@@ -90,7 +90,7 @@ const _createOrderData = (page, value) => {
     comment: value.comment,
     deliveryDate: new Date(page_data.delivery_dates[page_data.delivery_date]),
     deliverySelection: "auto",
-    vouchers:  page_data.voucher ? [page_data.voucher.id] : [''],
+    vouchers: page_data.voucher ? [page_data.voucher.id] : [''],
     voucherSelection: "manual",
     packs: packs,
     singleItems: items,
