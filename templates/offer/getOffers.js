@@ -229,7 +229,7 @@ const _setHurryPopup = function(offer, page) {
 }
 
 // Check for lottery draws
-const _setLotteryDraws = function(offer, init) {
+const _setLotteryDraws = function(offer, orders) {
   if ( offer.miniprogram.lottery.draws[0].conditionType === "number_of_order" ) {
     offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
   } else {
@@ -237,25 +237,43 @@ const _setLotteryDraws = function(offer, init) {
   }
 
   offer.miniprogram.lottery.draws.map( draw => {
+    console.log(draw._id);
     let winners = [];
-    lotteries.forEach( l => {
-      if (l.offerDrawId === draw._id){
-        l.winners.forEach( w => {
-          if (w.order && w.order.customer && winners.findIndex( winner => { return winner.id === w.order.customer.id }) === -1) {
-            winners.push(w.order.customer);
-          }
+
+    if (orders) {
+      let winning_orders = orders.filter( o => {
+        let order = o.gifts.filter(g => {
+          return g.offerDrawId === draw._id;
+        });
+        return order.length > 0;
+      })
+
+      winning_orders.forEach( winner => {
+        winners.push({
+          name: winner.name,
+          profilePicture: winner.profilePicture,
+          id: winner.customer,
         })
-      }
-    });
+      })
+    } else {
+      lotteries.forEach( l => {
+        if (l.offerDrawId === draw._id){
+          l.winners.forEach( w => {
+            if (w.order && w.order.customer && winners.findIndex( winner => { return winner.id === w.order.customer.id }) === -1) {
+              winners.push(w.order.customer);
+            }
+          })
+        }
+      });
+    }
 
     // Set size of axis mark
     draw.position = Math.round(draw.conditionValue / offer.last_val * 100);
-
     draw.winners = winners;
     draw.unlocked = ((draw.conditionType === "number_of_order" && offer.orders >= draw.conditionValue) || (draw.conditionType === "x_item_sold" && offer.sold >= draw.conditionValue));
   })
 
-  if (init) {
+  if (!orders) {
     offer.miniprogram.lottery.draws = [{
       conditionValue: 0,
       position: 0,
@@ -341,7 +359,7 @@ export async function getOffer(page, offer_id) {
 
       offer.last_val = offer.miniprogram.lottery.draws[offer.miniprogram.lottery.draws.length - 1].conditionValue;
 
-      offer = _setLotteryDraws(offer, true);
+      offer = _setLotteryDraws(offer, null);
     }
     
     offer = _setHurryPopup(offer, page);
@@ -513,7 +531,7 @@ export function getOfferBuyers(page, offer_id) {
     }
 
     if (offer.miniprogram.lotteryEnable && offer.miniprogram.lottery.draws.length) {
-      offer = _setLotteryDraws(offer, false);
+      offer = _setLotteryDraws(offer, res);
     }
 
     offer = _setHurryPopup(offer, page);
