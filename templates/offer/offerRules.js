@@ -224,7 +224,7 @@ export const checkOfferTicket = (page, offer) => {
 export const checkVouchers = (page, vouchers, community) => {
   let vouchers_filtered = vouchers.filter(v => {
     let c_idx = v.communities.findIndex( c => c === community );
-    return v.amount <= page.data._pay_set.finalFee && c_idx > -1 && v.status != 'used';
+    return v.amount <= page.data._pay_set.finalFee && c_idx > -1 && v.status != 'used' && v.offer != page.data._offer.id;
   });
 
   page.setData({

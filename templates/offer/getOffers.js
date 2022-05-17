@@ -237,7 +237,6 @@ const _setLotteryDraws = function(offer, orders) {
   }
 
   offer.miniprogram.lottery.draws.map( draw => {
-    console.log(draw._id);
     let winners = [];
 
     if (orders) {

@@ -59,7 +59,6 @@ const _calculateFee = (fee_detail, cart) => {
 
 export const getDeliveryFee = function(page, area, area_list) {
   fees = page.data._offer.fees;
-  console.log(fees);
 
   if (page.data.free_delivery) {
     page.setData({
