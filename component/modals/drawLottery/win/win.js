@@ -52,11 +52,9 @@ Component({
         add_on: (gift, offer) => {
           let product_idx = offer.miniprogram.items.findIndex( i => i.shortName === gift.singleItem);
           let prod = offer.miniprogram.items[product_idx];
-          console.log(prod);
-          // console.log(prod.product);
           return {
-            // name: prod.product.name[_lang],
-            // picture: prod.product.mainPicture ? `${app.folders.product_picture}${prod.product.mainPicture[_lang].uri}` : '',
+            name: prod.product.name[_lang],
+            picture: prod.product.mainPicture ? `${app.folders.product_picture}${prod.product.mainPicture[_lang].uri}` : '',
           }
         },
         pack: (gift, offer) => {
@@ -98,8 +96,8 @@ Component({
       let draw = lottery.offer.miniprogram.lottery.draws[draw_idx]
       draw.count = draw_idx + 1;
 
-      draw.gifts.map(gift => {
-        gift = _getGiftValue[gift.type](gift, lottery.offer)
+      draw.gifts.forEach((gift, i) => {
+        draw.gifts[i] = _getGiftValue[gift.type](gift, lottery.offer)
       })
 
       self.setData({

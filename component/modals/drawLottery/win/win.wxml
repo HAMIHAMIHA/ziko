@@ -15,12 +15,12 @@
       </view>
       <view class="content-image_container">
         <image class="content-image_background" src="/assets/images/starBackground.png" mode="aspectFill"></image>
-        <image class="content-image" src="{{ draw.gift.picture }}" mode="aspectFit" wx:if="{{ draw.gift.picture }}"></image>
+        <image class="content-image" src="{{ draw.gifts[_current].picture }}" mode="aspectFit" wx:if="{{ draw.gift.picture }}"></image>
         <view class="content-image icon icon-gift" wx:else></view>
       </view>
 
       <view class="content-detail">
-        <view class="gilroy_700 uppercase content-name">{{ draw.gift.name }}</view>
+        <view class="gilroy_700 uppercase content-name">{{ draw.gifts[_current].name }}</view>
         <view class="content-draw">{{ _t.draw }} {{ draw.count }}</view>
         <view class="content-info">{{ offer.name[_language] }} ({{ _communities[offer.community] }})</view>
       </view>
@@ -29,7 +29,7 @@
     </view>
     <view class="content-foot">
       <button class="nunito_800 uppercase content-confirm" bindtap="getPrize">{{ _t.get }}</button>
-      <view class="gilroy_700 content-total" wx:if="{{ _max_number }}">{{ _current + 1 }}/{{ _total + 1 }}</view>
+      <view class="gilroy_700 content-total" wx:if="{{ _max_number }}">{{ _current + 1 }}/{{ _max_number + 1 }}</view>
     </view>
   </view>
 </modal>
