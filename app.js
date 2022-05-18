@@ -97,6 +97,11 @@ App({
       _getWxUserOpenId(res).then( () => {
         _checkUserToken().then( () => {
           self.checkForLotteryNotification();
+            api.getVouchers('', false).then( res => {
+            if (!db.get('vouchers') >= 0) {
+              db.set('vouchers', res.filter(r => { return r.status === 'validated' }).length)
+            }
+          });
         })
       })
     })
