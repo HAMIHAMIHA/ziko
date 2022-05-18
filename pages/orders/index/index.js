@@ -103,7 +103,6 @@ const getOrders = (page) => {
       return count;
     }
 
-    let order_deliveries = [];
     res.map( order => {
       order.actualTotal = 0;
 
@@ -131,11 +130,6 @@ const getOrders = (page) => {
         }
       })
       order.gifts = gifts;
-
-      // Save delivery status for checking in future
-      if (!current.community && !current.order_status && !current.payment_status) {
-        order_deliveries.push(order.trackingStatus);
-      }
     })
 
     let orders = current_load ? [...page.data.orders, ...res] : res;
@@ -145,10 +139,6 @@ const getOrders = (page) => {
       current_load = orders.length;
     });
 
-    // Save for comparsion in profile page
-    if (!current.community && !current.order_status && !current.payment_status) {
-      app.db.set('orderDeliveries', order_deliveries);
-    }
     showLoading(false);
   }
 
