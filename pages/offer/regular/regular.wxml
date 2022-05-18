@@ -178,7 +178,7 @@
   <!-- Pay Button -->
   <template
     is="payment_container"
-    data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_lottery: next_lottery }}"
+    data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
   ></template>
   <!-- End of Pay Button -->
 </view>

@@ -1,9 +1,9 @@
 <template name="payment_container">
   <view class="offer-payment{{ minimum && original_price < minimum ? ' disabled' : '' }}">
-    <view class="payment-message" wx:if="{{ next_lottery }}">
+    <view class="payment-message" wx:if="{{ next_special }}">
       <view class="icon_container">
         <view class="icon icon-alert"></view>
-        <view class="icon_text">{{ _t.hurry_top_message }}{{ next_lottery.conditionValue }}</view>
+        <view class="icon_text">{{ _t.hurry_top_message }}{{ next_special.conditionValue }}</view>
       </view>
     </view>
 

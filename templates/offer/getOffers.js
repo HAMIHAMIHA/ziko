@@ -168,23 +168,14 @@ export const packProductDetail = function(offer) {
 
 // Check for hurry up message
 const _setHurryPopup = function(offer, page) {
-  let gift_list = [];
-  if (offer.type === 'regular' || !offer.type) {
-    // Set next special for regular offers
-    gift_list = JSON.parse(JSON.stringify(offer.miniprogram.zikoSpecials)).filter(s => { return s.conditionType === 'first_order'});
-  } else if (offer.miniprogram.lotteryEnable) {
-    // Set next lottery for special cellar offers
-    gift_list = offer.miniprogram.lottery.draws.slice(1)
-  }
-
-  if (gift_list.length) {
+  const checkList = (list, lottery) => {
     // Switch position for number sold or number orders from special into lottery
-    gift_list.map( gift => {
+    list.map( gift => {
       if (gift.conditionType === 'first_order') gift.conditionType = "number_of_order"
       if (gift.conditionType === 'x_total_sold_items') gift.conditionType = "x_item_sold";
     })
 
-    gift_list.sort( (a, b) => {
+    list.sort( (a, b) => {
       return a.conditionValue - b.conditionValue;
     })
 
@@ -193,7 +184,7 @@ const _setHurryPopup = function(offer, page) {
     let first_locked = -1;
     let text = '';
 
-    gift_list.forEach( (d, i) => {
+    list.forEach( (d, i) => {
       if (d.conditionType === "number_of_order" && offer.orders >= d.conditionValue && unlocked < i) {
         unlocked++;
         d.unlocked = true;
@@ -209,20 +200,51 @@ const _setHurryPopup = function(offer, page) {
     // Set next lottery message
     let next = null;
     if (first_locked > -1) {
-      next = gift_list[first_locked];
+      let locked = list[first_locked];
+      next = locked;
+
+      if (lottery) {
+        if (locked.conditionType === "number_of_order") {
+          next.remaining = locked.conditionValue - offer.orders;
+        } else {
+          next.remaining = locked.conditionValue - offer.sold;
+        }
+      }
+
       next.text = text;
     }
 
-    page.setData({
-      next_lottery: next
-    })
+    return next
+  }
 
-    // Update lottery progress
-    if (gift_list[0].conditionType === "number_of_order" ) {
+  // Set next special
+  let special_list = [];
+  special_list = JSON.parse(JSON.stringify(offer.miniprogram.zikoSpecials)).filter(s => { return s.conditionType === 'first_order'});
+  
+  let lottery_list = [];
+  if (offer.type && offer.type !== 'regular' && offer.miniprogram.lotteryEnable) {
+    // Set next lottery for special cellar offers
+    lottery_list = offer.miniprogram.lottery.draws.slice(1)
+  }
+
+  if (special_list.length){
+    let next_special = checkList(special_list, false);
+    page.setData({
+      next_special,
+    })
+  }
+
+  if (lottery_list.length) {
+    let next_lottery = checkList(lottery_list, true);
+
+    if (lottery_list[0].conditionType === "number_of_order" ) {
       offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
     } else {
       offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
     }
+    page.setData({
+      next_lottery,
+    })
   }
 
   return offer;

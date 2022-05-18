@@ -5,7 +5,7 @@
   <!-- Lottery Alert -->
   <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ next_lottery }}">
     <view class="icon icon-flash"></view>
-    <view class="icon_text">{{ _t.next_lottery_in }}{{ next_lottery.conditionValue }} {{ _t.offer_special_names[next_lottery.text] }}</view>
+    <view class="icon_text">{{ _t.next_lottery_in }}{{ next_lottery.remaining }} {{ _t.offer_special_names[next_lottery.text] }}</view>
   </view>
   <!-- End of Lottery Alert -->
 
@@ -199,7 +199,7 @@
   <!-- Pay Button -->
   <template
     is="payment_container"
-    data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser }}"
+    data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
   ></template>
   <!-- End of Pay Button -->
 </view>
