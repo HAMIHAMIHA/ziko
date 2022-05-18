@@ -56,7 +56,7 @@
     <!-- Order Card -->
     <view class="cards-container">
       <block wx:for="{{ orders }}" wx:key="id" wx:for-item="order">
-        <navigator class="card order-card{{ order.count == 0 ? ' disabled' : ''}}" url="{{ _routes.order + '?id=' + order.id }}">
+        <view class="card order-card{{ order.count == 0 ? ' disabled' : ''}}" data-id="{{ order.id }}" bindtap="toDetails">
           <!-- Order Detail -->
           <view class="order-info__detail">
             <view class="flex-between order-info">
@@ -94,7 +94,7 @@
             </block>
           </view>
           <!-- End of Order Lottery -->
-        </navigator>
+        </view>
       </block>
     </view>
     <!-- End of Order Card -->

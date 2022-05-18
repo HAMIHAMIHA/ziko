@@ -165,7 +165,6 @@ const getOrders = (page) => {
 
 Page({
   data: {
-    _routes: { order: app.routes.order },
     _picker_selected: { community: '', order_status: '' },
   },
 
@@ -186,10 +185,6 @@ Page({
     }
   },
 
-  onHide: function() {
-    this.options.back = true;
-  },
-
   onReachBottom: function() {
     getOrders(this);
   },
@@ -199,6 +194,10 @@ Page({
     // Set page filter and get order
     _defaultFilters(self, 'community', 0);
     _defaultFilters(self, 'order_status', 0);
+    current_load = 0;
+    self.setData({
+      orders: []
+    })
     getOrders(self);
   },
 
@@ -262,6 +261,14 @@ Page({
         order_status: pickers.order_status,
       },
       _communities: communities
+    })
+  },
+
+  toDetails: function(e) {
+    const self = this;
+    self.options.back = true;
+    wx.navigateTo({
+      url: `${app.routes.order}?id=${e.currentTarget.dataset.id}`,
     })
   }
 })
