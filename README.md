@@ -69,17 +69,25 @@
 
 -----
 ## APPID AND API URL
-##  Pre-Production
+#### Pre-Production
 *project.config.json:*
+```
 "appid": "wx06b0ecf1ae06ca36"
+```
 *properties.js:*
+```
 const API_URL = "https://api-ziko.dev.mediasia.cn/";
+```
 
-##  Production
+#### Production
 *project.config.json:*
+```
 "appid": ""
+```
 *properties.js:*
+```
 const API_URL = ""
+```
 
 -----
 ## OTHER USEFUL STUFF
