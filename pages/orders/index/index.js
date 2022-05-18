@@ -105,6 +105,14 @@ const getOrders = (page) => {
 
     let order_deliveries = [];
     res.map( order => {
+      order.actualTotal = 0;
+
+      [...order.singleItems, ...order.packs].forEach( item => {
+        order.actualTotal += item.price * item.amount;
+      })
+      order.actualTotal += order.deliveryFee;
+      order.actualTotal = Math.round(order.actualTotal * 100) / 100;
+
       order.actualAmount = Math.round(order.actualAmount * 100) / 100;
       order.orderDate = `${formatDate('yyyy-mm-dd', order.orderDate)} ${formatTime(order.orderDate)}`;
       order.count = countItems( [...order.packs, ...order.singleItems] )

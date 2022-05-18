@@ -33,10 +33,10 @@
     ]
   },
   "window": {
-    "backgroundTextStyle": "[dark or white]",
+    "backgroundTextStyle": "[dark/light]",
     "navigationBarBackgroundColor": "[hex color]",
     "navigationBarTitleText": "[PROJECT NAME]",
-    "navigationBarTextStyle": "[black or white]"
+    "navigationBarTextStyle": "[black/white]"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

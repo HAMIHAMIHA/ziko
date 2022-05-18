@@ -73,7 +73,7 @@
               <view class="order-count" wx:else>{{ _t.payment_status[order.paymentStatus] }}</view>
               <view class="order-price">
                 <text class="gilroy_800 order-total">￥{{ order.actualAmount }}</text>
-                <text class="gilroy_800 order-total__old" wx:if="{{ order.actualAmount !== order.totalAmount }}">￥{{ order.totalAmount }}</text>
+                <text class="gilroy_800 order-total__old" wx:if="{{ order.actualAmount !== order.actualTotal }}">￥{{ order.actualTotal }}</text>
               </view>
             </view>
           </view>

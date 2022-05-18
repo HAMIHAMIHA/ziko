@@ -39,8 +39,8 @@ const clear = (sync = false) => {
 }
 
 module.exports = {
-  get: get,
-  set: set,
-  del: del,
-  clear: clear
+  get,
+  set,
+  del,
+  clear
 }
