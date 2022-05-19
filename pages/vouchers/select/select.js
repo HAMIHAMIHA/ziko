@@ -50,7 +50,7 @@ const _getVouchers = (page, community) => {
 
       // Check if voucher usable (price + community)
       let c_idx = v.communities.findIndex( c => c === community );
-      if (v.amount <= pay_data.finalFee && c_idx > -1) {
+      if (v.amount <= pay_data.finalFee && c_idx > -1 &&  v.offer != prev_page.data._offer.id) {
         voucher.selectable = true;
       }
 
