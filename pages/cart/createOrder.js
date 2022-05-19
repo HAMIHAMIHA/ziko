@@ -109,13 +109,6 @@ export const makePayment = res => {
   const callback = res => {
     showLoading(false);
 
-
-    // TEMP
-    wx.redirectTo({
-      url: `${app.routes.order}?id=${order_id}&type=paid`,
-    })
-    return;
-
     wx.requestPayment({
       timeStamp: `${res.timestamp}`,
       nonceStr: `${res.nonce_str}`,
@@ -123,6 +116,7 @@ export const makePayment = res => {
       signType: 'MD5',
       paySign: res.signature,
       success (res) { 
+        app.globalData.pause_lottery_check = false;
         wx.redirectTo({
           url: `${app.routes.order}?id=${order_id}&type=paid`,
         })
@@ -130,6 +124,7 @@ export const makePayment = res => {
       fail (res) {
         console.debug('payment error', res);
         showToast(app.globalData.i18n.payment_cancelled);
+        app.globalData.pause_lottery_check = false;
         
         setTimeout( () => {
           wx.navigateBack({
