@@ -12,6 +12,17 @@ const PAGE_RANGE = 10;
 let current = { community: '', order_status: '', payment_status: '' };
 let current_load = 0;
 
+// Save new status to storage
+const _setOrderStatus = () => {
+  app.api.getOrders({ filter_str: `channel=miniprogram` }).then(res => {
+    let order_deliveries = [];
+    res.forEach( o => {
+      order_deliveries.push(o.trackingStatus)
+    })
+    app.db.set('orderDeliveries', order_deliveries);
+  })
+}
+
 // Change selected filters
 const _defaultFilters = (page, key, index_val) => {
   let value = '';
@@ -93,6 +104,8 @@ const getOrders = (page) => {
       showLoading(false);
       return;
     }
+
+    _setOrderStatus();
 
     // Count total items
     let countItems = list => {
