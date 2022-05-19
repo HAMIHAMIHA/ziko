@@ -130,7 +130,6 @@ export const makePayment = res => {
       fail (res) {
         console.debug('payment error', res);
         showToast(app.globalData.i18n.payment_cancelled);
-        app.globalData.pause_lottery_check = false;
         
         setTimeout( () => {
           wx.navigateBack({

@@ -307,6 +307,8 @@ const _setLotteryDraws = function(offer, orders) {
 
 // Get Offer
 export async function getOffer(page, offer_id) {
+  app.globalData.pause_lottery_check = false;
+
   const callback = res => {
     let offer = res[0];
     offer.orders = offer.miniprogramOrders;
