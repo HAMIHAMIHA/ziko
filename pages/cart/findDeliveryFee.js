@@ -42,18 +42,19 @@ const _calculateFee = (fee_detail, cart) => {
   }
 
   // Rules other than free value (modified from Antoine's code)
-  let rules = fee_detail.rules.filter(item => item.type != 'free_after_value' && item.type != "free_after_quantity");
-  let max = 0;
-  let fee = fee_detail.rules.filter(item => item.type === 'flat').length ? fee_detail.rules.filter(item => item.type === 'flat')[0].fee : rules[0].fee;
+  let rules = fee_detail.rules.filter(item => item.type === "up_to");
+  let min = -1;
+  let fee = -1;
 
   rules.forEach( rule => {
     let quantity = rule.quantity ? rule.quantity : 0;
-    if (max <= quantity && quantity <= cart.count) {
-      max = quantity;
-      fee = rule.fee ? rule.fee : 0;
+    if (min <= quantity && quantity >= cart.count) {
+      min = quantity;
+      fee = rule.fee;
     }
   })
 
+  fee = fee === -1 ? fee_detail.rules.filter(item => item.type === 'flat')[0].fee : fee;
   return fee;
 }
 
