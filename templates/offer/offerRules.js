@@ -142,7 +142,7 @@ export const checkOfferSpecial = (page, offer) => {
         item_x_in_cart: () => {
           let idx = -1;
           Object.values(db.get('cart')[offer.id].products).forEach( (p, i) => {
-            if (p.shortName === s.conditionPack && (!s.conditionValue && p.amount >= s.conditionValue)) {
+            if (p.shortName === special.conditionPack) {
               idx = i;
               return;
             }
@@ -150,7 +150,6 @@ export const checkOfferSpecial = (page, offer) => {
           return idx != -1;
         },
       }
-
 
       if (conditionReached[special.conditionType]()) {
         _setGift(special.gift)
