@@ -6,6 +6,7 @@ import { checkOfferTicket, getBoursePrice, getRulePrice } from "./offerRules";
 const app = getApp();
 let lotteries = [];
 let purchase_timer;
+let order_history;
 
 // Clear countdown timer interval
 export const _clearCountdown = (page, countdown_timer) => {
@@ -258,7 +259,7 @@ const _setLotteryDraws = function(offer, orders) {
     offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
   }
 
-  offer.miniprogram.lottery.draws.map( draw => {
+  offer.miniprogram.lottery.draws.map( (draw, i) => {
     let winners = [];
 
     if (orders) {
@@ -516,13 +517,19 @@ export function getOfferBuyers(page, offer_id) {
       }
     }
 
+    // Check if any changes in the order
+    if (JSON.stringify(res) === order_history) return;
+
+    // Check for lottery winners if no new order but data changed
+    order_history = JSON.stringify(res);
+    if (res.length === offer.order) {
+      if (offer.miniprogram.lotteryEnable && offer.miniprogram.lottery.draws.length) {
+        offer = _setLotteryDraws(offer, res);
+      }
+      return;
+    }
+
     // Check if there is a new purchase and update offer page contents
-
-    // TEMP
-    // offer.orders = Math.min(offer.orders + 1, 7);
-    // offer.sold = Math.min(offer.sold + 1, 7);
-    if (res.length === offer.orders) return;
-
     let new_purchases = res.slice(offer.orders, res.length); // Only check purchases not included in offer data
 
     // Update offer orders amount
