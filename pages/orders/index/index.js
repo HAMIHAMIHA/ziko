@@ -48,20 +48,25 @@ const getOrders = (page) => {
   const _getGiftValue = {
     add_on: (gift, offer) => {
       let product_idx = offer.miniprogram.items.findIndex( i => i.shortName === gift.singleItem);
-      return {
-        name: offer.miniprogram.items[product_idx].product.name[_lang],
-        picture: offer.miniprogram.items[product_idx].product.mainPicture ? `${app.folders.product_picture}${offer.miniprogram.items[product_idx].product.mainPicture[_lang].uri}` : '',
-        count: 1,
-        _id: gift._id
+      console.log(product_idx);
+      if (product_idx > -1) {
+        return {
+          name: offer.miniprogram.items[product_idx].product.name[_lang],
+          picture: offer.miniprogram.items[product_idx].product.mainPicture ? `${app.folders.product_picture}${offer.miniprogram.items[product_idx].product.mainPicture[_lang].uri}` : '',
+          count: 1,
+          _id: gift._id
+        }
       }
     }, 
     pack: (gift, offer) => {
       let product_idx = offer.miniprogram.packs.findIndex( i => i.shortName === gift.pack);
-      return {
-        name: offer.miniprogram.packs[product_idx].name[_lang],
-        picture: offer.miniprogram.packs[product_idx].illustation ? `${app.folders.pack_picture}${offer.miniprogram.packs[product_idx].illustation.uri}` : '/assets/images/packDefault.png',
-        count: 1,
-        _id: gift._id
+      if (product_idx > -1) {
+        return {
+          name: offer.miniprogram.packs[product_idx].name[_lang],
+          picture: offer.miniprogram.packs[product_idx].illustation ? `${app.folders.pack_picture}${offer.miniprogram.packs[product_idx].illustation.uri}` : '/assets/images/packDefault.png',
+          count: 1,
+          _id: gift._id
+        }
       }
     }, 
     custom: (gift) => {
