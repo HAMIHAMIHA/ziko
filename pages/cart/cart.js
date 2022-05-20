@@ -159,7 +159,8 @@ const _getOffers = page => {
         minimum: {
           price: offer.minimumOrderAmount,
           items: offer.minimumCartItems,
-        }
+        },
+        pay_disabled: false,
       },
     })
 

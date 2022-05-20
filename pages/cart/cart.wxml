@@ -182,7 +182,7 @@
       <button class="nunito_600 disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.total }}">
         {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
       </button>
-      <button class="nunito_600" formType="submit" wx:else>
+      <button class="nunito_600{{ _pay_set.pay_disabled ? ' disabled' : '' }}" formType="submit" wx:else>
         {{ _t.pay }}
       </button>
     </view>

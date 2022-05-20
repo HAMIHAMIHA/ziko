@@ -3,9 +3,9 @@ const { showLoading, showToast } = require("../../utils/common");
 const app = getApp();
 
 const notification = {
-  "YWhLHqNqQokYM_5oGm90K8K0XidbkxTlZK59zla-6iA": "shouldNotifyLottery",
-  "ngdzPAw-FqzVyPgwmaQRk5AITV69LEhYtoT4n5KC_6o": "shouldNotifySpecial",
-  "kx6MC4envuMzJTdfq-ys36L4Q5BMu9HsEHsK2W612bo": "shouldNotifyDelivery",
+  [app.subscribe.lottery_draw]: "shouldNotifyLottery",
+  [app.subscribe.special_gift]: "shouldNotifySpecial",
+  [app.subscribe.delivered]: "shouldNotifyDelivery",
 }
 
 const _createOrderData = (page, value) => {
@@ -103,17 +103,17 @@ const _createOrderData = (page, value) => {
 }
 
 // Make payment by wechat pay
-export const makePayment = res => {
+export const makePayment = (page, res) => {
   let order_id = res.id;
 
   const callback = res => {
     showLoading(false);
 
     // TEMP
-    // wx.redirectTo({
-    //   url: `${app.routes.order}?id=${order_id}&type=paid`,
-    // })
-    // return;
+    wx.redirectTo({
+      url: `${app.routes.order}?id=${order_id}&type=paid`,
+    })
+    return;
 
     wx.requestPayment({
       timeStamp: `${res.timestamp}`,
@@ -130,7 +130,11 @@ export const makePayment = res => {
       fail (res) {
         console.debug('payment error', res);
         showToast(app.globalData.i18n.payment_cancelled);
-        
+
+        page.setData({
+          '_pay_set.pay_disabled': false
+        })
+
         setTimeout( () => {
           wx.navigateBack({
             delta: 0,
@@ -150,6 +154,11 @@ export const createOrder = (page, value) => {
 
   if (!order) return;
 
+  page.setData({
+    '_pay_set.pay_disabled': true
+  })
+
+// return;
   const _createOrder = () => {
     showLoading(true);
 
@@ -162,12 +171,16 @@ export const createOrder = (page, value) => {
       delete cart[offer_id];
       app.db.set('cart', cart);
 
-      makePayment(res);
+      makePayment(page, res);
     }
     app.api.createOrder(offer_id, order).then(createOrderCallback).catch( error => {
       let message = error.replace('missing pack', app.globalData.i18n.missing_pack).replace('missing item', app.globalData.i18n.missing_item);
       showToast(message);
       showLoading(false);
+
+      page.setData({
+        '_pay_set.pay_disabled': false
+      })
     });
   }
 
@@ -190,11 +203,7 @@ export const createOrder = (page, value) => {
       // Get subscription
       Object.keys(res).forEach( i => {
         if (i === 'errMsg') return;
-
-        if (res[i] === 'accept') {
-          console.log(notification[i]);
-          order[notification[i]] = true;
-        }
+        order[notification[i]] = res[i] === 'accept';
       })
 
       _createOrder();
