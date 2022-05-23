@@ -206,6 +206,7 @@ Page({
       pack_picture: app.folders.pack_picture,
       product_picture: app.folders.product_picture,
     },
+    _pay_set: {},
     need_reveived: false
   },
 
@@ -289,7 +290,11 @@ Page({
   makePayment: function() {
     const self = this;
 
-    makePayment(self, { id: self.options.id });
+    self.setData({
+      '_pay_set.pay_disabled': true
+    })
+
+    makePayment(self, { id: self.options.id }, false);
   },
 
   showCollected: function() {

@@ -152,3 +152,7 @@
   padding-left: 16rpx;
 }
 /* End of Timeline */
+
+.disabled {
+  pointer-events: none;
+}

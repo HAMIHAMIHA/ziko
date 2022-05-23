@@ -191,7 +191,7 @@
 
   <!-- Pay button for pending orders -->
   <view class="btn-bottom" wx:if="{{ order.paymentStatus == 'pending' }}">
-    <button class="nunito_600" bindtap="makePayment">
+    <button class="nunito_600{{ _pay_set.pay_disabled ? ' disabled' : '' }}" bindtap="makePayment">
       {{ _t.pay }}
     </button>
   </view>

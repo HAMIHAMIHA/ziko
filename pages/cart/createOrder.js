@@ -103,7 +103,7 @@ const _createOrderData = (page, value) => {
 }
 
 // Make payment by wechat pay
-export const makePayment = (page, res) => {
+export const makePayment = (page, res, nav_back) => {
   let order_id = res.id;
 
   const callback = res => {
@@ -122,9 +122,14 @@ export const makePayment = (page, res) => {
       signType: 'MD5',
       paySign: res.signature,
       success (res) { 
-        wx.redirectTo({
-          url: `${app.routes.order}?id=${order_id}&type=paid`,
-        })
+        if (nav_back) {
+          wx.redirectTo({
+            url: `${app.routes.order}?id=${order_id}&type=paid`,
+          })
+        } else {
+          page.options.type = 'paid';
+          page.onShow();
+        }
       },
       fail (res) {
         console.debug('payment error', res);
@@ -134,11 +139,13 @@ export const makePayment = (page, res) => {
           '_pay_set.pay_disabled': false
         })
 
-        setTimeout( () => {
-          wx.navigateBack({
-            delta: 0,
-          })
-        }, 3000)
+        if (nav_back) {
+          setTimeout( () => {
+            wx.navigateBack({
+              delta: 0,
+            })
+          }, 3000)
+        }
       }
     })
   }
@@ -170,7 +177,7 @@ export const createOrder = (page, value) => {
       delete cart[offer_id];
       app.db.set('cart', cart);
 
-      makePayment(page, res);
+      makePayment(page, res, true);
     }
     app.api.createOrder(offer_id, order).then(createOrderCallback).catch( error => {
       let message = error.replace('missing pack', app.globalData.i18n.missing_pack).replace('missing item', app.globalData.i18n.missing_item);
