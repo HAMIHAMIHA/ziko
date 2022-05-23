@@ -80,7 +80,7 @@ export const getBoursePrice = (offer, product, amount = -1) => {
   });
 
   offer.miniprogram.packs.forEach( p => {
-    let cart_product = cart_offer.products[p._id] ? cart_offer.products[p._id] : { amount: 0, price: p.price };
+    let cart_product = cart_offer.products[p._id] ? cart_offer.products[p._id] : { amount: 0, price: p.price, type: 'packs' };
     if (p._id === product) {
       cart_total = cart_total + p.price * amounts.new;
     } else {

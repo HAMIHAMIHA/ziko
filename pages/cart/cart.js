@@ -79,6 +79,9 @@ const _setProducts = (offer, cart) => {
 
     let offer_product = offer_detail[item.type][item.index_in_offer];
     offer_product.amount = item.amount;
+    if (offer.type === "bourse") {
+      offer_product.price = item.price;
+    }
     offer_product.type = item.type;
     products.push(offer_product);
   }
