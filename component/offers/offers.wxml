@@ -46,7 +46,7 @@
             <!-- End of Specials -->
 
             <!-- Bag -->
-            <view class="flex-between_rt offer-bag{{ _cart[offer.id].count > 0 ? ' offer-bag_filled' : ''}}">
+            <view class="flex-between_rt offer-bag offer-bag_filled" wx:if="{{ _cart[offer.id].count > 0 }}">
               <view class="icon_container">
                 <view class="icon icon-bag"></view>
                 <view class="icon_text">
@@ -60,7 +60,7 @@
 
           <!-- Countdown -->
           <view class="flex-between offer-detail_content offer-countdown">
-            <view class="flex-between_left">
+            <view class="uppercase flex-between_left">
               {{ _t.remaining_time }}
             </view>
             <view class="flex-between_rt">
