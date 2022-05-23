@@ -35,13 +35,14 @@ module.exports = {
   },
 
   formatTimer: dateLong => {
+    const _i18n = app.globalData.i18n.timer;
     // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(dateLong / (1000 * 60 * 60 * 24)) * 24;
-    var hours = days + Math.floor((dateLong % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var days = Math.floor(dateLong / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((dateLong % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((dateLong % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((dateLong % (1000 * 60)) / 1000);
 
-    return [hours, minutes, seconds].map(formatNumber).join(':')
+    return `${days}${_i18n.days}:${formatNumber(hours)}${_i18n.hours}:${formatNumber(minutes)}${_i18n.minutes}:${formatNumber(seconds)}${_i18n.seconds}`;
   },
 
   formatWeekDate: dateLong => {

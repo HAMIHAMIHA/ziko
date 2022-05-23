@@ -114,10 +114,6 @@
   transform: translateX(-50%);
 }
 
-.progress-bar__container.progress-bar_last .progress-label {
-  right: 0;
-}
-
 .progress-label.unlocked {
   background: var(--color);
 }

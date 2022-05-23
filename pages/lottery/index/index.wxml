@@ -81,9 +81,9 @@
             <!-- End of offers waiting -->
 
             <!-- Current Status -->
-            <view class="uppercase offer-detail_content offer-started" wx:else>
+            <view class="offer-detail_content offer-started" wx:else>
               <view class="flex-between offer-countdown">
-                <view class="flex-between_left">
+                <view class="uppercase flex-between_left">
                   {{ _t.remaining_time }}
                 </view>
                 <view class="flex-between_rt">

@@ -795,18 +795,19 @@ button:not([size=mini]).float-contact_container {
 
 /* Offer Countdown */
 .ziko-offer .countdown {
-  padding: 16rpx 0;
+  padding: 16rpx 0 26rpx;
   text-align: center;
 }
 
 .ziko-offer .countdown .countdown_text {
+  padding-bottom: 12rpx;
   font-size: 24rpx;
   line-height: 32rpx;
 }
 
 .ziko-offer .countdown .countdown_clock {
-  font-size: 64rpx;
-  line-height: 78rpx;
+  font-size: 48rpx;
+  line-height: 60rpx;
 }
 /* End of Offer Countdown */
 

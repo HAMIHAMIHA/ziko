@@ -134,6 +134,11 @@
 }
 /* End of Offer Detail - Status */
 
+/* Offer Countdown */
+.offer-countdown {
+  text-transform: none;
+}
+
 /* Offer Detail - Delivery */
 .offer-delivery {
   padding: 26rpx 20rpx 0;

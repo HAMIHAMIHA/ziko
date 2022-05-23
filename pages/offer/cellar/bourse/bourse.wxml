@@ -10,8 +10,8 @@
   <!-- End of Lottery Alert -->
 
   <!-- Offer Countdown -->
-  <view class="uppercase countdown">
-    <view class="nunito_600 countdown_text">{{ _t.remaining_time }}</view>
+  <view class="countdown">
+    <view class="nunito_600 uppercase countdown_text">{{ _t.remaining_time }}</view>
     <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}"></countdown>
   </view>
   <!-- End of Offer Countdown -->
@@ -110,7 +110,7 @@
             </view>
             <view class="gilroy_800 progress-label{{ bourse.unlocked ? ' unlocked' : '' }}" style="--tag-position-:{{ ((bourse.position + bourse.end_position) / 2)  }}%;--color:{{ bourse.color }};">￥{{ bourse.unitPrice }}</view>
           </block>
-          <view class="progress-bar__values progress-bar_last" style="--position-: 100%;">
+          <view class="progress-bar__values" style="--position-: 100%;">
             <view class="nunito_500 progress-axis">{{ _bourse_info.list[_bourse_info.list.length - 1].to }}</view>
           </view>
           <view class="progress-bar">

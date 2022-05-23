@@ -19,14 +19,14 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=627c9b27185931f4a0337e4f",
+          "query": "id=62823bda01b2e4b5fc316576",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "Bourse",
           "pathName": "pages/offer/cellar/bourse/bourse",
-          "query": "id=627c69a9185931f4a0337492",
+          "query": "id=6285c8c98ef366815d1fccc9",
           "launchMode": "default",
           "scene": null
         },
@@ -100,7 +100,8 @@
         {
           "name": "order detail",
           "pathName": "pages/orders/detail/detail",
-          "query": "id=62622b64a3b9a9f268a87333&type=paid",
+          "query": "id=62622b64a3b9a9f268a87333&status=delivered",
+          "launchMode": "default",
           "scene": null
         },
         {
@@ -136,25 +137,21 @@
         {
           "name": "lottery",
           "pathName": "pages/lottery/detail/detail",
-          "query": "id=624e6e0b8734636683622abd",
+          "query": "id=628619f98ef366815d1fff20",
+          "launchMode": "default",
           "scene": null
         },
         {
           "name": "cellar",
           "pathName": "pages/offer/cellar/cellar/cellar",
-          "query": "id=627896082fe4c58690a4f640",
-          "scene": null
-        },
-        {
-          "name": "pages/lottery/detail/detail",
-          "pathName": "pages/lottery/detail/detail",
-          "query": "id=627a22e576feffdf85798afa",
+          "query": "id=6281b9ffa2fff36f67a2dcb7",
+          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
-          "pathName": "pages/orders/detail/detail",
-          "query": "type=paid&id=627a208e76feffdf857988eb",
+          "pathName": "pages/offer/regular/regular",
+          "query": "id=62875ad846f8d03e5d206799",
           "launchMode": "default",
           "scene": null
         }
