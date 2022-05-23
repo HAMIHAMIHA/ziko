@@ -144,14 +144,7 @@
         {
           "name": "cellar",
           "pathName": "pages/offer/cellar/cellar/cellar",
-          "query": "id=6281b9ffa2fff36f67a2dcb7",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "pages/offer/regular/regular",
-          "query": "id=62875ad846f8d03e5d206799",
+          "query": "id=628afe2e46f8d03e5d209698",
           "launchMode": "default",
           "scene": null
         }
