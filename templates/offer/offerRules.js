@@ -116,7 +116,6 @@ export const checkOfferSpecial = (page, offer) => {
         })
       },
     }
-    console.log(gift.type);
 
     return special[gift.type] ? special[gift.type]() : '';
   }

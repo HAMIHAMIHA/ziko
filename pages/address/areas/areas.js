@@ -73,6 +73,9 @@ Page({
     })
 
     getAddressAreaList(self);
+
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
   },
 
   // Change picker result

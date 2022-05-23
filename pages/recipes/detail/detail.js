@@ -88,7 +88,6 @@ const getRecipeDetail = (page, id) => {
     })
     res.media = [res.mainPicture[app.db.get('language')], ...res.otherMedia];
 
-    console.log(res.description);
     // Description
     res.description.en = res.description.en.replace(/\<h2><\/h2>/gi,  '<h2 class="empty-line"><br/><\/h2> ' );
     res.description.en = res.description.en.replace(/\<p><\/p>/gi,  '<p class="empty-line"><br/><\/p> ' );
@@ -122,6 +121,9 @@ Page({
   onShow: function() {
     const self = this;
     _setPageTranslation(self);
+
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
   },
 
   onHide: function() {

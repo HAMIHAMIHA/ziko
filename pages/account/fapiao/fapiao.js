@@ -19,6 +19,9 @@ Page({
       showLoading(false);
     });
 
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
+  
     // Set page translation
     self.setData({
       _t: {

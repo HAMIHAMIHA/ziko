@@ -212,6 +212,7 @@ Page({
   onShow: function () {
     const self = this;
     let i18n = app.globalData.i18n;
+    app.globalData.pause_lottery_check = false;
 
     // Change page nav title
     wx.setNavigationBarTitle({
@@ -287,7 +288,8 @@ Page({
 
   makePayment: function() {
     const self = this;
-    makePayment({ id: self.options.id });
+
+    makePayment(self, { id: self.options.id });
   },
 
   showCollected: function() {

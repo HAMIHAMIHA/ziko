@@ -134,6 +134,9 @@ Page({
     const self = this;
     _setTranslation(self);
     _getPageContents(self);
+
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
   },
 
   showFilter: function() {

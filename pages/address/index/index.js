@@ -45,6 +45,9 @@ Page({
 
     _getAddressAreas();
 
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
+
     // Set page Data
     if (self.options.selected_address != undefined) {
       self.setData({

@@ -130,7 +130,12 @@ const _setOffers = (page, filter_date) => {
       }
     }
 
-    let lottery_drawn = lotteries.filter( l => { return l.offer.id === offer.id && l.winners.length });
+    let lotteryIds = [];
+    offer.miniprogram.lottery.draws.forEach( d => {
+      lotteryIds.push(d._id);
+    })
+
+    let lottery_drawn = lotteries.filter( l => { return (l.offer.id === offer.id) && l.winners.length && (lotteryIds.findIndex(i => l.offerDrawId === i ) > -1) });
     let offer_orders = orders.filter( o => { return o.offer.id === offer.id });
     let wins = offer_orders.filter( o => {
       return o.gifts.filter( g => g.origin === 'lottery').length;
@@ -220,6 +225,9 @@ Page({
   onShow: function() {
     const self = this;
     _setPageTranslation(self);
+
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
 
     _leave_triggered = false;
     if (_refresh_data) {

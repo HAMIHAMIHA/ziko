@@ -230,6 +230,10 @@ Page({
   onShow: function () {
     const self = this;
     _setPageTranslation(self);
+
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
+  
     _getOffer(self, self.options.id);
   },
 

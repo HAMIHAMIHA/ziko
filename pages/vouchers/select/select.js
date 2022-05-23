@@ -95,6 +95,9 @@ Page({
     prev_page = pages[pages.length - 2];
     _setPageTranslation(self);
     _getVouchers(self, self.options.community);
+
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
   },
 
   selectVoucher: function(e) {

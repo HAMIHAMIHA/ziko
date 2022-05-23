@@ -48,7 +48,6 @@ const getOrders = (page) => {
   const _getGiftValue = {
     add_on: (gift, offer) => {
       let product_idx = offer.miniprogram.items.findIndex( i => i.shortName === gift.singleItem);
-      console.log(product_idx);
       if (product_idx > -1) {
         return {
           name: offer.miniprogram.items[product_idx].product.name[_lang],
@@ -180,6 +179,9 @@ Page({
     const self = this;
 
     self.updatePageConstants();
+
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
 
     getUserInfo(self);
   

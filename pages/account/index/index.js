@@ -74,6 +74,9 @@ Page({
     // Set page translation
     self.updatePageLanguage();
 
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
+
     // Set user Data
     getUserInfo(self);
 

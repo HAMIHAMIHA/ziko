@@ -99,6 +99,9 @@ Page({
   onShow: function() {
     const self = this;
     _setPageTranslation(self);
+
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
     getUserInfo(self);
     if (app.db.get('userInfo') && app.db.get('userInfo').token) {
       self.getVouchers();

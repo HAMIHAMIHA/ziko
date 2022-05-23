@@ -207,6 +207,9 @@ Page({
       return;
     }
 
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
+
     showLoading(true);
 
     // Get data for page

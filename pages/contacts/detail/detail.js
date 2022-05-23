@@ -88,6 +88,9 @@ Page({
       },
     })
 
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
+
     getUserInfo(self);
   },
 

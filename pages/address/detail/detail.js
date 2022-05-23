@@ -93,6 +93,9 @@ Page({
       title: self.options.id ? i18n.edit_address : i18n.add_address
     })
 
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
+
     // Format picker values based on langauge
     let address_picker = [];
     for (var type in address_type) {

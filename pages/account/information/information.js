@@ -49,6 +49,9 @@ Page({
       title: i18n.edit_my_info
     })
 
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
+
     // Format picker values based on langauge
     let type_picker = [];
     for (var type in pet_pickers.type) {

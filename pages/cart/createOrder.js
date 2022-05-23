@@ -122,7 +122,6 @@ export const makePayment = (page, res) => {
       signType: 'MD5',
       paySign: res.signature,
       success (res) { 
-        app.globalData.pause_lottery_check = false;
         wx.redirectTo({
           url: `${app.routes.order}?id=${order_id}&type=paid`,
         })
@@ -139,7 +138,7 @@ export const makePayment = (page, res) => {
           wx.navigateBack({
             delta: 0,
           })
-        }, 1000)
+        }, 3000)
       }
     })
   }

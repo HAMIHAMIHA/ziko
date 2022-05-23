@@ -184,6 +184,10 @@ Page({
     _folders: {
       asset: app.folders.asset
     },
+    _filters: {
+      list: index_data.list_filter,
+      map: index_data.map_filters
+    },
     filter_group: '',
     map: true // Default open to map view
   },
@@ -194,13 +198,8 @@ Page({
     leave_triggered = false;
     self.updatePageLanguage();
 
-    // Set page default values
-    self.setData({
-      _filters: {
-        list: index_data.list_filter,
-        map: index_data.map_filters
-      },
-    })
+    // Restart lottery popup
+    app.globalData.pause_lottery_check = false;
   },
 
   onHide: function(e) {
