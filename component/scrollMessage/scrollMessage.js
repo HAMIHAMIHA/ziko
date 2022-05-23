@@ -57,7 +57,7 @@ Component({
           if (messagesShowing < 5) {
             messagesShowing++;
             // Using rpx cannot just calcuate the sum, will show up different for different screen
-            animation.height.height('calc((36rpx + 8rpx + 8rpx + 2rpx + 2rpx) *' + messagesShowing).step();
+            animation.height.height('calc((30rpx + 4rpx + 4rpx + 6rpx + 6rpx) *' + messagesShowing).step();
             // Add Opacity Effect
             nextCurrent(self.data.messages);
   

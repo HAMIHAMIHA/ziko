@@ -348,7 +348,7 @@ button:not([size=mini]).btn-primary {
 
 /* Detail Banner */
 .banner_container {
-  height: 100vw;
+  height: 68.3vw;
   position: relative;
 }
 
@@ -356,7 +356,7 @@ button:not([size=mini]).btn-primary {
 .banner-image_container .swiper_item,
 .banner-image_container .swiper_item image {
   width: 100vw;
-  height: 100vw;
+  height: 68.3vw;
 }
 
 .indicator {
@@ -419,7 +419,7 @@ button:not([size=mini]).float-contact_container {
   border-radius: 50%;
   position: fixed;
   z-index: 100;
-  top: 20%;
+  top: 15%;
   right: 30rpx;
 }
 /* End of Float Contact */
@@ -871,7 +871,7 @@ button:not([size=mini]).float-contact_container {
   width: 70%;
   position: absolute;
   right: 30rpx;
-  bottom: 30rpx;
+  bottom: 26rpx;
   z-index: 10;
   pointer-events: none;
 }

@@ -19,14 +19,21 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=62823bda01b2e4b5fc316576",
+          "query": "id=628afe2e46f8d03e5d209698",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "Cellar",
+          "pathName": "pages/offer/cellar/cellar/cellar",
+          "query": "id=628b13ba46f8d03e5d209cf8",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "Bourse",
           "pathName": "pages/offer/cellar/bourse/bourse",
-          "query": "id=6285c8c98ef366815d1fccc9",
+          "query": "id=628b13d946f8d03e5d209d06",
           "launchMode": "default",
           "scene": null
         },
@@ -142,9 +149,16 @@
           "scene": null
         },
         {
-          "name": "cellar",
-          "pathName": "pages/offer/cellar/cellar/cellar",
-          "query": "id=628afe2e46f8d03e5d209698",
+          "name": "Offer w/ lottery",
+          "pathName": "pages/offer/cellar/bourse/bourse",
+          "query": "id=627cd8b19e33a7acb63365eb",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "offer w/ specials",
+          "pathName": "pages/offer/regular/regular",
+          "query": "id=62414b3ac64fc9f745a7445c",
           "launchMode": "default",
           "scene": null
         }
