@@ -19,11 +19,13 @@ const getOrders = (page) => {
     res.actualAmount = Math.round(res.actualAmount * 100) / 100;
     res.deliveryDate = formatDate('yyyy-mm-dd', res.deliveryDate);
 
+    // Change price of single items to first bourse unit price
     if (res.offer.type === "bourse") {
       res.singleItems.map( item => {
         item.price = res.offer.miniprogram.bourses[0].unitPrice
       })
     }
+
     res.packs.map(item => {
       let details = [];
       item.products.forEach( product => {
