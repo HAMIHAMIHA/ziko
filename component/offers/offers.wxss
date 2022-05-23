@@ -142,11 +142,8 @@
 /* Offer Detail - Delivery */
 .offer-delivery {
   padding: 26rpx 20rpx 0;
-  color: #9D9FA4;
   line-height: 32rpx;
-  text-align: center;
-  text-transform: none;
-}
+}   
 /* End of Offer Detail - Delivery */
 
 /* Offer Detail - Coming Soon */

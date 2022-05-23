@@ -175,6 +175,8 @@
           </view>
         </view>
         <!-- End of Lottery -->
+
+        <view class="offer-delivery nunito_400">{{ _offer.deliveryDates }}</view>
       </view>
       <!-- End of Products -->
 

@@ -12,7 +12,7 @@
 
 /* Alert */
 .bourse-alert {
-  margin: 32rpx 30rpx;
+  margin: 0 30rpx 32rpx;
   padding: 12rpx 14rpx;
   background: #FF4040;
   border-radius: 4px;

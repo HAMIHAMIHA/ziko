@@ -1,6 +1,6 @@
 import { getUserInfo, showLoading } from "../../utils/common";
 import { communities } from "../../utils/constants";
-import { findIndex } from "../../utils/util";
+import { findIndex, mapDeliveryDates } from "../../utils/util";
 import { checkOfferTicket, getBoursePrice, getRulePrice } from "./offerRules";
 
 const app = getApp();
@@ -331,6 +331,8 @@ export async function getOffer(page, offer_id) {
 
     offer.community = communities[offer.community.id];
     offer = packProductDetail(offer);
+
+    offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
 
     // Add to total
     offer.addon_sold = 0;
