@@ -29,6 +29,7 @@ export const _getTranslations = (page, community) => {
     _language: app.db.get('language'),
     _t: {
       bourse_payment_message: i18n.bourse_payment_message,
+      delivery: i18n.delivery,
       hurry_top_message: i18n.hurry_top_message,
       items: i18n.items,
       item_unit: i18n.item_unit,
