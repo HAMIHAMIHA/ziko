@@ -110,10 +110,10 @@ export const makePayment = (page, res) => {
     showLoading(false);
 
     // TEMP
-    wx.redirectTo({
-      url: `${app.routes.order}?id=${order_id}&type=paid`,
-    })
-    return;
+    // wx.redirectTo({
+    //   url: `${app.routes.order}?id=${order_id}&type=paid`,
+    // })
+    // return;
 
     wx.requestPayment({
       timeStamp: `${res.timestamp}`,
