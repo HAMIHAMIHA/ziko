@@ -1,6 +1,7 @@
 const app = getApp();
 const { mobileLogin, getUserInfo, updateUserInfo, showLoading, getWxUserInfo } = require('../../../utils/common.js');
 const translate = require('../../../utils/internationalize/translate.js'); // 翻译功能
+const i18n = app.globalData.i18n;
 
 // Page data
 const _getPageData = (page) => {
@@ -60,7 +61,24 @@ Page({
       address: app.routes.address,
       orders: app.routes.orders,
       vouchers: app.routes.vouchers,
-    }
+    },
+    _t: {
+      account_ranking: i18n.account_ranking,
+      claims: i18n.claims,
+      contact: i18n.contact,
+      edit_my_address: i18n.edit_my_address,
+      edit_my_contacts: i18n.edit_my_contacts,
+      edit_my_info: i18n.edit_my_info,
+      en: i18n.en,
+      fapiao_info: i18n.fapiao_info,
+      get_profile: i18n.get_profile,
+      moile_login: i18n.mobile_login,
+      my_favorite_recipes: i18n.my_favorite_recipes,
+      orders: i18n.orders,
+      vouchers: i18n.vouchers,
+      zh: i18n.zh,
+    },
+    language: app.db.get('language')
   },
 
   onShow: function () {
@@ -108,8 +126,7 @@ Page({
 
   updatePageLanguage: function() {
     const self = this;
-
-    let i18n = app.globalData.i18n;
+    const i18n = app.globalData.i18n;
   
     // Set tabbar translation
     app.setTabbar();

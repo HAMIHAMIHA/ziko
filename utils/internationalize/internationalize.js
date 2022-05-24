@@ -7,7 +7,7 @@ export const languageMap_en = {
     humble_resident: "humble resident",
     lord_furnace: "lord furnace",
     tourist: "tourist",
-    ziko_secret_circle: "ziko secret circle",
+    secret_circle: "ziko secret circle",
 },
   address: "Address",
   address_type: {
@@ -469,7 +469,7 @@ export const languageMap_zh = {
     humble_resident: "humble resident",
     lord_furnace: "lord furnace",
     tourist: "tourist",
-    ziko_secret_circle: "ziko secret circle",
+    secret_circle: "ziko secret circle",
 },
   address: "地址",
   address_type: {
@@ -556,7 +556,7 @@ export const languageMap_zh = {
   // E
   edit_address: "Edit address",
   edit_contact: "编辑联系方式",
-  dit_my_address: "编辑我的地址",
+  edit_my_address: "编辑我的地址",
   edit_my_contacts: "编辑我的联系方式",
   edit_my_info: "编辑我的信息",
   empty: "empty",
