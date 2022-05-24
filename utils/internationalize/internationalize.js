@@ -730,10 +730,6 @@ export const languageMap_zh = {
       prefix: "",
       suffix: " total items sold",
     },
-    ziko_lottery: {
-      prefix: "Ziko Lottery",
-      suffix: "",
-    },
     ziko_special: {
       prefix: "Ziko Special",
       suffix: "",
