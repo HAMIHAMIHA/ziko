@@ -1,26 +1,44 @@
 # PROJECT NAME MINIPROGRAM
+Miniprogram relies on [Wechat Devtools](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html) and [Miniprogram backoffice](mp.weixin.qq.com). Make sure they are ready before going into development.
 
 ## PROJECT PRE-REQUIREMENTS
-1. [Weixin Devtools](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
-2. Miniprogram appid. _Test account_ can be used to start developing first.
-3. In [Miniprogram backoffice](mp.weixin.qq.com) set up the api url
+1. Download and install **[Wechat Devtools](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)**.
+2. Get **miniprogram appid**.
+    - If there is no miniprigran_appid available. Go to [Miniprogram backoffice](mp.weixin.qq.com) and register account for a miniprogram.
+    - If miniprogram registration cannot be done rightaway. _Test Account_ can be used to begin development.
+3. Add **developer** and **api url** in [Miniprogram backoffice](mp.weixin.qq.com). Scan with Wechat to login to the appid miniprogram account. (Test Account will be showing as [some_wechat_id]小程序测试账号 in the list.)
+    - Add Developer (with Miniprogram account only):
+        - **IMPORTANT:** Dev member must have Settings -> Friends' Permissions -> **Methods for Finding Me -> Weixin Id ON** in Wechat
+        - 管理 -> 成员管理 -> 项目成员 -> 编辑 (Need admin access) -> Add user by wechat_id.
+    - Set api url:
+        -  **IMPORTANT:** The domain must be HTTPS or WSS
+        - WITH MINIPROGRAM ACCOUNT: 开发 -> 开发管理 -> 开发设置 -> 服务器域名 -> 修改
+        - WITH TEST ACCOUNT: 服务器域名 -> 修改
 
 -----
 
 ## PROJECT START
-1. Create a new Miniprogram project in Weixin Devtools
-2. Set up navbar, tabbar, and pages in *app.json*
+1. Create a **new Miniprogram project** in Wechat Devtools
+    - Create new project -> Fill in project information (select "Test Account" under AppID if no appid yet) -> "Use no cloud service" -> Choose a template if needed
+2. Set up pages, navbar, and tabbar in **app.json**. Page files will be automatically created after saving. Check the [offical document](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html) for complete app.json setting.
 ```
 {
   "pages": [
     "pages/index/index",
-    "pages/[folders]/[pages]"
+    "pages/[folders]/[pageName]",
+    ...
   ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#11141B",
+    "navigationBarTitleText": "Zikoland",
+    "navigationBarTextStyle": "white"
+  },
   "tabBar": {
-    "borderStyle": "[black/white]",
-    "color": "#[unselected_text_color_in_hex]",
-    "backgroundColor": "#[background_color_in_hex]",
-    "selectedColor": "#[selected_text_color_in_hex]",
+    "borderStyle": "white",
+    "color": "#CBCFDE",
+    "backgroundColor": "#ffffff",
+    "selectedColor": "#11141B",
     "list": [
       {
         "pagePath": "[page_path_same_as_in_pages]",
@@ -31,87 +49,53 @@
         [max_5_tabs]
       }
     ]
-  },
-  "window": {
-    "backgroundTextStyle": "[dark/light]",
-    "navigationBarBackgroundColor": "[hex color]",
-    "navigationBarTitleText": "[PROJECT NAME]",
-    "navigationBarTextStyle": "[black/white]"
-  },
+  }
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
 ```
 
 -----
+## DEBUGGING
+**IMPORTANT: The project will not compile if it exceeds 2048KB**
+1. **Wechat Devtools simulator** is enabled by default. If not enabled: in the top menu -> Interface -> Simulator (cmd + shift + D). Make sure `"lazyCodeLoading": "requiredComponents"` is removed from _app.json_. The simulator content will updated everytime a file is saved.
+2. **On developer's phone**, make sure Wechat is opened. In the Devtools -> Preview -> Compile and Preview (cmd + shift + P).
+
+-----
 ## PRE-PRODUCTION
-- Make sure appid in *project.config.json* is not a Test account
 ```
-"appid": "[miniprogram_appid]"
+"appid": "wx06b0ecf1ae06ca36"
+API_URL = 'https://api-ziko.dev.mediasia.cn/';
 ```
-- Upload project to [Miniprogram backoffice](mp.weixin.qq.com) from Weixin Devtools
-- Set project to beta version in the backoffice.
+1. Make sure **appid** in *project.config.json* is not a Test account, api_url is setup in backoffice
+2. **Upload project** to [Miniprogram backoffice](mp.weixin.qq.com) from Weixin Devtools
+    - Click "Upload" button at the top right of the Devtools -> Fill version number and description -> Upload
+3. **Set to beta version** in the backoffice.
+    - 管理 -> 版本管理 -> find the version needed -> down arrow -> 选为体验版本 -> change default route to home page route set in _app.json_
 
 -----
 ##  FIRST PRODUCTION
-1. Make a copy of the project on your machine.
-2. Create a *prod* branch.
-3. Change appid and api_url used in the Miniprogram and push.
-4. Upload project to [Miniprogram backoffice](mp.weixin.qq.com).
-5. Make publish request when ready. *Some project need to requset for certain eligibilities before publish.*
-*You should now have two copies that are identical except for appid, and api_url.*
+```
+"appid": "[miniprogram_appid]"
+API_URL = [prod_api];
+```
+1. **Make a copy** of the project on your machine.
+2. Create and switch to **prod branch**.
+3. Change **appid** and **all api_url used** in the Miniprogram and push.
+    - *project.config.json* -> change `"appid": "wx06b0ecf1ae06ca36"` -> `"appid": "[prod_appid]"`
+4. **Upload project** from Devtools to [Miniprogram backoffice](mp.weixin.qq.com).
+5. **Make publish request** in the backoffice when ready.
+    - 管理 -> 版本管理 -> find the version needed 提交审核 -> Confirm -> Fillin version description -> Upload preview videos if needed.
+    - **IMPORTANT:** Some project need to requset for extra eligibilities before publish. Check 开发 -> 开发管理 -> 接口设置 in the backoffice.
+    - _Offically the request result comes back in 5-7 working days, usually will see a result in 2-3 hours._
+6. **Publish** the project from the backoffice once the request went through.
+    - 管理 -> 版本管理 -> 审核版本 -> 发布 -> Choose if publish to all or part of users.
+
+_You should now have two copies that are identical except for appid, and all api_url._
 
 -----
-# LATER PRODUCTIONS
-1. Switch to *prod* branch
-2. Merge *dev* branch changes to *prod* branch. **Make sure appid in *project.config.json* and app_url is the ones used for prod** and push. 
-3. Upload to Miniprogram backoffice and request for make publish request.
-
------
-## APPID AND API URL
-#### Pre-Production
-*project.config.json:*
-```
-"appid": "wx06b0ecf1ae06ca36"
-```
-*properties.js:*
-```
-const API_URL = "https://api-ziko.dev.mediasia.cn/";
-```
-
-#### Production
-*project.config.json:*
-```
-"appid": ""
-```
-*properties.js:*
-```
-const API_URL = ""
-```
-
------
-## OTHER USEFUL STUFF
-1. Create *properties.js* under /utils to keep all API settings and import in *app.js*
-```
- export const API_URL = "[api_url]";
-```
-2. Create *routes.js* page saving all page routes.
-3. Set up basic style in *app.wxss*
-    - Create default variables `--variable_name` to be used in all .wxss files as `var(--variable_name)`
-    - Use `--env-` for IPhone compatibility
-```
-/* 兼容 iOS < 11.2 */
-@supports (padding: constant(safe-area-inset-bottom)) {
-  page {
-    --env-: constant( safe-area-inset-bottom, 0px);
-  }
-}
-
- /* 兼容 iOS > 11.2 */
-@supports (padding: env(safe-area-inset-bottom)) {
-  page {
-    --env-: env(safe-area-inset-bottom);
-  }
-}
-```
-3. Copy */internationalize*, *db.config.js* from previous project
+## LATER PRODUCTIONS
+1. Switch to **prod branch**
+2. **Merge dev branch** changes to prod branch. Make sure **appid** in _project.config.json_ and **api_url** are correct and push. 
+3. **Upload** to Miniprogram backoffice and **make publish request**.
+4. **Publish** once request went through.
