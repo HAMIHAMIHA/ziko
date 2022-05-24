@@ -67,7 +67,7 @@ Miniprogram relies on [Wechat Devtools](https://developers.weixin.qq.com/minipro
 "appid": "wx06b0ecf1ae06ca36"
 API_URL = 'https://api-ziko.dev.mediasia.cn/';
 ```
-1. Make sure **appid** in *project.config.json* is not a Test account, api_url is setup in backoffice
+1. Make sure **appid** in *project.config.json* is not a Test account, **api_url** is setup in backoffice
 2. **Upload project** to [Miniprogram backoffice](mp.weixin.qq.com) from Weixin Devtools
     - Click "Upload" button at the top right of the Devtools -> Fill version number and description -> Upload
 3. **Set to beta version** in the backoffice.
