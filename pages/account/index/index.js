@@ -1,7 +1,6 @@
 const app = getApp();
 const { mobileLogin, getUserInfo, updateUserInfo, showLoading, getWxUserInfo } = require('../../../utils/common.js');
 const translate = require('../../../utils/internationalize/translate.js'); // 翻译功能
-const i18n = app.globalData.i18n;
 
 // Page data
 const _getPageData = (page) => {
@@ -63,20 +62,20 @@ Page({
       vouchers: app.routes.vouchers,
     },
     _t: {
-      account_ranking: i18n.account_ranking,
-      claims: i18n.claims,
-      contact: i18n.contact,
-      edit_my_address: i18n.edit_my_address,
-      edit_my_contacts: i18n.edit_my_contacts,
-      edit_my_info: i18n.edit_my_info,
-      en: i18n.en,
-      fapiao_info: i18n.fapiao_info,
-      get_profile: i18n.get_profile,
-      moile_login: i18n.mobile_login,
-      my_favorite_recipes: i18n.my_favorite_recipes,
-      orders: i18n.orders,
-      vouchers: i18n.vouchers,
-      zh: i18n.zh,
+      account_ranking: app.globalData.i18n.account_ranking,
+      claims: app.globalData.i18n.claims,
+      contact: app.globalData.i18n.contact,
+      edit_my_address: app.globalData.i18n.edit_my_address,
+      edit_my_contacts: app.globalData.i18n.edit_my_contacts,
+      edit_my_info: app.globalData.i18n.edit_my_info,
+      en: app.globalData.i18n.en,
+      fapiao_info: app.globalData.i18n.fapiao_info,
+      get_profile: app.globalData.i18n.get_profile,
+      moile_login: app.globalData.i18n.mobile_login,
+      my_favorite_recipes: app.globalData.i18n.my_favorite_recipes,
+      orders: app.globalData.i18n.orders,
+      vouchers: app.globalData.i18n.vouchers,
+      zh: app.globalData.i18n.zh,
     },
     language: app.db.get('language')
   },
