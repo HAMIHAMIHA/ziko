@@ -1,34 +1,76 @@
-# PROJECT NAME MINIPROGRAM
-Miniprogram relies on [Wechat Devtools](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html) and [Miniprogram backoffice](mp.weixin.qq.com). Make sure they are ready before going into development.
+# Ziko miniprogram ![](https://img.shields.io/badge/Version-1-informational?style=flat&logoColor=white&color=orange) <img src="/src/images/zikoland_logo.png" alt="ziko logo" align="right" height="60" />
+![](https://img.shields.io/badge/-JavaScript-informational?style=flat&logo=javascript&logoColor=white&color=blue) ![](https://img.shields.io/badge/-CSS-informational?style=flat&logo=CSS3&logoColor=white&color=blue)
 
-## PROJECT PRE-REQUIREMENTS
+<details>
+<summary>Table of content</summary>
+
+-   [Abstract](#abstract)
+    -   [Pages](#pages)
+-   [Pre-Reqirements](#pre-requirements)
+-   [Create Project](#create-project)
+-   [Debugging](#debugging)
+-   [Pre Production](#pre-production)
+-   [Productions](#productions)
+    -   [First Production](#first-production)
+    -   [Later Productions](#later-productions)
+</details>
+
+## ABSTRACT
+This is the supporting miniprogram for the project Ziko.
+For the backend see [Ziko Backend](https://git.mediasia-group.com/ziko/ziko-backend)
+For the backoffice see [Ziko Backoffice](https://git.mediasia-group.com/ziko/ziko-backoffice)
+Ziko is an online platform providing flash sales for its users on both Wechat groups and its own Wechat Miniprogram.
+
+
+##### Pages
+```
+const routes = {
+  home: "/pages/index/index",
+  account: "/pages/account/index/index",
+  account_info: "/pages/account/information/information",
+  fapiao: "/pages/account/fapiao/fapiao",
+  address: "/pages/address/index/index",
+  address_detail: "/pages/address/detail/detail",
+  address_areas: "/pages/address/areas/areas",
+  cart: "/pages/cart/cart",
+  contacts: "/pages/contacts/index/index",
+  contact: "/pages/contacts/detail/detail",
+  lottery: "/pages/lottery/index/index",
+  lottery_detail: "/pages/lottery/detail/detail",
+  offer_bourse: "/pages/offer/cellar/bourse/bourse",
+  offer_cellar: "/pages/offer/cellar/cellar/cellar",
+  offer_regular: "/pages/offer/regular/regular",
+  orders: "/pages/orders/index/index",
+  order: "/pages/orders/detail/detail",
+  product: "/pages/product/product",
+  recipes: "/pages/recipes/index/index",
+  recipe: "/pages/recipes/detail/detail",
+  vouchers: "/pages/vouchers/index/index",
+  vouchers_select: "/pages/vouchers/select/select"
+}
+
+```        
+
+
+## PRE-REQUIREMENTS
 1. **[Wechat Devtools](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)**.
-2. **Miniprogram appid**.
-    - If there is no miniprigran_appid available. Go to [Miniprogram backoffice](mp.weixin.qq.com) and register account for a miniprogram.
-    - If miniprogram registration cannot be done rightaway. _Test Account_ can be used to begin development.
-3. [Miniprogram backoffice](mp.weixin.qq.com) setting: (Test Account will be showing as [some_wechat_id]小程序测试账号 in the list.)
-    - **Add Developer** (with Miniprogram account only):
-        - **IMPORTANT:** Dev member must have Settings -> Friends' Permissions -> **Methods for Finding Me -> Weixin Id ON** in Wechat
-        - 管理 -> 成员管理 -> 项目成员 -> 编辑 (Need admin access) -> Add user by wechat_id.
-    - **Set api url**:
-        -  **IMPORTANT:** The domain must be HTTPS or WSS
-        - miniprogram account: 开发 -> 开发管理 -> 开发设置 -> 服务器域名 -> 修改
-        - test account: 服务器域名 -> 修改
+2. **Miniprogram appid** If miniprogram registration cannot be done rightaway. _Test Account_ can be used to begin development.
+3. **Developer Access**
+4. **Add API** to the [Miniprogram backoffice](mp.weixin.qq.com): 开发 -> 开发管理 -> 开发设置 -> 服务器域名 -> 修改 -> add api used. (The domain must be secure)
 
------
 
-## PROJECT START
+## CREATE PROJECT
 1. Create a **new Miniprogram project** in Wechat Devtools
-    - Create new project -> Fill in project information (select "Test Account" under AppID if no appid yet) -> "Use no cloud service" -> Choose a template if needed
+    - Create new project -> Fill in project information (Select "_Test Account_" under AppID if no appid yet) -> "Use no cloud service" -> Choose a template if needed
 2. Set up pages, navbar, and tabbar in **app.json**. Page files will be automatically created after saving. Check the [offical document](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html) for complete app.json setting.
 
------
+
 ## DEBUGGING
-**IMPORTANT: The project will not compile if it exceeds 2048KB**
-1. **Wechat Devtools simulator** is enabled by default. If not enabled: in the top menu -> Interface -> Simulator (cmd + shift + D). Check if `"lazyCodeLoading": "requiredComponents"` is removed from _app.json_. The simulator content will updated everytime a file is saved.
+**IMPORTANT: The project will not compile on the phone if package exceeds 2048KB**
+1. **Wechat Devtools simulator** is enabled by default. If not enabled: in the top menu -> Interface -> Simulator (cmd + shift + D). The simulator content will updated everytime a file is saved.
 2. **On developer's phone**, have Wechat opened. In the Devtools -> Preview -> Compile and Preview (cmd + shift + P).
 
------
+
 ## PRE-PRODUCTION
 ```
 "appid": "wx06b0ecf1ae06ca36"
@@ -38,10 +80,10 @@ API_URL = 'https://api-ziko.dev.mediasia.cn/';
 2. **Upload project** to [Miniprogram backoffice](mp.weixin.qq.com) from Weixin Devtools
     - Click "Upload" button at the top right of the Devtools -> Fill version number and description -> Upload
 3. **Set to beta version** in the backoffice.
-    - 管理 -> 版本管理 -> find the version needed -> down arrow -> 选为体验版本 -> change default route to home page route set in _app.json_
 
------
-##  FIRST PRODUCTION
+
+##  PRODUCTIONS
+###  FIRST PRODUCTION
 ```
 "appid": "[prod_appid]"
 API_URL = "[prod_api]";
@@ -51,17 +93,12 @@ API_URL = "[prod_api]";
 3. Change **appid** and **all api_url used** in the Miniprogram and push.
     - *project.config.json* -> change `"appid": "wx06b0ecf1ae06ca36"` -> `"appid": "[prod_appid]"`
 4. **Upload project** from Devtools to [Miniprogram backoffice](mp.weixin.qq.com).
-5. **Make publish request** in the backoffice when ready.
-    - 管理 -> 版本管理 -> find the version needed 提交审核 -> Confirm -> Fillin version description -> Upload preview videos if needed.
-    - **IMPORTANT:** Some project need to requset for extra eligibilities before publish. Check 开发 -> 开发管理 -> 接口设置 in the backoffice.
-    - _Offically the request result comes back in 5-7 working days, usually will see a result in 2-3 hours._
-6. **Publish** the project from the backoffice once the request went through.
-    - 管理 -> 版本管理 -> 审核版本 -> 发布 -> Choose if publish to all or part of users.
+5. Uploaded version can be find in the backoffice -> 管理 -> 版本管理 -> new version
 
 _You should now have two copies that are identical except for appid, and all api_url._
 
------
-## LATER PRODUCTIONS
+
+### LATER PRODUCTIONS
 1. Switch to **prod branch**
 2. **Merge dev branch** changes to prod branch. Make sure **appid** in _project.config.json_ and **api_url** are correct and push. 
 3. **Upload** to Miniprogram backoffice and **make publish request**.
