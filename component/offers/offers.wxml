@@ -8,6 +8,7 @@
     <view class="uppercase offer_container"
       wx:for="{{ offers }}"
       wx:for-item="offer"
+      wx:for-index="offer_idx"
       wx:key="id"
       bindtap="toOffer"
       data-started="{{ now >= offer.startTime }}"
@@ -18,11 +19,22 @@
     >
       <!-- Banner image of card -->
       <view class="offer-banner">
-        <view class="offer-banner_image">
-          <image src="{{ offer.banner }}" mode="widthFix" lazy-load="true"></image>
-        </view>
+        <swiper current="{{ offer.banners.index }}" bindchange="swiperChange" data-offer_idx="{{ offer_idx }}">
+          <block wx:for="{{ offer.banners.uri }}" wx:for-item="banner" wx:key="*this">
+            <swiper-item>
+              <view class="offer-banner_image">
+                <image src="{{ banner }}" mode="widthFix" lazy-load="true" mode="aspectFill"></image>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+
         <view class="offer-banner_tag">
           <view class="icon {{ 'icon-ziko-' + _communities[offer.community.id] + '_right'}}"></view>
+        </view>
+
+        <view class="gilroy_700 indicator">
+          {{ offer.banners.index + 1 }} / {{ offer.banners.uri.length }}
         </view>
       </view>
       <!-- End of banner -->

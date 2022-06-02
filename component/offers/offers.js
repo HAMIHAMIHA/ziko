@@ -64,6 +64,14 @@ Component({
       }
     },
 
+    swiperChange: function(e) {
+      const self = this;
+      let offers = self.data.offers;
+      offers[e.currentTarget.dataset.offer_idx].banners.index = e.detail.current
+
+      self.setData({ offers })
+    },
+
     // Navigate to offer page
     toOffer: function(e) {
       const self = this;
