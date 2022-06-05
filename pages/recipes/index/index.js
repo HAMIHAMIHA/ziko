@@ -3,6 +3,8 @@ const app = getApp();
 const { showLoading } = require('../../../utils/common.js');
 const { findIndex } = require('../../../utils/util.js');
 
+const PAGE_RANGE = 20;
+let current_load = 0;
 let rand_number = -1;
 
 // Set Translation text
@@ -34,16 +36,17 @@ const _setTranslation = page => {
 // Get recipes
 const _getRecipes = (page, is_new) => {
   showLoading(true);
-  let recipes = [];
+  let recipes = page.data.recipes;
   const recipeCallback = res => {
     recipes = recipes.concat(res);
+    current_load += res.length;
     if (is_new || rand_number >= recipes.length) {
       rand_number = Math.floor(Math.random() * recipes.length);
     }
     page.selectComponent('#recipes-component').updateRecipes(recipes);
 
     page.setData({
-      recipes: recipes,
+      recipes,
       sample_name: recipes.length > 0 ? recipes[rand_number].name[app.db.get('language')] : ''
     })
     showLoading(false);
@@ -71,11 +74,19 @@ const _getRecipes = (page, is_new) => {
   }
 
   // Get pinned recipes
-  app.api.getRecipes({ detail: `${suffix}&pinTop=true` }).then( res => {
-    recipes = res;
-    // Get rest of recipes
-    app.api.getRecipes({ detail: `${suffix}&pinTop=false` }).then(recipeCallback)
-  })
+  let next_end = current_load + PAGE_RANGE;
+
+  if (page.data.recipes.length < next_end) {
+    app.api.getRecipes({ detail: `${suffix}&pinTop=true&range[${current_load}, ${next_end}]` }).then( res => {
+      recipes = res;
+      current_load += res.length;
+
+      if (next_end > current_load) {
+        // Get rest of recipes
+        app.api.getRecipes({ detail: `${suffix}&pinTop=false&range[${current_load}, ${next_end}]` }).then(recipeCallback)
+      }
+    })
+  }
 }
 
 // Init get page data
@@ -125,7 +136,7 @@ Page({
   onLoad: function() {
     const self = this;
     self.setData({
-      recipes: {},
+      recipes: [],
       filters:[],
     })
   },
@@ -228,6 +239,10 @@ Page({
       filters: filters,
     })
 
+    self.setData({
+      recipes: [],
+    })
+    current_load = 0;
     _getRecipes(self, false);
   },
 
@@ -265,11 +280,23 @@ Page({
       filters: filters,
     });
 
+    self.setData({
+      recipes: [],
+    })
+    current_load = 0;
     _getRecipes(self, false);
   },
 
   searchKeyword: function() {
     const self = this;
+    self.setData({
+      recipes: [],
+    })
+    current_load = 0;
+    _getRecipes(self, false);
+  },
+
+  onReachBottom: function () {
     _getRecipes(self, false);
   },
 
