@@ -97,19 +97,8 @@ App({
       _getWxUserOpenId(res).then( () => {
         _checkUserToken().then( () => {
           self.checkForLotteryNotification();
-          if (!db.get('vouchers') >= 0) {
-            api.getVouchers('', false).then( res => {
-              db.set('vouchers', res.filter(r => { return r.status === 'validated' }).length)
-            });
-          }
-          if (!db.get('orderDeliveries').length) {
-            api.getOrders({ filter_str: `channel=miniprogram` }).then(res => {
-              let order_deliveries = [];
-              res.forEach( o => {
-                order_deliveries.push(o.trackingStatus)
-              })
-              db.set('orderDeliveries', order_deliveries);
-            })
+          if (db.get('userInfo').token) {
+            self.setAccountStatus();
           }
         })
       })
@@ -134,6 +123,23 @@ App({
     setInterval( () => {
       getLotteryNotif();
     }, 1000)
+  },
+
+  setAccountStatus: function() {
+    if (!db.get('vouchers') >= 0) {
+      api.getVouchers('', false).then( res => {
+        db.set('vouchers', res.filter(r => { return r.status === 'validated' }).length)
+      });
+    }
+    if (!db.get('orderDeliveries').length) {
+      api.getOrders({ filter_str: `channel=miniprogram` }).then(res => {
+        let order_deliveries = [];
+        res.forEach( o => {
+          order_deliveries.push(o.trackingStatus)
+        })
+        db.set('orderDeliveries', order_deliveries);
+      })
+    }
   },
 
   setTabbar: function() {

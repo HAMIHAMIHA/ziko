@@ -42,6 +42,7 @@ export const mobileLogin = function(page, code, loginCallback) {
     loginCallback ? loginCallback() : null;
 
     getApp().checkForLotteryNotification();
+    getApp().setAccountStatus();
   }
 
   const data = {
