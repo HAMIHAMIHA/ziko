@@ -134,22 +134,28 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
         days.push(date_value);
       }
 
-      let banner = '';
+      let banners = { index: 0, uri: []};
+      let other_banner = { zh: 'en', en: 'zh' };
       if (offer.banner) {
         if (offer.banner[app.db.get('language')]) {
-          banner = offer.banner[app.db.get('language')].uri;
-        } else if (app.db.get('language') === 'zh' && offer.banner.en) {
-          banner = offer.banner.en.uri;
-        } else if (app.db.get('language') === 'en' && offer.banner.zh) {
-          banner = offer.banner.zh.uri;
+          banners.uri.push(`${app.folders.offer_banner}${offer.banner[app.db.get('language')]?.uri}`);
+        } else if (offer.banner[other_banner[app.db.get('language')]]) {
+          banners.uri.push(`${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`)
         }
+      }
+
+      // TEMP using media images to test for banner swiper
+      if (offer.media.length) {
+        offer.media.forEach( m => {
+          banners.uri.push(`${app.folders.offer_media}${m.uri}`)
+        })
       }
 
       // Modify offer data to fit page display
       offer.startTime = new Date(offer.startingDate).getTime();
       offer.startDate = date_value;
       offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
-      offer.banner = banner ? app.folders.offer_banner + banner : '';
+      offer.banners = banners.uri.length ? banners : [];
       offers.push(offer);
     }
 
