@@ -161,6 +161,13 @@
           "query": "id=62414b3ac64fc9f745a7445c",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "recipe favourites",
+          "pathName": "pages/recipes/favourites/favourites",
+          "query": "filter=fav",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
