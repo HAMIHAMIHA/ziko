@@ -68,7 +68,7 @@ Component({
         custom: (gift) => {
           return {
             name: gift.custom[_lang],
-            picture: '',
+            picture: gift.customImage ? `${app.folders.custom_image}${gift.customImage.uri}` : '',
           }
         },
         voucher: (gift) => {

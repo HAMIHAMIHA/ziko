@@ -99,7 +99,7 @@ const getOrders = (page) => {
           count: 1,
           name: gift.custom[_lang],
           origin: gift.origin,
-          picture: '',
+          picture: gift.customImage ? `${app.folders.custom_image}${gift.customImage.uri}` : '',
         }]
       }, 
       voucher: (gift) => {

@@ -71,7 +71,7 @@ const getOrders = (page) => {
     custom: (gift) => {
       return {
         name: gift.custom[_lang],
-        picture: '',
+        picture: gift.customImage ? `${app.folders.custom_image}${gift.customImage.uri}` : '',
         count: 1,
         _id: gift._id
       }
