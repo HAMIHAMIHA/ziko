@@ -20,6 +20,7 @@
     "pages/product/product",
     "pages/recipes/index/index",
     "pages/recipes/detail/detail",
+    "pages/recipes/favourites/favourites",
     "pages/vouchers/index/index",
     "pages/vouchers/select/select"
   ],

@@ -100,7 +100,13 @@ const getRecipeDetail = (page, id) => {
       _recipe: res,
     })
 
-    getOffers(page, id);
+    // Check if user liked this recipe
+    app.api.getRecipeLikes({id}).then( res => {
+      page.setData({
+        is_fav: res.watch
+      })
+      getOffers(page, id);
+    })
   })
 }
 
@@ -111,8 +117,10 @@ Page({
     },
     _setting: {
       swiper_index: 1,
-    }
+    },
+    saving_new_fav: false,
   },
+
   onLoad: function(options) {
     const self = this;
     getRecipeDetail(self, options.id);
@@ -136,6 +144,22 @@ Page({
     // Stop all timers
     let offers = this.selectComponent('#list_offers');
     offers.updateCards(this.data._t_offers, false);
+  },
+
+  // Set favourite status
+  setFavourite: function() {
+    const self = this;
+    let new_like_status = !self.data.is_fav;
+    self.setData({
+      saving_new_fav: true
+    })
+    
+    app.api.setRecipeLikes(self.options.id, new_like_status).then( res => {
+      self.setData({
+        is_fav: new_like_status,
+        saving_new_fav: false
+    })
+    });
   },
 
   // Change swiper indicatior

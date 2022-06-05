@@ -1,0 +1,12 @@
+<view class="container">
+  <!-- Offer Recipes -->
+  <view class="list_container">
+    <view class="offer-group recipe-group">
+      <view wx:if="{{ recipes.length === 0 }}">{{ _t.no_recipe_found }}</view>
+      <recipes id="recipes-component" _t="{{ _t }}"></recipes>
+    </view>
+  </view>
+  <!-- End of Offer Recipes -->
+</view>
+
+<lottery-draw id="lottery_modal"></lottery-draw>

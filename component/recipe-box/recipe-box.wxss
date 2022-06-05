@@ -10,11 +10,20 @@
   width: 100%;
   display: flex;
   margin-bottom: 16rpx;
+  position: relative;
 }
 
 .recipe-image image {
   width: 100%;
   border-radius: 8rpx;
+}
+
+.recipe-favourite {
+  position: absolute;
+  font-size: 30rpx;
+  color: #F74A5C;
+  right: 20rpx;
+  bottom: 20rpx;
 }
 
 .recipe-title {

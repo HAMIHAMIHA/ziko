@@ -58,7 +58,7 @@
     <!-- End of Offer Count -->
 
     <!-- Share -->
-    <button class="share" open-type="share">
+    <button class="float-btn share" open-type="share">
       <view class="icon icon-share"></view>
     </button>
     <!-- End of Share -->

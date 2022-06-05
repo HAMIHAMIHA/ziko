@@ -18,6 +18,7 @@ const routes = {
   order: "/pages/orders/detail/detail",
   product: "/pages/product/product",
   recipes: "/pages/recipes/index/index",
+  recipes_fav: "/pages/recipes/favourites/favourites",
   recipe: "/pages/recipes/detail/detail",
   vouchers: "/pages/vouchers/index/index",
   vouchers_select: "/pages/vouchers/select/select"

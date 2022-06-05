@@ -1331,7 +1331,7 @@ button:not([size=mini]).float-contact_container {
 /* End of Scroll Menu */
 
 /* Share */
-.container .share {
+.container .float-btn {
   width: fit-content;
   padding: 26rpx;
   font-size: 30rpx;

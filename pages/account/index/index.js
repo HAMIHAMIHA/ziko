@@ -59,6 +59,7 @@ Page({
       fapiao: app.routes.fapiao,
       address: app.routes.address,
       orders: app.routes.orders,
+      recipes_fav: app.routes.recipes_fav,
       vouchers: app.routes.vouchers,
     },
     _t: {

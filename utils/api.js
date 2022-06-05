@@ -170,6 +170,12 @@ module.exports = {
   },
 
   // Get recipe offers
+  getRecipeLikes: (filter) => {
+    let url = filter.id ? `recipes/${filter.id}/like` : `recipe-likes/mine${filter.detail}`;
+    return get(url);
+  },
+
+  // Get recipe offers
   getRecipeOffers: (id) => {
     return get(`recipes/${id}/related-offers`)
   },
@@ -198,6 +204,11 @@ module.exports = {
   // Set view for offer
   setOfferView: (id) => {
     return get(`offers/${id}/viewed`);
+  },
+
+  // Set recipe likes
+  setRecipeLikes: (id, like) => {
+    return post(`recipes/${id}/like`, { watch: like });
   },
 
   // Update lottery notification

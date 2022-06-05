@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.disabled {
+  pointer-events: none;
+}
+
 /* Recipe General Data */
 .recipe-general__container {
   padding: 24rpx 30rpx;
@@ -24,13 +28,27 @@
   line-height: 32rpx;
 }
 
-.container .share {
+.container .float-btn {
   padding: 28rpx;
   font-size: 34rpx;
   position: absolute;
+  transform: translateY(-50%);
+}
+
+.container .favourite {
+  border: 1px solid #000;
   right: 34rpx;
   top: 100%;
-  transform: translateY(-50%);
+}
+
+.container .favourite.fav {
+  color: #F74A5C;
+}
+
+.container .share {
+  right: 52rpx;
+  top: 100%;
+  transform: translate(-100%, -50%);
 }
 /* End of Recipe General Data */
 

@@ -2,6 +2,7 @@
   <view class="recipe">
     <view class="recipe-image">
       <image src="{{ _folders.recipe_picture + item.mainPicture[_t._language].uri }}" mode="widthFix"></image>
+      <view class="recipe-favourite icon icon-heart" wx:if="{{ item.liked }}"></view>
     </view>
     <view class="gilroy_700 uppercase recipe-title">
       {{ item.name[_t._language] }}

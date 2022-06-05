@@ -49,8 +49,7 @@
     <navigator class="profile-info__button" url="{{ _routes.contacts }}">{{ _t.edit_my_contacts }}</navigator>
     <navigator class="profile-info__button" url="{{ _routes.address }}">{{ _t.edit_my_address }}</navigator>
     <navigator class="profile-info__button" url="{{ _routes.fapiao }}">{{ _t.fapiao_info }}</navigator>
-    <!-- Hide for v1 -->
-    <navigator class="profile-info__button" url="{{ _routes.recipes }}" wx:if="{{ showing }}">{{ _t.my_favorite_recipes }}</navigator> 
+    <navigator class="profile-info__button" url="{{ _routes.recipes_fav }}?filter=fav">{{ _t.my_favorite_recipes }}</navigator> 
   </view>
   <!-- END OF PROFILE INFO -->
 

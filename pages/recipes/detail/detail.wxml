@@ -47,7 +47,10 @@
       <!-- End of Recipe General Data -->
 
       <!-- Share -->
-      <button class="share" open-type="share">
+      <button class="float-btn favourite{{ is_fav ? ' fav' : saving_new_fav ? ' disabled' : '' }}" bindtap="setFavourite">
+        <view class="icon icon-heart"></view>
+      </button>
+      <button class="float-btn share" open-type="share">
         <view class="icon icon-share"></view>
       </button>
       <!-- End of Share -->
