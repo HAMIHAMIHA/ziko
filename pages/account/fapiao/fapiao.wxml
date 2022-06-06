@@ -7,7 +7,7 @@
       <view class="detail">
         <view class="detail_input">
           <view class="input">
-            <textarea class="textarea" auto-height="true" model:value="{{ fapiao }}" type="text"></textarea>
+            <textarea class="textarea" auto-height="true" focus="{{ _focus }}" value="{{ fapiao }}" type="text" bindinput="setFapiaoInfo" bindtap="getFapiaoInfo" bindblur="unsetFocus"></textarea>
           </view>
         </view>
       </view>

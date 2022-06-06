@@ -8,7 +8,6 @@
     "checkInvalidKey": true,
     "compileHotReLoad": false,
     "lazyloadPlaceholderEnable": false,
-    "useMultiFrameRuntime": true,
     "showES6CompileOption": false,
     "useStaticServer": true
   },
