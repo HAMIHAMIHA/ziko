@@ -1,7 +1,8 @@
-const { showLoading } = require("../../../utils/common");
-const { communities } = require("../../../utils/constants");
-const { formatDate, findIndex } = require("../../../utils/util");
-const { makePayment } = require("../../cart/createOrder");
+const { showLoading } = require("../../../utils/common.js");
+const { communities } = require("../../../utils/constants.js");
+const { formatDate, findIndex } = require("../../../utils/util.js");
+
+const { makePayment } = require("../../cart/createOrder.js");
 
 const app = getApp();
 

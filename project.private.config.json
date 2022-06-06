@@ -57,7 +57,7 @@
         {
           "name": "Cart",
           "pathName": "pages/cart/cart",
-          "query": "id=627cd005f6d8bca6339cf063",
+          "query": "id=629d7c5f9602f79a48750def",
           "launchMode": "default",
           "scene": null
         },
@@ -106,7 +106,7 @@
         {
           "name": "order detail",
           "pathName": "pages/orders/detail/detail",
-          "query": "id=62622b64a3b9a9f268a87333&status=delivered",
+          "query": "id=628b43d246f8d03e5d20b0a0",
           "launchMode": "default",
           "scene": null
         },
@@ -170,5 +170,6 @@
         }
       ]
     }
-  }
+  },
+  "libVersion": "2.22.1"
 }

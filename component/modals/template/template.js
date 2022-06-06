@@ -3,7 +3,6 @@ const animation = wx.createAnimation({
   timingFunction: 'ease-in-out',
 })
 
-
 Component({
   properties: {
     header: String,

@@ -1,5 +1,6 @@
-const { changeFocus, navigateBack, showLoading, updateUserInfo, refreshUserInfo } = require("../../../utils/common");
-const { findIndex } = require("../../../utils/util");
+const { changeFocus, navigateBack, showLoading } = require("../../../utils/common.js");
+const { updateUserInfo, refreshUserInfo } = require("../../../utils/sessionUtils.js");
+const { findIndex } = require("../../../utils/util.js");
 
 const app = getApp();
 const address_type = ["office", "home", "other"];

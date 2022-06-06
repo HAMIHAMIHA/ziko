@@ -1,4 +1,4 @@
-const { communities } = require("../../../../utils/constants");
+const { communities } = require("../../../../utils/constants.js");
 
 const app = getApp();
 

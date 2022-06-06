@@ -1,4 +1,5 @@
 const app = getApp();
+
 Component({
   data: {
     _t: {

@@ -1,4 +1,5 @@
-const { navigateBack, updateUserInfo, showLoading } = require("../../../utils/common");
+const { showLoading } = require("../../../utils/common.js");
+const { updateUserInfo } = require("../../../utils/sessionUtils.js");
 
 const app = getApp();
 

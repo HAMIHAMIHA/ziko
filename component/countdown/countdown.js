@@ -1,4 +1,4 @@
-const { formatTimer } = require("../../utils/util");
+const { formatTimer } = require("../../utils/util.js");
 
 // Set countdown time
 const countDownTimer = (page, end) => {

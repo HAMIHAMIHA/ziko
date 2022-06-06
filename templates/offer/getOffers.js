@@ -1,7 +1,9 @@
-import { getUserInfo, showLoading } from "../../utils/common";
-import { communities } from "../../utils/constants";
-import { findIndex, mapDeliveryDates } from "../../utils/util";
-import { checkOfferTicket, getBoursePrice, getRulePrice } from "./offerRules";
+const { showLoading } = require("../../utils/common.js");
+const { communities } = require("../../utils/constants.js");
+const { getUserInfo } = require("../../utils/sessionUtils.js");
+const { findIndex, mapDeliveryDates } = require("../../utils/util.js");
+
+const { checkOfferTicket, getBoursePrice, getRulePrice } = require("./offerRules");
 
 const app = getApp();
 let lotteries = [];

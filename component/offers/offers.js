@@ -1,4 +1,4 @@
-import { communities } from "../../utils/constants";
+const { communities } = require("../../utils/constants.js");
 
 const app = getApp();
 const routes = app.routes;

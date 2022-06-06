@@ -1,6 +1,7 @@
-const { showLoading, getUserInfo } = require("../../../utils/common");
-const index_data = require("../../../utils/constants");
-const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../../utils/util");
+const { showLoading } = require("../../../utils/common.js");
+const index_data = require("../../../utils/constants.js");
+const { getUserInfo } = require("../../../utils/sessionUtils.js");
+const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../../utils/util.js");
 
 const app = getApp();
 let _refresh_data = true, _leave_triggered = false;

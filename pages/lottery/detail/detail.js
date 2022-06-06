@@ -1,5 +1,6 @@
-import { getUserInfo, showLoading } from "../../../utils/common";
-import { communities } from "../../../utils/constants";
+const { showLoading } = require("../../../utils/common.js");
+const { communities } = require("../../../utils/constants.js");
+const { getUserInfo } = require("../../../utils/sessionUtils.js");
 
 const app = getApp();
 let countdown_timer = [];

@@ -1,4 +1,4 @@
-const { findIndex } = require("../../../utils/util");
+const { findIndex } = require("../../../utils/util.js");
 
 const app = getApp();
 

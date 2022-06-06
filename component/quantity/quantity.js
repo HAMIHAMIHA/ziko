@@ -1,4 +1,4 @@
-const { showToast } = require("../../utils/common");
+const { showToast } = require("../../utils/common.js");
 
 const app = getApp();
 

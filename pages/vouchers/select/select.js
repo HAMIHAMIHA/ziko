@@ -1,6 +1,6 @@
-const { showLoading } = require("../../../utils/common");
-const { communities } = require("../../../utils/constants");
-const { formatDate, formatTime } = require("../../../utils/util");
+const { showLoading } = require("../../../utils/common.js");
+const { communities } = require("../../../utils/constants.js");
+const { formatDate, formatTime } = require("../../../utils/util.js");
 
 const app = getApp();
 

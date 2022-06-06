@@ -1,5 +1,5 @@
-const { showLoading } = require("../../../utils/common");
-const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../../utils/util");
+const { showLoading } = require("../../../utils/common.js");
+const { formatWeekDate, mapDeliveryDates } = require("../../../utils/util.js");
 
 const app = getApp();
 

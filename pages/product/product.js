@@ -1,8 +1,9 @@
-const Offers = require('../../templates/offer/getOffers.js');
 const ModifyCart = require('../../templates/offer/modifyCart.js');
 const { checkOfferTicket, getRulePrice, getBoursePrice } = require('../../templates/offer/offerRules.js');
-const { showLoading, getUserInfo, mobileLogin, getWxUserInfo } = require('../../utils/common.js');
+
+const { showLoading } = require('../../utils/common.js');
 const { communities } = require('../../utils/constants.js');
+const { getUserInfo, mobileLogin, getWxUserInfo } = require('../../utils/sessionUtils.js');
 const { findIndex } = require('../../utils/util.js');
 
 const app = getApp();

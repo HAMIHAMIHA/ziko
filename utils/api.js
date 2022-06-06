@@ -1,5 +1,5 @@
-let db = require('db.config.js');
-let config = require('properties.js');
+const db = require('db.config.js');
+const config = require('properties.js');
 
 // Generate header and url
 const _unifyHeaders = (path) => {

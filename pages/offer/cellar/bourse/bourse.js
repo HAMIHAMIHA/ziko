@@ -1,10 +1,12 @@
-const { mobileLogin, getWxUserInfo } = require("../../../../utils/common");
-const { bourse_colors } = require('../../../../utils/constants.js');
 const animate = require('../../../../templates/offer/animation.js').tabbar;
 const Offers = require('../../../../templates/offer/getOffers.js');
 const ModifyCart = require('../../../../templates/offer/modifyCart.js');
 
+const { bourse_colors } = require('../../../../utils/constants.js');
+const { mobileLogin, getWxUserInfo } = require("../../../../utils/sessionUtils.js");
+
 let countdown_timer = [];
+
 Page({
   data: {
     _setting: {

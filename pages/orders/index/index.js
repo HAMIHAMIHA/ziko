@@ -1,8 +1,10 @@
-const { mobileLogin, getUserInfo, showLoading, getWxUserInfo } = require("../../../utils/common");
-const { communities } = require("../../../utils/constants");
-const { formatDate, formatTime, findIndex } = require("../../../utils/util");
+const { showLoading } = require("../../../utils/common.js");
+const { communities } = require("../../../utils/constants.js");
+const { mobileLogin, getUserInfo, getWxUserInfo } = require("../../../utils/sessionUtils.js");
+const { formatDate, formatTime, findIndex } = require("../../../utils/util.js");
 
 const app = getApp();
+
 const pickers = {
   community: ['all', 'cellar', 'garden', 'kitchen', 'pet'],
   order_status: ['all', 'delivered', 'on_the_way', 'prepared', 'delayed'],

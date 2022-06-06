@@ -1,6 +1,6 @@
-const { showLoading } = require("../../utils/common");
-const index_data = require("../../utils/constants");
-const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../utils/util");
+const { showLoading } = require("../../utils/common.js");
+const index_data = require("../../utils/constants.js");
+const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../utils/util.js");
 
 const app = getApp();
 let leave_triggered = false; // To track if leave page already triggered

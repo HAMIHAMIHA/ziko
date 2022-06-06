@@ -1,4 +1,4 @@
-import { checkOfferTicket, getBoursePrice, getRulePrice } from "./offerRules";
+const { checkOfferTicket, getBoursePrice, getRulePrice } = require("./offerRules");
 
 const app = getApp();
 

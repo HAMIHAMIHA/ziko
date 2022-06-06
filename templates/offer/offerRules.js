@@ -1,4 +1,4 @@
-import db from "../../utils/db.config";
+const db = require("../../utils/db.config.js");
 
 // Calculate new total
 const _getNewTotal = (cart_offer, product, amounts, new_price) => {

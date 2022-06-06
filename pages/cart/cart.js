@@ -1,9 +1,12 @@
+const OfferRules = require("../../templates/offer/offerRules");
 const { packProductDetail } = require("../../templates/offer/getOffers");
 const { modifyCartItems } = require("../../templates/offer/modifyCart");
-const OfferRules = require("../../templates/offer/offerRules");
-const { changeFocus, showLoading, getUserInfo, showToast } = require("../../utils/common");
+
+const { changeFocus, showLoading, showToast } = require("../../utils/common.js");
 const { communities } = require("../../utils/constants");
-const { formatDate } = require("../../utils/util");
+const { getUserInfo } = require("../../utils/sessionUtils.js");
+const { formatDate } = require("../../utils/util.js");
+
 const { createOrder } = require("./createOrder");
 const { getDeliveryFee } = require("./findDeliveryFee");
 

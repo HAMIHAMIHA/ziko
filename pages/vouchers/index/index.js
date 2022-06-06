@@ -1,11 +1,10 @@
-const { mobileLogin, getUserInfo, showLoading, getWxUserInfo } = require("../../../utils/common");
-const { voucher_status, communities } = require("../../../utils/constants");
-const { formatDate, formatTime } = require("../../../utils/util");
+const { showLoading } = require("../../../utils/common.js");
+const { voucher_status, communities } = require("../../../utils/constants.js");
+const { mobileLogin, getUserInfo, getWxUserInfo } = require("../../../utils/sessionUtils.js");
+const { formatDate, formatTime } = require("../../../utils/util.js");
 
 const app = getApp();
 const _voucher_status = ['all', 'unused', 'used'];
-
-let _vouchers = [];
 
 // Set page translation
 const _setPageTranslation = page => {

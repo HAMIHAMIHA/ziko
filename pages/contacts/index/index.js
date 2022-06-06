@@ -1,4 +1,5 @@
-const { refreshUserInfo, showLoading, showToast } = require("../../../utils/common");
+const { showLoading, showToast } = require("../../../utils/common.js");
+const { refreshUserInfo } = require("../../../utils/sessionUtils.js");
 
 const app = getApp();
 

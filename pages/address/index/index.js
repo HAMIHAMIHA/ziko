@@ -1,5 +1,6 @@
-const { refreshUserInfo, showLoading, showToast } = require("../../../utils/common");
-const { findIndex } = require("../../../utils/util");
+const { showLoading, showToast } = require("../../../utils/common.js");
+const { refreshUserInfo } = require("../../../utils/sessionUtils.js");
+const { findIndex } = require("../../../utils/util.js");
 
 const app = getApp();
 const routes = app.routes;

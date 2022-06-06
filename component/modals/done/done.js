@@ -1,5 +1,3 @@
-import { showLoading } from "../../../utils/common";
-
 Component({
   properties: {
     _t: Object,
