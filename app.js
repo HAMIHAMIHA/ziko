@@ -1,9 +1,9 @@
-var api = require('utils/api.js'); //接口文档
-const common = require('./utils/common');
-const db = require('utils/db.config.js'); // 本地存储
-const i18n = require('utils/internationalize/translate.js'); // 翻译功能
-
-const { folders, subscribe } = require('./utils/properties');
+const api = require('./utils/api.js'); //接口文档
+const common = require('./utils/common.js');
+const db = require('./utils/db.config.js'); // 本地存储
+const { folders, subscribe } = require('./utils/properties.js');
+const { appLoad } = require('./utils/sessionUtils.js');
+const i18n = require('./utils/internationalize/translate.js'); // 翻译功能
 
 export async function _checkUserToken() {
   // Check user token
@@ -93,16 +93,7 @@ App({
     i18n.check();
     self.globalData.i18n = i18n.translate();
 
-    _checkUserSession().then(res => {
-      _getWxUserOpenId(res).then( () => {
-        _checkUserToken().then( () => {
-          self.checkForLotteryNotification();
-          if (db.get('userInfo').token) {
-            self.setAccountStatus();
-          }
-        })
-      })
-    })
+    appLoad(self);
   },
 
   checkForLotteryNotification: function() {
