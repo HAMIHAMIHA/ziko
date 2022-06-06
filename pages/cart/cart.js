@@ -75,14 +75,15 @@ const _setProducts = (offer, cart) => {
   let products = [];
   for (var id in cart.products) {
     let item = cart.products[id];
-    if (!item.type) continue;
+    if (!item.type || !item.amount) continue;
 
     let offer_product = offer_detail[item.type][item.index_in_offer];
     offer_product.amount = item.amount;
     if (offer.type === "bourse") {
-      offer_product.price = item.price;
+      offer_product.price = offer_detail.bourses[0].unitPrice;
     }
     offer_product.type = item.type;
+    offer_product.actualPrice = item.price;
     products.push(offer_product);
   }
 
