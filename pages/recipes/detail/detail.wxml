@@ -29,7 +29,10 @@
       <view class="recipe-general__detail">
         <view class="recipe-general__label">{{ _t.baking }}</view>
         <view class="nunito_600 recipe-general__value">
-          {{ _recipe.bakingTime }}{{ _t.minutes }}
+          <block wx:if="{{ _recipe.bakingTime }}">
+            {{ _recipe.bakingTime }}{{ _t.minutes }}
+          </block>
+          <block wx:else>-</block>
         </view>
       </view>
       <view class="recipe-general__detail">
