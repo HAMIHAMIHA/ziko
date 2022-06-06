@@ -29,10 +29,6 @@
           </block>
         </swiper>
 
-        <view class="offer-banner_tag">
-          <view class="icon {{ 'icon-ziko-' + _communities[offer.community.id] + '_right'}}"></view>
-        </view>
-
         <view class="gilroy_700 indicator">
           {{ offer.banners.index + 1 }} / {{ offer.banners.uri.length }}
         </view>
