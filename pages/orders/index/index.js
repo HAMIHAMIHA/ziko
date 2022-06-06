@@ -124,8 +124,10 @@ const getOrders = (page) => {
       order.actualTotal = 0;
 
       [...order.singleItems, ...order.packs].forEach( item => {
-        order.actualTotal += item.price * item.amount;
+        let price = order.offer.type === "bourse" ? order.offer.miniprogram.bourses[0].unitPrice : item.price;
+        order.actualTotal += price * item.amount;
       })
+
       order.actualTotal += order.deliveryFee;
       order.actualTotal = Math.round(order.actualTotal * 100) / 100;
 

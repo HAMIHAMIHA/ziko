@@ -5,6 +5,63 @@ const { makePayment } = require("../../cart/createOrder");
 
 const app = getApp();
 
+const _findPrice = {
+  free_fall: function(item, product, offer) {
+    let new_price = 0;
+    let reduce = Math.floor((product.stock - product.actualStock) / product.freeFall.quantityTrigger) * product.freeFall.dropAmount;
+    new_price = Math.max((product.price - reduce), product.freeFall.lowestPrice);
+    return { price: item.price, actualPrice: new_price };
+  },
+
+  multiple_items: function(item, product) {
+  // Find max multiple reached
+    let new_price = 0;
+    let m_val = 0;
+    product.multipleItem.forEach( m => {
+      if (item.amount >= m.quantity && m_val < m.quantity) {
+        new_price = m.unitPrice;
+        return;
+      }
+    })
+
+    return { price: item.price, actualPrice: new_price };
+  },
+
+  bourse: function(item, product, offer) {
+    if (item.type === "pack") return { price: item.price, actualPrice: null };
+
+    let stocks = { actualStock: 0, stock: 0 };
+    offer.miniprogram.items.forEach( item => {
+      stocks = {
+        actualStock: stocks.actualStock + item.actualStock,
+        stock: stocks.stock + item.stock,
+      };
+    })
+
+    let new_price = offer.miniprogram.bourses[0].unitPrice;
+    offer.miniprogram.bourses.forEach( b => {
+      if (new_price > b.unitPrice && (stocks.stock - stocks.actualStock) >= b.from) {
+        new_price = b.unitPrice;
+      }
+    })
+
+    return { price: offer.miniprogram.bourses[0].unitPrice, actualPrice: new_price };
+  }
+}
+
+const _getPrices = (item, offer) => {
+  if (offer.type && offer.type !== 'regular') {
+    let products = offer.miniprogram[`${item.type}s`];
+    let product_index = products.findIndex( i => i._id === item._id);
+    console.log(product_index);
+
+    let prices = _findPrice[offer.type](item, products[product_index], offer);
+    item.price = prices.price;
+    item.actualPrice = prices.actualPrice;
+  }
+  return item;
+}
+
 const getOrders = (page) => {
   let order_id = page.options.id;
 
@@ -19,24 +76,22 @@ const getOrders = (page) => {
     res.actualAmount = Math.round(res.actualAmount * 100) / 100;
     res.deliveryDate = formatDate('yyyy-mm-dd', res.deliveryDate);
 
-    // Change price of single items to first bourse unit price
-    if (res.offer.type === "bourse") {
-      res.singleItems.map( item => {
-        item.price = res.offer.miniprogram.bourses[0].unitPrice
-      })
-    }
+    res.singleItems.map( item => {
+      item.type = 'item';
+      item = _getPrices(item, res.offer);
+    });
 
     res.packs.map(item => {
       let details = [];
+      item.type = 'pack'
+      item = _getPrices(item, res.offer);
       item.products.forEach( product => {
         details.push(
           `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? units : product.quantity == 1 ? item_unit : items_unit }`
         );
       })
       item.products_info = details.join(', ');
-      item.type = 'pack'
     });
-    res.singleItems.map( item => item.type = 'item');
 
     res.products = [...res.packs, ...res.singleItems];
 
@@ -168,21 +223,6 @@ const getOrders = (page) => {
         gifts.push(gift_info);
         res.deliveryFee = 0
       }
-
-      // Set up for use in popups
-      // modal_gifts = [...gifts];
-      // if (special_discount > 0) {
-      //   modal_gifts = modal_gifts.concat({
-      //     _id: 'ziko_special000',
-      //     name: `￥${special_discount}`,
-      //     picture: '/assets/images/redPacket.png',
-      //     product_info: app.globalData.i18n.reduction,
-      //     special: {
-      //       conditionType: 'ziko_special',
-      //       conditionValue: ''
-      //     }
-      //   })
-      // }
     })
 
     res.gifts = gifts;

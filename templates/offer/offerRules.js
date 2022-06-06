@@ -57,7 +57,7 @@ export const getBoursePrice = (offer, product, amount = -1) => {
   amounts.new = amount >= 0 ? amount : amounts.old;
 
   // Find current bourse price
-  let new_price = offer.miniprogram.items[0].price; // Set orignal price in case 0 is not in calculation
+  let new_price = offer.miniprogram.bourses[0].unitPrice; // Set orignal price in case 0 is not in calculation
   let new_total_sold = offer.addon_sold + cart_offer.count - amounts.old + amounts.new;
   offer.miniprogram.bourses.forEach( b => {
     if (new_price > b.unitPrice && new_total_sold >= b.from) {

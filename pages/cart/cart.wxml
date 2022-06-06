@@ -38,7 +38,7 @@
                 </view>
                 <!-- Price -->
                 <view class="nunito_600 -font_red product-price_container">
-                  <text class="product-price" wx:if="{{ product.actualPrice != product.price }}">¥{{ product.actualPrice }}</text>
+                  <text class="product-price" wx:if="{{ product.actualPrice && product.actualPrice != product.price }}">¥{{ product.actualPrice }}</text>
                   <text class="product-price">¥{{ product.price }}</text>
                 </view>
                 <!-- End of Price -->
