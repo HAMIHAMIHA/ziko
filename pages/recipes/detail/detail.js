@@ -151,14 +151,14 @@ Page({
     const self = this;
     let new_like_status = !self.data.is_fav;
     self.setData({
+      is_fav: new_like_status,
       saving_new_fav: true
     })
     
     app.api.setRecipeLikes(self.options.id, new_like_status).then( res => {
       self.setData({
-        is_fav: new_like_status,
         saving_new_fav: false
-    })
+      })
     });
   },
 

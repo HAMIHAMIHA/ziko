@@ -36,13 +36,34 @@
 }
 
 .container .favourite {
-  border: 1px solid #000;
   right: 34rpx;
   top: 100%;
 }
 
 .container .favourite.fav {
   color: #F74A5C;
+}
+
+@keyframes unfav-animate {
+  0% { transform: scale(1); }
+  50% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+.container .favourite .icon {
+  animation-name: unfav-animate;
+  animation-duration: 0.3s;
+}
+
+@keyframes fav-animate {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.container .favourite.fav .icon {
+  animation-name: fav-animate;
+  animation-duration: 0.3s;
 }
 
 .container .share {
