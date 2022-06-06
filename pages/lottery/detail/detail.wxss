@@ -2,6 +2,10 @@
   padding-bottom: calc(66rpx + var(--env-));
 }
 
+.terms {
+  padding-bottom: 48rpx;
+}
+
 /* Remaining Time */
 .countdown {
   background: #11141B;
