@@ -134,7 +134,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
         days.push(date_value);
       }
 
-      let banners = { index: 0, uri: []};
+      let banners = { index: 0, uri: [] };
       let other_banner = { zh: 'en', en: 'zh' };
       if (offer.banner) {
         if (offer.banner[app.db.get('language')]) {
@@ -155,7 +155,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
       offer.startTime = new Date(offer.startingDate).getTime();
       offer.startDate = date_value;
       offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
-      offer.banners = banners.uri.length ? banners : [];
+      offer.banners = banners;
       offers.push(offer);
     }
 

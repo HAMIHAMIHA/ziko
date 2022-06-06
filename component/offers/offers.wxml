@@ -30,7 +30,7 @@
         </swiper>
 
         <view class="gilroy_700 indicator">
-          {{ offer.banners.index + 1 }} / {{ offer.banners.uri.length }}
+          {{ offer.banners.index + 1 }} / {{ offer.banners.uri.length ? offer.banners.uri.length : 1 }}
         </view>
       </view>
       <!-- End of banner -->
