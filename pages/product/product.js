@@ -3,7 +3,7 @@ const { checkOfferTicket, getRulePrice, getBoursePrice } = require('../../templa
 
 const { showLoading } = require('../../utils/common.js');
 const { communities } = require('../../utils/constants.js');
-const { getUserInfo, mobileLogin, getWxUserInfo } = require('../../utils/sessionUtils.js');
+const { getUserInfo } = require('../../utils/sessionUtils.js');
 const { findIndex } = require('../../utils/util.js');
 
 const app = getApp();
@@ -211,12 +211,13 @@ Page({
   },
 
   // Mobile login
-  getPhoneNumber: function(e) {
-    mobileLogin(this, e.detail.code, this.checkout);
+  getPhoneNumber: async function(e) {
+    await app.sessionUtils.mobileLogin(this, e.detail.code);
+    this.checkout();
   },
 
   // Get user profile if not logged in
   getUserProfile: function() {
-    getWxUserInfo(this);
+    app.sessionUtils.getWxUserInfo(this);
   },
 })

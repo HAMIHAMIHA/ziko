@@ -1,6 +1,6 @@
 const { showLoading } = require("../../../utils/common.js");
 const { voucher_status, communities } = require("../../../utils/constants.js");
-const { mobileLogin, getUserInfo, getWxUserInfo } = require("../../../utils/sessionUtils.js");
+const { getUserInfo } = require("../../../utils/sessionUtils.js");
 const { formatDate, formatTime } = require("../../../utils/util.js");
 
 const app = getApp();
@@ -113,12 +113,13 @@ Page({
 
   // Get Profile info
   getUserProfile: function(e) {
-    getWxUserInfo(this);
+    app.sessionUtils.getWxUserInfo(this);
   },
 
   // Mobile login
-  getPhoneNumber: function(e) {
-    mobileLogin(this, e.detail.code, this.getVouchers);
+  getPhoneNumber: async function(e) {
+    await app.sessionUtils.mobileLogin(this, e.detail.code);
+    this.getVouchers();
   },
 
   changeFilter: function(e) {

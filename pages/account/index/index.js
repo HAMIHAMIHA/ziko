@@ -1,5 +1,5 @@
 const { showLoading } = require('../../../utils/common.js');
-const { mobileLogin, getUserInfo, updateUserInfo, getWxUserInfo } = require('../../../utils/sessionUtils.js');
+const { getUserInfo, updateUserInfo } = require('../../../utils/sessionUtils.js');
 const translate = require('../../../utils/internationalize/translate.js'); // 翻译功能
 
 const app = getApp();
@@ -108,7 +108,7 @@ Page({
 
   // Get Profile info
   getUserProfile: function(e) {
-    getWxUserInfo(this);
+    app.sessionUtils.getWxUserInfo(this);
   },
 
   // Mobile login

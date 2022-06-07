@@ -3,7 +3,8 @@ const Offers = require('../../../../templates/offer/getOffers.js');
 const ModifyCart = require('../../../../templates/offer/modifyCart.js');
 
 const { bourse_colors } = require('../../../../utils/constants.js');
-const { mobileLogin, getWxUserInfo } = require("../../../../utils/sessionUtils.js");
+
+const app = getApp();
 
 let countdown_timer = [];
 
@@ -85,13 +86,13 @@ Page({
 
   // Mobile login
   getPhoneNumber: async function(e) {
-    await getApp().sessionUtils.smobileLogin(this, e.detail.code);
+    await app.sessionUtils.smobileLogin(this, e.detail.code);
     this.checkout();
   },
 
   // Get user profile if not logged in
   getUserProfile: function() {
-    getWxUserInfo(this);
+    app.sessionUtils.getWxUserInfo(this);
   },
 
   // Start countdown timer

@@ -1,9 +1,14 @@
+/**
+ * Class for Wechat login methods
+ */
+
 let app = null;
 
 // Async Wechat function
-function awx(fn) {
+function awx(fn, setting = {}) {
   const promise = new Promise( (resolve, reject) => {
     wx[fn]({
+      ...setting,
       success: resolve,
       fail: reject
     })
@@ -101,10 +106,29 @@ class SessionClass {
     return;
   }
 
-  // TODO
-
-
-  // General method to call api and login with wechat mobile number
+  /**
+   * App based methods for user login and user data storage
+   */
+  // Get Wechat User info
+  async getWxUserInfo(page) {
+    try {
+      const desc = `${app.globalData.i18n.getting_user_profile}`; // Need to be quoted to trigger popup)
+      let wx_user = await awx("getUserProfile", { desc });
+      let user = app.db.get('userInfo');
+        user.wxUser = {
+          avatar: wx_user.userInfo.avatarUrl,
+          name: wx_user.userInfo.nickName
+        }
+        page.setData({
+          wxUser: user.wxUser
+        })
+        app.db.set('userInfo', user);
+    } catch(e) {
+      console.log(e);
+    }
+  }
+  
+  // Login with wechat mobile number
   mobileLogin(page, code) {
     const promise = new Promise ( resolve => {
       const callback = res => {
@@ -131,6 +155,7 @@ class SessionClass {
 
     return promise;
   }
+
 }
 
 export default SessionClass;

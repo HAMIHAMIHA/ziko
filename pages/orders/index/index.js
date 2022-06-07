@@ -1,6 +1,6 @@
 const { showLoading } = require("../../../utils/common.js");
 const { communities } = require("../../../utils/constants.js");
-const { mobileLogin, getUserInfo, getWxUserInfo } = require("../../../utils/sessionUtils.js");
+const { getUserInfo } = require("../../../utils/sessionUtils.js");
 const { formatDate, formatTime, findIndex } = require("../../../utils/util.js");
 
 const app = getApp();
@@ -217,7 +217,7 @@ Page({
 
   // Get Profile info
   getUserProfile: function(e) {
-    getWxUserInfo(this);
+    app.sessionUtils.getWxUserInfo(this);
   },
 
   // Mobile login
