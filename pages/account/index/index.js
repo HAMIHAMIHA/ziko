@@ -113,7 +113,7 @@ Page({
 
   // Mobile login
   getPhoneNumber: function(e) {
-    mobileLogin(this, e.detail.code, null);
+    app.sessionUtils.mobileLogin(this, e.detail.code);
   },
 
   switchLanguage: function(e) {

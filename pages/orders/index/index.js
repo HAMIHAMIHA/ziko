@@ -221,8 +221,9 @@ Page({
   },
 
   // Mobile login
-  getPhoneNumber: function(e) {
-    mobileLogin(this, e.detail.code, this.initOrders);
+  getPhoneNumber: async function(e) {
+    await app.sessionUtils.mobileLogin(this, e.detail.code);
+    this.initOrders();
   },
 
   // change filter content

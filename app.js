@@ -5,6 +5,8 @@ const { folders, subscribe } = require('./utils/properties.js');
 const { appLoad } = require('./utils/sessionUtils.js');
 const i18n = require('./utils/internationalize/translate.js'); // 翻译功能
 
+import SessionClass from "./utils/SessionClass.js";
+
 App({
   api: api,
   common: common,
@@ -17,6 +19,7 @@ App({
     pause_lottery_check: false,
   },
   routes: require('utils/routes.js').routes,
+  sessionUtils: null,
 
   async onLaunch() {
     const self = this;
@@ -25,6 +28,10 @@ App({
     self.globalData.i18n = i18n.translate();
 
     appLoad(self);
+
+    self.sessionUtils = new SessionClass(self);
+    await self.sessionUtils.getOpenId();
+    await self.sessionUtils.refreshUserToken();
   },
 
   checkForLotteryNotification: function() {

@@ -39,8 +39,9 @@ Page({
   },
 
   // Mobile login
-  getPhoneNumber: function(e) {
-    mobileLogin(this, e.detail.code, this.checkout);
+  getPhoneNumber: async function(e) {
+    await getApp().sessionUtils.mobileLogin(this, e.detail.code);
+    this.checkout();
   },
 
   // Get user profile if not logged in

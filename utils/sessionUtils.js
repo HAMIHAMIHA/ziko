@@ -81,20 +81,6 @@ const _checkUserSession = () => {
 // Check user content on app load
 export async function appLoad(app_set) {
   app = app_set;
-  try {
-    let session_res = await _checkUserSession();
-    if (session_res) {
-      await _getWxUserOpenId(session_res);
-    }
-    await _checkUserToken();
-  
-    app.checkForLotteryNotification();
-    if (app.db.get('userInfo').token) {
-      app.setAccountStatus();
-    }
-  } catch(e) {
-    console.log(e);
-  }
 }
 
 // Check user session and set user to page data
@@ -199,4 +185,3 @@ export const updateUserInfo = function(new_info, back_url, switch_tab = false) {
 
   app.api.updateProfile(new_info).then(callback);
 }
-
