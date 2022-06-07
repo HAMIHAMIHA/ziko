@@ -1,5 +1,5 @@
 //取值
-const get = (key) => {
+export const get = (key) => {
   try {
     return wx.getStorageSync(key);
   } catch (e) {
@@ -8,7 +8,7 @@ const get = (key) => {
 }
 
 //赋值
-const set = (key, value) => {
+export const set = (key, value) => {
   try {
     return wx.setStorageSync(key, value);
   } catch (e) {
@@ -17,7 +17,7 @@ const set = (key, value) => {
 }
 
 //移除
-const del = (key) => {
+export const del = (key) => {
   try {
     return wx.removeStorageSync(key);
   } catch (e) {
@@ -26,7 +26,7 @@ const del = (key) => {
 }
 
 //清空
-const clear = (sync = false) => {
+export const clear = (sync = false) => {
   try {
     if (sync) {
       return wx.clearStorageSync();
@@ -36,11 +36,4 @@ const clear = (sync = false) => {
   } catch (e) {
     return false;
   }
-}
-
-module.exports = {
-  get,
-  set,
-  del,
-  clear
 }

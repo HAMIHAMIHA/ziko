@@ -54,7 +54,6 @@ const _getPrices = (item, offer) => {
   if (offer.type && offer.type !== 'regular') {
     let products = offer.miniprogram[`${item.type}s`];
     let product_index = products.findIndex( i => i._id === item._id);
-    console.log(product_index);
 
     let prices = _findPrice[offer.type](item, products[product_index], offer);
     item.price = prices.price;

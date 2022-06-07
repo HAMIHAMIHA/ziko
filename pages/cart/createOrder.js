@@ -185,7 +185,7 @@ export const createOrder = (page, value) => {
       makePayment(page, res, true);
     }
     app.api.createOrder(offer_id, order).then(createOrderCallback).catch( error => {
-      let message = error.replace('missing pack', app.globalData.i18n.missing_pack).replace('missing item', app.globalData.i18n.missing_item);
+      let message = error.message.replace('missing pack', app.globalData.i18n.missing_pack).replace('missing item', app.globalData.i18n.missing_item);
       showToast(message);
       showLoading(false);
 

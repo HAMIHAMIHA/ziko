@@ -1,6 +1,7 @@
-const { showLoading, navigateBack } = require("./common.js");
+/** User session and data page */
+const { showLoading, navigateBack } = require ('./common.js');
 
-let app;
+let app = null;
 
 // Check user token
 async function _checkUserToken() {
@@ -41,13 +42,22 @@ async function _checkUserToken() {
 
 // Get open id
 async function _getWxUserOpenId(session_res) {
-  if (app.db.get('userInfo').customer && app.db.get('userInfo').customer.openId) return;
+  if (app.db.get('userInfo').customer?.openId) return;
   app.api.wxOpenid({ code: session_res.code }).then(res => {
     let user = app.db.get('userInfo') ? app.db.get('userInfo') : {};
     user.customer ? user.customer.openId = res.openId : user.customer = res;
     app.db.set('userInfo', user);
     return;
   });
+}
+
+// async function _wechatLogin() 
+const _wechatLogin = () => {
+  return new Promise( resolve => {
+    wx.login({
+      success: resolve
+    })
+  })
 }
 
 // Check wechat user session
@@ -57,34 +67,34 @@ const _checkUserSession = () => {
     wx.checkSession({
       success: function() {
         console.debug('open id session exist');
-        wx.login({
-          success: resolve
-        })
+        if (app.db.get('userInfo').customer?.openid) return resolve();
+        return _wechatLogin().then(resolve);
       },
       fail: function() {
         console.debug('openId session ended');
-        // Login with wechat if session not valid
-        wx.login({
-          success: resolve
-        })
+        return _wechatLogin().then(resolve);
       }
     })
   })
 }
 
 // Check user content on app load
-export const appLoad = function(app_set) {
+export async function appLoad(app_set) {
   app = app_set;
-  _checkUserSession().then(res => {
-    _getWxUserOpenId(res).then( () => {
-      _checkUserToken().then( () => {
-        app.checkForLotteryNotification();
-        if (app.db.get('userInfo').token) {
-          app.setAccountStatus();
-        }
-      })
-    })
-  })
+  try {
+    let session_res = await _checkUserSession();
+    if (session_res) {
+      await _getWxUserOpenId(session_res);
+    }
+    await _checkUserToken();
+  
+    app.checkForLotteryNotification();
+    if (app.db.get('userInfo').token) {
+      app.setAccountStatus();
+    }
+  } catch(e) {
+    console.log(e);
+  }
 }
 
 // Check user session and set user to page data

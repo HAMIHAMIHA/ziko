@@ -1,5 +1,6 @@
-const db = require('db.config.js');
-const config = require('properties.js');
+const { showLoading } = require('./common.js');
+const db = require('./db.config.js');
+const config = require('./properties.js');
 
 // Generate header and url
 const _unifyHeaders = (path) => {
@@ -8,7 +9,7 @@ const _unifyHeaders = (path) => {
     header = {'Authorization': `Bearer ${db.get('userInfo').token}`};
   }
 
-  return [header, config.api_url + path];
+  return [header, `${config.api_url}${path}`];
 }
 
 //get请求
@@ -16,10 +17,11 @@ const get = (path) => {
   let [header, url] = _unifyHeaders(path);
   return new Promise((resolve, reject) => {
     wx.request({
-      url: url,
-      header: header,
+      url,
+      header,
       success: function (res) {
-        if (res.data.success === false) {
+        if (res.data?.success === false) {
+          showLoading(false);
           console.debug(res.data.message);
           if (reject) {
             reject(res.data.message);
@@ -29,6 +31,7 @@ const get = (path) => {
         }
       },
       fail: function (res) {
+        showLoading(false);
         console.debug('err', res);
       }
     });
@@ -40,12 +43,13 @@ const post = (path, data) => {
   let [header, url] = _unifyHeaders(path);
   return new Promise((resolve, reject) => {
     wx.request({
-      url: url,
-      header: header,
-      data: data,
+      url,
+      header,
+      data,
       method: 'POST',
       success: function (res) {
-        if (res.data.success === false) {
+        if (res.data?.success === false) {
+          showLoading(false);
           console.debug(res.data.message);
           if (reject) {
             reject(res.data.message);
@@ -55,6 +59,7 @@ const post = (path, data) => {
         }
       },
       fail: function (res) {
+        showLoading(false);
         console.debug('err', res);
       }
     });
@@ -66,12 +71,13 @@ const put = (path, data) => {
   let [header, url] = _unifyHeaders(path);
   return new Promise((resolve, reject) => {
     wx.request({
-      url: url,
-      header: header,
-      data: data,
+      url,
+      header,
+      data,
       method: 'PUT',
       success: function (res) {
-        if (res.data.success === false) {
+        if (res.data?.success === false) {
+          showLoading(false);
           console.debug(res.data.message);
           if (reject) {
             reject(res.data.message);
@@ -81,6 +87,7 @@ const put = (path, data) => {
         }
       },
       fail: function (res) {
+        showLoading(false);
         console.debug('err', res);
       }
     });
@@ -93,12 +100,13 @@ const upload = (folder_path, file) => {
   let [header, url] = _unifyHeaders(path);
   return new Promise((resolve, reject) => {
     wx.uploadFile({
-      url: url,
+      url,
       filePath: file,
-      header: header,
+      header,
       name: folder_path,
       success: function (res) {
         if (res.statusCode != 200) {
+          showLoading(false);
           console.debug(res.data.message);
           if (reject) {
             reject(res.data.message);
@@ -108,6 +116,7 @@ const upload = (folder_path, file) => {
         resolve(JSON.parse(res.data));
       },
       fail: function (res) {
+        showLoading(false);
         console.debug('err', res);
       }
     })

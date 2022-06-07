@@ -101,7 +101,7 @@ Page({
     getUserInfo(self);
 
     // Page Data (order + vouchers)
-    if (app.db.get('userInfo') && app.db.get('userInfo').token) {
+    if (app.db.get('userInfo')?.token) {
       _getPageData(self);
     }
   },
