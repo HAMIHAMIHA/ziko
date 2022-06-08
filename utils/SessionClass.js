@@ -30,7 +30,7 @@ async function _getOpenIdSession() {
   }
 }
 
-// Check wx.login session
+// Get Wechat code for open id
 async function _wxOpenId() {
   try {
     let open_code = await awx("login");
@@ -103,7 +103,7 @@ class SessionClass {
     // Clear user info
     app.db.set('userInfo', {
       customer: { openId: user_info?.customer?.openId },
-      wxUser: user_info?.wxUser,
+      wxUser: user_info?.wxUser ? user_info?.wxUser : {},
     });
     return;
   }
@@ -178,7 +178,7 @@ class SessionClass {
       app.db.set('userInfo', user);
       page?.setData({
         user: res.user,
-        wxUser: user.wxUser
+        wxUser: user.wxUser ? user.wxUser : {}
       })
     
       return res.user;
