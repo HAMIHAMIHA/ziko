@@ -12,42 +12,16 @@ const _unifyHeaders = (path) => {
   return [header, `${config.api_url}${path}`];
 }
 
-//get请求
-const get = (path) => {
-  let [header, url] = _unifyHeaders(path);
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url,
-      header,
-      success: function (res) {
-        if (res.data?.success === false) {
-          showLoading(false);
-          console.debug(res.data.message);
-          if (reject) {
-            reject(res.data.message);
-          }
-        } else {
-          resolve(res.data);
-        }
-      },
-      fail: function (res) {
-        showLoading(false);
-        console.debug('err', res);
-      }
-    });
-  });
-}
-
-// post请求
-const post = (path, data) => {
+// Normal Request
+const request = (method, path, data) => {
   let [header, url] = _unifyHeaders(path);
   return new Promise((resolve, reject) => {
     wx.request({
       url,
       header,
       data,
-      method: 'POST',
-      success: function (res) {
+      method,
+      success: function(res) {
         if (res.data?.success === false) {
           showLoading(false);
           console.debug(res.data.message);
@@ -58,35 +32,7 @@ const post = (path, data) => {
           resolve(res.data);
         }
       },
-      fail: function (res) {
-        showLoading(false);
-        console.debug('err', res);
-      }
-    });
-  });
-}
-
-// put请求
-const put = (path, data) => {
-  let [header, url] = _unifyHeaders(path);
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url,
-      header,
-      data,
-      method: 'PUT',
-      success: function (res) {
-        if (res.data?.success === false) {
-          showLoading(false);
-          console.debug(res.data.message);
-          if (reject) {
-            reject(res.data.message);
-          }
-        } else {
-          resolve(res.data);
-        }
-      },
-      fail: function (res) {
+      fail: function(res) {
         showLoading(false);
         console.debug('err', res);
       }
@@ -108,9 +54,7 @@ const upload = (folder_path, file) => {
         if (res.statusCode != 200) {
           showLoading(false);
           console.debug(res.data.message);
-          if (reject) {
-            reject(res.data.message);
-          }
+          reject(res.data.message);
           return;
         }
         resolve(JSON.parse(res.data));
@@ -126,45 +70,45 @@ const upload = (folder_path, file) => {
 module.exports = {
   // Create order for payment
   createOrder: (id, data) => {
-    return post(`orders/purchase/${id}`, data);
+    return request('POST', `orders/purchase/${id}`, data);
   },
 
   // Get deliverable address areas
   getAreas: () => {
-    return get('delivery-areas');
+    return request('GET', 'delivery-areas');
   },
 
   // Get orders
   getOrders: (filter) => {
     let suffix = `mine?sort=["createdAt","DESC"]&${filter.filter_str}`;
     if (filter.id) suffix = `${filter.id}/mine`;
-    return get(`orders/${suffix}`);
+    return request('GET', `orders/${suffix}`);
   },
 
   // Get offer with product details
   getOffers: (suffix) => {
-    return get(`offers/details${suffix}`);
+    return request('GET', `offers/details${suffix}`);
   },
 
   // Get buyers for offer
   getOfferBuyers: id => {
-    return get(`offers/${id}/buyers?channel=miniprogram`);
+    return request('GET', `offers/${id}/buyers?channel=miniprogram`);
   },
 
   // Get lottery
   getLotteries: (filter) => {
     let url = filter ? `lottery-draws/details?${filter}` : 'lottery-draws/details';
-    return get(url);
+    return request('GET', url);
   },
 
   // Get lottery notifications
   getLotteryNotifications: () => {
-    return get('lottery-notifications/mine?channel=miniprogram');
+    return request('GET', 'lottery-notifications/mine?channel=miniprogram');
   },
 
   // Get recipe tags
   getRecipeTags: () => {
-    return get('recipe-tags/details');
+    return request('GET', 'recipe-tags/details');
   },
 
   // Get recipes detail
@@ -175,64 +119,64 @@ module.exports = {
     } else {
       suffix = `/details${filter.detail}`;
     }
-    return get(`recipes${suffix}`);
+    return request('GET', `recipes${suffix}`);
   },
 
   // Get recipe offers
   getRecipeLikes: (filter) => {
     let url = filter.id ? `recipes/${filter.id}/like` : `recipe-likes/mine${filter.detail}`;
-    return get(url);
+    return request('GET', url);
   },
 
   // Get recipe offers
   getRecipeOffers: (id) => {
-    return get(`recipes/${id}/related-offers`)
+    return request('GET', `recipes/${id}/related-offers`)
   },
 
   // Get user information
   getProfile: () => {
-    return get('customers/mine');
+    return request('GET', 'customers/mine');
   },
 
   // Get user vouchers
   getVouchers: (status, check_available) => {
     let filter = check_available ? `&filter={"expirationDate":{"$gt":"${new Date()}"}}` : '';
-    return get(`vouchers/mine?status=${status}${filter}&sort=["createdAt","ASC"]`);
+    return request('GET', `vouchers/mine?status=${status}${filter}&sort=["createdAt","ASC"]`);
   },
 
   // Get prepay id for wechat pay
   orderPrePay: (id) => {
-    return get(`orders/${id}/prepay`);
+    return request('GET', `orders/${id}/prepay`);
   },
 
   // Set wechat notification for future offers
   setNotificationOffer: id => {
-    return post(`offers/${id}/watch`, { watch: true })
+    return request('POST', `offers/${id}/watch`, { watch: true })
   },
 
   // Set view for offer
   setOfferView: (id) => {
-    return get(`offers/${id}/viewed`);
+    return request('GET', `offers/${id}/viewed`);
   },
 
   // Set recipe likes
   setRecipeLikes: (id, like) => {
-    return post(`recipes/${id}/like`, { watch: like });
+    return request('POST', `recipes/${id}/like`, { watch: like });
   },
 
   // Update lottery notification
   updateLotteryNotification: (id) => {
-    return post(`lottery-notifications/${id}/read`, {});
+    return request('POST', `lottery-notifications/${id}/read`, {});
   },
 
   // Update order
   updateOrder: (id) => {
-    return post(`orders/${id}/received`, {});
+    return request('POST', `orders/${id}/received`, {});
   },
 
   // Update user info
   updateProfile: (data) => {
-    return put(`customers/mine`, data);
+    return request('PUT', `customers/mine`, data);
   },
 
   // Upload profile picture
@@ -242,16 +186,16 @@ module.exports = {
 
   // Wechat login with mobile
   wxLogin: (data) => {
-    return post('wechat/login', data);
+    return request('POST', 'wechat/login', data);
   },
 
   // Wechat get openid, and user info (if exist)
   wxOpenid: (data) => {
-    return post('wechat/openid', data);
+    return request('POST', 'wechat/openid', data);
   },
 
   // Refresh user login token
   refreshToken: (data) => {
-    return post('wechat/refresh', data)
+    return request('POST', 'wechat/refresh', data)
   },
 }
