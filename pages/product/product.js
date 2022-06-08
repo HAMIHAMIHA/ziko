@@ -3,7 +3,6 @@ const { checkOfferTicket, getRulePrice, getBoursePrice } = require('../../templa
 
 const { showLoading } = require('../../utils/common.js');
 const { communities } = require('../../utils/constants.js');
-const { getUserInfo } = require('../../utils/sessionUtils.js');
 const { findIndex } = require('../../utils/util.js');
 
 const app = getApp();
@@ -91,7 +90,7 @@ const getProductDetail = page => {
     }
 
     // Get user data
-    getUserInfo(page)
+    app.sessionUtils.getUserInfo(page)
 
     // Check for and Change all free fall product price 
     if (offer.type === "free_fall" && product.freeFall && product.freeFall.quantityTrigger) {

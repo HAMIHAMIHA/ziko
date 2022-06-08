@@ -1,5 +1,4 @@
 const { showLoading, showToast } = require("../../../utils/common.js");
-const { refreshUserInfo } = require("../../../utils/sessionUtils.js");
 const { findIndex } = require("../../../utils/util.js");
 
 const app = getApp();
@@ -20,7 +19,7 @@ Page({
     }
   },
 
-  onShow: function () {
+  onShow: async function () {
     const self = this;
     let i18n = app.globalData.i18n;
 
@@ -40,9 +39,8 @@ Page({
 
     // Get user info
     showLoading(true);
-    refreshUserInfo(self, () => {
-      showLoading(false);
-    });
+    await app.sessionUtils.refreshUserInfo(self);
+    showLoading(false);
 
     _getAddressAreas();
 

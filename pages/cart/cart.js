@@ -4,7 +4,6 @@ const { modifyCartItems } = require("../../templates/offer/modifyCart");
 
 const { changeFocus, showLoading, showToast } = require("../../utils/common.js");
 const { communities } = require("../../utils/constants");
-const { getUserInfo } = require("../../utils/sessionUtils.js");
 const { formatDate } = require("../../utils/util.js");
 
 const { createOrder } = require("./createOrder");
@@ -207,7 +206,7 @@ Page({
     const self = this;
 
     // Need to get newest user info
-    getUserInfo(self);
+    app.sessionUtils.getUserInfo(self);
 
     if (self.options.back) {
       self.options.back = false;

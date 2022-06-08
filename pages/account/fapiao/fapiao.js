@@ -1,5 +1,4 @@
 const { showLoading } = require("../../../utils/common.js");
-const { refreshUserInfo, updateUserInfo } = require("../../../utils/sessionUtils.js");
 
 const app = getApp();
 
@@ -11,7 +10,7 @@ Page({
     need_refresh = true;
   },
 
-  onShow: function () {
+  onShow: async function () {
     let self = this;
     let i18n = app.globalData.i18n;
 
@@ -22,13 +21,12 @@ Page({
 
     // Refreshing user info
     if (need_refresh) {
-      refreshUserInfo(null, res =>{
-        self.setData({
-          fapiao: res.fapiaoInformation ? res.fapiaoInformation : '',
-        })
-        showLoading(false);
-        need_refresh = false;
-      });
+      let user = await app.sessionUtils.refreshUserInfo(null);
+      self.setData({
+        fapiao: user.fapiaoInformation ? user.fapiaoInformation : '',
+      })
+      showLoading(false);
+      need_refresh = false;
     }
 
     // Restart lottery popup
@@ -96,6 +94,6 @@ Page({
       switch_tab = false;
     }
 
-    updateUserInfo(data, prev, switch_tab);
+    app.sessionUtils.updateUserInfo(data, prev, switch_tab);
   }
 })

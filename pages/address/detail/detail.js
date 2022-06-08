@@ -1,5 +1,4 @@
 const { changeFocus, navigateBack, showLoading } = require("../../../utils/common.js");
-const { updateUserInfo, refreshUserInfo } = require("../../../utils/sessionUtils.js");
 const { findIndex } = require("../../../utils/util.js");
 
 const app = getApp();
@@ -15,33 +14,31 @@ const _getAddressAreas = (page, area_id) => {
 }
 
 // Get user profile
-const getUserInfo = (page) => {
-  const callback = user => {
-    // Set default address info
-    let count = user.addresses ? user.addresses.length : 0;
-    let address = {};
-    let picker_selected = '';
+async function getUserInfo(page) {
+  let user = await app.sessionUtils.refreshUserInfo(null);
 
-    // Set address info if edit
-    if (page.options.id) {
-      count = findIndex(user.addresses, page.options.id, '_id');
-      address = user.addresses[count];
-      _getAddressAreas(page, address.area);
-      picker_selected = `${address_type.indexOf(address.type)}`
-    } else {
-      address.contact = user.name;
-    }
+  // Set default address info
+  let count = Math.max(user.addresses?.length, 0);
+  let address = {};
+  let picker_selected = '';
 
-    showLoading(false);
-
-    page.setData({
-      _count: count,
-      _picker_selected: picker_selected,
-      address: address
-    })
+  // Set address info if edit
+  if (page.options.id) {
+    count = findIndex(user.addresses, page.options.id, '_id');
+    address = user.addresses[count];
+    _getAddressAreas(page, address.area);
+    picker_selected = `${address_type.indexOf(address.type)}`
+  } else {
+    address.contact = user.name;
   }
 
-  refreshUserInfo(null, callback);
+  showLoading(false);
+
+  page.setData({
+    _count: count,
+    _picker_selected: picker_selected,
+    address: address
+  })
 }
 
 // Check if input empty
@@ -169,6 +166,6 @@ Page({
     address ? address.area = self.data.area.id : '';
     let address_list = _generateUserAddress(self, action, address);
 
-    updateUserInfo({ addresses: address_list }, app.routes.address);
+    app.sessionUtils.updateUserInfo({ addresses: address_list }, app.routes.address);
   }
 })

@@ -2,6 +2,8 @@
  * Class for Wechat login methods
  */
 
+import { navigateBack, showLoading } from "./common";
+
 let app = null;
 
 // Async Wechat function
@@ -97,11 +99,11 @@ class SessionClass {
   // Logout user
   async logout() {
     console.debug("User Logged out");
-    let user_info = app.db.get('userInfo').customer;
+    let user_info = app.db.get('userInfo');
     // Clear user info
     app.db.set('userInfo', {
-      customer: { openId: user_info.openId },
-      wxUser: user_info.wxUser,
+      customer: { openId: user_info?.customer?.openId },
+      wxUser: user_info?.wxUser,
     });
     return;
   }
@@ -156,6 +158,51 @@ class SessionClass {
     return promise;
   }
 
+  // Check user session and set user to page data
+  async getUserInfo(page) {
+    let user = app.db.get('userInfo');
+    // Check if token session still valid
+    if (_checkExpired(user?.expireAt)) {
+      this.logout();
+    } else {
+      this.refreshUserInfo(page);
+    }
+    return;
+  }
+
+  // Get user info from database
+  async refreshUserInfo(page) {
+    const getProfileCallback = res => {
+      let user = app.db.get('userInfo');
+      user.customer = res.user;
+      app.db.set('userInfo', user);
+      page?.setData({
+        user: res.user,
+        wxUser: user.wxUser
+      })
+    
+      return res.user;
+    }
+
+    return app.api.getProfile().then(getProfileCallback);
+  }
+
+  // General method to call api and update user profile
+  updateUserInfo(new_info, back_url, switch_tab = false) {
+    const callback = res => {
+      showLoading(false);
+      let userInfo = app.db.get('userInfo');
+      userInfo.customer = res;
+
+      app.db.set('userInfo', userInfo);
+
+      if (back_url) {
+        navigateBack(back_url, switch_tab);
+      }
+    }
+
+    app.api.updateProfile(new_info).then(callback);
+  }
 }
 
 export default SessionClass;

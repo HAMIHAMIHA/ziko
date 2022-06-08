@@ -1,5 +1,4 @@
 const { showLoading } = require('../../../utils/common.js');
-const { getUserInfo, updateUserInfo } = require('../../../utils/sessionUtils.js');
 const translate = require('../../../utils/internationalize/translate.js'); // 翻译功能
 
 const app = getApp();
@@ -45,7 +44,7 @@ const _uploadProfileImage = (res, page) =>  {
     let profile_data = {
       profilePicture: file
     }
-    updateUserInfo(profile_data, null);
+    app.sessionUtils.updateUserInfo(profile_data, null);
   }
   app.api.uploadProfilePicture(res.tempFiles[0].tempFilePath).then(callback);
 }
@@ -98,7 +97,7 @@ Page({
     app.globalData.pause_lottery_check = false;
 
     // Set user Data
-    getUserInfo(self);
+    app.sessionUtils.getUserInfo(self);
 
     // Page Data (order + vouchers)
     if (app.db.get('userInfo')?.token) {

@@ -1,35 +1,32 @@
 const { changeFocus, navigateBack, showLoading } = require("../../../utils/common.js");
-const { updateUserInfo, refreshUserInfo } = require("../../../utils/sessionUtils.js");
 const { findIndex } = require("../../../utils/util.js");
 
 const app = getApp();
 const validate_keys = ['name', 'phone'];
 
 // Get user profile
-const getUserInfo = (page) => {
-  const callback = user => {
-    // Set default address info
-    let count = user.contacts ? user.contacts.length : 0;
-    let contact = {};
+async function getUserInfo(page) {
+  let user = await app.sessionUtils.refreshUserInfo(null);
 
-    // Set address info if edit
-    if (page.options.id) {
-      count = findIndex(user.contacts, page.options.id, '_id');
-      contact = user.contacts[count];
-    } else {
-      contact.name = user.name;
-      contact.phone = user.phone;
-    }
+  // Set default address info
+  let count = user.contacts ? user.contacts.length : 0;
+  let contact = {};
 
-    showLoading(false);
-
-    page.setData({
-      _count: count,
-      contact: contact
-    })
+  // Set address info if edit
+  if (page.options.id) {
+    count = findIndex(user.contacts, page.options.id, '_id');
+    contact = user.contacts[count];
+  } else {
+    contact.name = user.name;
+    contact.phone = user.phone;
   }
 
-  refreshUserInfo(null, callback);
+  showLoading(false);
+
+  page.setData({
+    _count: count,
+    contact: contact
+  })
 }
 
 // Check if input empty
@@ -119,6 +116,6 @@ Page({
     // Update contact info to BO
     let contact = e.detail.value;
     let contact_list = _generateUserContact(self, action, contact);
-    updateUserInfo({ contacts: contact_list }, app.routes.contacts);
+    app.sessionUtils.updateUserInfo({ contacts: contact_list }, app.routes.contacts);
   }
 })

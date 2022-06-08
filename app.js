@@ -2,7 +2,6 @@ const api = require('./utils/api.js'); //接口文档
 const common = require('./utils/common.js');
 const db = require('./utils/db.config.js'); // 本地存储
 const { folders, subscribe } = require('./utils/properties.js');
-const { appLoad } = require('./utils/sessionUtils.js');
 const i18n = require('./utils/internationalize/translate.js'); // 翻译功能
 
 import SessionClass from "./utils/SessionClass.js";
@@ -26,8 +25,6 @@ App({
     // Language setting
     i18n.check();
     self.globalData.i18n = i18n.translate();
-
-    appLoad(self);
 
     self.sessionUtils = new SessionClass(self);
     await self.sessionUtils.getOpenId();

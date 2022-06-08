@@ -1,6 +1,5 @@
 const { showLoading } = require("../../../utils/common.js");
 const { communities } = require("../../../utils/constants.js");
-const { getUserInfo } = require("../../../utils/sessionUtils.js");
 const { formatDate, formatTime, findIndex } = require("../../../utils/util.js");
 
 const app = getApp();
@@ -187,7 +186,7 @@ Page({
     // Restart lottery popup
     app.globalData.pause_lottery_check = false;
 
-    getUserInfo(self);
+    app.sessionUtils.getUserInfo(self);
   
     if (app.db.get('userInfo') && app.db.get('userInfo').token) {
       if (!self.options.back) {

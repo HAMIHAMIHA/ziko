@@ -1,6 +1,5 @@
 const { showLoading } = require("../../../utils/common.js");
 const { voucher_status, communities } = require("../../../utils/constants.js");
-const { getUserInfo } = require("../../../utils/sessionUtils.js");
 const { formatDate, formatTime } = require("../../../utils/util.js");
 
 const app = getApp();
@@ -95,14 +94,14 @@ Page({
     current_status: "all",
   },
 
-  onShow: function() {
+  onShow: async function() {
     const self = this;
     _setPageTranslation(self);
 
     // Restart lottery popup
     app.globalData.pause_lottery_check = false;
-    getUserInfo(self);
-    if (app.db.get('userInfo') && app.db.get('userInfo').token) {
+    await app.sessionUtils.getUserInfo(self);
+    if (app.db.get('userInfo')?.token) {
       self.getVouchers();
     }
   },

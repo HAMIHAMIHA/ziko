@@ -1,6 +1,5 @@
 const { showLoading } = require("../../utils/common.js");
 const { communities } = require("../../utils/constants.js");
-const { getUserInfo } = require("../../utils/sessionUtils.js");
 const { findIndex, mapDeliveryDates } = require("../../utils/util.js");
 
 const { checkOfferTicket, getBoursePrice, getRulePrice } = require("./offerRules");
@@ -460,7 +459,7 @@ export async function getOffer(page, offer_id) {
   }
 
   showLoading(true);
-  await getUserInfo(page);
+  await app.sessionUtils.getUserInfo(page);
 
   // Update number of views for offer before getting offer
   app.api.setOfferView(offer_id).then(() => {

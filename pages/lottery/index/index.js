@@ -1,6 +1,5 @@
 const { showLoading } = require("../../../utils/common.js");
 const index_data = require("../../../utils/constants.js");
-const { getUserInfo } = require("../../../utils/sessionUtils.js");
 const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../../utils/util.js");
 
 const app = getApp();
@@ -233,7 +232,7 @@ Page({
     _leave_triggered = false;
     if (_refresh_data) {
       showLoading(true);
-      getUserInfo(self);
+      app.sessionUtils.getUserInfo(self);
       self.filterOffers({detail: { change_date: false }});
     }
   },
