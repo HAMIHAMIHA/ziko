@@ -24,4 +24,5 @@ module.exports = {
     special_gift: SUBSCRIBE_SPECIAL_GIFT,
     lottery_draw: SUBSCRIBE_LOTTERY_DRAW,
   },
+  tabbars: ["home", "orders", "explore", "lottery", "account"],
 }

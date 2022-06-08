@@ -130,7 +130,7 @@ Page({
     const i18n = app.globalData.i18n;
   
     // Set tabbar translation
-    app.setTabbar();
+    app.setTabbars();
   
     // Set page default data
     self.setData({

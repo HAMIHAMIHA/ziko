@@ -24,6 +24,14 @@ export const navigateBack = function(back_route, switchTab = false) {
   }
 }
 
+// Set tabbar wraper
+export const setTabbar = function(index, tab_text) {
+  wx.setTabBarItem({
+    index,
+    text: tab_text
+  })
+}
+
 // Loading module wrapper
 export const showLoading = function(show) {
   if (show) {

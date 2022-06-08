@@ -241,7 +241,7 @@ Page({
     const self = this;
     let i18n = app.globalData.i18n;
 
-    app.setTabbar();
+    app.setTabbars();
 
     // Change page nav title
     wx.setNavigationBarTitle({

@@ -11,7 +11,7 @@ let raw_offers = [], lotteries = [], orders = [];
 
 const _setPageTranslation = function(page) {
   // Translate tabbar
-  app.setTabbar();
+  app.setTabbars();
   // Translation and default values
   let i18n = app.globalData.i18n;
 

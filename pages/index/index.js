@@ -270,7 +270,7 @@ Page({
     const self = this;
 
     // Translate tabbar
-    app.setTabbar();
+    app.setTabbars();
 
     // Translation and default values
     let i18n = app.globalData.i18n;
