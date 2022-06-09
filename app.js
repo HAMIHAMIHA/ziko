@@ -2,22 +2,23 @@ const api = require('./utils/api.js'); //接口文档
 const common = require('./utils/common.js');
 const db = require('./utils/db.config.js'); // 本地存储
 const { folders, subscribe, tabbars } = require('./utils/properties.js');
+const { routes } = require('utils/routes.js');
 const i18n = require('./utils/internationalize/translate.js'); // 翻译功能
 
 import SessionClass from "./utils/SessionClass.js";
 
 App({
-  api: api,
-  common: common,
-  db: db,
-  folders: folders,
+  api,
+  common,
+  db,
+  folders,
   subscribe,
   globalData: {
     token: null,
     i18n: require('./utils/internationalize/internationalize.js').zh, // Load a default language map first
     pause_lottery_check: false,
   },
-  routes: require('utils/routes.js').routes,
+  routes,
   sessionUtils: null,
 
   async onLaunch() {
