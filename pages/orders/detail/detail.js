@@ -1,4 +1,4 @@
-const { showLoading } = require("../../../utils/common.js");
+const { showLoading, previewImage } = require("../../../utils/common.js");
 const { communities } = require("../../../utils/constants.js");
 const { formatDate, findIndex } = require("../../../utils/util.js");
 
@@ -251,6 +251,7 @@ const getOrders = (page) => {
 Page({
   data: {
     _folders: {
+      fapiao_image: app.folders.fapiao_image,
       pack_picture: app.folders.pack_picture,
       product_picture: app.folders.product_picture,
     },
@@ -345,11 +346,18 @@ Page({
     makePayment(self, { id: self.options.id }, false);
   },
 
+  previewImage: function() {
+    const self = this;
+    previewImage([`${app.folders.fapiao_image}${self.data.order.fapiaoImage.uri}`], false);
+  },
+
+  // Show gifts collected
   showCollected: function() {
     const self = this;
     self.selectComponent('#order_collected').show();
   },
 
+  // Confirm if the delivered package is recived
   confirmReceive: function() {
     const self = this;
     self.setData({

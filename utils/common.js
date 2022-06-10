@@ -24,6 +24,16 @@ export const navigateBack = function(back_route, switchTab = false) {
   }
 }
 
+// Image previewer wrapper
+export const previewImage = function(urls, show_menu) {
+  wx.previewImage({
+    urls: urls,
+    current: 'current',
+    showmenu: show_menu,
+    complete: (res) => {},
+  })
+}
+
 // Set tabbar wraper
 export const setTabbar = function(index, tab_text) {
   wx.setTabBarItem({

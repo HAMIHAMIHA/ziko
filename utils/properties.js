@@ -11,6 +11,7 @@ module.exports = {
     custom_image: `${FILE_URL}custom-image/`,
     customer_picture: `${FILE_URL}customer-picture/`,
     asset: `${FILE_URL}asset/`,
+    fapiao_image: `${FILE_URL}fapiao-image/`,
     offer_banner: `${FILE_URL}offer-banner/`,
     offer_media: `${FILE_URL}offer-media/`,
     product_picture: `${FILE_URL}product-cover/`,

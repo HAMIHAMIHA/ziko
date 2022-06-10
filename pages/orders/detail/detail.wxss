@@ -94,6 +94,10 @@
   overflow-wrap: anywhere;
 }
 
+.fapiao_image {
+  width: 100%;
+}
+
 /* Timeline */
 .timeline {
   padding: 16rpx 30rpx;

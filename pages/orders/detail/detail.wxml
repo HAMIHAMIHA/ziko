@@ -159,6 +159,14 @@
       <text class="nunito_600 detail_label">{{ _t.fapiao }}</text>
       <view class="detail_value">{{ order.customer.fapiaoInformation }}</view>
     </view>
+
+
+    <view class="detail" wx:if="{{ order.fapiaoImage.uri }}">
+      <text class="nunito_600 detail_label"></text>
+      <view class="detail_value">
+        <image class="fapiao_image" src="{{ _folders.fapiao_image + order.fapiaoImage.uri }}" mode="widthFix" bindtap="previewImage"></image>
+      </view>
+    </view>
   </view>
 
   <view class="white-box order-details_container">
