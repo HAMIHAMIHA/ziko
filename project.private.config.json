@@ -44,6 +44,20 @@
           "scene": null
         },
         {
+          "name": "Offer w/ lottery",
+          "pathName": "pages/offer/cellar/bourse/bourse",
+          "query": "id=627cd8b19e33a7acb63365eb",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "offer w/ specials",
+          "pathName": "pages/offer/regular/regular",
+          "query": "id=62414b3ac64fc9f745a7445c",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "Pack Detail",
           "pathName": "pages/product/product",
           "query": "id=61dd4fe8e1a38b5729ef4ed5&offer_id=61dd4fe8e1a38b5729ef4ec2&type=pack",
@@ -64,7 +78,7 @@
         {
           "name": "Cart",
           "pathName": "pages/cart/cart",
-          "query": "id=627cd005f6d8bca6339cf063",
+          "query": "id=6295d5fcb745dafb1941f6d3",
           "launchMode": "default",
           "scene": null
         },
@@ -99,38 +113,38 @@
           "scene": null
         },
         {
-          "name": "profile info",
+          "name": "Profile Info",
           "pathName": "pages/account/information/information",
           "query": "",
           "scene": null
         },
         {
-          "name": "orders",
+          "name": "Fapiao",
+          "pathName": "pages/account/fapiao/fapiao",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "Areas",
+          "pathName": "pages/address/areas/areas",
+          "query": "id=61e00b33fa98797bdd5097f0",
+          "scene": null
+        },
+        {
+          "name": "Orders List",
           "pathName": "pages/orders/index/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "order detail",
+          "name": "Order",
           "pathName": "pages/orders/detail/detail",
           "query": "id=62622b64a3b9a9f268a87333&status=delivered",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "fapiao",
-          "pathName": "pages/account/fapiao/fapiao",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "areas",
-          "pathName": "pages/address/areas/areas",
-          "query": "id=61e00b33fa98797bdd5097f0",
-          "scene": null
-        },
-        {
-          "name": "recipes list",
+          "name": "Recipes List",
           "pathName": "pages/recipes/index/index",
           "query": "",
           "scene": null
@@ -143,29 +157,15 @@
           "scene": null
         },
         {
-          "name": "lotteries",
+          "name": "Lotteries List",
           "pathName": "pages/lottery/index/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "lottery",
+          "name": "Lottery",
           "pathName": "pages/lottery/detail/detail",
           "query": "id=628619f98ef366815d1fff20",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "Offer w/ lottery",
-          "pathName": "pages/offer/cellar/bourse/bourse",
-          "query": "id=627cd8b19e33a7acb63365eb",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "offer w/ specials",
-          "pathName": "pages/offer/regular/regular",
-          "query": "id=62414b3ac64fc9f745a7445c",
           "launchMode": "default",
           "scene": null
         }

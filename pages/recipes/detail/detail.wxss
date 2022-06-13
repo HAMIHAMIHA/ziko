@@ -55,7 +55,11 @@
 
 /* Offer List */
 .offer-container {
-  padding: 32rpx 0 calc(48rpx + var(--env-));
+  padding-bottom: calc(48rpx + var(--env-));
+}
+
+.offer-list {
+  padding: 32rpx 0 48rpx;
   border-top: 1px solid #EBEBEB;
 }
 
@@ -69,7 +73,6 @@
 
 .offer-container .btn-primary {
   margin: auto;
-  margin-top: 48rpx;
   text-align: center;
 }
 /* End of Offer List */

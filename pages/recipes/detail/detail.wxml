@@ -72,17 +72,18 @@
   <!-- End of Recipe -->
 
   <!-- Offer List -->
-  <block wx:if="{{ offers.length }}">
-    <view class="offer-container">
-      <view class="uppercase title">
-        <text class="gilroy_500">{{ _t.related_current_offers.fst }}</text>
-        <text class="gilroy_700">{{ _t.related_current_offers.snd }}</text>
-      </view>
-
+  <view class="offer-container">
+    <block wx:if="{{ offers.length }}">
+      <view class="offer-list">
+        <view class="uppercase title">
+          <text class="gilroy_500">{{ _t.related_current_offers.fst }}</text>
+          <text class="gilroy_700">{{ _t.related_current_offers.snd }}</text>
+        </view>
         <offers id="list_offers" offers="{{ offers }}"></offers>
-      <button class="btn-primary nunito_600" bindtap="seeOffers">{{ _t.see_all_offers }}</button>
-    </view>
-  </block>
+      </view>
+    </block>
+    <button class="btn-primary nunito_600" bindtap="seeOffers">{{ _t.see_all_offers }}</button>
+  </view>
   <!-- End of Offer List -->
 </view>
 
