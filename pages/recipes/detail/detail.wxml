@@ -29,7 +29,10 @@
       <view class="recipe-general__detail">
         <view class="recipe-general__label">{{ _t.baking }}</view>
         <view class="nunito_600 recipe-general__value">
-          {{ _recipe.bakingTime }}{{ _t.minutes }}
+          <block wx:if="{{ _recipe.bakingTime }}">
+            {{ _recipe.bakingTime }}{{ _t.minutes }}
+          </block>
+          <block wx:else>-</block>
         </view>
       </view>
       <view class="recipe-general__detail">
@@ -40,8 +43,11 @@
       </view>
       <view class="recipe-general__detail">
         <view class="recipe-general__label">{{ _t.kcal }}</view>
-        <view class="nunito_600 recipe-general_valuel">
-          {{ _recipe.calories }}
+        <view class="nunito_600 recipe-general__value">
+          <block wx:if="{{ _recipe.calories }}">
+            {{ _recipe.calories }}
+          </block>
+          <block wx:else>-</block>
         </view>
       </view>
       <!-- End of Recipe General Data -->

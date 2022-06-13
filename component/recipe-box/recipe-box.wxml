@@ -8,7 +8,11 @@
     </view>
     <view class="recipe-info">
       <view class="reveipe-prep-time">{{ _t.preparation }}: {{ item.preparationTime }}{{ _t.minutes }}</view>
-      <view class="reveipe-bake-time">{{ _t.baking }}: {{ item.bakingTime }}{{ _t.minutes }}</view>
+          
+      <view class="reveipe-bake-time">{{ _t.baking }}: 
+        <block wx:if="{{ item.bakingTime }}">{{ item.bakingTime }}{{ _t.minutes }}</block>
+        <block wx:else>-</block>
+      </view>
     </view>
   </view>
 </navigator>
