@@ -1,4 +1,4 @@
-# Ziko miniprogram ![](https://img.shields.io/badge/Version-1.1-informational?style=flat&logoColor=white&color=orange) <img src="https://git.mediasia-group.com/ziko/ziko-backoffice/src/images/zikoland_logo.png" alt="ziko logo" align="right" height="60" />
+# Ziko miniprogram ![](https://img.shields.io/badge/Version-1.1-informational?style=flat&logoColor=white&color=orange) <img src="https://git.mediasia-group.com/ziko/ziko-backoffice/-/raw/master/src/images/zikoland_logo.png" alt="ziko logo" align="right" height="60" />
 ![](https://img.shields.io/badge/-JavaScript-informational?style=flat&logo=javascript&logoColor=white&color=blue) ![](https://img.shields.io/badge/-CSS-informational?style=flat&logo=CSS3&logoColor=white&color=blue)
 
 <details>

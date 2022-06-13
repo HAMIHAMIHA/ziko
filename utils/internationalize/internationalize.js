@@ -358,8 +358,8 @@ export const languageMap_en = {
   recipes: "recipes",
   reduction: "Reduction",
   related_current_offers: {
-    fst: "related",
-    snd: " current offers"
+    fst: "Check",
+    snd: " the offers"
   },
   related_recipes: {
     fst: "related",
@@ -454,7 +454,7 @@ export const languageMap_en = {
   you_win: "You Win !",
 
   // Z
-  zh: "ZH",
+  zh: "中文",
   ziko_lottery: "Ziko Lottery",
   ziko_special: "Ziko Special",
   zipcode: "Zipcode",
@@ -560,7 +560,7 @@ export const languageMap_zh = {
   edit_my_contacts: "编辑我的联系方式",
   edit_my_info: "编辑我的信息",
   empty: "empty",
-  en: "英文",
+  en: "EN",
   expire_on: "Expire on",
   explore: "explore",
   extra_ticket: "extra ticket",

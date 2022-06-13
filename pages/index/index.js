@@ -206,6 +206,12 @@ Page({
 
     // Restart lottery popup
     app.globalData.pause_lottery_check = false;
+
+    // Switch to list tab if global data set
+    if (app.globalData.index_type === 'list') {
+      app.globalData.index_type = '';
+      _filterOfferData(self, self.options.type, '', '', '');
+    }
   },
 
   onHide: function(e) {
