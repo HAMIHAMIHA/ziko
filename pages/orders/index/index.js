@@ -162,6 +162,7 @@ const getOrders = (page) => {
   let community_id = Object.keys(communities).find(item => communities[item] == current.community);
   community_id = community_id ? community_id : ''; // Remove undefined
   let order_status = current.order_status;
+  console.log(order_status);
 
   let filter = {
     filter_str: `channel=miniprogram&community=${ community_id }&trackingStatus=${ order_status }&range=[${current_load}, ${ current_load + PAGE_RANGE - 1}]`,
@@ -228,6 +229,11 @@ Page({
 
     let filter_type = e.currentTarget.dataset.filter_type;
     let value = filter_type == 'community' ? e.detail.value : e.currentTarget.dataset.value;
+
+    current_load = 0;
+    self.setData({
+      orders: []
+    })
 
     _defaultFilters(self, filter_type, value);
     getOrders(self);
