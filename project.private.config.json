@@ -8,7 +8,6 @@
     "checkInvalidKey": true,
     "compileHotReLoad": false,
     "lazyloadPlaceholderEnable": false,
-    "useMultiFrameRuntime": true,
     "showES6CompileOption": false,
     "useStaticServer": true
   },
@@ -16,6 +15,13 @@
   "condition": {
     "miniprogram": {
       "list": [
+        {
+          "name": "Home",
+          "pathName": "pages/index/index",
+          "query": "type=list",
+          "launchMode": "default",
+          "scene": null
+        },
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
@@ -132,7 +138,8 @@
         {
           "name": "Recipe",
           "pathName": "pages/recipes/detail/detail",
-          "query": "id=623bf18dc64fc9f745a6f4c0",
+          "query": "id=62958f22b745dafb1941eefc",
+          "launchMode": "default",
           "scene": null
         },
         {

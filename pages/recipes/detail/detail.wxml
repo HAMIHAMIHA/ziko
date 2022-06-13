@@ -80,7 +80,7 @@
       </view>
 
         <offers id="list_offers" offers="{{ offers }}"></offers>
-      <navigator class="btn-primary nunito_600" url="{{ _routes.home }}" open-type="switchTab">{{ _t.see_all_offers }}</navigator>
+      <button class="btn-primary nunito_600" bindtap="seeOffers">{{ _t.see_all_offers }}</button>
     </view>
   </block>
   <!-- End of Offer List -->

@@ -108,9 +108,6 @@ const getRecipeDetail = (page, id) => {
 
 Page({
   data: {
-    _routes: {
-      home: app.routes.home,
-    },
     _setting: {
       swiper_index: 1,
     }
@@ -149,6 +146,14 @@ Page({
     const self = this;
     self.setData({
       "_setting.swiper_index": (e.detail.current) + 1,
+    })
+  },
+
+  // To offer list page
+  seeOffers: function() {
+    app.globalData.index_type = 'list';
+    wx.switchTab({
+      url: app.routes.home,
     })
   },
 
