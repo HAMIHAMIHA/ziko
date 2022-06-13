@@ -358,8 +358,8 @@ export const languageMap_en = {
   recipes: "recipes",
   reduction: "Reduction",
   related_current_offers: {
-    fst: "related",
-    snd: " current offers"
+    fst: "Check",
+    snd: " the offers"
   },
   related_recipes: {
     fst: "related",

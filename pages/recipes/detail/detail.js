@@ -71,8 +71,10 @@ const getOffers = (page, id) => {
       offers: offers,
     });
 
-    let offer_comp = page.selectComponent('#list_offers');
-    offer_comp.updateCards(page.data._t_offers, true);
+    if (offers.length) {
+      let offer_comp = page.selectComponent('#list_offers');
+      offer_comp.updateCards(page.data._t_offers, true);
+    }
 
     showLoading(false);
   });
@@ -128,14 +130,18 @@ Page({
 
   onHide: function() {
     // Stop all timers
-    let offers = this.selectComponent('#list_offers');
-    offers.updateCards(this.data._t_offers, false);
+    if (this.data.offers.length) {
+      let offers = this.selectComponent('#list_offers');
+      offers.updateCards(this.data._t_offers, false);
+    }
   },
 
   onUnload: function() {
     // Stop all timers
-    let offers = this.selectComponent('#list_offers');
-    offers.updateCards(this.data._t_offers, false);
+    if (this.data.offers.length) {
+      let offers = this.selectComponent('#list_offers');
+      offers.updateCards(this.data._t_offers, false);
+    }
   },
 
   // Change swiper indicatior

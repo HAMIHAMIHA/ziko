@@ -38,7 +38,6 @@
 .recipe-detail__container {
   width: 100%;
   padding: 34rpx 30rpx 64rpx;
-  border-bottom: 1px solid #EBEBEB;
   box-sizing: border-box;
 }
 
@@ -57,6 +56,7 @@
 /* Offer List */
 .offer-container {
   padding: 32rpx 0 calc(48rpx + var(--env-));
+  border-top: 1px solid #EBEBEB;
 }
 
 .offer-container .title {
