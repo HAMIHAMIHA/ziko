@@ -41,7 +41,6 @@ const _getRecipes = (page) => {
 
   // Get favourites recipes
   let next_end = current_load + PAGE_RANGE;
-  console.log(next_end);
   if (page.data.recipes.length < next_end) {
     app.api.getRecipeLikes({ detail: `?range=[${current_load}, ${next_end}]` }).then(recipeCallback)
   }

@@ -1,5 +1,4 @@
 const { showLoading } = require("../../../utils/common.js");
-const { updateUserInfo } = require("../../../utils/sessionUtils.js");
 
 const app = getApp();
 
@@ -202,6 +201,6 @@ Page({
       pets: self.data.pets
     }
 
-    updateUserInfo(data, app.routes.account, true);
+    app.sessionUtils.updateUserInfo(data, app.routes.account, true);
   }
 })

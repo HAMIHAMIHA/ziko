@@ -1,6 +1,5 @@
 const { showLoading } = require("../../../utils/common.js");
 const { communities } = require("../../../utils/constants.js");
-const { getUserInfo } = require("../../../utils/sessionUtils.js");
 
 const app = getApp();
 let countdown_timer = [];
@@ -225,7 +224,7 @@ const _getOffer = function(page, offer_id) {
 Page({
   onLoad: function() {
     const self = this;
-    getUserInfo(self);
+    app.sessionUtils.getUserInfo(self);
   },
 
   onShow: function () {

@@ -1,17 +1,17 @@
 const api = require('./utils/api.js'); //接口文档
 const common = require('./utils/common.js');
 const db = require('./utils/db.config.js'); // 本地存储
-const { folders, subscribe } = require('./utils/properties.js');
-const { appLoad } = require('./utils/sessionUtils.js');
+const { folders, subscribe, tabbars } = require('./utils/properties.js');
+const { routes } = require('utils/routes.js');
 const i18n = require('./utils/internationalize/translate.js'); // 翻译功能
 
 import SessionClass from "./utils/SessionClass.js";
 
 App({
-  api: api,
-  common: common,
-  db: db,
-  folders: folders,
+  api,
+  common,
+  db,
+  folders,
   subscribe,
   globalData: {
     token: null,
@@ -19,7 +19,7 @@ App({
     pause_lottery_check: false,
     index_type: '',
   },
-  routes: require('utils/routes.js').routes,
+  routes,
   sessionUtils: null,
 
   async onLaunch() {
@@ -27,8 +27,6 @@ App({
     // Language setting
     i18n.check();
     self.globalData.i18n = i18n.translate();
-
-    appLoad(self);
 
     self.sessionUtils = new SessionClass(self);
     await self.sessionUtils.getOpenId();
@@ -72,32 +70,8 @@ App({
     }
   },
 
-  setTabbar: function() {
-    // Get translated tabbar text when called
-    const self = this;
-    wx.setTabBarItem({
-      index: 0,
-      "text": self.globalData.i18n.home
-    })
-
-    wx.setTabBarItem({
-      index: 1,
-      "text": self.globalData.i18n.orders
-    })
-
-    wx.setTabBarItem({
-      index: 2,
-      "text": self.globalData.i18n.explore
-    })
-
-    wx.setTabBarItem({
-      index: 3,
-      "text": self.globalData.i18n.lottery
-    })
-
-    wx.setTabBarItem({
-      index: 4,
-      "text": self.globalData.i18n.account
-    })
+  // Get translated tabbar text when called
+  setTabbars: function() {
+    tabbars.forEach( (tab, i) => common.setTabbar(i, this.globalData.i18n[tab]));
   }
 })

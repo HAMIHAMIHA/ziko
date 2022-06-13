@@ -1,5 +1,4 @@
 const { showLoading, showToast } = require("../../../utils/common.js");
-const { refreshUserInfo } = require("../../../utils/sessionUtils.js");
 
 const app = getApp();
 
@@ -10,7 +9,7 @@ Page({
     }
   },
 
-  onShow: function () {
+  onShow: async function () {
     const self = this;
     let i18n = app.globalData.i18n;
 
@@ -33,9 +32,11 @@ Page({
 
     // Get user info
     showLoading(true);
-    refreshUserInfo(self, () => {
-      showLoading(false);
-    });
+    console.log('show');
+    let u = await app.sessionUtils.refreshUserInfo(self);
+    console.log(u);
+    console.log('comp');
+    showLoading(false);
 
     // Set page Data
     if (self.options.selected_contact != undefined) {

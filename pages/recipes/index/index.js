@@ -10,7 +10,7 @@ let rand_number = -1;
 // Set Translation text
 const _setTranslation = page => {
   // Translate tabbar
-  app.setTabbar();
+  app.setTabbars();
 
   const i18n = app.globalData.i18n;
 

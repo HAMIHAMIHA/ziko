@@ -1,6 +1,5 @@
 const { showLoading } = require("../../../utils/common.js");
 const index_data = require("../../../utils/constants.js");
-const { getUserInfo } = require("../../../utils/sessionUtils.js");
 const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../../utils/util.js");
 
 const app = getApp();
@@ -12,7 +11,7 @@ let raw_offers = [], lotteries = [], orders = [];
 
 const _setPageTranslation = function(page) {
   // Translate tabbar
-  app.setTabbar();
+  app.setTabbars();
   // Translation and default values
   let i18n = app.globalData.i18n;
 
@@ -233,7 +232,7 @@ Page({
     _leave_triggered = false;
     if (_refresh_data) {
       showLoading(true);
-      getUserInfo(self);
+      app.sessionUtils.getUserInfo(self);
       self.filterOffers({detail: { change_date: false }});
     }
   },
