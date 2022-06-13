@@ -52,6 +52,10 @@
   line-height: 38rpx;
 }
 
+.detail_note_content {
+  display: block;
+}
+
 .disabled {
   pointer-events: none;
 }

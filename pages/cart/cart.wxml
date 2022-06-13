@@ -114,7 +114,7 @@
             <text>{{ _t.address_type[user.addresses[address_selected].type] }}</text>
             <text class="icon icon-arrow-right"></text>
           </navigator>
-          <text class="detail_note">{{ user.addresses[address_selected].detailedAddress }}</text>
+          <text class="detail_note"><text class="detail_note_content ellipsis">{{ user.addresses[address_selected].detailedAddress }}</text></text>
         </view>
       </view>
 
