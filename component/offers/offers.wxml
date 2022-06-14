@@ -23,7 +23,7 @@
           <block wx:for="{{ offer.banners.uri }}" wx:for-item="banner" wx:key="*this">
             <swiper-item>
               <view class="offer-banner_image">
-                <image src="{{ banner }}" mode="widthFix" lazy-load="true" mode="aspectFill"></image>
+                <image src="{{ banner }}" lazy-load="true" mode="aspectFill"></image>
               </view>
             </swiper-item>
           </block>

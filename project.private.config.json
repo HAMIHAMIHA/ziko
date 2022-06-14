@@ -152,7 +152,7 @@
         {
           "name": "Recipe",
           "pathName": "pages/recipes/detail/detail",
-          "query": "id=62958f22b745dafb1941eefc",
+          "query": "id=62958c13b745dafb1941eef8",
           "launchMode": "default",
           "scene": null
         },

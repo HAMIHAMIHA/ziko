@@ -5,13 +5,32 @@
       <swiper class="swiper" bindchange="swiperChange">
         <block wx:for="{{ _recipe.media }}" wx:key="_id" wx:for-item="media">
           <swiper-item class="swiper_item">
-            <image src="{{ media ? media.uri : '' }}" mode="aspectFill" lazy-load="true" ></image>
+            <block wx:if="{{ media.type === 'image' }}">
+              <image class="swiper_item-image" src="{{ media ? media.uri : '' }}" mode="aspectFill" lazy-load="true"></image>
+            </block>
+            <block wx:else>
+              <video
+                id="banner_video_{{ index }}"
+                class="video swiper_item-video"
+                src="{{ media ? media.uri : '' }}"
+                object-fit="contain"
+                show-play-btn="{{ false }}"
+                show-progress="{{ false }}"
+                show-center-play-btn="{{ false }}"
+                enable-progress-gesture="{{ false }}"
+                data-index="{{ index }}"
+                data-do_pause="{{ !media.pause }}"
+                bindtap="toggleVideo"
+              >
+                <view class="video-play icon icon-play" wx:if="{{ media.pause }}"></view>
+              </video>
+            </block>
           </swiper-item>
         </block>
       </swiper>
       <view class="gilroy_700 indicator">
         {{ _setting.swiper_index }} / {{ _recipe.media.length }}
-      </view>  
+      </view>
     </view>
     <!-- End of Detail Banner -->
   </view>
