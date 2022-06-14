@@ -331,6 +331,11 @@ export async function getOffer(page, offer_id) {
     banner.uri = `${app.folders.offer_banner}${banner.uri}`;
     offer.media = [banner, ...offer.media];
 
+    offer.media.map( media => {
+      media.type = media.type.match(/^image/ig) ? "image" : media.type.match(/^video/ig) ? "video" : "";
+      media.pause = true;
+    });
+
     offer.community = communities[offer.community.id];
     offer = packProductDetail(offer);
 
@@ -616,4 +621,25 @@ export const unloadOfferPage = (page) => {
   let pages = getCurrentPages();
   let previous_page = pages[pages.length - 2];
   (previous_page && previous_page.filterOffers) ? previous_page.filterOffers({}) : '';
+}
+
+// Toggle video
+export const toggleVideo = (page, e) => {
+  let index = e.currentTarget.dataset.index;
+
+  // Only do toggle if image type
+  if (page.data._offer.media[index].type === "image") return;
+
+  // Change pause status
+  page.setData({
+    [`_offer.media[${index}].pause`]: e.currentTarget.dataset.do_pause
+  });
+
+  // Play or pause video
+  let video = wx.createVideoContext(`banner_video_${index}`);
+  if (e.currentTarget.dataset.do_pause) {
+    video.pause();
+  } else {
+    video.play();
+  }
 }

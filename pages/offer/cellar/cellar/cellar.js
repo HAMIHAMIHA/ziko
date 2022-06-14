@@ -31,6 +31,7 @@ Page({
     Offers.clearBuyerInterval();
     this.selectComponent('#scroll_messages').clearMessageInterval();
   },
+  
   onUnload: function() {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
     Offers.clearBuyerInterval();
@@ -60,9 +61,23 @@ Page({
   // Change swiper indicatior
   swiperChange: function(e) {
     const self = this;
+    self.toggleVideo({
+      currentTarget: {
+        dataset: {
+          index: (self.data._setting.swiperIndex - 1),
+          do_pause: true
+        }
+      }
+    });
+
     self.setData({
       "_setting.swiperIndex": (e.detail.current) + 1,
-    })
+    });
+  },
+
+  // Toggle video
+  toggleVideo: function(e) {
+    Offers.toggleVideo(this, e);
   },
 
   // Switch between recipe and products
