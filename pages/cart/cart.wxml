@@ -156,7 +156,7 @@
       </view>
     </view>
 
-    <view class="white-box details_container inputs_container">
+    <view class="white-box details_container inputs_container textarea_container">
       <view class="detail">
         <text class="detail_label">{{ _t.comment }}</text>
         <view class="detail_input"><input class="input" name="comment" type="text" /></view>

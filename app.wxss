@@ -312,6 +312,7 @@ button:not([size=mini]).btn-primary {
 
 .detail_input {
   width: 68%;
+  flex: 0 0 68%;
   height: 64rpx;
   display: flex;
   /* border-bottom: 2rpx solid #EBEBEB; */
@@ -1381,7 +1382,7 @@ button:not([size=mini]).float-contact_container {
 }
 
 .textarea_container .detail_label {
-  line-height: 64rpx;
+  line-height: 35rpx;
 }
 
 .textarea_container .detail_input {
