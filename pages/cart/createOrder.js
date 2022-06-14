@@ -110,15 +110,15 @@ export const makePayment = (page, res, nav_back) => {
     showLoading(false);
 
     // TEMP
-    if (nav_back) {
-      wx.redirectTo({
-        url: `${app.routes.order}?id=${order_id}&type=paid`,
-      })
-    } else {
-      page.options.type = 'paid';
-      page.onShow();
-    }
-    return;
+    // if (nav_back) {
+    //   wx.redirectTo({
+    //     url: `${app.routes.order}?id=${order_id}&type=paid`,
+    //   })
+    // } else {
+    //   page.options.type = 'paid';
+    //   page.onShow();
+    // }
+    // return;
 
     wx.requestPayment({
       timeStamp: `${res.timestamp}`,
