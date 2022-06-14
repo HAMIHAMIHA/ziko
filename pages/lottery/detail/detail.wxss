@@ -57,3 +57,7 @@
   font-size: 40rpx;
 }
 /* End of Offer Info */
+
+.lottery__container {
+  padding-bottom: 32rpx;
+}

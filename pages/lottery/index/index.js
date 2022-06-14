@@ -253,6 +253,7 @@ Page({
     const self = this;
     let data = e.currentTarget ? e.currentTarget.dataset : {};
 
+    showLoading(true);
     // Set up filtering items if just changing date
     if (JSON.stringify(data) == '{}') {
       data = {
