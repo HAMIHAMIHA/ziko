@@ -354,7 +354,8 @@ button:not([size=mini]).btn-primary {
 
 .banner-image_container .swiper,
 .banner-image_container .swiper_item,
-.banner-image_container .swiper_item image {
+.banner-image_container .swiper_item .swiper_item-image,
+.banner-image_container .swiper_item .swiper_item-video {
   width: 100vw;
   height: 68.3vw;
 }
@@ -370,6 +371,7 @@ button:not([size=mini]).btn-primary {
   position: absolute;
   left: 30rpx;
   bottom: 30rpx;
+  pointer-events: none;
 }
 /* End of Detail Banner */
 
@@ -1397,6 +1399,24 @@ button:not([size=mini]).float-contact_container {
   word-wrap: none;
 }
 /* End of Textarea */
+
+/* Video */
+.video {
+  position: relative;
+}
+
+.video-play {
+  padding: 32rpx;
+  font-size: 54rpx;
+  color: #262626;
+  background: var(--ziko-default-);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* End of Video */
 
 /* Vouchers */
 .voucher-content_container .header {

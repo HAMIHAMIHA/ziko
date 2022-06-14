@@ -80,13 +80,27 @@ const getOffers = (page, id) => {
   });
 }
 
+// Check Media type
+const _checkMediaType = type => {
+  if (type.match(/^image/ig)) {
+    return "image";
+  } else if (type.match(/^video/ig)) {
+    return "video";
+  }
+}
+
 const getRecipeDetail = (page, id) => {
   showLoading(true);
   app.api.getRecipes({id: id}).then( res => {
     // Banner image
     res.mainPicture[app.db.get('language')].uri = `${app.folders.recipe_picture}${res.mainPicture[app.db.get('language')].uri}`;
+    res.mainPicture[app.db.get('language')].type = _checkMediaType(res.mainPicture[app.db.get('language')].type);
+    res.mainPicture[app.db.get('language')].pause = true;
+
     res.otherMedia.map( m => {
       m.uri = `${app.folders.recipe_media}${m.uri}`;
+      m.type = _checkMediaType(m.type);
+      m.pause = true;
     })
     res.media = [res.mainPicture[app.db.get('language')], ...res.otherMedia];
 
@@ -144,6 +158,15 @@ Page({
   // Change swiper indicatior
   swiperChange: function(e) {
     const self = this;
+    self.toggleVideo({
+      currentTarget: {
+        dataset: {
+          index: (self.data._setting.swiper_index - 1),
+          do_pause: true
+        }
+      }
+    });
+
     self.setData({
       "_setting.swiper_index": (e.detail.current) + 1,
     })
@@ -155,6 +178,28 @@ Page({
     wx.switchTab({
       url: app.routes.home,
     })
+  },
+
+  // Toggle video
+  toggleVideo: function(e) {
+    const self = this;
+    let index = e.currentTarget.dataset.index;
+
+    // Only do toggle if image type
+    if (self.data._recipe.media[index].type === "image") return;
+
+    // Change pause status
+    self.setData({
+      [`_recipe.media[${index}].pause`]: e.currentTarget.dataset.do_pause
+    });
+
+    // Play or pause video
+    let video = wx.createVideoContext(`banner_video_${index}`);
+    if (e.currentTarget.dataset.do_pause) {
+      video.pause();
+    } else {
+      video.play();
+    }
   },
 
   onShareAppMessage: function (res) {},
