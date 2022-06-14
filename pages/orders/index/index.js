@@ -4,7 +4,7 @@ const { formatDate, formatTime, findIndex } = require("../../../utils/util");
 
 const app = getApp();
 const pickers = {
-  community: ['all', 'cellar', 'garden', 'kitchen', 'pet'],
+  community: ['all', 'cellar', 'farm', 'kitchen', 'pet'],
   order_status: ['all', 'delivered', 'on_the_way', 'prepared', 'delayed'],
 }
 const PAGE_RANGE = 10;

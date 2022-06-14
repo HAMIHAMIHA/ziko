@@ -9,14 +9,6 @@ export const map_filters = [
     yPos: 0,
     shape: "polygon(0 0, 100% 0, 100% 48%, 37% 100%, 0 70%)",
   }, {
-    name: "garden",
-    id: '60541eb37b87f1126ecf53e2',
-    width: 220,
-    height: 252,
-    xPos: 155,
-    yPos: 138,
-    shape: "polygon(100% 0, 100% 100%, 0 50%)",
-  }, {
     name: "cellar",
     id: '60541eb87b87f1126ecf53e3',
     width: 285,
@@ -24,6 +16,14 @@ export const map_filters = [
     xPos: 0,
     yPos: 197,
     shape: "polygon(0 0, 100% 50%, 0 100%)",
+  }, {
+    name: "farm",
+    id: '60541eb37b87f1126ecf53e2',
+    width: 220,
+    height: 252,
+    xPos: 155,
+    yPos: 138,
+    shape: "polygon(100% 0, 100% 100%, 0 50%)",
   }, {
     name: "pet",
     id: '60541ebc7b87f1126ecf53e4',
@@ -57,17 +57,17 @@ export const list_filter = [
     filter_group: "kitchen",
     icon: "ziko-kitchen_sides"
   }, {
-    key: 'garden',
-    id: '60541eb37b87f1126ecf53e2',
-    class_name: "ziko-garden gradient-text",
-    filter_group: "garden",
-    icon: "ziko-garden_sides"
-  }, {
     key: 'cellar',
     id: '60541eb87b87f1126ecf53e3',
     class_name: "ziko-cellar gradient-text",
     filter_group: "cellar",
     icon: "ziko-cellar_sides"
+  }, {
+    key: 'farm',
+    id: '60541eb37b87f1126ecf53e2',
+    class_name: "ziko-farm gradient-text",
+    filter_group: "farm",
+    icon: "ziko-farm_sides"
   }, {
     key: 'pet',
     id: '60541ebc7b87f1126ecf53e4',
@@ -83,7 +83,7 @@ export const list_filter = [
 
 export const communities = {
   "60541eab7b87f1126ecf53e1": 'kitchen',
-  "60541eb37b87f1126ecf53e2": 'garden',
+  "60541eb37b87f1126ecf53e2": 'farm',
   "60541eb87b87f1126ecf53e3": 'cellar',
   "60541ebc7b87f1126ecf53e4": 'pet',
 }
