@@ -45,9 +45,6 @@
             <view class="offer-banner_image">
               <image src="{{ offer.banner }}" mode="widthFix" lazy-load="true"></image>
             </view>
-            <view class="offer-banner_tag">
-              <view class="icon {{ 'icon-ziko-' + _communities[offer.community.id] + '_right'}}"></view>
-            </view>
           </view>
           <!-- End of banner -->
 
