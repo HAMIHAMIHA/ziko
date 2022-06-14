@@ -130,6 +130,7 @@
 
 /* Offer Detail - Status */
 .offer-counts {
+  padding-bottom: 26rpx;
   color: #9D9FA4;
 }
 
@@ -149,7 +150,7 @@
 
 /* Offer Detail - Delivery */
 .offer-delivery {
-  padding: 26rpx 20rpx 0;
+  padding: 0 20rpx;
   line-height: 32rpx;
 }   
 /* End of Offer Detail - Delivery */
