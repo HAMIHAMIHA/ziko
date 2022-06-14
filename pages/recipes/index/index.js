@@ -297,7 +297,7 @@ Page({
   },
 
   onReachBottom: function () {
-    _getRecipes(self, false);
+    _getRecipes(this, false);
   },
 
   onShareAppMessage: function (res) {},

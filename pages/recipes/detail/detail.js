@@ -110,6 +110,16 @@ const getRecipeDetail = (page, id) => {
     })
     res.media = [res.mainPicture[app.db.get('language')], ...res.otherMedia];
 
+    // Autoplay if main image is video
+    if (res.media[0].type === "video") {
+      let play_data = {
+        currentTarget: {
+          dataset: { index: 0, do_pause: false }
+        }
+      }
+      page.toggleVideo(play_data);
+    }
+
     // Description
     res.description.en = res.description.en.replace(/\<h2><\/h2>/gi,  '<h2 class="empty-line"><br/><\/h2> ' );
     res.description.en = res.description.en.replace(/\<p><\/p>/gi,  '<p class="empty-line"><br/><\/p> ' );
@@ -188,14 +198,18 @@ Page({
   // Change swiper indicatior
   swiperChange: function(e) {
     const self = this;
-    self.toggleVideo({
+    let data = {
       currentTarget: {
-        dataset: {
-          index: (self.data._setting.swiper_index - 1),
-          do_pause: true
-        }
+        dataset: { index: (self.data._setting.swiper_index - 1), do_pause: true }
       }
-    });
+    }
+    // Pause current video
+    self.toggleVideo(data);
+
+    // Play next video
+    data.currentTarget.dataset.index = e.detail.current;
+    data.currentTarget.dataset.do_pause = false;    
+    self.toggleVideo(data);
 
     self.setData({
       "_setting.swiper_index": (e.detail.current) + 1,
