@@ -72,7 +72,7 @@
       <!-- End of Recipe General Data -->
 
       <!-- Share -->
-      <button class="float-btn favourite{{ is_fav ? ' fav' : saving_new_fav ? ' disabled' : '' }}" bindtap="setFavourite">
+      <button class="float-btn favourite{{ is_fav ? ' fav' : saving_new_fav ? ' disabled' : '' }}" bindtap="setFavourite" wx:if="{{ show }}">
         <view class="icon icon-heart"></view>
       </button>
       <button class="float-btn share" open-type="share">

@@ -67,9 +67,11 @@
 }
 
 .container .share {
-  right: 52rpx;
+  /* right: 52rpx; */
+  right: 34rpx; /* TEMP */
   top: 100%;
-  transform: translate(-100%, -50%);
+  /* transform: translate(-100%, -50%); */
+  transform: translate(0, -50%); /* TEMP */
 }
 /* End of Recipe General Data */
 
