@@ -32,10 +32,7 @@ Page({
 
     // Get user info
     showLoading(true);
-    console.log('show');
     let u = await app.sessionUtils.refreshUserInfo(self);
-    console.log(u);
-    console.log('comp');
     showLoading(false);
 
     // Set page Data

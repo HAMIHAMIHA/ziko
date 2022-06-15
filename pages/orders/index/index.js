@@ -5,7 +5,7 @@ const { formatDate, formatTime, findIndex } = require("../../../utils/util.js");
 const app = getApp();
 
 const pickers = {
-  community: ['all', 'cellar', 'garden', 'kitchen', 'pet'],
+  community: ['all', 'cellar', 'farm', 'kitchen', 'pet'],
   order_status: ['all', 'delivered', 'on_the_way', 'prepared', 'delayed'],
 }
 const PAGE_RANGE = 10;
@@ -232,6 +232,11 @@ Page({
 
     let filter_type = e.currentTarget.dataset.filter_type;
     let value = filter_type == 'community' ? e.detail.value : e.currentTarget.dataset.value;
+
+    current_load = 0;
+    self.setData({
+      orders: []
+    })
 
     _defaultFilters(self, filter_type, value);
     getOrders(self);

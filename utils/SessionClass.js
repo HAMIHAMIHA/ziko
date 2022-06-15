@@ -25,8 +25,7 @@ async function _getOpenIdSession() {
     let session = await awx("checkSession");
     return session;
   } catch (e) {
-    console.log(e);
-    return;
+    return false;
   }
 }
 
@@ -36,8 +35,7 @@ async function _wxOpenId() {
     let open_code = await awx("login");
     return open_code;
   } catch (e) {
-    console.log(e);
-    return;
+    return false;
   }
 }
 
@@ -126,7 +124,7 @@ class SessionClass {
         })
         app.db.set('userInfo', user);
     } catch(e) {
-      console.log(e);
+      return false;
     }
   }
   

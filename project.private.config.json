@@ -16,23 +16,44 @@
     "miniprogram": {
       "list": [
         {
+          "name": "Home",
+          "pathName": "pages/index/index",
+          "query": "type=list",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=628afe2e46f8d03e5d209698",
+          "query": "id=62a8453d08fbdb60891e17a0",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "Cellar",
           "pathName": "pages/offer/cellar/cellar/cellar",
-          "query": "id=628b13ba46f8d03e5d209cf8",
+          "query": "id=62a8497a08fbdb60891e1838",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "Bourse",
           "pathName": "pages/offer/cellar/bourse/bourse",
-          "query": "id=628b13d946f8d03e5d209d06",
+          "query": "id=62a8497a08fbdb60891e1838",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "Offer w/ lottery",
+          "pathName": "pages/offer/cellar/bourse/bourse",
+          "query": "id=627cd8b19e33a7acb63365eb",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "offer w/ specials",
+          "pathName": "pages/offer/regular/regular",
+          "query": "id=62414b3ac64fc9f745a7445c",
           "launchMode": "default",
           "scene": null
         },
@@ -57,7 +78,7 @@
         {
           "name": "Cart",
           "pathName": "pages/cart/cart",
-          "query": "id=629d7c5f9602f79a48750def",
+          "query": "id=6295d5fcb745dafb1941f6d3",
           "launchMode": "default",
           "scene": null
         },
@@ -92,38 +113,38 @@
           "scene": null
         },
         {
-          "name": "profile info",
+          "name": "Profile Info",
           "pathName": "pages/account/information/information",
           "query": "",
           "scene": null
         },
         {
-          "name": "orders",
-          "pathName": "pages/orders/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "order detail",
-          "pathName": "pages/orders/detail/detail",
-          "query": "id=628b43d246f8d03e5d20b0a0",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "fapiao",
+          "name": "Fapiao",
           "pathName": "pages/account/fapiao/fapiao",
           "query": "",
           "scene": null
         },
         {
-          "name": "areas",
+          "name": "Areas",
           "pathName": "pages/address/areas/areas",
           "query": "id=61e00b33fa98797bdd5097f0",
           "scene": null
         },
         {
-          "name": "recipes list",
+          "name": "Orders List",
+          "pathName": "pages/orders/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "Order",
+          "pathName": "pages/orders/detail/detail",
+          "query": "id=62622b64a3b9a9f268a87333&status=delivered",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "Recipes List",
           "pathName": "pages/recipes/index/index",
           "query": "",
           "scene": null
@@ -131,40 +152,20 @@
         {
           "name": "Recipe",
           "pathName": "pages/recipes/detail/detail",
-          "query": "id=623bf18dc64fc9f745a6f4c0",
+          "query": "id=62958c13b745dafb1941eef8",
+          "launchMode": "default",
           "scene": null
         },
         {
-          "name": "lotteries",
+          "name": "Lotteries List",
           "pathName": "pages/lottery/index/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "lottery",
+          "name": "Lottery",
           "pathName": "pages/lottery/detail/detail",
           "query": "id=628619f98ef366815d1fff20",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "Offer w/ lottery",
-          "pathName": "pages/offer/cellar/bourse/bourse",
-          "query": "id=627cd8b19e33a7acb63365eb",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "offer w/ specials",
-          "pathName": "pages/offer/regular/regular",
-          "query": "id=62414b3ac64fc9f745a7445c",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "recipe favourites",
-          "pathName": "pages/recipes/favourites/favourites",
-          "query": "filter=fav",
           "launchMode": "default",
           "scene": null
         }

@@ -58,11 +58,11 @@ const getOffers = (page, id) => {
       }
 
       // TEMP using media images to test for banner swiper
-      if (offer.media.length) {
-        offer.media.forEach( m => {
-          banners.uri.push(`${app.folders.offer_media}${m.uri}`)
-        })
-      }
+      // if (offer.media.length) {
+      //   offer.media.forEach( m => {
+      //     banners.uri.push(`${app.folders.offer_media}${m.uri}`)
+      //   })
+      // }
 
       // Modify offer data to fit page display
       offer.startTime = new Date(offer.startingDate).getTime();
@@ -77,11 +77,22 @@ const getOffers = (page, id) => {
       offers: offers,
     });
 
-    let offer_comp = page.selectComponent('#list_offers');
-    offer_comp.updateCards(page.data._t_offers, true);
+    if (offers.length) {
+      let offer_comp = page.selectComponent('#list_offers');
+      offer_comp.updateCards(page.data._t_offers, true);
+    }
 
     showLoading(false);
   });
+}
+
+// Check Media type
+const _checkMediaType = type => {
+  if (type.match(/^image/ig)) {
+    return "image";
+  } else if (type.match(/^video/ig)) {
+    return "video";
+  }
 }
 
 const getRecipeDetail = (page, id) => {
@@ -89,10 +100,25 @@ const getRecipeDetail = (page, id) => {
   app.api.getRecipes({id: id}).then( res => {
     // Banner image
     res.mainPicture[app.db.get('language')].uri = `${app.folders.recipe_picture}${res.mainPicture[app.db.get('language')].uri}`;
+    res.mainPicture[app.db.get('language')].type = _checkMediaType(res.mainPicture[app.db.get('language')].type);
+    res.mainPicture[app.db.get('language')].pause = true;
+
     res.otherMedia.map( m => {
       m.uri = `${app.folders.recipe_media}${m.uri}`;
+      m.type = _checkMediaType(m.type);
+      m.pause = true;
     })
     res.media = [res.mainPicture[app.db.get('language')], ...res.otherMedia];
+
+    // Autoplay if main image is video
+    if (res.media[0].type === "video") {
+      let play_data = {
+        currentTarget: {
+          dataset: { index: 0, do_pause: false }
+        }
+      }
+      page.toggleVideo(play_data);
+    }
 
     // Description
     res.description.en = res.description.en.replace(/\<h2><\/h2>/gi,  '<h2 class="empty-line"><br/><\/h2> ' );
@@ -118,9 +144,6 @@ const getRecipeDetail = (page, id) => {
 
 Page({
   data: {
-    _routes: {
-      home: app.routes.home,
-    },
     _setting: {
       swiper_index: 1,
     },
@@ -142,14 +165,18 @@ Page({
 
   onHide: function() {
     // Stop all timers
-    let offers = this.selectComponent('#list_offers');
-    offers.updateCards(this.data._t_offers, false);
+    if (this.data.offers.length) {
+      let offers = this.selectComponent('#list_offers');
+      offers.updateCards(this.data._t_offers, false);
+    }
   },
 
   onUnload: function() {
     // Stop all timers
-    let offers = this.selectComponent('#list_offers');
-    offers.updateCards(this.data._t_offers, false);
+    if (this.data.offers.length) {
+      let offers = this.selectComponent('#list_offers');
+      offers.updateCards(this.data._t_offers, false);
+    }
   },
 
   // Set favourite status
@@ -171,9 +198,52 @@ Page({
   // Change swiper indicatior
   swiperChange: function(e) {
     const self = this;
+    let data = {
+      currentTarget: {
+        dataset: { index: (self.data._setting.swiper_index - 1), do_pause: true }
+      }
+    }
+    // Pause current video
+    self.toggleVideo(data);
+
+    // Play next video
+    data.currentTarget.dataset.index = e.detail.current;
+    data.currentTarget.dataset.do_pause = false;    
+    self.toggleVideo(data);
+
     self.setData({
       "_setting.swiper_index": (e.detail.current) + 1,
     })
+  },
+
+  // To offer list page
+  seeOffers: function() {
+    app.globalData.index_type = 'list';
+    wx.switchTab({
+      url: app.routes.home,
+    })
+  },
+
+  // Toggle video
+  toggleVideo: function(e) {
+    const self = this;
+    let index = e.currentTarget.dataset.index;
+
+    // Only do toggle if image type
+    if (self.data._recipe.media[index].type === "image") return;
+
+    // Change pause status
+    self.setData({
+      [`_recipe.media[${index}].pause`]: e.currentTarget.dataset.do_pause
+    });
+
+    // Play or pause video
+    let video = wx.createVideoContext(`banner_video_${index}`);
+    if (e.currentTarget.dataset.do_pause) {
+      video.pause();
+    } else {
+      video.play();
+    }
   },
 
   onShareAppMessage: function (res) {},

@@ -28,7 +28,26 @@
       <swiper class="swiper" bindchange="swiperChange">
         <block wx:for="{{ _offer.media }}" wx:key="key" wx:for-item="media">
           <swiper-item class="swiper_item">
-            <image src="{{ media ? media.uri : '' }}" mode="aspectFill" lazy-load="true" ></image>
+            <block wx:if="{{ media.type === 'image' }}">
+              <image class="swiper_item-image" src="{{ media ? media.uri : '' }}" mode="aspectFill" lazy-load="true"></image>
+            </block>
+            <block wx:else>
+              <video
+                id="banner_video_{{ index }}"
+                class="video swiper_item-video"
+                src="{{ media ? media.uri : '' }}"
+                object-fit="contain"
+                show-play-btn="{{ false }}"
+                show-progress="{{ false }}"
+                show-center-play-btn="{{ false }}"
+                enable-progress-gesture="{{ false }}"
+                data-index="{{ index }}"
+                data-do_pause="{{ !media.pause }}"
+                bindtap="toggleVideo"
+              >
+                <view class="video-play icon icon-play" wx:if="{{ media.pause }}"></view>
+              </video>
+            </block>
           </swiper-item>
         </block>
       </swiper>
@@ -45,16 +64,16 @@
 
   <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
     <!-- Offer Count -->
-      <view class="flex-start gilroy_500 offer-count_container">
-        <view class="icon_container">
-          <view class="icon icon-bag"></view>
-          <view class="icon_text">{{ _offer.orders != 1 ? _offer.orders + _t.orders_unit : _offer.orders + _t.order_unit }}</view>
-        </view>
-        <view class="icon_container">
-          <view class="icon icon-eye"></view>
-          <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
-        </view>
+    <view class="flex-start gilroy_500 offer-count_container" wx:if="{{ _offer.orders >= 50 || _offer.views >= 50 }}">
+      <view class="icon_container" wx:if="{{ _offer.orders >= 50 }}">
+        <view class="icon icon-bag"></view>
+        <view class="icon_text">{{ _offer.orders != 1 ? _offer.orders + _t.orders_unit : _offer.orders + _t.order_unit }}</view>
       </view>
+      <view class="icon_container" wx:if="{{ _offer.views >= 50 }}">
+        <view class="icon icon-eye"></view>
+        <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
+      </view>
+    </view>
     <!-- End of Offer Count -->
 
     <!-- Share -->

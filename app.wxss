@@ -110,8 +110,8 @@ image {
   background: linear-gradient(104.65deg, #A1803B 1.33%, #FDE28F 54.78%, #D8BC74 100%);
 }
 
-.ziko-garden,
-.ziko-garden:after {
+.ziko-farm,
+.ziko-farm:after {
   background: linear-gradient(105.28deg, #98F183 2.41%, #11BF67 100%);
 }
 
@@ -134,7 +134,7 @@ image {
   background: #CE9910;
 }
 
-.ziko-offer.community-garden .offer-payment .payment-button:not(.disabled) {
+.ziko-offer.community-farm .offer-payment .payment-button:not(.disabled) {
   background: #4CD169;
 }
 
@@ -154,7 +154,7 @@ image {
   background: #F2C759;
 }
 
-.ziko-offer.community-garden .offer-payment .payment-button.hover-payment-button {
+.ziko-offer.community-farm .offer-payment .payment-button.hover-payment-button {
   background: #86DF77;
 }
 
@@ -312,6 +312,7 @@ button:not([size=mini]).btn-primary {
 
 .detail_input {
   width: 68%;
+  flex: 0 0 68%;
   height: 64rpx;
   display: flex;
   /* border-bottom: 2rpx solid #EBEBEB; */
@@ -354,7 +355,8 @@ button:not([size=mini]).btn-primary {
 
 .banner-image_container .swiper,
 .banner-image_container .swiper_item,
-.banner-image_container .swiper_item image {
+.banner-image_container .swiper_item .swiper_item-image,
+.banner-image_container .swiper_item .swiper_item-video {
   width: 100vw;
   height: 68.3vw;
 }
@@ -370,6 +372,7 @@ button:not([size=mini]).btn-primary {
   position: absolute;
   left: 30rpx;
   bottom: 30rpx;
+  pointer-events: none;
 }
 /* End of Detail Banner */
 
@@ -764,7 +767,7 @@ button:not([size=mini]).float-contact_container {
   border-color: #DEAF37;
 }
 
-.community-garden .offer-count_container {
+.community-farm .offer-count_container {
   border-color: #6EC75F;
 }
 
@@ -1351,7 +1354,7 @@ button:not([size=mini]).float-contact_container {
   background: #FFE9B1;
 }
 
-.community-garden .share {
+.community-farm .share {
   background: #BCFFB1;
 }
 
@@ -1379,7 +1382,7 @@ button:not([size=mini]).float-contact_container {
 }
 
 .textarea_container .detail_label {
-  line-height: 64rpx;
+  line-height: 35rpx;
 }
 
 .textarea_container .detail_input {
@@ -1397,6 +1400,24 @@ button:not([size=mini]).float-contact_container {
   word-wrap: none;
 }
 /* End of Textarea */
+
+/* Video */
+.video {
+  position: relative;
+}
+
+.video-play {
+  padding: 32rpx;
+  font-size: 54rpx;
+  color: #262626;
+  background: var(--ziko-default-);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* End of Video */
 
 /* Vouchers */
 .voucher-content_container .header {

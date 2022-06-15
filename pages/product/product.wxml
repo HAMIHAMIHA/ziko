@@ -6,9 +6,10 @@
     <view class="banner-image_container swiper_container">
       <swiper class="swiper">
         <swiper-item class="swiper_item">
-          <image src="{{ _folders.product_picture + product.product.mainPicture[_language].uri }}" mode="aspectFill" lazy-load="true" wx:if="{{ _setting.type != 'pack' }}"></image>
-          <image src="{{ _folders.pack_picture + product.illustation.uri }}" mode="aspectFill" wx:elif="{{ product.illustation }}"></image>
-          <image src="/assets/images/packDefault.png" mode="aspectFill" wx:else></image>
+          <image class="swiper_item-image" src="{{ _folders.product_picture + product.product.mainPicture[_language].uri }}" mode="aspectFill" lazy-load="true" wx:if="{{ _setting.type != 'pack' }}"></image>
+          <image class="swiper_item-image" src="{{ _folders.pack_picture + product.illustation.uri }}" mode="aspectFill" wx:elif="{{ product.illustation }}"></image>
+          <image class="swiper_item-image" src="/assets/images/packDefault.png" mode="aspectFill" wx:else></image>
+          <!-- <image class="swiper_item-image" src="{{ media ? media.uri : '' }}" mode="aspectFill" lazy-load="true"></image> -->
         </swiper-item>
       </swiper>
     </view>

@@ -77,13 +77,13 @@
 .recipe-detail__container {
   width: 100%;
   padding: 34rpx 30rpx 64rpx;
-  border-bottom: 1px solid #EBEBEB;
   box-sizing: border-box;
 }
 
 .recipe-detail__container .recipe-detail__title {
   max-width: 80%;
-  font-size: 32rpx;
+  padding-bottom: 30rpx;
+  font-size: 40rpx;
   line-height: 48rpx;
 }
 
@@ -95,7 +95,12 @@
 
 /* Offer List */
 .offer-container {
-  padding: 32rpx 0 calc(48rpx + var(--env-));
+  padding-bottom: calc(48rpx + var(--env-));
+}
+
+.offer-list {
+  padding: 32rpx 0 48rpx;
+  border-top: 1px solid #EBEBEB;
 }
 
 .offer-container .title {
@@ -108,7 +113,6 @@
 
 .offer-container .btn-primary {
   margin: auto;
-  margin-top: 48rpx;
   text-align: center;
 }
 /* End of Offer List */

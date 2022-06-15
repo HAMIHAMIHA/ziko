@@ -17,6 +17,7 @@ App({
     token: null,
     i18n: require('./utils/internationalize/internationalize.js').zh, // Load a default language map first
     pause_lottery_check: false,
+    index_type: '',
   },
   routes,
   sessionUtils: null,
