@@ -36,6 +36,7 @@ Page({
     self.setData({
       _t: {
         fapiao: i18n.fapiao,
+        fapiao_info: i18n.fapiao_info,
         save: i18n.save,
       }
     })

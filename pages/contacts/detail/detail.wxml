@@ -25,7 +25,7 @@
 
       <view class="details_container inputs_container field-1">
         <view class="detail">
-          <view class="detail_label">{{ _t.city }}</view>
+          <view class="detail_label">{{ _t.phone_no }}</view>
           <view class="detail_input">
             <view class="input">
               <input
