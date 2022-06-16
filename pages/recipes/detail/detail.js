@@ -121,9 +121,15 @@ const getRecipeDetail = (page, id) => {
     }
 
     // Description
+    // Replace for en
+    res.description.en = res.description.en.replace(/\<h1/gi,  '<h1 class="h1"' );
+    res.description.en = res.description.en.replace(/color:#\S{3,6}/gi,  '' );
     res.description.en = res.description.en.replace(/\<h2><\/h2>/gi,  '<h2 class="empty-line"><br/><\/h2> ' );
     res.description.en = res.description.en.replace(/\<p><\/p>/gi,  '<p class="empty-line"><br/><\/p> ' );
     res.description.en = res.description.en.replace(/\<img/gi,  '<img class="rich-img" ' );
+    // Replace for zh
+    res.description.zh = res.description.zh.replace(/\<h1/gi,  '<h1 class="h1"' );
+    res.description.zh = res.description.zh.replace(/color:\S{3,6};/gi,  '' );
     res.description.zh = res.description.zh.replace(/\<h2><\/h2>/gi,  '<h2 class="empty-line"><br/><\/h2> ' );
     res.description.zh = res.description.zh.replace(/\<p><\/p>/gi,  '<p class="empty-line"><br/><\/p> ' );
     res.description.zh = res.description.zh.replace(/\<img/gi,  '<img class="rich-img" ' );

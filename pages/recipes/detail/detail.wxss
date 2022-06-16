@@ -85,8 +85,12 @@
 .recipe-detail__container .recipe-detail__title {
   max-width: 80%;
   padding-bottom: 30rpx;
-  font-size: 40rpx;
+  font-size: 42rpx;
   line-height: 48rpx;
+}
+
+.recipe-detail__description .h1 {
+  font-size: 38rpx;
 }
 
 .recipe-detail__description .rich-img,
