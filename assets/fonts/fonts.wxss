@@ -102,55 +102,55 @@ page {
 
 /* Fonts Class - Family */
 .gilroy {
-  font-family: "gilroy";
+  font-family: "gilroy", "arial";
   font-weight: 400;
 }
 
 .gilroy_500 {
-  font-family: "gilroy";
+  font-family: "gilroy", "arial";
   font-weight: 500;
 }
 
 .gilroy_700 {
-  font-family: "gilroy";
+  font-family: "gilroy", "arial";
   font-weight: 700;
 }
 
 .gilroy_800 {
-  font-family: "gilroy";
+  font-family: "gilroy", "arial";
   font-weight: 800;
 }
 
 .gilroy_900 {
-  font-family: "gilroy";
+  font-family: "gilroy", "arial";
   font-weight: 900;
 }
 
 .nunito {
-  font-family: "nunito";
+  font-family: "nunito", "arial";
 }
 
 .nunito_300 {
-  font-family: "nunito";
+  font-family: "nunito", "arial";
   font-weight: 300;
 }
 
 .nunito_600 {
-  font-family: "nunito";
+  font-family: "nunito", "arial";
   font-weight: 600;
 }
 
 .nunito_700 {
-  font-family: "nunito";
+  font-family: "nunito", "arial";
   font-weight: 700;
 }
 
 .nunito_800 {
-  font-family: "nunito";
+  font-family: "nunito", "arial";
   font-weight: 800;
 }
 
 .nunito_900 {
-  font-family: "nunito";
+  font-family: "nunito", "arial";
   font-weight: 900;
 }
