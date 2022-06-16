@@ -170,6 +170,7 @@ class SessionClass {
 
   // Get user info from database
   async refreshUserInfo(page) {
+    if (!app.db.get('userInfo').token) return;
     const getProfileCallback = res => {
       let user = app.db.get('userInfo');
       user.customer = res.user;

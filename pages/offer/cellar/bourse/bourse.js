@@ -87,7 +87,7 @@ Page({
 
   // Mobile login
   getPhoneNumber: async function(e) {
-    await app.sessionUtils.smobileLogin(this, e.detail.code);
+    await app.sessionUtils.mobileLogin(this, e.detail.code);
     this.checkout();
   },
 
