@@ -160,10 +160,19 @@
 }
 
 .lotteries_prize .offer-lottery {
-  padding: 24rpx 0;
+  height: calc(100% - 30rpx - 12rpx);
+  padding: 24rpx 0 48rpx;
   background: #2E3037;
   border: 0;
   border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.lotteries_prize .offer-lottery .offer-lottery_gift {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .lotteries_prize .offer-lottery .offer-lottery_status {
@@ -174,6 +183,10 @@
   border-radius: 30px;
 }
 
+.lotteries_prize .draw__container {
+  height: 100%;
+}
+
 .lotteries_prize .draw__container .offer-lottery_title {
   padding-bottom: 24rpx;
   font-size: 20rpx;
@@ -181,7 +194,7 @@
 }
 
 .lotteries_prize .draw__container .offer-lottery_detail {
-  min-height: 60rpx;
+  /* min-height: 60rpx; */
   padding: 0 66rpx;
 }
 
@@ -217,14 +230,14 @@
 /* Winner */
 .lotteries_prize .offer-lottery .offer-lottery_winner {
   width: 100%;
-  min-height: 122rpx;
+  height: 100%;
+  min-height: 74rpx;
   margin-top: 24rpx;
-  padding-top: 24rpx;
-  box-sizing: border-box;
-  border-top: 1px solid #42444D;
+  padding-top: 48rpx;
   display: flex;
   justify-content: center;
-  align-items: center;
+  box-sizing: border-box;
+  border-top: 1px solid #42444D;
 }
 
 .lotteries_prize .offer-lottery .offer-lottery_winner .winner-label {

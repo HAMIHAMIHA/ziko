@@ -33,32 +33,34 @@
       <view class="draw__container {{ draw.unlocked ? 'unlocked' : 'locked' }}" wx:if="{{ index > 0 }}">
         <view class="nunito_700 uppercase draw-label">{{ _t.draw }} {{ index }}</view>
         <view class="flex-center offer-lottery">
-          <view class="uppercase nunito_700 offer-lottery_status">{{ draw.unlocked ? _t.unlocked : _t.locked }}</view>
-          <view class="nunito_500 uppercase offer-lottery_title">
-            <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ draw.conditionValue }} {{ _t.orders }}</text>
-            <text wx:else>{{ draw.conditionValue }} {{ _t.offer_special_names.items_sold }}</text>
-          </view>
+          <!-- <view class="offer-lottery_gift"> -->
+            <view class="uppercase nunito_700 offer-lottery_status">{{ draw.unlocked ? _t.unlocked : _t.locked }}</view>
+            <view class="nunito_500 uppercase offer-lottery_title">
+              <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ draw.conditionValue }} {{ _t.orders }}</text>
+              <text wx:else>{{ draw.conditionValue }} {{ _t.offer_special_names.items_sold }}</text>
+            </view>
 
-          <view class="offer-lottery_image">
-            <image src="{{ _folders.gifts + draw.gift.picture.uri }}" wx:if="{{ draw.gift.picture }}"/>
-            <view class="icon icon-gift" wx:else></view>
-          </view>
+            <view class="offer-lottery_image">
+              <image src="{{ _folders.gifts + draw.gift.picture.uri }}" wx:if="{{ draw.gift.picture }}"/>
+              <view class="icon icon-gift" wx:else></view>
+            </view>
 
-          <view class="offer-lottery_detail">
-            <block wx:for="{{ draw.gifts }}" wx:for-item="gift" wx:key="_id">
-              <text wx:if="{{ index > 0 }}"> + </text>
-              <text wx:if="{{ gift.type === 'pack' }}">{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[gift.pack] }}{{ _t.offer_special_details.for_free.suffix }}</text>
-              <text wx:if="{{ gift.type === 'add_on' }}">{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[gift.singleItem] }}{{ _t.offer_special_details.for_free.suffix }}</text>
-              <text wx:if="{{ gift.type === 'voucher' }}">￥{{ gift.voucherValue }}{{ _t.offer_special_details.voucher }}</text>
-              <text wx:if="{{ gift.type === 'discount' }}">{{ gift.discountAmount }}{{ _t.offer_special_details.discount }}</text>
-              <text wx:if="{{ gift.type === 'custom' }}">{{ gift.custom[_t._language] }}</text>
-            </block>
+            <view class="offer-lottery_detail">
+              <block wx:for="{{ draw.gifts }}" wx:for-item="gift" wx:key="_id">
+                <text wx:if="{{ index > 0 }}"> + </text>
+                <text wx:if="{{ gift.type === 'pack' }}">{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[gift.pack] }}{{ _t.offer_special_details.for_free.suffix }}</text>
+                <text wx:if="{{ gift.type === 'add_on' }}">{{ _t.offer_special_details.for_free.prefix }}{{ _product_names[gift.singleItem] }}{{ _t.offer_special_details.for_free.suffix }}</text>
+                <text wx:if="{{ gift.type === 'voucher' }}">￥{{ gift.voucherValue }}{{ _t.offer_special_details.voucher }}</text>
+                <text wx:if="{{ gift.type === 'discount' }}">{{ gift.discountAmount }}{{ _t.offer_special_details.discount }}</text>
+                <text wx:if="{{ gift.type === 'custom' }}">{{ gift.custom[_t._language] }}</text>
+              </block>
+            <!-- </view> -->
           </view>
 
           <!-- Winner block -->
           <view class="offer-lottery_winner">
             <view class="nunito_600 uppercase winner-label winner-empty" wx:if="{{ draw.winners.length === 0 }}">{{ _t.no_winner_yet }}</view>
-            <view wx:else>
+            <view class="winner-info" wx:else>
               <view class="nunito_600 uppercase winner-label">{{ _t.winner }}</view>
               <block wx:for="{{ draw.winners }}" wx:key="_id" wx:for-item="winner">
                 <view class="winner_container">

@@ -25,7 +25,7 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=62a8453d08fbdb60891e17a0",
+          "query": "id=6287412f46f8d03e5d203515",
           "launchMode": "default",
           "scene": null
         },
@@ -39,7 +39,7 @@
         {
           "name": "Bourse",
           "pathName": "pages/offer/cellar/bourse/bourse",
-          "query": "id=62a8497a08fbdb60891e1838",
+          "query": "id=6292fb35b745dafb1941e837",
           "launchMode": "default",
           "scene": null
         },
