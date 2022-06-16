@@ -6,6 +6,7 @@ const validate_keys = ['name', 'phone'];
 
 // Get user profile
 async function getUserInfo(page) {
+  showLoading(true);
   let user = await app.sessionUtils.refreshUserInfo(null);
 
   // Set default address info

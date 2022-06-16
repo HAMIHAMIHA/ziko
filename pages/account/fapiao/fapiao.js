@@ -13,7 +13,6 @@ Page({
   onShow: async function () {
     let self = this;
     let i18n = app.globalData.i18n;
-
     // Change page nav title
     wx.setNavigationBarTitle({
       title: i18n.fapiao
@@ -21,6 +20,7 @@ Page({
 
     // Refreshing user info
     if (need_refresh) {
+      showLoading(true);
       let user = await app.sessionUtils.refreshUserInfo(null);
       self.setData({
         fapiao: user.fapiaoInformation ? user.fapiaoInformation : '',
