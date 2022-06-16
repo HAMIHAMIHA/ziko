@@ -196,7 +196,7 @@ const _filterOfferData = (page, filter_group, filter_id, filter_date) => {
       lotteries = res;
 
       // Get user orders if user is logged in
-      if (page.data.user.id) {
+      if (page.data.user?.id) {
         app.api.getOrders({
           filter_str: `channel=miniprogram&paymentStatus=paid`
         }).then( res => {

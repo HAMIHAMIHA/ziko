@@ -55,7 +55,7 @@ class SessionClass {
   // Get open id for user
   async getOpenId() {
     let session = await _getOpenIdSession();
-    if (!session || app.db.get('userInfo')?.customer?.openid) return;
+    if (session && app.db.get('userInfo')?.customer?.openid) return;
 
     let open_code = await _wxOpenId();
     app.api.wxOpenid({ code: open_code.code }).then(res => {
