@@ -15,7 +15,7 @@
       </view>
       <view class="content-image_container">
         <image class="content-image_background" src="/assets/images/starBackground.png" mode="aspectFill"></image>
-        <image class="content-image" src="{{ draw.gifts[_current].picture }}" mode="aspectFit" wx:if="{{ draw.gift.picture }}"></image>
+        <image class="content-image" src="{{ draw.gifts[_current].picture }}" mode="aspectFit" wx:if="{{ draw.gifts[_current].picture }}"></image>
         <view class="content-image icon icon-gift" wx:else></view>
       </view>
 

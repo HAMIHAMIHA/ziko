@@ -41,7 +41,7 @@
             </view>
 
             <view class="offer-lottery_image">
-              <image src="{{ _folders.gifts + draw.gift.picture.uri }}" wx:if="{{ draw.gift.picture }}"/>
+              <image src="{{ _folders.custom_image + draw.gifts[0].customImage.uri }}" wx:if="{{ draw.gifts[0].customImage }}"/>
               <view class="icon icon-gift" wx:else></view>
             </view>
 

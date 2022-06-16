@@ -11,6 +11,7 @@ Component({
 
   data: {
     _folders: {
+      custom_image: app.folders.custom_image,
       profile_picture: app.folders.customer_picture
     },
     _routes: {

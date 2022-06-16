@@ -8,7 +8,7 @@ const SUBSCRIBE_SPECIAL_GIFT = "ngdzPAw-FqzVyPgwmaQRk5AITV69LEhYtoT4n5KC_6o";
 module.exports = {
   api_url: API_URL,
   folders: {
-    custom_image: `${FILE_URL}custom-image/`,
+    custom_image: `${FILE_URL}gift-image/`,
     customer_picture: `${FILE_URL}customer-picture/`,
     asset: `${FILE_URL}asset/`,
     fapiao_image: `${FILE_URL}fapiao-image/`,
