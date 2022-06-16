@@ -6,7 +6,7 @@ const app = getApp();
 
 const pickers = {
   community: ['all', 'cellar', 'farm', 'kitchen', 'pet'],
-  order_status: ['all', 'delivered', 'on_the_way', 'prepared', 'delayed'],
+  order_status: ['all', 'delivered', 'on_the_way', 'prepared'],
 }
 const PAGE_RANGE = 10;
 
@@ -166,8 +166,14 @@ const getOrders = (page) => {
   community_id = community_id ? community_id : ''; // Remove undefined
   let order_status = current.order_status;
 
+  // Tracking status filter
+  let tracking_filter_str = `trackingStatus=${ order_status }`;
+  if (order_status === 'prepared') {
+    tracking_filter_str = `filter={"$or":[{"trackingStatus":"prepared"},{"trackingStatus":"delayed"}]}`;
+  }
+
   let filter = {
-    filter_str: `channel=miniprogram&community=${ community_id }&trackingStatus=${ order_status }&range=[${current_load}, ${ current_load + PAGE_RANGE - 1}]`,
+    filter_str: `${tracking_filter_str}&channel=miniprogram&community=${ community_id }&range=[${current_load}, ${ current_load + PAGE_RANGE - 1}]`,
   }
 
   app.api.getOrders(filter).then(callback);

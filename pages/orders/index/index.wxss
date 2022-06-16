@@ -57,6 +57,8 @@
   font-size: 20rpx;
   line-height: 24rpx;
   border-radius: 4px;
+  white-space: nowrap;
+  align-self: flex-start;
 }
 
 .order-info .order-status.status-delayed {
