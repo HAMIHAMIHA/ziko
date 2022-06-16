@@ -82,7 +82,7 @@ Page({
     language: app.db.get('language')
   },
 
-  onShow: function () {
+  onShow: async function () {
     const self = this;
 
     // Change page nav title
@@ -97,12 +97,14 @@ Page({
     app.globalData.pause_lottery_check = false;
 
     // Set user Data
-    app.sessionUtils.getUserInfo(self);
+    showLoading(true)
+    await app.sessionUtils.getUserInfo(self);
 
     // Page Data (order + vouchers)
     if (app.db.get('userInfo')?.token) {
       _getPageData(self);
     }
+    showLoading(false);
   },
 
   // Get Profile info
