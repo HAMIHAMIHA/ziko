@@ -113,7 +113,7 @@ Page({
         area: i18n.area,
         contact: i18n.contact,
         city: i18n.city,
-        comment: i18n.comment,
+        comment: i18n.address_comment,
         delete: i18n.delete,
         phone_no: i18n.phone_no,
         save: i18n.save,
