@@ -2,6 +2,45 @@ const { showLoading } = require("../../../utils/common.js");
 
 const app = getApp();
 
+const _setPageTranslation = page => {
+  let i18n = app.globalData.i18n;
+
+  // Format picker values based on langauge
+  let type_picker = [];
+  pet_pickers.type.forEach( type => {
+    type_picker.push(i18n.pet_type[type]);
+  })
+
+  let size_picker = [];
+  pet_pickers.size.forEach( size => {
+    size_picker.push(i18n.pet_size[size]);
+  })
+  
+  // Set page translation
+  page.setData({
+    _t: {
+      add_contact: i18n.add_contact,
+      add_pet: i18n.add_pet,
+      contact_info: i18n.contact_info,
+      name: i18n.name,
+      pet: i18n.pet,
+      pet_type: i18n.pet_type,
+      pet_size: i18n.pet_size,
+      phone_no: i18n.phone_no,
+      profile_info: i18n.profile_info,
+      save: i18n.save,
+      size: i18n.size,
+      type: i18n.type,
+    },
+
+    // Picker formated for selector
+    _picker: {
+      pet_type: type_picker,
+      pet_size: size_picker,
+    }
+  })
+}
+
 const pet_pickers = {
   type: ["cat", "dog", "bird", "rabbit", "other"],
   size: ["small", "middle", "large"]
@@ -40,7 +79,7 @@ Page({
     }
   },
 
-  onShow: function () {
+  onShow: async function () {
     const self = this;
     let i18n = app.globalData.i18n;
 
@@ -52,63 +91,31 @@ Page({
     // Restart lottery popup
     app.globalData.pause_lottery_check = false;
 
-    // Format picker values based on langauge
-    let type_picker = [];
-    for (var type in pet_pickers.type) {
-      let type_variable = pet_pickers.type[type];
-      type_picker.push(i18n.pet_type[type_variable]);
-    }
+    _setPageTranslation(self);
 
-    let size_picker = [];
-    for (var size in pet_pickers.size) {
-      let size_variable = pet_pickers.size[size];
-      size_picker.push(i18n.pet_size[size_variable]);
-    }
-
-    // Set page translation
-    self.setData({
-      _t: {
-        add_contact: i18n.add_contact,
-        add_pet: i18n.add_pet,
-        contact_info: i18n.contact_info,
-        name: i18n.name,
-        pet: i18n.pet,
-        pet_type: i18n.pet_type,
-        pet_size: i18n.pet_size,
-        phone_no: i18n.phone_no,
-        profile_info: i18n.profile_info,
-        save: i18n.save,
-        size: i18n.size,
-        type: i18n.type,
-      },
-
-      // Picker formated for selector
-      _picker: {
-        pet_type: type_picker,
-        pet_size: size_picker,
-      }
-    })
-
-    // TODO get user info
-    let user = app.db.get('userInfo').customer; // TEMP
+    // Get user info
+    showLoading(true);
+    let user = await app.sessionUtils.refreshUserInfo(self);
 
     // Get pet picker locations
     let _picker_select = [];
-    for (var i in user.pets) {
-      let type = pet_pickers.type.indexOf(user.pets[i].type);
-      let size = pet_pickers.size.indexOf(user.pets[i].size);
+    user.pets.forEach( pet => {
+      let type = pet_pickers.type.indexOf(pet.type);
+      let size = pet_pickers.size.indexOf(pet.size);
 
       _picker_select.push({
         type: `${type}`,
         size: `${size}`
       })
-    }
+    })
 
     self.setData({
       name: user.name,
       pets: user.pets,
       _picker_select: _picker_select
     })
+
+    showLoading(false);
   },
 
   // Set input to data
