@@ -42,7 +42,7 @@ export const languageMap_en = {
 
   // C
   cart: "Cart",
-  checkout_message:"If you need to change delivery date or other information after purchase please contact the Customer service",
+  checkout_message:"Need any help?",
   choose_delivery_date:"Choose delivery date",
   chosen_delivery_date:"Chosen delivery date",
   city:"City",
@@ -64,7 +64,7 @@ export const languageMap_en = {
   contact: "Contact",
   contacts: "Contacts",
   contact_empty: "Contact is not selected",
-  contact_customer_hero:"Need any help?",
+  contact_customer_hero: "Contact our customer hero!",
   contact_label:"Contact",
   contact_info:"Contact information",
   contains_items: "Contain items:",
@@ -338,7 +338,7 @@ export const languageMap_en = {
     regular: "",
   },
   prize_will_be_delivered: "Your price will be delivered with your order.",
-  problem_with_order: "Is there a problem with your order?",
+  problem_with_order: "Need any help?",
   product_detail: "Product detail",
   products: "products",
   products_left: {
@@ -525,7 +525,7 @@ export const languageMap_zh = {
   contact:"联系我们",
   contacts: "Contacts",
   contact_empty: "Contact is not selected",
-  contact_customer_hero:"Need any help?",
+  contact_customer_hero: "Contact our customer hero!",
   contact_label:"Contact",
   contact_info:"Contact information",
   contains_items: "Contain items:",
