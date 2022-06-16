@@ -31,6 +31,12 @@ App({
     self.sessionUtils = new SessionClass(self);
     await self.sessionUtils.getOpenId();
     await self.sessionUtils.refreshUserToken();
+
+    // Get lottery and save info for account page usage  
+    if (db.get('userInfo').token) {
+      self.checkForLotteryNotification();
+      self.setAccountStatus();
+    }
   },
 
   checkForLotteryNotification: function() {
