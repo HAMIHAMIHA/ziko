@@ -19,7 +19,8 @@
           <!-- Single Products Detail -->
           <view class="nunito_300 product-detail_container" wx:else>
             <text>{{ list_item.product.storageType && list_item.product.storageType != 'none' ? '(' + _t.storage_types[list_item.product.storageType] + ') ' : '' }}</text>
-            <text wx:if="{{ list_item.weight }}">{{ list_item.quantity ? list_item.quantity + ' x ' + list_item.weight + _t.units : list_item.weight + _t.units }}</text>
+            <text wx:if="{{ list_item.weight && list_item.weightType }}">{{ list_item.quantity ? list_item.quantity + ' x ' + list_item.weight + list_item.weightType : list_item.weight + list_item.weightType }}</text>
+            <text wx:elif="{{ list_item.weight }}">{{ list_item.quantity ? list_item.quantity + ' x ' + list_item.weight + _t.units : list_item.weight + _t.units }}</text>
             <text wx:else>{{ list_item.quantity ? list_item.quantity > 1 ? list_item.quantity +  _t.items_unit : list_item.quantity + _t.item_unit : '' }}</text>
           </view>
           <!-- End of Single Products Detail -->

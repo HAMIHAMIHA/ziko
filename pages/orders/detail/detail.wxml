@@ -22,7 +22,8 @@
               <!-- Single Products Detail -->
               <view class="product-detail_container" wx:else>
                 <text>{{ product.product.storageType && product.product.storageType != 'none' ? '(' + _t.storage_types[product.product.storageType] + ') ' : '' }}</text>
-                <text wx:if="{{ product.weight }}">{{ product.quantity ? product.quantity + ' x ' + product.weight + _t.units : product.weight + _t.units }}</text>
+                <text wx:if="{{ product.weight && product.weightType }}">{{ product.quantity ? product.quantity + ' x ' + product.weight + product.weightType : product.weight + product.weightType }}</text>
+                <text wx:elif="{{ product.weight }}">{{ product.quantity ? product.quantity + ' x ' + product.weight + _t.units : product.weight + _t.units }}</text>
                 <text wx:else>{{ product.quantity ? product.quantity > 1 ? product.quantity +  _t.items_unit : product.quantity + _t.item_unit : '' }}</text>
               </view>
               <!-- End of Single Products Detail -->

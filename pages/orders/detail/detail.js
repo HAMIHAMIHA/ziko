@@ -87,7 +87,7 @@ const getOrders = (page) => {
       item = _getPrices(item, res.offer);
       item.products.forEach( product => {
         details.push(
-          `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? units : product.quantity == 1 ? item_unit : items_unit }`
+          `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? (product.weightType ? product.weightType : units) : (product.quantity == 1 ? item_unit : items_unit) }`
         );
       })
       item.products_info = details.join(', ');
@@ -106,7 +106,7 @@ const getOrders = (page) => {
         let product_idx = offer.miniprogram.items.findIndex( i => i.shortName === gift.singleItem);
         let prod = offer.miniprogram.items[product_idx];
         let prod_info = prod.product.storageType != 'none' ? `(${ i18n.storage_types[prod.product.storageType] }) ` : '';
-        let units = i18n.units[communities[offer.community]];
+        let units = prod.product.weightType ? prod.product.weightType : i18n.units[communities[offer.community]];
 
         if (prod.weight) {
           prod_info += prod.quantity ? `${ prod.quantity } x ${ prod.weight }${ units }` : `${ prod.weight }${ units }`;

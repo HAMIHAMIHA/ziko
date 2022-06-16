@@ -160,7 +160,7 @@ export const packProductDetail = function(offer) {
 
     item.products.forEach( product => {
       details.push(
-        `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? units : product.quantity == 1 ? item_unit : items_unit }`
+        `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? (product.weightType ? product.weightType : units) : (product.quantity == 1 ? item_unit : items_unit) }`
       );
     })
     item.products_info = details.join(', ');
