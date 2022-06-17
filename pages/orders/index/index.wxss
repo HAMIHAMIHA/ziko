@@ -61,16 +61,17 @@
   align-self: flex-start;
 }
 
-.order-info .order-status.status-delayed {
+/* .order-info .order-status.status-delayed {
   background: #FF4040;
   color: #FFE3E3;
-}
+} */
 
 .order-info .order-status.status-delivered {
   background: #1890FF;
   color: #DDEFFF;
 }
 
+.order-info .order-status.status-delayed,
 .order-info .order-status.status-prepared {
   background: #00CB45;
   color: #DDFFE4;

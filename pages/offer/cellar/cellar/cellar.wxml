@@ -1,7 +1,7 @@
 <import src="../../../../templates/offer/products.wxml" />
 <import src="../../../../templates/offer/payButton.wxml" />
 
-<view class="container ziko-offer {{ 'community-' + _offer.community }}{{ next_special ? ' bottom-message' : '' }}">
+<view class="container ziko-offer {{ 'community-' + _offer.community }}{{ next_special ? ' bottom-message' : '' }}{{ _offer.type === 'free_fall' ? ' bottom-alert' : '' }}">
   <!-- Lottery Alert -->
   <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ next_lottery }}">
     <view class="icon icon-flash"></view>
@@ -220,7 +220,7 @@
   <!-- Pay Button -->
   <template
     is="payment_container"
-    data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
+    data="{{ _show_alert: _offer.type === 'free_fall', _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
   ></template>
   <!-- End of Pay Button -->
 </view>

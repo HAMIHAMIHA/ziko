@@ -1,7 +1,7 @@
 <import src="../../../../templates/offer/products.wxml" />
 <import src="../../../../templates/offer/payButton.wxml" />
 
-<view class="container ziko-offer {{ 'community-' + _offer.community }}{{ next_special ? ' bottom-message' : '' }}">
+<view class="container ziko-offer {{ 'community-' + _offer.community }}{{ next_special ? ' bottom-message' : '' }}{{ _bourse_info.progress < 100 ? ' bottom-alert' : '' }}">
   <!-- Lottery Alert -->
   <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ next_lottery }}">
     <view class="icon icon-flash"></view>
@@ -252,15 +252,10 @@
     </view>
   </view>
 
-  <view class="bourse-alert" wx:if="{{ _bourse_info.progress < 100 }}">
-    <view class="icon icon-alert"></view>
-    <view class="nunito_500 bourse-alert_message">{{ _t.bourse_payment_message }}</view>
-  </view>
-
   <!-- Pay Button -->
   <template
     is="payment_container"
-    data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
+    data="{{ _show_alert: _bourse_info.progress < 100, _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
   ></template>
   <!-- End of Pay Button -->
 </view>

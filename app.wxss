@@ -170,6 +170,27 @@ image {
   background: #FF91B5;  
 }
 
+/* Bourse Alert */
+.bourse-alert {
+  margin: 0 30rpx 32rpx;
+  padding: 12rpx 14rpx;
+  background: #FF4040;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.bourse-alert .icon {
+  padding-right: 10rpx;
+  font-size: 32rpx;
+}
+
+.bourse-alert .bourse-alert_message {
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+/* End of Alert */
+
 /* Button Bottom */
 .container-btn-bottom .btn-bottom button,
 .btn-primary,
@@ -882,21 +903,29 @@ button:not([size=mini]).float-contact_container {
 
 /* Offer Payment */
 .ziko-offer:not(.ziko-product) {
-  --message-height: calc(28rpx + 14rpx + 14rpx);
-  padding-bottom: calc(106rpx + var(--env-));
+  --message-height: 0px;
+  --bottom-alert: 0px;
+  padding-bottom: calc(106rpx + var(--message-height) + var(--bottom-alert) + var(--env-));
   position: relative;
 }
 
 .ziko-offer.bottom-message {
-  padding-bottom: calc(106rpx + var(--message-height) + var(--env-));
+  --message-height: calc(28rpx + 14rpx + 14rpx);
+}
+
+.ziko-offer.bottom-alert {
+  --bottom-alert: calc(32rpx + 32rpx + 32rpx + 12rpx + 12rpx);
 }
 
 .ziko-offer .offer-payment {
   width: 100%;
   padding-bottom: var(--env-);
-  background: #0A0B12;
   position: fixed;
   bottom: 0;
+}
+
+.ziko-offer .offer-payment .payment-message_container {
+  background: #0A0B12;
 }
 
 .ziko-offer .offer-payment .payment-message {

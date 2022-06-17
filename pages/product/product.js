@@ -74,19 +74,22 @@ const getProductDetail = page => {
 
     // Get total weight if pack
     let general_unit = app.globalData.i18n.units[community];
-    let total_weight = 0;
+    // let total_weight = 0;
     if (type == 'pack') {
-      for (var i in product.products) {
-        let item = product.products[i];
-        total_weight += item.weight * item.quantity;
+      let weights = {};
+
+      product.products.forEach(item => {
+        let weight_total = weights[item.weightType] ? weights[item.weightType] : 0;
+        weight_total += item.weight * item.quantity;
+        weights[item.weightType] = weight_total;
+      })
+
+      if (community != 'cellar' && weights.g >= 1000) {
+        weights.kg = Math.round(weights.g / 1000 * 100) / 100;
+        delete weights.g;
       }
 
-      if (community != 'cellar' && total_weight >= 1000) {
-        total_weight = Math.round(total_weight / 1000 * 100) / 100;
-        general_unit = app.globalData.i18n.units.kg;
-      }
-
-      product.weight = total_weight;
+      product.weights = Object.keys(weights).map((key) => { return { unit: (key), weight: weights[key] }});
     }
 
     // Get user data

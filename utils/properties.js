@@ -26,4 +26,18 @@ module.exports = {
     lottery_draw: SUBSCRIBE_LOTTERY_DRAW,
   },
   tabbars: ["home", "orders", "explore", "lottery", "account"],
+  fonts: [
+    { family: "gilroy", source: `${FILE_URL}fonts/Gilroy-Regular.otf`, weight: "400" },
+    { family: "gilroy", source: `${FILE_URL}fonts/Gilroy-Medium.otf`, weight: "500" },
+    { family: "gilroy", source: `${FILE_URL}fonts/Gilroy-Bold.otf`, weight: "700" },
+    { family: "gilroy", source: `${FILE_URL}fonts/Gilroy-ExtraBold.otf`, weight: "800" },
+    { family: "gilroy", source: `${FILE_URL}fonts/Gilroy-Black.otf`, weight: "900" },
+    { family: "gilroy", source: `${FILE_URL}fonts/Gilroy-Heavy.otf`, weight: "900" },
+    { family: "nunito", source: `${FILE_URL}fonts/Nunito-Light.ttf`, weight: "300" },
+    { family: "nunito", source: `${FILE_URL}fonts/Nunito-Regular.ttf`, weight: "400" },
+    { family: "nunito", source: `${FILE_URL}fonts/Nunito-SemiBold.ttf`, weight: "600" },
+    { family: "nunito", source: `${FILE_URL}fonts/Nunito-Bold.ttf`, weight: "700" },
+    { family: "nunito", source: `${FILE_URL}fonts/Nunito-ExtraBold.ttf`, weight: "800" },
+    { family: "nunito", source: `${FILE_URL}fonts/Nunito-Black.ttf`, weight: "900" },
+  ]
 }

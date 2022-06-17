@@ -56,7 +56,7 @@
       </view>
       <view class="recipe-general__detail">
         <view class="recipe-general__label">{{ _t.servings }}</view>
-        <view class="nunito_600 recipe-general_valuel">
+        <view class="nunito_600 recipe-general__value">
           {{ _recipe.serving }}
         </view>
       </view>

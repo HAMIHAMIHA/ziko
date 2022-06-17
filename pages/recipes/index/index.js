@@ -3,8 +3,6 @@ const app = getApp();
 const { showLoading } = require('../../../utils/common.js');
 const { findIndex } = require('../../../utils/util.js');
 
-const PAGE_RANGE = 5;
-let current_load = 0;
 let rand_number = -1;
 
 // Set Translation text
@@ -39,14 +37,11 @@ const _getRecipes = (page, is_new) => {
   let recipes = page.data.recipes;
   const recipeCallback = res => {
     recipes = recipes.concat(res);
-    current_load += res.length;
     if (is_new || rand_number >= recipes.length) {
       rand_number = Math.floor(Math.random() * recipes.length);
     }
 
-    if (res.length) {
-      page.selectComponent('#recipes-component').updateRecipes(res);
-    }
+    page.selectComponent('#recipes-component').updateRecipes(recipes);
 
     page.setData({
       recipes,
@@ -77,19 +72,12 @@ const _getRecipes = (page, is_new) => {
   }
 
   // Get pinned recipes
-  let next_end = current_load + PAGE_RANGE;
-
-  if (page.data.recipes.length < next_end) {
-    app.api.getRecipes({ detail: `${suffix}&pinTop=true` }).then( res => {
-      recipes = res;
-      current_load += res.length;
-
-      if (next_end > current_load) {
-        // Get rest of recipes
-        app.api.getRecipes({ detail: `${suffix}&pinTop=false` }).then(recipeCallback)
-      }
-    })
-  }
+  app.api.getRecipes({ detail: `${suffix}&pinTop=true` }).then( res => {
+    recipes = res;
+    console.log(res);
+    // Get rest of recipes
+    app.api.getRecipes({ detail: `${suffix}&pinTop=false` }).then(recipeCallback)
+  })
 }
 
 // Init get page data
@@ -245,7 +233,6 @@ Page({
     self.setData({
       recipes: [],
     })
-    current_load = 0;
     _getRecipes(self, false);
   },
 
@@ -286,7 +273,6 @@ Page({
     self.setData({
       recipes: [],
     })
-    current_load = 0;
     _getRecipes(self, false);
   },
 
@@ -295,7 +281,6 @@ Page({
     self.setData({
       recipes: [],
     })
-    current_load = 0;
     _getRecipes(self, false);
   },
 

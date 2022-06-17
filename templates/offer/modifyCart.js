@@ -42,6 +42,7 @@ export const modifyCartItems = (page, event, checkout = false) => {
   cart_offer.products[product._id] = {
     amount: new_amount,
     type: type,
+    formerPrice: product.formerPrice,
     price: new_price ? new_price : product.price,
     shortName: product.shortName,
     index_in_offer: event.currentTarget.dataset.idx, 

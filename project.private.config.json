@@ -25,7 +25,7 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=6287412f46f8d03e5d203515",
+          "query": "id=62aaf851db16bafb2c1486f0",
           "launchMode": "default",
           "scene": null
         },
@@ -60,7 +60,8 @@
         {
           "name": "Pack Detail",
           "pathName": "pages/product/product",
-          "query": "id=61dd4fe8e1a38b5729ef4ed5&offer_id=61dd4fe8e1a38b5729ef4ec2&type=pack",
+          "query": "id=62aa9ddd08fbdb60891e3cfd&offer_id=62aaf851db16bafb2c1486f0&type=pack",
+          "launchMode": "default",
           "scene": null
         },
         {

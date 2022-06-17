@@ -289,6 +289,7 @@ export const languageMap_en = {
   order_no: "Order no",
   order_status: {
     all: "All",
+    delayed: "Processing",
     delivered: "Arrived",
     on_the_way: "Delivery in progress",
     paid: "Paid",
@@ -415,7 +416,7 @@ export const languageMap_en = {
   },
 
   // U
-  units: {
+  units: { // TODO remove for offical
     baby:"g",
     cellar:"cl",
     farm:"g",
@@ -751,6 +752,7 @@ export const languageMap_zh = {
   order_no: "Order no",
   order_status: {
     all: "All",
+    delayed: "Processing",
     delivered: "Arrived",
     on_the_way: "Delivery in progress",
     paid: "Paid",
@@ -875,12 +877,12 @@ export const languageMap_zh = {
   },
 
   // U
-  units: {
-    baby:"克",
-    cellar:"厘升",
-    farm:"克",
-    kitchen:"克",
-    pet:"克",
+  units: { // TODO remove for offical
+    baby:"g",
+    cellar:"ml",
+    farm:"g",
+    kitchen:"g",
+    pet:"g",
     kg:"kg",
   },
   unlocked: "Unlocked",
