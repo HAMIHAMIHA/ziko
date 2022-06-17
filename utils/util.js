@@ -44,7 +44,7 @@ export const formatTimer = dateLong => {
   let time = [];
   if (days) time.push(`${days}${_i18n.days}`);
   if (days || hours) time.push(`${formatNumber(hours)}${_i18n.hours}`);
-  time.push(`${formatNumber(minutes)}${_i18n.minutes}`);
+  if ((days && hours) || minutes) time.push(`${formatNumber(minutes)}${_i18n.minutes}`);
   time.push(`${formatNumber(seconds)}${_i18n.seconds}`);
     
   return time.join(":");
