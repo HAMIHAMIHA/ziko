@@ -439,7 +439,6 @@ export async function getOffer(page, offer_id) {
 
     // Set products height on load
     wx.createSelectorQuery().select('#products').boundingClientRect().exec( res => {
-      console.log(res);
       page.setData({
         "_setting.height": `${res[0].height + 12}px`,
       })

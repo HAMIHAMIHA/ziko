@@ -57,12 +57,12 @@ const getOffers = (page, id) => {
         }
       }
 
-      // TEMP using media images to test for banner swiper
-      // if (offer.media.length) {
-      //   offer.media.forEach( m => {
-      //     banners.uri.push(`${app.folders.offer_media}${m.uri}`)
-      //   })
-      // }
+      // Media images for banner swiper
+      if (offer.media.length) {
+        offer.media.forEach( m => {
+          banners.uri.push(`${app.folders.offer_media}${m.uri}`)
+        })
+      }
 
       // Modify offer data to fit page display
       offer.startTime = new Date(offer.startingDate).getTime();

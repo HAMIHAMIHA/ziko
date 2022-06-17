@@ -74,7 +74,6 @@ const _getRecipes = (page, is_new) => {
   // Get pinned recipes
   app.api.getRecipes({ detail: `${suffix}&pinTop=true` }).then( res => {
     recipes = res;
-    console.log(res);
     // Get rest of recipes
     app.api.getRecipes({ detail: `${suffix}&pinTop=false` }).then(recipeCallback)
   })
