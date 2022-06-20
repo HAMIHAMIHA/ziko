@@ -1,6 +1,6 @@
 const { showLoading } = require("../../utils/common.js");
 const { communities } = require("../../utils/constants.js");
-const { findIndex, mapDeliveryDates } = require("../../utils/util.js");
+const { findIndex, mapDeliveryDates, _checkMediaType } = require("../../utils/util.js");
 
 const { checkOfferTicket, getBoursePrice, getRulePrice } = require("./offerRules");
 
@@ -332,7 +332,7 @@ export async function getOffer(page, offer_id) {
     offer.media = [banner, ...offer.media];
 
     offer.media.map( media => {
-      media.type = media.type.match(/^image/ig) ? "image" : media.type.match(/^video/ig) ? "video" : "";
+      media.type = _checkMediaType(media.type);
       media.pause = true;
     });
 
@@ -443,6 +443,16 @@ export async function getOffer(page, offer_id) {
         "_setting.height": `${res[0].height + 12}px`,
       })
     })
+
+    // Autoplay if main image is video
+    if (offer.media[0].type === "video") {
+      let play_data = {
+        currentTarget: {
+          dataset: { index: 0, do_pause: false }
+        }
+      }
+      toggleVideo(page, play_data);
+    }
 
     // Hide loading modal
     showLoading(false);

@@ -1,5 +1,5 @@
 const { showLoading } = require("../../../utils/common.js");
-const { formatWeekDate, mapDeliveryDates } = require("../../../utils/util.js");
+const { formatWeekDate, mapDeliveryDates, _checkMediaType } = require("../../../utils/util.js");
 
 const app = getApp();
 
@@ -84,15 +84,6 @@ const getOffers = (page, id) => {
 
     showLoading(false);
   });
-}
-
-// Check Media type
-const _checkMediaType = type => {
-  if (type.match(/^image/ig)) {
-    return "image";
-  } else if (type.match(/^video/ig)) {
-    return "video";
-  }
 }
 
 const getRecipeDetail = (page, id) => {

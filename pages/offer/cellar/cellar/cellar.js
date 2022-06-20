@@ -61,14 +61,19 @@ Page({
   // Change swiper indicatior
   swiperChange: function(e) {
     const self = this;
-    self.toggleVideo({
+    let data = {
       currentTarget: {
-        dataset: {
-          index: (self.data._setting.swiperIndex - 1),
-          do_pause: true
-        }
+        dataset: { index: (self.data._setting.swiperIndex - 1), do_pause: true }
       }
-    });
+    }
+
+    // Pause current video
+    self.toggleVideo(data);
+
+    // Play next video
+    data.currentTarget.dataset.index = e.detail.current;
+    data.currentTarget.dataset.do_pause = false;    
+    self.toggleVideo(data);
 
     self.setData({
       "_setting.swiperIndex": (e.detail.current) + 1,
