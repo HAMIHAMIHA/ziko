@@ -94,3 +94,12 @@ export const mapDeliveryDates = dates => {
     return res;
   }).join(', ');
 }
+
+// Check Media type
+export const _checkMediaType = type => {
+  if (type.match(/^image/ig)) {
+    return "image";
+  } else if (type.match(/^video/ig)) {
+    return "video";
+  }
+}

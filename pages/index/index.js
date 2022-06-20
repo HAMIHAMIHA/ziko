@@ -1,6 +1,6 @@
 const { showLoading } = require("../../utils/common.js");
 const index_data = require("../../utils/constants.js");
-const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../utils/util.js");
+const { formatWeekDate, findIndex, mapDeliveryDates, _checkMediaType } = require("../../utils/util.js");
 
 const app = getApp();
 let leave_triggered = false; // To track if leave page already triggered
@@ -134,20 +134,32 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
         days.push(date_value);
       }
 
-      let banners = { index: 0, uri: [] };
+      let banners = { index: 0, uris: [] };
       let other_banner = { zh: 'en', en: 'zh' };
       if (offer.banner) {
         if (offer.banner[app.db.get('language')]) {
-          banners.uri.push(`${app.folders.offer_banner}${offer.banner[app.db.get('language')]?.uri}`);
+          banners.uris.push({
+            uri: `${app.folders.offer_banner}${offer.banner[app.db.get('language')].uri}`,
+            type: _checkMediaType(offer.banner[app.db.get('language')].type),
+            pause: true
+          });
         } else if (offer.banner[other_banner[app.db.get('language')]]) {
-          banners.uri.push(`${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`)
+          banners.uris.push({
+            uri: `${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`,
+            type: _checkMediaType(offer.banner[other_banner[app.db.get('language')]].type),
+            pause: true
+          })
         }
       }
 
       // Media images for banner swiper
       if (offer.media.length) {
         offer.media.forEach( m => {
-          banners.uri.push(`${app.folders.offer_media}${m.uri}`)
+          banners.uris.push({
+            uri: `${app.folders.offer_media}${m.uri}`,
+            type: _checkMediaType(m.type),
+            pause: true,
+          })
         })
       }
 
