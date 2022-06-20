@@ -1,7 +1,7 @@
 const app = getApp();
 
 const { showLoading } = require('../../../utils/common.js');
-const { findIndex } = require('../../../utils/util.js');
+const { findIndex, _checkMediaType } = require('../../../utils/util.js');
 
 let rand_number = -1;
 
@@ -40,6 +40,15 @@ const _getRecipes = (page, is_new) => {
     if (is_new || rand_number >= recipes.length) {
       rand_number = Math.floor(Math.random() * recipes.length);
     }
+
+    // Check if main picture is video
+    recipes.map( r => {
+      r.mainPicture = {
+        uri: `${ app.folders.recipe_picture }${ r.mainPicture[app.db.get('language')].uri }`,
+        type: _checkMediaType(r.mainPicture[app.db.get('language')].type),
+        pause: true,
+      };
+    })
 
     page.selectComponent('#recipes-component').updateRecipes(recipes);
 

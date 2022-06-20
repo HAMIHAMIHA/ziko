@@ -9,9 +9,6 @@ Component({
     _routes: {
       recipe: app.routes.recipe
     },
-    _folders: {
-      recipe_picture: app.folders.recipe_picture
-    }
   },
 
   options: {

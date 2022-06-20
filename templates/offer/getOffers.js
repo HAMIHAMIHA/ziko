@@ -105,6 +105,16 @@ const _getRecipes = (page, offer) => {
   let recipes = [];
   const recipeCallback = res => {
     recipes = recipes.concat(res);
+
+    // Check if main picture is video
+    recipes.map( r => {
+      r.mainPicture = {
+        uri: `${ app.folders.recipe_picture }${ r.mainPicture[app.db.get('language')].uri }`,
+        type: _checkMediaType(r.mainPicture[app.db.get('language')].type),
+        pause: true,
+      };
+    })
+
     page.setData({
       recipes: recipes,
     })

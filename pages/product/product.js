@@ -3,7 +3,7 @@ const { checkOfferTicket, getRulePrice, getBoursePrice } = require('../../templa
 
 const { showLoading } = require('../../utils/common.js');
 const { communities } = require('../../utils/constants.js');
-const { findIndex } = require('../../utils/util.js');
+const { findIndex, _checkMediaType } = require('../../utils/util.js');
 
 const app = getApp();
 const routes = app.routes;
@@ -13,6 +13,16 @@ const _getRecipes = (page, product_item) => {
   let recipes = [];
   const recipeCallback = res => {
     recipes = recipes.concat(res);
+
+    // Check if main picture is video
+    recipes.map( r => {
+      r.mainPicture = {
+        uri: `${ app.folders.recipe_picture }${ r.mainPicture[app.db.get('language')].uri }`,
+        type: _checkMediaType(r.mainPicture[app.db.get('language')].type),
+        pause: true,
+      };
+    })
+
     page.setData({
       recipes: recipes,
     })

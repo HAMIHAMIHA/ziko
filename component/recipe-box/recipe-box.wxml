@@ -1,7 +1,23 @@
 <navigator class="recipe_container" url="{{ _routes.recipe + '?id=' + item.id }}">
   <view class="recipe">
     <view class="recipe-image">
-      <image src="{{ _folders.recipe_picture + item.mainPicture[_t._language].uri }}" mode="widthFix"></image>
+      <block wx:if="{{ item.mainPicture.type === 'image' }}">
+        <image src="{{ item.mainPicture.uri }}" mode="widthFix" lazy-load="true"></image>
+      </block>
+      <block wx:else>
+        <video
+          class="video"
+          src="{{ item.mainPicture.uri }}"
+          object-fit="contain"
+          show-center-play-btn="{{ false }}"
+          show-play-btn="{{ false }}"
+          show-progress="{{ false }}"
+          show-fullscreen-btn="{{ false }}"
+          enable-progress-gesture="{{ false }}"
+        >
+          <view class="video-play icon icon-play" wx:if="{{ item.mainPicture.pause }}"></view>
+        </video>
+      </block>
       <view class="recipe-favourite icon icon-heart" wx:if="{{ show && item.liked }}"></view>
     </view>
     <view class="gilroy_700 uppercase recipe-title">

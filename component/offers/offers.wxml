@@ -28,7 +28,6 @@
               </block>
               <block wx:else>
                 <video
-                  id="banner_video_{{ index }}"
                   class="video"
                   src="{{ banner ? banner.uri : '' }}"
                   object-fit="contain"
