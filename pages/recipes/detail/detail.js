@@ -47,20 +47,32 @@ const getOffers = (page, id) => {
     res.forEach( offer => {
       let date_value = formatWeekDate(offer.startingDate);
 
-      let banners = { index: 0, uri: [] };
+      let banners = { index: 0, uris: [] };
       let other_banner = { zh: 'en', en: 'zh' };
       if (offer.banner) {
         if (offer.banner[app.db.get('language')]) {
-          banners.uri.push(`${app.folders.offer_banner}${offer.banner[app.db.get('language')]?.uri}`);
+          banners.uris.push({
+            uri: `${app.folders.offer_banner}${offer.banner[app.db.get('language')].uri}`,
+            type: _checkMediaType(offer.banner[app.db.get('language')].type),
+            pause: true
+          });
         } else if (offer.banner[other_banner[app.db.get('language')]]) {
-          banners.uri.push(`${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`)
+          banners.uris.push({
+            uri: `${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`,
+            type: _checkMediaType(offer.banner[other_banner[app.db.get('language')]].type),
+            pause: true
+          })
         }
       }
 
       // Media images for banner swiper
       if (offer.media.length) {
         offer.media.forEach( m => {
-          banners.uri.push(`${app.folders.offer_media}${m.uri}`)
+          banners.uris.push({
+            uri: `${app.folders.offer_media}${m.uri}`,
+            type: _checkMediaType(m.type),
+            pause: true,
+          })
         })
       }
 
@@ -101,16 +113,6 @@ const getRecipeDetail = (page, id) => {
     })
     res.media = [res.mainPicture[app.db.get('language')], ...res.otherMedia];
 
-    // Autoplay if main image is video
-    if (res.media[0].type === "video") {
-      let play_data = {
-        currentTarget: {
-          dataset: { index: 0, do_pause: false }
-        }
-      }
-      page.toggleVideo(play_data);
-    }
-
     // Description
     // Replace for en
     res.description.en = res.description.en.replace(/\<h1/gi,  '<h1 class="h1"' );
@@ -128,6 +130,16 @@ const getRecipeDetail = (page, id) => {
     page.setData({
       _recipe: res,
     })
+
+    // Autoplay if main image is video
+    if (res.media[0].type === "video") {
+      let play_data = {
+        currentTarget: {
+          dataset: { index: 0, do_pause: false }
+        }
+      }
+      page.toggleVideo(play_data);
+    }
 
     // Check if user liked this recipe
     app.api.getRecipeLikes({id}).then( res => {
