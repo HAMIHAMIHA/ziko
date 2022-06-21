@@ -3,7 +3,6 @@ const Offers = require('../../../../templates/offer/getOffers.js');
 const ModifyCart = require('../../../../templates/offer/modifyCart.js');
 
 const { bourse_colors } = require('../../../../utils/constants.js');
-const { loadFonts } = require('../../../../utils/fontPreloader.js');
 
 const app = getApp();
 
@@ -23,8 +22,6 @@ Page({
   },
 
   onShow: async function () {
-    await loadFonts();
-
     const self = this;
     // Get Offer
     Offers.getOffer(self, self.options.id);

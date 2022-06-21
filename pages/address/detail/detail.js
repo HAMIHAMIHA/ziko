@@ -15,8 +15,8 @@ const _getAddressAreas = (page, area_id) => {
 
 // Get user profile
 async function getUserInfo(page) {
-    showLoading(true);
-    let user = await app.sessionUtils.refreshUserInfo(null);
+  showLoading(true);
+  let user = await app.sessionUtils.refreshUserInfo(null);
 
   // Set default address info
   let count = Math.max(user.addresses?.length, 0);

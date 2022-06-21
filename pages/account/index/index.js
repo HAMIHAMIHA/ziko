@@ -1,5 +1,4 @@
 const { showLoading } = require('../../../utils/common.js');
-const { loadFonts } = require('../../../utils/fontPreloader.js');
 const translate = require('../../../utils/internationalize/translate.js'); // 翻译功能
 
 const app = getApp();
@@ -98,8 +97,7 @@ Page({
     app.globalData.pause_lottery_check = false;
 
     // Set user Data
-    showLoading(true)
-    await loadFonts();
+    showLoading(true);
     await app.sessionUtils.getUserInfo(self);
 
     // Page Data (order + vouchers)

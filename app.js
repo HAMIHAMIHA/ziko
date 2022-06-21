@@ -1,6 +1,7 @@
 const api = require('./utils/api.js'); //接口文档
 const common = require('./utils/common.js');
 const db = require('./utils/db.config.js'); // 本地存储
+const { loadFonts } = require("./utils/fontPreloader.js");
 const { folders, subscribe, tabbars } = require('./utils/properties.js');
 const { routes } = require('utils/routes.js');
 const i18n = require('./utils/internationalize/translate.js'); // 翻译功能
@@ -37,6 +38,8 @@ App({
       self.checkForLotteryNotification();
       self.setAccountStatus();
     }
+
+    await loadFonts();
   },
 
   checkForLotteryNotification: function() {
