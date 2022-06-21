@@ -148,10 +148,6 @@
   row-gap: 48rpx;
 }
 
-.lotteries_prize {
-
-}
-
 .lotteries_prize .draw-label {
   padding-bottom: 12rpx;
   font-size: 24rpx;
