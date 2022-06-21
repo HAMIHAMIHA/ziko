@@ -189,7 +189,7 @@ const _getOffer = function(page, offer_id) {
     });
 
     page.setData({
-      _current_user: app.db.get('userInfo').customer.id,
+      _current_user: app.db.get('userInfo').customer?.id || "",
       _offer: offer,
       _product_names: product_name_list,
       _tickets: tickets,

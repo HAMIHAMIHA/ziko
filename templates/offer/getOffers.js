@@ -377,7 +377,7 @@ export async function getOffer(page, offer_id) {
       // Check for multiple price
       if (offer.type === "multiple_items" && p.multipleItem && p.multipleItem.length > 0) {
         getRulePrice("multiple", offer.id, p)
-      }      
+      }
 
       // Get list of product names for special and lottery message
       let p_name = '';
@@ -390,7 +390,7 @@ export async function getOffer(page, offer_id) {
     })
 
     // Check for bourse unit price
-    if (offer.type === 'bourse') {
+    if (offer.community === 'cellar' && offer.type === 'bourse') {
       getBoursePrice(offer, null);
       page.setBourseGraph(offer);
     }
@@ -410,7 +410,7 @@ export async function getOffer(page, offer_id) {
 
     // Set page data
     page.setData({
-      _current_user: app.db.get('userInfo').customer ? app.db.get('userInfo').customer.id : '',
+      _current_user: app.db.get('userInfo').customer?.id || '',
       _offer_setting: {
         folders: {
           pack_picture: app.folders.pack_picture,
@@ -584,7 +584,7 @@ export function getOfferBuyers(page, offer_id) {
     offer.sold += new_sold; // Update offer total sold
 
     // Check for bourse unit price
-    if (offer.type === 'bourse') {
+    if (offer.community === 'cellar' && offer.type === 'bourse') {
       offer.addon_sold += new_add_on_sold;
       getBoursePrice(offer, null);
       page.setBourseGraph(offer);
