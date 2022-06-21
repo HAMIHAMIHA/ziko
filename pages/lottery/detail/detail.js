@@ -149,7 +149,6 @@ const _getOffer = function(page, offer_id) {
       return a.conditionValue - b.conditionValue;
     })
 
-    // TODO maybe need to change according to different conditions
     offer.last_val = offer.miniprogram.lottery.draws[offer.miniprogram.lottery.draws.length - 1].conditionValue;
     if ( offer.miniprogram.lottery.draws[0].conditionType === "number_of_order" ) {
       offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
