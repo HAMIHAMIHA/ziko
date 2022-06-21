@@ -20,7 +20,7 @@
       <!-- Banner image of card -->
       <view class="offer-banner">
         <swiper current="{{ offer.banners.index }}" bindchange="swiperChange" data-offer_idx="{{ offer_idx }}">
-          <block wx:for="{{ offer.banners.uris }}" wx:for-item="banner" wx:key="*this">
+          <block wx:for="{{ offer.banners.uris }}" wx:for-item="banner" wx:key="uri">
             <swiper-item>
               <view class="offer-banner_image">
               <block wx:if="{{ banner.type === 'image' }}">

@@ -175,7 +175,7 @@ const _filterOfferData = (page, filter_group, filter_id, filter_date) => {
   _timerControl(page, false);
 
   page.setData({
-    filter_group: filter_group,
+    filter_group: filter_group || "",
   })
 
   // Reset date filter if filter type and filter group different from current
