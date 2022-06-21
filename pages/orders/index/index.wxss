@@ -52,19 +52,12 @@
 
 .order-info .order-status {
   padding: 4rpx 12rpx;
-  background: #FF8718; /* TEMP */
-  color: #FFE9DD; /* TEMP */
   font-size: 20rpx;
   line-height: 24rpx;
   border-radius: 4px;
   white-space: nowrap;
   align-self: flex-start;
 }
-
-/* .order-info .order-status.status-delayed {
-  background: #FF4040;
-  color: #FFE3E3;
-} */
 
 .order-info .order-status.status-delivered {
   background: #1890FF;
