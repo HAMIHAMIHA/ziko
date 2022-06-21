@@ -50,7 +50,7 @@
         <!-- Price -->
         <view class="gilroy_800 product-price_container" wx:if="{{ _setting.type != 'packProduct' }}">
           <text class="product-price" wx:if="{{ cart.products[product._id].price && cart.products[product._id].price != product.price }}">¥{{ cart.products[product._id].price }}</text>
-          <text class="product-price" wx:elif="{{ product.formerPrice != product.price }}">¥{{ product.price }}</text>
+          <text class="product-price" wx:elif="{{ product.formerPrice && product.formerPrice != product.price }}">¥{{ product.price }}</text>
           <text class="product-price">¥{{ product.formerPrice ? product.formerPrice : product.price }}</text>
         </view>
         <!-- End of Price -->
