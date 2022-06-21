@@ -64,7 +64,7 @@
               <view class="order-payment">{{ _t.payment_status[order.paymentStatus] }}</view>
             </view>
             <view class="flex-between order-info order_offer-name_container">
-              <view class="gilroy_700 uppercase order_offer-name">{{ order.offer.name[_language] }}</view>
+              <view class="gilroy_700 uppercase order_offer-name">{{ order.offer[_language] }}</view>
               <view class="nunito_600 uppercase order-status status-{{ order.trackingStatus }}">{{ _t.order_status[order.trackingStatus] }}</view>
             </view>
             <view class="order-community">({{ _t.community[_communities[order.community]] }})</view>

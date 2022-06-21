@@ -121,7 +121,15 @@ const getOrders = (page) => {
       return count;
     }
 
-    res.map( order => {
+    let order_res = [];
+    res.forEach( order => {
+      let order_info = {
+        id: order.id,
+        community: order.community,
+        offer: order.offer.name,
+        paymentStatus: order.paymentStatus,
+        trackingStatus: order.trackingStatus,
+      };
       order.actualTotal = 0;
 
       [...order.singleItems, ...order.packs].forEach( item => {
@@ -130,11 +138,11 @@ const getOrders = (page) => {
       })
 
       order.actualTotal += order.deliveryFee;
-      order.actualTotal = Math.round(order.actualTotal * 100) / 100;
+      order_info.actualTotal = Math.round(order.actualTotal * 100) / 100;
 
-      order.actualAmount = Math.round(order.actualAmount * 100) / 100;
-      order.orderDate = `${formatDate('yyyy-mm-dd', order.orderDate)} ${formatTime(order.orderDate)}`;
-      order.count = countItems( [...order.packs, ...order.singleItems] )
+      order_info.actualAmount = Math.round(order.actualAmount * 100) / 100;
+      order_info.orderDate = `${formatDate('yyyy-mm-dd', order.orderDate)} ${formatTime(order.orderDate)}`;
+      order_info.count = countItems( [...order.packs, ...order.singleItems] )
 
       // Gfit info
       let gifts = [];
@@ -149,10 +157,12 @@ const getOrders = (page) => {
           }
         }
       })
-      order.gifts = gifts;
+      order_info.gifts = gifts;
+
+      order_res.push(order_info);
     })
 
-    let orders = current_load ? [...page.data.orders, ...res] : res;
+    let orders = current_load ? [...page.data.orders, ...order_res] : order_res;
     page.setData({
       orders,
     }, function() {
