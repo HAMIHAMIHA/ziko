@@ -84,6 +84,11 @@ Page({
     Offers.toggleVideo(this, e);
   },
 
+  // Pause video after video ended
+  setPause: function(e) {
+    Offers.pauseVideo(this, e);
+  },
+
   // Switch between recipe and products
   switchTab: function(e) {
     Offers.switchTabs(this, e.currentTarget.dataset.toTab);

@@ -21,6 +21,7 @@
                 data-index="{{ index }}"
                 data-do_pause="{{ !media.pause }}"
                 bindtap="toggleVideo"
+                bindended="setPause"
               >
                 <view class="video-play icon icon-play" wx:if="{{ media.pause }}"></view>
               </video>

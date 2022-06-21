@@ -255,5 +255,19 @@ Page({
     }
   },
 
+  // Pause video after video ended
+  setPause: function(e) {
+    const self = this;
+    let index = e.currentTarget.dataset.index;
+
+    // Only do toggle if image type
+    if (self.data._recipe.media[index].type === "image") return;
+
+    // Change pause status
+    self.setData({
+      [`_recipe.media[${index}].pause`]: true
+    });
+  },
+
   onShareAppMessage: function (res) {},
 })

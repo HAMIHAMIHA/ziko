@@ -663,3 +663,16 @@ export const toggleVideo = (page, e) => {
     video.play();
   }
 }
+
+// Pause video
+export const pauseVideo = (page, e) => {
+  let index = e.currentTarget.dataset.index;
+
+  // Only do toggle if image type
+  if (page.data._offer.media[index].type === "image") return;
+
+  // Change pause status
+  page.setData({
+    [`_offer.media[${index}].pause`]: true
+  });
+}
