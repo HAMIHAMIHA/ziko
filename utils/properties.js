@@ -1,4 +1,5 @@
 const API_URL = 'https://api-ziko.dev.mediasia.cn/';
+// const API_URL = 'https://api.zikoland.com/'; // PROD
 const FILE_URL = `${API_URL}storage/`;
 const SUBSCRIBE_DELIVERED = "kx6MC4envuMzJTdfq-ys36L4Q5BMu9HsEHsK2W612bo";
 const SUBSCRIBE_OFFER_START = "64_0Po5jJe7NuLPVzC3V_4HZ-4MgXbY-4y9-mRBNcl4";

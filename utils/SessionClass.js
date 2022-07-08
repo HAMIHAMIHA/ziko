@@ -59,7 +59,7 @@ class SessionClass {
 
     let open_code = await _wxOpenId();
     app.api.wxOpenid({ code: open_code.code }).then(res => {
-      let user = app.db.get('userInfo') ? app.db.get('userInfo') : {};
+      let user = app.db.get('userInfo') || {};
       user.customer ? user.customer.openId = res.openId : user.customer = res;
       app.db.set('userInfo', user);
       return;

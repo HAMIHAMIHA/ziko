@@ -176,7 +176,7 @@
     </view>
 
     <view class="btn-bottom">
-      <button class="nunito_600 disabled" wx:if="{{ _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.cart }}">
+      <button class="nunito_600 disabled" wx:if="{{ _pay_set.single && _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.single }}">
         {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }}
       </button>
       <button class="nunito_600 disabled" wx:elif="{{ _pay_set.reducedTotal && _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.reducedTotal }}">

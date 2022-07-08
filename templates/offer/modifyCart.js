@@ -52,10 +52,17 @@ export const modifyCartItems = (page, event, checkout = false) => {
   current_cart[offer.id] = cart_offer;
   app.db.set('cart', current_cart);
 
+  // Count number of add ons
+  let addon_count = 0;
+  Object.values(cart_offer.products).filter( i => i.type === "items" ).forEach( item => {
+    addon_count += item.amount;
+  })
+
   // Show new total on page
   page.setData({
     cart: app.db.get('cart')[offer.id],
     '_pay_set.cart': cart_offer.count,
+    '_pay_set.single': addon_count,
     '_pay_set.total': cart_offer.total,
     '_pay_set.reducedTotal': cart_offer.reducedTotal,
   })

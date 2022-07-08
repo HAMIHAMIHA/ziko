@@ -31,7 +31,7 @@
 
       <!-- Pay buttons -->
       <!-- Payment not available if offer minimum items not reached -->
-      <view class="payment-button disabled" wx:if="{{ _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.cart }}">
+      <view class="payment-button disabled" wx:if="{{ _pay_set.single && _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.single }}">
         {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }}
       </view>
       <!-- Payment not available if offer minimum price not reached - with deducted price -->
