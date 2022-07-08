@@ -62,7 +62,7 @@ export const modifyCartItems = (page, event, checkout = false) => {
   page.setData({
     cart: app.db.get('cart')[offer.id],
     '_pay_set.cart': cart_offer.count,
-    '_pay_set.single': addon_count,
+    '_pay_set.single': cart_offer.count - addon_count ? 0 : addon_count,
     '_pay_set.total': cart_offer.total,
     '_pay_set.reducedTotal': cart_offer.reducedTotal,
   })
