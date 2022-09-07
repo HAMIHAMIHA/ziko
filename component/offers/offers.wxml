@@ -5,7 +5,7 @@
 
   <view class="gilroy_700 offers_list">
     <!-- Card for each offer -->
-    <view class="uppercase offer_container"
+    <view class="offer_container"
       wx:for="{{ offers }}"
       wx:for-item="offer"
       wx:for-index="offer_idx"
@@ -13,10 +13,11 @@
       bindtap="toOffer"
       data-started="{{ now >= offer.startTime }}"
       data-end_time="{{ offer.endingDate }}"
-      data-community="{{ offer.community.id }}"
+      data-community="{{ offer.community }}"
       data-offer-id="{{ offer.id }}"
       data-type="{{ offer.type }}"
     >
+    <!-- data-community="{{ offer.community.id }}" -->
       <!-- Banner image of card -->
       <view class="offer-banner">
         <swiper current="{{ offer.banners.index }}" bindchange="swiperChange" data-offer_idx="{{ offer_idx }}">
@@ -36,7 +37,7 @@
                   show-progress="{{ false }}"
                   show-fullscreen-btn="{{ false }}"
                   enable-progress-gesture="{{ false }}"
-                >
+                > 
                   <view class="video-play icon icon-play" wx:if="{{ banner.pause }}"></view>
                 </video>
               </block>
@@ -52,46 +53,57 @@
       <!-- End of banner -->
 
       <view class="offer-detail_container">
-        <view class="offer-detail_title">{{ offer.name[_language] }}</view>
         <!-- Display for offers in progress -->
         <view class="offer-detail offer-started" wx:if="{{ now >= offer.startTime }}">
-          <view class="flex-between offer-detail_content">
-            <!-- Specials -->
-            <view class="flex-between_left flex-center offer-specials">
-              <view class="icon_container lottery" wx:if="{{ offer.miniprogram.lotteryEnable && offer.miniprogram.lottery.draws.length > 0 }}">
-                <view class="icon icon-yuan"></view>
-                <view class="icon_text">{{ _t.lottery }}</view>
-              </view>
-              <view class="icon_container specials" wx:if="{{ offer.miniprogram.zikoSpecials.length > 0 }}">
-                <view class="icon icon-gift"></view>
-                <view class="icon_text">{{ _t.specials }}</view>
+          <view class="offer-detail_content big-info ziko-{{ offer.community }}">
+            <!-- words-up -->
+            <view class="offer-words align-center">
+              <!-- Offer name -->
+              <view class="offer-detail_title">{{ offer.name[_language] }}</view>
+              <!-- countdown -->
+              <view class="offer-countdown text-tr-center">
+                <countdown class="timer" end-time="{{ offer.endingDate }}"></countdown>
               </view>
             </view>
-            <!-- End of Specials -->
 
-            <!-- Bag -->
-            <view class="flex-between_rt offer-bag offer-bag_filled" wx:if="{{ _cart[offer.id].count > 0 }}">
-              <view class="icon_container">
-                <view class="icon icon-bag"></view>
-                <view class="icon_text">
-                  <view wx:if="{{ !_cart[offer.id] || _cart[offer.id].count == 0 }}">{{ _t.empty }}</view>
-                  <view wx:else>{{ _cart[offer.id].count == 1 ? _cart[offer.id].count + _t.item_unit : _cart[offer.id].count + _t.items_unit }}</view>
+            <!-- words-down -->
+            <view class="offer-words">
+              <view class="words-description">
+                {{ offer.description[_language] }}
+              </view>
+              <!-- Bag -->
+              <view class="flex-between_rt offer-bag offer-bag_filled" wx:if="{{ _cart[offer.id].count > 0 }}">
+                <view class="icon_container icon_box">
+                  <view class="icon icon-bag"></view>
+                  <view class="icon_text">
+                    <view wx:if="{{ !_cart[offer.id] || _cart[offer.id].count == 0 }}">{{ _t.empty }}</view>
+                    <view wx:else>{{ _cart[offer.id].count == 1 ? _cart[offer.id].count + _t.item_unit : _cart[offer.id].count + _t.items_unit }}</view>
+                  </view>
                 </view>
               </view>
+              <!-- End of Bag -->
             </view>
-            <!-- End of Bag -->
+          <!--wordsdown over-->
           </view>
 
-          <!-- Countdown -->
-          <view class="flex-between offer-detail_content offer-countdown">
-            <view class="uppercase flex-between_left">
-              {{ _t.remaining_time }}
+          <view class="uppercase offer-detail_content offer-specials">
+            <view class="icon_container lottery">
+              <view class="icon icon-yuan"></view>
+              <view class="icon_text">{{ _t.lottery }}</view>
             </view>
-            <view class="flex-between_rt">
-              <countdown class="timer" end-time="{{ offer.endingDate }}"></countdown>
+            <view class="icon_container specials">
+              <view class="icon icon-gift"></view>
+              <view class="icon_text">{{ _t.specials }}</view>
+            </view>
+            <view class="icon_container orders">
+              <view class="icon icon-line icon-bag"></view>
+              <view class="icon_text icon_text_grey">{{ offer.orders }}{{ _t.orders_unit }}</view>
+            </view>
+            <view class="icon_container viewers">
+              <view class="icon icon-line icon-eye"></view>
+              <view class="icon_text icon_text_grey">{{ offer.views }}{{ _t.viewers }}</view>
             </view>
           </view>
-          <!-- End of Countdown -->
 
           <!-- Current Status -->
           <view class="offer-status offer-detail_content gilroy_500">
@@ -115,7 +127,59 @@
 
         <!-- Display for offers waiting -->
         <view class="offer-detail offer-waiting" wx:else>
-          <view class=" offer-detail_content coming-soon">{{ _t.coming_soon }}</view>
+          <!-- <view class=" offer-detail_content coming-soon">{{ _t.coming_soon }}</view> -->
+
+          <!--offers waiting top-->
+          <view class="offer-detail_content big-info-waiting">
+            <!-- words-up -->
+            <view class="offer-words align-center text-color-white relative">
+              <!-- Offer name -->
+              <view class="offer-detail_title">{{ offer.name[_language] }}</view>
+              
+            </view>
+
+            <!-- words-down -->
+            <view class="offer-words">
+              <view class="words-description text-color-white">
+                {{ offer.description[_language] }}
+              </view>
+              <!-- Bag -->
+              <view class="flex-between_rt offer-bag offer-bag_filled" wx:if="{{ _cart[offer.id].count > 0 }}">
+                <view class="icon_container icon_box">
+                  <view class="icon icon-bag"></view>
+                  <view class="icon_text">
+                    <view wx:if="{{ !_cart[offer.id] || _cart[offer.id].count == 0 }}">{{ _t.empty }}</view>
+                    <view wx:else>{{ _cart[offer.id].count == 1 ? _cart[offer.id].count + _t.item_unit : _cart[offer.id].count + _t.items_unit }}</view>
+                  </view>
+                </view>
+              </view>
+              <!-- End of Bag -->
+            </view>
+            <!-- wordsdown over-->
+
+            <!-- coming soon -->
+            <view class="coming-soon uppercase ziko-{{ offer.community }}"><text>{{ _t.coming_soon }}</text></view>
+          </view>
+
+          <view class="uppercase offer-detail_content offer-specials">
+            <view class="icon_container lottery">
+                <view class="icon icon-yuan"></view>
+                <view class="icon_text">{{ _t.lottery }}</view>
+            </view>
+            <view class="icon_container specials">
+                <view class="icon icon-gift"></view>
+                <view class="icon_text">{{ _t.specials }}</view>
+            </view>
+            <view class="icon_container orders">
+              <view class="icon icon-line icon-bag"></view>
+              <view class="icon_text icon_text_grey">{{ offer.orders }}{{ _t.orders_unit }}</view>
+            </view>
+            <view class="icon_container viewers">
+              <view class="icon icon-line icon-eye"></view>
+              <view class="icon_text icon_text_grey">{{ offer.views ? offer.views : 0 }}{{ _t.viewers }}</view>
+            </view>
+          </view>
+          <!--offers waiting top over-->
 
           <!-- Offer Time -->
           <view class="flex-between offer-detail_content offer-datetime">
@@ -123,8 +187,10 @@
               <view class="offer-date">{{ offer.startDate.date_str }}</view>
               <view class="offer-time">{{ offer.startDate.time }}</view>
             </view>
-            <view class="flex-between_rt">
-              <button class="offer-reminder" bindtap="getReminder" data-offer_id="{{ offer.id }}">{{ _t.get_reminder }}</button>
+            <view class="flex-between_rt ">
+              <button class="offer-reminder nunito_600" hover-class="offer-reminder-hover" bindtap="getReminder" data-offer_id="{{ offer.id }}">
+                <text class="ziko-{{ offer.community }}">{{ _t.get_reminder }}<text class="icon icon-calendar"></text></text>
+              </button>
             </view>
           </view>
           <!-- End of Offer Time -->
