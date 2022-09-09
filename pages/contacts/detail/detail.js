@@ -80,10 +80,17 @@ Page({
     self.setData({
       _t: {
         contact: i18n.contact,
+        cancel: i18n.cancel,
         delete: i18n.delete,
         name: i18n.name,
         phone_no: i18n.phone_no,
         save: i18n.save,
+        contact_name: i18n.contact_name,
+        phone_number:i18n.phone_number,
+        options_judge:self.options.id,
+        please_enter_the_name_of_the_person:i18n.please_enter_the_name_of_the_person,
+        please_enter_the_phone_number:i18n.please_enter_the_phone_number,
+        set_as_default_contact:i18n.set_as_default_contact,
       },
     })
 

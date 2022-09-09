@@ -31,17 +31,41 @@
 .selected .detail.select {
   background: #3F4250;
 }
-
+.address-name-star{
+  margin-bottom: 30rpx;
+  display:flex;
+}
 .address-name {
-  padding-bottom: 8rpx;
-  font-size: 32rpx;
-  line-height: 38rpx;
+  /* padding-bottom: 8rpx; */
+  padding:12rpx 16rpx 8rpx 35rpx;
+  font-size: 28rpx;
+  line-height: 32rpx;
   transition: all 0.3s ease-in-out;
+  background-color: rgba(255,255,255,0.1);
+  margin-left: -30rpx;
+}
+.address-name-star .icon-star-gold{
+  font-size: 40rpx;
+  line-height: 40rpx;
+  padding-left: 30rpx;
+  display:flex;
+  align-items: center;
+}
+.address-name-star .icon-star-gold text{ 
+  display: block;
+  padding-left:10rpx;
+  font-size: 28rpx;
+  line-height: 48rpx;
+  height: 40rpx;
+  color:#D4B106;
 }
 
+
 .address-detail {
-  line-height: 28rpx;
+  font-size:32rpx;
+  line-height: 32rpx;
   transition: all 0.3s ease-in-out;
+  padding: 12rpx 0;
 }
 
 .selected .detail:not(.select) .address-name,
@@ -61,9 +85,15 @@
 }
 
 .btn-outline_container {
-  padding: 28rpx 30rpx;
+  bottom: 80rpx;
+  position:fixed;
+  padding: 30rpx;
+  width: 690rpx;
 }
+.btn-outline_container .btn-outline{
+  line-height: 50rpx;
 
+}
 .container-btn-bottom .btn-bottom button.disabled {
   background: #d9d9da;
 }

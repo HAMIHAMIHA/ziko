@@ -19,6 +19,8 @@
         </view>
       </view>
     </view>
+
+
     <view class="details_container inputs_container" wx:if="{{ _areas[_selected[0]].children }}">
       <view class="detail">
         <view class="detail_input">
@@ -37,6 +39,8 @@
         </view>
       </view>
     </view>
+
+    
     <view class="details_container inputs_container" wx:if="{{ _areas[_selected[0]].children[_selected[1]].children }}">
       <view class="detail">
         <view class="detail_input">
@@ -55,6 +59,8 @@
         </view>
       </view>
     </view>
+
+
     <view class="details_container inputs_container" wx:if="{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].children }}">
       <view class="detail">
         <view class="detail_input">

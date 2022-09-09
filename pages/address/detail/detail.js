@@ -119,6 +119,16 @@ Page({
         save: i18n.save,
         type: i18n.type,
         zipcode: i18n.zipcode,
+        cancel: i18n.cancel,
+        province: i18n.province,
+        any_special_requests:i18n.any_special_requests,
+        please_select:i18n.please_select,
+        please_select_your_province:i18n.please_select_your_province,
+        please_select_your_city:i18n.please_select_your_city,
+        please_enter_your_address:i18n.please_enter_your_address,
+        please_enter_your_zip_code:i18n.please_enter_your_zip_code,
+        any_special_requests:i18n.any_special_requests,
+        options_judge:self.options.id
       },
       _routes: {
         address_areas: app.routes.address_areas,

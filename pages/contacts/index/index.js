@@ -23,7 +23,10 @@ Page({
       _t: {
         contact: i18n.contact,
         add_new_contact: i18n.add_new_contact,
-        select: i18n.select
+        select: i18n.select,
+        contact_name: i18n.contact_name,
+        contact_number: i18n.contact_number,
+        default_selection:i18n.default_selection
       }
     })
 

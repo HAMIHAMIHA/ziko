@@ -9,8 +9,12 @@
       data-index="{{ index }}"
     >
       <view class="address_container">
-        <view class="nunito_700 address-name">{{ _t.address + ' ' + (index + 1) }}</view>
-        <view class="address-detail">{{ address.detailedAddress }}</view>
+        <view class="address-name-star">
+          <view class="nunito_500 address-name">{{ _t.address + ' ' + (index + 1) }}</view>
+          <view wx:if="{{!address.default}}" class="icon icon-star-gold"><text class="nunito_500">{{_t.default_selection}}</text></view>
+          
+        </view>
+        <view class="address-detail nunito_400">{{ address.detailedAddress }}</view>
         <view class="contact-detail">{{ address.contact || address.contact != null ? address.contact : '' }}</view>
         <view class="contact-detail">{{ address.phone }}</view>
       </view>
@@ -19,7 +23,7 @@
   </view>
 
   <view class="btn-outline_container">
-    <navigator class="btn-outline nunito_600" hover-class="none" url="{{ _routes.address_detail }}">{{ '+ ' + _t.add_new_address }}</navigator>
+    <navigator class="btn-outline gilroy_700" hover-class="none" url="{{ _routes.address_detail }}">{{ '+ ' + _t.add_new_address }}</navigator>
   </view>
 
   <view class="btn-bottom" wx:if="{{ _setting.selecting }}">

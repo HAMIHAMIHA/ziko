@@ -2,15 +2,16 @@
   <!-- Contact Form -->
   <form class="{{ error }}" bindsubmit="updateContact" bindreset="updateContact">
     <view class="white-box address_container">
-      <view class="nunito_700 header">{{ _t.contact + ' ' + (_count + 1) }}</view>
+      <!-- <view class="nunito_700 header">{{ _t.contact + ' ' + (_count + 1) }}</view> -->
 
       <view class="details_container inputs_container field-0">
-        <view class="detail">
-          <view class="detail_label">{{ _t.contact }}</view>
-          <view class="detail_input">
+        <view class="detail_content_box">
+          <view class="detail_label_name">{{ _t.contact_name }}</view>
+          <view class="detail_input_content">
             <view class="input">
               <input
                 name="name"
+                placeholder="{{_t.please_enter_the_name_of_the_person}}"
                 value="{{ contact.name }}"
                 confirm-type="next"
                 confirm-hold="true"
@@ -24,12 +25,13 @@
       </view>
 
       <view class="details_container inputs_container field-1">
-        <view class="detail">
-          <view class="detail_label">{{ _t.phone_no }}</view>
-          <view class="detail_input">
+        <view class="detail_content_box">
+          <view class="detail_label_name">{{ _t.phone_number }}</view>
+          <view class="detail_input_content">
             <view class="input">
               <input
                 name="phone"
+                placeholder="{{_t.please_enter_the_phone_number}}"
                 value="{{ contact.phone }}"
                 focus="{{ _focus == 'phone' ? true : false }}"
               >
@@ -38,18 +40,29 @@
           </view>
         </view>
       </view>
+
+      <view class="star-set-default">
+        <view class="icon icon-star-gray"><text class="nunito_500">{{_t.set_as_default_contact}}</text></view>
+      </view>
+      
     </view>
     <!-- End of Contact Form -->
 
+    <!-- Select Button -->
+    <view wx:if="{{!_t.options_judge}}" class="btn-bottom">
+      <button class="btn-outline inter_600 cancel-button" formType="reset">{{ _t.cancel }}</button>
+    </view>
+    <!-- End of Select Button -->
+
     <!-- Delete Button -->
-    <view class="btn-outline_container">
-      <button class="btn-outline nunito_600" formType="reset">{{ _t.delete }}</button>
+    <view wx:else class="btn-bottom">
+      <button class="btn-outline inter_600 cancel-button" formType="reset">{{ _t.delete }}</button>
     </view>
     <!-- End of Delete Button -->
 
     <!-- Submit Button -->
     <view class="btn-bottom">
-      <button class="nunito_600" formType="submit">{{ _t.save }}</button>
+      <button class="gilroy_700 white-background-black-text" formType="submit">{{ _t.save }}</button>
     </view>
     <!-- End of Submit Button -->
   </form>

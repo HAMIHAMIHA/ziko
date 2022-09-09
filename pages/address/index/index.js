@@ -33,7 +33,8 @@ Page({
       _t: {
         address: i18n.address,
         add_new_address: i18n.add_new_address,
-        select: i18n.select
+        select: i18n.select,
+        default_selection:i18n.default_selection
       }
     })
 

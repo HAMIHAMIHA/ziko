@@ -1,4 +1,5 @@
 <view class="container">
+
   <!-- LOGIN BUTTON -->
   <view class="user-info__container" wx:if="{{ !user.id }}">
     <view class="user-info__avatar">
@@ -39,25 +40,25 @@
         </view>
       </view>
     </view>
-    <view class="gilroy_700 uppercase user-info__name">{{ user.name }}</view>
+    <view class="gilroy_700 uppercase user-info__name">{{ user.name }}
+      <text class="icon icon-edit"></text>
+    </view>
   </view>
   <!-- END OF USER INFO -->
 
-  <!-- PROFILE INFO -->
-  <view class="nunito_600 card profile-info{{ user.id ? '' : ' disabled' }}">
-    <navigator class="profile-info__button" url="{{ _routes.account_info }}">{{ _t.edit_my_info }}</navigator>
-    <navigator class="profile-info__button" url="{{ _routes.contacts }}">{{ _t.edit_my_contacts }}</navigator>
-    <navigator class="profile-info__button" url="{{ _routes.address }}">{{ _t.edit_my_address }}</navigator>
-    <navigator class="profile-info__button" url="{{ _routes.fapiao }}">{{ _t.fapiao_info }}</navigator>
-    <navigator class="profile-info__button" url="{{ _routes.recipes_fav }}?filter=fav" wx:if="{{ show }}">{{ _t.my_favorite_recipes }}</navigator> 
-  </view>
-  <!-- END OF PROFILE INFO -->
-
   <!-- SHORT CUTS -->
-  <view class="gilroy_700 uppercase card short-cuts">
+  <view class="gilroy_700 uppercase short-cuts">
     <navigator class="short-cuts__button{{  new_orders ? ' new' : '' }}" url="{{ _routes.orders }}" open-type="switchTab">
       <view class="short-cut__icon icon icon-package"></view>
       <view class="short-cut__label">{{ _t.orders }}</view>
+    </navigator>
+    <navigator class="short-cuts__button{{ new_vouchers > 0 ? ' new' : '' }}" url="{{ _routes.vouchers }}">
+      <view class="short-cut__icon icon icon-redpacket"></view>
+      <view class="short-cut__label">{{ _t.vouchers }}</view>
+    </navigator>
+    <navigator class="short-cuts__button{{ new_vouchers > 0 ? ' new' : '' }}" url="{{ _routes.vouchers }}">
+      <view class="short-cut__icon icon icon-lottery"></view>
+      <view class="short-cut__label">{{ _t.vouchers }}</view>
     </navigator>
     <navigator class="short-cuts__button" url="{{ _routes.claims }}" wx:if="{{ showing }}">
       <view class="short-cut__icon icon icon-box"></view>
@@ -67,19 +68,112 @@
       <view class="short-cut__icon icon icon-headset"></view>
       <view class="short-cut__label">{{ _t.contact }}</view>
     </button>
-    <navigator class="short-cuts__button{{ new_vouchers > 0 ? ' new' : '' }}" url="{{ _routes.vouchers }}">
-      <view class="short-cut__icon icon icon-redpacket"></view>
-      <view class="short-cut__label">{{ _t.vouchers }}</view>
-    </navigator>
+
   </view>
   <!-- END OF SHORT CUTS -->
 
-  <!-- LANGUAGE BUTTON -->
-  <view class="nunito_700 uppercase language-setting selected-{{ language }}">
-    <button class="langauge" bindtap="switchLanguage" data-language="en">{{ _t.en }}</button>
-    <button class="langauge" bindtap="switchLanguage" data-language="zh">{{ _t.zh }}</button>
+  <!-- PROFILE INFO -->
+  <view class="nunito_400 card profile-info{{ user.id ? '' : ' disabled' }}">
+    <navigator class="profile-info__button" url="{{ _routes.account_info }}">
+      <view>
+        <view class="profile-info-title ">{{ _t.address_book }}</view>        
+        <view class="profile-info-content">{{ _t.manage_your_delivery_address_details }}</view>        
+      </view>
+      <view class="icon icon-arrow-right"></view>
+    </navigator>
+    <navigator class="profile-info__button" url="{{ _routes.contacts }}">
+      <view>
+        <view class="profile-info-title"> {{ _t.contact_list }}</view>        
+        <view class="profile-info-content">{{ _t.manage_contact_for_delivery }}</view>        
+      </view>
+      <view class="icon icon-arrow-right"></view>
+    </navigator>
+    <navigator class="profile-info__button" url="{{ _routes.fapiao }}">
+      <view>
+        <view class="profile-info-title">{{ _t.fapiao_info   }}</view>        
+        <view class="profile-info-content">{{ _t.edit_your_fapiao_information }}</view>        
+      </view>
+      <view class="icon icon-arrow-right"></view>
+    </navigator>
+    <navigator class="profile-info__button" url="{{ _routes.address }}">
+      <view>
+        <view class="profile-info-title">{{ _t.my_pets }}</view>        
+        <view class="profile-info-content">{{ _t.manage_your_pet_details }}</view>        
+      </view>
+      <view class="icon icon-arrow-right"></view>
+    </navigator>
+    <navigator class="profile-info__button" url="{{ _routes.recipes_fav }}?filter=fav" wx:if="{{ show }}">{{ _t.my_favorite_recipes }}</navigator> 
   </view>
-  <!-- END OF LANGUAGE BUTTON -->
-</view>
+  <!-- END OF PROFILE INFO -->
 
+  <!-- LANGUAGE BUTTON -->
+  <view class="language-choice">
+    <view>Language Choice</view>
+    <view class="nunito_700 uppercase language-setting selected-{{ language }}">
+      <button class="langauge" bindtap="switchLanguage" data-language="en">{{ _t.en }}</button>
+      <button class="langauge" bindtap="switchLanguage" data-language="zh">{{ _t.zh }}</button>
+    </view>
+  </view>
+    <!-- END OF LANGUAGE BUTTON -->
+
+  <!-- Join Ziko community-->
+  <view class="ziko-community" bindtap="copyboxshow">
+    <view class="icon icon-ziko"></view>
+    <view class="community-content">
+      <text class="community-title">{{_t.join_ziko_community}}</text>
+      <view class="community-introduce nunito_400">{{_t.be_apart_of_our}}</view>
+    </view>
+
+  </view>
+  <!-- Join Ziko community end-->
+</view>
+<view class="copybox" hidden="{{copybox_judgment}}">
+  <view class="copybox-cancel" bindtap="copyboxhide"></view>
+  <view class="copybox-tap bottom-pos" animation="{{animationData}}">
+    <view class="add-box">
+      <view class="icon icon-chef-head icon-head"></view>
+      <view>
+        <text class="box-name">{{_t.add_chef_ziko}}</text>
+        <view class="wechat-copy chefbox">
+          <text class="wechat-id">{{_t.wechat_id}}</text>
+          <text class="simonmawas">{{_t.simonmawas}}</text>
+          <text class="icon icon-copy"></text>
+        </view>
+      </view>
+    </view>
+    <view class="add-box">
+      <view class="icon icon-pet-head icon-head"></view>
+      <view>
+        <text class="box-name">{{_t.add_pet_ziko}}</text>
+        <view class="wechat-copy chefbox">
+          <text class="wechat-id">{{_t.wechat_id}}</text>
+          <text class="simonmawas">{{_t.simonmawas}}</text>
+          <text class="icon icon-copy"></text>
+        </view>
+      </view>
+    </view>
+    <view class="add-box">
+      <view class="icon icon-farmer-head icon-head"></view>
+      <view>
+        <text class="box-name">{{_t.add_farmer_ziko}}</text>
+        <view class="wechat-copy chefb ox">
+          <text class="wechat-id">{{_t.wechat_id}}</text>
+          <text class="simonmawas">{{_t.simonmawas}}</text>
+          <text class="icon icon-copy"></text>
+        </view>
+      </view>
+    </view>
+    <view class="add-box">
+      <view class="icon icon-celler-head icon-head"></view>
+      <view>
+        <text class="box-name">{{_t.add_cellar_ziko}}</text>
+        <view class="wechat-copy chefbox">
+          <text class="wechat-id">{{_t.wechat_id}}</text>
+          <text class="simonmawas">{{_t.simonmawas}}</text>
+          <text class="icon icon-copy"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
 <lottery-draw id="lottery_modal"></lottery-draw>

@@ -79,7 +79,9 @@ Page({
       vouchers: app.globalData.i18n.vouchers,
       zh: app.globalData.i18n.zh,
     },
-    language: app.db.get('language')
+    language: app.db.get('language'),
+    copybox_judgment:true,
+    animationData:{}
   },
 
   onShow: async function () {
@@ -151,6 +153,22 @@ Page({
         orders: i18n.orders,
         vouchers: i18n.vouchers,
         zh: i18n.zh,
+        address_book:i18n.address_book,
+        contact_list:i18n.contact_list,
+        fapiao_information:i18n.fapiao_information,
+        my_pets:i18n.my_pets,
+        manage_your_delivery_address_details:i18n.manage_your_delivery_address_details,
+        manage_contact_for_delivery:i18n.manage_contact_for_delivery,
+        edit_your_fapiao_information:i18n.edit_your_fapiao_information,
+        manage_your_pet_details:i18n.manage_your_pet_details,
+        join_ziko_community:i18n.join_ziko_community,
+        be_apart_of_our:i18n.be_apart_of_our,
+        add_chef_ziko:i18n.add_chef_ziko,
+        add_pet_ziko:i18n.add_pet_ziko,
+        add_farmer_ziko:i18n.add_farmer_ziko,
+        add_cellar_ziko:i18n.add_cellar_ziko,
+        simonmawas:i18n.simonmawas,
+        wechat_id:i18n.wechat_id,
       },
       language: app.db.get('language')
     })
@@ -174,5 +192,22 @@ Page({
     } else {
       wx.chooseImage(choose_media_setting);
     }
-  }
+  },
+
+  copyboxshow: function () {
+    var that=this;
+    wx.hideTabBar()
+    that.setData({
+      copybox_judgment:false
+    })
+  },
+
+  copyboxhide: function () {
+    var that=this;
+    wx.showTabBar()
+    that.setData({
+      copybox_judgment:true
+    })
+  },
+
 })
