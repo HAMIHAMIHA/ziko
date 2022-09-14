@@ -31,6 +31,13 @@ const _setPageTranslation = page => {
       save: i18n.save,
       size: i18n.size,
       type: i18n.type,
+      add_new_pet:i18n.add_new_pet,
+      pet_name:i18n.pet_name,
+      there_is_no_pet:i18n.there_is_no_pet,
+      you_can:i18n.you_can,
+      add_a_cat:i18n.add_a_cat,
+      add_a_dog:i18n.add_a_dog,
+
     },
 
     // Picker formated for selector
@@ -63,7 +70,6 @@ const _validatePets = (page, pets) => {
 
     errors.push(error);
   }
-
   page.setData({
     'errors.pets': errors
   })
@@ -72,20 +78,22 @@ const _validatePets = (page, pets) => {
 }
 
 Page({
-  data: {
+  data:{
     errors: {
       contacts: [],
       pets: [],
-    }
+    },
+    _routes: {
+      addpets: app.routes.addpets,
+    },
   },
-
   onShow: async function () {
     const self = this;
     let i18n = app.globalData.i18n;
 
     // Change page nav title
     wx.setNavigationBarTitle({
-      title: i18n.edit_my_info
+      title: i18n.your_pets
     })
 
     // Restart lottery popup
@@ -99,7 +107,9 @@ Page({
 
     // Get pet picker locations
     let _picker_select = [];
-    user.pets.forEach( pet => {
+    let testpets=[{type:"cat",size:"small"}]
+    testpets.forEach( pet => {
+      // user.pets.forEach( pet => {
       let type = pet_pickers.type.indexOf(pet.type);
       let size = pet_pickers.size.indexOf(pet.size);
 
@@ -110,13 +120,26 @@ Page({
     })
 
     self.setData({
-      name: user.name,
-      pets: user.pets,
+      //Original code
+      // name: user.name,
+      // pets: user.pets,
+      // _picker_select: _picker_select
+      name:"david",
+      havepets:true,
+      pets:[
+        {name:"Minion Lee",
+        type:"cat",
+        size:"middle"},
+        {
+        name:"Peanit Dun",
+        type:"dog",
+        size:"small"},
+      ],
       _picker_select: _picker_select
     })
+    
 
     showLoading(false);
-
   },
 
   // Set input to data
@@ -208,7 +231,8 @@ Page({
       name: self.data.name,
       pets: self.data.pets
     }
-    
     app.sessionUtils.updateUserInfo(data, app.routes.account, true);
   }
 })
+
+

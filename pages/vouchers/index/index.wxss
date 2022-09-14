@@ -1,9 +1,9 @@
-.container.container-btn-bottom {
+/* .container.container-btn-bottom {
   --scroll-menu-height-: calc(30rpx + 30rpx + 34rpx);
   --container-btn-bottom-height-: calc(34rpx + 24rpx + 24rpx + 24rpx + 36rpx + 48rpx);
   min-height: calc(100vh - 16rpx - var(--scroll-menu-height-) - var(--container-btn-bottom-height-) - var(--env-));
   padding-bottom: calc(var(--container-btn-bottom-height-) + var(--env-));
-}
+} */
 
 .scroll-menu_account {
   width: 100%;
@@ -13,8 +13,7 @@
 }
 
 .content {
-  --scroll-menu-height-: calc(30rpx + 30rpx + 34rpx);
-  padding-top: calc(var(--scroll-menu-height-) + 16rpx);
+  padding-top: 40rpx;
 }
 
 .voucher_nav .voucher_text {
@@ -52,4 +51,87 @@
 
 .container-btn-bottom .btn-bottom button.contact-button .icon {
   padding-right: 16rpx;
+}
+
+.list {
+  min-height: calc(100vh - 132rpx);
+  padding-bottom: 132rpx;
+}
+
+.ticket_picture{
+  width: 690rpx;
+  height: 196rpx;
+  padding-bottom: 40rpx;
+  position: relative;
+}
+.box-content{
+  position: absolute;
+  width: 690rpx;
+  height: 196rpx;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.box-content-left{
+  width: 460rpx;
+}
+.black-box{
+  background-color: #000;
+  border-radius: 3px 0px 4px;
+  margin: 4rpx 0 0 4rpx;
+  padding: 8rpx 20rpx;
+  font-size: 22rpx;
+  line-height: 32rpx;
+  text-transform:uppercase;
+  width: fit-content;
+  padding-top: 10rpx;
+}
+.ziko-community-kitchen{
+  background-image:-webkit-linear-gradient(-120deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%); 
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+}
+.ziko-community-pet{
+  background-image:-webkit-linear-gradient(-120deg, #FFB65A 100%,
+  #FF7233 100%); 
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+}
+.ziko-community-garden{
+  background-image:-webkit-linear-gradient(-120deg, #97F082 100%,  #11BE67 100%); 
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+}
+.ziko-community-cellar{
+  background-image:-webkit-linear-gradient(-120deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%); 
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+}
+.received{
+  margin-top: 40rpx;
+  text-align: right;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  padding-right: 40rpx;
+}
+.expires{
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+.box-content-right{
+  text-align: center;
+  width: 230rpx;
+}
+.money{
+  margin-top: 32rpx;
+  font-size: 42rpx;
+}
+.use_now{
+  margin-top: 28rpx;
+  margin-left: 36rpx;
+  font-size: 24rpx;
+  background-color: rgba(38,38,38,0.5);
+  padding: 10rpx 18rpx;
+  width:fit-content;
+  border-radius: 200rpx;
 }

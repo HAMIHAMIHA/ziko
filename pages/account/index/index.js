@@ -151,7 +151,7 @@ Page({
         moile_login: i18n.mobile_login,
         my_favorite_recipes: i18n.my_favorite_recipes,
         orders: i18n.orders,
-        vouchers: i18n.vouchers,
+        vouchers: i18n.vouchers, 
         zh: i18n.zh,
         address_book:i18n.address_book,
         contact_list:i18n.contact_list,
@@ -169,6 +169,8 @@ Page({
         add_cellar_ziko:i18n.add_cellar_ziko,
         simonmawas:i18n.simonmawas,
         wechat_id:i18n.wechat_id,
+        lottery:i18n.lottery,
+        simonmawas:i18n.simonmawas,
       },
       language: app.db.get('language')
     })
@@ -209,5 +211,19 @@ Page({
       copybox_judgment:true
     })
   },
+  copyBtn: function (e) {
+    wx.setClipboardData({
+         data: e.currentTarget.dataset.text,
+         success: function (res) {
+           wx.getClipboardData({
+             success: function (res) {
+               wx.showToast({
+                 title: '复制成功'
+               })
+             }
+           })
+         }
+       })
+   },
 
 })

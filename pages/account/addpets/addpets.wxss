@@ -1,0 +1,144 @@
+/* pages/account/addpets/addpets.wxss */
+page{
+  background-color: #12151E;
+}
+.container{
+  font-size: 30rpx;
+  background-color: #12151E;
+}
+.pets-name{
+  padding:20rpx;
+  padding-top: 80rpx;
+  background-color: #12151E;
+}
+.pets-input{
+  border-bottom: 2rpx solid rgba(255,255,255,0.4);
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  padding-bottom: 6rpx;
+}
+.type-of-pet{
+  padding: 20rpx;
+  padding-top: 40rpx;
+}
+.type-button-box{
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.type-title{
+  padding: 30rpx 0;
+}
+.type-button-box .type-button{
+  width: 320rpx !important;
+  padding:28rpx 40rpx;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+}
+.button-selected{
+  width: 320rpx !important;
+  padding:28rpx 40rpx;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  border:3rpx solid #E6A86E;
+}
+.cat-check{
+color:#E6A86E;
+position: relative;
+right: -14px;
+padding-top: 6rpx;
+}
+.dog-check{
+  color:#D46B08;
+  position: relative;
+  right: -14px;
+  padding-top: 6rpx;
+}
+
+
+.icon-color{
+  color:#8C8C8C;
+  font-size: 48rpx;  
+}
+/* .icon-walk-cat{
+  color:rgba(255,255,255,0.1);
+} */
+.type-name{
+  font-size: 28rpx;
+  line-height: 48rpx;
+  padding-left: 20rpx;
+  color:#8C8C8C;
+}
+.size-of-pet{
+  padding: 20rpx;
+  padding-top: 40rpx;
+}
+.size-of-pet-title{
+  padding-bottom:30rpx;
+}
+.radio-color{
+  display: flex;
+  justify-content: space-around;
+}
+.radio-color radio .wx-radio-input{
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  background-color: #12151E;
+  border:3rpx solid #8C8C8C;
+  }
+  
+  .radio-color radio .wx-radio-input.wx-radio-input-checked {
+  background: #E6A86E !important;
+  border-color:#E6A86E !important;
+  vertical-align: middle;
+}
+
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  color: #E6A86E;
+  }
+  
+  .under-black-button{
+    padding:30rpx 0;
+    margin:0 30rpx;
+    margin-bottom: 48rpx;
+    background-color: #12151E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8rpx;
+    position: fixed;
+    bottom: 120rpx;
+    left: 0;
+    right: 0;
+    border:3rpx solid #595959;
+  }
+  .under-black-button .font-size{
+    color: #F0F0F0;
+    font-size: 32rpx;
+    line-height: 36rpx;
+  }
+  
+  .under-white-button{
+    padding:38rpx 0;
+    margin:0 30rpx;
+    margin-bottom: 52rpx;
+    background-color: #F0F0F0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8rpx;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .under-white-button .font-size{
+    color: #1F1F1F;
+    font-size: 32rpx;
+    line-height: 20rpx;
+  }

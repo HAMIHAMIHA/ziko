@@ -1,3 +1,4 @@
+const index_data = require("../../../utils/constants.js");
 const { showLoading } = require("../../../utils/common.js");
 const { voucher_status, communities } = require("../../../utils/constants.js");
 const { formatDate, formatTime } = require("../../../utils/util.js");
@@ -29,6 +30,9 @@ const _setPageTranslation = page => {
         to_order: i18n.to_order,
         voucher_question: i18n.voucher_question,
         voucher_status: i18n.voucher_status,
+        ziko:i18n.ziko,
+        expires:i18n.expires,
+        use_now:i18n.use_now
       },
     })
 }
@@ -85,16 +89,65 @@ const _getVouchers = (page, status) => {
 
 Page({
   data: {
-    _pickers: {
-      _voucher_status
+    // _pickers: {
+    //   _voucher_status
+    // },
+    // _routes: {
+    //   order: app.routes.order,
+    // },
+    // current_status: "all",
+    // _folders: {
+    //   asset: app.folders.asset
+    // },
+    _filters: {
+      list: index_data.list_filter,
+      map: index_data.map_filters
     },
-    _routes: {
-      order: app.routes.order,
+    // filter_group: '',
+    // map: true // Default open to map view
+    vouchers:[{
+      community:"kitchen",
+      community2:"",
+      createdAt:"2022/08/12 12:00",
+      amount:100,
+      expire_on:"In 3 hours"
+      },{
+      community:"kitchen",
+      community2:"pet",
+      createdAt:"2022/11/11 12:00",
+      amount:100,
+      expire_on:"In 3 hours"
+    },{
+      community:"pet",
+      community2:"",
+      createdAt:"2022/11/11 12:00",
+      amount:150,
+      expire_on:"In 3 hours"
+    },{
+      community:"cellar",
+      community2:"garden",
+      createdAt:"2022/11/11 12:00",
+      amount:100,
+      expire_on:"Tomorrow"
     },
-    current_status: "all",
+    {
+      community:"garden",
+      community2:"",
+      createdAt:"2022/11/11 12:00",
+      amount:100,
+      expire_on:"Tomorrow"
+    },
+    {
+      community:"",
+      community2:"",
+      createdAt:"2022/11/11 12:00",
+      amount:120,
+      expire_on:"Tomorrow"
+    },]
   },
 
   onShow: async function() {
+    console.log(this.data.vouchers)
     const self = this;
     _setPageTranslation(self);
 

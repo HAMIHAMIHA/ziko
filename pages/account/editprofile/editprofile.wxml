@@ -1,0 +1,27 @@
+<view class="container">
+  <!-- USER INFO -->
+    <view class="avatar-container">
+      <image
+        wx:if="{{ user.profilePicture }}"
+        class="avatar-image"
+        src="{{ _folders.customer_picture + user.profilePicture.uri }}"
+        mode="aspectFill"
+        bindtap="chooseProfilePicture"
+        lazy-load="true"
+      ></image>
+      <text wx:else class="avatar-image icon icon-ziko" bindtap="chooseProfilePicture"></text>
+      <view class="edit">{{_t.edit}}</view>
+    </view>
+  <!-- END OF USER INFO -->
+  <view class="ziko-name">
+    <view class="ziko-name-title nunito_700">{{_t.your_ziko_name}}</view>
+    <input class="ziko-name-input" type="text" value="{{name}}" bindinput="changeInput" data-key="name"/>
+    <text class="icon icon-edit icon-position"></text>
+  </view>
+  <view class="under-black-button">
+    <text class="inter_600 font-size">{{_t.cancel}}</text>
+  </view>
+  <view class="under-white-button">
+    <text class="gilroy_700 font-size">{{_t.save}}</text>
+  </view>
+</view>

@@ -1,0 +1,133 @@
+/* pages/account/pets/pets.wxss */
+page{
+  background-color:#12151E;
+}
+.container{
+  background-color: #12151E;
+}
+.under-white-button{
+  padding:40rpx 0;
+  margin:0 30rpx;
+  margin-bottom: 80rpx;
+  background-color: #F0F0F0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.under-white-button .font-size{
+  color: #1F1F1F;
+  font-size: 32rpx;
+  line-height: 20rpx;
+}
+.pet-details{
+  background-color: #252831;
+  padding:30rpx 0;
+  display:flex;
+  justify-content: space-between;
+  margin:30rpx 0;
+}
+.left-icon{
+ background-color: rgba(255, 255, 255, 0.1);
+ display: flex;
+ justify-content: flex-end;
+ width: 188rpx;
+}
+.left-icon :nth-child(1){
+  line-height: 72rpx;
+  font-size: 48rpx;
+
+}
+.left-icon :nth-child(2){
+  padding: 0px 20rpx;
+  font-size: 28rpx;
+  line-height: 72rpx;
+  color:#E6A86E;
+  text-transform:capitalize;
+
+}
+.introduce{
+  padding:0 30rpx;
+  text-align: left;
+}
+.introduce .top{
+  color:rgba(255, 255, 255, 0.75);
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+.introduce .bottom{
+  font-size: 32rpx;
+  line-height: 40rpx;
+}
+.icon-trash{
+  font-size: 32rpx;
+  line-height: 72rpx;
+  color:#8C8C8C;
+  padding-left: 40rpx;
+  
+}
+.icon-edit{
+  font-size: 32rpx;
+  line-height: 72rpx;
+  color:#8C8C8C;
+  padding-left: 40rpx;
+  padding-right: 30rpx;
+}
+
+
+.icon-pet-head-big{
+  margin-top: 160rpx;
+  font-size: 200rpx;
+  text-align: center;
+}
+.first-paragraph{
+  font-size: 34rpx;
+  text-align: center;
+  padding-top: 90rpx;
+}
+.second-paragraph{
+  font-size: 28rpx;
+  text-align: center;
+  padding:90rpx;
+  padding-top: 30rpx;
+}
+.add_a_cat{
+  width: 400rpx !important;
+  background-color:rgb(255,255,255,0.1);
+  padding: 25rpx;
+  display: flex;
+  justify-content: center;
+}
+.add_a_cat :nth-child(1){
+  font-size: 48rpx;
+}
+.add_a_cat :nth-child(2){
+  font-size: 28rpx;
+  padding-left: 10rpx;
+  color:#E6A86E;
+  padding-top: 10rpx;
+
+}
+.add_a_dog{
+  width: 400rpx !important;
+  margin-top: 40rpx;
+  background-color:rgb(255,255,255,0.1);
+  padding: 25rpx;
+  display: flex;
+  justify-content: center;
+}
+.add_a_dog :nth-child(1){
+  font-size: 48rpx;
+}
+.add_a_dog :nth-child(2){
+  font-size: 28rpx;
+  padding-left: 10rpx;
+  color:#D46B08;
+  padding-top: 10rpx;
+
+}

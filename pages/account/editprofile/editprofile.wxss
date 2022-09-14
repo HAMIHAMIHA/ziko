@@ -1,0 +1,103 @@
+page{
+  background-color:#12151E;
+}
+.container{
+  background-color:#12151E;
+}
+/* HEAD */
+.avatar-container{
+  position: relative;
+  font-size: 320rpx;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 50rpx;
+}
+.avatar-container image{
+  width: 320rpx;
+  height: 320rpx;
+  border-radius: 50%;
+}
+.avatar-container .edit{
+  position: absolute;
+  text-transform:uppercase;
+  bottom:-2rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  padding: 0 150rpx;
+  background-color: rgba(20,20,20,0.6);
+}
+
+/* END OF HEAD  */
+/* INPUT ZIKO NAME */
+.ziko-name{
+padding:0rpx 30rpx;
+margin-top: 60rpx;
+}
+.ziko-name-title{
+  text-align: center;
+  font-size: 28rpx;
+  padding-top: 16rpx;
+}
+.ziko-name-input{
+  text-align: center;
+  border-bottom: 2rpx solid rgba(255,255,255,0.4);
+  line-height: 100rpx;
+  font-size: 32rpx;
+  padding: 30rpx 0;
+}
+.icon-position{
+  font-size: 38rpx  !important;
+  position: absolute;
+  right: 26px;
+  bottom: 18px;
+  color: rgba(255,255,255,0.4) !important;
+}
+/* END OF INPUT ZIKO NAME */
+
+/* BUTTON */
+
+.under-black-button{
+  padding:30rpx 0;
+  margin:0 30rpx;
+  margin-bottom: 48rpx;
+  background-color: #12151E;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8rpx;
+  position: fixed;
+  bottom: 120rpx;
+  left: 0;
+  right: 0;
+  border:3rpx solid #595959;
+}
+.under-black-button .font-size{
+  color: #F0F0F0;
+  font-size: 32rpx;
+  line-height: 36rpx;
+}
+
+.under-white-button{
+  padding:38rpx 0;
+  margin:0 30rpx;
+  margin-bottom: 52rpx;
+  background-color: #F0F0F0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.under-white-button .font-size{
+  color: #1F1F1F;
+  font-size: 32rpx;
+  line-height: 20rpx;
+}
+
+/* END OF BUTTON */
