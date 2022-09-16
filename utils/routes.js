@@ -1,8 +1,10 @@
 const routes = {
   home: "/pages/index/index",
   account: "/pages/account/index/index",
-  account_info: "/pages/account/information/information",
+  account_info: "/pages/account/information/information", 
   fapiao: "/pages/account/fapiao/fapiao",
+  pets: "/pages/account/pets/pets",
+  addpets: "/pages/account/addpets/addpets",
   address: "/pages/address/index/index",
   address_detail: "/pages/address/detail/detail",
   address_areas: "/pages/address/areas/areas",

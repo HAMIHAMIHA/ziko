@@ -45,53 +45,61 @@
       </view>
   <!-- End of Scroll Menu -->
 
-<!-- <view class="content">
+  <!-- <view class="content">
   <block wx:for="{{vouchers}}" wx:key="id" wx:for-item="voucher">
     <view>{{voucher.community}}</view>
   </block>
 </view> -->
-<view wx:if="{{ vouchers }}" class="content">
-  <!-- Voucher List -->
-  <view class="no-vouchers">{{ _t.no_vouchers }}</view>
-  <view class="container container-grey container-btn-bottom">
-    <view class="voucher-content_container">
-      <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher" class="ticket_box">
-        <image src="../../../assets/images/{{voucher.community||'kitchen'}}_ticket.svg" class="ticket_picture">
-          <view class="box-content">
-            <view class="box-content-left">
-              <view class="black-box gilroy_700">
-                <text class="ziko-name">{{_t.ziko}}</text>
-                <text class="nunito_700 ziko-community ziko-community-{{voucher.community}}">{{voucher.community?' '+voucher.community:' land '}}</text>
-                <text class="ziko-community">{{voucher.community2?' / ':" "}}</text>
-                <text class="nunito_700 ziko-community ziko-community-{{voucher.community2}}">{{voucher.community2?voucher.community2:" "}}</text>
-              </view>
-              <view class="nunito_400 received">
-                <text>{{_t.received+':  '}}{{voucher.createdAt}}</text>
-                <view>{{_t.expires+':   '}}<text class="expires nunito_500">{{voucher.expire_on}}</text></view>
+  <view wx:if="{{ vouchers }}" class="content">
+    <!-- Voucher List -->
+    <view class="no-vouchers">{{ _t.no_vouchers }}</view>
+    <view class="container container-grey container-btn-bottom">
+      <view class="voucher-content_container">
+        <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher" class="ticket_box">
+          <image src="../../../assets/images/{{voucher.community||'kitchen'}}_ticket.svg" class="ticket_picture">
+            <view class="box-content">
+              <view class="box-content-left">
+                <view class="black-box gilroy_700">
+                  <text class="ziko-name">{{_t.ziko}}</text>
+                  <text class="nunito_700 ziko-community ziko-community-{{voucher.community}}">{{voucher.community?' '+voucher.community:' land '}}</text>
+                  <text class="ziko-community">{{voucher.community2?' / ':" "}}</text>
+                  <text class="nunito_700 ziko-community ziko-community-{{voucher.community2}}">{{voucher.community2?voucher.community2:" "}}</text>
                 </view>
-              
+                <view class="nunito_400 received">
+                  <text>{{_t.received+':  '}}{{voucher.createdAt}}</text>
+                  <view>{{_t.expires+':   '}}<text class="expires nunito_500">{{voucher.expire_on}}</text></view>
+                  </view>
+                
+              </view>
+              <view class="box-content-right">
+                <view class="money gilroy_700">¥ {{voucher.amount}}</view>
+                <view class="use_now nunito_600">{{_t.use_now}}</view>
+              </view>
             </view>
-            <view class="box-content-right">
-              <view class="money gilroy_700">¥ {{voucher.amount}}</view>
-              <view class="use_now nunito_600">{{_t.use_now}}</view>
-            </view>
-          </view>
-        </image>
+          </image>
 
-      </block>
+        </block>
+      </view>
+
+      <!-- <view class="btn-bottom">
+          <view class="contact-message">{{ _t.voucher_question }}</view>
+          <button class="contact-button" open-type="contact">
+            <text class="icon icon-headset"></text>
+            <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
+          </button>
+        </view>-->
+    </view> 
+    <!-- End of Voucher List -->
+  </view>
+  <view wx:else class="no-voucher">
+    <view class="icon icon-ziko">
     </view>
-
-    <!-- <view class="btn-bottom">
-        <view class="contact-message">{{ _t.voucher_question }}</view>
-        <button class="contact-button" open-type="contact">
-          <text class="icon icon-headset"></text>
-          <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
-        </button>
-      </view>-->
-  </view> 
-  <!-- End of Voucher List -->
-</view>
-<view wx:else class="no-content"></view>
+    <view class="first-paragraph gilroy-700">{{_t.no_vouchers_yet}}</view>
+    <view class="second-paragraph nunito_500">{{_t.its_up_to_you}}</view>
+    <button class="add_a_cat">
+      <text>{{_t.view_ziko_offers}}</text>
+    </button>
+  </view>
 </block>
 
 <lottery-draw id="lottery_modal"></lottery-draw>

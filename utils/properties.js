@@ -26,7 +26,7 @@ module.exports = {
     special_gift: SUBSCRIBE_SPECIAL_GIFT,
     lottery_draw: SUBSCRIBE_LOTTERY_DRAW,
   },
-  tabbars: ["home", "orders", "explore", "lottery", "account"],
+  tabbars: ["home",  "explore",  "account"],
   fonts: [
     { family: "gilroy", source: `${FILE_URL}fonts/Gilroy-Regular.otf`, weight: "400" },
     { family: "gilroy", source: `${FILE_URL}fonts/Gilroy-Medium.otf`, weight: "500" },

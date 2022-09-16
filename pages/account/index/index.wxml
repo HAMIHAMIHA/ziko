@@ -127,8 +127,10 @@
   </view>
   <!-- Join Ziko community end-->
 </view>
+<!-- copy box -->
 <view class="copybox" hidden="{{copybox_judgment}}">
-  <view class="copybox-cancel" bindtap="copyboxhide"></view>
+  <view class="copybox-cancel" bindtap="copyboxhide">
+  </view>
   <view class="copybox-tap bottom-pos" animation="{{animationData}}">
     <view class="add-box" data-text="{{_t.simonmawas}}" bindtap='copyBtn'>
       <view class="icon icon-chef-head icon-chef"></view>
@@ -179,4 +181,5 @@
     </view>
   </view>
 </view>
+<!-- copy box end -->
 <lottery-draw id="lottery_modal"></lottery-draw>

@@ -1,3 +1,10 @@
+page{
+  background-color:#11141B;
+}
+.container{
+  background-color:#11141B !important;
+}
+
 .container.container-btn-bottom {
   --container-btn-bottom-height-: calc(36rpx + 32rpx + 32rpx + 48rpx + 32rpx);
 }
@@ -59,3 +66,468 @@
 .disabled {
   pointer-events: none;
 }
+/* ADD CONTENT */
+.ziko-special{
+  background-color: #252831;
+  padding: 15px 30rpx;
+  margin: 12rpx 0;
+}
+.delivery-fee{
+  font-size: 34rpx;
+  padding: 12rpx 0;
+}
+
+.delivery-date{
+  background-color: rgb(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 15px 28rpx;
+}
+.text-justify{
+  width: 100%;
+}
+.text-justify .icon-calendar{
+font-size: 24rpx;
+}
+.cartdetail{
+  padding-top: 30rpx;
+  font-size: 28rpx;
+}
+.cart_detail_input{
+  flex: 0 0 68%;
+  height: 78rpx;
+  display: flex;
+  /* border-bottom: 2rpx solid #EBEBEB; */
+  border-bottom: 2rpx solid #545764;
+  box-sizing: border-box;
+}
+.cart_detail_input .input {
+  width: 100%;
+  margin: auto;
+  border: 0;
+}
+
+.cart_detail_input .picker {
+  position: relative;
+}
+
+.cart_detail_input.input_goto .input {
+  height: 100%;
+}
+
+.cart_detail_input .picker_text {
+  width: calc(100% - 24rpx - 16rpx);
+  height: 64rpx;
+}
+
+.cart_detail_input .picker .icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+.icon-arrow-right{
+  font-size: 20rpx;
+}
+.special_requests{
+  padding-bottom: 30rpx;
+}
+.fapiao-title{
+  display: flex;
+  justify-content: space-between;
+}
+.send-fapiao-to{
+  padding: 24rpx 0;
+  color:rgb(255,255,255,0.4);
+  display: flex;
+  justify-content: space-between;
+}
+.icon-plus{
+  color: #BFBFBF;
+}
+.send-fapiao-content{
+  width: 540rpx;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  color: #BFBFBF;
+  padding-bottom: 20rpx;
+}
+.fapiao-checked{
+  width: 120rpx;
+  height: 54rpx;
+  border-radius: 50rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.checked-no{
+  background-color: black;
+}
+.ball{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 100%;
+}
+.checked-no .no{
+color:rgb(255,255,255,0.5);
+padding-right: 24rpx;
+}
+.checked-no .ball{
+  margin-left: 6rpx;
+  background-color: #8C8C8C;
+}
+.checked-yes{
+  background-color: rgb(255,255,255,0.6);
+}
+.checked-yes .yes{
+  color: black;
+  padding-left: 24rpx;
+  }
+.checked-yes .ball{
+  margin-right: 6rpx;
+  background-color: #F0F0F0;
+}
+.if-you-need{
+font-size: 24rpx  ;
+}
+.detail_label{
+  font-size: 28rpx;
+}
+.contact-box{
+  padding-bottom: 100rpx;
+}
+.contact-box .content_text{
+  width:502rpx;
+  position: relative;
+  margin:auto;
+
+}
+.vouchers-title{
+  padding: 30rpx 0;
+}
+scroll-view{
+  white-space: nowrap;
+}
+.ticket_box{
+  width: 80%;
+  display: inline-block;
+}
+/* voucher*/
+.ticket_picture{
+  width: 600rpx;
+  height: 196rpx;
+  padding-bottom: 40rpx;
+  position: relative;
+  margin-right: 30rpx;
+}
+.ticket_picture-alone{
+  width: 690rpx;
+}
+
+.box-content{
+  position: absolute;
+  width: 600rpx;
+  height: 196rpx;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.box-content-alone{
+  width: 690rpx;
+}
+.box-content-left{
+  width: 460rpx;
+}
+.black-box{
+  background-color: #000;
+  border-radius: 3px 0px 4px;
+  margin: 16rpx 0 0 4rpx;
+  padding: 8rpx 20rpx;
+  font-size: 22rpx;
+  line-height: 32rpx;
+  text-transform:uppercase;
+  width: fit-content;
+  padding-top: 10rpx;
+}
+.black-box-alone{
+  margin: 4rpx 0 0 4rpx;
+}
+.ziko-community-kitchen{
+  background-image:-webkit-linear-gradient(-120deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%); 
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+}
+.ziko-community-pet{
+  background-image:-webkit-linear-gradient(-120deg, #FFB65A 100%,
+  #FF7233 100%); 
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+}
+.ziko-community-garden{
+  background-image:-webkit-linear-gradient(-120deg, #97F082 100%,  #11BE67 100%); 
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+}
+.ziko-community-cellar{
+  background-image:-webkit-linear-gradient(-120deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%); 
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+}
+.received{
+  margin-top: 26rpx;
+  text-align: right;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  padding-right: 40rpx;
+}
+.expires{
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+.box-content-right{
+  text-align: center;
+  width: 230rpx;
+}
+.money{
+  margin-top: 36rpx;
+  font-size: 42rpx;
+}
+.circle-check{
+  width: 48rpx;
+  height: 48rpx;
+  margin-top: 18rpx;
+  margin-left: 80rpx;
+  background-color:transparent;
+  border-radius: 100%;
+  border: 3rpx solid rgb(255,255,255,0.6)
+}
+.circle-check{
+  margin-left: 98rpx;
+
+}
+/* end of voucher */
+
+.contact-button{
+  background-color: black !important;
+  width: 480rpx !important;
+}
+.bottom-pay{
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+  background-color: #3F4250;
+  left: 0;
+  right: 0;
+}
+.remind{
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #11141B;
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+.remind-text{
+  margin-left: 120rpx;
+}
+.remind-number{
+  padding: 0 20rpx;
+}
+.icon-ticket{
+  color:#FFC700;
+  vertical-align: middle;
+}
+.cartdetail-flex{
+  padding-top: 30rpx;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+.total-content{
+  margin-right: 30rpx;
+  margin-top:10rpx;
+}
+.total-content .text-right{
+  font-size: 28rpx;
+  text-align: right;
+}
+
+.detail_result_before{
+  text-decoration: line-through;
+  color:rgb(255,255,255,0.6);
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+.detail_result{
+  font-size: 34rpx;
+  line-height: 32rpx;
+  padding-left: 10rpx;
+}
+.pay-button{
+  margin:10rpx 30rpx 40rpx 0;
+  margin-bottom: calc(40rpx + var(--env-));
+}
+.pay-button button{
+  background-color: #07C160;
+  width: 294rpx;
+  height: 80rpx;
+  color:white;
+}
+
+
+
+/* copy-box */
+.copybox {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.copybox-cancel {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.copybox-tap {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 30rpx;
+  height: 910rpx;
+  background-color: #FAFAFA;
+  border-radius: 40rpx 40rpx 0 0;
+  box-sizing: border-box;
+  color: black;
+}
+
+.copybox-tap .add-box {
+  margin: auto;
+  text-align: center;
+  width: fit-content;
+}
+.add-box .box-title{
+  display: flex;
+}
+.add-box .icon-wechat{
+  font-size: 48rpx;
+  margin:30rpx 0;
+}
+.add-box .qrcode{
+  width: 350rpx;
+  height: 350rpx;
+  margin: 40rpx 0;
+}
+.box-title-inside{
+  text-align: left;
+  padding-top: 16rpx;
+  padding-left: 11rpx;
+}
+.box-title-inside .inside-title{
+  font-size: 42rpx;
+  line-height: 50rpx;
+}
+.box-title-inside .inside-content{
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #8C8C8C;
+  padding-top: 4rpx;
+}
+
+
+.copybox-tap .add-box .icon-chef-head{
+  font-size: 101.4rpx;
+  padding-right: 22rpx;
+  padding-top: 10rpx;
+}
+.copybox-tap .add-box .icon-pet-head{
+  font-size:80rpx;
+  padding-right: 34rpx;
+  padding-top: 20rpx;
+}
+.copybox-tap .add-box .icon-farmer-head{
+  font-size:74rpx;
+  padding-right: 20rpx;
+  padding-top: 18rpx;
+}
+.copybox-tap .add-box .icon-celler-head{
+  font-size:66rpx;
+  padding-right: 35rpx;
+  padding-top: 28rpx;
+}
+.wechat-copy{
+  line-height: 50rpx;
+  padding: 6px 20rpx;
+  border-radius: 4px;
+  margin: 6rpx 87rpx;
+  text-align: center;
+}
+.wechat-copy-hover{
+  line-height: 56rpx;
+  padding: 0px 20rpx;
+  border-radius: 4px;
+  box-shadow: 0px 0px 0px 2px rgba(24, 144, 255, 0.2);
+}
+.box-name{
+font-family: 'Gilroy';
+font-style: normal;
+font-weight: 700;
+font-size: 28rpx;
+line-height: 34rpx;
+}
+.wechat-copy.box-chef{
+  background: linear-gradient(120.15deg, #715026 -10.06%, #876737 -0.29%, #C7AA67 46.85%, #EFD486 96.32%, #BD9D54 116.54%, #FFE592 134.09%, #A2803B 151.21%, #A4823E 175.64%, #AB8C47 192.75%, #B79B58 209.85%, #C7B16F 226.96%, #D2BF7E 234.29%);
+}
+.wechat-copy.box-pet{
+  background: linear-gradient(132.48deg, #FFB65A -1194.24%, #FF7233 1529.08%);
+}
+.wechat-copy.box-farmer{
+  background: linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%);
+}
+.wechat-copy.box-cellar{
+  background: linear-gradient(113.45deg, #C5CACE -6.01%, #A4A8AB 0.17%, #8C8F91 9.43%, #838688 12.52%, #888C8E 24.87%, #919699 37.21%, #A4AAAF 65%, #BBC3CA 89.7%, #BAC3C8 120.57%, #BDC5C9 126.74%, #D9D9D9 163.79%, #DFDEDE 169.96%, #F0EDED 179.22%, #FFF9F9 182.31%, #F5F5F4 203.92%, #FFFFFF 216.27%, #F7F7F7 228.62%, #EAEAEA 237.88%, #CBCBCD 268.75%, #C3CCD3 287.27%, #A4A9AC 299.62%);
+}
+.wechat-id{
+  font-size: 28rpx;
+  color: #FFFFFF;
+  vertical-align: middle;
+}
+.simonmawas{
+  font-size: 28rpx;
+  color: #FFFFFF;
+}
+.icon-height{
+  padding-left: 20rpx;
+  vertical-align: middle;
+}
+.simonmawas{
+  padding-left:6rpx;
+  vertical-align: middle;
+}
+.x{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background-color: #D9D9D9;
+  position: absolute;
+  right: 20px;
+  top: 40rpx;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-x-height{
+  font-size: 25rpx;
+  text-align: center;
+}
+/* copy box end*/

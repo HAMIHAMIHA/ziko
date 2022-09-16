@@ -296,11 +296,10 @@ button:not([size=mini]).langauge {
   right: 0;
   bottom: 0;
   padding: 30rpx;
-  height: 880rpx;
+  height: 910rpx;
   background-color: #FAFAFA;
   border-radius: 40rpx 40rpx 0 0;
   box-sizing: border-box;
-  padding-top: 50rpx;
   color: black;
 }
 

@@ -3,6 +3,12 @@ page {
 }
 
 /* Fonts Class - Family */
+.inter_600 {
+  font-family: "inter", "arial";
+  font-weight: 600;
+}
+
+
 .gilroy {
   font-family: "gilroy", "arial";
   font-weight: 400;
@@ -36,7 +42,14 @@ page {
   font-family: "nunito", "arial";
   font-weight: 300;
 }
-
+.nunito_400 {
+  font-family: "nunito", "arial";
+  font-weight: 400;
+}
+.nunito_500 {
+  font-family: "nunito", "arial";
+  font-weight: 500;
+}
 .nunito_600 {
   font-family: "nunito", "arial";
   font-weight: 600;

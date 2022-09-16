@@ -39,9 +39,6 @@
       </view>  -->
 
 
-
-
-
       <view class="details_container inputs_container field-5">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.province}}</view>

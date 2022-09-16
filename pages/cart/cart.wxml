@@ -1,10 +1,11 @@
-<wxs module="fixDecimals" src="/utils/fixDecimals.wxs"></wxs>
+<!-- <wxs module="fixDecimals" src="/utils/fixDecimals.wxs"></wxs> -->
 
 <view class="container container-grey container-btn-bottom {{ error }}">
   <form bindsubmit="pay">
     <view class="white-box order-products_container">
       <view class="nunito_700 header">{{ _t.items }}</view>
-      <block wx:for="{{ products }}" wx:key="id" wx:for-item="product">
+      <!-- <block wx:for="{{ products }}" wx:key="id" wx:for-item="product"> -->
+        <block wx:for="{{ productstest }}" wx:key="id" wx:for-item="product">
         <view class="order-products product_container" wx:if="{{ product.amount }}">
           <view class="flex-between product" mark:type="{{ product.type }}">
             <view class="flex-start flex-align-start product_left">
@@ -59,60 +60,44 @@
       </block>
     </view>
 
-    <view class="white-box details_container">
-      <view class="detail" bindtap="toSelectVoucher">
-        <text class="detail_label">{{ _t.use_voucher }}</text>
-        <view class="nunito_600 detail_result" wx:if="{{ voucher.amount > 0 }}">
-          <text class="font_red">-￥{{ voucher.amount }}</text>
-          <text class="icon icon-arrow-right"></text>
-        </view>
-        <view class="nunito_600 detail_result" wx:else>
-          <text>{{ _t.available.fst + voucher_count + _t.available.snd }}</text>
-          <text class="icon icon-arrow-right"></text>
-        </view>
+    <!-- <view class="detail" bindtap="toSelectVoucher"> -->
+    <view class="detail ziko-special">
+      <text class="detail_label">{{ _t.ziko_special }}</text>
+      <view class="nunito_600 detail_result" wx:if="{{ voucher.amount > 0 }}">
+        <text class="font_red">-￥{{ voucher.amount }}</text>
       </view>
-      <view class="detail field-2">
-        <text class="detail_label">{{ _t.choose_delivery_date }}</text>
+      <view class="nunito_600 detail_result" wx:else>
+        <text>{{ _t.available.fst + voucher_count + _t.available.snd }}</text>
+      </view>
+    </view>
+
+    <view class="white-box details_container">
+      <view class="detail">
+        <text class="detail_label delivery-fee">{{ _t.delivery }}</text>
+        <text class="detail_result">{{ free_delivery || delivery_fee === 0 ? _t.free_delivery : delivery_fee > 0 ? '¥' + delivery_fee : '' }}</text>
+      </view>
+
+      <view class="detail field-2 delivery-date">
         <picker
-          class="nunito_600 detail_result"
+          class="nunito_600 detail_result text-justify"
           name="delivery_date"
           value="{{ delivery_date }}"
           range="{{ delivery_dates }}"
           bindchange="bindPickerChange"
           data-key="delivery_date"
         >
-          <view class="flex-center picker">
-            <text>{{ delivery_dates[delivery_date] }}</text>
-            <text class="icon icon-arrow"></text>
-          </view>
+        <text class="detail_label">{{ _t.expected_delivery_date }}</text>
+        <!-- <view class="flex-center picker">
+          <text>{{ delivery_dates[delivery_date] }}</text>
+        </view> -->
+        <text class="icon icon-calendar"></text>
         </picker>
       </view>
-      <view class="detail">
-        <text class="detail_label">{{ _t.delivery_fee }}</text>
-        <text class="detail_result">{{ free_delivery || delivery_fee === 0 ? _t.free_delivery : delivery_fee > 0 ? '¥' + delivery_fee : '' }}</text>
-      </view>
-      <view class="nunito_700 detail">
-        <text class="detail_label">{{ _t.total }}</text>
-        <text class="detail_result">¥{{ fixDecimals.toFix((_pay_set.finalFee - voucher.amount) * discount) }}</text>
-      </view>
-    </view>
 
-    <view class="white-box details_container">
-      <view class="detail" wx:if="{{ _offer.miniprogram.lotteyEnable }}">
-        <text class="detail_label">{{ _t.lottery_tickets }}</text>
-        <text class="detail_result">x{{ _pay_set.tickets }}</text>
-      </view>
-      <!-- Hide for temp -->
-      <view class="detail" wx:if="{{ showing }}">
-        <text class="detail_label">{{ _t.fidelity_points }}</text>
-        <text class="detail_result">+{{ offer.fidelity_points }}30</text>
-      </view>
-    </view>
-
-    <view class="white-box details_container inputs_container">
-      <view class="detail address field-0">
-        <text class="detail_label">{{ _t.address }}</text>
-        <view class="detail_input input_goto">
+      <!-- ADDRESS -->
+      <view class="cartdetail address field-0">
+        <view class="detail_label">{{ _t.address }}</view>
+        <view class="cart_detail_input input_goto">
           <navigator class="input picker" hover-class="none" url="{{ _routes.address + '?action=select&selected_address=' + address_selected }}">
             <text>{{ _t.address_type[user.addresses[address_selected].type] }}</text>
             <text class="icon icon-arrow-right"></text>
@@ -121,19 +106,19 @@
         </view>
       </view>
 
-      <view class="detail field-1">
-        <text class="detail_label">{{ _t.contact_label }}</text>
-        <view class="detail_input input_goto">
+      <view class="cartdetail field-1">
+        <text class="detail_label">{{ _t.contact_person }}</text>
+        <view class="cart_detail_input input_goto">
           <navigator class="input picker" hover-class="none" url="{{ _routes.contacts + '?action=select&selected_contact=' + contact_selected }}">
             <text>{{ user.contacts[contact_selected].name }}</text>
             <text class="icon icon-arrow-right"></text>
           </navigator>
         </view>
       </view>
-
-      <view class="detail">
+      <!-- PHONE NO -->
+      <!-- <view class="cartdetail">
         <text class="detail_label">{{ _t.phone_no }}</text>
-        <view class="detail_input">
+        <view class="cart_detail_input">
           <input
             class="input"
             type="text"
@@ -141,55 +126,291 @@
             value="{{ user.contacts[contact_selected].phone }}"
           />
         </view>
+      </view> -->
+      <!-- SPECIAL REQUESTS -->
+      <view class="cartdetail special_requests">
+        <text class="detail_label">{{ _t.special_requests }}</text>
+        <view class="cart_detail_input"><input class="input" name="comment" 	placeholder="{{_t.anything_else_we}}" type="text" /></view>
       </view>
     </view>
+
+    <!-- <view class="white-box details_container">
+      <view class="cartdetail" wx:if="{{ _offer.miniprogram.lotteyEnable }}">
+        <text class="detail_label">{{ _t.lottery_tickets }}</text>
+        <text class="detail_result">x{{ _pay_set.tickets }}</text>
+      </view> -->
+      <!-- Hide for temp -->
+      <!-- <view class="cartdetail" wx:if="{{ showing }}">
+        <text class="detail_label">{{ _t.fidelity_points }}</text>
+        <text class="detail_result">+{{ offer.fidelity_points }}30</text>
+      </view> 
+    </view>-->
 
     <view class="white-box details_container inputs_container">
-      <view class="detail checkbox-container fapiao">
-        <text class="detail_label">{{ _t.fapiao }}</text>
-        <view class="flex-between detail_input">
-          <navigator hover-class="none" url="{{ _routes.fapiao + '?action=edit' }}">
-            <input class="ellipsis input" type="text" name="fapiao" disabled="true" value="{{ user.fapiaoInformation }}" />
-          </navigator>
-          <view class="checkbox{{ fapiao ? ' checked' : '' }}" bindtap="toggleCheck" data-key="fapiao">
-            <text class="icon icon-check"></text>
+        <view wx:if="{{fapiaotest}}" class="cartdetail checkbox-container fapiao">
+          <view class="fapiao-title">
+            <text class="detail_label">{{ _t.send_fapiao_to }}</text>
+            <view wx:if="{{fapiao}}" class="fapiao-checked checked-no">
+              <view class="ball" bindtap="toggleCheck" data-key="fapiao"></view>
+              <view class="no nunito_400" bindtap="toggleCheck" data-key="fapiao" >{{_t.no}}</view>
+            </view>
+            <view wx:else class="fapiao-checked checked-yes">
+              <view class="yes nunito_400" bindtap="toggleCheck" data-key="fapiao" >{{_t.yes}}</view>
+              <view class="ball" bindtap="toggleCheck" data-key="fapiao"></view>
+            </view>
+          
+            <!-- <view class="checkbox{{ fapiao ? ' checked' : '' }}" bindtap="toggleCheck" data-key="fapiao">
+            </view> -->
+          </view>
+          <view  class="send-fapiao-content">
+            {{ fapiao_content_test }}
           </view>
         </view>
+        <view wx:else class="cartdetail">
+            <text class="detail_label">{{ _t.send_fapiao_to }}</text>
+            <view class="send-fapiao-to">
+                <navigator hover-class="none" url="{{ _routes.fapiao + '?action=edit' }}">
+                  <text class="nunito_400">{{_t.no_details_yet}}</text>
+                  <text class="icon icon-plus"></text>
+                </navigator>
+            </view>
+        </view>
+    </view>
+
+    <!-- Available Ziko vouchers -->
+    <view class="white-box ">
+      <view class="gilroy_700 vouchers-title">{{ _t.available_ziko_vouchers }}</view>
+      <!-- vouchers -->
+      <scroll-view scroll-x="true" wx:if="{{ vouchers.length>1 }}">
+        <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher" class="ticket_box">
+          <image src="../../assets/images/{{voucher.community||'kitchen'}}_ticket.svg" class="ticket_picture">
+            <view class="box-content">
+              <view class="box-content-left">
+                <view class="black-box gilroy_700">
+                  <text class="ziko-name">{{_t.ziko}}</text>
+                  <text class="nunito_700 ziko-community ziko-community-{{voucher.community}}">{{voucher.community?' '+voucher.community:' land '}}</text>
+                  <text class="ziko-community">{{voucher.community2?' / ':" "}}</text>
+                  <text class="nunito_700 ziko-community ziko-community-{{voucher.community2}}">{{voucher.community2?voucher.community2:" "}}</text>
+                </view>
+                <view class="nunito_400 received">
+                  <text>{{_t.received+':  '}}{{voucher.createdAt}}</text>
+                  <view>{{_t.expires+':   '}}<text class="expires nunito_500">{{voucher.expire_on}}</text></view>
+                  </view>
+                
+              </view>
+              <view class="box-content-right">
+                <view class="money gilroy_700">¥ {{voucher.amount}}</view>
+                <view class="circle-check"></view>
+              </view>
+            </view>
+          </image>
+        </block>
+      </scroll-view>
+      <view wx:if="{{ !vouchers.length>1}}">
+        <image src="../../assets/images/{{voucher.community||'kitchen'}}_ticket.svg" class="ticket_picture ticket_picture-alone">
+          <view class="box-content box-content-alone">
+            <view class="box-content-left">
+              <view class="black-box black-box-alone gilroy_700">
+                <text class="ziko-name">{{_t.ziko}}</text>
+                <text class="nunito_700 ziko-community ziko-community-{{voucher.community}}">{{voucher.community?' '+voucher.community:' land '}}</text>
+                <text class="ziko-community">{{voucher.community2?' / ':" "}}</text>
+                <text class="nunito_700 ziko-community ziko-community-{{voucher.community2}}">{{voucher.community2?voucher.community2:" "}}</text>
+              </view>
+              <view class="nunito_400 received">
+                <text>{{_t.received+':  '}}{{voucher.createdAt}}</text>
+                <view>{{_t.expires+':   '}}<text class="expires nunito_500">{{voucher.expire_on}}</text></view>
+                </view>
+              
+            </view>
+            <view class="box-content-right">
+              <view class="money gilroy_700">¥ {{voucher.amount}}</view>
+              <view class="circle-check"></view>
+            </view>
+          </view>
+        </image>
       </view>
     </view>
 
-    <view class="white-box details_container inputs_container textarea_container">
-      <view class="detail">
-        <text class="detail_label">{{ _t.comment }}</text>
-        <view class="detail_input"><input class="input" name="comment" type="text" /></view>
+    <view class="contact-box">
+      <view class="if-you-need content_text nunito_400">{{ _t.if_you_need_to}}
       </view>
-    </view>
-
-    <view class="white-box contact-box">
-      <view class="">{{ _t.checkout_message }}</view>
       <view class="contact-button_container">
         <button class="contact-button" open-type="contact">
           <text class="icon icon-headset"></text>
           <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
         </button>
       </view>
+      <view class="contact-button_container">
+        <button class="contact-button" bindtap="copyboxshow">
+          <text class="icon icon-wechat"></text>
+          <text class="nunito_600">{{ _t.add_chef_ziko_on_wechat }}</text>
+        </button>
+      </view>
     </view>
 
-    <view class="btn-bottom">
-      <button class="nunito_600 disabled" wx:if="{{ _pay_set.single && _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.single }}">
-        {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }}
-      </button>
-      <button class="nunito_600 disabled" wx:elif="{{ _pay_set.reducedTotal && _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.reducedTotal }}">
-        {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
-      </button>
-      <button class="nunito_600 disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.total }}">
-        {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
-      </button>
-      <button class="nunito_600{{ _pay_set.pay_disabled ? ' disabled' : '' }}" formType="submit" wx:else>
-        {{ _t.pay }}
-      </button>
+    <view class="bottom-pay">
+      <view class="remind">
+        <text class="remind-text nunito_500">{{ _t.lottery_tickets_you_can_get}}</text>
+        <text class="remind-number">{{'+'+3+''}}</text>
+        <text class="icon icon-ticket"></text>
+      </view>
+      <!-- PAY -->
+      <view class="nunito_700 cartdetail-flex">
+        <view class="total-content">
+          <view class="detail_label nunito_500 text-right">{{ _t.total }}</view>
+          <!-- <text class="detail_result">¥{{ fixDecimals.toFix((_pay_set.finalFee - voucher.amount) * discount) }}</text> -->
+          <text class="detail_result_before">¥{{ voucher.amount_before }}</text> 
+          <text class="detail_result">¥{{ voucher.price }}</text> 
+        </view>
+        <view class="pay-button">
+          <button class="nunito_600 disabled" wx:if="{{ _pay_set.single && _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.single }}">
+            {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }}
+          </button>
+          <button class="nunito_600 disabled" wx:elif="{{ _pay_set.reducedTotal && _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.reducedTotal }}">
+            {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
+          </button>
+          <button class="nunito_600 disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.total }}">
+            {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
+          </button>
+          <button class="nunito_600{{ _pay_set.pay_disabled ? ' disabled' : '' }}" formType="submit" wx:else>
+            {{ _t.pay }}
+          </button>
+        </view>
+      </view>
     </view>
   </form>
 </view>
+
+<!-- copy box -->
+  <!-- chef -->
+<view class="copybox" wx:if="{{ copybox_type.chef && copybox_judgment}}">
+  <view class="copybox-cancel" bindtap="copyboxhide">
+  </view>
+  <view class="copybox-tap bottom-pos">
+
+    <view class="add-box">
+      <view class="icon icon-wechat"></view>
+      <view class="box-title">
+        <view class="icon icon-chef-head icon-chef"></view>
+        <view class="box-title-inside">
+          <view class="gilroy_700 inside-title">{{_t.add_cellar_ziko}}</view>
+          <view class="nunito_500 inside-content">{{_t.please_long_press}}</view>
+        </view>
+      </view>
+      <image src="../../assets/images/QRCODE.png" class="qrcode"></image>
+    </view>
+
+    <view class="wechat-copy box-chef" bindtap='copyBtn' data-text="{{_t.simonmawas}}">
+        <text class="wechat-id">{{_t.wechat_id}}</text>
+        <text class="simonmawas">{{_t.simonmawas}}</text>
+        <text class="icon icon-click-copy icon-height"></text>
+    </view>
+
+    <view class="x">
+      <text class="icon icon-x icon-x-height" bindtap="copyboxhide"></text>
+    </view>
+
+  </view>
+
+</view>
+  <!-- end of chef -->
+  <!-- cellar -->
+  <view class="copybox" wx:if="{{ copybox_type.cellar && copybox_judgment}}">
+  <view class="copybox-cancel" bindtap="copyboxhide">
+  </view>
+  <view class="copybox-tap bottom-pos">
+
+    <view class="add-box">
+      <view class="icon icon-wechat"></view>
+      <view class="box-title">
+        <view class="icon icon-celler-head icon-celler"></view>
+        <view class="box-title-inside">
+          <view class="gilroy_700 inside-title">{{_t.add_cellar_ziko}}</view>
+          <view class="nunito_500 inside-content">{{_t.please_long_press}}</view>
+        </view>
+      </view>
+      <image src="../../assets/images/QRCODE.png" class="qrcode"></image>
+    </view>
+
+    <view class="wechat-copy box-cellar" bindtap='copyBtn' data-text="{{_t.simonmawas}}">
+        <text class="wechat-id">{{_t.wechat_id}}</text>
+        <text class="simonmawas">{{_t.simonmawas}}</text>
+        <text class="icon icon-click-copy icon-height"></text>
+    </view>
+
+    <view class="x">
+      <text class="icon icon-x icon-x-height" bindtap="copyboxhide"></text>
+    </view>
+
+  </view>
+
+</view>
+  <!-- end of cellar -->
+  <!-- pet -->
+  <view class="copybox" wx:if="{{ copybox_type.pet && copybox_judgment}}">
+  <view class="copybox-cancel" bindtap="copyboxhide">
+  </view>
+  <view class="copybox-tap bottom-pos">
+
+    <view class="add-box">
+      <view class="icon icon-wechat"></view>
+      <view class="box-title">
+        <view class="icon icon-pet-head icon-pet"></view>
+        <view class="box-title-inside">
+          <view class="gilroy_700 inside-title">{{_t.add_pet_ziko}}</view>
+          <view class="nunito_500 inside-content">{{_t.please_long_press}}</view>
+        </view>
+      </view>
+      <image src="../../assets/images/QRCODE.png" class="qrcode"></image>
+    </view>
+
+    <view class="wechat-copy box-pet" bindtap='copyBtn' data-text="{{_t.simonmawas}}">
+        <text class="wechat-id">{{_t.wechat_id}}</text>
+        <text class="simonmawas">{{_t.simonmawas}}</text>
+        <text class="icon icon-click-copy icon-height"></text>
+    </view>
+
+    <view class="x">
+      <text class="icon icon-x icon-x-height" bindtap="copyboxhide"></text>
+    </view>
+
+  </view>
+
+  </view>
+  <!-- end of pet -->
+  <!-- farmer  -->
+  <view class="copybox" wx:if="{{ copybox_type.farmer && copybox_judgment}}">
+  <view class="copybox-cancel" bindtap="copyboxhide">
+  </view>
+  <view class="copybox-tap bottom-pos">
+
+    <view class="add-box">
+      <view class="icon icon-wechat"></view>
+      <view class="box-title">
+        <view class="icon icon-farmer-head icon-farmer"></view>
+        <view class="box-title-inside">
+          <view class="gilroy_700 inside-title">{{_t.add_farmer_ziko}}</view>
+          <view class="nunito_500 inside-content">{{_t.please_long_press}}</view>
+        </view>
+      </view>
+      <image src="../../assets/images/QRCODE.png" class="qrcode"></image>
+    </view>
+
+    <view class="wechat-copy box-farmer" bindtap='copyBtn' data-text="{{_t.simonmawas}}">
+        <text class="wechat-id">{{_t.wechat_id}}</text>
+        <text class="simonmawas">{{_t.simonmawas}}</text>
+        <text class="icon icon-click-copy icon-height"></text>
+    </view>
+
+    <view class="x">
+      <text class="icon icon-x icon-x-height" bindtap="copyboxhide"></text>
+    </view>
+
+  </view>
+
+  </view>
+  <!-- end of farmer -->
+<!-- copy box end -->
+
 
 <lottery-draw id="lottery_modal"></lottery-draw>

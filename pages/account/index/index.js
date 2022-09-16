@@ -170,7 +170,6 @@ Page({
         simonmawas:i18n.simonmawas,
         wechat_id:i18n.wechat_id,
         lottery:i18n.lottery,
-        simonmawas:i18n.simonmawas,
       },
       language: app.db.get('language')
     })

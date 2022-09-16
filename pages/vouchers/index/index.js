@@ -32,7 +32,10 @@ const _setPageTranslation = page => {
         voucher_status: i18n.voucher_status,
         ziko:i18n.ziko,
         expires:i18n.expires,
-        use_now:i18n.use_now
+        use_now:i18n.use_now,
+        no_vouchers_yet:i18n.no_vouchers_yet,
+        its_up_to_you:i18n.its_up_to_you,
+        view_ziko_offers:i18n.view_ziko_offers
       },
     })
 }

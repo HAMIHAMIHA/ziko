@@ -48,6 +48,35 @@ const _setPageDefaultItems = page => {
       storage_types: i18n.storage_types,
       total: i18n.total,
       use_voucher: i18n.use_voucher,
+      
+      ziko_special: i18n.ziko_special,
+      delivery:i18n.delivery,
+      expected_delivery_date:i18n.expected_delivery_date,
+      contact_person:i18n.contact_person,
+      special_requests:i18n.special_requests,
+      send_fapiao_to:i18n.send_fapiao_to,
+      available_ziko_vouchers:i18n.available_ziko_vouchers,
+      if_you_need_to:i18n.if_you_need_to,
+      add_chef_ziko_on_wechat:i18n.add_chef_ziko_on_wechat,
+      lottery_tickets_you_can_get:i18n.lottery_tickets_you_can_get,
+      anything_else_we:i18n.anything_else_we,
+      no_details_yet:i18n.no_details_yet,
+      yes:i18n.yes,
+      no:i18n.no,
+      received: i18n.received,
+      ziko:i18n.ziko,
+      expires:i18n.expires,
+      use_now:i18n.use_now,
+      no_vouchers_yet:i18n.no_vouchers_yet,
+      its_up_to_you:i18n.its_up_to_you,
+      view_ziko_offers:i18n.view_ziko_offers,
+      simonmawas:i18n.simonmawas,
+      wechat_id:i18n.wechat_id,
+      add_cellar_ziko:i18n.add_cellar_ziko,
+      add_farmer_ziko:i18n.add_farmer_ziko,
+      add_pet_ziko:i18n.add_pet_ziko,
+      add_chef_ziko:i18n.add_chef_ziko,
+      please_long_press:i18n.please_long_press,
     },
     _routes: {
       address: app.routes.address,
@@ -194,12 +223,91 @@ const _getOffers = page => {
 Page({
   data: {
     discount: 1,
+    // voucher: {
+    //   amount: 0,
+    //   id: null,
+    // },    
     voucher: {
-      amount: 0,
+      amount: 5,
       id: null,
     },
     delivery_fee: -1,
     free_delivery: false,
+    productstest:[
+      {amount:2,
+      type:"packs",
+      illustation:{
+        url:"../../assets/images/lottery-box.png"}
+        ,
+      product:{
+        mainPicture:{
+          en:"en",
+          zh:"zh"
+        },
+        name:{
+          en:"en",
+          zh:"zh"
+        }
+      }
+    }
+    ],
+    fapiaotest:true,
+    fapiao_content_test:"上海市徐汇区水电路1200弄3号401室上海市徐汇区水电路1200弄3号401室区上海市徐汇区水电路1200弄3号",
+    vouchers:[{
+      community:"kitchen",
+      community2:"",
+      createdAt:"2022/08/12 12:00",
+      amount:100,
+      expire_on:"In 3 hours"
+      },{
+      community:"kitchen",
+      community2:"pet",
+      createdAt:"2022/11/11 12:00",
+      amount:100,
+      expire_on:"In 3 hours"
+    },{
+      community:"pet",
+      community2:"",
+      createdAt:"2022/11/11 12:00",
+      amount:150,
+      expire_on:"In 3 hours"
+    },{
+      community:"cellar",
+      community2:"garden",
+      createdAt:"2022/11/11 12:00",
+      amount:100,
+      expire_on:"Tomorrow"
+    },
+    {
+      community:"garden",
+      community2:"",
+      createdAt:"2022/11/11 12:00",
+      amount:100,
+      expire_on:"Tomorrow"
+    },
+    {
+      community:"",
+      community2:"",
+      createdAt:"2022/11/11 12:00",
+      amount:120,
+      expire_on:"Tomorrow"
+    },],
+    voucher:{
+      community:"kitchen",
+      community2:"",
+      createdAt:"2022/08/12 12:00",
+      price:1000,
+      amount:100,
+      amount_before:1500,
+      expire_on:"In 3 hours"
+    },
+    copybox_judgment:false,
+    copybox_type:{
+      chef:"",
+      cellar:true,
+      pet:"",
+      farmer:"",
+    }
   },
 
   onShow: function () {
@@ -275,23 +383,24 @@ Page({
   toggleCheck: function(e) {
     const self = this;
 
-    let changing_key = e.currentTarget.dataset.key;
+    let changing_key = e.target.dataset.key;
 
     self.setData({
       [changing_key]: !self.data[changing_key]
     })
+    console.log(changing_key)
   },
 
-  toSelectVoucher: function() {
-    const self = this;
-    if (self.data.voucher_count > 0) {
-      wx.navigateTo({
-        url: `${app.routes.vouchers_select}?community=${community}`,
-      })
-    } else {
-      showToast(app.globalData.i18n.no_vouchers)
-    }
-  },
+  // toSelectVoucher: function() {
+  //   const self = this;
+  //   if (self.data.voucher_count > 0) {
+  //     wx.navigateTo({
+  //       url: `${app.routes.vouchers_select}?community=${community}`,
+  //     })
+  //   } else {
+  //     showToast(app.globalData.i18n.no_vouchers)
+  //   }
+  // },
 
   calculateDeliveryFee: function(area) {
     getDeliveryFee(this, area, area_list);
@@ -300,5 +409,31 @@ Page({
 
   pay: function(e) {
     createOrder(this, e.detail.value);
-  }
+  },
+  copyboxshow: function () {
+    var that=this;
+    that.setData({
+      copybox_judgment:true
+    })
+  },
+  copyboxhide: function () {
+    var that=this;
+    that.setData({
+      copybox_judgment:false
+    })
+  },
+  copyBtn: function (e) {
+    wx.setClipboardData({
+         data: e.currentTarget.dataset.text,
+         success: function (res) {
+           wx.getClipboardData({
+             success: function (res) {
+               wx.showToast({
+                 title: '复制成功'
+               })
+             }
+           })
+         }
+       })
+   },
 })

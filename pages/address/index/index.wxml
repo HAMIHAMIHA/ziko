@@ -22,11 +22,11 @@
     </view>
   </view>
 
-  <view class="btn-outline_container">
+  <view class="btn-outline_container" wx:if="{{ _setting.selecting }}">
     <navigator class="btn-outline gilroy_700" hover-class="none" url="{{ _routes.address_detail }}">{{ '+ ' + _t.add_new_address }}</navigator>
   </view>
 
-  <view class="btn-bottom" wx:if="{{ _setting.selecting }}">
+  <view class="btn-bottom"  wx:else>
     <button class="nunito_600" bindtap="select">{{ _t.select }}</button>
   </view>
 </view>
