@@ -18,6 +18,10 @@ Page({
       left: '0',
       animate: animate,
     },
+    jump_setting:{
+      height:'0',
+      current_tab:"offer"
+    },
     messages: [],
   },
 
@@ -139,7 +143,10 @@ Page({
   switchTab: function(e) {
     Offers.switchTabs(this, e.currentTarget.dataset.toTab);
   },
-  
+  //Switch jump
+  jump_item:function(e){
+    Offers.jump_item(this,e.currentTarget.dataset.info)
+  },
   // Checkout offer
   checkout: function() {
     ModifyCart.checkoutItems(this.options.id);

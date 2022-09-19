@@ -57,18 +57,13 @@
   </view>
 
   <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
-    <!-- Offer Count -->
-    <view class="flex-start gilroy_500 offer-count_container" wx:if="{{ _offer.orders >= 50 || _offer.views >= 50 }}">
-      <view class="icon_container" wx:if="{{ _offer.orders >= 50 }}">
-        <view class="icon icon-bag"></view>
-        <view class="icon_text">{{ _offer.orders != 1 ? _offer.orders + _t.orders_unit : _offer.orders + _t.order_unit }}</view>
-      </view>
-      <view class="icon_container" wx:if="{{ _offer.views >= 50 }}">
-        <view class="icon icon-eye"></view>
-        <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
-      </view>
+    <!-- jump  -->
+    <view class="flex-between gilroy_500 offer-jump-title">
+      <view class="offer-jump-item {{jump_setting.current_tab=='offer'?'jump_item_selected':''}}" bindtap="jump_item" data-info="offer">{{_t.offer}}</view>
+      <view class="offer-jump-item {{jump_setting.current_tab=='specials'?'jump_item_selected':''}}" bindtap="jump_item" data-info="specials">{{_t.specials}}</view>
+      <view class="offer-jump-item {{jump_setting.current_tab=='lottery'?'jump_item_selected':''}}" bindtap="jump_item" data-info="lottery">{{_t.lottery}}</view>
     </view>
-    <!-- End of Offer Count -->
+    <!-- end of jump -->
 
     <!-- Share -->
     <button class="float-btn share" open-type="share">
@@ -84,6 +79,19 @@
       </view>
     </view>
     <!-- End of Offer Detail -->
+    <!-- Offer Count -->
+    <view class="flex-start gilroy_500 offer-count_container" wx:if="{{ _offer.orders >= 50 || _offer.views >= 50 }}">
+      <view class="icon_container" wx:if="{{ _offer.orders >= 50 }}">
+        <view class="icon icon-bag"></view>
+        <view class="icon_text">{{ _offer.orders != 1 ? _offer.orders + _t.orders_unit : _offer.orders + _t.order_unit }}</view>
+      </view>
+      <view class="icon_container" wx:if="{{ _offer.views >= 50 }}">
+        <view class="icon icon-eye"></view>
+        <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
+      </view>
+    </view>
+    <!-- End of Offer Count -->
+
   </view>
 
   <!-- Offer Tabbar -->
@@ -95,6 +103,14 @@
       animation="{{ _setting.animate.tab }}"
     >
       {{ _t.products }}
+    </view>
+    <view
+      class="tabbar_item{{ _setting.currentTab == 'pack' ? ' selected' : '' }}"
+      bindtap="switchTab"
+      data-to-tab="pack"
+      animation="{{ _setting.animate.tab }}"
+    >
+      {{ _t.packs }}
     </view>
     <view
       class="tabbar_item{{ _setting.currentTab == 'recipe' ? ' selected' : '' }}"
@@ -118,24 +134,21 @@
             <text class="gilroy_500">{{ _t.single_items.fst }}</text>
             <text class="gilroy_700">{{ _t.single_items.snd }}</text>
           </view>
-
           <template
             is="products"
             class="product-list"
             data="{{ offer_id: _offer.id, cart: cart, product_list: _offer.miniprogram.items, _is_pack: false, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
           ></template>
         </view>
-
         <view class="offer-group offer-packs" wx:if="{{ _offer.miniprogram.packs.length > 0 }}" mark:type="packs">
           <view class="uppercase title">
             <text class="gilroy_500">{{ _t.our_selected_packs.fst }}</text>
             <text class="gilroy_700">{{ _t.our_selected_packs.snd }}</text>
           </view>
-
           <template
             is="products"
             class="product-list"
-            data="{{ offer_id: _offer.id, cart: cart, product_list: _offer.miniprogram.packs, _is_pack: true, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
+            data="{{offer_id: _offer.id, cart: cart,product_list: _offer.miniprogram.packs,_is_pack: true,_community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
           ></template>
         </view>
         <!-- End of Offer Product List -->
@@ -198,11 +211,14 @@
   </view>
 
   <!-- Pay Button -->
-  <template
+  <!-- <template
     is="payment_container"
     data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
-  ></template>
+  ></template> -->
   <!-- End of Pay Button -->
 </view>
+
+<newPayButton></newPayButton>
+
 
 <lottery-draw id="lottery_modal"></lottery-draw>

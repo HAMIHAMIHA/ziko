@@ -5,6 +5,7 @@
     "recipes": "/component/recipes/recipes",
     "scrollMessage": "/component/scrollMessage/scrollMessage",
     "lottery-header": "/component/lottery/header/header",
-    "lottery-cellar": "/component/lottery/cellar/cellar"
+    "lottery-cellar": "/component/lottery/cellar/cellar",
+    "newPayButton":"/component/newPayButton/newPayButton"
   }
 }

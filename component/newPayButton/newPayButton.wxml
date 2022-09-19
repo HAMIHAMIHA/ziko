@@ -1,0 +1,36 @@
+<view class="bottom-pay">
+      <view class="remind">
+        <text class="icon icon-alert"></text>
+        <text class="remind-text nunito_500">{{ _t.you_are_still}}</text>
+      </view>
+      <!-- PAY -->
+      <view class="nunito_700 cartdetail-flex">
+        <view class="text-left">
+          <text class="icon icon-ticket"></text>
+          <text class="remind-number">{{'+'+3+''}}</text>
+        </view>
+        <view class="total-content">
+          <view class="detail_label nunito_500 text-right">{{ _t.total }}</view>
+          <!-- <text class="detail_result">¥{{ fixDecimals.toFix((_pay_set.finalFee - voucher.amount) * discount) }}</text> -->
+          <text class="detail_result_before">¥{{ voucher.amount_before }}</text> 
+          <text class="detail_result">¥{{ voucher.price }}</text> 
+        </view>
+        <view class="pay-button">
+          <button class="nunito_600 disabled">{{_t.pay}}</button>
+        </view>
+        <!-- <view class="pay-button">
+          <button class="nunito_600 disabled" wx:if="{{ _pay_set.single && _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.single }}">
+            {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }}
+          </button>
+          <button class="nunito_600 disabled" wx:elif="{{ _pay_set.reducedTotal && _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.reducedTotal }}">
+            {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
+          </button>
+          <button class="nunito_600 disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.total }}">
+            {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
+          </button>
+          <button class="nunito_600{{ _pay_set.pay_disabled ? ' disabled' : '' }}" formType="submit" wx:else>
+            {{ _t.pay }}
+          </button>
+        </view> -->
+      </view>
+</view>

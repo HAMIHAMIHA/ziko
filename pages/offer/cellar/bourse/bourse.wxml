@@ -63,59 +63,13 @@
     <!-- End of Offer Messages -->
   </view>
 
-  <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
-    <!-- Offer Count -->
-    <view class="flex-start gilroy_500 offer-count_container" wx:if="{{ _offer.orders >= 50 || _offer.views >= 50 }}">
-      <view class="icon_container" wx:if="{{ _offer.orders >= 50 }}">
-        <view class="icon icon-bag"></view>
-        <view class="icon_text">{{ _offer.orders != 1 ? _offer.orders + _t.orders_unit : _offer.orders + _t.order_unit }}</view>
-      </view>
-      <view class="icon_container" wx:if="{{ _offer.views >= 50 }}">
-        <view class="icon icon-eye"></view>
-        <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
-      </view>
-    </view>
-    <!-- End of Offer Count -->
-
-    <!-- Share -->
-    <button class="float-btn share" open-type="share">
-      <view class="icon icon-share"></view>
-    </button>
-    <!-- End of Share -->
-
-    <!-- Offer Detail -->
-    <view class="offer-detail">
-      <view class="uppercase gilroy_700 offer-title">{{ _offer.name[_language] }}</view>
-      <view class="gilroy_700 uppercase offer-price-rule" wx:if="{{  _offer.type && _offer.type != 'regular' }}">{{ _t.price_rules[_offer.type] }}</view>
-      <view class="offer-description">
-        {{ _offer.description[_language] }}
-      </view>
-    </view>
-    <!-- End of Offer Detail -->
-
-    <!-- Offer Cellar Count -->
-    <view class="flex-center cellar-total_container" wx:if="{{  _offer.type && _offer.type != 'regular' }}">
-      <view class="icon icon-wine"></view>
-      <view class="cellar-total">
-        <view class="nunito_700 cellar-total_count">{{ _offer.sold }}/{{ _offer.total }}</view>
-        <view class="nunito_600 cellar-total_label">{{ _t.total_units_available }}</view>
-      </view>
-      <view class="cellar-total_progress">
-        <view class="cellar-total_progress_fill" style="--progress-fill-: calc(100% * {{ _offer.sold }}/{{ _offer.total }});"></view>
-      </view>
-    </view>
-    <!-- End of Offer Cellar Count -->
-  </view>
-
-
-  <!-- Bourse Part -->
+    <!-- Bourse Part -->
   <view class="offer-bourse">
-    <view class="offer-bourse_title">
+    <!-- <view class="offer-bourse_title">
       <view class="icon icon-ziko-bourse"></view>
-    </view>
-
+    </view> -->
     <view class="uppercase progress__container">
-      <view class="gilroy_800 bourse-label">{{ _t.lower_price_together }}</view>
+      <!-- <view class="gilroy_800 bourse-label">{{ _t.lower_price_together }}</view> -->
 
       <!-- Progress block -->
       <view class="progress" style="--filled-:{{ _bourse_info.progress }}%;--bg-color-:{{ _bourse_info.bg_color }};">
@@ -141,6 +95,60 @@
       <!-- End of progress block -->
     </view>
   </view>
+
+  
+
+  <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
+    <!-- jump  -->
+      <view class="flex-between gilroy_500 offer-jump-title">
+      <view class="offer-jump-item {{jump_setting.current_tab=='offer'?'jump_item_selected':''}}" bindtap="jump_item" data-info="offer">{{_t.offer}}</view>
+      <view class="offer-jump-item {{jump_setting.current_tab=='specials'?'jump_item_selected':''}}" bindtap="jump_item" data-info="specials">{{_t.specials}}</view>
+      <view class="offer-jump-item {{jump_setting.current_tab=='lottery'?'jump_item_selected':''}}" bindtap="jump_item" data-info="lottery">{{_t.lottery}}</view>
+      </view>
+    <!-- end of jump -->
+    <!-- Share -->
+    <button class="float-btn share" open-type="share">
+      <view class="icon icon-share"></view>
+    </button>
+    <!-- End of Share -->
+
+    <!-- Offer Detail -->
+    <view class="offer-detail">
+      <view class="uppercase gilroy_700 offer-title">{{ _offer.name[_language] }}</view>
+      <view class="gilroy_700 uppercase offer-price-rule" wx:if="{{  _offer.type && _offer.type != 'regular' }}">{{ _t.price_rules[_offer.type] }}</view>
+      <view class="offer-description">
+        {{ _offer.description[_language] }}
+      </view>
+    </view>
+    <!-- End of Offer Detail -->
+    <!-- Offer Count -->
+    <view class="flex-start gilroy_500 offer-count_container" wx:if="{{ _offer.orders >= 50 || _offer.views >= 50 }}">
+      <view class="icon_container" wx:if="{{ _offer.orders >= 50 }}">
+        <view class="icon icon-bag"></view>
+        <view class="icon_text">{{ _offer.orders != 1 ? _offer.orders + _t.orders_unit : _offer.orders + _t.order_unit }}</view>
+      </view>
+      <view class="icon_container" wx:if="{{ _offer.views >= 50 }}">
+        <view class="icon icon-eye"></view>
+        <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
+      </view>
+    </view>
+    <!-- End of Offer Count -->
+    <!-- Offer Cellar Count -->
+    <!-- <view class="flex-center cellar-total_container" wx:if="{{  _offer.type && _offer.type != 'regular' }}">
+      <view class="icon icon-wine"></view>
+      <view class="cellar-total">
+        <view class="nunito_700 cellar-total_count">{{ _offer.sold }}/{{ _offer.total }}</view>
+        <view class="nunito_600 cellar-total_label">{{ _t.total_units_available }}</view>
+      </view>
+      <view class="cellar-total_progress">
+        <view class="cellar-total_progress_fill" style="--progress-fill-: calc(100% * {{ _offer.sold }}/{{ _offer.total }});"></view>
+      </view>
+    </view> -->
+    <!-- End of Offer Cellar Count -->
+  </view>
+
+
+
 
   <!-- Offer Tabbar -->
   <view class="uppercase gilroy_700 flex-center tabbar">
@@ -254,11 +262,12 @@
   </view>
 
   <!-- Pay Button -->
-  <template
+  <!-- <template
     is="payment_container"
     data="{{ _show_alert: _bourse_info.progress < 100, _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
-  ></template>
+  ></template> -->
   <!-- End of Pay Button -->
 </view>
+<newPayButton></newPayButton>
 
 <lottery-draw id="lottery_modal"></lottery-draw>

@@ -1,0 +1,75 @@
+@import "/assets/fonts/iconfont.wxss";
+@import "/assets/fonts/fonts.wxss";
+
+.bottom-pay{
+  width: 100%;
+  height: calc(200rpx+(--env-));
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+  background-color: #3F4250;
+  left: 0;
+  right: 0;
+} 
+.remind{
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #11141B;
+  background-color:#11141B;
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+.icon-alert{
+  color: #FAAD14;
+  margin-left: 30rpx;
+}
+.remind-text{
+  margin-left: 20rpx;
+  color: #FAAD14;
+}
+.remind-number{
+  padding: 0 20rpx;
+}
+.icon-ticket{
+  color:#FFC700;
+  vertical-align: middle;
+}
+.cartdetail-flex{
+  padding-top: 30rpx;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+.total-content{
+  margin-right: 30rpx;
+  margin-top:10rpx;
+}
+.total-content .text-right{
+  font-size: 28rpx;
+  text-align: right;
+}
+
+.detail_result_before{
+  text-decoration: line-through;
+  color:rgb(255,255,255,0.6);
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+.detail_result{
+  font-size: 34rpx;
+  line-height: 32rpx;
+  padding-left: 10rpx;
+}
+.pay-button{
+  margin:10rpx 30rpx 40rpx 0;
+  margin-bottom: calc(40rpx + var(--env-));
+}
+.pay-button button{
+  background-color: #07C160;
+  width: 294rpx;
+  height: 80rpx;
+  color:white;
+}
+.text-left{
+  margin-right: 82rpx;
+  margin-top: 44rpx;
+}
