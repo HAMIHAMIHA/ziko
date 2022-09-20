@@ -70,9 +70,8 @@
     </view> -->
     <view class="uppercase progress__container">
       <!-- <view class="gilroy_800 bourse-label">{{ _t.lower_price_together }}</view> -->
-
       <!-- Progress block -->
-      <view class="progress" style="--filled-:{{ _bourse_info.progress }}%;--bg-color-:{{ _bourse_info.bg_color }};">
+      <!-- <view class="progress" style="--filled-:{{ _bourse_info.progress }}%;--bg-color-:{{ _bourse_info.bg_color }};">
         <view class="gilroy_700 progress__label">{{ _t.item_quantity }}</view>
         <view class="progress-bar__container">
           <block wx:for="{{ _bourse_info.list }}" wx:key="_id" wx:for-item="bourse">
@@ -91,8 +90,40 @@
             <view class="progress-bar__progress"></view>
           </view>
         </view>
-      </view>
+      </view> -->
       <!-- End of progress block -->
+      <!-- new progress block  -->
+      <view class="new-progress">
+        <view class="progress-top">
+          <view class="inline-block left-box">
+            <view class="yellow-top">{{_t.lottery_tickets+' X2'}}</view>
+            <view class="grey-bottom">
+              <text class="ticket">10% {{_t.off}}</text>
+              <text class="ticket">5% {{_t.off}}</text>
+            </view>
+          </view>
+          <view class="inline-block right-box">{{_t.next_price_in}} 26 {{_t.bottles}}: ¥85</view>
+        </view>
+        <view class="green-content">
+          <view class="first-content">¥{{price.prices[0]}}</view>
+          <view class="item-content">¥{{price.prices[1]}}</view>
+          <view class="item-content">¥{{price.prices[2]}}</view>
+          <view class="item-content">¥{{price.prices[3]}}</view>
+          <view class="item-content">¥{{price.prices[4]}}</view>
+          <view class="item-content">¥{{price.prices[5]}}</view>
+        </view>
+        <view class="text-content">
+          <view class="bottle-content first-bottle">{{bottles[0]}}<text class="btl">BTL</text></view>
+          <view class="bottle-content">{{bottles[1]}}</view>
+          <view class="bottle-content">{{bottles[2]}}</view>
+          <view class="bottle-content">{{bottles[3]}}</view>
+          <view class="bottle-content">{{bottles[4]}}</view>
+          <view class="bottle-content">{{bottles[5]}}</view>
+          <view class="bottle-content">{{bottles[6]}}</view>
+        </view>
+        <view></view>
+      </view>
+      <!-- end of new progree block  -->
     </view>
   </view>
 

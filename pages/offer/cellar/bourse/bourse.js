@@ -23,6 +23,11 @@ Page({
       current_tab:"offer"
     },
     messages: [],
+    price:{
+      prices:[115,105,95,85,75,65],
+      the_price:85,
+    },
+    bottles:[0,48,120,180,240,480,960]
   },
 
   onShow: async function () {
