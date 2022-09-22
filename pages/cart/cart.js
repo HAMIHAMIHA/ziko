@@ -8,6 +8,7 @@ const { formatDate } = require("../../utils/util.js");
 
 const { createOrder } = require("./createOrder");
 const { getDeliveryFee } = require("./findDeliveryFee");
+const { set } = require("../../utils/db.config");
 
 const app = getApp();
 let area_list = [], community, vouchers = [];
@@ -307,7 +308,8 @@ Page({
       cellar:true,
       pet:"",
       farmer:"",
-    }
+    },
+    showlottery:true,
   },
 
   onShow: function () {
@@ -436,4 +438,10 @@ Page({
          }
        })
    },
+  showlottery(){
+    this.setData({
+    showlottery:false
+    })
+    console.log(this.data.showlottery)
+  }
 })

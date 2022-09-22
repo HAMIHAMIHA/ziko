@@ -248,7 +248,7 @@
       </view>
     </view>
 
-    <view class="bottom-pay">
+    <view class="bottom-pay" bindtap="showlottery">
       <view class="remind">
         <text class="remind-text nunito_500">{{ _t.lottery_tickets_you_can_get}}</text>
         <text class="remind-number">{{'+'+3+''}}</text>
@@ -281,38 +281,38 @@
   </form>
 </view>
 
+
 <!-- copy box -->
   <!-- chef -->
-<view class="copybox" wx:if="{{ copybox_type.chef && copybox_judgment}}">
-  <view class="copybox-cancel" bindtap="copyboxhide">
-  </view>
-  <view class="copybox-tap bottom-pos">
-
-    <view class="add-box">
-      <view class="icon icon-wechat"></view>
-      <view class="box-title">
-        <view class="icon icon-chef-head icon-chef"></view>
-        <view class="box-title-inside">
-          <view class="gilroy_700 inside-title">{{_t.add_cellar_ziko}}</view>
-          <view class="nunito_500 inside-content">{{_t.please_long_press}}</view>
+  <view class="copybox" wx:if="{{ copybox_type.chef && copybox_judgment}}">
+    <view class="copybox-cancel" bindtap="copyboxhide">
+    </view>
+    <view class="copybox-tap bottom-pos">
+      <view class="add-box">
+        <view class="icon icon-wechat"></view>
+        <view class="box-title">
+          <view class="icon icon-chef-head icon-chef"></view>
+          <view class="box-title-inside">
+            <view class="gilroy_700 inside-title">{{_t.add_cellar_ziko}}</view>
+            <view class="nunito_500 inside-content">{{_t.please_long_press}}</view>
+          </view>
         </view>
+        <image src="../../assets/images/QRCODE.png" class="qrcode"></image>
       </view>
-      <image src="../../assets/images/QRCODE.png" class="qrcode"></image>
-    </view>
 
-    <view class="wechat-copy box-chef" bindtap='copyBtn' data-text="{{_t.simonmawas}}">
-        <text class="wechat-id">{{_t.wechat_id}}</text>
-        <text class="simonmawas">{{_t.simonmawas}}</text>
-        <text class="icon icon-click-copy icon-height"></text>
-    </view>
+      <view class="wechat-copy box-chef" bindtap='copyBtn' data-text="{{_t.simonmawas}}">
+          <text class="wechat-id">{{_t.wechat_id}}</text>
+          <text class="simonmawas">{{_t.simonmawas}}</text>
+          <text class="icon icon-click-copy icon-height"></text>
+      </view>
 
-    <view class="x">
-      <text class="icon icon-x icon-x-height" bindtap="copyboxhide"></text>
+      <view class="x">
+        <text class="icon icon-x icon-x-height" bindtap="copyboxhide"></text>
+      </view>
+
     </view>
 
   </view>
-
-</view>
   <!-- end of chef -->
   <!-- cellar -->
   <view class="copybox" wx:if="{{ copybox_type.cellar && copybox_judgment}}">
@@ -344,14 +344,13 @@
 
   </view>
 
-</view>
+  </view>
   <!-- end of cellar -->
   <!-- pet -->
   <view class="copybox" wx:if="{{ copybox_type.pet && copybox_judgment}}">
   <view class="copybox-cancel" bindtap="copyboxhide">
   </view>
   <view class="copybox-tap bottom-pos">
-
     <view class="add-box">
       <view class="icon icon-wechat"></view>
       <view class="box-title">
@@ -383,7 +382,6 @@
   <view class="copybox-cancel" bindtap="copyboxhide">
   </view>
   <view class="copybox-tap bottom-pos">
-
     <view class="add-box">
       <view class="icon icon-wechat"></view>
       <view class="box-title">
@@ -411,6 +409,7 @@
   </view>
   <!-- end of farmer -->
 <!-- copy box end -->
-
-
+<view hidden='{{showlottery}}'>
+    <new-lottery></new-lottery>
+</view>
 <lottery-draw id="lottery_modal"></lottery-draw>

@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "quantity": "/component/quantity/quantity"
+    "quantity": "/component/quantity/quantity",
+    "new-lottery":"/component/new_lottery/new_lottery"
   }
 }

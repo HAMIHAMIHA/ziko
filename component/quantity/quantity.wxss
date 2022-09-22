@@ -3,22 +3,26 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  
 }
 
 .quantity .quantity-change {
   width: fit-content;
   padding: 16rpx;
   border-radius: 50%;
+  color:#fff;
 }
 
 .quantity .quantity-change.ziko- {
   padding: 15rpx;
-  background: #F4F4F4;
-  border: 1rpx solid #E7E7E7;
+  /* background: #F4F4F4;
+  border: 1rpx solid #E7E7E7; */
+  background-color: rgba(255,255,255,0.2);
 }
 
 .quantity-change .icon {
   font-size: 16rpx;
+  color:black;
 }
 
 .quantity-amount {

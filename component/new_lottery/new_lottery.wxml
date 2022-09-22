@@ -1,0 +1,205 @@
+<view class="component-lottery">
+  <!-- lottery undo -->
+  <view wx:if="{{completed[com_index]=='undo'}}">
+    <image class="lottery-image-0 lottery-image-{{type[index]}}" src="/assets/images/{{type[index]}}_lottery.svg" mode="aspectFill">
+    </image>
+    <view class="title-text">
+      <view class="title-text-title gilroy_700">{{_t.new_lottery}}</view>
+      <view class="title-text-content nunito_600">{{_t.spin_to}}</view>
+    </view>
+    <view class="white-box-0">
+      <view class="machine">
+        <view class="machine-pure-box machine-pure-box-{{type[index]}}" bindtap="animate_state_change" bindanimationiteration="animationiteration" bindanimationend="animationend">
+          <view class="machine-light-box machine-light-box-{{type[index]}}">
+            <view class="vertical-light">
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+            </view>
+            <view class="light-box-light">
+              <view class="broadwise-light">
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+              </view>
+              <view class="move-items">
+                <scroll-view class="scroll-box" scroll-y scroll-into-view="{{showid1}}"  scroll-with-animation>
+                  <view wx:for="{{lottery_content}}" 
+                  wx:for-item="content"
+                  wx:key="index"
+                  id="{{content.numb}}"
+                  class="content-move-box"
+                  >
+                    <image src="{{content.src}}" class="content-image"></image>
+                  </view>
+                </scroll-view>
+                <scroll-view class="scroll-box" scroll-y scroll-into-view="{{showid2}}"  scroll-with-animation>
+                  <view wx:for="{{lottery_content}}" 
+                  wx:for-item="content"
+                  wx:key="index"
+                  id="{{content.numb}}"
+                  class="content-move-box"
+                  >
+                    <image src="{{content.src}}" class="content-image"></image>
+                  </view>
+                </scroll-view>
+                <scroll-view class="scroll-box" scroll-y scroll-into-view="{{showid3}}"  scroll-with-animation>
+                  <view wx:for="{{lottery_content}}" 
+                  wx:for-item="content"
+                  wx:key="index"
+                  id="{{content.numb}}"
+                  class="content-move-box"
+                  >
+                    <image src="{{content.src}}" class="content-image"></image>
+                  </view>
+                </scroll-view>
+              </view>
+              <view class="broadwise-light">
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+              </view>
+            </view>
+            <view class="vertical-light">
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+            </view>
+          </view>
+        </view>
+        <view class="machine-hand">
+          <view class="machine-hand-grey-box"></view>
+          <view class="machine-hand-black-box"></view>
+          <view class="hander {{hander_move}}"></view>
+          <view class="hander-top {{hander_top_move}}" ></view>
+          <view class="hander-ball hander-ball-{{type[index]}} {{hander_ball_move}}" bindtap="animate_state_change" bindanimationiteration="animationiteration" bindanimationend="animationend"
+          ></view>
+        </view>
+      </view>
+      <view class="participants nunito_400">
+      {{participants_number}} {{_t.participants}}
+      </view>
+      <view class="dicover-buttom nunito_800 " bindtap="animate_state_change" bindanimationiteration="animationiteration" bindanimationend="animationend">{{_t.discover_the}}</view>
+    </view>
+  </view>
+  <!--end of lottery undo -->
+  
+  <!-- lottery win -->
+  <view wx:if="{{completed[com_index]=='win'}}">
+    <image class="lottery-image-0 lottery-image-{{type[index]}}" src="/assets/images/{{type[index]}}_lottery.svg" mode="aspectFill">
+    </image>
+    <view class="title-text-win">
+      <view class="title-text-title-win gilroy_700">{{_t.you_win}}</view>
+      <view class="title-text-title-win-next gilroy_700">{{_t.you_just}}</view>
+      <view class="title-text-content-win nunito_600">{{_t.pick_up_your_item}}</view>
+    </view>
+    <view class="white-box-0">
+      <view class="green_title nunito_800">{{_t.unlocked_at}}960{{_t.items_sold}}</view>
+      <view class="item-picture"></view>
+      <view class="item-name gilory_700">XIAOMI TV 65INCH</view>
+      <view class="grey-text">Draw 6</view>
+      <view class="grey-text">La bourse du pinard (Cellar) </view>
+      <view class="bottom-text">{{_t.your_price_will}}</view>
+      <view class="get-button nunito_800">{{_t.get}}</view>
+    </view>
+  </view>
+  <!-- end of lottery win -->
+
+  <!-- lottery pet -->
+  <view wx:if="{{completed[com_index]=='pet'}}">
+    <image class="lottery-image-0 lottery-image-{{type[index]}}" src="/assets/images/{{type[index]}}_lottery.svg" mode="aspectFill">
+    </image>
+    <view class="title-text">
+      <view class="title-text-title gilroy_700">{{_t.new_lottery}}</view>
+      <view class="title-text-content nunito_600">{{_t.spin_to}}</view>
+    </view>
+    <view class="white-box-0">
+      <view class="machine">
+        <view class="machine-pure-box machine-pure-box-{{type[index]}}" bindtap="animate_state_change" bindanimationiteration="animationiteration" bindanimationend="animationend">
+          <view class="machine-light-box machine-light-box-{{type[index]}}">
+            <view class="vertical-light">
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+            </view>
+            <view class="light-box-light">
+              <view class="broadwise-light">
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+              </view>
+              <view class="move-items">
+                <scroll-view class="scroll-box" scroll-y scroll-into-view="{{showid1}}"  scroll-with-animation>
+                  <view wx:for="{{lottery_content}}" 
+                  wx:for-item="content"
+                  wx:key="index"
+                  id="{{content.numb}}"
+                  class="content-move-box"
+                  >
+                    <image src="{{content.src}}" class="content-image"></image>
+                  </view>
+                </scroll-view>
+                <scroll-view class="scroll-box" scroll-y scroll-into-view="{{showid2}}"  scroll-with-animation>
+                  <view wx:for="{{lottery_content}}" 
+                  wx:for-item="content"
+                  wx:key="index"
+                  id="{{content.numb}}"
+                  class="content-move-box"
+                  >
+                    <image src="{{content.src}}" class="content-image"></image>
+                  </view>
+                </scroll-view>
+                <scroll-view class="scroll-box" scroll-y scroll-into-view="{{showid3}}"  scroll-with-animation>
+                  <view wx:for="{{lottery_content}}" 
+                  wx:for-item="content"
+                  wx:key="index"
+                  id="{{content.numb}}"
+                  class="content-move-box"
+                  >
+                    <image src="{{content.src}}" class="content-image"></image>
+                  </view>
+                </scroll-view>
+              </view>
+              <view class="broadwise-light">
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+              </view>
+            </view>
+            <view class="vertical-light">
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+            </view>
+          </view>
+        </view>
+        <view class="machine-hand">
+          <view class="machine-hand-grey-box"></view>
+          <view class="machine-hand-black-box"></view>
+          <view class="hander {{hander_move}}"></view>
+          <view class="hander-top {{hander_top_move}}" ></view>
+          <view class="hander-ball hander-ball-{{type[index]}} {{hander_ball_move}}" bindtap="animate_state_change" bindanimationiteration="animationiteration" bindanimationend="animationend"
+          ></view>
+        </view>
+      </view>
+      <view class="participants nunito_400">
+      {{participants_number}} {{_t.participants}}
+      </view>
+      <view class="dicover-buttom nunito_800 " bindtap="animate_state_change" bindanimationiteration="animationiteration" bindanimationend="animationend">{{_t.discover_the}}</view>
+    </view>
+  </view>
+  <!-- end of lottery pet -->
+
+</view>

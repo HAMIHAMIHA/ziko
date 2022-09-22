@@ -23,6 +23,11 @@ Component({
   methods: {
     updateCards: function(_t, startTimer) {
       const self = this;
+      const _cart ={
+        "62ff500a6a30a8532459c130": {
+          count: 500
+        }
+      } 
 
       // Set offer card contents
       self.setData({
@@ -31,9 +36,10 @@ Component({
           offer_banner: app.folders.offer_banner,
         },
         _t: _t,
-        _cart: app.db.get('cart')
+        _cart: _cart
+        // _cart: app.db.get('cart')
       })
-
+      // console.log(self.data.offers);
       // Start or end timers
       let timer = self.selectAllComponents('.timer');
       if (startTimer) {
@@ -62,6 +68,17 @@ Component({
         clearInterval(now_timer);
         timer_intervals = [];
       }
+
+      let offers = self.data.offers;
+      for (const i in offers) {
+        if (offers[i].community.id) {
+          offers[i].community = communities[offers[i].community.id];
+        }
+      }
+      self.setData({
+        offers: offers
+      })
+      console.log('offers: ', offers)
     },
 
     swiperChange: function(e) {
@@ -80,7 +97,8 @@ Component({
       if (!data.started || new Date(data.end_time).getTime() <= new Date().getTime()) return;
 
       var url = routes.offer_regular;
-      if (communities[data.community] === "cellar" && data.type && data.type !== "regular") {
+      // if (communities[data.community] === "cellar" && data.type && data.type !== "regular") {
+      if (data.community === "cellar" && data.type && data.type !== "regular") {
         if (data.type == "bourse") {
           url = routes.offer_bourse;
         } else {

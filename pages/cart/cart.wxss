@@ -314,6 +314,7 @@ scroll-view{
   background-color: black !important;
   width: 480rpx !important;
 }
+
 .bottom-pay{
   position: fixed;
   bottom: 0;
@@ -374,8 +375,6 @@ scroll-view{
   height: 80rpx;
   color:white;
 }
-
-
 
 /* copy-box */
 .copybox {
