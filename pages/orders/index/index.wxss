@@ -38,7 +38,34 @@
 .order-card.disabled {
   pointer-events: none;
 }
+.scroll-menu_account_new{
+  font-size: 24rpx;
+  margin:20rpx 0;
+  margin-right: 15rpx;
+  height: 64rpx;
+  display: flex;
+}
+.h-scroll_item_new{
+  width: 150rpx;
+  height: 50rpx;
+  padding: 12rpx;
+  background-color: #373A44;
+  border-radius: 8rpx;
+  margin-left: 15rpx;
+  line-height: 26rpx;
+  /* align-items: center; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-class{
+  text-align: center; 
+}
 
+.order-status.selected{
+  background-color: #D9D9D9;
+  color: #1F1F1F;
+}
 /* Order Detail */
 .order-info__detail {
   padding: 24rpx;

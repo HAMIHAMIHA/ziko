@@ -1,3 +1,5 @@
+@import "/assets/fonts/iconfont.wxss";
+@import "/assets/fonts/fonts.wxss";
 
 .component-lottery{
   position: fixed;
@@ -355,4 +357,23 @@ position: relative;
   font-size: 24rpx;
   width: fit-content;
   text-transform:uppercase;
+}
+.x{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,75%);
+  position: absolute;
+  right: 20px;
+  top: 180rpx;
+  display:flex;
+  z-index: 11;
+  justify-content: center;
+  align-items: center;
+  
+}
+.icon-x-height{
+  font-size: 25rpx;
+  text-align: center;
+  color: #ffffff;
 }

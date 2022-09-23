@@ -409,7 +409,7 @@
   </view>
   <!-- end of farmer -->
 <!-- copy box end -->
-<view hidden='{{showlottery}}'>
-    <new-lottery></new-lottery>
+<view hidden='{{showlottery}}' >
+    <new-lottery bind:deliver="hide_lottery_get"></new-lottery>
 </view>
-<lottery-draw id="lottery_modal"></lottery-draw>
+<!-- <lottery-draw id="lottery_modal"></lottery-draw> -->

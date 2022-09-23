@@ -84,6 +84,7 @@
   font-weight: 700;
   font-size: 42rpx;
   line-height: 50rpx;
+  width: 410rpx;
 }
 
 .words-description {

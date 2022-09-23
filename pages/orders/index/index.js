@@ -1,5 +1,6 @@
 const { showLoading } = require("../../../utils/common.js");
 const { communities } = require("../../../utils/constants.js");
+const index_data = require("../../../utils/constants.js");
 const { formatDate, formatTime, findIndex } = require("../../../utils/util.js");
 
 const app = getApp();
@@ -192,6 +193,10 @@ const getOrders = (page) => {
 Page({
   data: {
     _picker_selected: { community: '', order_status: '' },
+    _filters: {
+      list: index_data.list_filter,
+      map: index_data.map_filters
+    },
   },
 
   onShow: function () {
@@ -305,5 +310,14 @@ Page({
     wx.navigateTo({
       url: `${app.routes.order}?id=${e.currentTarget.dataset.id}`,
     })
-  }
+  },
+
+  // Filter offers by selected group
+  filterOffers: function(e) {
+    // console.log(e.currentTarget.dataset.filter_group)
+    // console.log(this.data._filters.list)
+    this.setData({
+      "_picker_selected.community":e.currentTarget.dataset.filter_group
+    })
+  },
 })

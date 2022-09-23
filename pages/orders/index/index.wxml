@@ -1,4 +1,4 @@
-<block wx:if="{{ !user.id }}">
+<block wx:if="{{ user.id }}">
   <view class="login-container">
     <view class="empty_message">{{ _t.need_login }}</view>
     <!-- Get user Info -->
@@ -13,26 +13,43 @@
 </block>
 
 <block wx:else>
-  <!-- Scroll Menu -->
-  <view class="nunito_700 h-scroll_container scroll-menu_account">
-    <scroll-view class="h-scroll capatilize" scroll-x="true">
-      <block wx:for="{{ _pickers.order_status }}" wx:key="index" wx:for-item="status">
+  <!-- Scroll Menu  community-->
+  <view class="h-scroll_container scroll-menu_community">
+    <scroll-view class="h-scroll" scroll-x="true">
+      <block wx:for="{{ _filters.list }}" wx:key="filter_group" wx:for-item="filter">
         <view
-          class="h-scroll_item order-status{{ _picker_selected.order_status == index ? ' selected' : '' }}"
-          bindtap="changeFilter"
-          data-filter_type="order_status"
-          data-value="{{ index }}"
+          class="h-scroll_item {{ filter.class_name }} {{ _picker_selected.community == filter.filter_group ? ' selected' : '' }}"
+          bindtap="filterOffers"
+          data-filter_type="list"
+          data-filter_group="{{ filter.filter_group }}"
+          data-filter_id="{{ filter.id }}"
         >
-          {{ _t.order_status[status] }}
+          <view class="icon icon-{{ filter.icon }}"></view>
         </view>
       </block>
     </scroll-view>
   </view>
   <!-- End of Scroll Menu -->
 
+  <!-- Scroll Menu account-->
+  <view class="nunito_500 scroll-menu_account_new">
+      <block wx:for="{{ _pickers.order_status }}" wx:key="index" wx:for-item="status">
+        <view
+          class="h-scroll_item_new order-status{{ _picker_selected.order_status == index ? ' selected' : '' }}"
+          bindtap="changeFilter"
+          data-filter_type="order_status"
+          data-value="{{ index }}"
+        >
+          <view class="text-class">{{ _t.order_status[status] }}</view>
+        </view>
+      </block>
+  </view>
+  <!-- End of Scroll Menu -->
+
   <view class="container">
+
     <!-- Community Picker -->
-    <view class="community-selector">
+    <!-- <view class="community-selector">
       <picker
         class="picker"
         range="{{ _pickers.communities }}"
@@ -44,7 +61,7 @@
           <text class="icon icon-arrow"></text>
         </view>
       </picker>
-    </view>
+    </view> -->
     <!-- End of Community Picker -->
 
     <!-- Empty State -->

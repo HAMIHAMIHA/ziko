@@ -7,9 +7,9 @@ Component({
   },
   data:{
     type:["farm","chef","cellar","pet"],
-    index:0,//type index from 0 to 3
+    index:3,//type index from 0 to 3
     completed:["undo","win","lose"],
-    com_index:1,
+    com_index:0,//com_index from 0 to 2
     lottery_content:[{numb:"i0",name:"bottle-1",src:"../../assets/icons/bottle.svg"},{numb:"i1",name:"cheese-1",src:"../../assets/icons/cheese.svg"},{numb:"i2",name:"fruit-1",src:"../../assets/icons/fruit.svg"},{numb:"i3",name:"noodle-1",src:"../../assets/icons/noodle.svg"},{numb:"i4",name:"Vector-1",src:"../../assets/icons/Vector.svg"},{numb:"i5",name:"bottle-2",src:"../../assets/icons/bottle.svg"},{numb:"i6",name:"cheese-2",src:"../../assets/icons/cheese.svg"},{numb:"i7",name:"fruit-2",src:"../../assets/icons/fruit.svg"},{numb:"i8",name:"noodle-2",src:"../../assets/icons/noodle.svg"},{numb:"i9",name:"Vector-2",src:"../../assets/icons/Vector.svg"},],
     top:"-100",
     participants_number:160,
@@ -77,6 +77,9 @@ Component({
         hander_move:"",
         hander_top_move:""
       })
+    },
+    hide_lottery_send:function(event){
+      this.triggerEvent("deliver")
     }
   },
 })

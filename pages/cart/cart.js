@@ -92,7 +92,6 @@ const _setPageDefaultItems = page => {
     }
   })
 }
-
 // Get area list from db
 const _getAddressAreas = () => {
   app.api.getAreas().then(res => {
@@ -440,8 +439,12 @@ Page({
    },
   showlottery(){
     this.setData({
-    showlottery:false
+      showlottery:false
     })
-    console.log(this.data.showlottery)
+  },
+  hide_lottery_get:function(event){
+    this.setData({
+      showlottery:true
+    })
   }
 })
