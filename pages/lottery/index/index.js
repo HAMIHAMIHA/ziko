@@ -30,6 +30,24 @@ const _setPageTranslation = function(page) {
       remaining_draws: i18n.remaining_draws,
       remaining_time: i18n.remaining_time,
       you_win: i18n.you_win,
+      ziko_lottery:i18n.ziko_lottery,
+      lorem_ipsum_dolor:i18n.lorem_ipsum_dolor,
+      got_it:i18n.got_it,
+      past_luck:i18n.past_luck,
+      still_a_chance:i18n.still_a_chance,
+      lottery_selected:i18n.lottery_selected,
+      past_luck:i18n.past_luck,
+      chances:i18n.chances,
+      to_win:i18n.to_win,
+      draws:i18n.draws,
+      locked:i18n.locked,
+      tickets:i18n.tickets,
+      time_remaining:i18n.time_remaining,
+      day:i18n.day,
+      access_the_offer:i18n.access_the_offer,
+      prizes:i18n.prizes,
+      congrats:i18n.congrats,
+      you_won:i18n.you_won
     }
   })
 }
@@ -157,6 +175,7 @@ const _setOffers = (page, filter_date) => {
       draws: offer_tickets
     }
     offers.push(offer);
+    console.log(offers)
   })
 
   page.setData({
@@ -219,7 +238,11 @@ Page({
     _filters: {
       list: index_data.list_filter
     },
-    _communities: index_data.communities
+    _communities: index_data.communities,
+    first_show:"true",
+    lottery_content:[{numb:"i0",name:"bottle-1",src:"../../../assets/icons/bottle.svg"},{numb:"i1",name:"cheese-1",src:"../../../assets/icons/cheese.svg"},{numb:"i2",name:"fruit-1",src:"../../../assets/icons/fruit.svg"},{numb:"i3",name:"noodle-1",src:"../../../assets/icons/noodle.svg"},{numb:"i4",name:"Vector-1",src:"../../../assets/icons/Vector.svg"},{numb:"i5",name:"bottle-2",src:"../../../assets/icons/bottle.svg"},{numb:"i6",name:"cheese-2",src:"../../../assets/icons/cheese.svg"},{numb:"i7",name:"fruit-2",src:"../../../assets/icons/fruit.svg"},{numb:"i8",name:"noodle-2",src:"../../../assets/icons/noodle.svg"},{numb:"i9",name:"Vector-2",src:"../../../assets/icons/Vector.svg"},],
+    lottery_selected:0,
+    
   },
 
   onShow: function() {
@@ -236,7 +259,9 @@ Page({
       self.filterOffers({detail: { change_date: false }});
     }
   },
-
+  onReady:function(){
+    this.animate_state_change()
+  },
   onHide: function() {
     if (_leave_triggered) return;
     _refresh_data = true;
@@ -280,4 +305,41 @@ Page({
   },
 
   onShareAppMessage: function (res) {},
+  animate_state_change: function(){
+    setTimeout(()=>{
+      this.setData({
+        showid1:"i6",
+      })
+    },500)
+    setTimeout(()=>{
+      this.setData({
+        showid2:"i7",
+      })
+    },800)
+    setTimeout(()=>{
+      this.setData({
+        showid3:"i8",
+      })
+    },1100)
+  },
+  animationend:function(){
+    setTimeout(()=>{
+      this.setData({
+        showid1:"i0",
+        showid2:"i0",
+        showid3:"i0",
+      })
+    },5000)
+  },
+  close_firstshow:function(){
+    console.log("???")
+    this.setData({
+      first_show:false
+    })
+  },
+  lottery_select:function(e){
+    this.setData({
+      lottery_selected:e.currentTarget.dataset.info
+    })
+  },
 })

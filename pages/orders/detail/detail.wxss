@@ -1,5 +1,9 @@
+page{
+  background-color:#11141B;
+}
 .container {
   padding-bottom: var(--env-);
+  background-color:#11141B;
 }
 
 .container.container-btn-bottom {
@@ -159,4 +163,23 @@
 
 .disabled {
   pointer-events: none;
+}
+
+/* .contact-box */
+.if-you-need{
+  font-size: 24rpx;
+}
+.contact-box .content_text{
+  width:502rpx;
+  position: relative;
+  margin:auto;
+
+}
+.contact-button{
+  background-color: black !important;
+  width: 480rpx !important;
+}
+.add-box .icon-wechat{
+  font-size: 48rpx;
+  margin:30rpx 0;
 }

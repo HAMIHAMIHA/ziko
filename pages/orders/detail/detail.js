@@ -244,7 +244,6 @@ const getOrders = (page) => {
 
     showLoading(false);
   }
-
   app.api.getOrders({ id: order_id }).then(callback);
 }
 
@@ -304,6 +303,9 @@ Page({
         use_voucher: i18n.use_voucher,
         ziko_lottery: i18n.ziko_lottery,
         ziko_special: i18n.ziko_special,
+        if_you_need_to:i18n.if_you_need_to,
+        add_chef_ziko_on_wechat:i18n.add_chef_ziko_on_wechat,
+        delivery_states:i18n.delivery_states
       },
       _t_gifts: {
         congrats: i18n.congrats,

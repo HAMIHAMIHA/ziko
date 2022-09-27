@@ -1,5 +1,75 @@
 <view class="container">
   <!-- List View -->
+  <view class="first-show" wx:if="{{first_show}}">
+    <image src="../../../assets/images/zikoland.svg" class="image-size"></image>
+    <view class="machine-pure-box machine-pure-box-cellar"  bindanimationiteration="animationiteration" bindanimationend="animationend">
+          <view class="machine-light-box machine-light-box-cellar">
+            <view class="vertical-light">
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+            </view>
+            <view class="light-box-light">
+              <view class="broadwise-light">
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+              </view>
+              <view class="move-items">
+                <scroll-view class="scroll-box" scroll-y scroll-into-view="{{showid1}}"  scroll-with-animation>
+                  <view wx:for="{{lottery_content}}" 
+                  wx:for-item="content"
+                  wx:key="index"
+                  id="{{content.numb}}"
+                  class="content-move-box"
+                  >
+                    <image src="{{content.src}}" class="content-image"></image>
+                  </view>
+                </scroll-view>
+                <scroll-view class="scroll-box" scroll-y scroll-into-view="{{showid2}}"  scroll-with-animation>
+                  <view wx:for="{{lottery_content}}" 
+                  wx:for-item="content"
+                  wx:key="index"
+                  id="{{content.numb}}"
+                  class="content-move-box"
+                  >
+                    <image src="{{content.src}}" class="content-image"></image>
+                  </view>
+                </scroll-view>
+                <scroll-view class="scroll-box" scroll-y scroll-into-view="{{showid3}}"  scroll-with-animation>
+                  <view wx:for="{{lottery_content}}" 
+                  wx:for-item="content"
+                  wx:key="index"
+                  id="{{content.numb}}"
+                  class="content-move-box"
+                  >
+                    <image src="{{content.src}}" class="content-image"></image>
+                  </view>
+                </scroll-view>
+              </view>
+              <view class="broadwise-light">
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+                <view class="white-round"></view>
+              </view>
+            </view>
+            <view class="vertical-light">
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+            </view>
+          </view>
+    </view>
+    <view class="ziko_lottery gilroy_700">{{_t.ziko_lottery}}</view>
+    <view class="tiny-text nunito_500">{{_t.lorem_ipsum_dolor}}</view>
+    <view class="button-got-it gilroy_700" bindtap="close_firstshow">{{_t.got_it}}</view>
+  </view>
   <view class="list">
     <!-- Scroll Menu -->
     <view class="h-scroll_container scroll-menu_community">
@@ -19,11 +89,15 @@
     </view>
 
     <!-- List Contents -->
-    <dateFilter
+    <!-- <dateFilter
       id="list_date_filters"
       days="{{ days }}"
       bind:filterOffers="filterOffers"
-    ></dateFilter>
+    ></dateFilter> -->
+    <view class="choose_box">
+      <view class="basic-button nunito_700 {{lottery_selected==0?'select-now':''}}" bindtap="lottery_select" data-info='0'> {{_t.still_a_chance}}</view>
+      <view class="basic-button nunito_700 {{lottery_selected==1?'select-now':''}}" bindtap="lottery_select" data-info='1'>{{_t.past_luck}}</view>
+    </view>
 
     <view class="offers_container">
       <view class="gilroy_700 offers_list" wx:if="{{ offers.length == 0 }}">
@@ -41,17 +115,17 @@
           data-offer-id="{{ offer.id }}"
         >
           <!-- Banner image of card -->
-          <view class="offer-banner">
+          <!-- <view class="offer-banner">
             <view class="offer-banner_image">
               <image src="{{ offer.banner }}" mode="widthFix" lazy-load="true"></image>
             </view>
-          </view>
+          </view> -->
           <!-- End of banner -->
 
-          <view class="offer-detail_container">
+          <!-- <view class="offer-detail_container">
             <view class="uppercase offer-detail_title">{{ offer.name[_language] }}</view>
             <view class="flex-between offer-detail_content">
-              <!-- Detail - Info -->
+              // Detail - Info
               <view class="flex-between offer-specials">
                 <view class="icon_container lottery">
                   <view class="icon icon-ticket"></view>
@@ -63,7 +137,7 @@
                   <text class="nunito_700 ticket-count_text">{{ offer.lotteries.remaining_draws }}</text>
                 </view>
               </view>
-              <!-- End of Detail - Info -->
+              // End of Detail - Info
 
               <view class="flex-center offer-ticket_win" wx:if="{{ offer.lotteries.win }}">
                 <text class="ticket_icon icon icon-crown"></text>
@@ -71,13 +145,13 @@
               </view>
             </view>
 
-            <!-- Display for offers waiting -->
+            // Display for offers waiting
             <view class="offer-detail_content offer-closed" wx:if="{{ offer.ended }}">
               <view class="uppercase closed">{{ _t.closed }}</view>
             </view>
-            <!-- End of offers waiting -->
+            // End of offers waiting
 
-            <!-- Current Status -->
+            // Current Status
             <view class="offer-detail_content offer-started" wx:else>
               <view class="flex-between offer-countdown">
                 <view class="uppercase flex-between_left">
@@ -88,7 +162,62 @@
                 </view>
               </view>
             </view>
-            <!-- End of Current Status -->
+            // End of Current Status
+          </view> -->
+          <view class="new-offer-banner">
+            <view class="top-box top-box-color-{{offer.community.name}}">
+              <view class="top-box-won top-box-color-{{offer.community.name}}" wx:if="1">
+                <text class="icon icon-crown"></text>
+                <view >
+                  <view class="crown-context1">{{_t.congrats}}</view>
+                  <view class="crown-context2">{{_t.you_won}}</view>
+                </view>
+              </view>
+              <view class="color-{{offer.community.name}}-golden font-size1">Ziko {{offer.community.name}}</view>
+              <view class="color-{{offer.community.name}}-golden font-size2">Ziko {{offer.name[_language]}}</view>
+              
+            </view>
+
+            <view class="middle-box">
+              <view class="middle-box-top">
+                <view class="to_win_button bgc-color-{{offer.community.name}}"><text class="to_win_big_text">3 {{_t.chances}} </text> {{_t.to_win}}</view>
+                <view class="draws-locked-button nunito_400">
+                  3 {{_t.draws}} {{_t.locked}}
+                </view>
+              </view>
+              <view class="Progress">
+                <view class="middle-box-center">                 
+                </view>
+                <view class="middle-box-center-numbers nunito_400">
+                  <view class="numbers">10</view>
+                  <view class="numbers">60</view>
+                  <view class="numbers">100</view>
+                  <view class="numbers">160</view>
+                  <view class="numbers text-right">200
+                    <view class="orders">orders</view>
+                  </view>
+                  <view class="numbers-line1"></view>
+                  <view class="numbers-line2"></view>
+                  <view class="numbers-line3"></view>
+                  <view class="numbers-line4"></view>
+                </view>
+              </view>
+              <view class="middle-box-bottom">
+                <view class="address">
+                <text class="icon icon-ticket"></text>
+                <text class="tickets2 nunito_700">2 {{_t.tickets}}</text>
+              </view>
+              <view>
+                <text class="time_remaining nunito_400">{{_t.time_remaining}}</text>
+                <text class="big_time_remaining color-{{offer.community.name}}">1<text class="time_remaining">{{_t.day}}</text>28: 30</text>
+              </view>
+              </view>
+            </view>
+
+            <view class="bottom-box"> 
+              <view class="bottom-box-text color-{{offer.community.name}}-golden">{{_t.access_the_offer}}</view>
+              <view class="prizes-num"> 21 {{_t.prizes}}</view>
+            </view>
           </view>
         </view>
       </view>

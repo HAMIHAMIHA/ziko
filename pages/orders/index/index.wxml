@@ -40,14 +40,13 @@
           data-filter_type="order_status"
           data-value="{{ index }}"
         >
-          <view class="text-class">{{ _t.order_status[status] }}</view>
+          <view class="text-class" >{{ _t.order_status[status] }}</view>
         </view>
       </block>
   </view>
   <!-- End of Scroll Menu -->
 
   <view class="container">
-
     <!-- Community Picker -->
     <!-- <view class="community-selector">
       <picker
@@ -73,8 +72,8 @@
     <!-- Order Card -->
     <view class="cards-container">
       <block wx:for="{{ orders }}" wx:key="id" wx:for-item="order">
-        <view class="card order-card{{ order.count == 0 ? ' disabled' : ''}}" data-id="{{ order.id }}" bindtap="toDetails">
-          <!-- Order Detail -->
+        <!-- <view class="card order-card{{ order.count == 0 ? 'disabled' : ''}}" data-id="{{ order.id }}" bindtap="toDetails">
+          // Order Detail
           <view class="order-info__detail">
             <view class="flex-between order-info">
               <view class="gilroy_700 order-time">{{ order.orderDate }}</view>
@@ -94,9 +93,9 @@
               </view>
             </view>
           </view>
-          <!-- End of Order Detail -->
+          // End of Order Detail
 
-          <!-- Order Lottery -->
+          // Order Lottery
           <view class="order-info__gift" wx:if="{{ order.gifts.length > 0 }}">
             <view class="gift-title">{{ _t.gift }}</view>
             <block wx:for="{{ order.gifts }}" wx:key="_id" wx:for-item="gift">
@@ -110,7 +109,39 @@
               </view>
             </block>
           </view>
-          <!-- End of Order Lottery -->
+          // End of Order Lottery
+        </view> -->
+        <view class="" bindtap="toDetails">
+          <view class="allbox">
+            <view class="top_box">
+              <view class="text_box">
+                <view class="color_bar bgc-color-{{type[index_t]}}"></view>
+                <view class="text-box-inside">
+                  <view class="type-title color-{{type[index_t]}}">Ziko {{type[index_t]}}</view>
+                  <view class="big-text gilroy_700">{{items_name[0]}}</view>
+                  <view class="items-num">x{{orders[0].count}} {{_t.items_unit}}</view>
+                  <view class="items-date nunito_400">{{orders[0].orderDate}}</view>
+                </view>
+              </view>
+              <view class="right-box">
+                <view class="right-box-title-size color-{{type[index_t]}}">{{state[index_s]}}</view>
+                <view class="payment-cleared">{{_t.payment_cleared}}</view>
+                <view class="price-type">¥{{orders[0].actualAmount}}</view>
+              </view>
+              
+            </view>
+            <view wx:if="{{orders[0].lottery}}" class="bottom_box">
+              <view class="lottery-gift nunito_400">{{_t.lottery_gift}}
+              </view>
+              <view class="flex-between">
+                <view class="flex-start">
+                  <view class="picture-white-box"></view>
+                  <view class="picture-text">{{orders[0].item}}</view>
+                </view>
+                <view class="lottery-number">x1</view>
+              </view>
+            </view>
+          </view>
         </view>
       </block>
     </view>

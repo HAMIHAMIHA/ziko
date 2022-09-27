@@ -159,7 +159,6 @@ const getOrders = (page) => {
         }
       })
       order_info.gifts = gifts;
-
       order_res.push(order_info);
     })
 
@@ -197,6 +196,22 @@ Page({
       list: index_data.list_filter,
       map: index_data.map_filters
     },
+    type:['kitchen','cellar','garden','pet'],
+    index_t:1,
+    state:['delivered','progress','processing'],
+    index_s:1,
+    orders:[{
+      count:2,
+      id:2,
+      orderDate:20220926,
+      trackingStatus:3,
+      actualAmount:10,
+      actualTotal:20,
+      community:"pet",
+      item:"Ziko Gold mask + 15% off",
+      lottery:1
+    }],
+    items_name:["Outstanding beef","Fresh Pack Vages","Greedy dog food"]
   },
 
   onShow: function () {
@@ -295,6 +310,8 @@ Page({
         no_orders: i18n.no_orders,
         order_status: i18n.order_status,
         payment_status: i18n.payment_status,
+        payment_cleared:i18n.payment_cleared,
+        lottery_gift:i18n.lottery_gift
       },
       _pickers: {
         communities: picker_communities,

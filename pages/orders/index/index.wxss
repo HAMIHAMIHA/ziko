@@ -1,6 +1,6 @@
-.container {
+/* .container {
   padding: 16rpx 30rpx;
-}
+} */
 
 /* Community Picker */
 .community-selector {
@@ -11,7 +11,7 @@
   line-height: 38rpx;
   border: 1px solid #171921;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 8rpx;
 }
 
 .community-selector .picker-btn {
@@ -24,15 +24,15 @@
 /* End of Community Picker */
 
 /* Order Card */
-.cards-container {
+/* .cards-container {
   padding: 12rpx 0;
   display: grid;
   grid-row-gap: 24rpx;
-}
+} */
 
 .card {
   background: #252831;
-  border-radius: 4px;
+  border-radius: 8rpx;
 }
 
 .order-card.disabled {
@@ -81,7 +81,7 @@
   padding: 4rpx 12rpx;
   font-size: 20rpx;
   line-height: 24rpx;
-  border-radius: 4px;
+  border-radius: 8rpx;
   white-space: nowrap;
   align-self: flex-start;
 }
@@ -179,3 +179,89 @@
   line-height: 28rpx;
 }
 /* End of Order Card */
+
+.allbox{
+  background-color: #373A44;
+  margin:30rpx;
+  width: 690rpx;
+  box-sizing:border-box;
+  border-radius: 8rpx;
+}
+.color_bar{
+  width: 20rpx;
+  height:80rpx;
+  border-radius: 0 0 8rpx 8rpx;
+  margin-left: 18rpx;
+}
+.top_box{
+  background-color: #373A44;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10rpx;
+}
+.bottom_box{
+  background-color: #252831;
+}
+.big-text{
+  font-size: 34rpx;
+}
+.items-num{
+  font-size: 24rpx;
+  color: #BFBFBF;
+}
+.type-title{
+  font-size: 22rpx;
+  padding-top: 10rpx;
+}
+.items-date{
+  color: #BFBFBF;
+  font-size: 24rpx;
+}
+.text_box{
+  display: flex;
+}
+.text-box-inside{
+  margin-left: 20rpx;
+}
+.flex-right{
+  right: 0;
+}
+.right-box{
+  margin-top:50rpx;
+  margin-right: 30rpx;
+  text-align:right;
+}
+.right-box-title-size{
+  text-transform:uppercase;
+  font-size: 24rpx;
+}
+.payment-cleared{
+  font-size:24rpx;
+}
+.price-type{
+  font-size:28rpx;
+}
+.lottery-gift{
+ font-size:24rpx;
+ color: #A3A8B7;
+ margin-left:30rpx;
+ padding-top: 20rpx;
+}
+.picture-white-box{
+  width: 48rpx;
+  height: 48rpx;
+  background-color: #fff;
+  margin-left: 30rpx;
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+  margin-right: 20rpx;
+}
+.picture-text{
+  font-size: 24rpx;
+  color: #D9D9D9;
+}
+.lottery-number{
+  font-size: 24rpx;
+  color:#BFBFBF;
+  margin-right: 30rpx;
+}

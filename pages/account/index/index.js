@@ -39,7 +39,6 @@ const _uploadProfileImage = (res, page) =>  {
     page.setData({
       user: user
     })
-
     // Update user data
     let profile_data = {
       profilePicture: file
@@ -62,6 +61,7 @@ Page({
       orders: app.routes.orders,
       recipes_fav: app.routes.recipes_fav,
       vouchers: app.routes.vouchers,
+      lottery: app.routes.lottery,
     },
     _t: {
       account_ranking: app.globalData.i18n.account_ranking,
@@ -81,7 +81,7 @@ Page({
     },
     language: app.db.get('language'),
     copybox_judgment:true,
-    animationData:{}
+    animationData:{},
   },
 
   onShow: async function () {
@@ -117,7 +117,8 @@ Page({
   // Mobile login
   getPhoneNumber: function(e) {
     app.sessionUtils.mobileLogin(this, e.detail.code);
-  },
+    console.log('....////')
+  }, 
 
   switchLanguage: function(e) {
     const self = this;

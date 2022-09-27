@@ -96,3 +96,311 @@
   text-align: center;
 }
 /* End of Offer Detail - Closed */
+
+.first-show{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgb(0,0,0,0.7);
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction:column;
+}
+.image-size{
+  width: 400rpx;
+  height: 52rpx;
+  margin-top:210rpx;
+}
+/* lottery-box */
+
+.machine-pure-box{
+  margin-top: 10rpx;
+  background: linear-gradient(113.45deg, #C5CACE -6.01%, #A4A8AB 0.17%, #8C8F91 9.43%, #838688 12.52%, #888C8E 24.87%, #919699 37.21%, #A4AAAF 65%, #BBC3CA 89.7%, #BAC3C8 120.57%, #BDC5C9 126.74%, #D9D9D9 163.79%, #DFDEDE 169.96%, #F0EDED 179.22%, #FFF9F9 182.31%, #F5F5F4 203.92%, #FFFFFF 216.27%, #F7F7F7 228.62%, #EAEAEA 237.88%, #CBCBCD 268.75%, #C3CCD3 287.27%, #A4A9AC 299.62%);
+
+  width: 424rpx;
+  height: 304rpx;
+  display: flex;
+  justify-content: center;
+  border-radius: 8rpx;
+  align-items: center;
+}
+
+.machine-light-box{
+  height: 276rpx;
+  border-radius: 20rpx;
+  width: 400rpx;
+  background: linear-gradient(113.45deg, #C5CACE -6.01%, #A4A8AB 0.17%, #8C8F91 9.43%, #838688 12.52%, #888C8E 24.87%, #919699 37.21%, #A4AAAF 65%, #BBC3CA 89.7%, #BAC3C8 120.57%, #BDC5C9 126.74%, #D9D9D9 163.79%, #DFDEDE 169.96%, #F0EDED 179.22%, #FFF9F9 182.31%, #F5F5F4 203.92%, #FFFFFF 216.27%, #F7F7F7 228.62%, #EAEAEA 237.88%, #CBCBCD 268.75%, #C3CCD3 287.27%, #A4A9AC 299.62%);
+  margin: 10rpx;
+  box-shadow: 2rpx 2rpx 2rpx 2rpx #86898B;
+  display:flex;
+  justify-content:space-between;
+}
+
+
+
+.vertical-light{
+  display: flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:10rpx;
+}
+.white-round{
+  width: 36rpx;
+  height: 36rpx;
+  background-color: #fff;
+  border-radius: 50%;
+}
+.light-box-light{
+  width: 300rpx;
+  padding:8rpx 0;
+  display: flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.broadwise-light{
+  display: flex;
+  justify-content:space-between;
+  margin-left:20rpx;
+  margin-right:20rpx;
+}
+.move-items{
+  border-radius: 20rpx;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items :center;
+  padding:10rpx;
+  margin: 6rpx 0;
+}
+.scroll-box{
+  width: 83rpx;
+  height: 160rpx;
+  background-image: linear-gradient(0deg, rgba(180,180,180,1) 0%, rgba(240,240,240,1) 30%,rgba(240,240,240,1) 70%,rgba(180,180,180,1) 100%);
+  border-radius: 20rpx;
+  margin:auto;
+  overflow: hidden;
+}
+.scroll-box ::-webkit-scrollbar{
+  display:none;
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.content-move-box{
+  margin: 0 12rpx;
+  padding: 30rpx 0;
+}
+.content-image{
+  width: 60rpx;
+  height: 70rpx;
+}
+.ziko_lottery{
+  font-size: 42rpx;
+  text-transform:uppercase;
+  margin-top: 40rpx;
+}
+.tiny-text{
+  width: 530rpx;
+  height: 256rpx;
+  text-align: center;
+  font-size: 28rpx;
+  margin-top: 74rpx;
+}
+.button-got-it{
+  margin-top:116rpx;
+  padding:30rpx 300rpx;
+  font-size:32rpx;
+  color:#1F1F1F;
+  background-color: #F0F0F0;
+  border-radius: 8rpx;
+}
+.choose_box{
+  display: flex;
+  justify-content: space-between;
+  padding:0 40rpx;
+  margin:40rpx 0;
+}
+.still_a_chance{
+  background-color: #fff;
+}
+.basic-button {
+  background-color: #373A44;
+  width: 327rpx;
+  padding:20rpx 0;
+  border-radius: 8rpx;
+  color: #fff;
+  text-align: center;
+  font-size: 28rpx;
+}
+.select-now{
+  background-color: #D9D9D9;
+  color:#1F1F1F;
+}
+
+/* new offer banner */
+
+.font-size1{
+  font-size: 22rpx;
+}
+.font-size2{
+  font-size: 34rpx;
+  padding-top: 10rpx;
+} 
+.top-box{
+  border-radius: 8rpx 8rpx 0 0;
+  background-color: #252831;
+  padding: 20rpx;
+  border-top:4rpx solid;
+  position: relative;
+}
+.top-box-won{
+  position:absolute;
+  display: flex;
+  background-color: black;
+  padding: 30rpx;
+  right: 40rpx;
+  top: 0;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  border-bottom:4rpx solid;
+}
+.icon-crown{
+  font-size: 50rpx;
+  color:#FFC700;
+  margin-right: 10rpx;
+}
+.crown-context1{
+  text-transform:uppercase;
+  font-size: 28rpx;
+  letter-spacing: 0.08em;
+}
+.crown-context2{
+  font-size: 34rpx;
+  margin-top: 10rpx;
+}
+
+.top-box-color-Kitchen{
+  border-image:linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%) 1; 
+}  
+.top-box-color-Cellar{
+  background-image:-webkit-linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%) 1; 
+}  
+.top-box-color-Farm{
+  background-image:-webkit-linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%) 1; 
+}  
+.top-box-color-Pet{
+  background-image:-webkit-linear-gradient(132.48deg, #FFB65A -1194.24%, #FF7233 1529.08%) 1; 
+}  
+.middle-box{
+  background-color: #373A44;
+  padding-top:10rpx;
+  padding-bottom: 5rpx;
+  margin-top:10rpx;
+}
+.to_win_button{
+  font-size: 24rpx;
+  padding: 15rpx;
+  border-radius: 8rpx;
+}
+.to_win_big_text{
+  font-size: 32rpx;
+}
+.middle-box-top{
+  display: flex;
+  justify-content: space-between;
+  margin: 20rpx;
+}
+.draws-locked-button{
+  background-color: #595959;
+  font-size: 28rpx;
+  border-radius: 8rpx;
+  height: 30rpx;
+  padding: 5rpx 10rpx;
+  margin-top: 20rpx;
+  line-height: 28rpx;
+}
+.Progress{
+  padding:0 20rpx;
+  /* box-sizing:border-box; */
+}
+.middle-box-center{
+  width: 650rpx;
+  height: 30rpx;
+  background-color: #262626;
+  border-radius: 40rpx;
+}
+.middle-box-center-numbers{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 100rpx;
+  margin-top:10rpx;
+}
+.numbers-line1,
+.numbers-line2,
+.numbers-line3,
+.numbers-line4
+{
+  position: absolute;
+  left: 2%;
+  top: -22px;
+  height: 32rpx;
+  border: 1rpx #FFFFFF solid;
+}
+.numbers-line2{
+  left: 24%;
+}
+.numbers-line3{
+  left: 45%;
+}
+.numbers-line4{
+  left: 68%;
+}
+.orders{
+  text-transform:uppercase;
+  font-size: 16rpx;
+}
+.text-right{
+  text-align: right;
+}
+.middle-box-bottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20rpx;
+  margin-top:10rpx;
+}
+.icon-ticket{
+  font-size: 40rpx;
+  margin-right: 10rpx;
+  color: #FFC700;
+}
+.tickets2{
+  font-size: 28rpx;
+}
+.time_remaining{
+  font-size: 24rpx;
+  margin-right: 10rpx;
+}
+.big_time_remaining{
+  font-size: 32rpx;
+}
+.bottom-box{
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.bottom-box-text{
+  padding:20rpx;
+  font-size: 28rpx;
+}
+.prizes-num{
+  font-size: 24rpx;
+  color:#8C8C8C !important;
+  margin-right: 20rpx;
+}

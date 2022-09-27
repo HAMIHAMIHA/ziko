@@ -1,3 +1,6 @@
+page{
+  padding-bottom: 30rpx;
+}
 .container {
   /* --container-padding-bottom-: calc(34rpx + 4rpx + 4rpx + 48rpx + 48rpx);  */
   /* height of language button + bottom padding + minimum top padding */

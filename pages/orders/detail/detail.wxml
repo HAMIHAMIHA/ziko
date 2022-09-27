@@ -1,4 +1,22 @@
 <view class="container container-grey{{ order.paymentStatus == 'pending' || need_reveived ? ' container-btn-bottom' : '' }}">
+  <view class="white-box order-details_container">
+    <view class="detail">
+      <text class="nunito_600 detail_label">{{ _t.order_no }}</text>
+      <text class="detail_result">{{ order.orderID }}</text>
+    </view>
+    <view class="detail">
+      <text class="nunito_600 detail_label">{{ _t.delivery_company }}</text>
+      <text class="detail_result">{{ _t.delivery_companies[order.offer.deliveryType] }}</text>
+    </view>
+    <view class="detail" wx:if="{{ order.deliveryTrackingID }}">
+      <text class="nunito_600 detail_label">{{ _t.tracking_number }}</text>
+      <text class="detail_result">{{ order.deliveryTrackingID }}</text>
+    </view>
+    <view class="detail" wx:if="{{ order.deliveryTrackingID }}">
+      <text class="nunito_600 detail_label">{{_t.delivery_states}}</text>
+    </view>
+  </view>
+
   <view class="white-box order-products_container">
     <view class="nunito_700 header page-header">{{ order.offer.name[_language] }}</view>
     <view class="nunito_700 header">{{ _t.items }}</view>
@@ -110,20 +128,6 @@
     </view>
   </view>
 
-  <view class="white-box order-details_container">
-    <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.order_no }}</text>
-      <text class="detail_result">{{ order.orderID }}</text>
-    </view>
-    <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.delivery_company }}</text>
-      <text class="detail_result">{{ _t.delivery_companies[order.offer.deliveryType] }}</text>
-    </view>
-    <view class="detail" wx:if="{{ order.deliveryTrackingID }}">
-      <text class="nunito_600 detail_label">{{ _t.tracking_number }}</text>
-      <text class="detail_result">{{ order.deliveryTrackingID }}</text>
-    </view>
-  </view>
 
   <view class="white-box order-details_container" wx:if="{{ order.ticketAmount > 0 || order.fidlityPoints > 0 }}">
     <view class="detail" wx:if="{{ order.ticketAmount > 0 }}">
@@ -144,12 +148,10 @@
         <text class="detail_note">{{ order.customerAddress.detailedAddress }}</text>
       </view>
     </view>
-
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.contact_label }}</text>
       <view class="detail_value">{{ order.customerAddress.contact ? order.customerAddress.contact : "" }}</view>
     </view>
-
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.phone_no }}</text>
       <view class="detail_value">{{ order.customerAddress.phone }}</view>
@@ -171,12 +173,12 @@
     </view>
   </view>
 
-  <view class="white-box order-details_container">
+  <!-- <view class="white-box order-details_container">
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.comment }}</text>
       <view class="detail_value">{{ order.comment ? order.comment : '' }}</view>
     </view>
-  </view>
+  </view> -->
 
   <view class="white-box order-details_container timeline" wx:if="{{ order.statusHistory.length > 0 }}">
     <block wx:for="{{ order.statusHistory }}" wx:key="index" wx:for-item="status">
@@ -190,14 +192,21 @@
     </block>
   </view>
 
-  <view class="white-box contact-box">
-    <view>{{ _t.problem_with_order }}</view>
-    <view class="contact-button_container">
-      <button class="contact-button" open-type="contact">
-        <text class="icon icon-headset"></text>
-        <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
-      </button>
-    </view>
+  <view class="contact-box">
+      <view class="if-you-need content_text nunito_400">{{ _t.if_you_need_to}}
+      </view>
+      <view class="contact-button_container">
+        <button class="contact-button" open-type="contact">
+          <text class="icon icon-headset"></text>
+          <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
+        </button>
+      </view>
+      <view class="contact-button_container">
+        <button class="contact-button" bindtap="copyboxshow">
+          <text class="icon icon-wechat"></text>
+          <text class="nunito_600">{{ _t.add_chef_ziko_on_wechat }}</text>
+        </button>
+      </view>
   </view>
 
   <!-- Pay button for pending orders -->

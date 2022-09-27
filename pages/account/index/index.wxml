@@ -1,5 +1,4 @@
 <view class="container">
-
   <!-- LOGIN BUTTON -->
   <view class="user-info__container" wx:if="{{ !user.id }}">
     <view class="user-info__avatar">
@@ -52,14 +51,17 @@
       <view class="short-cut__icon icon icon-package"></view>
       <view class="short-cut__label">{{ _t.orders }}</view>
     </navigator>
+
     <navigator class="short-cuts__button{{ new_vouchers > 0 ? ' new' : '' }}" url="{{ _routes.vouchers }}">
       <view class="short-cut__icon icon icon-redpacket"></view>
       <view class="short-cut__label">{{ _t.vouchers }}</view>
     </navigator>
-    <navigator class="short-cuts__button{{ new_vouchers > 0 ? ' new' : '' }}" url="{{ _routes.vouchers }}">
+
+    <navigator class="short-cuts__button{{ new_vouchers > 0 ? ' new' : '' }}" url="{{ _routes.lottery }}">
       <view class="short-cut__icon icon icon-lottery"></view>
       <view class="short-cut__label">{{ _t.lottery }}</view>
     </navigator>
+
     <navigator class="short-cuts__button" url="{{ _routes.claims }}" wx:if="{{ showing }}">
       <view class="short-cut__icon icon icon-box"></view>
       <view class="short-cut__label">{{ _t.claims }}</view>
@@ -127,6 +129,7 @@
   </view>
   <!-- Join Ziko community end-->
 </view>
+
 <!-- copy box -->
 <view class="copybox" hidden="{{copybox_judgment}}">
   <view class="copybox-cancel" bindtap="copyboxhide">
@@ -176,8 +179,8 @@
         </view>
       </view>
     </view>
-    <view class="x">
-      <text class="icon icon-x icon-x-height" bindtap="copyboxhide"></text>
+    <view class="x" bindtap="copyboxhide">
+      <text class="icon icon-x icon-x-height" ></text>
     </view>
   </view>
 </view>
