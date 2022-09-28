@@ -61,9 +61,6 @@ Component({
       //   })
       // },30)
     },
-    animationiteration:function(){
-      console.log("动画正在进行")
-    },
     animationend:function(){
       setTimeout(()=>{
         this.setData({

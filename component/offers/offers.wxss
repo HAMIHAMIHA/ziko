@@ -34,10 +34,12 @@
 }
 
 .offer-banner_image {
+  border-radius: 16rpx 16rpx 0 0;
   height: 288rpx;
 }
 
 .offer-banner_image image {
+  border-radius: 16rpx 16rpx 0 0;
   width: 100%;
 }
 
