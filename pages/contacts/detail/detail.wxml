@@ -31,7 +31,7 @@
             <view class="input">
               <input
                 name="phone"
-                placeholder="{{_t.please_enter_the_phone_number}}"
+                placeholder="{{ _t.please_enter_the_phone_number }}"
                 value="{{ contact.phone }}"
                 focus="{{ _focus == 'phone' ? true : false }}"
               >
@@ -41,10 +41,11 @@
         </view>
       </view>
 
-      <view class="star-set-default">
-        <view class="icon icon-star-gray"><text class="nunito_500">{{_t.set_as_default_contact}}</text></view>
+      <view class="star-set-default" bindtap="setDefault">
+        <view class="icon icon-star-{{ default ? 'gold' : 'gray' }}">
+          <text class="nunito_500">{{ _t.set_as_default_contact }}</text>
+        </view>
       </view>
-      
     </view>
     <!-- End of Contact Form -->
 

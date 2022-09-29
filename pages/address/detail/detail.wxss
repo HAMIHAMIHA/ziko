@@ -1,56 +1,67 @@
 .header {
   padding-bottom: 10rpx;
 }
-.address_container{
-  background-color: #11141B;
+
+.address_container {
+  background-color: #0A0B12;
 }
-.type-head-box{
-  margin:20rpx 0;
+
+.type-head-box {
+  margin: 20rpx 0;
   padding: 0 30rpx;
-  background-color:#252831;
+  background-color: #252831;
   border-radius: 16rpx;
-  display:flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
 }
-.detail_label_name.line-height{
+
+.detail_label_name.line-height {
   line-height: 48rpx;
   font-size: 28rpx;
   padding: 24rpx 0;
 
 }
-.detail_input_content.no-border-bottom{
+
+.detail_input_content.no-border-bottom {
   border-bottom: 0;
   line-height: 38rpx;
   font-size: 28rpx;
   padding: 30rpx 0;
-  padding-right:42rpx;
+  padding-right: 42rpx;
 }
-.no-border-bottom .icon-arrow{
+
+.no-border-bottom .icon-arrow {
   padding-top: 6rpx;
 }
+
 .inputs_container {
   padding: 0;
 }
-.btn-bottom .cancel-button{
+
+.btn-bottom .cancel-button {
   border: 1px solid #F0F0F0;
   border-radius: 4px;
   background-color: #11141B !important;
   position: absolute !important;
-  left:30rpx !important;
-  bottom:calc(168rpx + var(--env-)) !important;
+  left: 30rpx !important;
+  bottom: calc(168rpx + var(--env-)) !important;
 }
-.btn-bottom .white-background-black-text{
+
+.btn-bottom .white-background-black-text {
   background-color: #F0F0F0 !important;
-  color:#1F1F1F !important;
+  color: #1F1F1F !important;
 }
-.detail_content_box{
+
+.detail_content_box {
   padding: 18rpx 0;
   font-size: 28rpx;
 }
-.detail_label_name{
+
+.detail_label_name {
   padding: 4rpx 0;
 }
-.detail_input_content{
+
+.detail_input_content {
   height: 64rpx;
   display: flex;
   /* border-bottom: 2rpx solid #EBEBEB; */
@@ -76,16 +87,19 @@
   white-space: nowrap;
   width: calc(100% - 24rpx - 16rpx);
   height: 34rpx;
-  display:flex;
+  display: flex;
 }
-.detail_input_content .picker_text text{
+
+.detail_input_content .picker_text text {
   margin-left: auto;
   margin-right: -32rpx;
   padding-left: 20rpx;
 }
-.icon-arrow{
-  color:#8C8C8C;
+
+.icon-arrow {
+  color: #8C8C8C;
 }
-.greycolor{
-  color:#8C8C8C !important;
+
+.greycolor {
+  color: #8C8C8C !important;
 }

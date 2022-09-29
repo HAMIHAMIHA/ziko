@@ -11,6 +11,7 @@ const routes = {
   cart: "/pages/cart/cart",
   contacts: "/pages/contacts/index/index",
   contact: "/pages/contacts/detail/detail",
+  edit_profile: "/pages/account/editprofile/editprofile",
   lottery: "/pages/lottery/index/index",
   lottery_detail: "/pages/lottery/detail/detail",
   offer_bourse: "/pages/offer/cellar/bourse/bourse",

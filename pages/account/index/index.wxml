@@ -39,9 +39,9 @@
         </view>
       </view>
     </view>
-    <view class="gilroy_700 uppercase user-info__name">{{ user.name }}
+    <navigator class="gilroy_700 uppercase user-info__name" url="{{ _routes.edit_profile }}">{{ user.name }}
       <text class="icon icon-edit"></text>
-    </view>
+    </navigator>
   </view>
   <!-- END OF USER INFO -->
 
@@ -76,35 +76,37 @@
 
   <!-- PROFILE INFO -->
   <view class="nunito_400 card profile-info{{ user.id ? '' : ' disabled' }}">
-    <navigator class="profile-info__button" url="{{ _routes.account_info }}">
+    <navigator class="profile-info__button" url="{{ _routes.address }}">
       <view>
-        <view class="profile-info-title ">{{ _t.address_book }}</view>        
-        <view class="profile-info-content">{{ _t.manage_your_delivery_address_details }}</view>        
+        <view class="profile-info-title ">{{ _t.address_book }}</view>
+        <view class="profile-info-content">{{ _t.manage_your_delivery_address_details }}</view>
       </view>
       <view class="icon icon-arrow-right"></view>
     </navigator>
     <navigator class="profile-info__button" url="{{ _routes.contacts }}">
       <view>
-        <view class="profile-info-title"> {{ _t.contact_list }}</view>        
-        <view class="profile-info-content">{{ _t.manage_contact_for_delivery }}</view>        
+        <view class="profile-info-title"> {{ _t.contact_list }}</view>
+        <view class="profile-info-content">{{ _t.manage_contact_for_delivery }}</view>
       </view>
       <view class="icon icon-arrow-right"></view>
     </navigator>
     <navigator class="profile-info__button" url="{{ _routes.fapiao }}">
       <view>
-        <view class="profile-info-title">{{ _t.fapiao_info   }}</view>        
-        <view class="profile-info-content">{{ _t.edit_your_fapiao_information }}</view>        
+        <view class="profile-info-title">{{ _t.fapiao_info }}</view>
+        <view class="profile-info-content">{{ _t.edit_your_fapiao_information }}</view>
       </view>
       <view class="icon icon-arrow-right"></view>
     </navigator>
-    <navigator class="profile-info__button" url="{{ _routes.account_info }}">
+    <navigator class="profile-info__button" url="{{ _routes.pets }}">
       <view>
-        <view class="profile-info-title">{{ _t.my_pets }}</view>        
-        <view class="profile-info-content">{{ _t.manage_your_pet_details }}</view>        
+        <view class="profile-info-title">{{ _t.my_pets }}</view>
+        <view class="profile-info-content">{{ _t.manage_your_pet_details }}</view>
       </view>
       <view class="icon icon-arrow-right"></view>
     </navigator>
-    <navigator class="profile-info__button" url="{{ _routes.recipes_fav }}?filter=fav" wx:if="{{ show }}">{{ _t.my_favorite_recipes }}</navigator> 
+    <navigator class="profile-info__button" url="{{ _routes.recipes_fav }}?filter=fav" wx:if="{{ show }}">
+      {{ _t.my_favorite_recipes }}
+    </navigator>
   </view>
   <!-- END OF PROFILE INFO -->
 
@@ -116,7 +118,7 @@
       <button class="langauge" bindtap="switchLanguage" data-language="zh">{{ _t.zh }}</button>
     </view>
   </view>
-    <!-- END OF LANGUAGE BUTTON -->
+  <!-- END OF LANGUAGE BUTTON -->
 
   <!-- Join Ziko community-->
   <view class="ziko-community" bindtap="copyBoxShow">
@@ -128,7 +130,7 @@
 
   </view>
   <!-- Join Ziko community end-->
-    
+
   <view class="{{margin_bottom}}"></view>
 </view>
 
@@ -141,7 +143,7 @@
       <view class="icon icon-chef-head icon-chef"></view>
       <view>
         <text class="box-name">{{_t.add_chef_ziko}}</text>
-        <view class="wechat-copy box-chef" hover-class="clicked-chef" >
+        <view class="wechat-copy box-chef" hover-class="clicked-chef">
           <text class="wechat-id">{{_t.wechat_id}}</text>
           <text class="simonmawas">{{_t.simonmawas}}</text>
           <text class="icon icon-click-copy icon-height"></text>
@@ -152,7 +154,7 @@
       <view class="icon icon-pet-head icon-pet"></view>
       <view>
         <text class="box-name">{{_t.add_pet_ziko}}</text>
-        <view class="wechat-copy box-pet"  hover-class="clicked-pet">
+        <view class="wechat-copy box-pet" hover-class="clicked-pet">
           <text class="wechat-id">{{_t.wechat_id}}</text>
           <text class="simonmawas">{{_t.simonmawas}}</text>
           <text class="icon icon-click-copy icon-height"></text>
@@ -170,7 +172,7 @@
         </view>
       </view>
     </view>
-    <view class="add-box" data-text="{{_t.simonmawas}}" bindtap='copyBtn' >
+    <view class="add-box" data-text="{{_t.simonmawas}}" bindtap='copyBtn'>
       <view class="icon icon-celler-head icon-celler"></view>
       <view>
         <text class="box-name">{{_t.add_cellar_ziko}}</text>
@@ -182,7 +184,7 @@
       </view>
     </view>
     <view class="x" bindtap="copyBoxHide">
-      <text class="icon icon-x icon-x-height" ></text>
+      <text class="icon icon-x icon-x-height"></text>
     </view>
   </view>
 </view>

@@ -8,26 +8,31 @@
       bindtap="selectContact"
       data-index="{{ index }}"
     >
-    <view class="contact-box">
-      <view class="contact-left">
-        <view wx:if="{{!address.default}}" class="icon icon-star-gold"><text class="nunito_500 default-selection">{{_t.default_selection}}</text></view>
-        <view wx:else class="icon icon-star-gray"><text class="nunito_500 default-selection"></text></view>
-        <view class="address_container">
-          <view class="detail-box detail-box-name">
-            <view class="detail-name nunito_400">{{ _t.contact_name }}</view>
-            <view class="address-detail gilroy_700">{{ contact.name }}</view>
+      <view class="contact-box">
+        <!-- Contact info -->
+        <view class="contact-left">
+          <view class="icon icon-star-{{ contact.default ? 'gold' : 'gray' }}">
+            <text class="nunito_500 default-selection">{{ contact.default ? _t.default_selection : '' }}</text>
           </view>
-          <view class="detail-box">
-            <view class="detail-name nunito_400">{{ _t.contact_number }}</view>
-            <view class="address-detail gilroy_700">{{ contact.phone }}</view>
+
+          <view class="address_container">
+            <view class="detail-box detail-box-name">
+              <view class="detail-name nunito_400">{{ _t.contact_name }}</view>
+              <view class="address-detail gilroy_700">{{ contact.name }}</view>
+            </view>
+            <view class="detail-box">
+              <view class="detail-name nunito_400">{{ _t.contact_number }}</view>
+              <view class="address-detail gilroy_700">{{ contact.phone }}</view>
+            </view>
           </view>
         </view>
-      </view>
-      <view class="contact-right">
-        <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.contact + '?id=' + contact._id }}"></navigator>
-        <view class="icon icon-trash " hover-class="none"></view>
-      </view>
-    </view> 
+
+        <!-- Contact operations -->
+        <view class="contact-right">
+          <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.contact + '?id=' + contact._id }}"></navigator>
+          <view class="icon icon-trash " hover-class="none" bindtap="deleteContact" data-index="{{ index }}"></view>
+        </view>
+      </view> 
     </view>
   </view>
 

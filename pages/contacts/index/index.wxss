@@ -1,6 +1,7 @@
 page {
   background-color: #12151E;
 }
+
 .address-list:not(.container-btn-bottom) {
   padding-bottom: var(--env-);
 }
@@ -19,9 +20,11 @@ page {
   background: #252831;
   margin-bottom: 16rpx;
 }
+
 .container-grey {
   background-color: #12151E;
 }
+
 /* .detail:after {
   content: '';
   width: calc(100% - 30rpx - 30rpx);
@@ -40,61 +43,68 @@ page {
   background: #3F4250;
 }
 
-.detail-name{
+.detail-name {
   font-size: 24rpx;
   line-height: 32rpx;
   /* color:#FFFFFF 10% ; */
-  color:rgb(255, 255, 255,0.75)!important;
+  color: rgb(255, 255, 255, 0.75) !important;
   padding-bottom: 5rpx;
 }
-.address_container{
+
+.address_container {
   display: flex;
 }
 
-.contact-box{
-  padding:0;
+.contact-box {
+  padding: 0;
   display: flex;
   justify-content: space-between;
 }
-.contact-left{
+
+/* Contact info */
+.contact-left {
   text-align: left;
 }
-.contact-left .icon-star-gold{
+
+.contact-left .icon-star-gold {
   font-size: 40rpx;
   padding-left: 0rpx;
   padding-bottom: 30rpx;
   display: flex;
   align-items: center;
 }
-.contact-left .icon-star-gray{
+
+.contact-left .icon-star-gray {
   font-size: 40rpx;
   padding-left: 0rpx;
   padding-bottom: 30rpx;
   display: flex;
   align-items: center;
 }
-.contact-left .icon-star-gold .default-selection{
+
+.contact-left .icon-star-gold .default-selection {
   font-size: 28rpx;
   line-height: 32rpx;
   padding-left: 10rpx;
-  color:#D4B106;
+  color: #D4B106;
   padding-top: 10rpx;
 }
 
-
-
-.contact-right{
+/* Contact operations */
+.contact-right {
   display: flex;
 }
-.contact-right .icon-edit{
+
+.contact-right .icon-edit {
   font-size: 40rpx !important;
-  color:#8C8C8C;
+  color: #8C8C8C;
 }
-.contact-right .icon-trash{
+
+.contact-right .icon-trash {
   padding-left: 48rpx;
   font-size: 40rpx;
   opacity: 0.24;
-  color:#8C8C8C;
+  color: #8C8C8C;
 }
 
 .address-detail {
@@ -103,7 +113,8 @@ page {
   line-height: 40rpx;
   transition: all 0.3s ease-in-out;
 }
-.detail-box-name{
+
+.detail-box-name {
   margin-right: 100rpx;
 }
 
@@ -125,11 +136,12 @@ page {
 .btn-outline_container {
   /* padding: 28rpx 30rpx; */
   bottom: 80rpx;
-  position:fixed;
+  position: fixed;
   padding: 30rpx;
   width: 690rpx;
 }
-.btn-outline_container .btn-outline{
+
+.btn-outline_container .btn-outline {
   line-height: 50rpx;
 
 }

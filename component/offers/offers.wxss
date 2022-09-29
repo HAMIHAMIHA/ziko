@@ -172,11 +172,11 @@
 }
 
 .coming-soon.ziko-cellar::after {
-  border-right: 8.5rpx solid #07C160;
+  border-right: 8.5rpx solid #8C9093;
 }
 
 .coming-soon.ziko-pet::after {
-  border-right: 8.5rpx solid #07C160;
+  border-right: 8.5rpx solid #FF7233;
 }
 
 .text-color-white {

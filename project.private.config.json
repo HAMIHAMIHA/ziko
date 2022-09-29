@@ -1,6 +1,6 @@
 {
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "preloadBackgroundData": false,
     "coverView": true,
     "autoAudits": false,
@@ -201,6 +201,13 @@
             "enabled": false,
             "pages": []
           }
+        },
+        {
+          "name": "Contacts index",
+          "pathName": "pages/contacts/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

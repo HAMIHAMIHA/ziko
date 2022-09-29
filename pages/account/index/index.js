@@ -62,6 +62,8 @@ Page({
       recipes_fav: app.routes.recipes_fav,
       vouchers: app.routes.vouchers,
       lottery: app.routes.lottery,
+      edit_profile: app.routes.edit_profile,
+      pets: app.routes.pets,
     },
     _t: {
       account_ranking: app.globalData.i18n.account_ranking,

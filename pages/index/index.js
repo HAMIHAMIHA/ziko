@@ -247,7 +247,7 @@ Page({
       return;
     }
 
-    self.closeMapModal();
+    // self.closeMapModal();
   },
 
   // Switch display method

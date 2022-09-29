@@ -1,4 +1,7 @@
-const { showLoading, showToast } = require("../../../utils/common.js");
+const {
+  showLoading,
+  showToast
+} = require("../../../utils/common.js");
 
 const app = getApp();
 
@@ -26,7 +29,7 @@ Page({
         select: i18n.select,
         contact_name: i18n.contact_name,
         contact_number: i18n.contact_number,
-        default_selection:i18n.default_selection
+        default_selection: i18n.default_selection,
       }
     })
 
@@ -52,7 +55,20 @@ Page({
     })
   },
 
-  selectContact: function(e) {
+  deleteContact: function (e) {
+    const self = this;
+    const index = e.currentTarget.dataset.index;
+    let contacts = self.data.user.contacts;
+    contacts.splice(index, 1);
+
+    self.setData({
+      "user.contacts": contacts,
+    })
+
+    app.sessionUtils.updateUserInfo({ contacts: self.data.user.contacts });
+  },
+
+  selectContact: function (e) {
     const self = this;
 
     // Prevent select triggering if in user address list
@@ -64,7 +80,7 @@ Page({
     })
   },
 
-  select: function() {
+  select: function () {
     const self = this;
 
     let pages = getCurrentPages();

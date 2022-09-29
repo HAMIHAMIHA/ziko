@@ -1,25 +1,30 @@
-.container{
+.container {
   background-color: #12151E !important;
 }
 
 .header {
   padding-bottom: 10rpx;
 }
-.address_container{
+
+.address_container {
   background-color: #12151E;
 
 }
+
 .inputs_container {
   padding: 0;
 }
-.detail_content_box{
+
+.detail_content_box {
   padding: 18rpx 0;
   font-size: 28rpx;
 }
-.detail_label_name{
+
+.detail_label_name {
   padding: 4rpx 0;
 }
-.detail_input_content{
+
+.detail_input_content {
   height: 64rpx;
   display: flex;
   /* border-bottom: 2rpx solid #EBEBEB; */
@@ -27,18 +32,20 @@
   box-sizing: border-box;
   padding-top: 12rpx;
 }
-.detail_input_content .input{
+
+.detail_input_content .input {
   width: 650rpx;
 }
 
-.icon-star-gray{
+.icon-star-gold,
+.icon-star-gray {
   display: flex;
   align-items: center;
   padding-top: 14rpx;
 }
 
-
-.icon-star-gray text{
+.icon-star-gold text,
+.icon-star-gray text {
   font-size: 28rpx;
   line-height: 28rpx;
   color: #D9D9D9 !important;
@@ -46,16 +53,16 @@
   padding-top: 6rpx;
 }
 
-
-.btn-bottom .cancel-button{
+.btn-bottom .cancel-button {
   border: 1px solid #F0F0F0;
   border-radius: 4px;
   background-color: #12151E !important;
   position: absolute !important;
-  left:30rpx !important;
-  bottom:calc(168rpx + var(--env-)) !important;
+  left: 30rpx !important;
+  bottom: calc(168rpx + var(--env-)) !important;
 }
-.btn-bottom .white-background-black-text{
+
+.btn-bottom .white-background-black-text {
   background-color: #F0F0F0 !important;
-  color:#1F1F1F !important;
+  color: #1F1F1F !important;
 }

@@ -5,11 +5,11 @@
 /* 兼容 iOS < 11.2 */
 @supports (padding: constant(safe-area-inset-bottom)) {
   page {
-    --env-: constant( safe-area-inset-bottom, 0px);
+    --env-: constant(safe-area-inset-bottom, 0px);
   }
 }
 
- /* 兼容 iOS > 11.2 */
+/* 兼容 iOS > 11.2 */
 @supports (padding: env(safe-area-inset-bottom)) {
   page {
     --env-: env(safe-area-inset-bottom);
@@ -30,6 +30,7 @@ page {
   --grey-: #A3A8B7;
   --ziko-default-: #FFFFFF;
 }
+
 /* General Style */
 
 page {
@@ -66,7 +67,7 @@ image {
   background: #252831;
 }
 
-.white-box + .white-box {
+.white-box+.white-box {
   margin-top: 12rpx;
 }
 /* End of White Box */
@@ -107,8 +108,7 @@ image {
 
 .ziko-kitchen,
 .ziko-kitchen:after {
-  background: #E3B231;
-  /* background: linear-gradient(104.65deg, #A1803B 1.33%, #FDE28F 54.78%, #D8BC74 100%); */
+  background: linear-gradient(104.65deg, #A1803B 1.33%, #FDE28F 54.78%, #D8BC74 100%);
 }
 
 .ziko-farm,
@@ -168,7 +168,7 @@ image {
 }
 
 .ziko-offer.community-baby .offer-payment .payment-button.hover-payment-button {
-  background: #FF91B5;  
+  background: #FF91B5;
 }
 
 /* Bourse Alert */
@@ -221,7 +221,7 @@ button:not([size=mini]).btn-primary {
 .btn-outline_container .btn-outline {
   width: unset;
   padding: 28rpx 0;
-  background:#F0F0F0;
+  background: #F0F0F0;
   /* color: #0D0F18; */
   color: #1F1F1F;
   /* color: var(--ziko-default-); */
@@ -405,7 +405,7 @@ button:not([size=mini]).btn-primary {
 .error-field-2 .field-2 .detail_input,
 .error-field-3 .field-3 .detail_input,
 .error-field-4 .field-4 .detail_input,
-.error-field-5 .field-5 .detail_input ,
+.error-field-5 .field-5 .detail_input,
 .error-field-6 .field-6 .detail_input {
   border-color: #FF4040;
 }
@@ -1045,7 +1045,7 @@ button:not([size=mini]).float-contact_container {
   text-align: center;
 }
 
-.ziko-offer .offer-packs + .offer-singles .title {
+.ziko-offer .offer-packs+.offer-singles .title {
   padding-top: 16rpx;
 }
 
@@ -1069,7 +1069,8 @@ button:not([size=mini]).float-contact_container {
   border-bottom: 0;
 }
 
-.product_container .product-image, .product-image image {
+.product_container .product-image,
+.product-image image {
   width: 160rpx;
   height: 160rpx;
 }
@@ -1102,8 +1103,8 @@ button:not([size=mini]).float-contact_container {
   color: var(--ziko-default-);
 }
 
-.product_container .product-price + .product-price,
-.product-info_container .product-price + .product-price {
+.product_container .product-price+.product-price,
+.product-info_container .product-price+.product-price {
   padding-left: 8rpx;
   color: #626778;
   text-decoration: line-through;
@@ -1146,6 +1147,7 @@ button:not([size=mini]).float-contact_container {
   text-align: center;
   opacity: 0.3 !important;
 }
+
 .ziko-offer .tabbar_item.selected {
   opacity: 1 !important;
 }
@@ -1158,9 +1160,11 @@ button:not([size=mini]).float-contact_container {
   bottom: 0;
   left: 0;
 }
+
 .ziko-offer .tabbar_highlighter.pack {
   transform: translateX(100%) !important;
 }
+
 .ziko-offer .tabbar_highlighter.recipe {
   transform: translateX(200%) !important;
 }
@@ -1220,11 +1224,12 @@ button:not([size=mini]).float-contact_container {
   flex-direction: column;
   align-self: flex-start;
 }
-.offer-specials_list .offer-special{
+
+.offer-specials_list .offer-special {
   background-color: #12151E;
   opacity: 0.6;
   border-radius: 24rpx;
-  color:white;
+  color: white;
 }
 
 .offer-lotteries_list .offer-lottery {
@@ -1256,7 +1261,7 @@ button:not([size=mini]).float-contact_container {
   text-align: center;
 }
 
-.offer-lotteries .lottery-ticket__container + .lottery-ticket__container {
+.offer-lotteries .lottery-ticket__container+.lottery-ticket__container {
   margin-top: 14rpx;
 }
 
@@ -1283,48 +1288,57 @@ button:not([size=mini]).float-contact_container {
   font-size: 21rpx;
   line-height: 28rpx;
 }
-.lottery-orders_new{
+
+.lottery-orders_new {
   margin-top: 34rpx;
   font-size: 28rpx;
   line-height: 32rpx;
 }
-.long-bar-box{
+
+.long-bar-box {
   width: 100%;
   height: 30rpx;
   border-radius: 40rpx;
   background-color: #262626;
   position: relative;
 }
-.long-bar-box .gold-color{
+
+.long-bar-box .gold-color {
   width: 50%;
   height: 100%;
   background: linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%);
   border-radius: 40rpx;
 }
-.long-bar-num{
+
+.long-bar-num {
   width: 100%;
-  display:flex;
+  display: flex;
   justify-content: space-between;
   font-size: 24rpx;
   text-align: right;
 }
-.bar-box-line{
+
+.bar-box-line {
   position: absolute;
   width: 0;
   height: 26rpx;
-  border:2rpx solid white;
+  border: 2rpx solid white;
   bottom: 2rpx;
 }
-.bar-box-line1{
+
+.bar-box-line1 {
   left: 110rpx;
 }
-.bar-box-line2{
+
+.bar-box-line2 {
   left: 234rpx;
 }
-.bar-box-line3{
+
+.bar-box-line3 {
   left: 368rpx;
 }
-.bar-box-line4{
+
+.bar-box-line4 {
   left: 508rpx;
 }
 
@@ -1549,7 +1563,7 @@ button:not([size=mini]).float-contact_container {
   letter-spacing: 0.01em;
 }
 
-.voucher_detail-content + .voucher_detail-content {
+.voucher_detail-content+.voucher_detail-content {
   margin-top: 8rpx;
 }
 
@@ -1563,58 +1577,63 @@ button:not([size=mini]).float-contact_container {
 }
 
 .voucher_container.disabled .voucher_price {
- color: #A3A8B7;
+  color: #A3A8B7;
 }
 /* End of Vouchers */
+
 .color-kitchen,
-.color-Kitchen
-{
-  color:#D7BA6D;
+.color-Kitchen {
+  color: #D7BA6D;
 }
+
 .color-kitchen-golden,
-.color-Kitchen-golden{
-  background-image:-webkit-linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%); 
-  -webkit-background-clip:text; 
-  -webkit-text-fill-color:transparent; 
+.color-Kitchen-golden {
+  background-image: -webkit-linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .bgc-color-kitchen,
-.bgc-color-Kitchen
-{
+.bgc-color-Kitchen {
   background: #D7BA6D;
 }
+
 .color-garden,
-.color-Garden{
-  background-image:-webkit-linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%); 
-  -webkit-background-clip:text; 
-  -webkit-text-fill-color:transparent; 
+.color-Garden {
+  background-image: -webkit-linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 .bgc-color-garden,
-.bgc-color-Garden
-{
+.bgc-color-Garden {
   background: linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%);
 }
+
 .color-pet,
-.color-Pet
-{
-  background-image:-webkit-linear-gradient(132.48deg, #FFB65A -1194.24%, #FF7233 1529.08%); 
-  -webkit-background-clip:text; 
-  -webkit-text-fill-color:transparent; 
+.color-Pet {
+  background-image: -webkit-linear-gradient(132.48deg, #FFB65A -1194.24%, #FF7233 1529.08%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 .bgc-color-pet,
-.bgc-color-Pet{
+.bgc-color-Pet {
   background: linear-gradient(132.48deg, #FFB65A -1194.24%, #FF7233 1529.08%);
 }
+
 .color-cellar,
-.color-Cellar{
-  background-image:-webkit-linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%); 
-    -webkit-background-clip:text; 
-    -webkit-text-fill-color:transparent; 
+.color-Cellar {
+  background-image: -webkit-linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 .bgc-color-cellar,
-.bgc-color-Cellar{
+.bgc-color-Cellar {
   background: linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
 }
-.items-date{
+
+.items-date {
   font-size: 24rpx;
 }
