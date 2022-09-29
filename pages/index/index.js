@@ -212,6 +212,7 @@ Page({
   },
 
   onShow: function() {
+    wx.hideTabBar({})
     const self = this;
 
     leave_triggered = false;
@@ -313,6 +314,7 @@ Page({
         remaining_time: i18n.remaining_time,
         specials: i18n.specials,
         viewers: i18n.viewers,
+        week_days: i18n.days
       }
     })
   },

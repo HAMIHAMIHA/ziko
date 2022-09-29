@@ -28,6 +28,7 @@
     "pages/vouchers/select/select"
   ],
   "tabBar": {
+    "custom": true,
     "borderStyle": "white",
     "color": "#CBCFDE",
     "backgroundColor": "#ffffff",

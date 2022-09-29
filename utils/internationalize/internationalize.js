@@ -476,6 +476,7 @@ export const languageMap_en = {
   take_a_chance:"Take a chance to add a really cool gift to your order if the lottery is unlocked !",
   terms_and_conditions: "Terms and conditions",
   there_is_no_pet:"There is no pet in your list yet.",
+  the_land:"The land",
   ticket: "ticket",
   tickets: "tickets",
   timer: {
@@ -1033,6 +1034,7 @@ export const languageMap_zh = {
   take_a_chance:"Take a chance to add a really cool gift to your order if the lottery is unlocked !",
   terms_and_conditions: "Terms and conditions",
   there_is_no_pet:"There is no pet in your list yet.",
+  the_land:"The land",
   ticket: "ticket",
   tickets: "tickets",
   timer: {

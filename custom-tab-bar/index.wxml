@@ -1,0 +1,16 @@
+<!--custom-tab-bar/index.wxml-->
+<!-- <text>custom-tab-bar/index.wxml</text> -->
+<view class="tabbar inter_500">
+  <view class="tabbar-box" bindtap="changeTabbar" data-info="0">
+    <image src="/assets/icons/landSel.png" class="the-land-img"></image>
+    <view class="the-land-text">{{the_land}}</view>
+  </view>
+  <view class="tabbar-box" bindtap="changeTabbar" data-info="1">
+    <image src="/assets/icons/exploreSel.png" class="explore-img"></image>
+    <view class="explore-text">{{explore}}</view>
+  </view>
+  <view class="tabbar-box" bindtap="changeTabbar" data-info="2">
+    <image src="/assets/icons/accountSel.png" class="account-img"></image>
+    <view class="account-text">{{account}}</view>
+  </view>
+</view>

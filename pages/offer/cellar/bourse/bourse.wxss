@@ -1,5 +1,6 @@
 .offer-bourse {
   background: #0C0D10;
+  box-sizing:border-box;
 }
 .countdown{
   background: linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
@@ -14,19 +15,19 @@
 }
 
 /* Progress */
-.progress__container .progress {
+/* .progress__container .progress {
   margin-bottom: 48rpx;
   padding: 48rpx 24rpx;
   background: #21252F;
   text-align: center;
   border-radius: 8px;
-}
+} */
 
-.progress .progress__label {
+/* .progress .progress__label {
   padding-bottom: 32rpx;
   font-size: 24rpx;
   line-height: 28rpx;
-}
+} */
 
 /* Progress - bar */
 .progress-bar__container {
@@ -155,14 +156,15 @@
 /* end of add choice jump  */
 
 /* new progress  */
-.offer-bourse{
-  background-color: #12151E;
-}
+
 .progress-top{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 30rpx;
+  margin-bottom: 10rpx;
 }
+
 .inline-block{
   display: inline-block;
 }
@@ -189,6 +191,7 @@
 .green-content{
   display: flex;
   font-size: 26rpx;
+  margin-left: 30rpx;
 }
 
 .item-content,
@@ -197,8 +200,8 @@
   text-align: right;
   background-color: #52EA9A;
   margin-top: 12rpx;
-  margin-right: 22rpx;
-  padding: 21rpx 0;
+  margin-right: 18rpx;
+  padding: 19rpx 0;
   padding-left:40rpx;
   padding-right:6rpx;
   position: relative;
@@ -209,7 +212,7 @@
 }
 .item-content:before{
   position:absolute;
-  left: -30rpx;
+  left: -31rpx;
   bottom: 9rpx;
   content:"";
   width: 0;
@@ -242,16 +245,24 @@
 }
 .text-content{
   display: flex;
+  margin-left: 30rpx;
   margin-top: 10rpx;
+  margin-bottom:30rpx;
   font-size: 26rpx;
-  color:rgb(255,255,255,0.5)
+  color:rgb(255,255,255,0.5);
 }
 .bottle-content{
-  padding-right: 65rpx;
+  padding-right: 60rpx;
 }
 .first-bottle{
   display: inline;
 }
 .btl{
   font-size: 16rpx;
+}
+
+.offer-bourse{
+  background-color: #12151E;
+  padding: 0 !important;
+  box-sizing:border-box;
 }

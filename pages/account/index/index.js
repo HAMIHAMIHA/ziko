@@ -85,8 +85,21 @@ Page({
     copyclicked: "",
     margin_bottom: "",
   },
+  onLaunch (options) {
+    // Do something initial when launch.
+    //  get tabbar hight
+    wx.getSystemInfo({
+      success(res){
+        let lift=res.screenHeight-res.safeArea.bottom
+        let tabbarHeight=Number(lift)+50
+        that.setData({tabbarHeight})
+        wx.setStorageSync('tabbarHeight',tabbarHeight)
+      }
+    })
+  },
 
   onShow: async function () {
+    wx.hideTabBar({})
     const self = this;
     // Change page nav title
     wx.setNavigationBarTitle({
@@ -107,6 +120,8 @@ Page({
     if (app.db.get('userInfo')?.token) {
       _getPageData(self);
     }
+
+
     showLoading(false);
   },
 
@@ -199,7 +214,6 @@ Page({
 
   copyBoxShow: function () {
     var that=this;
-    wx.hideTabBar()
     that.setData({
       copybox_judgment:false,
       margin_bottom:"margin_bottom"
@@ -208,7 +222,6 @@ Page({
 
   copyBoxHide: function () {
     var that=this;
-    wx.showTabBar()
     that.setData({
       copybox_judgment:true,
       margin_bottom:"margin_bottom_hide"
