@@ -191,7 +191,7 @@ padding-right: 24rpx;
   background-color: #F0F0F0;
 }
 .if-you-need{
-font-size: 24rpx  ;
+font-size: 24rpx;
 }
 .detail_label{
   font-size: 28rpx;

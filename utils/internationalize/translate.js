@@ -27,7 +27,6 @@ const changeLanguage = (language) => {
 const translate = () => {
   return i18n[`languageMap_${db.get('language')}`];
 }
-
 module.exports = {
   check: checkLanguage,
   change: changeLanguage,

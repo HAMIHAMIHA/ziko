@@ -1,3 +1,8 @@
+.uppercase.progress__container{
+  margin-top: 100rpx;
+}
+
+
 .progress__title {
   width: 100%;
   text-align: center;

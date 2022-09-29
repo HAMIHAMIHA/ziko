@@ -80,13 +80,14 @@ Page({
       zh: app.globalData.i18n.zh,
     },
     language: app.db.get('language'),
-    copybox_judgment:true,
-    animationData:{},
+    copybox_judgment: true,
+    animationData: {},
+    copyclicked: "",
+    margin_bottom: "",
   },
 
   onShow: async function () {
     const self = this;
-
     // Change page nav title
     wx.setNavigationBarTitle({
       title: ''
@@ -171,6 +172,7 @@ Page({
         simonmawas:i18n.simonmawas,
         wechat_id:i18n.wechat_id,
         lottery:i18n.lottery,
+        copy:i18n.copy
       },
       language: app.db.get('language')
     })
@@ -200,7 +202,8 @@ Page({
     var that=this;
     wx.hideTabBar()
     that.setData({
-      copybox_judgment:false
+      copybox_judgment:false,
+      margin_bottom:"margin_bottom"
     })
   },
 
@@ -208,18 +211,26 @@ Page({
     var that=this;
     wx.showTabBar()
     that.setData({
-      copybox_judgment:true
+      copybox_judgment:true,
+      margin_bottom:"margin_bottom_hide"
     })
   },
   copyBtn: function (e) {
+    let that=this;
+    this.setData({
+      copyclicked:e.currentTarget.dataset.info
+    })
     wx.setClipboardData({
          data: e.currentTarget.dataset.text,
          success: function (res) {
+          wx.showToast({
+            title: that.data._t.copy
+          })
            wx.getClipboardData({
              success: function (res) {
-               wx.showToast({
-                 title: '复制成功'
-               })
+              wx.showToast({
+                title: that.data._t.copy
+              })
              }
            })
          }

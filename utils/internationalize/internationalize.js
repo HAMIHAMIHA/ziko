@@ -9,6 +9,7 @@ export const languageMap_en = {
     tourist: "tourist",
     secret_circle: "ziko secret circle",
 },
+  access_the_offer:"Access the offer and price list",
   address: "Address",
   address_comment:"Comment",
   address_type: {
@@ -53,11 +54,13 @@ export const languageMap_en = {
   better_luck_next_time: "Better luck next time!",
   be_apart_of_our:"Be apart of our community on Wechat",
   bourse_payment_message: "If the price continues to fall after your purchase, the difference will be refunded on your WeChatPay.",
+  bottles:"bottles",
 
   // C
   cart: "Cart",
   cat:"Cat",
   cancel:"Cancel",
+  chances:"Chances",
   checkout_message:"Need any help?",
   choose_delivery_date:"Choose delivery date",
   chosen_delivery_date:"Chosen delivery date",
@@ -65,7 +68,8 @@ export const languageMap_en = {
   claims:"Claims",
   closed: "Closed",
   close_it: "close it",
-  collected_all_items: "You collected all your items",
+  collected_all_items: "All set !",
+  copy:"copy",
   comment:"Anything else we should know?",
   coming_soon:"coming soon...",
   community: {
@@ -91,6 +95,7 @@ export const languageMap_en = {
 
 
   // D
+  day:"day",
   days: [
     "SUN.",
     "MON.",
@@ -104,6 +109,7 @@ export const languageMap_en = {
   date_suffix: [ 'th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'],
   delete: "Delete",
   delivery: "Delivery",
+  delivery_states:"Delivery states",
   delivery_company: "Delivery company",
   delivery_companies: {
     manual: "Manual",
@@ -111,8 +117,10 @@ export const languageMap_en = {
   },
   delivery_fee: "Delivery fee",
   discover: "Discover",
+  discover_the: "discover the winner!",
   dog:"Dog",
   draw: "draw",
+  draws:"draws",
 
   // E
   edit:"Edit",
@@ -154,6 +162,7 @@ export const languageMap_en = {
     ziko_special: "Ziko special gift",
   },
   go_to_offer: "Go to offer",
+  got_it:"Got it!",
 
   // H
   home: "The land",
@@ -165,6 +174,7 @@ export const languageMap_en = {
   item_unit: " item",
   item: "item",
   items: "Items",
+  items_sold: "items sold",
   items_unit: " items",
   its_up_to_you:"It's up to you to get some, try your luck in next lottery!",
   if_you_need_to:"If you need to change delivery date or other information after purchase, please contact the Customer service",
@@ -184,11 +194,13 @@ export const languageMap_en = {
   locked: "locked",
   lottery: "Lottery",
   lottery_detail: "Lottery detail",
+  lottery_gift:"Lottery gift",
   lottery_prizes: "Lottery prizes",
   lottery_stages: "lottery stages",
   lottery_tickets: "Lottery tickets",
   lower_price_together: "Lower the price together",
   lottery_tickets_you_can_get:"Lottery tickets you can get after payments",
+  lorem_ipsum_dolor:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ipsum dolor sit amet consectetur adipiscing. Tortor at auctor urna nunc. Suspendisse interdum consectetur libero id faucibus nisl. Vitae aliquet nec ullamcorper sit.",
   
   // M
   manage_your_delivery_address_details:"Manage your delivery address details",
@@ -227,7 +239,9 @@ export const languageMap_en = {
   name: "Name",
   need_login: "You need to login first",
   next: "next",
+  next_price_in:"next price in",
   next_lottery_in: "next lottery in ",
+  new_lottery:"new lottery",
   new_lottery_drawn: "a new lottery has been drawn!",
   no_offers: "No offers yet",
   no_orders: "No orders yet",
@@ -240,6 +254,7 @@ export const languageMap_en = {
   not_this_time : "Not this time...",
 
   // O
+  off:"off",
   offer: "Offer",
   offer_label: " Offer",
   offer_special_details: {
@@ -345,7 +360,10 @@ export const languageMap_en = {
   participants: " participants",
   pay: "Pay",
   pack: "pack",
+  packs:"packs",
+  past_luck:"Past luck",
   payment_cancelled: "Payment Cancelled",
+  payment_cleared:"Payment cleared",
   payment_status: {
     paid: "Paid",
     ccl: "Cancelled",
@@ -378,6 +396,7 @@ export const languageMap_en = {
   please_enter_the_name_of_the_person:"Please enter the name of the person",
   please_enter_the_phone_number:"Please enter the phone number",
   please_enter_pets_name:"Please enter pet's name",
+  please_long_press:"Please long press",
   pm: "PM",
   preparation: "Preparation",
   price_rules: {
@@ -387,6 +406,7 @@ export const languageMap_en = {
     multiple_items: "Multiple",
     regular: "",
   },
+  prizes:"prizes",
   prize_will_be_delivered: "Your price will be delivered with your order.",
   problem_with_order: "Need any help?",
   product_detail: "Product detail",
@@ -425,7 +445,7 @@ export const languageMap_en = {
   save: "Save",
   save_filters: "Save filters",
   see_all_offers: "See all offers",
-  see_you_soon: "See you soon for the lottery result!",
+  see_you_soon: "See you soon for the lottery results...",
   send_fapiao_to:"Send Fapiao to",
   select: "Select",
   select_address: "Select Address",
@@ -444,13 +464,16 @@ export const languageMap_en = {
   sorry: "Sorry",
   specials: "Specials",
   special_requests:"Special requests",
+  spin_to:"Spin to discover the great winner",
   storage_types: {
     dry: "Dry",
     fresh: "Fresh",
     frozen: "Frozen"
   },
+  still_a_chance:"Still a chance",
 
   // T
+  take_a_chance:"Take a chance to add a really cool gift to your order if the lottery is unlocked !",
   terms_and_conditions: "Terms and conditions",
   there_is_no_pet:"There is no pet in your list yet.",
   ticket: "ticket",
@@ -461,9 +484,11 @@ export const languageMap_en = {
     minutes: "min",
     seconds: "sec",
   },
+  time_remaining:"Time remaining",
   total: "Total",
   total_units_available: "total units available",
   to_order: "Go to order",
+  to_win:"to win",
   tracking_number: "Tracking number",
   type: "Type",
   type_of_pet: "Type of pet",
@@ -513,10 +538,14 @@ export const languageMap_en = {
   // X
   // Y
   yes:"Yes",
+  you_are_still:"You are still part of the X first orders!",
   your_tickets: "Your tickets",
   you_win: "You Win !",
+  you_won: "YOU WON!",
   your_pets:"Your pets",
+  your_price_will:"Your price will be delivered with your order.",
   you_can:"You can start adding a new pet by choosing the type of pet. This will help us to give better suggestions for your pets.",
+  you_just:"You just won at the lottery",
   your_ziko_name:"Your Ziko name",
   // Z
   zh: "中",
@@ -524,6 +553,7 @@ export const languageMap_en = {
   ziko_lottery: "Ziko Lottery",
   ziko_special: "Ziko Special",
   zipcode: "Zip code",
+  zikoland:"zikoland"
 }
 
 export const languageMap_zh = {
@@ -537,6 +567,7 @@ export const languageMap_zh = {
     tourist: "tourist",
     secret_circle: "ziko secret circle",
 },
+  access_the_offer:"Access the offer and price list",
   address: "地址",
   address_comment:"Comment",
   address_type: {
@@ -581,11 +612,13 @@ export const languageMap_zh = {
   better_luck_next_time: "Better luck next time!",
   be_apart_of_our:"Be apart of our community on Wechat",
   bourse_payment_message: "If the price continues to fall after your purchase, the difference will be refunded on your WeChatPay.",
+  bottles:"bottles",
 
   // C
   cart: "购物车",
   cat:"Cat",
   cancel:"Cancel",
+  chances:"Chances",
   checkout_message: "如果您在购买后需要更改交货日期或其他信息，请联系客服",
   choose_delivery_date:"Choose delivery date",
   chosen_delivery_date:"Chosen delivery date",
@@ -593,7 +626,7 @@ export const languageMap_zh = {
   claims:"Claims",
   closed: "Closed",
   close_it: "close it",
-  collected_all_items: "You collected all your items",
+  collected_all_items: "All set !",
   comment:"Anything else we should know?",
   coming_soon:"coming soon...",
   community: {
@@ -616,8 +649,10 @@ export const languageMap_zh = {
   contact_name:"Contact name",
   contact_number:"Contact number",
   contact_person:"Contact person",
+  copy:"复制成功",
 
   // D
+  day:"day",
   days: [
     "星期日",
     "星期一",
@@ -631,6 +666,7 @@ export const languageMap_zh = {
   date_suffix: [ '日', '日', '日', '日', '日', '日', '日', '日', '日', '日'],
   delete: "Delete",
   delivery: "Delivery",
+  delivery_states:"Delivery states",
   delivery_company: "Delivery company",
   delivery_companies: {
     manual: "手动",
@@ -638,8 +674,10 @@ export const languageMap_zh = {
   },
   delivery_fee: "Delivery fee",
   discover: "查看",
+  discover_the: "discover the winner!",
   dog:"Dog",
   draw: "draw",
+  draws:"draws",
   
 
   // E
@@ -682,6 +720,7 @@ export const languageMap_zh = {
     ziko_special: "Ziko special gift",
   },
   go_to_offer: "Go to offer",
+  got_it:"Got it!",
 
   // H
   home: "地图",
@@ -693,6 +732,7 @@ export const languageMap_zh = {
   item_unit: " item",
   item: "item",
   items: "Items",
+  items_sold: "items sold",
   items_unit: " items",
   its_up_to_you:"It's up to you to get some, try your luck in next lottery!",
   if_you_need_to:"If you need to change delivery date or other information after purchase, please contact the Customer service",
@@ -712,11 +752,13 @@ export const languageMap_zh = {
   locked: "locked",
   lottery: "Lottery",
   lottery_detail: "Lottery detail",
+  lottery_gift:"Lottery gift",
   lottery_prizes: "Lottery prizes",
   lottery_stages: "lottery stages",
   lottery_tickets: "Lottery tickets",
   lower_price_together: "Lower the price together",
   lottery_tickets_you_can_get:"Lottery tickets you can get after payments",
+  lorem_ipsum_dolor:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ipsum dolor sit amet consectetur adipiscing. Tortor at auctor urna nunc. Suspendisse interdum consectetur libero id faucibus nisl. Vitae aliquet nec ullamcorper sit.",
   
   // M
   manage_your_delivery_address_details:"Manage your delivery address details",
@@ -755,6 +797,8 @@ export const languageMap_zh = {
   name: "Name",
   need_login: "You need to login first",
   next: "next",
+  next_price_in:"next price in",
+  new_lottery:"new lottery",
   next_lottery_in: "next lottery in ",
   new_lottery_drawn: "a new lottery has been drawn!",
   no_offers: "No offers yet",
@@ -768,6 +812,7 @@ export const languageMap_zh = {
   not_this_time : "Not this time...",
 
   // O
+  off:"off",
   offer: "Offer",
   offer_label: " Offer",
   offer_special_details: {
@@ -873,7 +918,10 @@ export const languageMap_zh = {
   participants: " participants",
   pay: "Pay",
   pack: "pack",
+  packs:"packs",
+  past_luck:"Past luck",
   payment_cancelled: "Payment Cancelled",
+  payment_cleared:"Payment cleared",
   payment_status: {
     paid: "Paid",
     ccl: "Cancelled",
@@ -905,6 +953,7 @@ export const languageMap_zh = {
   please_enter_the_name_of_the_person:"Please enter the name of the person",
   please_enter_the_phone_number:"Please enter the phone number",
   please_enter_pets_name:"Please enter pet's name",
+  please_long_press:"Please long press",
   pm: "下午",
   preparation: "Preparation",
   price_rules: {
@@ -914,6 +963,7 @@ export const languageMap_zh = {
     multiple_items: "Multiple",
     regular: "",
   },
+  prizes:"prizes",
   problem_with_order: "Is there a problem with your order?",
   product_detail: "Product详情",
   products: "products",
@@ -951,7 +1001,7 @@ export const languageMap_zh = {
   save: "Save",
   save_filters: "Save filters",
   see_all_offers: "See all offers",
-  see_you_soon: "See you soon for the lottery result!",
+  see_you_soon: "See you soon for the lottery results...",
   select: "Select",
   select_address: "Select Address",
   select_area: "Select Area",
@@ -970,13 +1020,17 @@ export const languageMap_zh = {
   sorry: "Sorry",
   specials: "Specials",
   special_requests:"Special requests",
+  spin_to:"Spin to discover the great winner",
   storage_types: {
     dry: "Dry",
     fresh: "Fresh",
     frozen: "Frozen"
   },
+  still_a_chance:"Still a chance",
+
 
   // T
+  take_a_chance:"Take a chance to add a really cool gift to your order if the lottery is unlocked !",
   terms_and_conditions: "Terms and conditions",
   there_is_no_pet:"There is no pet in your list yet.",
   ticket: "ticket",
@@ -987,9 +1041,11 @@ export const languageMap_zh = {
     minutes: "min",
     seconds: "sec",
   },
+  time_remaining:"Time remaining",
   total: "Total",
   total_units_available: "total units available",
   to_order: "Go to order",
+  to_win:"to win",
   tracking_number: "Tracking number",
   type: "Type",
   type_of_pet: "Type of pet",
@@ -1039,9 +1095,13 @@ export const languageMap_zh = {
   // X
   // Y
   yes:"Yes",
+  you_are_still:"You are still part of the X first orders!",
   your_tickets: "Your tickets",
   you_win: "You Win !",
+  you_won: "YOU WON!",
   your_pets:"Your pets",
+  your_price_will:"Your price will be delivered with your order.",
+  you_just:"You just won at the lottery",
   you_can:"You can start adding a new pet by choosing the type of pet. This will help us to give better suggestions for your pets.",
   your_ziko_name:"Your Ziko name",
 
@@ -1051,4 +1111,5 @@ export const languageMap_zh = {
   ziko_lottery: "Ziko Lottery",
   ziko_special: "Ziko Special",
   zipcode: "Zip code",
+  zikoland:"zikoland"
 }

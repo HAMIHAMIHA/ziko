@@ -128,6 +128,8 @@
 
   </view>
   <!-- Join Ziko community end-->
+    
+  <view class="{{margin_bottom}}"></view>
 </view>
 
 <!-- copy box -->
@@ -135,11 +137,11 @@
   <view class="copybox-cancel" bindtap="copyboxhide">
   </view>
   <view class="copybox-tap bottom-pos" animation="{{animationData}}">
-    <view class="add-box" data-text="{{_t.simonmawas}}" bindtap='copyBtn'>
+    <view class="add-box " data-text="{{_t.simonmawas}}" bindtap='copyBtn'>
       <view class="icon icon-chef-head icon-chef"></view>
       <view>
         <text class="box-name">{{_t.add_chef_ziko}}</text>
-        <view class="wechat-copy box-chef">
+        <view class="wechat-copy box-chef" hover-class="clicked-chef" >
           <text class="wechat-id">{{_t.wechat_id}}</text>
           <text class="simonmawas">{{_t.simonmawas}}</text>
           <text class="icon icon-click-copy icon-height"></text>
@@ -150,7 +152,7 @@
       <view class="icon icon-pet-head icon-pet"></view>
       <view>
         <text class="box-name">{{_t.add_pet_ziko}}</text>
-        <view class="wechat-copy box-pet">
+        <view class="wechat-copy box-pet"  hover-class="clicked-pet">
           <text class="wechat-id">{{_t.wechat_id}}</text>
           <text class="simonmawas">{{_t.simonmawas}}</text>
           <text class="icon icon-click-copy icon-height"></text>
@@ -161,18 +163,18 @@
       <view class="icon icon-farmer-head icon-farmer"></view>
       <view>
         <text class="box-name">{{_t.add_farmer_ziko}}</text>
-        <view class="wechat-copy box-farmer">
+        <view class="wechat-copy box-farmer" hover-class="clicked-farmer">
           <text class="wechat-id">{{_t.wechat_id}}</text>
           <text class="simonmawas">{{_t.simonmawas}}</text>
           <text class="icon icon-click-copy icon-height"></text>
         </view>
       </view>
     </view>
-    <view class="add-box" data-text="{{_t.simonmawas}}" bindtap='copyBtn'>
+    <view class="add-box" data-text="{{_t.simonmawas}}" bindtap='copyBtn' >
       <view class="icon icon-celler-head icon-celler"></view>
       <view>
         <text class="box-name">{{_t.add_cellar_ziko}}</text>
-        <view class="wechat-copy box-cellar" hover-class="wechat-copy-hover">
+        <view class="wechat-copy box-cellar" hover-class="clicked-cellar">
           <text class="wechat-id">{{_t.wechat_id}}</text>
           <text class="simonmawas">{{_t.simonmawas}}</text>
           <text class="icon icon-click-copy icon-height"></text>

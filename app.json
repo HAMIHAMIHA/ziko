@@ -4,6 +4,9 @@
     "pages/account/index/index",
     "pages/account/information/information",
     "pages/account/fapiao/fapiao",
+    "pages/account/pets/pets",
+    "pages/account/addpets/addpets",
+    "pages/account/editprofile/editprofile",
     "pages/address/index/index",
     "pages/address/detail/detail",
     "pages/address/areas/areas",
@@ -37,22 +40,10 @@
         "text": "The land"
       },
       {
-        "pagePath": "pages/orders/index/index",
-        "iconPath": "assets/icons/orders.png",
-        "selectedIconPath": "assets/icons/ordersSel.png",
-        "text": "Orders"
-      },
-      {
         "pagePath": "pages/recipes/index/index",
         "iconPath": "assets/icons/explore.png",
         "selectedIconPath": "assets/icons/exploreSel.png",
         "text": "Explore"
-      },
-      {
-        "pagePath": "pages/lottery/index/index",
-        "iconPath": "assets/icons/lottery.png",
-        "selectedIconPath": "assets/icons/lotterySel.png",
-        "text": "Lottery"
       },
       {
         "pagePath": "pages/account/index/index",

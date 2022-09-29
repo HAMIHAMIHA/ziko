@@ -19,7 +19,6 @@ export const _clearCountdown = (page, countdown_timer) => {
 // Get page translations
 export const _getTranslations = (page, community) => {
   let i18n = app.globalData.i18n;
-
   // Change page nav title
   wx.setNavigationBarTitle({
     title: i18n.offer
@@ -38,7 +37,9 @@ export const _getTranslations = (page, community) => {
       lower_price_together: i18n.lower_price_together,
       minimum: i18n.minimum,
       next_lottery_in: i18n.next_lottery_in,
+      next_price_in:i18n.next_price_in,
       no_recipes: i18n.no_recipes,
+      off:i18n.off,
       offer_special_names: i18n.offer_special_names,
       offer_special_details: i18n.offer_special_details,
       order_unit: i18n.order_unit,
@@ -46,6 +47,7 @@ export const _getTranslations = (page, community) => {
       orders_unit: i18n.orders_unit,
       our_selected_packs: i18n.our_selected_packs,
       pay: i18n.pay,
+      packs:i18n.packs,
       price_rules: i18n.price_rules,
       products: i18n.products,
       recipes: i18n.recipes,
@@ -54,6 +56,14 @@ export const _getTranslations = (page, community) => {
       single_items: i18n.single_items,
       total_units_available: i18n.total_units_available,
       viewers: i18n.viewers,
+      offer:i18n.offer,
+      specials:i18n.specials,
+      lottery:i18n.lottery,
+      total: i18n.total,
+      lottery_tickets_you_can_get:i18n.lottery_tickets_you_can_get,
+      minimum: i18n.minimum,
+      lottery_tickets:i18n.lottery_tickets,
+      bottles:i18n.bottles
     },
     _t_product: {
       item_unit: i18n.item_unit,
@@ -72,6 +82,7 @@ export const _getTranslations = (page, community) => {
       items_unit: i18n.items_unit,
       rmb: i18n.rmb,
       ticket: i18n.ticket,
+      take_a_chance:i18n.take_a_chance
     },
     _t_prize: {
       _language: app.db.get('language'),
@@ -503,21 +514,62 @@ export function switchTabs(page, tab) {
         wx.createSelectorQuery().select('#recipes').boundingClientRect().exec( res => {
           resolve(res[0].height);
         })
-      } else {
+      } 
+      else if(tab === "pack"){
+        wx.createSelectorQuery().select('#products').boundingClientRect().exec( res => {
+          resolve(res[0].height);
+        })
+      }
+      else{
         wx.createSelectorQuery().select('#products').boundingClientRect().exec( res => {
           resolve(res[0].height);
         })
       }
    })
   }
-
-  let left = (tab === "recipe") ? "-100vw" : "0";
+  let left="0";
+  if(tab=="pack"){
+    left="-100vw"
+  }else if(tab=="recipe"){
+    left="-100vw"
+  }else{
+    left="0"
+  };
+  // let left = (tab === "recipe") ? "-100vw" : "0";
   _getHeight().then( res => {
     page.setData({
       "_setting.currentTab": tab,
       "_setting.height": `${res}px`,
       "_setting.left": left
     })
+  });
+}
+export function jump_item(page,info){
+  const _getHeight = () => {
+    return new Promise((resolve) => {
+      if(info ==="offer"){
+        resolve(516);
+      }
+      if (info === "specials") {
+          resolve(1000);
+      } 
+      if(info === "lottery"){
+        wx.createSelectorQuery().select('#lottery_modal').boundingClientRect().exec( res => {
+          resolve(res[0].height+1670);
+        })
+      }
+
+   })
+  }
+  _getHeight().then( res => {
+    page.setData({
+      "jump_setting.current_tab": info,
+      "jump_setting.height": `${res}`,
+    })
+  wx.pageScrollTo({
+    scrollTop:page.data.jump_setting.height,
+    duration: 200
+  })
   });
 }
 

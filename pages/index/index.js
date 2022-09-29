@@ -78,6 +78,7 @@ const _generateSuffix = (step, filter_date) => {
 
 // Get offer data by filters
 const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_date) => {
+  console.log("???",filter_date)
   let suffix = '';
 
   // Stop all timers
@@ -206,8 +207,9 @@ Page({
       list: index_data.list_filter,
       map: index_data.map_filters
     },
-    filter_group: '',
-    map: true // Default open to map view
+    // filter_group: '',
+    // filter_type:"list"
+    // map: true // Default open to map view
   },
 
   onShow: function() {
@@ -224,6 +226,7 @@ Page({
       app.globalData.index_type = '';
       _filterOfferData(self, self.options.type, '', '', '');
     }
+    _filterOfferData(self, "list", '', '', '');
   },
 
   onHide: function(e) {
@@ -270,19 +273,17 @@ Page({
         filter_id: current_filter.group,
       }
     }
-
     // Get filtering date value
     let date = (e.detail && e.detail.change_date) ? e.detail.date : '';
-  
     // Filter
     _filterOfferData(self, data.filter_type, data.filter_group, data.filter_id, date);
   },
 
   // Close modal for map list
-  closeMapModal: function() {
-    const self = this;
-    _filterOfferData(self, 'map', '', '', '');
-  },
+  // closeMapModal: function() {
+  //   const self = this;
+  //   _filterOfferData(self, 'map', '', '', '');
+  // },
 
   updatePageLanguage: function() {
     const self = this;

@@ -169,6 +169,38 @@
           "query": "id=628619f98ef366815d1fff20",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "Contacts",
+          "pathName": "pages/contacts/detail/detail",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "account",
+          "pathName": "pages/account/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pets",
+          "pathName": "pages/account/pets/pets",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "editprofile",
+          "pathName": "pages/account/editprofile/editprofile",
+          "query": "",
+          "launchMode": "default",
+          "scene": null,
+          "partialCompile": {
+            "enabled": false,
+            "pages": []
+          }
         }
       ]
     }
