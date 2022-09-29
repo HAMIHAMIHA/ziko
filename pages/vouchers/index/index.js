@@ -108,6 +108,8 @@ Page({
     },
     // filter_group: '',
     // map: true // Default open to map view
+
+    //__test
     vouchers:[{
       community:"kitchen",
       community2:"",
@@ -150,7 +152,6 @@ Page({
   },
 
   onShow: async function() {
-    console.log(this.data.vouchers)
     const self = this;
     _setPageTranslation(self);
 

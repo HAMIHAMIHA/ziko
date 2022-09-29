@@ -78,7 +78,6 @@ const _generateSuffix = (step, filter_date) => {
 
 // Get offer data by filters
 const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_date) => {
-  console.log("???",filter_date)
   let suffix = '';
 
   // Stop all timers

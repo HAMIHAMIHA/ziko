@@ -39,7 +39,6 @@ Component({
         _cart: _cart
         // _cart: app.db.get('cart')
       })
-      // console.log(self.data.offers);
       // Start or end timers
       let timer = self.selectAllComponents('.timer');
       if (startTimer) {
@@ -78,7 +77,6 @@ Component({
       self.setData({
         offers: offers
       })
-      console.log('offers: ', offers)
     },
 
     swiperChange: function(e) {

@@ -119,7 +119,7 @@
     <!-- END OF LANGUAGE BUTTON -->
 
   <!-- Join Ziko community-->
-  <view class="ziko-community" bindtap="copyboxshow">
+  <view class="ziko-community" bindtap="copyBoxShow">
     <view class="icon icon-ziko"></view>
     <view class="community-content">
       <text class="community-title">{{_t.join_ziko_community}}</text>
@@ -134,7 +134,7 @@
 
 <!-- copy box -->
 <view class="copybox" hidden="{{copybox_judgment}}">
-  <view class="copybox-cancel" bindtap="copyboxhide">
+  <view class="copybox-cancel" bindtap="copyBoxHide">
   </view>
   <view class="copybox-tap bottom-pos" animation="{{animationData}}">
     <view class="add-box " data-text="{{_t.simonmawas}}" bindtap='copyBtn'>
@@ -181,7 +181,7 @@
         </view>
       </view>
     </view>
-    <view class="x" bindtap="copyboxhide">
+    <view class="x" bindtap="copyBoxHide">
       <text class="icon icon-x icon-x-height" ></text>
     </view>
   </view>

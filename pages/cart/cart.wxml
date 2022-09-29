@@ -241,7 +241,7 @@
         </button>
       </view>
       <view class="contact-button_container">
-        <button class="contact-button" bindtap="copyboxshow">
+        <button class="contact-button" bindtap="copyBoxShow">
           <text class="icon icon-wechat"></text>
           <text class="nunito_600">{{ _t.add_chef_ziko_on_wechat }}</text>
         </button>
@@ -285,7 +285,7 @@
 <!-- copy box -->
   <!-- chef -->
   <view class="copybox" wx:if="{{ copybox_type.chef && copybox_judgment}}">
-    <view class="copybox-cancel" bindtap="copyboxhide">
+    <view class="copybox-cancel" bindtap="copyBoxHide">
     </view>
     <view class="copybox-tap bottom-pos">
       <view class="add-box">
@@ -307,7 +307,7 @@
       </view>
 
       <view class="x">
-        <text class="icon icon-x icon-x-height" bindtap="copyboxhide"></text>
+        <text class="icon icon-x icon-x-height" bindtap="copyBoxHide"></text>
       </view>
 
     </view>
@@ -316,7 +316,7 @@
   <!-- end of chef -->
   <!-- cellar -->
   <view class="copybox" wx:if="{{ copybox_type.cellar && copybox_judgment}}">
-  <view class="copybox-cancel" bindtap="copyboxhide">
+  <view class="copybox-cancel" bindtap="copyBoxHide">
   </view>
   <view class="copybox-tap bottom-pos">
 
@@ -339,7 +339,7 @@
     </view>
 
     <view class="x">
-      <text class="icon icon-x icon-x-height" bindtap="copyboxhide"></text>
+      <text class="icon icon-x icon-x-height" bindtap="copyBoxHide"></text>
     </view>
 
   </view>
@@ -348,7 +348,7 @@
   <!-- end of cellar -->
   <!-- pet -->
   <view class="copybox" wx:if="{{ copybox_type.pet && copybox_judgment}}">
-  <view class="copybox-cancel" bindtap="copyboxhide">
+  <view class="copybox-cancel" bindtap="copyBoxHide">
   </view>
   <view class="copybox-tap bottom-pos">
     <view class="add-box">
@@ -370,7 +370,7 @@
     </view>
 
     <view class="x">
-      <text class="icon icon-x icon-x-height" bindtap="copyboxhide"></text>
+      <text class="icon icon-x icon-x-height" bindtap="copyBoxHide"></text>
     </view>
 
   </view>
@@ -379,7 +379,7 @@
   <!-- end of pet -->
   <!-- farmer  -->
   <view class="copybox" wx:if="{{ copybox_type.farmer && copybox_judgment}}">
-  <view class="copybox-cancel" bindtap="copyboxhide">
+  <view class="copybox-cancel" bindtap="copyBoxHide">
   </view>
   <view class="copybox-tap bottom-pos">
     <view class="add-box">
@@ -401,7 +401,7 @@
     </view>
 
     <view class="x">
-      <text class="icon icon-x icon-x-height" bindtap="copyboxhide"></text>
+      <text class="icon icon-x icon-x-height" bindtap="copyBoxHide"></text>
     </view>
 
   </view>

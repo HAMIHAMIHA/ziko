@@ -175,7 +175,6 @@ const _setOffers = (page, filter_date) => {
       draws: offer_tickets
     }
     offers.push(offer);
-    console.log(offers)
   })
 
   page.setData({
@@ -332,7 +331,6 @@ Page({
     },5000)
   },
   close_firstshow:function(){
-    console.log("???")
     this.setData({
       first_show:false
     })

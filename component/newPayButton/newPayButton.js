@@ -25,4 +25,3 @@ Component({
   methods:{
   }
 })
-// console.log(this.data._t)

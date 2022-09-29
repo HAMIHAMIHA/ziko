@@ -202,7 +202,7 @@
         </button>
       </view>
       <view class="contact-button_container">
-        <button class="contact-button" bindtap="copyboxshow">
+        <button class="contact-button" bindtap="copyBoxShow">
           <text class="icon icon-wechat"></text>
           <text class="nunito_600">{{ _t.add_chef_ziko_on_wechat }}</text>
         </button>

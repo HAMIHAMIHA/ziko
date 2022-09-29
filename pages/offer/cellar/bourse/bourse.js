@@ -23,6 +23,7 @@ Page({
       current_tab:"offer"
     },
     messages: [],
+    //__test
     price:{
       prices:[115,105,95,85,75,65],
       the_price:85,

@@ -35,7 +35,6 @@ Page({
    */
   onShow:async function () {
     // Change page nav title
-    console.log("data:",this.data)
     let i18n = app.globalData.i18n;
     this.setData({
       _t: {

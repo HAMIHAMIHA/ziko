@@ -58,13 +58,11 @@ class SessionClass {
     if (session && app.db.get('userInfo')?.customer?.openid) return;
 
     let open_code = await _wxOpenId();
-    console.log(open_code)
     
     app.api.wxOpenid({ code: open_code.code }).then(res => {
       let user = app.db.get('userInfo') || {};
       user.customer ? user.customer.openId = res.openId : user.customer = res;
       app.db.set('userInfo', user);
-      console.log("get")
       return;
     });
   }
@@ -133,7 +131,6 @@ class SessionClass {
   
   // Login with wechat mobile number
   mobileLogin(page, code) {
-    console.log('....////')
     const promise = new Promise ( resolve => {
       const callback = res => {
         res.customer.openId = res.customer.openid;
@@ -148,13 +145,11 @@ class SessionClass {
         resolve();
       }
   
-      console.log(app.db.get('userInfo'))
       const data = {
         code: code,
         name: app.db.get('userInfo').customer.name ? app.db.get('userInfo').customer.name : app.db.get('userInfo').wxUser.name,
         openId: app.db.get('userInfo').customer.openId
       }
-      console.log(data)
       app.api.wxLogin(data).then(callback);
     })
 

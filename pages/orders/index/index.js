@@ -196,6 +196,7 @@ Page({
       list: index_data.list_filter,
       map: index_data.map_filters
     },
+    //__test
     type:['kitchen','cellar','garden','pet'],
     index_t:1,
     state:['delivered','progress','processing'],
@@ -331,8 +332,7 @@ Page({
 
   // Filter offers by selected group
   filterOffers: function(e) {
-    // console.log(e.currentTarget.dataset.filter_group)
-    // console.log(this.data._filters.list)
+
     this.setData({
       "_picker_selected.community":e.currentTarget.dataset.filter_group
     })

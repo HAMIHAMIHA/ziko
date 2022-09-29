@@ -118,7 +118,6 @@ Page({
   // Mobile login
   getPhoneNumber: function(e) {
     app.sessionUtils.mobileLogin(this, e.detail.code);
-    console.log('....////')
   }, 
 
   switchLanguage: function(e) {
@@ -198,7 +197,7 @@ Page({
     }
   },
 
-  copyboxshow: function () {
+  copyBoxShow: function () {
     var that=this;
     wx.hideTabBar()
     that.setData({
@@ -207,7 +206,7 @@ Page({
     })
   },
 
-  copyboxhide: function () {
+  copyBoxHide: function () {
     var that=this;
     wx.showTabBar()
     that.setData({

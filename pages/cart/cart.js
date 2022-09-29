@@ -233,6 +233,7 @@ Page({
     },
     delivery_fee: -1,
     free_delivery: false,
+    //__test
     productstest:[
       {amount:2,
       type:"packs",
@@ -389,7 +390,6 @@ Page({
     self.setData({
       [changing_key]: !self.data[changing_key]
     })
-    console.log(changing_key)
   },
 
   // toSelectVoucher: function() {
@@ -411,13 +411,13 @@ Page({
   pay: function(e) {
     createOrder(this, e.detail.value);
   },
-  copyboxshow: function () {
+  copyBoxShow: function () {
     var that=this;
     that.setData({
       copybox_judgment:true
     })
   },
-  copyboxhide: function () {
+  copyBoxHide: function () {
     var that=this;
     that.setData({
       copybox_judgment:false
