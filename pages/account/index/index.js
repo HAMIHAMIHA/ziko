@@ -84,6 +84,7 @@ Page({
     animationData: {},
     copyclicked: "",
     margin_bottom: "",
+    tabIndex:"2"
   },
   onLaunch (options) {
     // Do something initial when launch.
@@ -99,7 +100,6 @@ Page({
   },
 
   onShow: async function () {
-    wx.hideTabBar({})
     const self = this;
     // Change page nav title
     wx.setNavigationBarTitle({
@@ -150,7 +150,7 @@ Page({
     const i18n = app.globalData.i18n;
   
     // Set tabbar translation
-    app.setTabbars();
+    // app.setTabbars();
   
     // Set page default data
     self.setData({

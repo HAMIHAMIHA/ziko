@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "offers": "/component/offers/offers",
-    "dateFilter": "/component/dateFilter/dateFilter"
+    "dateFilter": "/component/dateFilter/dateFilter",
+    "tab-bar":"/component/tabbar/index"
   }
 }

@@ -1,0 +1,19 @@
+<!--custom-tab-bar/index.wxml-->
+<!-- <text>custom-tab-bar/index.wxml</text> -->
+<view class="tabbar inter_500">
+  <view class="tabbar-box" bindtap="changeTabbar" data-info="0">
+    <image wx:if="{{tabIndex==0}}" src="/assets/icons/landSel.png" class="the-land-img"></image>
+    <image wx:else src="/assets/icons/land.png" class="the-land-img"></image>
+    <view class="the-land-text">{{the_land}}</view>
+  </view>
+  <view class="tabbar-box" bindtap="changeTabbar" data-info="1">
+    <image wx:if="{{tabIndex==1}}" src="/assets/icons/exploreSel.png" class="explore-img"></image>
+    <image wx:else src="/assets/icons/explore.png" class="the-land-img"></image>
+    <view class="explore-text">{{explore}}</view>
+  </view>
+  <view class="tabbar-box" bindtap="changeTabbar" data-info="2">
+    <image wx:if="{{tabIndex==2}}" src="/assets/icons/accountSel.png" class="account-img"></image>
+    <image wx:else src="/assets/icons/account.png" class="the-land-img"></image>
+    <view class="account-text">{{account}}</view>
+  </view>
+</view>

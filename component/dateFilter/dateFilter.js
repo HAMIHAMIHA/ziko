@@ -15,7 +15,7 @@ Component({
   },
   lifetimes: {
     attached: function() {
-      console.log(this)
+      // console.log(this)
       // 在组件实例进入页面节点树时执行
       this.getWeekDay();
     },
@@ -23,7 +23,7 @@ Component({
   },
   ready: function() { 
     this.getWeekDay();
-    console.log(this.data.dateArray)
+    // console.log(this.data.dateArray)
   },
   pageLifeTime: {
     show: function() {
@@ -84,7 +84,7 @@ Component({
         })
         myDate.setDate(myDate.getDate()+1)
       }
-      console.log(dateArray);
+      // console.log(dateArray);
       this.setData({dateArray})
     }
 
