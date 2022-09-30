@@ -136,7 +136,10 @@ Page({
 
     // Update contact info to BO
     let contact = e.detail.value;
-    contact.default = self.data.default;
+    if (contact) {
+      contact.default = self.data.default;
+    }
+
     let contact_list = _generateUserContact(self, action, contact);
     app.sessionUtils.updateUserInfo({ contacts: contact_list }, app.routes.contacts);
   }

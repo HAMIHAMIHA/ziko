@@ -11,7 +11,7 @@
             <view class="input">
               <input
                 name="name"
-                placeholder="{{_t.please_enter_the_name_of_the_person}}"
+                placeholder="{{ _t.please_enter_the_name_of_the_person }}"
                 value="{{ contact.name }}"
                 confirm-type="next"
                 confirm-hold="true"
