@@ -188,6 +188,5 @@
   </view>
 </view>
 
-<tab-bar tabIndex="{{tabIndex}}" />
 <!-- copy box end -->
 <lottery-draw id="lottery_modal"></lottery-draw>

@@ -51,6 +51,7 @@ const upload = (folder_path, file) => {
       header,
       name: folder_path,
       success: function (res) {
+        console.log(res)
         if (res.statusCode != 200) {
           showLoading(false);
           console.debug(res.data.message);

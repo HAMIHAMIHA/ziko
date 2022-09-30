@@ -227,6 +227,13 @@ Page({
       _filterOfferData(self, self.options.type, '', '', '');
     }
     _filterOfferData(self, "list", '', '', '');
+    //change tabBar
+    if (typeof this.getTabBar === 'function' &&
+        this.getTabBar()) {
+        this.getTabBar().setData({
+          selected: 0
+        })
+      }
   },
 
   onHide: function(e) {

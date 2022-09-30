@@ -345,9 +345,10 @@ button:not([size=mini]).langauge {
 }
 .wechat-copy{
   line-height: 56rpx;
-  padding: 0px 18rpx;
+  padding: 0px 22rpx;
   border-radius: 4px;
   margin-top: 6rpx;
+  white-space: nowrap;
 }
 /* .wechat-copy-hover{
   line-height: 56rpx;

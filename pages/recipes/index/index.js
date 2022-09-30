@@ -63,7 +63,7 @@ const _getRecipes = (page, is_new) => {
   let search_cases = []; // Used for and operator in suffix
   // Tag search
   let filters = page.data.filters;
-  let tags = [];
+  let tags = []; 
   if (filters.length > 0) {
     filters.forEach( f => tags.push( f.id ));
     search_cases.push(`{"tags":{"$in":["${tags.join('","')}"]}}`);
@@ -139,6 +139,13 @@ Page({
       recipes: [],
       filters:[],
     })
+      //change tabBar
+      if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 1
+      })
+    }
   },
 
   onShow: function() {

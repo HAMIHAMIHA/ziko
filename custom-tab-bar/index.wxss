@@ -6,13 +6,16 @@
   left: 0;
   right: 0;
   background-color: #fff;
-  height: calc(100rpx + env(safe-area-inset-bottom));
   display: flex;
   justify-content: space-around;
+  align-items: center;
   color: black;
   z-index: 9999;
   font-size: 20rpx;
-  padding: 20rpx 0;
+  height: 96rpx;
+  padding-bottom: env(safe-area-inset-bottom);
+
+
 }
 
 .tabbar-box {
@@ -21,21 +24,16 @@
   align-items: center;
 }
 
-.the-land-img,
-.explore-img,
-.account-img {
+.the-land-img{
   color: black;
-  width: 60rpx;
-  height: 60rpx;
+  width: 54rpx;
+  height: 54rpx;
   display: inline-block;
   vertical-align: middle;
-  /* margin-top: 10rpx; */
-  margin-bottom: 10rpx;
 }
 
-.the-land-text,
-.explore-text,
+
 .account-text {
   white-space: nowrap;
-
+  font-size: 20rpx;
 }
