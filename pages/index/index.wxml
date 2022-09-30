@@ -75,5 +75,4 @@
   </view> -->
   <!-- End of Map popup -->
 </view>
-<tab-bar tabIndex="{{tabIndex}}" />
 <lottery-draw id="lottery_modal"></lottery-draw>

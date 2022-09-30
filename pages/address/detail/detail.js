@@ -159,7 +159,7 @@ Page({
   updateAddress: function(e) {
     const self = this;
     let action = e.type;
-
+    console.log(e.detail.value)
     // Go back to address page if delete new address
     if (action == 'reset' && !self.options.id) {
       navigateBack(app.routes.address, false);
@@ -167,12 +167,14 @@ Page({
     }
  
     // Stop if saving but inputs empty
+    // __text
     if (action != 'reset' && _validateInputs(self, e.detail.value)) return;
 
     showLoading(true);
 
     // Add address to addrss list
     let address = e.detail.value;
+    console.log(address)
     address ? address.type = self.data.address.type : '';
     address ? address.area = self.data.area.id : '';
     let address_list = _generateUserAddress(self, action, address);
