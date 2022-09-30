@@ -2,7 +2,7 @@
   <view class="login-container">
     <view class="empty_message">{{ _t.need_login }}</view>
     <!-- Get user Info -->
-    <button class="login-btn" bindtap="ge tUserProfile" wx:if="{{ !user.name && !wxUser.name }}">
+    <button class="login-btn" bindtap="getUserProfile" wx:if="{{ !user.name && !wxUser.name }}">
       {{ _t.get_profile }}
     </button>
     <!-- Get mobile number -->
@@ -27,22 +27,22 @@
       </block>
     </scroll-view>
   </view> -->
-      <!-- Scroll Menu -->
-      <view class="h-scroll_container scroll-menu_community">
-        <scroll-view class="h-scroll" scroll-x="true">
-          <block wx:for="{{ _filters.list }}" wx:key="filter_group" wx:for-item="filter">
-            <view
-              class="h-scroll_item {{ filter.class_name }} {{ filter_group == filter.filter_group ? ' selected' : '' }}"
-              bindtap="filterOffers"
-              data-filter_type="list"
-              data-filter_group="{{ filter.filter_group }}"
-              data-filter_id="{{ filter.id }}"
-            >
-              <view class="icon icon-{{ filter.icon }}"></view>
-            </view>
-          </block>
-        </scroll-view>
-      </view>
+  <!-- Scroll Menu -->
+  <view class="h-scroll_container scroll-menu_community">
+    <scroll-view class="h-scroll" scroll-x="true">
+      <block wx:for="{{ _filters.list }}" wx:key="filter_group" wx:for-item="filter">
+        <view
+          class="h-scroll_item {{ filter.class_name }} {{ filter_group == filter.filter_group ? ' selected' : '' }}"
+          bindtap="filterOffers"
+          data-filter_type="list"
+          data-filter_group="{{ filter.filter_group }}"
+          data-filter_id="{{ filter.id }}"
+          >
+          <view class="icon icon-{{ filter.icon }}"></view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
   <!-- End of Scroll Menu -->
 
   <!-- <view class="content">
@@ -56,7 +56,7 @@
     <view class="container container-grey container-btn-bottom">
       <view class="voucher-content_container">
         <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher" class="ticket_box">
-          <image src="../../../assets/images/{{ voucher.community || 'kitchen' }}_ticket.svg" class="ticket_picture">
+          <image src="/assets/images/{{ voucher.community || 'kitchen' }}_ticket.svg" class="ticket_picture">
             <view class="box-content">
               <view class="box-content-left">
                 <view class="black-box gilroy_700">
@@ -66,9 +66,9 @@
                   <text class="nunito_700 ziko-community ziko-community-{{ voucher.community2 }}">{{ voucher.community2 ? voucher.community2 : " " }}</text>
                 </view>
                 <view class="nunito_400 received">
-                  <text>{{ _t.received+':  ' }}{{ voucher.createdAt }}</text>
-                  <view>{{ _t.expires+':   ' }}<text class="expires nunito_500">{{ voucher.expire_on }}</text></view>
-                  </view>
+                  <text>{{ _t.received + ': ' }}{{ voucher.createdAt }}</text>
+                  <view>{{ _t.expires + ': ' }}<text class="expires nunito_500">{{ voucher.expire_on }}</text></view>
+                </view>
               </view>
               <view class="box-content-right">
                 <view class="money gilroy_700">¥ {{ voucher.amount }}</view>
@@ -87,7 +87,7 @@
             <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
           </button>
         </view>-->
-    </view> 
+    </view>
     <!-- End of Voucher List -->
   </view>
   <view wx:else class="no-voucher">

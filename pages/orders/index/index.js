@@ -1,7 +1,15 @@
-const { showLoading } = require("../../../utils/common.js");
-const { communities } = require("../../../utils/constants.js");
+const {
+  showLoading
+} = require("../../../utils/common.js");
+const {
+  communities
+} = require("../../../utils/constants.js");
 const index_data = require("../../../utils/constants.js");
-const { formatDate, formatTime, findIndex } = require("../../../utils/util.js");
+const {
+  formatDate,
+  formatTime,
+  findIndex
+} = require("../../../utils/util.js");
 
 const app = getApp();
 
@@ -11,14 +19,20 @@ const pickers = {
 }
 const PAGE_RANGE = 10;
 
-let current = { community: '', order_status: '', payment_status: '' };
+let current = {
+  community: '',
+  order_status: '',
+  payment_status: ''
+};
 let current_load = 0;
 
 // Save new status to storage
 const _setOrderStatus = () => {
-  app.api.getOrders({ filter_str: `channel=miniprogram` }).then(res => {
+  app.api.getOrders({
+    filter_str: `channel=miniprogram`
+  }).then(res => {
     let order_deliveries = [];
-    res.forEach( o => {
+    res.forEach(o => {
       order_deliveries.push(o.trackingStatus)
     })
     app.db.set('orderDeliveries', order_deliveries);
@@ -49,7 +63,7 @@ const getOrders = (page) => {
   let _lang = app.db.get('language');
   const _getGiftValue = {
     add_on: (gift, offer) => {
-      let product_idx = offer.miniprogram.items.findIndex( i => i.shortName === gift.singleItem);
+      let product_idx = offer.miniprogram.items.findIndex(i => i.shortName === gift.singleItem);
       if (product_idx > -1) {
         return {
           name: offer.miniprogram.items[product_idx].product.name[_lang],
@@ -58,9 +72,9 @@ const getOrders = (page) => {
           _id: gift._id
         }
       }
-    }, 
+    },
     pack: (gift, offer) => {
-      let product_idx = offer.miniprogram.packs.findIndex( i => i.shortName === gift.pack);
+      let product_idx = offer.miniprogram.packs.findIndex(i => i.shortName === gift.pack);
       if (product_idx > -1) {
         return {
           name: offer.miniprogram.packs[product_idx].name[_lang],
@@ -69,7 +83,7 @@ const getOrders = (page) => {
           _id: gift._id
         }
       }
-    }, 
+    },
     custom: (gift) => {
       return {
         name: gift.custom[_lang],
@@ -77,7 +91,7 @@ const getOrders = (page) => {
         count: 1,
         _id: gift._id
       }
-    }, 
+    },
     voucher: (gift) => {
       return {
         name: `￥${ gift.voucherValue }${ app.globalData.i18n.offer_special_details.voucher }`,
@@ -123,7 +137,7 @@ const getOrders = (page) => {
     }
 
     let order_res = [];
-    res.forEach( order => {
+    res.forEach(order => {
       let order_info = {
         id: order.id,
         community: order.community,
@@ -133,7 +147,7 @@ const getOrders = (page) => {
       };
       order.actualTotal = 0;
 
-      [...order.singleItems, ...order.packs].forEach( item => {
+      [...order.singleItems, ...order.packs].forEach(item => {
         let price = order.offer.type === "bourse" ? order.offer.miniprogram.bourses[0].unitPrice : item.price;
         order.actualTotal += price * item.amount;
       })
@@ -143,18 +157,18 @@ const getOrders = (page) => {
 
       order_info.actualAmount = Math.round(order.actualAmount * 100) / 100;
       order_info.orderDate = `${formatDate('yyyy-mm-dd', order.orderDate)} ${formatTime(order.orderDate)}`;
-      order_info.count = countItems( [...order.packs, ...order.singleItems] )
+      order_info.count = countItems([...order.packs, ...order.singleItems])
 
       // Gfit info
       let gifts = [];
-      order.gifts.forEach( gift => {
+      order.gifts.forEach(gift => {
         let gift_info = _getGiftValue[gift.type](gift, order.offer);
         if (gift_info) {
           let gifts_idx = findIndex(gifts, gift_info, '_id');
           if (gifts_idx === -1) {
             gifts.push(gift_info)
           } else {
-            gifts[gifts_idx].count +=1;
+            gifts[gifts_idx].count += 1;
           }
         }
       })
@@ -165,7 +179,7 @@ const getOrders = (page) => {
     let orders = current_load ? [...page.data.orders, ...order_res] : order_res;
     page.setData({
       orders,
-    }, function() {
+    }, function () {
       current_load = orders.length;
     });
 
@@ -191,28 +205,31 @@ const getOrders = (page) => {
 
 Page({
   data: {
-    _picker_selected: { community: '', order_status: '' },
+    _picker_selected: {
+      community: '',
+      order_status: ''
+    },
     _filters: {
       list: index_data.list_filter,
       map: index_data.map_filters
     },
     //__test
-    type:['kitchen','cellar','garden','pet'],
-    index_t:1,
-    state:['delivered','progress','processing'],
-    index_s:1,
-    orders:[{
-      count:2,
-      id:2,
-      orderDate:20220926,
-      trackingStatus:3,
-      actualAmount:10,
-      actualTotal:20,
-      community:"pet",
-      item:"Ziko Gold mask + 15% off",
-      lottery:1
+    type: ['kitchen', 'cellar', 'garden', 'pet'],
+    index_t: 1,
+    state: ['delivered', 'progress', 'processing'],
+    index_s: 1,
+    orders: [{
+      count: 2,
+      id: 2,
+      orderDate: 20220926,
+      trackingStatus: 3,
+      actualAmount: 10,
+      actualTotal: 20,
+      community: "pet",
+      item: "Ziko Gold mask + 15% off",
+      lottery: 1
     }],
-    items_name:["Outstanding beef","Fresh Pack Vages","Greedy dog food"]
+    items_name: ["Outstanding beef", "Fresh Pack Vages", "Greedy dog food"]
   },
 
   onShow: function () {
@@ -224,7 +241,7 @@ Page({
     app.globalData.pause_lottery_check = false;
 
     app.sessionUtils.getUserInfo(self);
-  
+
     if (app.db.get('userInfo') && app.db.get('userInfo').token) {
       if (!self.options.back) {
         self.initOrders();
@@ -235,11 +252,11 @@ Page({
     }
   },
 
-  onReachBottom: function() {
+  onReachBottom: function () {
     getOrders(this);
   },
 
-  initOrders: function() {
+  initOrders: function () {
     const self = this;
     // Set page filter and get order
     _defaultFilters(self, 'community', 0);
@@ -252,18 +269,18 @@ Page({
   },
 
   // Get Profile info
-  getUserProfile: function(e) {
+  getUserProfile: function (e) {
     app.sessionUtils.getWxUserInfo(this);
   },
 
   // Mobile login
-  getPhoneNumber: async function(e) {
+  getPhoneNumber: async function (e) {
     await app.sessionUtils.mobileLogin(this, e.detail.code);
     this.initOrders();
   },
 
   // change filter content
-  changeFilter: function(e) {
+  changeFilter: function (e) {
     const self = this;
     current_load = 0;
 
@@ -279,7 +296,7 @@ Page({
     getOrders(self);
   },
 
-  updatePageConstants: function() {
+  updatePageConstants: function () {
     const self = this;
     let i18n = app.globalData.i18n;
 
@@ -311,8 +328,8 @@ Page({
         no_orders: i18n.no_orders,
         order_status: i18n.order_status,
         payment_status: i18n.payment_status,
-        payment_cleared:i18n.payment_cleared,
-        lottery_gift:i18n.lottery_gift
+        payment_cleared: i18n.payment_cleared,
+        lottery_gift: i18n.lottery_gift
       },
       _pickers: {
         communities: picker_communities,
@@ -322,7 +339,7 @@ Page({
     })
   },
 
-  toDetails: function(e) {
+  toDetails: function (e) {
     const self = this;
     self.options.back = true;
     wx.navigateTo({
@@ -331,10 +348,9 @@ Page({
   },
 
   // Filter offers by selected group
-  filterOffers: function(e) {
-
+  filterOffers: function (e) {
     this.setData({
-      "_picker_selected.community":e.currentTarget.dataset.filter_group
+      "_picker_selected.community": e.currentTarget.dataset.filter_group
     })
   },
 })

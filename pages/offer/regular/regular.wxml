@@ -59,9 +59,9 @@
   <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
     <!-- jump  -->
     <view class="flex-between gilroy_500 offer-jump-title">
-      <view class="offer-jump-item {{jump_setting.current_tab=='offer'?'jump_item_selected':''}}" bindtap="jump_item" data-info="offer">{{_t.offer}}</view>
-      <view class="offer-jump-item {{jump_setting.current_tab=='specials'?'jump_item_selected':''}}" bindtap="jump_item" data-info="specials">{{_t.specials}}</view>
-      <view class="offer-jump-item {{jump_setting.current_tab=='lottery'?'jump_item_selected':''}}" bindtap="jump_item" data-info="lottery">{{_t.lottery}}</view>
+      <view class="offer-jump-item {{ jump_setting.current_tab == 'offer' ? 'jump_item_selected' : '' }}" bindtap="jump_item" data-info="offer">{{ _t.offer }}</view>
+      <view class="offer-jump-item {{ jump_setting.current_tab == 'specials' ? 'jump_item_selected' : '' }}" bindtap="jump_item" data-info="specials">{{ _t.specials }}</view>
+      <view class="offer-jump-item {{ jump_setting.current_tab == 'lottery' ? 'jump_item_selected' : '' }}" bindtap="jump_item" data-info="lottery">{{ _t.lottery }}</view>
     </view>
     <!-- end of jump -->
 
@@ -210,21 +210,18 @@
     </view>
   </view>
 
-
-
-
-
-
-
   <!-- Pay Button -->
   <!-- <template
     is="payment_container"
     data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
   ></template> -->
   <!-- End of Pay Button -->
+
+  <template
+    is="payment_container-bottom"
+    data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
+  ></template>
 </view>
 
-<newPayButton></newPayButton>
-
-
+<!-- <newPayButton _pay_set="{{ _pay_set }}" _t="{{ _t }}" user="{{ user }}" wxUser="{{ wxUser }}" next_special="{{ next_special }}"></newPayButton> -->
 <lottery-draw id="lottery_modal"></lottery-draw>

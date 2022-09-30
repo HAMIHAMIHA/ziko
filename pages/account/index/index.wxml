@@ -47,7 +47,7 @@
 
   <!-- SHORT CUTS -->
   <view class="gilroy_700 uppercase short-cuts">
-    <navigator class="short-cuts__button{{  new_orders ? ' new' : '' }}" url="{{ _routes.orders }}" open-type="switchTab">
+    <navigator class="short-cuts__button{{ new_orders ? ' new' : '' }}" url="{{ _routes.orders }}">
       <view class="short-cut__icon icon icon-package"></view>
       <view class="short-cut__label">{{ _t.orders }}</view>
     </navigator>
@@ -124,60 +124,58 @@
   <view class="ziko-community" bindtap="copyBoxShow">
     <view class="icon icon-ziko"></view>
     <view class="community-content">
-      <text class="community-title">{{_t.join_ziko_community}}</text>
-      <view class="community-introduce nunito_400">{{_t.be_apart_of_our}}</view>
+      <text class="community-title">{{ _t.join_ziko_community }}</text>
+      <view class="community-introduce nunito_400">{{ _t.be_apart_of_our }}</view>
     </view>
-
   </view>
   <!-- Join Ziko community end-->
-    
 </view>
 
 <!-- copy box -->
-<view class="copybox" hidden="{{copybox_judgment}}">
+<view class="copybox" hidden="{{ copybox_judgment }}">
   <view class="copybox-cancel" bindtap="copyBoxHide">
   </view>
-  <view class="copybox-tap bottom-pos" animation="{{animationData}}">
-    <view class="add-box " data-text="{{_t.simonmawas}}" bindtap='copyBtn'>
+  <view class="copybox-tap bottom-pos" animation="{{ animationData }}">
+    <view class="add-box " data-text="{{ _t.simonmawas }}" bindtap='copyBtn'>
       <view class="icon icon-chef-head icon-chef"></view>
       <view>
-        <text class="box-name">{{_t.add_chef_ziko}}</text>
+        <text class="box-name">{{ _t.add_chef_ziko }}</text>
         <view class="wechat-copy box-chef" hover-class="clicked-chef">
-          <text class="wechat-id">{{_t.wechat_id}}</text>
-          <text class="simonmawas">{{_t.simonmawas}}</text>
+          <text class="wechat-id">{{ _t.wechat_id }}</text>
+          <text class="simonmawas">{{ _t.simonmawas }}</text>
           <text class="icon icon-click-copy icon-height"></text>
         </view>
       </view>
     </view>
-    <view class="add-box" data-text="{{_t.simonmawas}}" bindtap='copyBtn'>
+    <view class="add-box" data-text="{{ _t.simonmawas }}" bindtap='copyBtn'>
       <view class="icon icon-pet-head icon-pet"></view>
       <view>
-        <text class="box-name">{{_t.add_pet_ziko}}</text>
+        <text class="box-name">{{ _t.add_pet_ziko }}</text>
         <view class="wechat-copy box-pet" hover-class="clicked-pet">
-          <text class="wechat-id">{{_t.wechat_id}}</text>
-          <text class="simonmawas">{{_t.simonmawas}}</text>
+          <text class="wechat-id">{{ _t.wechat_id }}</text>
+          <text class="simonmawas">{{ _t.simonmawas }}</text>
           <text class="icon icon-click-copy icon-height"></text>
         </view>
       </view>
     </view>
-    <view class="add-box" data-text="{{_t.simonmawas}}" bindtap='copyBtn'>
+    <view class="add-box" data-text="{{ _t.simonmawas }}" bindtap='copyBtn'>
       <view class="icon icon-farmer-head icon-farmer"></view>
       <view>
-        <text class="box-name">{{_t.add_farmer_ziko}}</text>
+        <text class="box-name">{{ _t.add_farmer_ziko }}</text>
         <view class="wechat-copy box-farmer" hover-class="clicked-farmer">
-          <text class="wechat-id">{{_t.wechat_id}}</text>
-          <text class="simonmawas">{{_t.simonmawas}}</text>
+          <text class="wechat-id">{{ _t.wechat_id }}</text>
+          <text class="simonmawas">{{ _t.simonmawas }}</text>
           <text class="icon icon-click-copy icon-height"></text>
         </view>
       </view>
     </view>
-    <view class="add-box" data-text="{{_t.simonmawas}}" bindtap='copyBtn'>
+    <view class="add-box" data-text="{{ _t.simonmawas }}" bindtap='copyBtn'>
       <view class="icon icon-celler-head icon-celler"></view>
       <view>
-        <text class="box-name">{{_t.add_cellar_ziko}}</text>
+        <text class="box-name">{{ _t.add_cellar_ziko }}</text>
         <view class="wechat-copy box-cellar" hover-class="clicked-cellar">
-          <text class="wechat-id">{{_t.wechat_id}}</text>
-          <text class="simonmawas">{{_t.simonmawas}}</text>
+          <text class="wechat-id">{{ _t.wechat_id }}</text>
+          <text class="simonmawas">{{ _t.simonmawas }}</text>
           <text class="icon icon-click-copy icon-height"></text>
         </view>
       </view>
@@ -187,7 +185,7 @@
     </view>
   </view>
 </view>
-
-<tab-bar tabIndex="{{tabIndex}}" />
 <!-- copy box end -->
+
+<tab-bar tabIndex="{{ tabIndex }}" />
 <lottery-draw id="lottery_modal"></lottery-draw>
