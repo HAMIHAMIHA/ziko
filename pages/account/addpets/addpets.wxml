@@ -1,39 +1,42 @@
 <view class="container">
   <view class="pets-name">
-    <view class="nuntio_700">{{_t.name}}</view>
-    <input class="pets-input" 
-    placeholder="{{_t.please_enter_pets_name}}"
-    type="text" 
-    value="{{ pet.name }}"></input>
+    <view class="nuntio_700">{{ _t.name }}</view>
+    <input class="pets-input" placeholder="{{ _t.please_enter_pets_name }}" type="text" value="{{ pet.name }}"></input>
   </view>
   <view class="type-of-pet">
-    <view class="type-title">{{_t.type_of_pet}}</view>
-    <view class="type-button-box" >
-      <button class="{{typechecked==_t.cat?'button-selected':'type-button'}}" bindtap="serviceSelection" data-info="Cat">
+    <view class="type-title">{{ _t.type_of_pet }}</view>
+    <view class="type-button-box">
+      <button class="{{ typechecked == _t.cat ? 'button-selected' : 'type-button' }}" bindtap="serviceSelection" data-info="Cat">
         <text class="icon icon-walk-cat icon-color"></text>
-        <text class="type-name icon-color nunito_500">{{_t.cat}}</text>
-        <text wx:if="{{typechecked==_t.cat}}" class="icon icon-check cat-check"></text>
+        <text class="type-name icon-color nunito_500">{{ _t.cat }}</text>
+        <text wx:if="{{ typechecked == _t.cat }}" class="icon icon-check cat-check"></text>
       </button>
-      <button class="{{typechecked ==_t.dog ? 'button-selected':'type-button'}}" bindtap="serviceSelection" data-info="Dog">
+      <button class="{{ typechecked == _t.dog ? 'button-selected' : 'type-button' }}" bindtap="serviceSelection" data-info="Dog">
         <view class="icon icon-walk-dog icon-color"></view>
-        <text class="type-name icon-color nunito_500">{{_t.dog}}</text>
-        <text wx:if="{{typechecked==_t.dog}}" class="icon icon-check dog-check"></text>
+        <text class="type-name icon-color nunito_500">{{ _t.dog }}</text>
+        <text wx:if="{{ typechecked == _t.dog }}" class="icon icon-check dog-check"></text>
       </button>
     </view>
-    
+
   </view>
   <view class="size-of-pet">
-    <view class="size-of-pet-title nuntio_700">{{_t.size_of_pet}}</view>
+    <view class="size-of-pet-title nuntio_700">{{ _t.size_of_pet }}</view>
     <radio-group name="radio" class="radio-color">
-      <label><radio class="radio-items" value="radio1"/>{{_t.pet_size.small}}</label>
-      <label><radio value="radio2"/>{{_t.pet_size.middle}}</label>
-      <label><radio value="radio3"/>{{_t.pet_size.large}}</label>
+      <label>
+        <radio class="radio-items" value="radio1" />{{ _t.pet_size.small }}
+      </label>
+      <label>
+        <radio value="radio2" />{{ _t.pet_size.middle }}
+      </label>
+      <label>
+        <radio value="radio3" />{{ _t.pet_size.large }}
+      </label>
     </radio-group>
   </view>
   <view class="under-black-button">
-    <text class="inter_600 font-size">{{_t.cancel}}</text>
+    <text class="inter_600 font-size">{{ _t.cancel }}</text>
   </view>
   <view class="under-white-button">
-    <text class="gilroy_700 font-size">{{_t.save}}</text>
+    <text class="gilroy_700 font-size">{{ _t.save }}</text>
   </view>
 </view>

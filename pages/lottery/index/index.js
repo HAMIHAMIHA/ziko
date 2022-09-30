@@ -1,17 +1,29 @@
-const { showLoading } = require("../../../utils/common.js");
+const {
+  showLoading
+} = require("../../../utils/common.js");
 const index_data = require("../../../utils/constants.js");
-const { formatWeekDate, findIndex, mapDeliveryDates } = require("../../../utils/util.js");
+const {
+  formatWeekDate,
+  findIndex,
+  mapDeliveryDates
+} = require("../../../utils/util.js");
 
 const app = getApp();
-let _refresh_data = true, _leave_triggered = false;
+let _refresh_data = true,
+  _leave_triggered = false;
 
-let current_filter = { group: '', date: '' }; // Default filter for page
+let current_filter = {
+  group: '',
+  date: ''
+}; // Default filter for page
 let timer_intervals = [];
-let raw_offers = [], lotteries = [], orders = [];
+let raw_offers = [],
+  lotteries = [],
+  orders = [];
 
-const _setPageTranslation = function(page) {
+const _setPageTranslation = function (page) {
   // Translate tabbar
-  app.setTabbars();
+  // app.setTabbars();
   // Translation and default values
   let i18n = app.globalData.i18n;
 
@@ -30,24 +42,24 @@ const _setPageTranslation = function(page) {
       remaining_draws: i18n.remaining_draws,
       remaining_time: i18n.remaining_time,
       you_win: i18n.you_win,
-      ziko_lottery:i18n.ziko_lottery,
-      lorem_ipsum_dolor:i18n.lorem_ipsum_dolor,
-      got_it:i18n.got_it,
-      past_luck:i18n.past_luck,
-      still_a_chance:i18n.still_a_chance,
-      lottery_selected:i18n.lottery_selected,
-      past_luck:i18n.past_luck,
-      chances:i18n.chances,
-      to_win:i18n.to_win,
-      draws:i18n.draws,
-      locked:i18n.locked,
-      tickets:i18n.tickets,
-      time_remaining:i18n.time_remaining,
-      day:i18n.day,
-      access_the_offer:i18n.access_the_offer,
-      prizes:i18n.prizes,
-      congrats:i18n.congrats,
-      you_won:i18n.you_won
+      ziko_lottery: i18n.ziko_lottery,
+      lorem_ipsum_dolor: i18n.lorem_ipsum_dolor,
+      got_it: i18n.got_it,
+      past_luck: i18n.past_luck,
+      still_a_chance: i18n.still_a_chance,
+      lottery_selected: i18n.lottery_selected,
+      past_luck: i18n.past_luck,
+      chances: i18n.chances,
+      to_win: i18n.to_win,
+      draws: i18n.draws,
+      locked: i18n.locked,
+      tickets: i18n.tickets,
+      time_remaining: i18n.time_remaining,
+      day: i18n.day,
+      access_the_offer: i18n.access_the_offer,
+      prizes: i18n.prizes,
+      congrats: i18n.congrats,
+      you_won: i18n.you_won
     }
   })
 }
@@ -100,25 +112,61 @@ const _generateSuffix = (step, filter_date) => {
   const filter_str_list = {
     general: [
       [
-        [{"startingDate":{"$lte":`${ now_timestamp }`}},{"endingDate":{"$gt":`${ now_timestamp }`}}],
+        [{
+          "startingDate": {
+            "$lte": `${ now_timestamp }`
+          }
+        }, {
+          "endingDate": {
+            "$gt": `${ now_timestamp }`
+          }
+        }],
         `["endingDate","ASC"]`
       ],
     ],
     today: [
       [
-        [{"startingDate":{"$gte":`${ filter_date }`,"$lte":`${ now_timestamp }`}},{"endingDate":{"$gt":`${ now_timestamp }`}}],
+        [{
+          "startingDate": {
+            "$gte": `${ filter_date }`,
+            "$lte": `${ now_timestamp }`
+          }
+        }, {
+          "endingDate": {
+            "$gt": `${ now_timestamp }`
+          }
+        }],
         `["endingDate","ASC"]`
       ],
     ],
     other: [
       [
-        [{"startingDate":{"$gte":`${ filter_date }`, "$lte":`${ new Date(filter_date).setHours(23, 59, 59, 999) }`}},{"endingDate":{"$gt":`${ now_timestamp }`}}],
+        [{
+          "startingDate": {
+            "$gte": `${ filter_date }`,
+            "$lte": `${ new Date(filter_date).setHours(23, 59, 59, 999) }`
+          }
+        }, {
+          "endingDate": {
+            "$gt": `${ now_timestamp }`
+          }
+        }],
         `["endingDate","ASC"]`
       ],
     ],
   }
   let filter_str = filter_str_list[key][step];
-  let filter_conditions = {"$and":[{"$or":[{"channel":"all"},{"channel":"miniprogram"}]},{"miniprogram.lotteryEnable":"true"}, ...filter_str[0]]}
+  let filter_conditions = {
+    "$and": [{
+      "$or": [{
+        "channel": "all"
+      }, {
+        "channel": "miniprogram"
+      }]
+    }, {
+      "miniprogram.lotteryEnable": "true"
+    }, ...filter_str[0]]
+  }
   return filter_str ? `&filter=${JSON.stringify(filter_conditions)}&sort=${filter_str[1]}` : null;
 }
 
@@ -129,7 +177,7 @@ const _setOffers = (page, filter_date) => {
     days = []; // create list for date picker
   }
 
-  raw_offers.forEach( offer => {
+  raw_offers.forEach(offer => {
     let date_value = formatWeekDate(offer.startingDate);
 
     // Creating date filter list
@@ -149,19 +197,23 @@ const _setOffers = (page, filter_date) => {
     }
 
     let lotteryIds = [];
-    offer.miniprogram.lottery.draws.forEach( d => {
+    offer.miniprogram.lottery.draws.forEach(d => {
       lotteryIds.push(d._id);
     })
 
-    let lottery_drawn = lotteries.filter( l => { return (l.offer.id === offer.id) && l.winners.length && (lotteryIds.findIndex(i => l.offerDrawId === i ) > -1) });
-    let offer_orders = orders.filter( o => { return o.offer.id === offer.id });
-    let wins = offer_orders.filter( o => {
-      return o.gifts.filter( g => g.origin === 'lottery').length;
+    let lottery_drawn = lotteries.filter(l => {
+      return (l.offer.id === offer.id) && l.winners.length && (lotteryIds.findIndex(i => l.offerDrawId === i) > -1)
+    });
+    let offer_orders = orders.filter(o => {
+      return o.offer.id === offer.id
+    });
+    let wins = offer_orders.filter(o => {
+      return o.gifts.filter(g => g.origin === 'lottery').length;
     });
 
     let offer_tickets = 0;
     if (offer_orders.length > 0) {
-      offer_orders.forEach( o => offer_tickets += o.ticketAmount)
+      offer_orders.forEach(o => offer_tickets += o.ticketAmount)
     }
 
     // Modify offer data to fit page display
@@ -178,7 +230,9 @@ const _setOffers = (page, filter_date) => {
   })
 
   page.setData({
-    days: days.sort( (a,b) => { return a.timestamp - b.timestamp }),
+    days: days.sort((a, b) => {
+      return a.timestamp - b.timestamp
+    }),
     offers: offers
   })
   _timerControl(page, true);
@@ -210,14 +264,14 @@ const _filterOfferData = (page, filter_group, filter_id, filter_date) => {
   app.api.getOffers(suffix).then(res => {
     // Get on going events
     raw_offers = res;
-    app.api.getLotteries().then( res => {
+    app.api.getLotteries().then(res => {
       lotteries = res;
 
       // Get user orders if user is logged in
       if (page.data.user?.id) {
         app.api.getOrders({
           filter_str: `channel=miniprogram&paymentStatus=paid`
-        }).then( res => {
+        }).then(res => {
           orders = res;
           _setOffers(page, filter_date);
         })
@@ -238,13 +292,53 @@ Page({
       list: index_data.list_filter
     },
     _communities: index_data.communities,
-    first_show:"true",
-    lottery_content:[{numb:"i0",name:"bottle-1",src:"../../../assets/icons/bottle.svg"},{numb:"i1",name:"cheese-1",src:"../../../assets/icons/cheese.svg"},{numb:"i2",name:"fruit-1",src:"../../../assets/icons/fruit.svg"},{numb:"i3",name:"noodle-1",src:"../../../assets/icons/noodle.svg"},{numb:"i4",name:"Vector-1",src:"../../../assets/icons/Vector.svg"},{numb:"i5",name:"bottle-2",src:"../../../assets/icons/bottle.svg"},{numb:"i6",name:"cheese-2",src:"../../../assets/icons/cheese.svg"},{numb:"i7",name:"fruit-2",src:"../../../assets/icons/fruit.svg"},{numb:"i8",name:"noodle-2",src:"../../../assets/icons/noodle.svg"},{numb:"i9",name:"Vector-2",src:"../../../assets/icons/Vector.svg"},],
-    lottery_selected:0,
-    
+    first_show: "true",
+    lottery_content: [{
+      numb: "i0",
+      name: "bottle-1",
+      src: "../../../assets/icons/bottle.svg"
+    }, {
+      numb: "i1",
+      name: "cheese-1",
+      src: "../../../assets/icons/cheese.svg"
+    }, {
+      numb: "i2",
+      name: "fruit-1",
+      src: "../../../assets/icons/fruit.svg"
+    }, {
+      numb: "i3",
+      name: "noodle-1",
+      src: "../../../assets/icons/noodle.svg"
+    }, {
+      numb: "i4",
+      name: "Vector-1",
+      src: "../../../assets/icons/Vector.svg"
+    }, {
+      numb: "i5",
+      name: "bottle-2",
+      src: "../../../assets/icons/bottle.svg"
+    }, {
+      numb: "i6",
+      name: "cheese-2",
+      src: "../../../assets/icons/cheese.svg"
+    }, {
+      numb: "i7",
+      name: "fruit-2",
+      src: "../../../assets/icons/fruit.svg"
+    }, {
+      numb: "i8",
+      name: "noodle-2",
+      src: "../../../assets/icons/noodle.svg"
+    }, {
+      numb: "i9",
+      name: "Vector-2",
+      src: "../../../assets/icons/Vector.svg"
+    }, ],
+    lottery_selected: 0,
+
   },
 
-  onShow: function() {
+  onShow: function () {
     const self = this;
     _setPageTranslation(self);
 
@@ -255,25 +349,31 @@ Page({
     if (_refresh_data) {
       showLoading(true);
       app.sessionUtils.getUserInfo(self);
-      self.filterOffers({detail: { change_date: false }});
+      self.filterOffers({
+        detail: {
+          change_date: false
+        }
+      });
     }
   },
-  onReady:function(){
+
+  onReady: function () {
     this.animate_state_change()
   },
-  onHide: function() {
+
+  onHide: function () {
     if (_leave_triggered) return;
     _refresh_data = true;
     _timerControl(this, false);
   },
 
-  onUnload: function() {
+  onUnload: function () {
     _refresh_data = true;
     _timerControl(this, false);
   },
 
   // Filter offers by selected group
-  filterOffers: function(e) {
+  filterOffers: function (e) {
     const self = this;
     let data = e.currentTarget ? e.currentTarget.dataset : {};
 
@@ -288,13 +388,13 @@ Page({
 
     // Get filtering date value
     let date = (e.detail && e.detail.change_date) ? e.detail.date : '';
-  
+
     // Filter
     _filterOfferData(self, data.filter_group, data.filter_id, date);
   },
 
   // To lottery detail
-  toLottery: function(e) {
+  toLottery: function (e) {
     let data = e.currentTarget.dataset;
     _refresh_data = false;
     _leave_triggered = true;
@@ -304,40 +404,44 @@ Page({
   },
 
   onShareAppMessage: function (res) {},
-  animate_state_change: function(){
-    setTimeout(()=>{
+
+  animate_state_change: function () {
+    setTimeout(() => {
       this.setData({
-        showid1:"i6",
+        showid1: "i6",
       })
-    },500)
-    setTimeout(()=>{
+    }, 500)
+    setTimeout(() => {
       this.setData({
-        showid2:"i7",
+        showid2: "i7",
       })
-    },800)
-    setTimeout(()=>{
+    }, 800)
+    setTimeout(() => {
       this.setData({
-        showid3:"i8",
+        showid3: "i8",
       })
-    },1100)
+    }, 1100)
   },
-  animationend:function(){
-    setTimeout(()=>{
+
+  animationend: function () {
+    setTimeout(() => {
       this.setData({
-        showid1:"i0",
-        showid2:"i0",
-        showid3:"i0",
+        showid1: "i0",
+        showid2: "i0",
+        showid3: "i0",
       })
-    },5000)
+    }, 5000)
   },
-  close_firstshow:function(){
+
+  close_firstshow: function () {
     this.setData({
-      first_show:false
+      first_show: false
     })
   },
-  lottery_select:function(e){
+
+  lottery_select: function (e) {
     this.setData({
-      lottery_selected:e.currentTarget.dataset.info
+      lottery_selected: e.currentTarget.dataset.info
     })
   },
 })

@@ -1,5 +1,5 @@
 page{
-  padding-bottom: 30rpx;
+  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
 }
 .container {
   /* --container-padding-bottom-: calc(34rpx + 4rpx + 4rpx + 48rpx + 48rpx);  */
@@ -275,7 +275,7 @@ button:not([size=mini]).langauge {
 /* copy-box */
 .copybox {
   position: fixed;
-  z-index: 2;
+  z-index: 100000;
   top: 0;
   left: 0;
   right: 0;
@@ -421,19 +421,4 @@ line-height: 34rpx;
   font-size: 25rpx;
   text-align: center;
 }
-.margin_bottom{
-  height:calc(300rpx + var(--env-));
-}
-.margin_bottom_hide{
-  height:0rpx;
-  animation-name: bottom_move;
-  animation-duration: 0.1s;
-}
-@keyframes bottom_move{
-  from {
-    transform: translateY(calc(300rpx + var(--env-)));
-  }
-  to {
-    transform: translateY(0rpx);
-  }
-}
+

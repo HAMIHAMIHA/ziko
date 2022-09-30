@@ -209,6 +209,7 @@ Page({
     // filter_group: '',
     // filter_type:"list"
     // map: true // Default open to map view
+    tabIndex:"0"
   },
 
   onShow: function() {
@@ -288,7 +289,7 @@ Page({
     const self = this;
 
     // Translate tabbar
-    app.setTabbars();
+    // app.setTabbars();
 
     // Translation and default values
     let i18n = app.globalData.i18n;
@@ -313,6 +314,7 @@ Page({
         remaining_time: i18n.remaining_time,
         specials: i18n.specials,
         viewers: i18n.viewers,
+        week_days: i18n.days
       }
     })
   },

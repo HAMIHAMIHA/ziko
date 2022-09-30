@@ -43,6 +43,7 @@
     <dateFilter
       id="list_date_filters"
       days="{{ days }}"
+      week_days="{{ _t.week_days }}"
       bind:filterOffers="filterOffers"
     ></dateFilter>
     <offers id="list_offers" offers="{{ offers }}" bind:navigatePage="navigatePage"></offers>
@@ -74,5 +75,5 @@
   </view> -->
   <!-- End of Map popup -->
 </view>
-
+<tab-bar tabIndex="{{tabIndex}}" />
 <lottery-draw id="lottery_modal"></lottery-draw>

@@ -86,6 +86,19 @@ Page({
     animationData: {},
     copyclicked: "",
     margin_bottom: "",
+    tabIndex:"2"
+  },
+  onLaunch (options) {
+    // Do something initial when launch.
+    //  get tabbar hight
+    wx.getSystemInfo({
+      success(res){
+        let lift=res.screenHeight-res.safeArea.bottom
+        let tabbarHeight=Number(lift)+50
+        that.setData({tabbarHeight})
+        wx.setStorageSync('tabbarHeight',tabbarHeight)
+      }
+    })
   },
 
   onShow: async function () {
@@ -109,6 +122,8 @@ Page({
     if (app.db.get('userInfo')?.token) {
       _getPageData(self);
     }
+
+
     showLoading(false);
   },
 
@@ -137,7 +152,7 @@ Page({
     const i18n = app.globalData.i18n;
   
     // Set tabbar translation
-    app.setTabbars();
+    // app.setTabbars();
   
     // Set page default data
     self.setData({
@@ -201,7 +216,6 @@ Page({
 
   copyBoxShow: function () {
     var that=this;
-    wx.hideTabBar()
     that.setData({
       copybox_judgment:false,
       margin_bottom:"margin_bottom"
@@ -210,7 +224,6 @@ Page({
 
   copyBoxHide: function () {
     var that=this;
-    wx.showTabBar()
     that.setData({
       copybox_judgment:true,
       margin_bottom:"margin_bottom_hide"

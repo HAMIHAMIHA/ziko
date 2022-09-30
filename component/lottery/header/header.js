@@ -7,9 +7,9 @@ Component({
   options: {
     addGlobalClass: true
   },
-  attached: function() {
-    console.log(this.properties)
-  },
+  // attached: function() {
+  //   console.log(this.properties)
+  // },
   methods: {
 
   }
