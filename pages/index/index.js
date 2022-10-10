@@ -206,9 +206,9 @@ Page({
       list: index_data.list_filter,
       map: index_data.map_filters
     },
-    // filter_group: '',
-    // filter_type:"list"
-    // map: true // Default open to map view
+    filter_group: '',
+    filter_type:"list",
+    map: true, // Default open to map view
   },
 
   onShow: function() {

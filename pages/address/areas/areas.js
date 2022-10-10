@@ -4,13 +4,13 @@ const app = getApp();
 
 let all_areas = [];
 
-const _getAreas = (parent_id) => {
-  let new_areas = []
-  const filtered_areas = all_areas.filter((e) => e.parent === parent_id)
+const _getAreas = (parent_id) => {//__need
+  let new_areas = [];
+  const filtered_areas = all_areas.filter((e) => e.parent === parent_id);
+  console.log("filtered_areas",filtered_areas);
   if (filtered_areas.length) {
     for (const line of filtered_areas) {
       let childs = _getAreas(line.id)
-
       new_areas.push({
         value: line.id,
         label: line.name,
@@ -18,11 +18,10 @@ const _getAreas = (parent_id) => {
       })
     }
   }
-
   return new_areas;
 }
 
-const _find_current = (current_id) => {
+const _find_current = (current_id) => {//__need
   if (!current_id) return [0];
   // Find area and all ancestors
   let selected_rev = [all_areas[findIndex(all_areas, current_id, 'id')]];
@@ -31,7 +30,6 @@ const _find_current = (current_id) => {
     selected_rev.push(all_areas[findIndex(all_areas, area.parent, 'id')]);
     area = selected_rev[selected_rev.length - 1];
   }
-
   // Find index of all selected options
   let selected = [];
   for (var i = selected_rev.length - 1; i >= 0; i--) {
@@ -41,10 +39,11 @@ const _find_current = (current_id) => {
   return selected;
 }
 
-const getAddressAreaList = page => {
+const getAddressAreaList = page => {//__need
   const callback = res => {
     all_areas = res;
     let areas = _getAreas();
+    console.log("areas:",areas);
     page.setData({
       _temp : res,
       _areas: areas,
@@ -79,7 +78,7 @@ Page({
   },
 
   // Change picker result
-  updatePicker: function(e) {
+  updatePicker: function(e) {//__need
     const self = this;
 
     let new_index = e.detail.value;
@@ -94,7 +93,7 @@ Page({
     })
   },
 
-  select: function(e) {
+  select: function(e) {//__need
     const self = this;
 
     let selected = self.data._selected;

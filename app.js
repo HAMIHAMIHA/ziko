@@ -68,7 +68,7 @@ App({
       api.getVouchers('', false).then( res => {
         db.set('vouchers', res.filter(r => { return r.status === 'validated' }).length)
       });
-    }
+    };
     if (!db.get('orderDeliveries').length) {
       api.getOrders({ filter_str: `channel=miniprogram` }).then(res => {
         let order_deliveries = [];
@@ -77,7 +77,7 @@ App({
         })
         db.set('orderDeliveries', order_deliveries);
       })
-    }
+    };
   },
 
   // Get translated tabbar text when called
