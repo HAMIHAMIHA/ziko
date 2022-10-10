@@ -209,7 +209,6 @@ Page({
     // filter_group: '',
     // filter_type:"list"
     // map: true // Default open to map view
-    tabIndex:"0"
   },
 
   onShow: function() {

@@ -86,7 +86,6 @@ Page({
     animationData: {},
     copyclicked: "",
     margin_bottom: "",
-    tabIndex:"2"
   },
   onLaunch (options) {
     // Do something initial when launch.

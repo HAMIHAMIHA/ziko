@@ -130,7 +130,6 @@ Page({
     selected_filters: {}, // filter ids for selected style in filter list
     filters: [], 
     keyword: '',
-    tabIndex:"1"
   },
 
   onLoad: function() {

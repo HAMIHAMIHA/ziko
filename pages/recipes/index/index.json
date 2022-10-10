@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "recipes": "/component/recipes/recipes",
-    "tab-bar": "/component/tabbar/index"
+    "recipes": "/component/recipes/recipes"
   }
 }

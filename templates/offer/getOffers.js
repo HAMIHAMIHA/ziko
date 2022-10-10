@@ -1,8 +1,20 @@
-const { showLoading } = require("../../utils/common.js");
-const { communities } = require("../../utils/constants.js");
-const { findIndex, mapDeliveryDates, _checkMediaType } = require("../../utils/util.js");
+const {
+  showLoading
+} = require("../../utils/common.js");
+const {
+  communities
+} = require("../../utils/constants.js");
+const {
+  findIndex,
+  mapDeliveryDates,
+  _checkMediaType
+} = require("../../utils/util.js");
 
-const { checkOfferTicket, getBoursePrice, getRulePrice } = require("./offerRules");
+const {
+  checkOfferTicket,
+  getBoursePrice,
+  getRulePrice
+} = require("./offerRules");
 
 const app = getApp();
 let lotteries = [];
@@ -37,9 +49,9 @@ export const _getTranslations = (page, community) => {
       lower_price_together: i18n.lower_price_together,
       minimum: i18n.minimum,
       next_lottery_in: i18n.next_lottery_in,
-      next_price_in:i18n.next_price_in,
+      next_price_in: i18n.next_price_in,
       no_recipes: i18n.no_recipes,
-      off:i18n.off,
+      off: i18n.off,
       offer_special_names: i18n.offer_special_names,
       offer_special_details: i18n.offer_special_details,
       order_unit: i18n.order_unit,
@@ -47,7 +59,7 @@ export const _getTranslations = (page, community) => {
       orders_unit: i18n.orders_unit,
       our_selected_packs: i18n.our_selected_packs,
       pay: i18n.pay,
-      packs:i18n.packs,
+      packs: i18n.packs,
       price_rules: i18n.price_rules,
       products: i18n.products,
       recipes: i18n.recipes,
@@ -56,14 +68,14 @@ export const _getTranslations = (page, community) => {
       single_items: i18n.single_items,
       total_units_available: i18n.total_units_available,
       viewers: i18n.viewers,
-      offer:i18n.offer,
-      specials:i18n.specials,
-      lottery:i18n.lottery,
+      offer: i18n.offer,
+      specials: i18n.specials,
+      lottery: i18n.lottery,
       total: i18n.total,
-      lottery_tickets_you_can_get:i18n.lottery_tickets_you_can_get,
+      lottery_tickets_you_can_get: i18n.lottery_tickets_you_can_get,
       minimum: i18n.minimum,
-      lottery_tickets:i18n.lottery_tickets,
-      bottles:i18n.bottles
+      lottery_tickets: i18n.lottery_tickets,
+      bottles: i18n.bottles
     },
     _t_product: {
       item_unit: i18n.item_unit,
@@ -82,7 +94,7 @@ export const _getTranslations = (page, community) => {
       items_unit: i18n.items_unit,
       rmb: i18n.rmb,
       ticket: i18n.ticket,
-      take_a_chance:i18n.take_a_chance
+      take_a_chance: i18n.take_a_chance
     },
     _t_prize: {
       _language: app.db.get('language'),
@@ -118,7 +130,7 @@ const _getRecipes = (page, offer) => {
     recipes = recipes.concat(res);
 
     // Check if main picture is video
-    recipes.map( r => {
+    recipes.map(r => {
       r.mainPicture = {
         uri: `${ app.folders.recipe_picture }${ r.mainPicture[app.db.get('language')].uri }`,
         type: _checkMediaType(r.mainPicture[app.db.get('language')].type),
@@ -135,7 +147,9 @@ const _getRecipes = (page, offer) => {
   // Products search
   let products = [];
   let _updateProducts = item => {
-    let p_idx = products.findIndex( p => { p === item.product.id });
+    let p_idx = products.findIndex(p => {
+      p === item.product.id
+    });
     if (p_idx === -1) {
       products.push(item.product.id);
     }
@@ -143,7 +157,7 @@ const _getRecipes = (page, offer) => {
 
   // Packs product
   if (offer.miniprogram.packs.length > 0) {
-    offer.miniprogram.packs.forEach( item => {
+    offer.miniprogram.packs.forEach(item => {
       item.products.forEach(_updateProducts)
     })
   }
@@ -161,25 +175,29 @@ const _getRecipes = (page, offer) => {
   }
   let suffix = `?status=available&sort=["createdAt","DESC"]&filter={"products":{"$in":["${products.join('","')}"]}}`;
   // Get pinned recipes
-  app.api.getRecipes({ detail: `${suffix}&pinTop=true` }).then( res => {
+  app.api.getRecipes({
+    detail: `${suffix}&pinTop=true`
+  }).then(res => {
     recipes = res;
     // Get rest of recipes
-    app.api.getRecipes({ detail: `${suffix}&pinTop=false` }).then(recipeCallback)
+    app.api.getRecipes({
+      detail: `${suffix}&pinTop=false`
+    }).then(recipeCallback)
   })
 }
 
 // Modify for pack product info string
-export const packProductDetail = function(offer) {
+export const packProductDetail = function (offer) {
   let units = app.globalData.i18n.units[offer.community];
   let item_unit = app.globalData.i18n.item_unit;
   let items_unit = app.globalData.i18n.items_unit;
 
   offer.total = 0;
-  offer.miniprogram.packs.map( item => {
+  offer.miniprogram.packs.map(item => {
     let details = [];
     offer.total += item.stock;
 
-    item.products.forEach( product => {
+    item.products.forEach(product => {
       details.push(
         `${product.product.name[app.db.get('language')]} ${ product.quantity ? product.quantity : '' }${ product.quantity && product.weight ? 'x' : '' }${ product.weight ? `${product.weight}` : '' }${ product.weight ? (product.weightType ? product.weightType : units) : (product.quantity == 1 ? item_unit : items_unit) }`
       );
@@ -191,15 +209,15 @@ export const packProductDetail = function(offer) {
 }
 
 // Check for hurry up message
-const _setHurryPopup = function(offer, page) {
+const _setHurryPopup = function (offer, page) {
   const checkList = (list, lottery) => {
     // Switch position for number sold or number orders from special into lottery
-    list.map( gift => {
+    list.map(gift => {
       if (gift.conditionType === 'first_order') gift.conditionType = "number_of_order"
       if (gift.conditionType === 'x_total_sold_items') gift.conditionType = "x_item_sold";
     })
 
-    list.sort( (a, b) => {
+    list.sort((a, b) => {
       return a.conditionValue - b.conditionValue;
     })
 
@@ -208,7 +226,7 @@ const _setHurryPopup = function(offer, page) {
     let first_locked = -1;
     let text = '';
 
-    list.forEach( (d, i) => {
+    list.forEach((d, i) => {
       if (d.conditionType === "number_of_order" && offer.orders >= d.conditionValue && unlocked < i) {
         unlocked++;
         d.unlocked = true;
@@ -243,15 +261,17 @@ const _setHurryPopup = function(offer, page) {
 
   // Set next special
   let special_list = [];
-  special_list = JSON.parse(JSON.stringify(offer.miniprogram.zikoSpecials)).filter(s => { return s.conditionType === 'first_order'});
-  
+  special_list = JSON.parse(JSON.stringify(offer.miniprogram.zikoSpecials)).filter(s => {
+    return s.conditionType === 'first_order'
+  });
+
   let lottery_list = [];
   if (offer.type && offer.type !== 'regular' && offer.miniprogram.lotteryEnable) {
     // Set next lottery for special cellar offers
     lottery_list = offer.miniprogram.lottery.draws.slice(1)
   }
 
-  if (special_list.length){
+  if (special_list.length) {
     let next_special = checkList(special_list, false);
     page.setData({
       next_special,
@@ -261,7 +281,7 @@ const _setHurryPopup = function(offer, page) {
   if (lottery_list.length) {
     let next_lottery = checkList(lottery_list, true);
 
-    if (lottery_list[0].conditionType === "number_of_order" ) {
+    if (lottery_list[0].conditionType === "number_of_order") {
       offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
     } else {
       offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
@@ -275,25 +295,25 @@ const _setHurryPopup = function(offer, page) {
 }
 
 // Check for lottery draws
-const _setLotteryDraws = function(offer, orders) {
-  if ( offer.miniprogram.lottery.draws[0].conditionType === "number_of_order" ) {
+const _setLotteryDraws = function (offer, orders) {
+  if (offer.miniprogram.lottery.draws[0].conditionType === "number_of_order") {
     offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
   } else {
     offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
   }
 
-  offer.miniprogram.lottery.draws.map( (draw, i) => {
+  offer.miniprogram.lottery.draws.map((draw, i) => {
     let winners = [];
 
     if (orders) {
-      let winning_orders = orders.filter( o => {
+      let winning_orders = orders.filter(o => {
         let order = o.gifts.filter(g => {
           return g.offerDrawId === draw._id;
         });
         return order.length > 0;
       })
 
-      winning_orders.forEach( winner => {
+      winning_orders.forEach(winner => {
         winners.push({
           name: winner.name,
           profilePicture: winner.profilePicture,
@@ -301,10 +321,12 @@ const _setLotteryDraws = function(offer, orders) {
         })
       })
     } else {
-      lotteries.forEach( l => {
-        if (l.offerDrawId === draw._id){
-          l.winners.forEach( w => {
-            if (w.order && w.order.customer && winners.findIndex( winner => { return winner.id === w.order.customer.id }) === -1) {
+      lotteries.forEach(l => {
+        if (l.offerDrawId === draw._id) {
+          l.winners.forEach(w => {
+            if (w.order && w.order.customer && winners.findIndex(winner => {
+                return winner.id === w.order.customer.id
+              }) === -1) {
               winners.push(w.order.customer);
             }
           })
@@ -338,7 +360,7 @@ export async function getOffer(page, offer_id) {
     offer.orders = offer.miniprogramOrders;
 
     // Banner
-    offer.media.map( m => m.uri = `${app.folders.offer_media}${m.uri}` )
+    offer.media.map(m => m.uri = `${app.folders.offer_media}${m.uri}`)
     let banner = {};
     if (offer.banner) {
       if (offer.banner[app.db.get('language')]) {
@@ -352,7 +374,7 @@ export async function getOffer(page, offer_id) {
     banner.uri = `${app.folders.offer_banner}${banner.uri}`;
     offer.media = [banner, ...offer.media];
 
-    offer.media.map( media => {
+    offer.media.map(media => {
       media.type = _checkMediaType(media.type);
       media.pause = true;
     });
@@ -364,11 +386,11 @@ export async function getOffer(page, offer_id) {
 
     // Add to total
     offer.addon_sold = 0;
-    offer.miniprogram.items.forEach( i => {
+    offer.miniprogram.items.forEach(i => {
       offer.total += i.stock;
       if (offer.type === 'bourse') {
         offer.addon_sold += (i.stock - i.actualStock);
-        i.price = offer.miniprogram.bourses[0].unitPrice;
+        i.price = offer.miniprogram.bourses[0]?.unitPrice;
       }
     })
 
@@ -377,7 +399,7 @@ export async function getOffer(page, offer_id) {
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
     let product_name_list = {};
 
-    offer_products.forEach( p => {
+    offer_products.forEach(p => {
       offer.sold += (p.stock - p.actualStock);
 
       // Check for and Change all free fall product price 
@@ -408,7 +430,7 @@ export async function getOffer(page, offer_id) {
 
     // Lottery detail
     if (offer.miniprogram.lotteryEnable && offer.miniprogram.lottery.draws.length) {
-      offer.miniprogram.lottery.draws.sort( (a, b) => {
+      offer.miniprogram.lottery.draws.sort((a, b) => {
         return a.conditionValue - b.conditionValue;
       })
 
@@ -416,7 +438,7 @@ export async function getOffer(page, offer_id) {
 
       offer = _setLotteryDraws(offer, null);
     }
-    
+
     offer = _setHurryPopup(offer, page);
 
     // Set page data
@@ -459,7 +481,7 @@ export async function getOffer(page, offer_id) {
     page.startCountdown();
 
     // Set products height on load
-    wx.createSelectorQuery().select('#products').boundingClientRect().exec( res => {
+    wx.createSelectorQuery().select('#products').boundingClientRect().exec(res => {
       page.setData({
         "_setting.height": `${res[0].height + 12}px`,
       })
@@ -469,7 +491,10 @@ export async function getOffer(page, offer_id) {
     if (offer.media[0].type === "video") {
       let play_data = {
         currentTarget: {
-          dataset: { index: 0, do_pause: false }
+          dataset: {
+            index: 0,
+            do_pause: false
+          }
         }
       }
       toggleVideo(page, play_data);
@@ -480,7 +505,7 @@ export async function getOffer(page, offer_id) {
 
     // Update quantity button setting
     let quantity_changers = page.selectAllComponents('.product-quantity');
-    quantity_changers.forEach( changer => {
+    quantity_changers.forEach(changer => {
       let products = [...offer.miniprogram.packs, ...offer.miniprogram.items];
       let product_id = changer.data.product_id;
       let product = products[findIndex(products, product_id, '_id')];
@@ -499,7 +524,7 @@ export async function getOffer(page, offer_id) {
 
   // Update number of views for offer before getting offer
   app.api.setOfferView(offer_id).then(() => {
-    app.api.getLotteries(`offer=${offer_id}`).then( res => {
+    app.api.getLotteries(`offer=${offer_id}`).then(res => {
       lotteries = res;
       app.api.getOffers(`?id=${offer_id}`).then(callback);
     });
@@ -511,32 +536,30 @@ export function switchTabs(page, tab) {
   const _getHeight = () => {
     return new Promise((resolve) => {
       if (tab === "recipe") {
-        wx.createSelectorQuery().select('#recipes').boundingClientRect().exec( res => {
+        wx.createSelectorQuery().select('#recipes').boundingClientRect().exec(res => {
           resolve(res[0].height);
         })
-      } 
-      else if(tab === "pack"){
-        wx.createSelectorQuery().select('#products').boundingClientRect().exec( res => {
+      } else if (tab === "pack") {
+        wx.createSelectorQuery().select('#products').boundingClientRect().exec(res => {
+          resolve(res[0].height);
+        })
+      } else {
+        wx.createSelectorQuery().select('#products').boundingClientRect().exec(res => {
           resolve(res[0].height);
         })
       }
-      else{
-        wx.createSelectorQuery().select('#products').boundingClientRect().exec( res => {
-          resolve(res[0].height);
-        })
-      }
-   })
+    })
   }
-  let left="0";
-  if(tab=="pack"){
-    left="-100vw"
-  }else if(tab=="recipe"){
-    left="-100vw"
-  }else{
-    left="0"
+  let left = "0";
+  if (tab == "pack") {
+    left = "-100vw"
+  } else if (tab == "recipe") {
+    left = "-100vw"
+  } else {
+    left = "0"
   };
   // let left = (tab === "recipe") ? "-100vw" : "0";
-  _getHeight().then( res => {
+  _getHeight().then(res => {
     page.setData({
       "_setting.currentTab": tab,
       "_setting.height": `${res}px`,
@@ -544,32 +567,31 @@ export function switchTabs(page, tab) {
     })
   });
 }
-export function jump_item(page,info){
+export function jump_item(page, info) {
   const _getHeight = () => {
     return new Promise((resolve) => {
-      if(info ==="offer"){
+      if (info === "offer") {
         resolve(516);
       }
       if (info === "specials") {
-          resolve(1000);
-      } 
-      if(info === "lottery"){
-        wx.createSelectorQuery().select('#lottery_modal').boundingClientRect().exec( res => {
-          resolve(res[0].height+1670);
+        resolve(1000);
+      }
+      if (info === "lottery") {
+        wx.createSelectorQuery().select('#lottery_modal').boundingClientRect().exec(res => {
+          resolve(res[0].height + 1670);
         })
       }
-
-   })
+    })
   }
-  _getHeight().then( res => {
+  _getHeight().then(res => {
     page.setData({
       "jump_setting.current_tab": info,
       "jump_setting.height": `${res}`,
     })
-  wx.pageScrollTo({
-    scrollTop:page.data.jump_setting.height,
-    duration: 200
-  })
+    wx.pageScrollTo({
+      scrollTop: page.data.jump_setting.height,
+      duration: 200
+    })
   });
 }
 
@@ -583,10 +605,10 @@ export function getOfferBuyers(page, offer_id) {
     // Set up messages
     if (messages.length < res.length) {
       let new_messagaes = res.slice(messages.length, res.length);
-      new_messagaes.forEach( order => {
+      new_messagaes.forEach(order => {
         let message = `${order.name}${ _t.ordered }`;
         let cart = [];
-        order.cart.forEach( c => {
+        order.cart.forEach(c => {
           cart.push(`${ _t[c.type] } ${ c.shortName }`);
         })
         message += cart.join(', ');
@@ -618,15 +640,15 @@ export function getOfferBuyers(page, offer_id) {
 
     let new_sold = 0;
     let new_add_on_sold = 0;
-    new_purchases.forEach( order => {
-      order.cart.forEach( item => {
+    new_purchases.forEach(order => {
+      order.cart.forEach(item => {
         // Change stock amount in offer
         let list_name = 'packs';
         if (item.type === 'item') {
           list_name = 'items';
           new_add_on_sold += item.amount;
         }
-        let item_idx = offer.miniprogram[list_name].findIndex( i => i.shortName === item.shortName );
+        let item_idx = offer.miniprogram[list_name].findIndex(i => i.shortName === item.shortName);
         offer.miniprogram[list_name][item_idx].actualStock -= item.amount;
 
         // Calculate newly sold amount
@@ -649,7 +671,7 @@ export function getOfferBuyers(page, offer_id) {
     offer = _setHurryPopup(offer, page);
 
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
-    offer_products.forEach( p => {
+    offer_products.forEach(p => {
       // Check for and Change all free fall product price 
       if (offer.type === "free_fall" && p.freeFall && p.freeFall.quantityTrigger) {
         getRulePrice("free_fall", offer.id, p);
@@ -679,7 +701,7 @@ export function getOfferBuyers(page, offer_id) {
 
 // Start interval for checking offer buyer update
 export function startBuyerInterval(page, offer_id) {
-  purchase_timer = setInterval( () => {
+  purchase_timer = setInterval(() => {
     getOfferBuyers(page, offer_id);
   }, 1000)
 }
@@ -692,7 +714,7 @@ export function clearBuyerInterval() {
 export const unloadOfferPage = (page) => {
   let pages = getCurrentPages();
   let previous_page = pages[pages.length - 2];
-  (previous_page && previous_page.filterOffers) ? previous_page.filterOffers({}) : '';
+  (previous_page && previous_page.filterOffers) ? previous_page.filterOffers({}): '';
 }
 
 // Toggle video
