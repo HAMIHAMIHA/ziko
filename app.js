@@ -37,6 +37,7 @@ App({
     if (db.get('userInfo').token) {
       self.checkForLotteryNotification();
       self.setAccountStatus();
+      self.setLotteryMachine();
     }
 
     await loadFonts();
@@ -82,5 +83,10 @@ App({
   // Get translated tabbar text when called
   setTabbars: function() {
     tabbars.forEach( (tab, i) => common.setTabbar(i, this.globalData.i18n[tab]));
-  }
+  },
+
+  // Store lottery machine status in local storage
+  setLotteryMachine: function() {
+    db.set('lotteryShow', true);
+  },
 })

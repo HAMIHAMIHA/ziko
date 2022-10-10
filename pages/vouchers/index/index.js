@@ -1,43 +1,51 @@
 const index_data = require("../../../utils/constants.js");
-const { showLoading } = require("../../../utils/common.js");
-const { voucher_status, communities } = require("../../../utils/constants.js");
-const { formatDate, formatTime } = require("../../../utils/util.js");
+const {
+  showLoading
+} = require("../../../utils/common.js");
+const {
+  voucher_status,
+  communities
+} = require("../../../utils/constants.js");
+const {
+  formatDate,
+  formatTime
+} = require("../../../utils/util.js");
 
 const app = getApp();
 const _voucher_status = ['all', 'unused', 'used'];
 
 // Set page translation
 const _setPageTranslation = page => {
-    let i18n = app.globalData.i18n;
+  let i18n = app.globalData.i18n;
 
-    // Change page nav title
-    wx.setNavigationBarTitle({
-      title: i18n.vouchers
-    })
+  // Change page nav title
+  wx.setNavigationBarTitle({
+    title: i18n.vouchers
+  })
 
-    page.setData({
-      _language: app.db.get('language'),
-      _t: {
-        available_for: i18n.available_for,
-        contact_customer_hero: i18n.contact_customer_hero,
-        expire_on: i18n.expire_on,
-        from: i18n.from,
-        get_profile: i18n.get_profile,
-        moile_login: i18n.mobile_login,
-        need_login: i18n.need_login,
-        received: i18n.received,
-        select: i18n.select,
-        to_order: i18n.to_order,
-        voucher_question: i18n.voucher_question,
-        voucher_status: i18n.voucher_status,
-        ziko:i18n.ziko,
-        expires:i18n.expires,
-        use_now:i18n.use_now,
-        no_vouchers_yet:i18n.no_vouchers_yet,
-        its_up_to_you:i18n.its_up_to_you,
-        view_ziko_offers:i18n.view_ziko_offers
-      },
-    })
+  page.setData({
+    _language: app.db.get('language'),
+    _t: {
+      available_for: i18n.available_for,
+      contact_customer_hero: i18n.contact_customer_hero,
+      expire_on: i18n.expire_on,
+      from: i18n.from,
+      get_profile: i18n.get_profile,
+      moile_login: i18n.mobile_login,
+      need_login: i18n.need_login,
+      received: i18n.received,
+      select: i18n.select,
+      to_order: i18n.to_order,
+      voucher_question: i18n.voucher_question,
+      voucher_status: i18n.voucher_status,
+      ziko: i18n.ziko,
+      expires: i18n.expires,
+      use_now: i18n.use_now,
+      no_vouchers_yet: i18n.no_vouchers_yet,
+      its_up_to_you: i18n.its_up_to_you,
+      view_ziko_offers: i18n.view_ziko_offers
+    },
+  })
 }
 
 const _getVouchers = (page, status) => {
@@ -65,7 +73,7 @@ const _getVouchers = (page, status) => {
 
       // Available for community
       let community_list = [];
-      v.communities.forEach( c => {
+      v.communities.forEach(c => {
         community_list.push(app.globalData.i18n.community[communities[c]])
       })
       voucher.community = community_list.join(' / ')
@@ -74,7 +82,7 @@ const _getVouchers = (page, status) => {
     });
 
     // Show vouchers in order with selectables at bottom by crate time
-    vouchers.sort( (v1, v2) => {
+    vouchers.sort((v1, v2) => {
       return v2.createdAt - v1.createdAt
     })
 
@@ -82,7 +90,11 @@ const _getVouchers = (page, status) => {
       vouchers
     })
 
-    if (!status) { app.db.set('vouchers', res.filter(r => { return r.status === 'validated' }).length) }
+    if (!status) {
+      app.db.set('vouchers', res.filter(r => {
+        return r.status === 'validated'
+      }).length)
+    }
     showLoading(false);
   }
 
@@ -110,48 +122,49 @@ Page({
     // map: true // Default open to map view
 
     //__test
-    vouchers:[{
-      community:"kitchen",
-      community2:"",
-      createdAt:"2022/08/12 12:00",
-      amount:100,
-      expire_on:"In 3 hours"
-      },{
-      community:"kitchen",
-      community2:"pet",
-      createdAt:"2022/11/11 12:00",
-      amount:100,
-      expire_on:"In 3 hours"
-    },{
-      community:"pet",
-      community2:"",
-      createdAt:"2022/11/11 12:00",
-      amount:150,
-      expire_on:"In 3 hours"
-    },{
-      community:"cellar",
-      community2:"garden",
-      createdAt:"2022/11/11 12:00",
-      amount:100,
-      expire_on:"Tomorrow"
-    },
-    {
-      community:"garden",
-      community2:"",
-      createdAt:"2022/11/11 12:00",
-      amount:100,
-      expire_on:"Tomorrow"
-    },
-    {
-      community:"",
-      community2:"",
-      createdAt:"2022/11/11 12:00",
-      amount:120,
-      expire_on:"Tomorrow"
-    },]
+    vouchers: [{
+        community: "kitchen",
+        community2: "",
+        createdAt: "2022/08/12 12:00",
+        amount: 100,
+        expire_on: "In 3 hours"
+      }, {
+        community: "kitchen",
+        community2: "pet",
+        createdAt: "2022/11/11 12:00",
+        amount: 100,
+        expire_on: "In 3 hours"
+      }, {
+        community: "pet",
+        community2: "",
+        createdAt: "2022/11/11 12:00",
+        amount: 150,
+        expire_on: "In 3 hours"
+      }, {
+        community: "cellar",
+        community2: "garden",
+        createdAt: "2022/11/11 12:00",
+        amount: 100,
+        expire_on: "Tomorrow"
+      },
+      {
+        community: "garden",
+        community2: "",
+        createdAt: "2022/11/11 12:00",
+        amount: 100,
+        expire_on: "Tomorrow"
+      },
+      {
+        community: "",
+        community2: "",
+        createdAt: "2022/11/11 12:00",
+        amount: 120,
+        expire_on: "Tomorrow"
+      },
+    ]
   },
 
-  onShow: async function() {
+  onShow: async function () {
     const self = this;
     _setPageTranslation(self);
 
@@ -163,22 +176,22 @@ Page({
     }
   },
 
-  getVouchers: function() {
+  getVouchers: function () {
     _getVouchers(this, '');
   },
 
   // Get Profile info
-  getUserProfile: function(e) {
+  getUserProfile: function (e) {
     app.sessionUtils.getWxUserInfo(this);
   },
 
   // Mobile login
-  getPhoneNumber: async function(e) {
+  getPhoneNumber: async function (e) {
     await app.sessionUtils.mobileLogin(this, e.detail.code);
     this.getVouchers();
   },
 
-  changeFilter: function(e) {
+  changeFilter: function (e) {
     const self = this;
 
     self.setData({

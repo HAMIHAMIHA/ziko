@@ -23,11 +23,6 @@ Component({
   methods: {
     updateCards: function(_t, startTimer) {
       const self = this;
-      const _cart ={
-        "62ff500a6a30a8532459c130": {
-          count: 500
-        }
-      } 
 
       // Set offer card contents
       self.setData({
@@ -36,8 +31,7 @@ Component({
           offer_banner: app.folders.offer_banner,
         },
         _t: _t,
-        _cart: _cart
-        // _cart: app.db.get('cart')
+        _cart: app.db.get('cart'),
       })
       // Start or end timers
       let timer = self.selectAllComponents('.timer');
@@ -92,7 +86,7 @@ Component({
       const self = this;
       let data = e.currentTarget.dataset;
 
-      if (!data.started || new Date(data.end_time).getTime() <= new Date().getTime()) return;
+      // if (!data.started || new Date(data.end_time).getTime() <= new Date().getTime()) return;
 
       var url = routes.offer_regular;
       // if (communities[data.community] === "cellar" && data.type && data.type !== "regular") {

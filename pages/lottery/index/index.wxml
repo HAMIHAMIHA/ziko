@@ -1,7 +1,7 @@
 <view class="container">
   <!-- List View -->
   <view class="first-show" wx:if="{{ first_show }}">
-    <image src="../../../assets/images/zikoland.svg" class="image-size"></image>
+    <image src="/assets/images/zikoland.svg" class="image-size"></image>
     <view class="machine-pure-box machine-pure-box-cellar" bindanimationiteration="animationiteration" bindanimationend="animationend">
       <view class="machine-light-box machine-light-box-cellar">
         <view class="vertical-light">

@@ -6,7 +6,7 @@
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "checkInvalidKey": true,
-    "compileHotReLoad": false,
+    "compileHotReLoad": true,
     "lazyloadPlaceholderEnable": false,
     "showES6CompileOption": false,
     "useStaticServer": true
@@ -205,6 +205,13 @@
         {
           "name": "Contacts index",
           "pathName": "pages/contacts/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "Account index",
+          "pathName": "pages/account/index/index",
           "query": "",
           "launchMode": "default",
           "scene": null

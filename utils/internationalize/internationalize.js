@@ -480,7 +480,7 @@ export const languageMap_en = {
   ticket: "ticket",
   tickets: "tickets",
   timer: {
-    days: "d",
+    days: "day",
     hours: "h",
     minutes: "min",
     seconds: "sec",

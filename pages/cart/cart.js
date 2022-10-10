@@ -1,17 +1,36 @@
 const OfferRules = require("../../templates/offer/offerRules");
-const { packProductDetail } = require("../../templates/offer/getOffers");
-const { modifyCartItems } = require("../../templates/offer/modifyCart");
+const {
+  packProductDetail
+} = require("../../templates/offer/getOffers");
+const {
+  modifyCartItems
+} = require("../../templates/offer/modifyCart");
 
-const { changeFocus, showLoading, showToast } = require("../../utils/common.js");
-const { communities } = require("../../utils/constants");
-const { formatDate } = require("../../utils/util.js");
+const {
+  changeFocus,
+  showLoading,
+  showToast
+} = require("../../utils/common.js");
+const {
+  communities
+} = require("../../utils/constants");
+const {
+  formatDate
+} = require("../../utils/util.js");
 
-const { createOrder } = require("./createOrder");
-const { getDeliveryFee } = require("./findDeliveryFee");
-const { set } = require("../../utils/db.config");
+const {
+  createOrder
+} = require("./createOrder");
+const {
+  getDeliveryFee
+} = require("./findDeliveryFee");
+const {
+  set
+} = require("../../utils/db.config");
 
 const app = getApp();
-let area_list = [], community, vouchers = [];
+let area_list = [],
+  community, vouchers = [];
 
 // Page default data
 const _setPageDefaultItems = page => {
@@ -49,35 +68,35 @@ const _setPageDefaultItems = page => {
       storage_types: i18n.storage_types,
       total: i18n.total,
       use_voucher: i18n.use_voucher,
-      
+
       ziko_special: i18n.ziko_special,
-      delivery:i18n.delivery,
-      expected_delivery_date:i18n.expected_delivery_date,
-      contact_person:i18n.contact_person,
-      special_requests:i18n.special_requests,
-      send_fapiao_to:i18n.send_fapiao_to,
-      available_ziko_vouchers:i18n.available_ziko_vouchers,
-      if_you_need_to:i18n.if_you_need_to,
-      add_chef_ziko_on_wechat:i18n.add_chef_ziko_on_wechat,
-      lottery_tickets_you_can_get:i18n.lottery_tickets_you_can_get,
-      anything_else_we:i18n.anything_else_we,
-      no_details_yet:i18n.no_details_yet,
-      yes:i18n.yes,
-      no:i18n.no,
+      delivery: i18n.delivery,
+      expected_delivery_date: i18n.expected_delivery_date,
+      contact_person: i18n.contact_person,
+      special_requests: i18n.special_requests,
+      send_fapiao_to: i18n.send_fapiao_to,
+      available_ziko_vouchers: i18n.available_ziko_vouchers,
+      if_you_need_to: i18n.if_you_need_to,
+      add_chef_ziko_on_wechat: i18n.add_chef_ziko_on_wechat,
+      lottery_tickets_you_can_get: i18n.lottery_tickets_you_can_get,
+      anything_else_we: i18n.anything_else_we,
+      no_details_yet: i18n.no_details_yet,
+      yes: i18n.yes,
+      no: i18n.no,
       received: i18n.received,
-      ziko:i18n.ziko,
-      expires:i18n.expires,
-      use_now:i18n.use_now,
-      no_vouchers_yet:i18n.no_vouchers_yet,
-      its_up_to_you:i18n.its_up_to_you,
-      view_ziko_offers:i18n.view_ziko_offers,
-      simonmawas:i18n.simonmawas,
-      wechat_id:i18n.wechat_id,
-      add_cellar_ziko:i18n.add_cellar_ziko,
-      add_farmer_ziko:i18n.add_farmer_ziko,
-      add_pet_ziko:i18n.add_pet_ziko,
-      add_chef_ziko:i18n.add_chef_ziko,
-      please_long_press:i18n.please_long_press,
+      ziko: i18n.ziko,
+      expires: i18n.expires,
+      use_now: i18n.use_now,
+      no_vouchers_yet: i18n.no_vouchers_yet,
+      its_up_to_you: i18n.its_up_to_you,
+      view_ziko_offers: i18n.view_ziko_offers,
+      simonmawas: i18n.simonmawas,
+      wechat_id: i18n.wechat_id,
+      add_cellar_ziko: i18n.add_cellar_ziko,
+      add_farmer_ziko: i18n.add_farmer_ziko,
+      add_pet_ziko: i18n.add_pet_ziko,
+      add_chef_ziko: i18n.add_chef_ziko,
+      please_long_press: i18n.please_long_press,
     },
     _routes: {
       address: app.routes.address,
@@ -144,7 +163,7 @@ const _getOffers = page => {
     let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
     let total_sold = 0;
     offer.addon_sold = 0;
-    offer_products.forEach( i => {
+    offer_products.forEach(i => {
       total_sold += i.stock - i.actualStock;
       if (offer.type === 'bourse' && i.type === 'items') {
         offer.addon_sold += (i.stock - i.actualStock);
@@ -154,7 +173,7 @@ const _getOffers = page => {
 
     // Free fall total
     if (offer.type === "free_fall") {
-      offer_products.forEach( p => {
+      offer_products.forEach(p => {
         // Check for and change all free fall product price 
         if (p.freeFall && p.freeFall.quantityTrigger) {
           OfferRules.getRulePrice("free_fall", offer.id, p);
@@ -164,7 +183,7 @@ const _getOffers = page => {
 
     // Multiple total
     if (offer.type === "multiple_items") {
-      offer_products.forEach( p => {
+      offer_products.forEach(p => {
         if (p.multipleItem && p.multipleItem.length > 0) {
           OfferRules.getRulePrice("multiple", offer.id, p)
         }
@@ -214,7 +233,7 @@ const _getOffers = page => {
 
     showLoading(false);
   }
-  app.api.getOffers(`?id=${page.options.id}`).then( res => {
+  app.api.getOffers(`?id=${page.options.id}`).then(res => {
     offer = res[0];
     app.api.getVouchers("validated", true).then(callback);
   });
@@ -234,82 +253,82 @@ Page({
     delivery_fee: -1,
     free_delivery: false,
     //__test
-    productstest:[
-      {amount:2,
-      type:"packs",
-      illustation:{
-        url:"../../assets/images/lottery-box.png"}
-        ,
-      product:{
-        mainPicture:{
-          en:"en",
-          zh:"zh"
+    productstest: [{
+      amount: 2,
+      type: "packs",
+      illustation: {
+        url: "/assets/images/lottery-box.png"
+      },
+      product: {
+        mainPicture: {
+          en: "en",
+          zh: "zh"
         },
-        name:{
-          en:"en",
-          zh:"zh"
+        name: {
+          en: "en",
+          zh: "zh"
         }
       }
-    }
+    }],
+    fapiaotest: true,
+    fapiao_content_test: "上海市徐汇区水电路1200弄3号401室上海市徐汇区水电路1200弄3号401室区上海市徐汇区水电路1200弄3号",
+    vouchers: [{
+        community: "kitchen",
+        community2: "",
+        createdAt: "2022/08/12 12:00",
+        amount: 100,
+        expire_on: "In 3 hours"
+      }, {
+        community: "kitchen",
+        community2: "pet",
+        createdAt: "2022/11/11 12:00",
+        amount: 100,
+        expire_on: "In 3 hours"
+      }, {
+        community: "pet",
+        community2: "",
+        createdAt: "2022/11/11 12:00",
+        amount: 150,
+        expire_on: "In 3 hours"
+      }, {
+        community: "cellar",
+        community2: "garden",
+        createdAt: "2022/11/11 12:00",
+        amount: 100,
+        expire_on: "Tomorrow"
+      },
+      {
+        community: "garden",
+        community2: "",
+        createdAt: "2022/11/11 12:00",
+        amount: 100,
+        expire_on: "Tomorrow"
+      },
+      {
+        community: "",
+        community2: "",
+        createdAt: "2022/11/11 12:00",
+        amount: 120,
+        expire_on: "Tomorrow"
+      },
     ],
-    fapiaotest:true,
-    fapiao_content_test:"上海市徐汇区水电路1200弄3号401室上海市徐汇区水电路1200弄3号401室区上海市徐汇区水电路1200弄3号",
-    vouchers:[{
-      community:"kitchen",
-      community2:"",
-      createdAt:"2022/08/12 12:00",
-      amount:100,
-      expire_on:"In 3 hours"
-      },{
-      community:"kitchen",
-      community2:"pet",
-      createdAt:"2022/11/11 12:00",
-      amount:100,
-      expire_on:"In 3 hours"
-    },{
-      community:"pet",
-      community2:"",
-      createdAt:"2022/11/11 12:00",
-      amount:150,
-      expire_on:"In 3 hours"
-    },{
-      community:"cellar",
-      community2:"garden",
-      createdAt:"2022/11/11 12:00",
-      amount:100,
-      expire_on:"Tomorrow"
+    voucher: {
+      community: "kitchen",
+      community2: "",
+      createdAt: "2022/08/12 12:00",
+      price: 1000,
+      amount: 100,
+      amount_before: 1500,
+      expire_on: "In 3 hours"
     },
-    {
-      community:"garden",
-      community2:"",
-      createdAt:"2022/11/11 12:00",
-      amount:100,
-      expire_on:"Tomorrow"
+    copybox_judgment: false,
+    copybox_type: {
+      chef: "",
+      cellar: true,
+      pet: "",
+      farmer: "",
     },
-    {
-      community:"",
-      community2:"",
-      createdAt:"2022/11/11 12:00",
-      amount:120,
-      expire_on:"Tomorrow"
-    },],
-    voucher:{
-      community:"kitchen",
-      community2:"",
-      createdAt:"2022/08/12 12:00",
-      price:1000,
-      amount:100,
-      amount_before:1500,
-      expire_on:"In 3 hours"
-    },
-    copybox_judgment:false,
-    copybox_type:{
-      chef:"",
-      cellar:true,
-      pet:"",
-      farmer:"",
-    },
-    showlottery:true,
+    showLottery: true,
   },
 
   onShow: function () {
@@ -339,12 +358,12 @@ Page({
     })
   },
 
-  onHide: function() {
+  onHide: function () {
     this.options.back = true;
   },
 
   // Change checkout amount
-  changeAmount: function(e) {
+  changeAmount: function (e) {
     const self = this;
     modifyCartItems(self, e, true);
 
@@ -365,12 +384,12 @@ Page({
     OfferRules.checkVouchers(self, vouchers, community);
   },
 
-  next: function(e) {
+  next: function (e) {
     changeFocus(this, e);
   },
 
   // Change picker result
-  bindPickerChange: function(e) {
+  bindPickerChange: function (e) {
     const self = this;
 
     let changing_key = e.currentTarget.dataset.key;
@@ -382,7 +401,7 @@ Page({
   },
 
   // Change checkmark status 
-  toggleCheck: function(e) {
+  toggleCheck: function (e) {
     const self = this;
 
     let changing_key = e.target.dataset.key;
@@ -403,48 +422,48 @@ Page({
   //   }
   // },
 
-  calculateDeliveryFee: function(area) {
+  calculateDeliveryFee: function (area) {
     getDeliveryFee(this, area, area_list);
     OfferRules.checkVouchers(this, vouchers, community);
   },
 
-  pay: function(e) {
+  pay: function (e) {
     createOrder(this, e.detail.value);
   },
   copyBoxShow: function () {
-    var that=this;
+    var that = this;
     that.setData({
-      copybox_judgment:true
+      copybox_judgment: true
     })
   },
   copyBoxHide: function () {
-    var that=this;
+    var that = this;
     that.setData({
-      copybox_judgment:false
+      copybox_judgment: false
     })
   },
   copyBtn: function (e) {
     wx.setClipboardData({
-         data: e.currentTarget.dataset.text,
-         success: function (res) {
-           wx.getClipboardData({
-             success: function (res) {
-               wx.showToast({
-                 title: '复制成功'
-               })
-             }
-           })
-         }
-       })
-   },
-  showlottery(){
-    this.setData({
-      showlottery:false
+      data: e.currentTarget.dataset.text,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showToast({
+              title: '复制成功'
+            })
+          }
+        })
+      }
     })
   },
-  hide_lottery_get:function(event){
+  showLottery() {
     this.setData({
-      showlottery:true
+      showLottery: false
+    })
+  },
+  hide_lottery_get: function (event) {
+    this.setData({
+      showLottery: true
     })
   }
 })

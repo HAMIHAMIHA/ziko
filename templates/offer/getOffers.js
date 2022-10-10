@@ -368,7 +368,8 @@ export async function getOffer(page, offer_id) {
       offer.total += i.stock;
       if (offer.type === 'bourse') {
         offer.addon_sold += (i.stock - i.actualStock);
-        i.price = offer.miniprogram.bourses[0].unitPrice;
+        console.debug("offer", offer.miniprogram.bourses);
+        i.price = offer.miniprogram.bourses[0]?.unitPrice;
       }
     })
 
