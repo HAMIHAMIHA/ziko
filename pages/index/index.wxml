@@ -1,6 +1,6 @@
   <view class="container{{ map ? ' map_container' : '' }}">
   <!-- Map View -->
-  <!-- <view class="map" wx:if="{{ map }}">
+  <view class="map" wx:if="{{ map }}">
     <view class="map-container">
       <image src="{{ _folders.asset + 'map.jpeg' }}" mode="widthFix" lazy-load="true"></image>
       <view class="map-areas">
@@ -16,12 +16,12 @@
         </block>
       </view>
     </view>
-  </view> -->
+  </view>
   <!-- End of Map View -->
 
   <!-- List View -->
   <!-- <view class="list" wx:else> -->
-  <view class="list">
+  <view class="list" wx:else>
     <!-- Scroll Menu -->
     <view class="h-scroll_container scroll-menu_community">
       <scroll-view class="h-scroll" scroll-x="true">
@@ -51,16 +51,16 @@
   <!-- End of List View -->
 
   <!-- Map and List switcher -->
-  <!-- <view class="gilroy_700 uppercase switcher_container">
+  <view class="gilroy_700 uppercase switcher_container">
     <view class="switcher">
-      <button class="switch{{ map ? ' selected' : '' }}" bindtap="switchType" data-type="map">{{ _t.explore }}</button>
       <button class="switch{{ map ? '' : ' selected' }}" bindtap="switchType" data-type="list">{{ _t.list }}</button>
+      <button class="switch{{ map ? ' selected' : '' }}" bindtap="switchType" data-type="map">{{ _t.explore }}</button>
     </view>
-  </view> -->
+  </view>
   <!-- End of Map and List switcher -->
 
   <!-- Map popup -->
-  <!-- <view class="modal {{ map && filter_group ? ' visible' : '' }}" catchtouchmove="preventSlide">
+  <view class="modal {{ map && filter_group ? ' visible' : '' }}" catchtouchmove="preventSlide">
     <view class="modal-backdrop" bindtap="closeMapModal"></view>
     <view class="modal-contents" wx:if="{{ map && filter_group }}">
       <view class="modal-card">
@@ -72,7 +72,7 @@
         </scroll-view>
       </view>
     </view>
-  </view> -->
+  </view>
   <!-- End of Map popup -->
 </view>
 <lottery-draw id="lottery_modal"></lottery-draw>

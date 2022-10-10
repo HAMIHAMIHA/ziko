@@ -1,5 +1,5 @@
 page{
-  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+  padding-bottom: calc(130rpx + env(safe-area-inset-bottom));
 }
 .container {
   /* --container-padding-bottom-: calc(34rpx + 4rpx + 4rpx + 48rpx + 48rpx);  */

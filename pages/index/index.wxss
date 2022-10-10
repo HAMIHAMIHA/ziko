@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  top: 0;
 }
 
 .container.map_container {
@@ -9,7 +10,7 @@
 /* Map Display */
 .map {
   width: 100vw;
-  height: 100vh; /* Button outer padding 32rpx * 2 + button height 28rpx + button inner padding 20rpx * 2 */
+  height: calc(100vh - 48rpx - env(safe-area-inset-bottom)) ; /* Button outer padding 32rpx * 2 + button height 28rpx + button inner padding 20rpx * 2 */
   box-sizing: border-box;
   background: #272838;
   position: relative;
@@ -125,7 +126,8 @@
   padding-bottom: 32rpx;
   display: flex;
   position: fixed;
-  bottom: 0;
+  z-index: 200;
+  bottom: calc(100rpx + env(safe-area-inset-bottom));
 }
 
 .switcher {

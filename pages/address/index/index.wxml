@@ -21,14 +21,14 @@
       <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.address_detail + '?id=' + address._id }}"></navigator>
     </view>
   </view>
-
-  <view class="btn-outline_container" wx:if="{{ _setting.selecting }}">
+<!-- wx:if="{{ _setting.selecting }}" -->
+  <view class="btn-outline_container" >
     <navigator class="btn-outline gilroy_700" hover-class="none" url="{{ _routes.address_detail }}">{{ '+ ' + _t.add_new_address }}</navigator>
   </view>
 
-  <view class="btn-bottom"  wx:else>
+  <!-- <view class="btn-bottom"  wx:else>
     <button class="nunito_600" bindtap="select">{{ _t.select }}</button>
-  </view>
+  </view> -->
 </view>
 
 <lottery-draw id="lottery_modal"></lottery-draw>

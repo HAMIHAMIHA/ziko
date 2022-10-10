@@ -3,7 +3,7 @@
 
 <view class="container ziko-offer {{ 'community-' + _offer.community }}{{ next_special ? ' bottom-message' : '' }}">
   <!-- Offer Countdown -->
-  <view class="countdown">
+  <view class="countdown {{ 'ziko-' + _offer.community }}">
     <view class="nunito_600 uppercase countdown_text">{{ _t.remaining_time }}</view>
     <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}"></countdown>
   </view>
@@ -209,11 +209,6 @@
       <!-- End of Offer Recipes -->
     </view>
   </view>
-
-
-
-
-
 
 
   <!-- Pay Button -->

@@ -20,6 +20,7 @@ Page({
   },
 
   onShow: async function () {
+    console.log("userData",this.data)
     const self = this;
     let i18n = app.globalData.i18n;
 
