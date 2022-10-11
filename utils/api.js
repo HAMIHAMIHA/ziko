@@ -24,9 +24,8 @@ const request = (method, path, data) => {
       success: function(res) {
         if (res.data?.success === false) {
           showLoading(false);
-          console.debug(res.data.message);
           if (reject) {
-            reject(res.data.message);
+            reject(res.data.message)
           }
         } else {
           resolve(res.data);
