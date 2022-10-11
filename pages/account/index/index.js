@@ -136,6 +136,8 @@ Page({
 
   // Get Profile info
   getUserProfile: function(e) {
+    console.warn('getUserProfile', e);
+    console.debug('getUserProfile', e);
     app.sessionUtils.getWxUserInfo(this);
   },
 
