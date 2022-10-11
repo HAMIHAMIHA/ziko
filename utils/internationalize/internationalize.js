@@ -11,7 +11,7 @@ export const languageMap_en = {
 },
   access_the_offer: "Access the offer and price list",
   address: "Address",
-  address_comment: "Comment",
+  address_comment: "Comments",
   address_type: {
     home: "Home",
     office: "Office",
@@ -570,7 +570,7 @@ export const languageMap_zh = {
 },
   access_the_offer: "Access the offer and price list",
   address: "地址",
-  address_comment: "Comment",
+  address_comment: "Comments",
   address_type: {
     home: "家",
     office: "办公室",
