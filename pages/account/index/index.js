@@ -86,7 +86,6 @@ Page({
     animationData: {},
     copyclicked: "",
     margin_bottom: "",
-    tabIndex:"2"
   },
   onLaunch (options) {
     // Do something initial when launch.
@@ -136,8 +135,6 @@ Page({
 
   // Get Profile info
   getUserProfile: function(e) {
-    console.warn('getUserProfile', e);
-    console.debug('getUserProfile', e);
     app.sessionUtils.getWxUserInfo(this);
   },
 

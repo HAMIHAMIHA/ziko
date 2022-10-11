@@ -5,8 +5,10 @@ const config = require('./properties.js');
 // Generate header and url
 const _unifyHeaders = (path) => {
   let header = {};
-  if (db.get('userInfo').token) {
-    header = {'Authorization': `Bearer ${db.get('userInfo').token}`};
+  const token = db.get("userInfo").token;
+  // console.log("token", token);
+  if (token) {
+    header = {'Authorization': `Bearer ${token}`};
   }
 
   return [header, `${config.api_url}${path}`];

@@ -2,13 +2,13 @@
  * Class for Wechat login methods
  */
 
-import {navigateBack, showLoading} from "./common";
+import { navigateBack, showLoading } from "./common";
 
 let app = null;
 
 // Async Wechat function
 function awx(fn, setting = {}) {
-  const promise = new Promise((resolve, reject) => {
+  const promise = new Promise( (resolve, reject) => {
     wx[fn]({
       ...setting,
       success: resolve,
@@ -33,7 +33,6 @@ async function _getOpenIdSession() {
 async function _wxOpenId() {
   try {
     let open_code = await awx("login");
-    // console.debug("open_code", open_code);
     return open_code;
   } catch (e) {
     return false;
@@ -55,14 +54,12 @@ class SessionClass {
 
   // Get open id for user
   async getOpenId() {
-    console.warn("getOpenId");
     let session = await _getOpenIdSession();
     if (session && app.db.get('userInfo')?.customer?.openid) return;
 
     let open_code = await _wxOpenId();
-    console.debug("open_code", open_code);
-    app.api.wxOpenid({code: open_code.code}).then(res => {
-      console.warn("res", res);
+
+    app.api.wxOpenid({ code: open_code.code }).then(res => {
       let user = app.db.get('userInfo') || {};
       user.customer ? user.customer.openId = res.openId : user.customer = res;
       app.db.set('userInfo', user);
@@ -87,7 +84,7 @@ class SessionClass {
     // Try refresh token if user expired
     if (!_checkExpired(user_info.refreshExpireAt)) {
       console.debug("Refresh User Session");
-      return app.api.refreshToken({refreshToken: user_info.refreshToken}).then(res => {
+      return app.api.refreshToken({ refreshToken: user_info.refreshToken }).then( res => {
         app.db.set('userInfo', res);
         return;
       })
@@ -104,7 +101,7 @@ class SessionClass {
     let user_info = app.db.get('userInfo');
     // Clear user info
     app.db.set('userInfo', {
-      customer: {openId: user_info?.customer?.openId},
+      customer: { openId: user_info?.customer?.openId },
       wxUser: user_info?.wxUser ? user_info?.wxUser : {},
     });
     return;
@@ -117,29 +114,31 @@ class SessionClass {
   async getWxUserInfo(page) {
     try {
       const desc = `${app.globalData.i18n.getting_user_profile}`; // Need to be quoted to trigger popup)
-      let wx_user = await awx("getUserProfile", {desc});
-      const wxUser = {
-        avatar: wx_user.userInfo.avatarUrl,
-        name: wx_user.userInfo.nickName
-      };
+      let wx_user = await awx("getUserProfile", { desc });
       let user = app.db.get('userInfo');
-      page.setData({
-        wxUser: user.wxUser
-      })
-      app.db.set('userInfo', {...user, wxUser});
-    } catch (e) {
+        user.wxUser = {
+          avatar: wx_user.userInfo.avatarUrl,
+          name: wx_user.userInfo.nickName
+        }
+        page.setData({
+          wxUser: user.wxUser
+        })
+        app.db.set('userInfo', user);
+    } catch(e) {
       return false;
     }
   }
 
   // Login with wechat mobile number
   mobileLogin(page, code) {
-    const promise = new Promise(resolve => {
+    console.log("mobileLogin")
+    const promise = new Promise ( resolve => {
       const callback = res => {
         res.customer.openId = res.customer.openid;
         res.wxUser = app.db.get('userInfo').wxUser;
         app.db.set('userInfo', res);
-        page.setData({user: res.customer})
+        console.log("res", res);
+        page.setData({ user: res.customer })
 
         // Get lottery and save info for account page usage  
         app.checkForLotteryNotification();
@@ -147,11 +146,11 @@ class SessionClass {
 
         resolve();
       }
-      console.warn("userInfo", app.db.get('userInfo'))
+
       const data = {
         code: code,
-        name: app.db.get('userInfo')?.customer?.name ? app.db.get('userInfo').customer.name : app.db.get('userInfo').wxUser.name,
-        openId: app.db.get('userInfo')?.customer.openId,
+        name: app.db.get('userInfo').customer.name ? app.db.get('userInfo').customer.name : app.db.get('userInfo').wxUser.name,
+        openId: app.db.get('userInfo').customer.openId
       }
       app.api.wxLogin(data).then(callback);
     })
@@ -166,9 +165,9 @@ class SessionClass {
     if (_checkExpired(user?.expireAt)) {
       this.logout();
     } else {
-      this.refreshUserInfo(page);
+      await this.refreshUserInfo(page);
     }
-    return;
+    return page;
   }
 
   // Get user info from database
@@ -178,6 +177,7 @@ class SessionClass {
       let user = app.db.get('userInfo');
       user.customer = res.user;
       app.db.set('userInfo', user);
+      console.log("refreshUserInfo", user);
       page?.setData({
         user: res.user,
         wxUser: user.wxUser ? user.wxUser : {}

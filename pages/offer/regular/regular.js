@@ -1,6 +1,7 @@
 const animate = require('../../../templates/offer/animation.js').tabbar;
 const Offers = require('../../../templates/offer/getOffers.js');
 const ModifyCart = require('../../../templates/offer/modifyCart.js');
+const {truncateText} = require("../../../utils/util");
 
 const app = getApp();
 
@@ -113,5 +114,10 @@ Page({
     ModifyCart.modifyCartItems(this, e)
   },
 
-  onShareAppMessage: function (res) {}
+  onShareAppMessage: function (res) {},
+
+  truncateDescription: function () {
+    return (str) => truncateText(str, 16);
+  }
+
 })

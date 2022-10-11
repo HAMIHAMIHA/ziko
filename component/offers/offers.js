@@ -63,6 +63,7 @@ Component({
       }
 
       let offers = self.data.offers;
+      console.log("[offers] offers", offers);
       for (const i in offers) {
         if (offers[i].community.id) {
           offers[i].community = communities[offers[i].community.id];

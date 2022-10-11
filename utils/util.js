@@ -105,3 +105,4 @@ export const _checkMediaType = type => {
     return "video";
   }
 }
+

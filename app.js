@@ -19,9 +19,10 @@ App({
     i18n: require('./utils/internationalize/internationalize.js').zh, // Load a default language map first
     pause_lottery_check: false,
     index_type: '',
-  },
+},
   routes,
   sessionUtils: null,
+
   async onLaunch() {
     const self = this;
     // Language setting
@@ -69,18 +70,16 @@ App({
           return r.status === 'validated'
         }).length)
       });
-    }
-    ;
+    };
     if (!db.get('orderDeliveries').length) {
-      api.getOrders({filter_str: `channel=miniprogram`}).then(res => {
+      api.getOrders({ filter_str: `channel=miniprogram` }).then(res => {
         let order_deliveries = [];
         res.forEach(o => {
           order_deliveries.push(o.trackingStatus)
         })
         db.set('orderDeliveries', order_deliveries);
       })
-    }
-    ;
+    };
   },
 
   // Get translated tabbar text when called
