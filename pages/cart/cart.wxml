@@ -5,7 +5,7 @@
     <view class="white-box order-products_container">
       <view class="nunito_700 header">{{ _t.items }}</view>
       <!-- <block wx:for="{{ products }}" wx:key="id" wx:for-item="product"> -->
-      <block wx:for="{{ productstest }}" wx:key="id" wx:for-item="product">
+      <block wx:for="{{ products }}" wx:key="id" wx:for-item="product">
         <view class="order-products product_container" wx:if="{{ product.amount }}">
           <view class="flex-between product" mark:type="{{ product.type }}">
             <view class="flex-start flex-align-start product_left">
