@@ -109,3 +109,11 @@
 .container.container-btn-bottom{
   padding-bottom: 0rpx;
 }
+.pad-container {
+  margin-left: 20rpx;
+}
+.flex-container {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}

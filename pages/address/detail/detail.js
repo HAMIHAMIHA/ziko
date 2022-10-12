@@ -186,6 +186,7 @@ Page({
         any_special_requests:i18n.any_special_requests,
         options_judge:self.options.id,
         select: i18n.select,
+        set_default_address: i18n.set_as_default_address,
       },
       _routes: {
         address_areas: app.routes.address_areas,

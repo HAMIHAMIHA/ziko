@@ -330,6 +330,10 @@ Page({
     },
     showLottery: true,
   },
+  onReady: function() {
+    console.log("copybox_type", this.data.copybox_type);
+
+  },
 
   onShow: function () {
     const self = this;

@@ -454,6 +454,7 @@ export const languageMap_en = {
   select_voucher: "Select Voucher",
   servings: "Servings",
   set_as_default_contact: "Set as default contact",
+  set_as_default_address: "Set as default address",
   single_items: {
     fst: "single",
     snd: " items"
@@ -1010,6 +1011,7 @@ export const languageMap_zh = {
   select_voucher: "Select Voucher",
   send_fapiao_to: "Send Fapiao to",
   set_as_default_contact: "Set as default contact",
+  set_as_default_address: "Set as default address",
   servings: "Servings",
   single_items: {
     fst: "single",

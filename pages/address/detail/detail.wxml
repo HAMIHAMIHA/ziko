@@ -8,16 +8,20 @@
         <view class="detail_label_name line-height">{{ _t.type }}</view>
         <view class="detail_input_content no-border-bottom">
           <picker
-              class="input picker"
-              name="type"
-              placeholder="{{_t.please_select}}"
-              range="{{ _picker.address_type }}"
-              value="{{ _picker_selected }}"
-              bindchange="bindPickerChange"
-            >
-            <view wx:if="{{!_t.address_type[address.type]}}" class="picker_text greycolor">{{ _t.please_select}}<text class="icon icon-arrow"></text></view>
-              <view wx:else class="picker_text">{{ _t.address_type[address.type] || _t.please_select}}<text class="icon icon-arrow"></text></view>
-            </picker>
+            class="input picker"
+            name="type"
+            placeholder="{{_t.please_select}}"
+            range="{{ _picker.address_type }}"
+            value="{{ _picker_selected }}"
+            bindchange="bindPickerChange"
+          >
+            <view wx:if="{{!_t.address_type[address.type]}}" class="picker_text greycolor">{{ _t.please_select}}<text
+              class="icon icon-arrow"></text>
+            </view>
+            <view wx:else class="picker_text">{{ _t.address_type[address.type] || _t.please_select}}<text
+              class="icon icon-arrow"></text>
+            </view>
+          </picker>
         </view>
       </view>
 
@@ -66,10 +70,13 @@
               data-picker_level="2"
               bindchange="updatePicker"
             >
-            <view wx:if="{{ !area.name }}" class="picker_text greycolor">{{ _t.please_select_your_province}}<text class="icon icon-arrow"></text></view>
-            <view wx:else class="picker_text">{{ area.name }}<text class="icon icon-arrow"></text></view>
-            <!-- <view class="picker_text">{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].label }}</view> -->
-            <!-- <text class="icon icon-arrow"></text> -->
+              <view wx:if="{{ !area.name }}" class="picker_text greycolor">{{ _t.please_select_your_province}}<text
+                class="icon icon-arrow"></text>
+              </view>
+              <view wx:else class="picker_text">{{ area.name }}<text class="icon icon-arrow"></text>
+              </view>
+              <!-- <view class="picker_text">{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].label }}</view> -->
+              <!-- <text class="icon icon-arrow"></text> -->
             </picker>
           </view>
         </view>
@@ -120,8 +127,11 @@
               data-picker_level="3"
               bindchange="updatePicker"
             >
-              <view wx:if="{{!_t.address_type[address.type]}}" class="picker_text greycolor">{{ _t.please_select_your_city}}<text class="icon icon-arrow"></text></view>              
-              <view wx:else class="picker_text">{{ _t.address_type[address.type]}}<text class="icon icon-arrow"></text></view>
+              <view wx:if="{{!_t.address_type[address.type]}}" class="picker_text greycolor">
+                {{ _t.please_select_your_city}}<text class="icon icon-arrow"></text>
+              </view>
+              <view wx:else class="picker_text">{{ _t.address_type[address.type]}}<text class="icon icon-arrow"></text>
+              </view>
               <!-- <view class="picker_text">{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].children[_selected[3]].label }}</view> -->
               <!-- <text class="icon icon-arrow"></text> -->
             </picker>
@@ -151,7 +161,7 @@
       </view>
 
 
-<!-- delete contact -->
+      <!-- delete contact -->
       <!-- <view class="details_container inputs_container field-1">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.contact }}</view>
@@ -170,8 +180,6 @@
           </view>
         </view>
       </view> -->
-
-
 
 
       <view class="details_container inputs_container">
@@ -196,7 +204,7 @@
       </view>
 
 
-<!-- delete phone -->
+      <!-- delete phone -->
       <!-- <view class="details_container inputs_container field-4">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.phone_no }}</view>
@@ -235,6 +243,13 @@
             </view>
           </view>
         </view>
+      </view>
+    </view>
+    <view class="pad-container">
+      <view class="flex-container">
+        <view wx:if="{{!address.default}}" class="icon icon-star-gray">
+        </view>
+        <view class="detail_label_name">{{ _t.set_default_address }}</view>
       </view>
     </view>
     <!-- End of Address Form -->
