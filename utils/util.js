@@ -105,4 +105,14 @@ export const _checkMediaType = type => {
     return "video";
   }
 }
+export const truncateText =  (str, format, length) => {
+  if (typeof str !== "string") return;
+  let index = 0;
+  for (let i = 0; i < length; i++) {
+    const nextIndex = str?.indexOf( format, index + 1);
+    if (nextIndex === -1) return str;
+    index = nextIndex;
+  }
+  return str.substring(0, index).padEnd(index + 3, ".");
+}
 

@@ -232,6 +232,9 @@ button:not([size=mini]).btn-primary {
   border: 2rpx solid #3F4250;
   border-radius: 8rpx;
 }
+.btn-outline_container .btn-outline:hover{
+  background: #d8d8d8;
+}
 /* End of Buttons */
 
 /* Contact Box */

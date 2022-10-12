@@ -1,6 +1,7 @@
 const { showLoading } = require("../../utils/common.js");
 const index_data = require("../../utils/constants.js");
 const { formatWeekDate, findIndex, mapDeliveryDates, _checkMediaType } = require("../../utils/util.js");
+const {truncateText} = require("../../utils/util");
 
 const app = getApp();
 let leave_triggered = false; // To track if leave page already triggered
@@ -127,6 +128,17 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
 
     for (var i in raw_offers) {
       let offer = raw_offers[i];
+      console.log(`offer[${i}]`, offer)
+      const shortDescription = {};
+      for (const key in offer.description) {
+        let format = " ", length = 16;
+        if (key === "zh") {
+          format = "";
+          length = 50;
+        }
+        shortDescription[key] = truncateText(offer.description[key], format, length);
+      }
+      // console.log(`offer[${i}] short`, shortDescription)
       let date_value = formatWeekDate(offer.startingDate);
 
       // Creating date filter list
@@ -168,6 +180,8 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
       offer.startDate = date_value;
       offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
       offer.banners = banners;
+      // console.log("shortDescription", shortDescription)
+      offer.shortDescription = shortDescription;
       offers.push(offer);
     }
 
