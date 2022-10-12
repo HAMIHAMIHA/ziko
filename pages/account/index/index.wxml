@@ -19,7 +19,6 @@
     <button class="gilroy_700 uppercase user-info__login" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else>{{ _t.moile_login }}</button>
   </view>
   <!-- END OF LOGIN BUTTON -->
-
   <!-- USER INFO -->
   <view class="user-info__container" wx:else>
     <view class="user-info__avatar">
