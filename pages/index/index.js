@@ -329,4 +329,7 @@ Page({
   // Stop slide action at the back when modal is opened
   preventSlide: function() {},
   onShareAppMessage: function (res) {},
+  closeMapModal: function(res) {
+    this.setData({filter_group: ""});
+  }
 })
