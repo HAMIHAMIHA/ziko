@@ -26,11 +26,11 @@
   </view>
   <view class="first-paragraph gilroy-700">{{_t.there_is_no_pet}}</view>
   <view class="second-paragraph nunito_500">{{_t.you_can}}</view>
-  <button class="add_a_cat">
+  <button class="add_a_cat" bindtap="addPetNavigate">
     <text class="icon icon-walk-cat"></text>
     <text>{{_t.add_a_cat}}</text>
   </button>
-  <button class="add_a_dog">
+  <button class="add_a_dog" bindtap="addPetNavigate">
     <text class="icon icon-walk-dog"></text>
     <text>{{_t.add_a_dog}}</text>
   </button>

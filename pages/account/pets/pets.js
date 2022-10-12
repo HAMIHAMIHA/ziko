@@ -232,6 +232,10 @@ Page({
       pets: self.data.pets
     }
     app.sessionUtils.updateUserInfo(data, app.routes.account, true);
+  },
+  addPetNavigate: function () {
+    const {addpets: url} = this.data._routes;
+    wx.navigateTo({url})
   }
 })
 

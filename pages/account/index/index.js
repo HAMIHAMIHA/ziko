@@ -50,6 +50,8 @@ const _uploadProfileImage = (res, page) =>  {
 
 Page({
   data: {
+    user: {},
+    wxUser: {},
     _folders: {
       customer_picture: app.folders.customer_picture
     },
