@@ -115,6 +115,7 @@ class SessionClass {
     try {
       const desc = `${app.globalData.i18n.getting_user_profile}`; // Need to be quoted to trigger popup)
       let wx_user = await awx("getUserProfile", { desc });
+      console.log('getWxUserInfo', wx_user);
       let user = app.db.get('userInfo');
         user.wxUser = {
           avatar: wx_user.userInfo.avatarUrl,
@@ -131,13 +132,11 @@ class SessionClass {
 
   // Login with wechat mobile number
   mobileLogin(page, code) {
-    console.log("mobileLogin")
     const promise = new Promise ( resolve => {
       const callback = res => {
         res.customer.openId = res.customer.openid;
         res.wxUser = app.db.get('userInfo').wxUser;
         app.db.set('userInfo', res);
-        console.log("res", res);
         page.setData({ user: res.customer })
 
         // Get lottery and save info for account page usage  
