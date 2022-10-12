@@ -294,7 +294,7 @@
 .top-box-color-Cellar{
   background-image:-webkit-linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%) 1; 
 }  
-.top-box-color-Farm{
+.top-box-color-Garden{
   background-image:-webkit-linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%) 1; 
 }  
 .top-box-color-Pet{

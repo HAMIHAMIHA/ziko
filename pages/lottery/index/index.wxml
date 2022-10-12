@@ -146,8 +146,8 @@
                   <view class="crown-context2">{{ _t.you_won }}</view>
                 </view>
               </view>
-              <view class="color-{{ offer.community.name }}-golden font-size1">Ziko {{ offer.community.name }}</view>
-              <view class="color-{{ offer.community.name }}-golden font-size2">Ziko {{ offer.name[_language] }}</view>
+              <view class="color-{{ offer.community.name }} font-size1">Ziko {{ offer.community.name }}</view>
+              <view class="color-{{ offer.community.name }} font-size2">Ziko {{ offer.name[_language] }}</view>
 
             </view>
 
