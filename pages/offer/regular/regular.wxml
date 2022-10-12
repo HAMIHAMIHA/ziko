@@ -1,6 +1,6 @@
 <import src="../../../templates/offer/products.wxml"/>
 <import src="../../../templates/offer/payButton.wxml"/>
-<wxs module="filter" src="../../../utils/fixDecimals.wxs">
+<!-- <wxs module="filter" src="../../../utils/fixDecimals.wxs"> -->
 
   <view class="container ziko-offer {{ 'community-' + _offer.community }}{{ next_special ? ' bottom-message' : '' }}">
     <!-- Offer Countdown -->
@@ -209,7 +209,7 @@
           <view class="offer-lotteries cellar-lotteries"
                 wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}">
             <view class="lottery_regular">
-              <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}"></lottery-header>
+              <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" type="{{ _offer.type }}"></lottery-header>
               <lottery-cellar _current_user="{{ _current_user }}" _offer="{{ _offer }}"
                               _product_names="{{ _product_names }}" _t="{{ _t_prize }}"
                               id="lottery_list"></lottery-cellar>
