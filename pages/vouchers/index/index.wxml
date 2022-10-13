@@ -33,7 +33,7 @@
       <block wx:for="{{ _filters.list }}" wx:key="filter_group" wx:for-item="filter">
         <view
           class="h-scroll_item {{ filter.class_name }} {{ filter_group == filter.filter_group ? ' selected' : '' }}"
-          bindtap="filterOffers"
+          bindtap="filterVouchers"
           data-filter_type="list"
           data-filter_group="{{ filter.filter_group }}"
           data-filter_id="{{ filter.id }}"
@@ -85,7 +85,7 @@
                 </view>
                 <view class="nunito_400 received">
                   <text>{{ _t.received + ': ' }}{{ voucher.createdAt }}</text>
-                  <view>{{ _t.expires + ': ' }}<text class="expires nunito_500">{{ voucher.expire_on }}</text>
+                  <view>{{ _t.expires + ': ' }}<text class="expires nunito_500">{{ voucher.expirationDate }}</text>
                   </view>
                 </view>
               </view>
@@ -114,7 +114,7 @@
     </view>
     <view class="first-paragraph gilroy-700">{{ _t.no_vouchers_yet }}</view>
     <view class="second-paragraph nunito_500">{{ _t.its_up_to_you }}</view>
-    <button class="add_a_cat">
+    <button class="add_a_cat" bindtap="navigateOffer">
       <text>{{ _t.view_ziko_offers }}</text>
     </button>
   </view>

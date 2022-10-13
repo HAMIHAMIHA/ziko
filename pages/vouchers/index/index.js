@@ -10,9 +10,11 @@ const {
   formatDate,
   formatTime
 } = require("../../../utils/util.js");
+const {truncateText, formatWeekDate, findIndex, _checkMediaType, mapDeliveryDates} = require("../../../utils/util");
 
 const app = getApp();
 const _voucher_status = ['all', 'unused', 'used'];
+let current_filter = { type: 'map', group: '', date: '' }; // Default filter for page
 
 // Set page translation
 const _setPageTranslation = page => {
@@ -48,7 +50,8 @@ const _setPageTranslation = page => {
   })
 }
 
-const _getVouchers = (page, status) => {
+const _getVouchers = (page, filters) => {
+  const { status, filter} = filters;
   const callback = res => {
     let vouchers = [];
 
@@ -74,7 +77,7 @@ const _getVouchers = (page, status) => {
       // Available for community
       let community_list = [];
       let ticket_type = "kitchen";
-      console.log("v.community", v.communities)
+      console.log("v.community", v)
       if (v.communities.length === 4) voucher.community = app.globalData.i18n.community.all
       else {
         if (v.communities.find(c => communities[c] === "pet")) {
@@ -112,6 +115,7 @@ const _getVouchers = (page, status) => {
         voucher.community_list = community_list;
       }
       voucher.ticket_type = ticket_type;
+      voucher.rawCommunity = v.communities;
 
       vouchers.push(voucher)
     });
@@ -134,7 +138,76 @@ const _getVouchers = (page, status) => {
   }
 
   showLoading(true);
-  app.api.getVouchers(status, false).then(callback);
+  app.api.getVouchers(status, filter).then(callback);
+}
+const _resetDateFilters = (page, new_list) => {
+  let date_filter = page.selectComponent('#list_date_filters');
+  if (current_filter.type == "map") {
+    date_filter = page.selectComponent('#map_date_filter');
+  }
+
+  // Set seleted data to all
+  if (date_filter) {
+    date_filter.resetDateFilter();
+  }
+
+  // Remove days list for refresh
+  if (new_list) {
+    page.setData({
+      days: []
+    })
+  }
+}
+const _filterVoucherData = (page, filter_type, filter_group, filter_id, filter_date) => {
+  let suffix = '';
+  let raw_vouchers = [];
+
+  // Stop all timers
+
+  page.setData({
+    map: (filter_type === 'map'),
+    filter_group: filter_group,
+  })
+
+  // Change filter type if different from current
+  if (current_filter.type !== filter_type) {
+    current_filter.type = filter_type;
+  }
+
+  // Reset date filter if filter type and filter group different from current
+  if (!filter_date) {
+    _resetDateFilters(page, current_filter.type != filter_type || current_filter.group != filter_id);
+  }
+
+  // Get data by filter group and filter date
+  current_filter.group = filter_id;
+  current_filter.date = filter_date;
+  console.log("current_filter: " ,current_filter)
+
+  if (filter_type == 'map') {
+    if (!filter_group) {
+      // If filter type = map, group == null => clear data and return
+      page.setData({filter_group: '', offers: {}})
+      return;
+    }
+  }
+
+  // Loading module
+  showLoading(true);
+
+
+  // Set up page data, Start new timers, Change date filters
+  let callback = res => {
+    console.log(res, "res")
+    page.setData({
+      vouchers:res
+    })
+    showLoading(false);
+  };
+
+  // Set up API
+  suffix = filter_id === "" ? filter_id : `&communities=${filter_id}`;
+  _getVouchers(page, {status: "validated", filter: suffix})
 }
 
 Page({
@@ -199,15 +272,18 @@ Page({
     ]
   },
 
-  onShow: async function () {
+  onShow: async function (options) {
     const self = this;
+    console.log("vouchers onShow", options)
     _setPageTranslation(self);
 
     // Restart lottery popup
     app.globalData.pause_lottery_check = false;
     await app.sessionUtils.getUserInfo(self);
     if (app.db.get('userInfo')?.token) {
-      self.getVouchers();
+      // self.getVouchers();
+      if (!options) this.setData({filter_group: ""});
+      _getVouchers(this, {status: "validated"});
     }
   },
 
@@ -232,6 +308,31 @@ Page({
     self.setData({
       current_status: e.currentTarget.dataset.value
     })
-    _getVouchers(self, voucher_status[e.currentTarget.dataset.value]);
+    _getVouchers(self, {status: voucher_status[e.currentTarget.dataset.value]});
+  },
+  // Filter vouchers by selected group
+  filterVouchers: function (e) {
+    const self = this;
+    console.log('Filter voucher', e)
+    let data = e.currentTarget ? e.currentTarget.dataset : {};
+
+    // Set up filtering items if just changing date
+    if (JSON.stringify(data) == '{}') {
+      data = {
+        filter_type: current_filter.type,
+        filter_group: index_data.communities[current_filter.group],
+        filter_id: current_filter.group,
+      }
+    }
+    // Get filtering date value
+    let date = (e.detail && e.detail.change_date) ? e.detail.date : '';
+    // Filter
+    _filterVoucherData(self, data.filter_type, data.filter_group, data.filter_id, date);
+  },
+
+  navigateOffer: function () {
+    wx.switchTab({
+      url: "/pages/index/index"
+    })
   }
 })

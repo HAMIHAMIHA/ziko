@@ -9,7 +9,8 @@ Page({
   },
 
   onLoad(options) {
-
+    console.log(options, "[addPets] options");
+    this.setData({...options})
   },
 
   onShow: async function () {
@@ -29,7 +30,7 @@ Page({
         cancel: i18n.cancel,
         save: i18n.save
       },
-      typechecked: "",
+      // typechecked: "",
     });
   },
 })
