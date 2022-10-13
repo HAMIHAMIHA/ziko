@@ -1,6 +1,10 @@
 const {changeFocus, navigateBack, showLoading} = require("../../../utils/common.js");
 const app = getApp();
 const validateKeys = {
+  type: {
+    cat: "cat",
+    dog: "dog",
+  },
   size: {
     small: "small",
     middle: "middle",
@@ -25,7 +29,7 @@ async function getUserInfo(page) {
 async function getPetFromId (page, id) {
   const pets = page.data.pets;
   const pet = pets.find(item => item._id === id);
-  if (pet) page.setData({pet});
+  if (pet) page.setData({pet, typechecked: pet.type});
 }
 
 async function _addPet(page, pet) {
@@ -37,11 +41,6 @@ async function _addPet(page, pet) {
 };
 Page({
   data: {},
-  serviceSelection(event) {
-    this.setData({
-      typechecked: event.target.dataset.info
-    })
-  },
 
   onLoad(options) {
     console.log(options, "[addPets] options");
@@ -82,7 +81,16 @@ Page({
     const newPet = {name, type, size};
     _addPet(this, newPet).then(() => {
       showLoading(false)
-      wx.navigateBack();
+      // wx.navigateBack();
+      wx.navigateTo({
+        url: app.routes.pets
+      })
     });
-  }
+  },
+  serviceSelection(event) {
+    const {type} = event.currentTarget.dataset;
+    this.setData({
+      typechecked: type
+    })
+  },
 })

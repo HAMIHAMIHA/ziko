@@ -13,7 +13,7 @@
         <view class="top nunito_400">{{_t.size}}</view>
         <view class="bottom gilroy_700">{{pet.size}}</view>
       </view>
-      <view class="icon icon-trash"></view>
+      <view class="icon icon-trash" bindtap="deletePet" data-id="{{pet._id}}"></view>
 <!--      <view class="icon icon-edit"></view>-->
       <navigator class="icon icon-edit" url="{{_routes.addpets + '?id=' + pet._id }}"></navigator>
     </view>
