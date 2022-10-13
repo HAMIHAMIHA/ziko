@@ -6,7 +6,7 @@
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "checkInvalidKey": true,
-    "compileHotReLoad": true,
+    "compileHotReLoad": false,
     "lazyloadPlaceholderEnable": false,
     "showES6CompileOption": false,
     "useStaticServer": true

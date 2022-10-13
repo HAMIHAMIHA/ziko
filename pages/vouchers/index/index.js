@@ -73,10 +73,45 @@ const _getVouchers = (page, status) => {
 
       // Available for community
       let community_list = [];
-      v.communities.forEach(c => {
-        community_list.push(app.globalData.i18n.community[communities[c]])
-      })
-      voucher.community = community_list.join(' / ')
+      let ticket_type = "kitchen";
+      console.log("v.community", v.communities)
+      if (v.communities.length === 4) voucher.community = app.globalData.i18n.community.all
+      else {
+        if (v.communities.find(c => communities[c] === "pet")) {
+          community_list.unshift({
+            name: app.globalData.i18n.community.pet,
+            style: "pet"
+          });
+          ticket_type = "pet";
+        }
+        if (v.communities.find(c => communities[c] === "farm")) {
+          community_list.unshift({
+            name: app.globalData.i18n.community.farm,
+            style: "garden"
+          });
+          ticket_type = "farm";
+        }
+        if (v.communities.find(c => communities[c] === "cellar")) {
+          community_list.unshift({
+            name: app.globalData.i18n.community.cellar,
+            style: "cellar"
+          });
+          ticket_type = "cellar";
+        }
+        if (v.communities.find(c => communities[c] === "kitchen")) {
+          community_list.unshift({
+            name: app.globalData.i18n.community.kitchen,
+            style: "kitchen"
+          });
+          ticket_type = "kitchen";
+        }
+        // v.communities.forEach(c => {
+        //   community_list.push(app.globalData.i18n.community[communities[c]])
+        // })
+
+        voucher.community_list = community_list;
+      }
+      voucher.ticket_type = ticket_type;
 
       vouchers.push(voucher)
     });
@@ -123,30 +158,30 @@ Page({
 
     //__test
     vouchers: [{
-        community: "kitchen",
-        community2: "",
-        createdAt: "2022/08/12 12:00",
-        amount: 100,
-        expire_on: "In 3 hours"
-      }, {
-        community: "kitchen",
-        community2: "pet",
-        createdAt: "2022/11/11 12:00",
-        amount: 100,
-        expire_on: "In 3 hours"
-      }, {
-        community: "pet",
-        community2: "",
-        createdAt: "2022/11/11 12:00",
-        amount: 150,
-        expire_on: "In 3 hours"
-      }, {
-        community: "cellar",
-        community2: "garden",
-        createdAt: "2022/11/11 12:00",
-        amount: 100,
-        expire_on: "Tomorrow"
-      },
+      community: "kitchen",
+      community2: "",
+      createdAt: "2022/08/12 12:00",
+      amount: 100,
+      expire_on: "In 3 hours"
+    }, {
+      community: "kitchen",
+      community2: "pet",
+      createdAt: "2022/11/11 12:00",
+      amount: 100,
+      expire_on: "In 3 hours"
+    }, {
+      community: "pet",
+      community2: "",
+      createdAt: "2022/11/11 12:00",
+      amount: 150,
+      expire_on: "In 3 hours"
+    }, {
+      community: "cellar",
+      community2: "garden",
+      createdAt: "2022/11/11 12:00",
+      amount: 100,
+      expire_on: "Tomorrow"
+    },
       {
         community: "garden",
         community2: "",

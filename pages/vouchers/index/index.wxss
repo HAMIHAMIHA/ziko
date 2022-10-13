@@ -86,22 +86,26 @@
   width: fit-content;
   padding-top: 10rpx;
 }
+.ziko-community-Kitchen,
 .ziko-community-kitchen{
   background-image:-webkit-linear-gradient(-120deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%); 
   -webkit-background-clip:text; 
   -webkit-text-fill-color:transparent;
 }
+.ziko-community-Pet,
 .ziko-community-pet{
   background-image:-webkit-linear-gradient(-120deg, #FFB65A 100%,
   #FF7233 100%); 
   -webkit-background-clip:text; 
   -webkit-text-fill-color:transparent;
 }
+.ziko-community-Garden,
 .ziko-community-garden{
   background-image:-webkit-linear-gradient(-120deg, #97F082 100%,  #11BE67 100%); 
   -webkit-background-clip:text; 
   -webkit-text-fill-color:transparent;
 }
+.ziko-community-Cellar,
 .ziko-community-cellar{
   background-image:-webkit-linear-gradient(-120deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%); 
   -webkit-background-clip:text; 

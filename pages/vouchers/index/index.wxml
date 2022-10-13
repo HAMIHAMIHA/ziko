@@ -37,7 +37,7 @@
           data-filter_type="list"
           data-filter_group="{{ filter.filter_group }}"
           data-filter_id="{{ filter.id }}"
-          >
+        >
           <view class="icon icon-{{ filter.icon }}"></view>
         </view>
       </block>
@@ -56,18 +56,37 @@
     <view class="container container-grey container-btn-bottom">
       <view class="voucher-content_container">
         <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher" class="ticket_box">
-          <image src="/assets/images/{{ voucher.community || 'kitchen' }}_ticket.svg" class="ticket_picture">
+          <image src="/assets/images/{{ voucher.ticket_type || 'kitchen' }}_ticket.svg" class="ticket_picture">
             <view class="box-content">
               <view class="box-content-left">
-                <view class="black-box gilroy_700">
+                <view class="black-box gilroy_700" wx:if="{{voucher.community_list}}">
                   <text class="ziko-name">{{ _t.ziko }}</text>
-                  <text class="nunito_700 ziko-community ziko-community-{{ voucher.community }}">{{ voucher.community ? ' ' + voucher.community : ' land ' }}</text>
-                  <text class="ziko-community">{{ voucher.community2 ? ' / ' : " " }}</text>
-                  <text class="nunito_700 ziko-community ziko-community-{{ voucher.community2 }}">{{ voucher.community2 ? voucher.community2 : " " }}</text>
+                  <text
+                    class="nunito_700 ziko-community ziko-community-{{ voucher.community_list[0].style }}">{{ " " + voucher.community_list[0].name
+                    }}</text>
+                  <block wx:if="{{voucher.community_list[1]}}">
+                    <text class="ziko-community">{{' / '}}</text>
+                    <text
+                      class="nunito_700 ziko-community ziko-community-{{ voucher.community_list[1].style}}">{{ voucher.community_list[1].name }}</text>
+                  </block>
+                  <block wx:if="{{voucher.community_list[2]}}">
+                    <text class="ziko-community">{{' / '}}</text>
+                    <text
+                      class="nunito_700 ziko-community ziko-community-{{ voucher.community_list[2].style }}">{{ voucher.community_list[2].name }}</text>
+                  </block>
+                  <block wx:if="{{voucher.community_list[3]}}">
+                    <text class="ziko-community">{{' / '}}</text>
+                    <text
+                      class="nunito_700 ziko-community ziko-community-{{ voucher.community_list[3].style }}">{{ voucher.community_list[3].name }}</text>
+                  </block>
+                </view>
+                <view class="black-box gilroy_700" wx:else>
+                  <text class="ziko-name">{{ voucher.community }}</text>
                 </view>
                 <view class="nunito_400 received">
                   <text>{{ _t.received + ': ' }}{{ voucher.createdAt }}</text>
-                  <view>{{ _t.expires + ': ' }}<text class="expires nunito_500">{{ voucher.expire_on }}</text></view>
+                  <view>{{ _t.expires + ': ' }}<text class="expires nunito_500">{{ voucher.expire_on }}</text>
+                  </view>
                 </view>
               </view>
               <view class="box-content-right">
