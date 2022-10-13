@@ -1,4 +1,4 @@
-<view wx:if="{{!havepets}}" class="container">
+<view wx:if="{{havepets}}" class="container">
    <block wx:for="{{ pets }}" wx:for-item="pet" wx:key="index">
     <view class="pet-details">
       <view class="left-icon">
@@ -14,7 +14,8 @@
         <view class="bottom gilroy_700">{{pet.size}}</view>
       </view>
       <view class="icon icon-trash"></view>
-      <view class="icon icon-edit"></view>
+<!--      <view class="icon icon-edit"></view>-->
+      <navigator class="icon icon-edit" url="{{_routes.addpets + '?id=' + pet._id }}"></navigator>
     </view>
   </block>
    <navigator class="under-white-button" url="{{ _routes.addpets }}">

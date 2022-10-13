@@ -1,6 +1,20 @@
 const { showLoading } = require("../../../utils/common.js");
 
 const app = getApp();
+// Get user profile
+async function getUserInfo(page) {
+  showLoading(true);
+  let user = await app.sessionUtils.refreshUserInfo(null);
+  console.log("user,", user)
+
+  // Set default address info
+  const havepets = user.pets && user.pets.length > 0;
+  page.setData({havepets, pets: user.pets})
+
+
+  showLoading(false);
+
+}
 
 const _setPageTranslation = page => {
   let i18n = app.globalData.i18n;
@@ -85,9 +99,14 @@ Page({
       contacts: [],
       pets: [],
     },
+    pets: [],
+    havepets: Boolean,
     _routes: {
       addpets: app.routes.addpets,
     },
+  },
+  onLoad: function () {
+    getUserInfo(this);
   },
   onShow: async function () {
     const self = this;
@@ -120,26 +139,6 @@ Page({
         size: `${size}`
       })
     })
-
-    self.setData({
-      //Original code
-      // name: user.name,
-      // pets: user.pets,
-      // _picker_select: _picker_select
-      name:"david",
-      havepets:true,
-      pets:[
-        {name:"Minion Lee",
-        type:"cat",
-        size:"middle"},
-        {
-        name:"Peanit Dun",
-        type:"dog",
-        size:"small"},
-      ],
-      _picker_select: _picker_select
-    })
-    
 
     showLoading(false);
   },

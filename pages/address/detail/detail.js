@@ -50,24 +50,29 @@ const _validateInputs = (page, data) => {
   let error = '';
   console.log("validate_keys",validate_keys,"data",data)
   for (var i in validate_keys) {
-    console.log(i);
-    (data[validate_keys[i]] == null || data[validate_keys[i]] == '') ? error += `error-field-${i} ` : '';
+    console.log(i, data[validate_keys[i]]);
+    (data[validate_keys[i]] == null || data[validate_keys[i]] === '') ? error += `error-field-${i} ` : '';
   }
 
-  if (!page.data.area || JSON.stringify(page.data.area) == "{}") {
+  // if (!page.data.area || JSON.stringify(page.data.area) == "{}") {
+  //   error += 'error-field-5 ';
+  // }
+  if (!page.data.city) {
     error += 'error-field-5 ';
   }
 
   page.setData({
     error: error
   })
-  console.log("show-error",error)
+  console.error("show-error",error)
   return error;
 }
 
 // Create address data for api
 const _generateUserAddress = (page, action, new_address) => {
+  console.log("generate-user-address",)
   let address = app.db.get('userInfo').customer.addresses;
+  console.log("user address", address)
 
   if (action == 'reset') {
     let addr_index = page.data._count;
@@ -118,13 +123,13 @@ const _generateUserAddress = (page, action, new_address) => {
     }
     return selected;
   }
-  
+
   const getAddressAreaList = page => {//__need
     const callback = res => {
       all_areas = res;
       let areas = _getAreas();
       console.log("details_areas:",areas);
-      
+
       page.setData({
         _temp : res,
         _areas: areas,
@@ -135,6 +140,10 @@ const _generateUserAddress = (page, action, new_address) => {
   }
 
 Page({
+  data: {
+    province: String,
+    city: String,
+  },
   onShow: function () {
     let self = this;
     let i18n = app.globalData.i18n;
@@ -218,13 +227,13 @@ Page({
     const self = this;
     let action = e.type; //提交类型
     console.log(action)
-    console.log(e.detail.value)
+    console.log(e.detail.value, "detail value")
     // Go back to address page if delete new address
     if (action == 'reset' && !self.options.id) {
       navigateBack(app.routes.address, false);
       return;
     }
- 
+
     // Stop if saving but inputs empty
     // __text
     if (action != 'reset' && _validateInputs(self, e.detail.value)) return;
@@ -232,26 +241,42 @@ Page({
     showLoading(true);
 
     // Add address to addrss list
-    let address = e.detail.value;
-    console.log(address)
-    address ? address.type = self.data.address.type : '';
-    address ? address.area = self.data.area.id : '';
+    // let address = e.detail.value;
+    const { detailedAddress, type, zipCode } = e.detail.value;
+    const city = this.data;
+    const defaultData = this.data.default;
+    const addressType = this.data._picker.address_type[type];
+    const address = {detailedAddress, type: addressType, zipCode, city, default: defaultData}
+    console.log(address, "address")
+    // address ? address.type = self.data.address.type : '';
+    // address ? address.area = self.data.area.id : '';
     let address_list = _generateUserAddress(self, action, address);
+    console.log("address_list", address_list)
 
     app.sessionUtils.updateUserInfo({ addresses: address_list }, app.routes.address);
   },
-    
+
   // Change picker result
   updatePicker: function(e) {//__need
     const self = this;
+    // console.log(this.data._areas[0].children[0].children, "updatePicker")
+    // console.log(this.data._areas[0].children, "updatePicker")
 
     let new_index = e.detail.value;
     let picker_level = e.currentTarget.dataset.picker_level;
+    // console.log("picker_level", picker_level, this.data._areas[0].children[new_index])
 
     let selected = self.data._selected
     selected = selected.slice(0, picker_level);
-    selected[picker_level] = new_index;
-
+    selected[picker_level] = parseInt(new_index);
+    console.log("selected", selected);
+    if (picker_level === 2) self.setData({
+      province: this.data._areas[0].children[new_index].label,
+    });
+    // console.log("selected 2", self.data._selected[2]);
+    if (picker_level === 3 && typeof self.data._selected[2] === "number") self.setData({
+      city: this.data._areas[0].children[this.data._selected[2]].children[new_index].label,
+    })
     self.setData({
       _selected: selected
     })
@@ -285,6 +310,14 @@ Page({
     wx.navigateBack({
       delta: 1,
     })
-  }
+  },
+  setDefault: function() {
+    const self = this;
+
+    self.setData({
+      default: !self.data.default,
+    })
+  },
+
 
 })
