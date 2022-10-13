@@ -69,7 +69,7 @@ export const languageMap_en = {
   closed: "Closed",
   close_it: "close it",
   collected_all_items: "All set !",
-  copy: "copy",
+  copy: "Copied",
   comment: "Anything else we should know?",
   coming_soon: "coming soon...",
   community: {

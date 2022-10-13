@@ -120,6 +120,7 @@ Page({
 
   // Save address info
   updateContact: function(e) {
+    console.log("updateContact",e);
     const self = this;
     let action = e.type;
 
