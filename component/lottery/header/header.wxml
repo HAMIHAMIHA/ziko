@@ -30,7 +30,7 @@
    <view>{{_t.take_a_chance}}</view>
   </view>
 </view>
-<view wx:if="{{!bourse}}">
+<view wx:if="{{type !== 'bourse'}}">
   <view class="long-bar-box">
     <view class="gold-color"></view>
     <view class="bar-box-line bar-box-line1"></view>
