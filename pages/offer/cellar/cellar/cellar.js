@@ -97,6 +97,7 @@ Page({
   
   // Checkout offer
   checkout: function() {
+    console.log("checkout")
     ModifyCart.checkoutItems(this.options.id);
   },
 

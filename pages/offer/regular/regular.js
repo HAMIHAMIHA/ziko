@@ -14,7 +14,7 @@ Page({
       currentTab: "product",
       height: '0px',
       left: '0',
-      animate: animate,
+      animate: animate, 
     },
     jump_setting:{
       height:'0',
@@ -22,12 +22,17 @@ Page({
     },
     messages: [],
   },
-
-  onShow: function() {
+  onLoad: function(options) {
     const self = this;
     // Get Offer
-    Offers.getOffer(self, self.options.id);
+    Offers.getOffer(self, options.id);
   },
+
+  // onShow: function() {
+  //   const self = this;
+  //   // Get Offer
+  //   Offers.getOffer(self, self.options.id);
+  // },
 
   // Stop countdown timer on leaving page
   onHide: function() {
@@ -106,7 +111,8 @@ Page({
 
   // Checkout offer
   checkout: function() {
-    ModifyCart.checkoutItems(this.options.id);
+    const {id} = this.options;
+    ModifyCart.checkoutItems({id, community: this.data._offer.community});
   },
 
   // Change product amount in cart
@@ -115,9 +121,5 @@ Page({
   },
 
   onShareAppMessage: function (res) {},
-
-  truncateDescription: function () {
-    return (str) => truncateText(str, 16);
-  }
 
 })

@@ -108,7 +108,7 @@
      </view>
       <!-- Lock button if it is not started -->
       <view class="pay-button disabled" wx:elif="{{ coming_soon }}">
-        <button class="nunito_600" disabled>{{ _t.pay }}</button>
+        <button class="nunito_600">{{ _t.pay }}</button>
       </view>
       <!-- Make as login buttons if user not logged in -->
       <view class="pay-button" wx:elif="{{ !user.name && !wxUser.name }}">

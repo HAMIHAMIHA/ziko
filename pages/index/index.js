@@ -128,7 +128,6 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
 
     for (var i in raw_offers) {
       let offer = raw_offers[i];
-      console.log(`offer[${i}]`, offer)
       const shortDescription = {};
       for (const key in offer.description) {
         let format = " ", length = 16;
@@ -138,7 +137,6 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
         }
         shortDescription[key] = truncateText(offer.description[key], format, length);
       }
-      // console.log(`offer[${i}] short`, shortDescription)
       let date_value = formatWeekDate(offer.startingDate);
 
       // Creating date filter list
@@ -224,6 +222,9 @@ Page({
     filter_type:"list",
     map: true, // Default open to map view
     tabIndex:"0"
+  },
+  onLoad: function(options) {
+    console.log("onload home options", options)
   },
 
   onShow: function() {

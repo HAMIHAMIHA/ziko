@@ -65,7 +65,8 @@ const _getVouchers = (page, filters) => {
       voucher.amount = v.amount;
       voucher.status = v.status; /* validated, used, expired */
       voucher.createdAt = `${formatDate('yyyy/mm/dd', v.createdAt)} ${formatTime(v.createdAt)}`;
-      voucher.expirationDate = formatDate('yyyy-mm-dd', v.expirationDate);
+      // voucher.expirationDate = formatDate('yyyy-mm-dd', v.expirationDate);
+      voucher.expirationDate = formatTime(v.expirationDate);
       voucher.order = v.order;
       voucher.reason = app.globalData.i18n.voucher_source[v.reason];
 
@@ -331,8 +332,17 @@ Page({
   },
 
   navigateOffer: function () {
+    const {vouchers} = this.data;
+    const filters = [];
+    if (vouchers && vouchers.length === 1) {
+      // switched to specified tab
+      if ("community_list" in vouchers[0]) {
+        filters.push(`tab=${vouchers[0][0].name}`);
+      }
+    }
+    filters.push(`tab=kitchen`);
     wx.switchTab({
-      url: "/pages/index/index"
+      url: `${app.routes.home}?${filters.join('&')}`
     })
   }
 })
