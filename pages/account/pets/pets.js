@@ -37,6 +37,8 @@ const _setPageTranslation = page => {
       you_can:i18n.you_can,
       add_a_cat:i18n.add_a_cat,
       add_a_dog:i18n.add_a_dog,
+      cat: i18n.cat,
+      dog: i18n.dog,
 
     },
 
@@ -233,9 +235,10 @@ Page({
     }
     app.sessionUtils.updateUserInfo(data, app.routes.account, true);
   },
-  addPetNavigate: function () {
+  addPetNavigate: function (event) {
+    const {typechecked} = event.currentTarget.dataset;
     const {addpets: url} = this.data._routes;
-    wx.navigateTo({url})
+    wx.navigateTo({url: `${url}?typechecked=${typechecked}`});
   }
 })
 
