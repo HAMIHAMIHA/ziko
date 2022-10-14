@@ -84,6 +84,10 @@
   padding-top: 8rpx;
   color: var(--grey-);
 }
+.contact-right {
+  display: flex;
+  gap: 20rpx;
+}
 
 .detail .btn-icon {
   padding: 0;
