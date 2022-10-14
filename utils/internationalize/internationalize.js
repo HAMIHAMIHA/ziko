@@ -481,10 +481,12 @@ export const languageMap_en = {
   ticket: "ticket",
   tickets: "tickets",
   timer: {
+    in: "in",
     days: "day",
     hours: "h",
     minutes: "min",
     seconds: "sec",
+    tomorrow: "tomorrow",
   },
   time_remaining: "Time remaining",
   total: "Total",
@@ -1040,10 +1042,12 @@ export const languageMap_zh = {
   ticket: "ticket",
   tickets: "tickets",
   timer: {
+    in: '在',
     days: "天",
     hours: "h",
     minutes: "min",
     seconds: "sec",
+    tomorrow: '明天'
   },
   time_remaining: "Time remaining",
   total: "Total",

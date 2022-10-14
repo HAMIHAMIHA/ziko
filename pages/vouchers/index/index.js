@@ -10,7 +10,7 @@ const {
   formatDate,
   formatTime
 } = require("../../../utils/util.js");
-const {truncateText, formatWeekDate, findIndex, _checkMediaType, mapDeliveryDates} = require("../../../utils/util");
+const {truncateText, formatWeekDate, findIndex, _checkMediaType, mapDeliveryDates, formatCountDown} = require("../../../utils/util");
 
 const app = getApp();
 const _voucher_status = ['all', 'unused', 'used'];
@@ -69,7 +69,7 @@ const _getVouchers = (page, filters) => {
       voucher.status = v.status; /* validated, used, expired */
       voucher.createdAt = `${formatDate('yyyy/mm/dd', v.createdAt)} ${formatTime(v.createdAt)}`;
       // voucher.expirationDate = formatDate('yyyy-mm-dd', v.expirationDate);
-      voucher.expirationDate = formatTime(v.expirationDate);
+      voucher.expirationDate = formatCountDown(v.expirationDate);
       voucher.order = v.order;
       voucher.reason = app.globalData.i18n.voucher_source[v.reason];
 

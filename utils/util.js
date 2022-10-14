@@ -33,6 +33,34 @@ export const formatTime = dateLong => {
   return [hour, minute].map(formatNumber).join(':')
 }
 
+export const formatCountDown = dateLong => {
+  console.log("datelong", dateLong)
+  const date = new Date(dateLong) - new Date();
+  const _i18n = app.globalData.i18n.timer;
+  // Time calculations for days, hours, minutes and seconds
+  const days = Math.floor(date / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((date % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((date % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((date % (1000 * 60)) / 1000);
+  console.log(days, hours, minutes, seconds, 'format countdown',)
+
+
+  if (days) {
+    if (days === 1) return _i18n.tomorrow;
+    return `${_i18n.in} ${days} ${_i18n.days}`;
+  };
+  if (hours) {
+    return `${_i18n.in} ${hours} ${_i18n.hours}`;
+  }
+  // if (days || hours) time.push(`${formatNumber(hours)}:${formatNumber(minutes)}`);
+// if (days || hours) time.push(`${formatNumber(hours)}${_i18n.hours}`);
+//   if ((days && hours) || minutes) time.push(`${formatNumber(minutes)}`);
+// if ((days && hours) || minutes) time.push(`${formatNumber(minutes)}${_i18n.minutes}`);
+  // time.push(`${formatNumber(seconds)}${_i18n.seconds}`);
+
+
+}
+
 export const formatTimer = dateLong => {
   const _i18n = app.globalData.i18n.timer;
   // Time calculations for days, hours, minutes and seconds
