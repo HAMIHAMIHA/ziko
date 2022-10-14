@@ -4,8 +4,10 @@ const { findIndex } = require("../../../utils/util.js");
 const app = getApp();
 const address_type = ["office", "home", "other"];
 // const validate_keys = ['type', 'contact', 'city', 'detailedAddress', 'phone'];
-const validate_keys = ['type', 'city', 'detailedAddress'];//__change
-
+// const validate_keys = ['type', 'city', 'detailedAddress'];//__change
+const validate_keys = {
+  type: address_type,
+}
 let all_areas = [];
 
 const _getAddressAreas = (page, area_id) => {
@@ -290,7 +292,6 @@ Page({
 
     // Stop if saving but inputs empty
     // __text
-    if (action != 'reset' && _validateInputs(self, e.detail.value)) return;
 
     showLoading(true);
 

@@ -150,6 +150,18 @@ module.exports = {
     queryParams.push(`sort=["createdAt","ASC"]`)
     return request('GET', `vouchers/mine?${queryParams.join('&')}`);
   },
+  // Get user's not expired vouchers
+  getNotExpiredVouchers: (status="validated", filter) => {
+    const queryParams = [];
+    if (!!status) queryParams.push(`status=${status}`);
+    if (!filter) filter = {};
+    filter.expirationDate = {"$gt": new Date(new Date() + 1000 * 60 * 60 * 24)};
+    queryParams.push(`filter=${JSON.stringify(filter)}`);
+    queryParams.push(`sort=["createdAt","ASC"]`)
+    return request('GET', `vouchers/mine?${queryParams.join('&')}`);
+  },
+
+
 
   // Get prepay id for wechat pay
   orderPrePay: (id) => {
@@ -158,7 +170,7 @@ module.exports = {
 
   // Set wechat notification for future offers
   setNotificationOffer: id => {
-    return request('POST', `offers/${id}/watch`, { watch: true })
+    return request('POST',`offers/${id}/watch`, { watch: true })
   },
 
   // Set view for offer

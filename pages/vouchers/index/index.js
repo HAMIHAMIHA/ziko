@@ -144,7 +144,7 @@ const _getVouchers = (page, filters) => {
   }
 
   showLoading(true);
-  app.api.getVouchers(status, filter).then(callback);
+  app.api.getNotExpiredVouchers(status, filter).then(callback);
 }
 const _resetDateFilters = (page, new_list) => {
   let date_filter = page.selectComponent('#list_date_filters');
