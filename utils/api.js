@@ -142,11 +142,13 @@ module.exports = {
 
   // Get user vouchers
   getVouchers: (status="validated", filter) => {
+    const queryParams = [];
+    if (!!status) queryParams.push(`status=${status}`);
     if (!filter) filter = {};
-    // let filter = check_available ? `&filter={"expirationDate":{"$gt":"${new Date()}"}}` : '';
     filter.expirationDate = {"$gt":new Date()};
-
-    return request('GET', `vouchers/mine?status=${status}&filter=${JSON.stringify(filter)}&sort=["createdAt","ASC"]`);
+    queryParams.push(`filter=${JSON.stringify(filter)}`);
+    queryParams.push(`sort=["createdAt","ASC"]`)
+    return request('GET', `vouchers/mine?${queryParams.join('&')}`);
   },
 
   // Get prepay id for wechat pay
