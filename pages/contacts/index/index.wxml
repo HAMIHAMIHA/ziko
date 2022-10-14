@@ -2,7 +2,7 @@
   <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
     <view
       class="detail{{ select_index == index ? ' select' : '' }}"
-      wx:for="{{ user.contacts }}"
+      wx:for="{{ contacts }}"
       wx:for-item="contact"
       wx:key="_id"
       bindtap="selectContact"
@@ -11,7 +11,7 @@
       <view class="contact-box">
         <!-- Contact info -->
         <view class="contact-left">
-          <view class="icon icon-star-{{ contact.default ? 'gold' : 'gray' }}">
+          <view class="icon icon-star-{{ contact.default ? 'gold' : 'gray' }}" bindtap="setDefault" data-contact="{{contact}}">
             <text class="nunito_500 default-selection">{{ contact.default ? _t.default_selection : '' }}</text>
           </view>
 
