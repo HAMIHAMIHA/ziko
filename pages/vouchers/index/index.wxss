@@ -121,6 +121,7 @@
 .expires{
   font-size: 30rpx;
   line-height: 40rpx;
+  text-transform: capitalize;
 }
 .box-content-right{
   text-align: center;
