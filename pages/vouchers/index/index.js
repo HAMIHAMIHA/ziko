@@ -51,13 +51,15 @@ const _setPageTranslation = page => {
 }
 
 const _getVouchers = (page, filters) => {
+  console.log("_getVouchers")
   const { status, filter} = filters;
+  console.log("fillters", filters)
   const callback = res => {
+    console.log("res", res)
     let vouchers = [];
 
     res.forEach(v => {
       if (v.status === 'pending' || v.status === 'declined') return;
-
       let voucher = {};
 
       // Voucher basic data
@@ -125,6 +127,7 @@ const _getVouchers = (page, filters) => {
     vouchers.sort((v1, v2) => {
       return v2.createdAt - v1.createdAt
     })
+    console.log("vouchers", vouchers)
 
     page.setData({
       vouchers
@@ -136,6 +139,7 @@ const _getVouchers = (page, filters) => {
       }).length)
     }
     showLoading(false);
+    console.log("end of callback")
   }
 
   showLoading(true);
@@ -272,19 +276,25 @@ Page({
       },
     ]
   },
-
-  onLoad: async function (options) {
+  onLoad: function () {
+    this.setData({filter_group: ""});
+  },
+  onShow: function () {
     const self = this;
     _setPageTranslation(self);
 
     // Restart lottery popup
     app.globalData.pause_lottery_check = false;
-    await app.sessionUtils.getUserInfo(self);
-    if (app.db.get('userInfo')?.token) {
-      // self.getVouchers();
-      this.setData({filter_group: ""});
-      _getVouchers(this, {status: "validated"});
-    }
+    app.sessionUtils.getUserInfo(self).then(
+      () => {
+        if (app.db.get('userInfo')?.token) {
+          // self.getVouchers();
+          // this.setData({filter_group: ""});
+          _getVouchers(this, {status: "validated"});
+        }
+
+      }
+    );
   },
 
   getVouchers: function () {

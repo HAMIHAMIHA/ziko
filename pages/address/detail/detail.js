@@ -92,7 +92,6 @@ const _generateUserAddress = (page, action, new_address) => {
   const _getAreas = (parent_id) => {//__need
     let new_areas = [];
     const filtered_areas = all_areas.filter((e) => e.parent === parent_id);
-    console.log("filtered_areas",filtered_areas);
     if (filtered_areas.length) {
       for (const line of filtered_areas) {
         let childs = _getAreas(line.id)
@@ -104,6 +103,17 @@ const _generateUserAddress = (page, action, new_address) => {
       }
     }
     return new_areas;
+  }
+  const _formatAreas = (areas, index) => {
+    if (index > 1) {
+      for (const item of areas) {
+        if (item.children && "length" in item.children ) _formatAreas(item.children, index - 1)
+        else item.children = [{
+          value: item.value,
+          label: item.label
+        }]
+      }
+    }
   }
 
   const _find_current = (current_id) => {
@@ -128,23 +138,67 @@ const _generateUserAddress = (page, action, new_address) => {
     const callback = res => {
       all_areas = res;
       let areas = _getAreas();
-      console.log("details_areas:",areas);
+      _formatAreas(areas, 3);
+      console.log("details_areas:",JSON.stringify(areas));
 
       page.setData({
         _temp : res,
         _areas: areas,
         _selected: _find_current(page.options.id) // TEMP need for when already selected
       })
+      _loadPicker(page);
     }
     app.api.getAreas().then(callback);
   }
+function _loadPicker(page) {
+  let state = {
+    arr: [],
+    arr1: [],
+    arr2: [],
+    arr3: [],
+    multiIds: []
+  }
+  page.data._areas.map((v, vk) => {
+    console.log("v, vk", v, vk)
+    state.arr1.push(v.label);
+    if (page.data.multiIndex[0] === vk) {
+      state.multiIds[0] = v;
+    }
+    if (state.arr2.length <= 0) {
+      v.children.map((c, ck) => {
+        state.arr2.push(c.label);
+        if (page.data.multiIndex[1] === ck) {
+          state.multiIds[1] = c;
+        }
+        if (state.arr3.length <= 0 && c.length === 0) {
+          c.children.map((t, tk) => {
+            state.arr3.push(t.label);
+            if (this.data.multiIndex[2] === tk) {
+              state.multiIds[2] = t;
+            }
+          });
+        }
+      });
+    }
+  });
+  state.arr[0] = state.arr1;
+  state.arr[1] = state.arr2;
+  state.arr[2] = state.arr3;
+  page.setData({
+    newArr: state.arr,
+    multiIds: state.multiIds,
+  });
+}
 
 Page({
   data: {
-    province: String,
     city: String,
+    multiIndex: [0, 0, 0],
+    multiIds: [],
+    newArr: [],
   },
-  onShow: function () {
+  onLoad: function () {
+  // onShow: function () {
     let self = this;
     let i18n = app.globalData.i18n;
 
@@ -256,31 +310,6 @@ Page({
     app.sessionUtils.updateUserInfo({ addresses: address_list }, app.routes.address);
   },
 
-  // Change picker result
-  updatePicker: function(e) {//__need
-    const self = this;
-    // console.log(this.data._areas[0].children[0].children, "updatePicker")
-    // console.log(this.data._areas[0].children, "updatePicker")
-
-    let new_index = e.detail.value;
-    let picker_level = e.currentTarget.dataset.picker_level;
-    // console.log("picker_level", picker_level, this.data._areas[0].children[new_index])
-
-    let selected = self.data._selected
-    selected = selected.slice(0, picker_level);
-    selected[picker_level] = parseInt(new_index);
-    console.log("selected", selected);
-    if (picker_level === 2) self.setData({
-      province: this.data._areas[0].children[new_index].label,
-    });
-    // console.log("selected 2", self.data._selected[2]);
-    if (picker_level === 3 && typeof self.data._selected[2] === "number") self.setData({
-      city: this.data._areas[0].children[this.data._selected[2]].children[new_index].label,
-    })
-    self.setData({
-      _selected: selected
-    })
-  },
 
   select: function(e) {//__need
     const self = this;
@@ -317,6 +346,67 @@ Page({
     self.setData({
       default: !self.data.default,
     })
+  },
+  _selectProvince: function () {
+    const [index1, index2, index3] = this.data.multiIndex;
+    console.log("index1", index1, index2, index3)
+    const province = this.data._areas[index1]?.children[index2]?.children[index3]
+    this.setData({province});
+  },
+  bindProvinceChange(e) {
+    console.log('bindProvinceChange', e)
+    let data = {
+      newArr: this.data.newArr,
+      multiIndex: this.data.multiIndex,
+      multiIds: this.data.multiIds,
+    };
+    data.multiIndex[e.detail.column] = e.detail.value;
+
+    let searchColumn = () => {
+      let arr1 = [];
+      let arr2 = [];
+      this.data._areas.map((v, vk) => {
+        if (data.multiIndex[0] === vk) {
+          data.multiIds[0] = {
+            ...v,
+          };
+          v.children.map((c, ck) => {
+            arr1.push(c.label);
+            if (data.multiIndex[1] === ck) {
+              data.multiIds[1] = {
+                ...c,
+              };
+              c.children.map((t, vt) => {
+                arr2.push(t.label);
+                if (data.multiIndex[2] === vt) {
+                  data.multiIds[2] = {
+                    ...t,
+                  };
+                }
+              });
+
+            }
+          });
+        }
+      });
+      data.newArr[1] = arr1;
+      data.newArr[2] = arr2;
+    };
+    switch (e.detail.column) {
+      case 0:
+        // 每次切换还原初始值
+        data.multiIndex[1] = 0;
+        data.multiIndex[2] = 0;
+        // 执行函数处理
+        searchColumn();
+        break;
+      case 1:
+        data.multiIndex[2] = 0;
+        searchColumn();
+        break;
+    }
+    this._selectProvince();
+    this.setData(data);
   },
 
 

@@ -141,7 +141,7 @@ module.exports = {
   },
 
   // Get user vouchers
-  getVouchers: (status, filter = `&filter={"expirationDate":{"$gt":"${new Date()}"}}`) => {
+  getVouchers: (status="validated", filter = `&filter={"expirationDate":{"$gt":"${new Date()}"}}`) => {
     // let filter = check_available ? `&filter={"expirationDate":{"$gt":"${new Date()}"}}` : '';
     return request('GET', `vouchers/mine?status=${status}${filter}&sort=["createdAt","ASC"]`);
   },
