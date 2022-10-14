@@ -93,7 +93,7 @@ const _getVouchers = (page, filters) => {
             name: app.globalData.i18n.community.farm,
             style: "garden"
           });
-          ticket_type = "farm";
+          ticket_type = "garden";
         }
         if (v.communities.find(c => communities[c] === "cellar")) {
           community_list.unshift({
@@ -273,9 +273,8 @@ Page({
     ]
   },
 
-  onShow: async function (options) {
+  onLoad: async function (options) {
     const self = this;
-    console.log("vouchers onShow", options)
     _setPageTranslation(self);
 
     // Restart lottery popup
@@ -283,7 +282,7 @@ Page({
     await app.sessionUtils.getUserInfo(self);
     if (app.db.get('userInfo')?.token) {
       // self.getVouchers();
-      if (!options) this.setData({filter_group: ""});
+      this.setData({filter_group: ""});
       _getVouchers(this, {status: "validated"});
     }
   },
