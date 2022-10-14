@@ -160,6 +160,8 @@ class SessionClass {
   // Check user session and set user to page data
   async getUserInfo(page) {
     let user = app.db.get('userInfo');
+    console.log("getUserInfo")
+    await page.setData({user})
     // Check if token session still valid
     if (_checkExpired(user?.expireAt)) {
       this.logout();

@@ -139,7 +139,7 @@
           </view> -->
           <view class="new-offer-banner">
             <view class="top-box top-box-color-{{ offer.community.name }}">
-              <view class="top-box-won top-box-color-{{ offer.community.name }}" wx:if="1">
+              <view class="top-box-won top-box-color-{{ offer.community.name }}">
                 <text class="icon icon-crown"></text>
                 <view>
                   <view class="crown-context1">{{ _t.congrats }}</view>

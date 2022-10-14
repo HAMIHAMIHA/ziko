@@ -10,11 +10,18 @@ const {
   formatDate,
   formatTime
 } = require("../../../utils/util.js");
-const {truncateText, formatWeekDate, findIndex, _checkMediaType, mapDeliveryDates, formatCountDown} = require("../../../utils/util");
+const {
+  truncateText,
+  formatWeekDate,
+  findIndex,
+  _checkMediaType,
+  mapDeliveryDates,
+  formatCountDown
+} = require("../../../utils/util");
 
 const app = getApp();
 const _voucher_status = ['all', 'unused', 'used'];
-let current_filter = { type: 'map', group: '', date: '' }; // Default filter for page
+let current_filter = {type: 'map', group: '', date: ''}; // Default filter for page
 
 // Set page translation
 const _setPageTranslation = page => {
@@ -52,7 +59,7 @@ const _setPageTranslation = page => {
 
 const _getVouchers = (page, filters) => {
   console.log("_getVouchers")
-  const { status, filter} = filters;
+  const {status, filter} = filters;
   if (!status) filters.status = "validated"
   console.log("fillters", filters)
   const callback = res => {
@@ -188,7 +195,7 @@ const _filterVoucherData = (page, filter_type, filter_group, filter_id, filter_d
   // Get data by filter group and filter date
   current_filter.group = filter_id;
   current_filter.date = filter_date;
-  console.log("current_filter: " ,current_filter)
+  console.log("current_filter: ", current_filter)
 
   if (filter_type == 'map') {
     if (!filter_group) {
@@ -206,7 +213,7 @@ const _filterVoucherData = (page, filter_type, filter_group, filter_id, filter_d
   let callback = res => {
     console.log(res, "res")
     page.setData({
-      vouchers:res
+      vouchers: res
     })
     showLoading(false);
   };
@@ -238,7 +245,13 @@ Page({
     // map: true // Default open to map view
   },
   onLoad: async function () {
-    this.setData({filter_group: ""});
+    this.setData({filter_group: "", user: app.db.get('userInfo')});
+    await app.sessionUtils.getUserInfo(this);
+    if (app.db.get('userInfo')?.token) {
+      // self.getVouchers();
+      // this.setData({filter_group: ""});
+      _getVouchers(this, {status: "validated"});
+    }
   },
   onShow: function () {
     const self = this;
