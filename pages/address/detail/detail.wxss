@@ -42,15 +42,15 @@
   border: 1px solid #F0F0F0;
   border-radius: 4px;
   background-color: #11141B !important;
-  position: absolute !important;
+  /*position: absolute !important;*/
   left: 30rpx !important;
-  bottom: calc(-46rpx + var(--env-)) !important;
+  /*bottom: calc(-46rpx + var(--env-)) !important;*/
 }
 
 .btn-bottom .white-background-black-text {
   background-color: #F0F0F0 !important;
   color: #1F1F1F !important;
-  bottom: calc(-168rpx + var(--env-)) !important;
+  bottom: calc(-60rpx + var(--env-)) !important;
 
 }
 

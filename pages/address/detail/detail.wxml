@@ -238,10 +238,10 @@
           </view>
         </view>
       </view>
-    </view>
-    <view class="star-set-default" bindtap="setDefault" style="{{'padding-left: 30rpx'}}">
-      <view class="icon icon-star-{{ default ? 'gold' : 'gray' }}">
-        <text class="nunito_500">{{ _t.set_default_address }}</text>
+      <view class="star-set-default" bindtap="setDefault">
+        <view class="icon icon-star-{{ default ? 'gold' : 'gray' }}">
+          <text class="nunito_500">{{ _t.set_default_address }}</text>
+        </view>
       </view>
     </view>
     <!-- End of Address Form -->
