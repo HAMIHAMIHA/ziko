@@ -50,7 +50,8 @@
     <view>{{ voucher.community }}</view>
   </block>
 </view> -->
-  <view wx:if="{{ vouchers.length > 0 }}" class="content">
+  <view wx:if="{{!vouchers}}" class="content"></view>
+  <view wx:elif="{{ vouchers.length > 0 }}" class="content">
     <!-- Voucher List -->
     <view class="no-vouchers">{{ _t.no_vouchers }}</view>
     <view class="container container-grey container-btn-bottom">

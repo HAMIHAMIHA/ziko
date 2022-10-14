@@ -53,6 +53,7 @@ const _setPageTranslation = page => {
 const _getVouchers = (page, filters) => {
   console.log("_getVouchers")
   const { status, filter} = filters;
+  if (!status) filters.status = "validated"
   console.log("fillters", filters)
   const callback = res => {
     console.log("res", res)
@@ -233,50 +234,8 @@ Page({
     },
     // filter_group: '',
     // map: true // Default open to map view
-
-    //__test
-    vouchers: [{
-      community: "kitchen",
-      community2: "",
-      createdAt: "2022/08/12 12:00",
-      amount: 100,
-      expire_on: "In 3 hours"
-    }, {
-      community: "kitchen",
-      community2: "pet",
-      createdAt: "2022/11/11 12:00",
-      amount: 100,
-      expire_on: "In 3 hours"
-    }, {
-      community: "pet",
-      community2: "",
-      createdAt: "2022/11/11 12:00",
-      amount: 150,
-      expire_on: "In 3 hours"
-    }, {
-      community: "cellar",
-      community2: "garden",
-      createdAt: "2022/11/11 12:00",
-      amount: 100,
-      expire_on: "Tomorrow"
-    },
-      {
-        community: "garden",
-        community2: "",
-        createdAt: "2022/11/11 12:00",
-        amount: 100,
-        expire_on: "Tomorrow"
-      },
-      {
-        community: "",
-        community2: "",
-        createdAt: "2022/11/11 12:00",
-        amount: 120,
-        expire_on: "Tomorrow"
-      },
-    ]
   },
-  onLoad: function () {
+  onLoad: async function () {
     this.setData({filter_group: ""});
   },
   onShow: function () {
@@ -292,7 +251,6 @@ Page({
           // this.setData({filter_group: ""});
           _getVouchers(this, {status: "validated"});
         }
-
       }
     );
   },

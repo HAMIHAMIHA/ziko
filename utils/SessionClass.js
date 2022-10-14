@@ -176,7 +176,7 @@ class SessionClass {
       let user = app.db.get('userInfo');
       user.customer = res.user;
       app.db.set('userInfo', user);
-      console.log("refreshUserInfo", user);
+      // console.log("refreshUserInfo", user);
       page?.setData({
         user: res.user,
         wxUser: user.wxUser ? user.wxUser : {}
