@@ -125,6 +125,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   left: 0;
   right: 0;
   border: 3rpx solid #595959;
+  width: 90% !important;
 }
 
 .under-black-button .font-size {
@@ -146,6 +147,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   bottom: 0;
   left: 0;
   right: 0;
+  width: 90% !important;
 }
 
 .under-white-button .font-size {
