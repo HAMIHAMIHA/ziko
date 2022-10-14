@@ -212,8 +212,10 @@ const _filterVoucherData = (page, filter_type, filter_group, filter_id, filter_d
   };
 
   // Set up API
-  suffix = filter_id === "" ? filter_id : `&communities=${filter_id}`;
-  _getVouchers(page, {status: "validated", filter: suffix})
+  // suffix = filter_id === "" ? filter_id : `&communities=${filter_id}`;
+  const filter = {};
+  if (filter_id !== "") filter.communities = filter_id
+  _getVouchers(page, {status: "validated", filter})
 }
 
 Page({
@@ -256,7 +258,7 @@ Page({
   },
 
   getVouchers: function () {
-    _getVouchers(this, '');
+    _getVouchers(this, {});
   },
 
   // Get Profile info

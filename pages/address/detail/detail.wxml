@@ -121,7 +121,7 @@
               <input
                 name="city"
                 placeholder="{{_t.please_select_your_city}}"
-                value="{{ address.detailedAddress }}"
+                value="{{ address.city }}"
                 confirm-type="next"
                 confirm-hold="true"
                 focus="{{ _focus == 'detailedAddress' ? true : false }}"
