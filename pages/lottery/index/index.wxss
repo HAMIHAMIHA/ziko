@@ -111,7 +111,8 @@
 .image-size{
   width: 400rpx;
   height: 52rpx;
-  margin-top:210rpx;
+  margin-top:110rpx;
+  /*margin-top:210rpx;*/
 }
 /* lottery-box */
 

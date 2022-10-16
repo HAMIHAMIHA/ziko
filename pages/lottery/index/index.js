@@ -295,6 +295,7 @@ Page({
     },
     _communities: index_data.communities,
     first_show: app.db.get('lotteryShow'),
+    lottery_logo: "/assets/images/zikoland.svg",
     lottery_content: [{
       numb: "i0",
       name: "bottle-1",
