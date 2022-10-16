@@ -224,7 +224,7 @@ Page({
     tabIndex:"0"
   },
   onLoad: function(options) {
-    console.log("onload home options", options)
+    console.log("onload home options", options, app.globalData)
   },
 
   onShow: function() {
@@ -235,13 +235,13 @@ Page({
 
     // Restart lottery popup
     app.globalData.pause_lottery_check = false;
-
+    const { index_type, filter_group } = app.globalData;
     // Switch to list tab if global data set
-    if (app.globalData.index_type === 'list') {
-      app.globalData.index_type = '';
-      _filterOfferData(self, self.options.type, '', '', '');
-    }
-    _filterOfferData(self, "list", '', '', '');
+    if (index_type && filter_group) {
+      _filterOfferData(self, index_type, filter_group, '', '');
+      Reflect.deleteProperty(app.globalData, "filter_group");
+      Reflect.deleteProperty(app.globalData, "index_type");
+    } else _filterOfferData(self, "list", '', '', '');
     //change tabBar
     if (typeof this.getTabBar === 'function' &&
         this.getTabBar()) {

@@ -10,14 +10,7 @@ const {
   formatDate,
   formatTime
 } = require("../../../utils/util.js");
-const {
-  truncateText,
-  formatWeekDate,
-  findIndex,
-  _checkMediaType,
-  mapDeliveryDates,
-  formatCountDown
-} = require("../../../utils/util");
+const {formatCountDown} = require("../../../utils/util");
 
 const app = getApp();
 const _voucher_status = ['all', 'unused', 'used'];
@@ -58,12 +51,9 @@ const _setPageTranslation = page => {
 }
 
 const _getVouchers = (page, filters) => {
-  console.log("_getVouchers")
   const {status, filter} = filters;
   if (!status) filters.status = "validated"
-  console.log("fillters", filters)
   const callback = res => {
-    console.log("res", res)
     let vouchers = [];
 
     res.forEach(v => {
@@ -88,7 +78,7 @@ const _getVouchers = (page, filters) => {
       // Available for community
       let community_list = [];
       let ticket_type = "kitchen";
-      console.log("v.community", v)
+      // console.log("v.community", v)
       if (v.communities.length === 4) voucher.community = app.globalData.i18n.community.all
       else {
         if (v.communities.find(c => communities[c] === "pet")) {
@@ -135,7 +125,7 @@ const _getVouchers = (page, filters) => {
     vouchers.sort((v1, v2) => {
       return v2.createdAt - v1.createdAt
     })
-    console.log("vouchers", vouchers)
+    // console.log("vouchers", vouchers)
 
     page.setData({
       vouchers
@@ -147,7 +137,6 @@ const _getVouchers = (page, filters) => {
       }).length)
     }
     showLoading(false);
-    console.log("end of callback")
   }
 
   showLoading(true);
@@ -195,7 +184,7 @@ const _filterVoucherData = (page, filter_type, filter_group, filter_id, filter_d
   // Get data by filter group and filter date
   current_filter.group = filter_id;
   current_filter.date = filter_date;
-  console.log("current_filter: ", current_filter)
+  // console.log("current_filter: ", current_filter)
 
   if (filter_type == 'map') {
     if (!filter_group) {
@@ -211,7 +200,6 @@ const _filterVoucherData = (page, filter_type, filter_group, filter_id, filter_d
 
   // Set up page data, Start new timers, Change date filters
   let callback = res => {
-    console.log(res, "res")
     page.setData({
       vouchers: res
     })
@@ -297,7 +285,6 @@ Page({
   // Filter vouchers by selected group
   filterVouchers: function (e) {
     const self = this;
-    console.log('Filter voucher', e)
     let data = e.currentTarget ? e.currentTarget.dataset : {};
 
     // Set up filtering items if just changing date
@@ -315,22 +302,19 @@ Page({
   },
 
   navigateOffer: function () {
-    const {vouchers} = this.data;
-    const filters = [];
+    const {vouchers, filter_group} = this.data;
+    app.globalData.index_type = "list";
     if (vouchers && vouchers.length === 1) {
       // switched to specified tab
-      if ("community_list" in vouchers[0]) {
-        filters.push(`tab=${vouchers[0][0].name}`);
-      }
-    }
-    filters.push(`tab=kitchen`);
+      app.globalData.filter_group = communities[vouchers[0].rawCommunity[0]];
+    } else app.globalData.filter_group = filter_group;
     wx.switchTab({
-      url: `${app.routes.home}?${filters.join('&')}`
+      url: app.routes.home
     })
   },
   refreshLoginState: function (event) {
-    console.log("refreshLoginState", event.detail);
-    const { userLogin } = event.detail;
+    // console.log("refreshLoginState", event.detail);
+    const {userLogin} = event.detail;
     if (userLogin) this.getVouchers();
   }
 })

@@ -43,9 +43,7 @@ Component({
   lifetimes: {
     attached: function () {
       _setI18n(this);
-      console.log("attached")
       const {customer} = app.db.get('userInfo');
-      console.log("user login-hint", customer);
       if (!customer?.id) this.setData({userLogin: true});
     }
   },
@@ -60,7 +58,6 @@ Component({
   },
   observers: {
     "userLogin": function () {
-      console.log("userlogin changed to", this.data.userLogin);
       const { userLogin } = this.data;
       this.triggerEvent("refresh", {userLogin});
     }

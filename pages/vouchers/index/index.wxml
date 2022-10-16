@@ -1,127 +1,133 @@
 <!--<block wx:if="{{ !user.id }}">-->
-<!--  <view class="login-container">-->
-<!--    <view class="empty_message">{{ _t.need_login }}</view>-->
-<!--    &lt;!&ndash; Get user Info &ndash;&gt;-->
-<!--    <button class="login-btn" bindtap="getUserProfile" wx:if="{{ !user.name && !wxUser.name }}">-->
-<!--      {{ _t.get_profile }}-->
-<!--    </button>-->
-<!--    &lt;!&ndash; Get mobile number &ndash;&gt;-->
-<!--    <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else>-->
-<!--      {{ _t.moile_login }}-->
-<!--    </button>-->
-<!--  </view>-->
-<!--</block>-->
+        <!--  <view class="login-container">-->
+        <!--    <view class="empty_message">{{ _t.need_login }}</view>-->
+        <!--    &lt;!&ndash; Get user Info &ndash;&gt;-->
+        <!--    <button class="login-btn" bindtap="getUserProfile" wx:if="{{ !user.name && !wxUser.name }}">-->
+        <!--      {{ _t.get_profile }}-->
+        <!--    </button>-->
+        <!--    &lt;!&ndash; Get mobile number &ndash;&gt;-->
+        <!--    <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else>-->
+        <!--      {{ _t.moile_login }}-->
+        <!--    </button>-->
+        <!--  </view>-->
+        <!--</block>-->
 <block wx:if="{{!vouchers}}">
-  <login-hint bind:refresh="refreshLoginState"></login-hint>
+    <login-hint bind:refresh="refreshLoginState"></login-hint>
 </block>
 
 <block wx:else>
-  <!-- Scroll Menu -->
-  <!-- <view class="nunito_700 h-scroll_container scroll-menu_account">
-    <scroll-view class="h-scroll capatilize" scroll-x="true">
-      <block wx:for="{{ _pickers._voucher_status }}" wx:key="index" wx:for-item="status">
-        <view
-          class="h-scroll_item order-status{{ current_status === status ? ' selected' : '' }}"
-          bindtap="changeFilter"
-          data-value="{{ status }}"
-        >
-          {{ _t.voucher_status[status] }}
-        </view>
-      </block>
-    </scroll-view>
-  </view> -->
-  <!-- Scroll Menu -->
-  <view class="h-scroll_container scroll-menu_community">
-    <scroll-view class="h-scroll" scroll-x="true">
-      <block wx:for="{{ _filters.list }}" wx:key="filter_group" wx:for-item="filter">
-        <view
-          class="h-scroll_item {{ filter.class_name }} {{ filter_group == filter.filter_group ? ' selected' : '' }}"
-          bindtap="filterVouchers"
-          data-filter_type="list"
-          data-filter_group="{{ filter.filter_group }}"
-          data-filter_id="{{ filter.id }}"
-        >
-          <view class="icon icon-{{ filter.icon }}"></view>
-        </view>
-      </block>
-    </scroll-view>
-  </view>
-  <!-- End of Scroll Menu -->
-
-  <!-- <view class="content">
-  <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher">
-    <view>{{ voucher.community }}</view>
-  </block>
-</view> -->
-  <view wx:if="{{!vouchers}}" class="content"></view>
-  <view wx:elif="{{ vouchers.length > 0 }}" class="content">
-    <!-- Voucher List -->
-    <view class="no-vouchers">{{ _t.no_vouchers }}</view>
-    <view class="container container-grey container-btn-bottom">
-      <view class="voucher-content_container">
-        <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher" class="ticket_box">
-          <image src="/assets/images/{{ voucher.ticket_type || 'kitchen' }}_ticket.svg" class="ticket_picture">
-            <view class="box-content">
-              <view class="box-content-left">
-                <view class="black-box gilroy_700" wx:if="{{voucher.community_list}}">
-                  <text class="ziko-name">{{ _t.ziko }}</text>
-                  <text
-                    class="nunito_700 ziko-community ziko-community-{{ voucher.community_list[0].style }}">{{ " " + voucher.community_list[0].name
-                    }}</text>
-                  <block wx:if="{{voucher.community_list[1]}}">
-                    <text class="ziko-community">{{' / '}}</text>
-                    <text
-                      class="nunito_700 ziko-community ziko-community-{{ voucher.community_list[1].style}}">{{ voucher.community_list[1].name }}</text>
-                  </block>
-                  <block wx:if="{{voucher.community_list[2]}}">
-                    <text class="ziko-community">{{' / '}}</text>
-                    <text
-                      class="nunito_700 ziko-community ziko-community-{{ voucher.community_list[2].style }}">{{ voucher.community_list[2].name }}</text>
-                  </block>
-                  <block wx:if="{{voucher.community_list[3]}}">
-                    <text class="ziko-community">{{' / '}}</text>
-                    <text
-                      class="nunito_700 ziko-community ziko-community-{{ voucher.community_list[3].style }}">{{ voucher.community_list[3].name }}</text>
-                  </block>
-                </view>
-                <view class="black-box gilroy_700" wx:else>
-                  <text class="ziko-name">{{ voucher.community }}</text>
-                </view>
-                <view class="nunito_400 received">
-                  <text>{{ _t.received + ': ' }}{{ voucher.createdAt }}</text>
-                  <view>{{ _t.expires + ': ' }}<text class="expires nunito_500">{{voucher.expirationDate}}</text>
-                  </view>
-                </view>
-              </view>
-              <view class="box-content-right">
-                <view class="money gilroy_700">¥ {{ voucher.amount }}</view>
-                <view class="use_now nunito_600" bindtap="navigateOffer">{{ _t.use_now }}</view>
-              </view>
-            </view>
-          </image>
-
+    <!-- Scroll Menu -->
+    <!-- <view class="nunito_700 h-scroll_container scroll-menu_account">
+      <scroll-view class="h-scroll capatilize" scroll-x="true">
+        <block wx:for="{{ _pickers._voucher_status }}" wx:key="index" wx:for-item="status">
+          <view
+            class="h-scroll_item order-status{{ current_status === status ? ' selected' : '' }}"
+            bindtap="changeFilter"
+            data-value="{{ status }}"
+          >
+            {{ _t.voucher_status[status] }}
+          </view>
         </block>
-      </view>
+      </scroll-view>
+    </view> -->
+    <!-- Scroll Menu -->
+    <view class="h-scroll_container scroll-menu_community">
+        <scroll-view class="h-scroll" scroll-x="true">
+            <block wx:for="{{ _filters.list }}" wx:key="filter_group" wx:for-item="filter">
+                <view
+                        class="h-scroll_item {{ filter.class_name }} {{ filter_group == filter.filter_group ? ' selected' : '' }}"
+                        bindtap="filterVouchers"
+                        data-filter_type="list"
+                        data-filter_group="{{ filter.filter_group }}"
+                        data-filter_id="{{ filter.id }}"
+                >
+                    <view class="icon icon-{{ filter.icon }}"></view>
+                </view>
+            </block>
+        </scroll-view>
+    </view>
+    <!-- End of Scroll Menu -->
 
-      <!-- <view class="btn-bottom">
-          <view class="contact-message">{{ _t.voucher_question }}</view>
-          <button class="contact-button" open-type="contact">
-            <text class="icon icon-headset"></text>
-            <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
-          </button>
-        </view>-->
+    <!-- <view class="content">
+    <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher">
+      <view>{{ voucher.community }}</view>
+    </block>
+  </view> -->
+    <view wx:if="{{!vouchers}}" class="content"></view>
+    <view wx:elif="{{ vouchers.length > 0 }}" class="content">
+        <!-- Voucher List -->
+        <view class="no-vouchers">{{ _t.no_vouchers }}</view>
+        <view class="container container-grey container-btn-bottom">
+            <view class="voucher-content_container">
+                <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher" class="ticket_box">
+                    <image src="/assets/images/{{ voucher.ticket_type || 'kitchen' }}_ticket.svg"
+                           class="ticket_picture">
+                        <view class="box-content">
+                            <view class="box-content-left">
+                                <view class="black-box gilroy_700" wx:if="{{voucher.community_list}}">
+                                    <text class="ziko-name">{{ _t.ziko }}</text>
+                                    <text
+                                            class="nunito_700 ziko-community ziko-community-{{ voucher.community_list[0].style }}">{{
+                                        " " + voucher.community_list[0].name
+                                        }}</text>
+                                    <block wx:if="{{voucher.community_list[1]}}">
+                                        <text class="ziko-community">{{' / '}}</text>
+                                        <text
+                                                class="nunito_700 ziko-community ziko-community-{{ voucher.community_list[1].style}}">{{ voucher.community_list[1].name
+                                            }}</text>
+                                    </block>
+                                    <block wx:if="{{voucher.community_list[2]}}">
+                                        <text class="ziko-community">{{' / '}}</text>
+                                        <text
+                                                class="nunito_700 ziko-community ziko-community-{{ voucher.community_list[2].style }}">{{ voucher.community_list[2].name
+                                            }}</text>
+                                    </block>
+                                    <block wx:if="{{voucher.community_list[3]}}">
+                                        <text class="ziko-community">{{' / '}}</text>
+                                        <text
+                                                class="nunito_700 ziko-community ziko-community-{{ voucher.community_list[3].style }}">{{ voucher.community_list[3].name
+                                            }}</text>
+                                    </block>
+                                </view>
+                                <view class="black-box gilroy_700" wx:else>
+                                    <text class="ziko-name">{{ voucher.community }}</text>
+                                </view>
+                                <view class="nunito_400 received">
+                                    <text>{{ _t.received + ': ' }}{{ voucher.createdAt }}</text>
+                                    <view>{{ _t.expires + ': ' }}<text
+                                            class="expires nunito_500">{{voucher.expirationDate}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="box-content-right">
+                                <view class="money gilroy_700">¥ {{ voucher.amount }}</view>
+                                <view class="use_now nunito_600" bindtap="navigateOffer">{{ _t.use_now }}</view>
+                            </view>
+                        </view>
+                    </image>
+
+                </block>
+            </view>
+
+            <!-- <view class="btn-bottom">
+                <view class="contact-message">{{ _t.voucher_question }}</view>
+                <button class="contact-button" open-type="contact">
+                  <text class="icon icon-headset"></text>
+                  <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
+                </button>
+              </view>-->
+        </view>
+        <!-- End of Voucher List -->
     </view>
-    <!-- End of Voucher List -->
-  </view>
-  <view wx:else class="no-voucher">
-    <view class="icon icon-ziko">
+    <view wx:else class="no-voucher">
+        <view class="icon icon-ziko">
+        </view>
+        <view class="first-paragraph gilroy-700">{{ _t.no_vouchers_yet }}</view>
+        <view class="second-paragraph nunito_500">{{ _t.its_up_to_you }}</view>
+        <button class="add_a_cat" bindtap="navigateOffer">
+            <text>{{ _t.view_ziko_offers }}</text>
+        </button>
     </view>
-    <view class="first-paragraph gilroy-700">{{ _t.no_vouchers_yet }}</view>
-    <view class="second-paragraph nunito_500">{{ _t.its_up_to_you }}</view>
-    <button class="add_a_cat" bindtap="navigateOffer">
-      <text>{{ _t.view_ziko_offers }}</text>
-    </button>
-  </view>
 </block>
 
 <lottery-draw id="lottery_modal"></lottery-draw>

@@ -94,7 +94,7 @@ const getOrders = (page) => {
     },
     voucher: (gift) => {
       return {
-        name: `￥${ gift.voucherValue }${ app.globalData.i18n.offer_special_details.voucher }`,
+        name: `￥${gift.voucherValue}${app.globalData.i18n.offer_special_details.voucher}`,
         picture: '',
         count: 1,
         _id: gift._id
@@ -103,7 +103,7 @@ const getOrders = (page) => {
     discount: (gift) => {
       gift.discountAmount
       return {
-        name: `${ gift.discountAmount }${ app.globalData.i18n.offer_special_details.discount_off }`,
+        name: `${gift.discountAmount}${app.globalData.i18n.offer_special_details.discount_off}`,
         picture: '',
         count: 1,
         _id: gift._id
@@ -118,9 +118,15 @@ const getOrders = (page) => {
       }
     },
   }
-
   const callback = res => {
-    if (!res.length) {
+    console.log("Callback", res);
+    if (!("length" in res)) {
+      showLoading(false);
+      return;
+    }
+    if (res.length === 0) {
+      console.log("empty order")
+      page.setData({orders: res});
       showLoading(false);
       return;
     }
@@ -191,14 +197,18 @@ const getOrders = (page) => {
   let order_status = current.order_status;
 
   // Tracking status filter
-  let tracking_filter_str = `trackingStatus=${ order_status }`;
+  let tracking_filter_str = `trackingStatus=${order_status}`;
   if (order_status === 'prepared') {
     tracking_filter_str = `filter={"$or":[{"trackingStatus":"prepared"},{"trackingStatus":"delayed"}]}`;
   }
 
   let filter = {
-    filter_str: `${tracking_filter_str}&channel=miniprogram&community=${ community_id }&range=[${current_load}, ${ current_load + PAGE_RANGE - 1}]`,
+    filter_str: `${tracking_filter_str}&channel=miniprogram&community=${community_id}&range=[${current_load}, ${current_load + PAGE_RANGE - 1}]`,
   }
+  if (!!order_status) filter.trackingStatus = order_status;
+  if (!!community_id) filter.community = community_id;
+  if (!!current_load && !!PAGE_RANGE) filter.range = [current_load,current_load + PAGE_RANGE - 1 ];
+  console.log("filter: ", filter);
 
   app.api.getOrders(filter).then(callback);
 }
@@ -218,21 +228,10 @@ Page({
     index_t: 1,
     state: ['delivered', 'progress', 'processing'],
     index_s: 1,
-    orders: [{
-      count: 2,
-      id: 2,
-      orderDate: 20220926,
-      trackingStatus: 3,
-      actualAmount: 10,
-      actualTotal: 20,
-      community: "pet",
-      item: "Ziko Gold mask + 15% off",
-      lottery: 1
-    }],
     items_name: ["Outstanding beef", "Fresh Pack Vages", "Greedy dog food"]
   },
 
-  onShow: function () {
+  onLoad: function (options) {
     const self = this;
 
     self.updatePageConstants();
@@ -243,12 +242,7 @@ Page({
     app.sessionUtils.getUserInfo(self);
 
     if (app.db.get('userInfo') && app.db.get('userInfo').token) {
-      if (!self.options.back) {
-        self.initOrders();
-      } else {
-        self.options.back = false;
-        getOrders(self);
-      }
+      getOrders(self);
     }
   },
 
@@ -262,9 +256,6 @@ Page({
     _defaultFilters(self, 'community', 0);
     _defaultFilters(self, 'order_status', 0);
     current_load = 0;
-    self.setData({
-      orders: []
-    })
     getOrders(self);
   },
 
@@ -288,9 +279,6 @@ Page({
     let value = filter_type == 'community' ? e.detail.value : e.currentTarget.dataset.value;
 
     current_load = 0;
-    self.setData({
-      orders: []
-    })
 
     _defaultFilters(self, filter_type, value);
     getOrders(self);
@@ -356,6 +344,6 @@ Page({
   refreshLoginState: function (event) {
     console.log("refreshLoginState", event.detail);
     const {userLogin} = event.detail;
-    if (userLogin) this.initOrders();
+    if (userLogin) getOrders(this);
   }
-  })
+})
