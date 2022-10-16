@@ -1,4 +1,5 @@
 {
   "usingComponents": {
+    "login-hint": "/component/login-hint/login-hint"
   }
 }

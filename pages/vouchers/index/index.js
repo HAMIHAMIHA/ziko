@@ -264,7 +264,8 @@ Page({
         if (app.db.get('userInfo')?.token) {
           // self.getVouchers();
           // this.setData({filter_group: ""});
-          _getVouchers(this, {status: "validated"});
+          // _getVouchers(this, {status: "validated"});
+          this.getVouchers();
         }
       }
     );
@@ -326,5 +327,10 @@ Page({
     wx.switchTab({
       url: `${app.routes.home}?${filters.join('&')}`
     })
+  },
+  refreshLoginState: function (event) {
+    console.log("refreshLoginState", event.detail);
+    const { userLogin } = event.detail;
+    if (userLogin) this.getVouchers();
   }
 })

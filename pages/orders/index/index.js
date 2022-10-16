@@ -353,4 +353,9 @@ Page({
       "_picker_selected.community": e.currentTarget.dataset.filter_group
     })
   },
-})
+  refreshLoginState: function (event) {
+    console.log("refreshLoginState", event.detail);
+    const {userLogin} = event.detail;
+    if (userLogin) this.initOrders();
+  }
+  })

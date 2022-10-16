@@ -61,7 +61,8 @@
     "navigationBarTextStyle": "white"
   },
   "usingComponents": {
-    "lottery-draw": "/component/modals/drawLottery/lottery/lottery"
+    "lottery-draw": "/component/modals/drawLottery/lottery/lottery",
+    "login-hint": "/component/login-hint/login-hint"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
