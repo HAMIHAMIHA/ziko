@@ -81,11 +81,8 @@ export const formatTimer = dateLong => {
 
   let time = [];
   if (days) time.push(`${days}${_i18n.days}`);
-  if (days || hours) time.push(`${formatNumber(hours)}:${formatNumber(minutes)}`);
-// if (days || hours) time.push(`${formatNumber(hours)}${_i18n.hours}`);
-//   if ((days && hours) || minutes) time.push(`${formatNumber(minutes)}`);
-// if ((days && hours) || minutes) time.push(`${formatNumber(minutes)}${_i18n.minutes}`);
-  // time.push(`${formatNumber(seconds)}${_i18n.seconds}`);
+  if (days || hours) time.push(`${hours}${_i18n.hours}`);
+  if ((days && hours) || minutes) time.push(`${minutes}${_i18n.minutes}`);
     
   return time.join(" ");
 }

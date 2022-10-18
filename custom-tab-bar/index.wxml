@@ -2,8 +2,8 @@
 <!-- <text>custom-tab-bar/index.wxml</text> -->
 
 <view class="tabbar inter_500">
-  <view wx:for="{{list}}" wx:key="index" class="tabbar-box" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
-      <image class="the-land-img" src="{{selected === index ? item.selectedIconPath : item.iconPath}}"></image>
-      <view class="account-text" style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</view>
+  <view wx:for="{{ list }}" wx:key="index" class="tabbar-box" data-path="{{ item.pagePath }}" data-index="{{ index }}" bindtap="switchTab">
+    <image class="the-land-img" src="{{ selected === index ? item.selectedIconPath : item.iconPath }}"></image>
+    <view class="account-text" style="color: {{ selected === index ? selectedColor : color }}">{{ item.text[lang] }}</view>
   </view>
 </view>

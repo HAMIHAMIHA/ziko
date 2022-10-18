@@ -138,13 +138,6 @@ Page({
       recipes: [],
       filters:[],
     })
-      //change tabBar
-      if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 1
-      })
-    }
   },
 
   onShow: function() {
@@ -154,6 +147,14 @@ Page({
 
     // Restart lottery popup
     app.globalData.pause_lottery_check = false;
+
+    // Change tabBar
+    if (typeof self.getTabBar === 'function' && self.getTabBar()) {
+      self.getTabBar().setData({
+        selected: 1,
+        lang: app.db.get('language'),
+      })
+    }
   },
 
   showFilter: function() {

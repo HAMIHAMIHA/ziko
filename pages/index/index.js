@@ -1,11 +1,24 @@
-const { showLoading } = require("../../utils/common.js");
+const {
+  showLoading
+} = require("../../utils/common.js");
 const index_data = require("../../utils/constants.js");
-const { formatWeekDate, findIndex, mapDeliveryDates, _checkMediaType } = require("../../utils/util.js");
-const {truncateText} = require("../../utils/util");
+const {
+  formatWeekDate,
+  findIndex,
+  mapDeliveryDates,
+  _checkMediaType
+} = require("../../utils/util.js");
+const {
+  truncateText
+} = require("../../utils/util");
 
 const app = getApp();
 let leave_triggered = false; // To track if leave page already triggered
-let current_filter = { type: 'map', group: '', date: '' }; // Default filter for page
+let current_filter = {
+  type: 'map',
+  group: '',
+  date: ''
+}; // Default filter for page
 
 // Reset date filter to all
 const _resetDateFilters = (page, new_list) => {
@@ -106,14 +119,17 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
   if (filter_type == 'map') {
     if (!filter_group) {
       // If filter type = map, group == null => clear data and return
-      page.setData({ filter_group: '', offers: {} })
+      page.setData({
+        filter_group: '',
+        offers: {}
+      })
       return;
     }
   }
 
   // Loading module
   showLoading(true);
-  
+
   let raw_offers = [];
 
   // Set up page data, Start new timers, Change date filters
@@ -130,7 +146,8 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
       let offer = raw_offers[i];
       const shortDescription = {};
       for (const key in offer.description) {
-        let format = " ", length = 16;
+        let format = " ",
+          length = 16;
         if (key === "zh") {
           format = "";
           length = 50;
@@ -144,8 +161,14 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
         days.push(date_value);
       }
 
-      let banners = { index: 0, uris: [] };
-      let other_banner = { zh: 'en', en: 'zh' };
+      let banners = {
+        index: 0,
+        uris: []
+      };
+      let other_banner = {
+        zh: 'en',
+        en: 'zh'
+      };
       if (offer.banner) {
         if (offer.banner[app.db.get('language')]) {
           banners.uris.push({
@@ -164,7 +187,7 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
 
       // Media images for banner swiper
       if (offer.media.length) {
-        offer.media.forEach( m => {
+        offer.media.forEach(m => {
           banners.uris.push({
             uri: `${app.folders.offer_media}${m.uri}`,
             type: _checkMediaType(m.type),
@@ -184,7 +207,9 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
     }
 
     page.setData({
-      days: days.sort( (a,b) => { return a.timestamp - b.timestamp }),
+      days: days.sort((a, b) => {
+        return a.timestamp - b.timestamp
+      }),
       offers: offers
     })
     _timerControl(page, true);
@@ -219,14 +244,14 @@ Page({
       map: index_data.map_filters
     },
     filter_group: '',
-    filter_type:"list",
+    filter_type: "list",
     map: true, // Default open to map view
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     console.log("onload home options", options, app.globalData)
   },
 
-  onShow: function() {
+  onShow: function () {
     const self = this;
 
     leave_triggered = false;
@@ -234,32 +259,38 @@ Page({
 
     // Restart lottery popup
     app.globalData.pause_lottery_check = false;
-    const { index_type, filter_group } = app.globalData;
+    const {
+      index_type,
+      filter_group
+    } = app.globalData;
     // Switch to list tab if global data set
     if (index_type && filter_group) {
       _filterOfferData(self, index_type, filter_group, '', '');
       Reflect.deleteProperty(app.globalData, "filter_group");
       Reflect.deleteProperty(app.globalData, "index_type");
     } else _filterOfferData(self, "list", '', '', '');
-    //change tabBar
-    if (typeof this.getTabBar === 'function' &&
-        this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 0
-        })
-      }
+
+    // Change tabBar
+    if (typeof self.getTabBar === 'function' && self.getTabBar()) {
+      self.getTabBar().setData({
+        selected: 0,
+        lang: app.db.get('language'),
+      })
+    }
   },
 
-  onHide: function(e) {
+  onHide: function (e) {
     const self = this;
-    self.navigatePage({ detail: {} });
+    self.navigatePage({
+      detail: {}
+    });
 
     // Stop all timers
     _timerControl(self, false);
   },
 
   // Close modal or reset page view to map when leaving page by tabbar click
-  navigatePage: function(e) {
+  navigatePage: function (e) {
     const self = this;
 
     if (leave_triggered) {
@@ -273,7 +304,7 @@ Page({
   },
 
   // Switch display method
-  switchType: function(e) {
+  switchType: function (e) {
     const self = this;
 
     // Check if changing to the map view
@@ -282,7 +313,7 @@ Page({
   },
 
   // Filter offers by selected group
-  filterOffers: function(e) {
+  filterOffers: function (e) {
     const self = this;
     let data = e.currentTarget ? e.currentTarget.dataset : {};
 
@@ -301,12 +332,12 @@ Page({
   },
 
   // Close modal for map list
-  // closeMapModal: function() {
-  //   const self = this;
-  //   _filterOfferData(self, 'map', '', '', '');
-  // },
+  closeMapModal: function() {
+    const self = this;
+    _filterOfferData(self, 'map', '', '', '');
+  },
 
-  updatePageLanguage: function() {
+  updatePageLanguage: function () {
     const self = this;
 
     // Translate tabbar
@@ -341,9 +372,6 @@ Page({
   },
 
   // Stop slide action at the back when modal is opened
-  preventSlide: function() {},
+  preventSlide: function () {},
   onShareAppMessage: function (res) {},
-  closeMapModal: function(res) {
-    this.setData({filter_group: ""});
-  }
 })

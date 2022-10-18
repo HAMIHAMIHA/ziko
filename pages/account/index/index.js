@@ -1,4 +1,6 @@
-const { showLoading } = require('../../../utils/common.js');
+const {
+  showLoading
+} = require('../../../utils/common.js');
 const translate = require('../../../utils/internationalize/translate.js'); // 翻译功能
 
 const app = getApp();
@@ -6,7 +8,7 @@ const app = getApp();
 // Page data
 const _getPageData = (page) => {
   // Voucher list for comparsion
-  app.api.getVouchers('validated', false).then( res => {
+  app.api.getVouchers('validated', false).then(res => {
     if (!app.db.get('vouchers')) return; // Don't check for extra if there is no voucher history in storage
     page.setData({
       new_vouchers: res.length - app.db.get('vouchers')
@@ -14,13 +16,15 @@ const _getPageData = (page) => {
   });
 
   // Order list for comparsion
-  let order_filter = { filter_str: `channel=miniprogram` };
-  app.api.getOrders(order_filter).then( orders => {
+  let order_filter = {
+    filter_str: `channel=miniprogram`
+  };
+  app.api.getOrders(order_filter).then(orders => {
     if (!app.db.get('orderDeliveries')) return; // Don't check for extra if there is no voucher history in storage
     orders.slice((orders.length - app.db.get('orderDeliveries').length), orders.length);
 
     let deliveries = [];
-    orders.forEach( order => {
+    orders.forEach(order => {
       deliveries.push(order.trackingStatus);
     })
 
@@ -30,7 +34,7 @@ const _getPageData = (page) => {
   })
 }
 
-const _uploadProfileImage = (res, page) =>  {
+const _uploadProfileImage = (res, page) => {
   showLoading(true);
   const callback = file => {
     // Update profile image displaying
@@ -67,40 +71,9 @@ Page({
       edit_profile: app.routes.edit_profile,
       pets: app.routes.pets,
     },
-    _t: {
-      account_ranking: app.globalData.i18n.account_ranking,
-      claims: app.globalData.i18n.claims,
-      contact: app.globalData.i18n.contact,
-      edit_my_address: app.globalData.i18n.edit_my_address,
-      edit_my_contacts: app.globalData.i18n.edit_my_contacts,
-      edit_my_info: app.globalData.i18n.edit_my_info,
-      en: app.globalData.i18n.en,
-      fapiao_info: app.globalData.i18n.fapiao_info,
-      get_profile: app.globalData.i18n.get_profile,
-      language_choice: app.globalData.i18n.language_choice,
-      moile_login: app.globalData.i18n.mobile_login,
-      my_favorite_recipes: app.globalData.i18n.my_favorite_recipes,
-      orders: app.globalData.i18n.orders,
-      vouchers: app.globalData.i18n.vouchers,
-      zh: app.globalData.i18n.zh,
-    },
     language: app.db.get('language'),
     copybox_judgment: true,
     animationData: {},
-    copyclicked: "",
-    margin_bottom: "",
-  },
-  onLaunch (options) {
-    // Do something initial when launch.
-    //  get tabbar hight
-    wx.getSystemInfo({
-      success(res){
-        let lift=res.screenHeight-res.safeArea.bottom
-        let tabbarHeight=Number(lift)+50
-        that.setData({tabbarHeight})
-        wx.setStorageSync('tabbarHeight',tabbarHeight)
-      }
-    })
   },
 
   onShow: async function () {
@@ -125,28 +98,27 @@ Page({
       _getPageData(self);
     }
 
-
     showLoading(false);
-    //change tabBar
-    if (typeof this.getTabBar === 'function' &&
-        this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 2
-        })
-      }
+    // Change tabBar
+    if (typeof self.getTabBar === 'function' && self.getTabBar()) {
+      self.getTabBar().setData({
+        selected: 2,
+        lang: app.db.get('language'),
+      })
+    }
   },
 
   // Get Profile info
-  getUserProfile: function(e) {
+  getUserProfile: function (e) {
     app.sessionUtils.getWxUserInfo(this);
   },
 
   // Mobile login
-  getPhoneNumber: function(e) {
+  getPhoneNumber: function (e) {
     app.sessionUtils.mobileLogin(this, e.detail.code);
-  }, 
+  },
 
-  switchLanguage: function(e) {
+  switchLanguage: function (e) {
     const self = this;
 
     let new_language = e.currentTarget.dataset.language;
@@ -156,13 +128,13 @@ Page({
     }
   },
 
-  updatePageLanguage: function() {
+  updatePageLanguage: function () {
     const self = this;
     const i18n = app.globalData.i18n;
-  
+
     // Set tabbar translation
     // app.setTabbars();
-  
+
     // Set page default data
     self.setData({
       _t: {
@@ -178,32 +150,33 @@ Page({
         moile_login: i18n.mobile_login,
         my_favorite_recipes: i18n.my_favorite_recipes,
         orders: i18n.orders,
-        vouchers: i18n.vouchers, 
+        vouchers: i18n.vouchers,
         zh: i18n.zh,
-        address_book:i18n.address_book,
-        contact_list:i18n.contact_list,
-        fapiao_information:i18n.fapiao_information,
-        my_pets:i18n.my_pets,
-        manage_your_delivery_address_details:i18n.manage_your_delivery_address_details,
-        manage_contact_for_delivery:i18n.manage_contact_for_delivery,
-        edit_your_fapiao_information:i18n.edit_your_fapiao_information,
-        manage_your_pet_details:i18n.manage_your_pet_details,
-        join_ziko_community:i18n.join_ziko_community,
-        be_apart_of_our:i18n.be_apart_of_our,
-        add_chef_ziko:i18n.add_chef_ziko,
-        add_pet_ziko:i18n.add_pet_ziko,
-        add_farmer_ziko:i18n.add_farmer_ziko,
-        add_cellar_ziko:i18n.add_cellar_ziko,
-        simonmawas:i18n.simonmawas,
-        wechat_id:i18n.wechat_id,
-        lottery:i18n.lottery,
-        copy:i18n.copy
+        address_book: i18n.address_book,
+        contact_list: i18n.contact_list,
+        fapiao_information: i18n.fapiao_information,
+        my_pets: i18n.my_pets,
+        manage_your_delivery_address_details: i18n.manage_your_delivery_address_details,
+        manage_contact_for_delivery: i18n.manage_contact_for_delivery,
+        edit_your_fapiao_information: i18n.edit_your_fapiao_information,
+        manage_your_pet_details: i18n.manage_your_pet_details,
+        join_ziko_community: i18n.join_ziko_community,
+        be_apart_of_our: i18n.be_apart_of_our,
+        add_chef_ziko: i18n.add_chef_ziko,
+        add_pet_ziko: i18n.add_pet_ziko,
+        add_farmer_ziko: i18n.add_farmer_ziko,
+        add_cellar_ziko: i18n.add_cellar_ziko,
+        simonmawas: i18n.simonmawas,
+        wechat_id: i18n.wechat_id,
+        lottery: i18n.lottery,
+        copy: i18n.copy,
+        language_choice: i18n.language_choice,
       },
       language: app.db.get('language')
     })
   },
 
-  chooseProfilePicture: function() {
+  chooseProfilePicture: function () {
     const self = this;
 
     let choose_media_setting = {
@@ -224,40 +197,36 @@ Page({
   },
 
   copyBoxShow: function () {
-    var that=this;
-    that.setData({
-      copybox_judgment:false,
-      margin_bottom:"margin_bottom"
+    var self = this;
+    self.setData({
+      copybox_judgment: false,
     })
   },
 
   copyBoxHide: function () {
-    var that=this;
-    that.setData({
-      copybox_judgment:true,
-      margin_bottom:"margin_bottom_hide"
+    var self = this;
+    self.setData({
+      copybox_judgment: true,
     })
   },
-  copyBtn: function (e) {
-    let that=this;
-    this.setData({
-      copyclicked:e.currentTarget.dataset.info
-    })
-    wx.setClipboardData({
-         data: e.currentTarget.dataset.text,
-         success: function (res) {
-          wx.showToast({
-            title: that.data._t.copy
-          })
-           wx.getClipboardData({
-             success: function (res) {
-              wx.showToast({
-                title: that.data._t.copy
-              })
-             }
-           })
-         }
-       })
-   },
 
+  copyBtn: function (e) {
+    let self = this;
+
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.text,
+      success: function (res) {
+        wx.showToast({
+          title: self.data._t.copy
+        })
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showToast({
+              title: self.data._t.copy
+            })
+          }
+        })
+      }
+    })
+  },
 })

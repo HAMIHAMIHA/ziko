@@ -87,11 +87,11 @@
           </view>
 
           <view class="uppercase offer-detail_content offer-specials">
-            <view class="icon_container lottery">
+            <view wx:if="{{ offer.miniprogram.lotteryEnable && offer.miniprogram.lottery.draws.length > 0 }}" class="icon_container lottery">
               <view class="icon icon-yuan"></view>
               <view class="icon_text">{{ _t.lottery }}</view>
             </view>
-            <view class="icon_container specials">
+            <view wx:if="{{ offer.miniprogram.zikoSpecials.length > 0 }}" class="icon_container specials">
               <view class="icon icon-gift"></view>
               <view class="icon_text">{{ _t.specials }}</view>
             </view>
@@ -107,7 +107,7 @@
 
           <!-- Current Status -->
           <view class="offer-status offer-detail_content gilroy_500">
-            <view class=" flex-center offer-counts" wx:if="{{ offer.orders >= 50 || offer.views >= 50 }}">
+            <!-- <view class=" flex-center offer-counts" wx:if="{{ offer.orders >= 50 || offer.views >= 50 }}">
               <view class="icon_container" wx:if="{{ offer.orders >= 50 }}">
                 <view class="icon icon-bag"></view>
                 <view class="icon_text">{{ offer.orders != 1 ? offer.orders + _t.orders_unit : offer.orders + _t.order_unit }}</view>
@@ -116,7 +116,7 @@
                 <view class="icon icon-eye"></view>
                 <view class="icon_text">{{ offer.views }}{{ _t.viewers }}</view>
               </view>
-            </view>
+            </view> -->
             <view class="offer-delivery nunito_400" wx:if="{{ offer.deliveryDates }}">
               {{ _t.delivery }}: {{ offer.deliveryDates }}
             </view>
@@ -162,13 +162,13 @@
           </view>
 
           <view class="uppercase offer-detail_content offer-specials">
-            <view class="icon_container lottery">
-                <view class="icon icon-yuan"></view>
-                <view class="icon_text">{{ _t.lottery }}</view>
+            <view wx:if="{{ offer.miniprogram.lotteryEnable && offer.miniprogram.lottery.draws.length > 0 }}" class="icon_container lottery">
+              <view class="icon icon-yuan"></view>
+              <view class="icon_text">{{ _t.lottery }}</view>
             </view>
-            <view class="icon_container specials">
-                <view class="icon icon-gift"></view>
-                <view class="icon_text">{{ _t.specials }}</view>
+            <view wx:if="{{ offer.miniprogram.zikoSpecials.length > 0 }}" class="icon_container specials">
+              <view class="icon icon-gift"></view>
+              <view class="icon_text">{{ _t.specials }}</view>
             </view>
             <view class="icon_container orders">
               <view class="icon icon-line icon-bag"></view>
