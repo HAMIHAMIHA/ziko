@@ -10,9 +10,11 @@ const {
   formatDate,
   formatTime
 } = require("../../../utils/util.js");
+const {formatCountDown} = require("../../../utils/util");
 
 const app = getApp();
 const _voucher_status = ['all', 'unused', 'used'];
+let current_filter = {type: 'map', group: '', date: ''}; // Default filter for page
 
 // Set page translation
 const _setPageTranslation = page => {
@@ -48,13 +50,14 @@ const _setPageTranslation = page => {
   })
 }
 
-const _getVouchers = (page, status) => {
+const _getVouchers = (page, filters) => {
+  const {status, filter} = filters;
+  if (!status) filters.status = "validated"
   const callback = res => {
     let vouchers = [];
 
     res.forEach(v => {
       if (v.status === 'pending' || v.status === 'declined') return;
-
       let voucher = {};
 
       // Voucher basic data
@@ -62,7 +65,8 @@ const _getVouchers = (page, status) => {
       voucher.amount = v.amount;
       voucher.status = v.status; /* validated, used, expired */
       voucher.createdAt = `${formatDate('yyyy/mm/dd', v.createdAt)} ${formatTime(v.createdAt)}`;
-      voucher.expirationDate = formatDate('yyyy-mm-dd', v.expirationDate);
+      // voucher.expirationDate = formatDate('yyyy-mm-dd', v.expirationDate);
+      voucher.expirationDate = formatCountDown(v.expirationDate);
       voucher.order = v.order;
       voucher.reason = app.globalData.i18n.voucher_source[v.reason];
 
@@ -73,10 +77,46 @@ const _getVouchers = (page, status) => {
 
       // Available for community
       let community_list = [];
-      v.communities.forEach(c => {
-        community_list.push(app.globalData.i18n.community[communities[c]])
-      })
-      voucher.community = community_list.join(' / ')
+      let ticket_type = "kitchen";
+      // console.log("v.community", v)
+      if (v.communities.length === 4) voucher.community = app.globalData.i18n.community.all
+      else {
+        if (v.communities.find(c => communities[c] === "pet")) {
+          community_list.unshift({
+            name: app.globalData.i18n.community.pet,
+            style: "pet"
+          });
+          ticket_type = "pet";
+        }
+        if (v.communities.find(c => communities[c] === "farm")) {
+          community_list.unshift({
+            name: app.globalData.i18n.community.farm,
+            style: "garden"
+          });
+          ticket_type = "garden";
+        }
+        if (v.communities.find(c => communities[c] === "cellar")) {
+          community_list.unshift({
+            name: app.globalData.i18n.community.cellar,
+            style: "cellar"
+          });
+          ticket_type = "cellar";
+        }
+        if (v.communities.find(c => communities[c] === "kitchen")) {
+          community_list.unshift({
+            name: app.globalData.i18n.community.kitchen,
+            style: "kitchen"
+          });
+          ticket_type = "kitchen";
+        }
+        // v.communities.forEach(c => {
+        //   community_list.push(app.globalData.i18n.community[communities[c]])
+        // })
+
+        voucher.community_list = community_list;
+      }
+      voucher.ticket_type = ticket_type;
+      voucher.rawCommunity = v.communities;
 
       vouchers.push(voucher)
     });
@@ -85,6 +125,7 @@ const _getVouchers = (page, status) => {
     vouchers.sort((v1, v2) => {
       return v2.createdAt - v1.createdAt
     })
+    // console.log("vouchers", vouchers)
 
     page.setData({
       vouchers
@@ -99,7 +140,77 @@ const _getVouchers = (page, status) => {
   }
 
   showLoading(true);
-  app.api.getVouchers(status, false).then(callback);
+  app.api.getNotExpiredVouchers(status, filter).then(callback);
+}
+const _resetDateFilters = (page, new_list) => {
+  let date_filter = page.selectComponent('#list_date_filters');
+  if (current_filter.type == "map") {
+    date_filter = page.selectComponent('#map_date_filter');
+  }
+
+  // Set seleted data to all
+  if (date_filter) {
+    date_filter.resetDateFilter();
+  }
+
+  // Remove days list for refresh
+  if (new_list) {
+    page.setData({
+      days: []
+    })
+  }
+}
+const _filterVoucherData = (page, filter_type, filter_group, filter_id, filter_date) => {
+  let suffix = '';
+  let raw_vouchers = [];
+
+  // Stop all timers
+
+  page.setData({
+    map: (filter_type === 'map'),
+    filter_group: filter_group,
+  })
+
+  // Change filter type if different from current
+  if (current_filter.type !== filter_type) {
+    current_filter.type = filter_type;
+  }
+
+  // Reset date filter if filter type and filter group different from current
+  if (!filter_date) {
+    _resetDateFilters(page, current_filter.type != filter_type || current_filter.group != filter_id);
+  }
+
+  // Get data by filter group and filter date
+  current_filter.group = filter_id;
+  current_filter.date = filter_date;
+  // console.log("current_filter: ", current_filter)
+
+  if (filter_type == 'map') {
+    if (!filter_group) {
+      // If filter type = map, group == null => clear data and return
+      page.setData({filter_group: '', offers: {}})
+      return;
+    }
+  }
+
+  // Loading module
+  showLoading(true);
+
+
+  // Set up page data, Start new timers, Change date filters
+  let callback = res => {
+    page.setData({
+      vouchers: res
+    })
+    showLoading(false);
+  };
+
+  // Set up API
+  // suffix = filter_id === "" ? filter_id : `&communities=${filter_id}`;
+  const filter = {};
+  if (filter_id !== "") filter.communities = filter_id
+  _getVouchers(page, {status: "validated", filter})
 }
 
 Page({
@@ -120,64 +231,36 @@ Page({
     },
     // filter_group: '',
     // map: true // Default open to map view
-
-    //__test
-    vouchers: [{
-        community: "kitchen",
-        community2: "",
-        createdAt: "2022/08/12 12:00",
-        amount: 100,
-        expire_on: "In 3 hours"
-      }, {
-        community: "kitchen",
-        community2: "pet",
-        createdAt: "2022/11/11 12:00",
-        amount: 100,
-        expire_on: "In 3 hours"
-      }, {
-        community: "pet",
-        community2: "",
-        createdAt: "2022/11/11 12:00",
-        amount: 150,
-        expire_on: "In 3 hours"
-      }, {
-        community: "cellar",
-        community2: "garden",
-        createdAt: "2022/11/11 12:00",
-        amount: 100,
-        expire_on: "Tomorrow"
-      },
-      {
-        community: "garden",
-        community2: "",
-        createdAt: "2022/11/11 12:00",
-        amount: 100,
-        expire_on: "Tomorrow"
-      },
-      {
-        community: "",
-        community2: "",
-        createdAt: "2022/11/11 12:00",
-        amount: 120,
-        expire_on: "Tomorrow"
-      },
-    ]
   },
-
-  onShow: async function () {
+  onLoad: async function () {
+    this.setData({filter_group: "", user: app.db.get('userInfo')});
+    await app.sessionUtils.getUserInfo(this);
+    if (app.db.get('userInfo')?.token) {
+      // self.getVouchers();
+      // this.setData({filter_group: ""});
+      _getVouchers(this, {status: "validated"});
+    }
+  },
+  onShow: function () {
     const self = this;
     _setPageTranslation(self);
 
     // Restart lottery popup
     app.globalData.pause_lottery_check = false;
-    await app.sessionUtils.getUserInfo(self);
-    if (app.db.get('userInfo')?.token) {
-      self.getVouchers();
-    }
+    app.sessionUtils.getUserInfo(self).then(
+      () => {
+        if (app.db.get('userInfo')?.token) {
+          // self.getVouchers();
+          // this.setData({filter_group: ""});
+          // _getVouchers(this, {status: "validated"});
+          this.getVouchers();
+        }
+      }
+    );
   },
 
   getVouchers: function () {
-    _getVouchers(this, '');
+    _getVouchers(this, {});
   },
 
   // Get Profile info
@@ -197,6 +280,41 @@ Page({
     self.setData({
       current_status: e.currentTarget.dataset.value
     })
-    _getVouchers(self, voucher_status[e.currentTarget.dataset.value]);
+    _getVouchers(self, {status: voucher_status[e.currentTarget.dataset.value]});
+  },
+  // Filter vouchers by selected group
+  filterVouchers: function (e) {
+    const self = this;
+    let data = e.currentTarget ? e.currentTarget.dataset : {};
+
+    // Set up filtering items if just changing date
+    if (JSON.stringify(data) == '{}') {
+      data = {
+        filter_type: current_filter.type,
+        filter_group: index_data.communities[current_filter.group],
+        filter_id: current_filter.group,
+      }
+    }
+    // Get filtering date value
+    let date = (e.detail && e.detail.change_date) ? e.detail.date : '';
+    // Filter
+    _filterVoucherData(self, data.filter_type, data.filter_group, data.filter_id, date);
+  },
+
+  navigateOffer: function () {
+    const {vouchers, filter_group} = this.data;
+    app.globalData.index_type = "list";
+    if (vouchers && vouchers.length === 1) {
+      // switched to specified tab
+      app.globalData.filter_group = communities[vouchers[0].rawCommunity[0]];
+    } else app.globalData.filter_group = filter_group;
+    wx.switchTab({
+      url: app.routes.home
+    })
+  },
+  refreshLoginState: function (event) {
+    // console.log("refreshLoginState", event.detail);
+    const {userLogin} = event.detail;
+    if (userLogin) this.getVouchers();
   }
 })

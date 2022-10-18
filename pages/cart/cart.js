@@ -330,6 +330,16 @@ Page({
     },
     showLottery: true,
   },
+  onLoad: function (options) {
+    console.log("cart options", options);
+    //  received offerid and community from url here.
+    const {id, community} = options;
+    if (community) this.setData({community});
+  },
+  onReady: function () {
+    console.log("copybox_type", this.data.copybox_type);
+
+  },
 
   onShow: function () {
     const self = this;

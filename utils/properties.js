@@ -1,3 +1,4 @@
+// const API_URL = 'http://localhost:8081/';
 const API_URL = 'https://api-ziko.dev.mediasia.cn/';
 // const API_URL = 'https://api.zikoland.com/'; // PROD
 const FILE_URL = `${API_URL}storage/`;

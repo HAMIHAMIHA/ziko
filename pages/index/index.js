@@ -1,6 +1,7 @@
 const { showLoading } = require("../../utils/common.js");
 const index_data = require("../../utils/constants.js");
 const { formatWeekDate, findIndex, mapDeliveryDates, _checkMediaType } = require("../../utils/util.js");
+const {truncateText} = require("../../utils/util");
 
 const app = getApp();
 let leave_triggered = false; // To track if leave page already triggered
@@ -127,6 +128,15 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
 
     for (var i in raw_offers) {
       let offer = raw_offers[i];
+      const shortDescription = {};
+      for (const key in offer.description) {
+        let format = " ", length = 16;
+        if (key === "zh") {
+          format = "";
+          length = 50;
+        }
+        shortDescription[key] = truncateText(offer.description[key], format, length);
+      }
       let date_value = formatWeekDate(offer.startingDate);
 
       // Creating date filter list
@@ -168,6 +178,8 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
       offer.startDate = date_value;
       offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
       offer.banners = banners;
+      // console.log("shortDescription", shortDescription)
+      offer.shortDescription = shortDescription;
       offers.push(offer);
     }
 
@@ -210,6 +222,9 @@ Page({
     filter_type:"list",
     map: true, // Default open to map view
   },
+  onLoad: function(options) {
+    console.log("onload home options", options, app.globalData)
+  },
 
   onShow: function() {
     const self = this;
@@ -219,13 +234,13 @@ Page({
 
     // Restart lottery popup
     app.globalData.pause_lottery_check = false;
-
+    const { index_type, filter_group } = app.globalData;
     // Switch to list tab if global data set
-    if (app.globalData.index_type === 'list') {
-      app.globalData.index_type = '';
-      _filterOfferData(self, self.options.type, '', '', '');
-    }
-    _filterOfferData(self, "list", '', '', '');
+    if (index_type && filter_group) {
+      _filterOfferData(self, index_type, filter_group, '', '');
+      Reflect.deleteProperty(app.globalData, "filter_group");
+      Reflect.deleteProperty(app.globalData, "index_type");
+    } else _filterOfferData(self, "list", '', '', '');
     //change tabBar
     if (typeof this.getTabBar === 'function' &&
         this.getTabBar()) {
@@ -328,4 +343,7 @@ Page({
   // Stop slide action at the back when modal is opened
   preventSlide: function() {},
   onShareAppMessage: function (res) {},
+  closeMapModal: function(res) {
+    this.setData({filter_group: ""});
+  }
 })

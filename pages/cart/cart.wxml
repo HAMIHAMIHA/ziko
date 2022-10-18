@@ -5,7 +5,7 @@
     <view class="white-box order-products_container">
       <view class="nunito_700 header">{{ _t.items }}</view>
       <!-- <block wx:for="{{ products }}" wx:key="id" wx:for-item="product"> -->
-      <block wx:for="{{ productstest }}" wx:key="id" wx:for-item="product">
+      <block wx:for="{{ products }}" wx:key="id" wx:for-item="product">
         <view class="order-products product_container" wx:if="{{ product.amount }}">
           <view class="flex-between product" mark:type="{{ product.type }}">
             <view class="flex-start flex-align-start product_left">
@@ -261,8 +261,10 @@
         <view class="total-content">
           <view class="detail_label nunito_500 text-right">{{ _t.total }}</view>
           <!-- <text class="detail_result">¥{{ fixDecimals.toFix((_pay_set.finalFee - voucher.amount) * discount) }}</text> -->
-          <text class="detail_result_before">¥{{ voucher.amount_before }}</text>
-          <text class="detail_result">¥{{ voucher.price }}</text>
+<!--          <text class="detail_result_before">¥{{ voucher.amount_before }}</text>-->
+          <text class="detail_result_before">¥{{ _pay_set.finalFee  + _pay_set.reducedTotal  }}</text>
+<!--          <text class="detail_result">¥{{ voucher.price }}</text>-->
+          <text class="detail_result">¥{{ _pay_set.finalFee }}</text>
         </view>
         <view class="pay-button">
           <button class="nunito_600 disabled" wx:if="{{ _pay_set.single && _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.single }}">

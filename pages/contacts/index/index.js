@@ -5,6 +5,12 @@ const {
 
 const app = getApp();
 
+const _getUserInfo = async page => {
+  await app.sessionUtils.refreshUserInfo(page);
+  const {customer} = app.db.get('userInfo');
+  page.setData({contacts: customer.contacts})
+}
+
 Page({
   data: {
     _routes: {
@@ -38,7 +44,7 @@ Page({
 
     // Get user info
     showLoading(true);
-    let u = await app.sessionUtils.refreshUserInfo(self);
+    _getUserInfo(this);
     showLoading(false);
 
     // Set page Data
@@ -58,14 +64,14 @@ Page({
   deleteContact: function (e) {
     const self = this;
     const index = e.currentTarget.dataset.index;
-    let contacts = self.data.user.contacts;
+    let contacts = self.data.contacts;
     contacts.splice(index, 1);
 
     self.setData({
-      "user.contacts": contacts,
+      contacts,
     })
 
-    app.sessionUtils.updateUserInfo({ contacts: self.data.user.contacts });
+    app.sessionUtils.updateUserInfo({ contacts: self.data.contacts });
   },
 
   selectContact: function (e) {
@@ -106,5 +112,17 @@ Page({
     wx.navigateBack({
       delta: 1,
     })
+  },
+  setDefault: function (event) {
+    const {contact} = event.currentTarget.dataset;
+    const {contacts} = this.data;
+    if (contact.default) return;
+    const contacts_list = contacts.map(new_contact => {
+      new_contact.default = new_contact._id === contact._id;
+      return new_contact;
+    });
+    console.log("contacts_list", contacts_list);
+    app.sessionUtils.updateUserInfo({contacts: contacts_list})
+    _getUserInfo(this);
   }
 })

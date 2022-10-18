@@ -221,7 +221,7 @@
   <!-- Pay Button -->
   <template
     is="payment_container"
-    data="{{ _show_alert: _offer.type === 'free_fall', _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
+    data="{{ _show_alert: _offer.type === 'free_fall', _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special, checkout: checkout }}"
   ></template>
   <!-- End of Pay Button -->
 </view>

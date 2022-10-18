@@ -1,4 +1,4 @@
-<view wx:if="{{!havepets}}" class="container">
+<view wx:if="{{havepets}}" class="container">
    <block wx:for="{{ pets }}" wx:for-item="pet" wx:key="index">
     <view class="pet-details">
       <view class="left-icon">
@@ -13,8 +13,9 @@
         <view class="top nunito_400">{{_t.size}}</view>
         <view class="bottom gilroy_700">{{pet.size}}</view>
       </view>
-      <view class="icon icon-trash"></view>
-      <view class="icon icon-edit"></view>
+      <view class="icon icon-trash" bindtap="deletePet" data-id="{{pet._id}}"></view>
+<!--      <view class="icon icon-edit"></view>-->
+      <navigator class="icon icon-edit" url="{{_routes.addpets + '?id=' + pet._id }}"></navigator>
     </view>
   </block>
    <navigator class="under-white-button" url="{{ _routes.addpets }}">
@@ -26,11 +27,11 @@
   </view>
   <view class="first-paragraph gilroy-700">{{_t.there_is_no_pet}}</view>
   <view class="second-paragraph nunito_500">{{_t.you_can}}</view>
-  <button class="add_a_cat">
+  <button class="add_a_cat" bindtap="addPetNavigate" data-typechecked="{{_t.cat}}">
     <text class="icon icon-walk-cat"></text>
     <text>{{_t.add_a_cat}}</text>
   </button>
-  <button class="add_a_dog">
+  <button class="add_a_dog" bindtap="addPetNavigate" data-typechecked="{{_t.dog}}">
     <text class="icon icon-walk-dog"></text>
     <text>{{_t.add_a_dog}}</text>
   </button>

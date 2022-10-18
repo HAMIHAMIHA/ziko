@@ -33,6 +33,44 @@ export const formatTime = dateLong => {
   return [hour, minute].map(formatNumber).join(':')
 }
 
+export const formatCountDown = dateLong => {
+  console.log("datelong", dateLong)
+  const date = new Date(dateLong) - new Date();
+  const _i18n = app.globalData.i18n.timer;
+  console.log('date', date)
+  // Time calculations for days, hours, minutes and seconds
+  const days = Math.floor(date / (1000 * 60 * 60 * 24));
+  const year = Math.floor(days/365);
+  const months = Math.floor(days/30);
+  const hours = Math.floor((date % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((date % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((date % (1000 * 60)) / 1000);
+  console.log(year, months, days, hours, minutes, seconds, 'format countdown',)
+
+  if (year > 0) {
+    if (year === 1) return `${_i18n.in} ${year} ${_i18n.years}`;
+    return `${_i18n.in} ${year} ${_i18n.long_years}`
+  }
+  if (months > 0) {
+    if (months === 1) return `${_i18n.in} ${months} ${_i18n.months}`;
+    return `${_i18n.in} ${months} ${_i18n.long_months}`
+  }
+  if (days > 0) {
+    if (days === 1) return _i18n.tomorrow;
+    return `${_i18n.in} ${days} ${_i18n.long_days}`;
+  }
+  if (hours > 0) {
+    return `${_i18n.in} ${hours} ${_i18n.long_hours}`;
+  }
+  // if (days || hours) time.push(`${formatNumber(hours)}:${formatNumber(minutes)}`);
+// if (days || hours) time.push(`${formatNumber(hours)}${_i18n.hours}`);
+//   if ((days && hours) || minutes) time.push(`${formatNumber(minutes)}`);
+// if ((days && hours) || minutes) time.push(`${formatNumber(minutes)}${_i18n.minutes}`);
+  // time.push(`${formatNumber(seconds)}${_i18n.seconds}`);
+
+
+}
+
 export const formatTimer = dateLong => {
   const _i18n = app.globalData.i18n.timer;
   // Time calculations for days, hours, minutes and seconds
@@ -43,11 +81,13 @@ export const formatTimer = dateLong => {
 
   let time = [];
   if (days) time.push(`${days}${_i18n.days}`);
-  if (days || hours) time.push(`${formatNumber(hours)}${_i18n.hours}`);
-  if ((days && hours) || minutes) time.push(`${formatNumber(minutes)}${_i18n.minutes}`);
-  time.push(`${formatNumber(seconds)}${_i18n.seconds}`);
+  if (days || hours) time.push(`${formatNumber(hours)}:${formatNumber(minutes)}`);
+// if (days || hours) time.push(`${formatNumber(hours)}${_i18n.hours}`);
+//   if ((days && hours) || minutes) time.push(`${formatNumber(minutes)}`);
+// if ((days && hours) || minutes) time.push(`${formatNumber(minutes)}${_i18n.minutes}`);
+  // time.push(`${formatNumber(seconds)}${_i18n.seconds}`);
     
-  return time.join(":");
+  return time.join(" ");
 }
 
 export const formatWeekDate = dateLong => {
@@ -103,3 +143,14 @@ export const _checkMediaType = type => {
     return "video";
   }
 }
+export const truncateText =  (str, format, length) => {
+  if (typeof str !== "string") return;
+  let index = 0;
+  for (let i = 0; i < length; i++) {
+    const nextIndex = str?.indexOf( format, index + 1);
+    if (nextIndex === -1) return str;
+    index = nextIndex;
+  }
+  return str.substring(0, index).padEnd(index + 3, ".");
+}
+

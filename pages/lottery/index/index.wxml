@@ -1,8 +1,9 @@
 <view class="container">
   <!-- List View -->
   <view class="first-show" wx:if="{{ first_show }}">
-    <image src="/assets/images/zikoland.svg" class="image-size"></image>
-    <view class="machine-pure-box machine-pure-box-cellar" bindanimationiteration="animationiteration" bindanimationend="animationend">
+    <image src="{{lottery_logo}}" class="image-size"></image>
+    <view class="machine-pure-box machine-pure-box-cellar" bindanimationend="animationend"
+    bindanimationiteration="animate_state_change">
       <view class="machine-light-box machine-light-box-cellar">
         <view class="vertical-light">
           <view class="white-round"></view>
@@ -138,15 +139,15 @@
           </view> -->
           <view class="new-offer-banner">
             <view class="top-box top-box-color-{{ offer.community.name }}">
-              <view class="top-box-won top-box-color-{{ offer.community.name }}" wx:if="1">
+              <view class="top-box-won top-box-color-{{ offer.community.name }}">
                 <text class="icon icon-crown"></text>
                 <view>
                   <view class="crown-context1">{{ _t.congrats }}</view>
                   <view class="crown-context2">{{ _t.you_won }}</view>
                 </view>
               </view>
-              <view class="color-{{ offer.community.name }}-golden font-size1">Ziko {{ offer.community.name }}</view>
-              <view class="color-{{ offer.community.name }}-golden font-size2">Ziko {{ offer.name[_language] }}</view>
+              <view class="color-{{ offer.community.name }} font-size1">Ziko {{ offer.community.name }}</view>
+              <view class="color-{{ offer.community.name }} font-size2">Ziko {{ offer.name[_language] }}</view>
 
             </view>
 

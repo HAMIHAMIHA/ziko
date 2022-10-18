@@ -5,8 +5,10 @@ const config = require('./properties.js');
 // Generate header and url
 const _unifyHeaders = (path) => {
   let header = {};
-  if (db.get('userInfo').token) {
-    header = {'Authorization': `Bearer ${db.get('userInfo').token}`};
+  const token = db.get("userInfo").token;
+  // console.log("token", token);
+  if (token) {
+    header = {'Authorization': `Bearer ${token}`};
   }
 
   return [header, `${config.api_url}${path}`];
@@ -24,9 +26,8 @@ const request = (method, path, data) => {
       success: function(res) {
         if (res.data?.success === false) {
           showLoading(false);
-          console.debug(res.data.message);
           if (reject) {
-            reject(res.data.message);
+            reject(res.data.message)
           }
         } else {
           resolve(res.data);
@@ -81,8 +82,14 @@ module.exports = {
 
   // Get orders
   getOrders: (filter) => {
-    let suffix = `mine?sort=["createdAt","DESC"]&${filter.filter_str}`;
-    if (filter.id) suffix = `${filter.id}/mine`;
+    const queryParams = [];
+    if (!filter) filter = {};
+    if (filter.trackingStatus) queryParams.push(`trackingStatus=${JSON.stringify(filter.trackingStatus)}`);
+    if (filter.community) queryParams.push(`community=${JSON.stringify(filter.community)}`);
+    queryParams.push(`channel=miniprogram`);
+    if (filter.range) queryParams.push(`range=${JSON.stringify(filter.range)}`);
+    let suffix = `mine?${queryParams.join('&')}`;
+    console.log("getOrders filter", suffix);
     return request('GET', `orders/${suffix}`);
   },
 
@@ -140,10 +147,27 @@ module.exports = {
   },
 
   // Get user vouchers
-  getVouchers: (status, check_available) => {
-    let filter = check_available ? `&filter={"expirationDate":{"$gt":"${new Date()}"}}` : '';
-    return request('GET', `vouchers/mine?status=${status}${filter}&sort=["createdAt","ASC"]`);
+  getVouchers: (status="validated", filter) => {
+    const queryParams = [];
+    if (!!status) queryParams.push(`status=${status}`);
+    if (!filter) filter = {};
+    filter.expirationDate = {"$gt":new Date()};
+    queryParams.push(`filter=${JSON.stringify(filter)}`);
+    queryParams.push(`sort=["createdAt","ASC"]`)
+    return request('GET', `vouchers/mine?${queryParams.join('&')}`);
   },
+  // Get user's not expired vouchers
+  getNotExpiredVouchers: (status="validated", filter) => {
+    const queryParams = [];
+    if (!!status) queryParams.push(`status=${status}`);
+    if (!filter) filter = {};
+    filter.expirationDate = {"$gt": new Date(new Date() + 1000 * 60 * 60 * 24)};
+    queryParams.push(`filter=${JSON.stringify(filter)}`);
+    queryParams.push(`sort=["createdAt","ASC"]`)
+    return request('GET', `vouchers/mine?${queryParams.join('&')}`);
+  },
+
+
 
   // Get prepay id for wechat pay
   orderPrePay: (id) => {
@@ -152,7 +176,7 @@ module.exports = {
 
   // Set wechat notification for future offers
   setNotificationOffer: id => {
-    return request('POST', `offers/${id}/watch`, { watch: true })
+    return request('POST',`offers/${id}/watch`, { watch: true })
   },
 
   // Set view for offer

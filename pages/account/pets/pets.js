@@ -1,21 +1,41 @@
-const { showLoading } = require("../../../utils/common.js");
+const {showLoading} = require("../../../utils/common.js");
 
 const app = getApp();
+
+// Get user profile
+async function getUserInfo(page) {
+  showLoading(true);
+  let user = await app.sessionUtils.refreshUserInfo(null);
+  console.log("user,", user)
+
+  // Set default address info
+  const havepets = user.pets && user.pets.length > 0;
+  page.setData({havepets, pets: user.pets})
+
+
+  showLoading(false);
+
+}
+
+async function _deletePet(page, id) {
+  const pets = page.data.pets.filter(item => item._id !== id);
+  app.sessionUtils.updateUserInfo({pets});
+}
 
 const _setPageTranslation = page => {
   let i18n = app.globalData.i18n;
 
   // Format picker values based on langauge
   let type_picker = [];
-  pet_pickers.type.forEach( type => {
+  pet_pickers.type.forEach(type => {
     type_picker.push(i18n.pet_type[type]);
   })
 
   let size_picker = [];
-  pet_pickers.size.forEach( size => {
+  pet_pickers.size.forEach(size => {
     size_picker.push(i18n.pet_size[size]);
   })
-  
+
   // Set page translation
   page.setData({
     _t: {
@@ -31,12 +51,14 @@ const _setPageTranslation = page => {
       save: i18n.save,
       size: i18n.size,
       type: i18n.type,
-      add_new_pet:i18n.add_new_pet,
-      pet_name:i18n.pet_name,
-      there_is_no_pet:i18n.there_is_no_pet,
-      you_can:i18n.you_can,
-      add_a_cat:i18n.add_a_cat,
-      add_a_dog:i18n.add_a_dog,
+      add_new_pet: i18n.add_new_pet,
+      pet_name: i18n.pet_name,
+      there_is_no_pet: i18n.there_is_no_pet,
+      you_can: i18n.you_can,
+      add_a_cat: i18n.add_a_cat,
+      add_a_dog: i18n.add_a_dog,
+      cat: i18n.cat,
+      dog: i18n.dog,
 
     },
 
@@ -78,14 +100,19 @@ const _validatePets = (page, pets) => {
 }
 
 Page({
-  data:{
+  data: {
     errors: {
       contacts: [],
       pets: [],
     },
+    pets: [],
+    havepets: Boolean,
     _routes: {
       addpets: app.routes.addpets,
     },
+  },
+  onLoad: function () {
+    getUserInfo(this);
   },
   onShow: async function () {
     const self = this;
@@ -107,8 +134,8 @@ Page({
 
     // Get pet picker locations
     let _picker_select = [];
-    let testpets=[{type:"cat",size:"small"}]
-    testpets.forEach( pet => {
+    let testpets = [{type: "cat", size: "small"}]
+    testpets.forEach(pet => {
       // user.pets.forEach( pet => {
       let type = pet_pickers.type.indexOf(pet.type);
       let size = pet_pickers.size.indexOf(pet.size);
@@ -119,31 +146,11 @@ Page({
       })
     })
 
-    self.setData({
-      //Original code
-      // name: user.name,
-      // pets: user.pets,
-      // _picker_select: _picker_select
-      name:"david",
-      havepets:true,
-      pets:[
-        {name:"Minion Lee",
-        type:"cat",
-        size:"middle"},
-        {
-        name:"Peanit Dun",
-        type:"dog",
-        size:"small"},
-      ],
-      _picker_select: _picker_select
-    })
-    
-
     showLoading(false);
   },
 
   // Set input to data
-  changeInput: function(e) {
+  changeInput: function (e) {
     const self = this;
     let key = e.currentTarget.dataset.key;
     let index = e.currentTarget.dataset.index;
@@ -151,21 +158,21 @@ Page({
     if (index >= 0) {
       key = key.replace('index', index);
     }
-  
+
     let res = self.data[key];
     res = e.detail.value;
-    
+
     self.setData({
       [key]: res
     })
   },
 
   // Add data and selector for pet
-  addPet: function() {
+  addPet: function () {
     const self = this;
     let pets = self.data.pets;
     let _picker_select = self.data._picker_select;
-  
+
     if (pets) {
       pets.push({});
       _picker_select.push({});
@@ -181,7 +188,7 @@ Page({
   },
 
   // Change picker result
-  petPickerChange: function(e) {
+  petPickerChange: function (e) {
     const self = this;
 
     let pet = e.mark.index;
@@ -198,14 +205,14 @@ Page({
   },
 
   // Remove data and selector for pet
-  removePet: function(e) {
+  removePet: function (e) {
     const self = this;
     let pets = self.data.pets;
     let _picker_select = self.data._picker_select;
 
     pets.splice(e.mark.index, 1);
     _picker_select.splice(e.mark.index, 1);
-  
+
     self.setData({
       pets: pets,
       _picker_select: _picker_select
@@ -213,7 +220,7 @@ Page({
   },
 
   // Save data
-  saveInformation: function(e) {
+  saveInformation: function (e) {
     const self = this;
 
     // Validate if name filled
@@ -232,6 +239,22 @@ Page({
       pets: self.data.pets
     }
     app.sessionUtils.updateUserInfo(data, app.routes.account, true);
+  },
+  addPetNavigate: function (event) {
+    const {typechecked} = event.currentTarget.dataset;
+    const {addpets: url} = this.data._routes;
+    wx.navigateTo({url: `${url}?typechecked=${typechecked}`});
+  },
+  deletePet: function (e) {
+    console.log("deletePet", e);
+    const {id} = e.currentTarget.dataset;
+    showLoading(true);
+    _deletePet(this, id).then(
+      () => {
+        getUserInfo(this);
+        showLoading(false)
+      }
+    )
   }
 })
 

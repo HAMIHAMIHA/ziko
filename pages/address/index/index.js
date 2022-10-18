@@ -11,6 +11,11 @@ const _getAddressAreas = () => {
     areas = res;
   });
 }
+const _getUserInfo = async page => {
+  await app.sessionUtils.refreshUserInfo(page);
+  const {customer} = app.db.get("userInfo");
+  page.setData({addresses: customer.addresses});
+}
 
 Page({
   data: {
@@ -41,7 +46,7 @@ Page({
 
     // Get user info
     showLoading(true);
-    await app.sessionUtils.refreshUserInfo(self);
+    await _getUserInfo(this);
     showLoading(false);
 
     _getAddressAreas();
@@ -145,5 +150,13 @@ Page({
     wx.navigateBack({
       delta: 1,
     })
+  },
+  deleteAddress: function (event) {
+    const self = this;
+    const {addresses} = self.data;
+    const {index} = event.currentTarget.dataset;
+    addresses.splice(index, 1);
+    self.setData({addresses});
+    app.sessionUtils.updateUserInfo({addresses})
   }
 })

@@ -69,7 +69,7 @@
             <!-- words-down -->
             <view class="offer-words">
               <view class="words-description">
-                {{ offer.description[_language] }}
+                {{ offer.shortDescription[_language] }}
               </view>
               <!-- Bag -->
               <view class="flex-between_rt offer-bag offer-bag_filled" wx:if="{{ _cart[offer.id].count > 0 }}">

@@ -2,7 +2,7 @@
   <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
     <view
       class="detail{{ select_index == index ? ' select' : '' }}"
-      wx:for="{{ user.addresses }}"
+      wx:for="{{ addresses }}"
       wx:for-item="address"
       wx:key="_id"
       bindtap="selectAddress"
@@ -18,7 +18,10 @@
         <view class="contact-detail">{{ address.contact || address.contact != null ? address.contact : '' }}</view>
         <view class="contact-detail">{{ address.phone }}</view>
       </view>
-      <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.address_detail + '?id=' + address._id }}"></navigator>
+      <view class="contact-right">
+        <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.address_detail + '?id=' + address._id }}"></navigator>
+        <view class="icon icon-trash btn-icon" hover-class="none" bindtap="deleteAddress" data-index="{{ index }}"></view>
+      </view>
     </view>
   </view>
 <!-- wx:if="{{ _setting.selecting }}" -->

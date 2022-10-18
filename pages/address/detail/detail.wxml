@@ -8,16 +8,20 @@
         <view class="detail_label_name line-height">{{ _t.type }}</view>
         <view class="detail_input_content no-border-bottom">
           <picker
-              class="input picker"
-              name="type"
-              placeholder="{{_t.please_select}}"
-              range="{{ _picker.address_type }}"
-              value="{{ _picker_selected }}"
-              bindchange="bindPickerChange"
-            >
-            <view wx:if="{{!_t.address_type[address.type]}}" class="picker_text greycolor">{{ _t.please_select}}<text class="icon icon-arrow"></text></view>
-              <view wx:else class="picker_text">{{ _t.address_type[address.type] || _t.please_select}}<text class="icon icon-arrow"></text></view>
-            </picker>
+            class="input picker"
+            name="type"
+            placeholder="{{_t.please_select}}"
+            range="{{ _picker.address_type }}"
+            value="{{ _picker_selected }}"
+            bindchange="bindPickerChange"
+          >
+            <view wx:if="{{!_t.address_type[address.type]}}" class="picker_text greycolor">{{ _t.please_select}}<text
+              class="icon icon-arrow"></text>
+            </view>
+            <view wx:else class="picker_text">{{ _t.address_type[address.type] || _t.please_select}}<text
+              class="icon icon-arrow"></text>
+            </view>
+          </picker>
         </view>
       </view>
 
@@ -56,20 +60,22 @@
       <view class="details_container inputs_container">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.province }}</view>
+          <!--    range="{{ _areas[_selected[0]].children[_selected[1]].children }}"-->
           <view class="detail_input_content input_goto">
             <picker
               class="input picker"
               name="province"
-              range="{{ _areas[_selected[0]].children[_selected[1]].children }}"
-              range-key="label"
-              value="{{ _selected[2] }}"
-              data-picker_level="2"
-              bindchange="updatePicker"
+              mode="multiSelector"
+              range="{{ newArr }}"
+              bindcolumnchange="bindProvinceChange"
             >
-            <view wx:if="{{ !area.name }}" class="picker_text greycolor">{{ _t.please_select_your_province}}<text class="icon icon-arrow"></text></view>
-            <view wx:else class="picker_text">{{ area.name }}<text class="icon icon-arrow"></text></view>
-            <!-- <view class="picker_text">{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].label }}</view> -->
-            <!-- <text class="icon icon-arrow"></text> -->
+              <view wx:if="{{ !province }}" class="picker_text greycolor">{{ _t.please_select_your_province}}<text
+                class="icon icon-arrow"></text>
+              </view>
+              <view wx:else class="picker_text">{{ province.label }}<text class="icon icon-arrow"></text>
+              </view>
+              <!-- <view class="picker_text">{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].label }}</view> -->
+              <!-- <text class="icon icon-arrow"></text> -->
             </picker>
           </view>
         </view>
@@ -110,21 +116,19 @@
       <view class="details_container inputs_container">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.city }}</view>
-          <view class="detail_input_content input_goto">
-            <picker
-              class="input picker"
-              name="type"
-              range="{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].children }}"
-              range-key="label"
-              value="{{ _selected[3] }}"
-              data-picker_level="3"
-              bindchange="updatePicker"
-            >
-              <view wx:if="{{!_t.address_type[address.type]}}" class="picker_text greycolor">{{ _t.please_select_your_city}}<text class="icon icon-arrow"></text></view>              
-              <view wx:else class="picker_text">{{ _t.address_type[address.type]}}<text class="icon icon-arrow"></text></view>
-              <!-- <view class="picker_text">{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].children[_selected[3]].label }}</view> -->
-              <!-- <text class="icon icon-arrow"></text> -->
-            </picker>
+          <view class="detail_input_content">
+            <view class="input">
+              <input
+                name="city"
+                placeholder="{{_t.please_select_your_city}}"
+                value="{{ address.city }}"
+                confirm-type="next"
+                confirm-hold="true"
+                focus="{{ _focus == 'detailedAddress' ? true : false }}"
+                data-next_item="detailedAddress"
+                bindconfirm="next"
+              ></input>
+            </view>
           </view>
         </view>
       </view>
@@ -151,7 +155,7 @@
       </view>
 
 
-<!-- delete contact -->
+      <!-- delete contact -->
       <!-- <view class="details_container inputs_container field-1">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.contact }}</view>
@@ -170,8 +174,6 @@
           </view>
         </view>
       </view> -->
-
-
 
 
       <view class="details_container inputs_container">
@@ -196,7 +198,7 @@
       </view>
 
 
-<!-- delete phone -->
+      <!-- delete phone -->
       <!-- <view class="details_container inputs_container field-4">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.phone_no }}</view>
@@ -234,6 +236,11 @@
               </textarea>
             </view>
           </view>
+        </view>
+      </view>
+      <view class="star-set-default" bindtap="setDefault">
+        <view class="icon icon-star-{{ default ? 'gold' : 'gray' }}">
+          <text class="nunito_500">{{ _t.set_default_address }}</text>
         </view>
       </view>
     </view>

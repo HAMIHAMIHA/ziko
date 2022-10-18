@@ -1,9 +1,9 @@
 const api = require('./utils/api.js'); //接口文档
 const common = require('./utils/common.js');
 const db = require('./utils/db.config.js'); // 本地存储
-const { loadFonts } = require("./utils/fontPreloader.js");
-const { folders, subscribe, tabbars } = require('./utils/properties.js');
-const { routes } = require('utils/routes.js');
+const {loadFonts} = require("./utils/fontPreloader.js");
+const {folders, subscribe, tabbars} = require('./utils/properties.js');
+const {routes} = require('utils/routes.js');
 const i18n = require('./utils/internationalize/translate.js'); // 翻译功能
 
 import SessionClass from "./utils/SessionClass.js";
@@ -43,36 +43,38 @@ App({
     await loadFonts();
   },
 
-  checkForLotteryNotification: function() {
+  checkForLotteryNotification: function () {
     const self = this;
     if (!db.get('userInfo').token) return;
 
     const getLotteryNotif = () => {
       if (self.globalData.pause_lottery_check) return;
-      api.getLotteryNotifications().then( res => {
+      api.getLotteryNotifications().then(res => {
         if (!res.length) return; // If there's no new notification
         let page = getCurrentPages()[getCurrentPages().length - 1];
         page.selectComponent('#lottery_modal').show(res);
         self.globalData.pause_lottery_check = true;
       })
     }
-  
+
     getLotteryNotif();
-    setInterval( () => {
+    setInterval(() => {
       getLotteryNotif();
     }, 1000)
   },
 
-  setAccountStatus: function() {
+  setAccountStatus: function () {
     if (!db.get('vouchers') >= 0) {
-      api.getVouchers('', false).then( res => {
-        db.set('vouchers', res.filter(r => { return r.status === 'validated' }).length)
+      api.getVouchers('', false).then(res => {
+        db.set('vouchers', res.filter(r => {
+          return r.status === 'validated'
+        }).length)
       });
     };
     if (!db.get('orderDeliveries').length) {
       api.getOrders({ filter_str: `channel=miniprogram` }).then(res => {
         let order_deliveries = [];
-        res.forEach( o => {
+        res.forEach(o => {
           order_deliveries.push(o.trackingStatus)
         })
         db.set('orderDeliveries', order_deliveries);
@@ -81,12 +83,12 @@ App({
   },
 
   // Get translated tabbar text when called
-  setTabbars: function() {
-    tabbars.forEach( (tab, i) => common.setTabbar(i, this.globalData.i18n[tab]));
+  setTabbars: function () {
+    tabbars.forEach((tab, i) => common.setTabbar(i, this.globalData.i18n[tab]));
   },
 
   // Store lottery machine status in local storage
-  setLotteryMachine: function() {
+  setLotteryMachine: function () {
     db.set('lotteryShow', true);
   },
 })

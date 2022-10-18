@@ -110,11 +110,16 @@
   margin-bottom: calc(40rpx + var(--env-));
 }
 
+
 .pay-button button {
   background: #07C160;
   width: 294rpx;
   height: 80rpx;
   color: white;
+}
+.disabled button{
+    background: #11141B;
+    border-radius: 4px;
 }
 
 .hover-pay-button {
