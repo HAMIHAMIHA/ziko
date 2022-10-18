@@ -77,14 +77,14 @@
   <view class="nunito_400 card profile-info{{ user.id ? '' : ' disabled' }}">
     <navigator class="profile-info__button" url="{{ _routes.address }}">
       <view>
-        <view class="profile-info-title ">{{ _t.address_book }}</view>
+        <view class="profile-info-title">{{ _t.address_book }}</view>
         <view class="profile-info-content">{{ _t.manage_your_delivery_address_details }}</view>
       </view>
       <view class="icon icon-arrow-right"></view>
     </navigator>
     <navigator class="profile-info__button" url="{{ _routes.contacts }}">
       <view>
-        <view class="profile-info-title"> {{ _t.contact_list }}</view>
+        <view class="profile-info-title">{{ _t.contact_list }}</view>
         <view class="profile-info-content">{{ _t.manage_contact_for_delivery }}</view>
       </view>
       <view class="icon icon-arrow-right"></view>
@@ -111,7 +111,7 @@
 
   <!-- LANGUAGE BUTTON -->
   <view class="language-choice">
-    <view>Language Choice</view>
+    <view>{{ _t.language_choice }}</view>
     <view class="nunito_700 uppercase language-setting selected-{{ language }}">
       <button class="langauge" bindtap="switchLanguage" data-language="en">{{ _t.en }}</button>
       <button class="langauge" bindtap="switchLanguage" data-language="zh">{{ _t.zh }}</button>
@@ -135,7 +135,7 @@
   <view class="copybox-cancel" bindtap="copyBoxHide">
   </view>
   <view class="copybox-tap bottom-pos" animation="{{ animationData }}">
-    <view class="add-box " data-text="{{ _t.simonmawas }}" bindtap='copyBtn'>
+    <view class="add-box" data-text="{{ _t.simonmawas }}" bindtap='copyBtn'>
       <view class="icon icon-chef-head icon-chef"></view>
       <view>
         <text class="box-name">{{ _t.add_chef_ziko }}</text>

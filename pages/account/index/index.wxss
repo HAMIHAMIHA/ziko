@@ -1,6 +1,7 @@
-page{
-  padding-bottom: calc(130rpx + env(safe-area-inset-bottom));
+page {
+  padding-bottom: calc(130rpx + var(--env-));
 }
+
 .container {
   /* --container-padding-bottom-: calc(34rpx + 4rpx + 4rpx + 48rpx + 48rpx);  */
   /* height of language button + bottom padding + minimum top padding */
@@ -307,106 +308,125 @@ button:not([size=mini]).langauge {
   animation-name: move;
   animation-duration: 1s;
 }
-@keyframes move{
+
+@keyframes move {
   from {
     transform: translateY(1000rpx);
   }
+
   to {
     transform: translateY(0rpx);
   }
 }
+
 .copybox-tap .add-box {
   margin: 80rpx 100rpx;
   display: flex;
   justify-content: flex-end;
-  z-index:100000
-
+  z-index: 100000
 }
 
-.copybox-tap .add-box .icon-chef-head{
+.copybox-tap .add-box .icon-chef-head {
   font-size: 101.4rpx;
   padding-right: 22rpx;
   padding-top: 10rpx;
 }
-.copybox-tap .add-box .icon-pet-head{
-  font-size:80rpx;
+
+.copybox-tap .add-box .icon-pet-head {
+  font-size: 80rpx;
   padding-right: 34rpx;
   padding-top: 20rpx;
 }
-.copybox-tap .add-box .icon-farmer-head{
-  font-size:74rpx;
+
+.copybox-tap .add-box .icon-farmer-head {
+  font-size: 74rpx;
   padding-right: 20rpx;
   padding-top: 18rpx;
 }
-.copybox-tap .add-box .icon-celler-head{
-  font-size:66rpx;
+
+.copybox-tap .add-box .icon-celler-head {
+  font-size: 66rpx;
   padding-right: 35rpx;
   padding-top: 28rpx;
 }
-.wechat-copy{
+
+.wechat-copy {
   line-height: 56rpx;
   padding: 0px 22rpx;
   border-radius: 4px;
   margin-top: 6rpx;
   white-space: nowrap;
 }
+
 /* .wechat-copy-hover{
   line-height: 56rpx;
   padding: 0px 20rpx;
   border-radius: 4px;
   box-shadow: 0px 0px 0px 2px rgba(24, 144, 255, 0.2);
 } */
-.box-name{
-font-family: 'Gilroy';
-font-style: normal;
-font-weight: 700;
-font-size: 28rpx;
-line-height: 34rpx;
+.box-name {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28rpx;
+  line-height: 34rpx;
 }
-.wechat-copy.box-chef{
+
+.wechat-copy.box-chef {
   background: linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%);
 }
-.wechat-copy.box-pet{
+
+.wechat-copy.box-pet {
   background: linear-gradient(132.48deg, #FFB65A -1194.24%, #FF7233 1529.08%);
 }
-.wechat-copy.box-farmer{
+
+.wechat-copy.box-farmer {
   background: linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%);
 }
-.wechat-copy.box-cellar{
+
+.wechat-copy.box-cellar {
   background: linear-gradient(113.45deg, #C5CACE -6.01%, #A4A8AB 0.17%, #8C8F91 9.43%, #838688 12.52%, #888C8E 24.87%, #919699 37.21%, #A4AAAF 65%, #BBC3CA 89.7%, #BAC3C8 120.57%, #BDC5C9 126.74%, #D9D9D9 163.79%, #DFDEDE 169.96%, #F0EDED 179.22%, #FFF9F9 182.31%, #F5F5F4 203.92%, #FFFFFF 216.27%, #F7F7F7 228.62%, #EAEAEA 237.88%, #CBCBCD 268.75%, #C3CCD3 287.27%, #A4A9AC 299.62%);
 }
-.clicked-chef{
+
+.clicked-chef {
   background: linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 55.51%, #EFD486 110.57%, #FFE592 116.73%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%) !important;
 }
-.clicked-pet{
+
+.clicked-pet {
   background: linear-gradient(205.85deg, #FFB65A -253.16%, #FF7233 259.13%) !important;
 }
-.clicked-farmer{
+
+.clicked-farmer {
   background: linear-gradient(120.73deg, #97F082 -280.08%, #11BE67 141.6%) !important;
 }
-.clicked-cellar{
+
+.clicked-cellar {
   background: linear-gradient(113.45deg, #C5CACE -6.01%, #8C8F91 -2.7%, #A4A8AB 0.17%, #838688 5.38%, #888C8E 42.65%, #919699 55.77%, #A4AAAF 101.33%, #BBC3CA 116.45%, #BAC3C8 120.57%, #BDC5C9 126.74%, #D9D9D9 163.79%, #DFDEDE 169.96%, #F0EDED 179.22%, #FFF9F9 182.31%, #F5F5F4 203.92%, #FFFFFF 216.27%, #F7F7F7 228.62%, #EAEAEA 237.88%, #CBCBCD 268.75%, #C3CCD3 287.27%, #A4A9AC 299.62%) !important;
 }
 
 
-.wechat-id{
+.wechat-id {
   font-size: 28rpx;
   color: #FFFFFF;
   vertical-align: middle;
 }
-.simonmawas{
+
+.simonmawas {
   font-size: 28rpx;
   color: #FFFFFF;
 }
-.icon-height{
+
+.icon-height {
   padding-left: 16rpx;
   vertical-align: middle;
 }
-.simonmawas{
-  padding-left:6rpx;
+
+.simonmawas {
+  padding-left: 6rpx;
   vertical-align: middle;
 }
-.x{
+
+.x {
   width: 60rpx;
   height: 60rpx;
   border-radius: 50%;
@@ -414,12 +434,12 @@ line-height: 34rpx;
   position: absolute;
   right: 20px;
   top: 40rpx;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-.icon-x-height{
+
+.icon-x-height {
   font-size: 25rpx;
   text-align: center;
 }
-

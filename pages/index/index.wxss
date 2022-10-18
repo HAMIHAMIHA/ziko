@@ -10,7 +10,7 @@
 /* Map Display */
 .map {
   width: 100vw;
-  height: calc(100vh - 48rpx - env(safe-area-inset-bottom)) ; /* Button outer padding 32rpx * 2 + button height 28rpx + button inner padding 20rpx * 2 */
+  height: calc(100vh - 48rpx - var(--env-)); /* Button outer padding 32rpx * 2 + button height 28rpx + button inner padding 20rpx * 2 */
   box-sizing: border-box;
   background: #272838;
   position: relative;
@@ -39,14 +39,16 @@
 /* List Display */
 .list {
   min-height: calc(100vh - 132rpx);
-  padding-bottom: 132rpx;
+  /* padding-bottom: 132rpx; */
+  padding-bottom: calc(220rpx + var(--env-));
 }
 /* End of List Display */
 
 /* Map List Popup */
 .modal {
   width: 100vw;
-  height: 100%;
+  /* height: 100%; */
+  height: calc(100% - 96rpx - var(--env-));
   position: fixed;
   top: 0;
   z-index: 10;
@@ -69,7 +71,8 @@
 
 .modal-contents {
   width: calc(100% - 30rpx - 30rpx);
-  height: calc(100vh - 8rpx - 40rpx);
+  /* height: calc(100vh - 8rpx - 40rpx); */
+  height: calc(100% - 16rpx - 40rpx);
   position: absolute;
   top: 8rpx;
   left: 30rpx;
@@ -126,8 +129,7 @@
   padding-bottom: 32rpx;
   display: flex;
   position: fixed;
-  z-index: 200;
-  bottom: calc(100rpx + env(safe-area-inset-bottom));
+  bottom: calc(96rpx + var(--env-));
 }
 
 .switcher {

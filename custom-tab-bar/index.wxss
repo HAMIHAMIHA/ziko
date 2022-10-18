@@ -14,8 +14,6 @@
   font-size: 20rpx;
   height: 96rpx;
   padding-bottom: env(safe-area-inset-bottom);
-
-
 }
 
 .tabbar-box {
@@ -31,7 +29,6 @@
   display: inline-block;
   vertical-align: middle;
 }
-
 
 .account-text {
   white-space: nowrap;

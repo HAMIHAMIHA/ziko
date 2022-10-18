@@ -188,6 +188,7 @@ export const languageMap_en = {
   kcal: "kCal",
 
   // L
+  language_choice: "Language choice",
   lets_go: "let's go",
   list: "list",
   loading: 'Loading...',
@@ -757,6 +758,7 @@ export const languageMap_zh = {
   kcal: "kCal",
 
   // L
+  language_choice: "Language choice",
   lets_go: "let's go",
   list: "列表",
   loading: 'Loading...',

@@ -77,6 +77,7 @@ Page({
       en: app.globalData.i18n.en,
       fapiao_info: app.globalData.i18n.fapiao_info,
       get_profile: app.globalData.i18n.get_profile,
+      language_choice: app.globalData.i18n.language_choice,
       moile_login: app.globalData.i18n.mobile_login,
       my_favorite_recipes: app.globalData.i18n.my_favorite_recipes,
       orders: app.globalData.i18n.orders,
