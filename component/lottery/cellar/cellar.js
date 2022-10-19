@@ -3,7 +3,32 @@ const app = getApp();
 Component({
   properties: {
     _current_user: String,
-    _offer: Object,
+    // _offer: Object,
+    _offer: {
+      type: Object,
+      observer: function (newVal, oldVal, changePath) {
+        const self = this;
+        const lotteryDraws = newVal.miniprogram?.lottery?.draws;
+
+        lotteryDraws?.map(draw => {
+          if (draw?.winners?.length > 0) {
+            draw.winners.map(winner => {
+              let winnerNameSplit = winner.name.split('');
+              for (const i in winnerNameSplit) {
+                if (i != 0) {
+                  winnerNameSplit[i] = '*';
+                }
+              }
+              winner.name = winnerNameSplit.join('');
+            })
+          }
+        })
+
+        self.setData({
+          '_offer.miniprogram.lottery.draws': lotteryDraws,
+        })
+      }
+    },
     _product_names: Object,
     _t: Object,
     offer_page: Boolean,
@@ -24,7 +49,7 @@ Component({
   },
 
   methods: {
-    refresh: function(_offer) {
+    refresh: function (_offer) {
       this.setData({
         _offer
       })

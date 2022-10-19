@@ -235,7 +235,8 @@ const _getOffers = page => {
   }
   app.api.getOffers(`?id=${page.options.id}`).then(res => {
     offer = res[0];
-    app.api.getVouchers("validated", true).then(callback);
+    // app.api.getVouchers("validated", true).then(callback);
+    app.api.getVouchers("validated", false).then(callback); // TEMP TODO
   });
 }
 
@@ -270,9 +271,12 @@ Page({
         }
       }
     }],
+
+    // TEMP TODO
     fapiaotest: true,
     fapiao_content_test: "上海市徐汇区水电路1200弄3号401室上海市徐汇区水电路1200弄3号401室区上海市徐汇区水电路1200弄3号",
-    vouchers: [{
+    vouchers: [
+      {
         community: "kitchen",
         community2: "",
         createdAt: "2022/08/12 12:00",
@@ -333,8 +337,13 @@ Page({
   onLoad: function (options) {
     console.log("cart options", options);
     //  received offerid and community from url here.
-    const {id, community} = options;
-    if (community) this.setData({community});
+    const {
+      id,
+      community
+    } = options;
+    if (community) this.setData({
+      community
+    });
   },
   onReady: function () {
     console.log("copybox_type", this.data.copybox_type);

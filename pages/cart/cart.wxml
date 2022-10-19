@@ -185,7 +185,7 @@
       <!-- vouchers -->
       <scroll-view scroll-x="true" wx:if="{{ vouchers.length > 1 }}">
         <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher" class="ticket_box">
-          <image src="/assets/images/{{ voucher.community||'kitchen' }}_ticket.svg" class="ticket_picture">
+          <image src="/assets/images/{{ voucher.community || 'kitchen' }}_ticket.svg" class="ticket_picture">
             <view class="box-content">
               <view class="box-content-left">
                 <view class="black-box gilroy_700">
@@ -219,8 +219,8 @@
                 <text class="nunito_700 ziko-community ziko-community-{{ voucher.community2 }}">{{ voucher.community2 ? voucher.community2 : " " }}</text>
               </view>
               <view class="nunito_400 received">
-                <text>{{ _t.received+': ' }}{{ voucher.createdAt }}</text>
-                <view>{{ _t.expires+': ' }}<text class="expires nunito_500">{{ voucher.expire_on }}</text></view>
+                <text>{{ _t.received + ': ' }}{{ voucher.createdAt }}</text>
+                <view>{{ _t.expires + ': ' }}<text class="expires nunito_500">{{ voucher.expire_on }}</text></view>
               </view>
 
             </view>

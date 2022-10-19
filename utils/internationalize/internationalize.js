@@ -142,6 +142,7 @@ export const languageMap_en = {
   // F
   fapiao : "Fapiao",
   fapiao_info : "Fapiao information",
+  first_orders: "first orders!",
   free: "Free",
   free_delivery: "Free delivery",
   freefall: {
@@ -170,6 +171,7 @@ export const languageMap_en = {
   hurry_top_message: "Hurry up to be the top ",
  
   // I
+  i_got_you: "I got you",
   item_quantity: "item quantity",
   item_unit: " item",
   item: "item",
@@ -550,7 +552,7 @@ export const languageMap_en = {
   // X
   // Y
   yes: "Yes",
-  you_are_still: "You are still part of the X first orders!",
+  you_are_still: "You are still part of the",
   your_tickets: "Your tickets",
   you_win: "You Win !",
   you_won: "YOU WON!",
@@ -712,6 +714,7 @@ export const languageMap_zh = {
   // F
   fapiao : "Fapiao",
   fapiao_info : "发票信息",
+  first_orders: "first orders!",
   free: "Free",
   free_delivery: "免运费",
   freefall: {
@@ -740,6 +743,7 @@ export const languageMap_zh = {
   hurry_top_message: "Hurry up to be the top ",
 
   // I
+  i_got_you: "I got you",
   item_quantity: "item quantity",
   item_unit: " item",
   item: "item",
@@ -1118,7 +1122,7 @@ export const languageMap_zh = {
   // X
   // Y
   yes: "Yes",
-  you_are_still: "You are still part of the X first orders!",
+  you_are_still: "You are still part of the",
   your_tickets: "Your tickets",
   you_win: "You Win !",
   you_won: "YOU WON!",

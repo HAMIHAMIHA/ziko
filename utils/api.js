@@ -174,9 +174,14 @@ module.exports = {
     return request('GET', `orders/${id}/prepay`);
   },
 
+  // Get wechat notification for future offers
+  getNotificationOffer: id => {
+    return request('GET', `offers/${id}/watch`)
+  },
+
   // Set wechat notification for future offers
   setNotificationOffer: id => {
-    return request('POST',`offers/${id}/watch`, { watch: true })
+    return request('POST', `offers/${id}/watch`, { watch: true })
   },
 
   // Set view for offer

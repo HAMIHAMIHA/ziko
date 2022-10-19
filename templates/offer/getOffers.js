@@ -42,6 +42,8 @@ export const _getTranslations = (page, community) => {
     _t: {
       bourse_payment_message: i18n.bourse_payment_message,
       delivery: i18n.delivery,
+      you_are_still: i18n.you_are_still,
+      first_orders: i18n.first_orders,
       hurry_top_message: i18n.hurry_top_message,
       items: i18n.items,
       item_unit: i18n.item_unit,
@@ -606,7 +608,16 @@ export function getOfferBuyers(page, offer_id) {
     if (messages.length < res.length) {
       let new_messagaes = res.slice(messages.length, res.length);
       new_messagaes.forEach(order => {
-        let message = `${order.name}${ _t.ordered }`;
+        let orderNameSplit = order.name.split('');
+        let newOrderName = '';
+        for (const i in orderNameSplit) {
+          if (i != 0) {
+            orderNameSplit[i] = '*';
+          }
+        }
+        newOrderName = orderNameSplit.join('');
+
+        let message = `${ newOrderName }${ _t.ordered }`;
         let cart = [];
         order.cart.forEach(c => {
           cart.push(`${ _t[c.type] } ${ c.shortName }`);

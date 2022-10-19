@@ -73,7 +73,7 @@
 
     <view class="remind" wx:if="{{ next_special }}">
       <text class="icon icon-alert"></text>
-      <text class="remind-text nunito_500">{{ _t.hurry_top_message }}{{ next_special.conditionValue }}</text>
+      <text class="remind-text nunito_500">{{ _t.you_are_still }} {{ next_special.conditionValue }} {{ _t.first_orders }}</text>
     </view>
 
     <!-- PAY -->
@@ -105,7 +105,7 @@
       <!-- Lock button if there is nothing to pay -->
       <view class="pay-button disabled" wx:elif="{{ _pay_set.total == 0 }}">
         <button class="nunito_600">{{ _t.pay }}</button>
-     </view>
+      </view>
       <!-- Lock button if it is not started -->
       <view class="pay-button disabled" wx:elif="{{ coming_soon }}">
         <button class="nunito_600">{{ _t.pay }}</button>

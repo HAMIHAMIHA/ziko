@@ -233,7 +233,7 @@
   font-size: 20rpx;
   line-height: 24rpx;
   text-align: bottom;
-  opacity: 0.4;
+  /* opacity: 0.4; */
   position: relative;
 }
 
@@ -244,7 +244,29 @@
   text-align: right;
 }
 
+.offer-bag .icon_box .icon-bag {
+  position: relative;
+}
+
+.offer-bag .icon_box .icon-bag::before {
+  font-size: 26rpx;
+}
+
+.offer-bag .icon_box .icon-bag::after {
+  content: '';
+  position: absolute;
+  top: -6rpx;
+  right: -6rpx;
+  background-color: red;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 6rpx;
+}
+
 .offer-bag .icon_text {
+  font-size: 20rpx;
+  line-height: 24rpx;
+
   padding-left: 16rpx;
   white-space: nowrap;
 }
@@ -330,13 +352,30 @@
   border-radius: 8rpx;
 }
 
+button.offer-reminder.disabled {
+  background: #11141B;
+}
+
 .offer-reminder text {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.offer-reminder text .icon.icon-calendar {
+.offer-reminder.disabled text {
+  -webkit-text-fill-color: unset;
+  background-clip: unset;
+
+  font-size: 28rpx;
+  line-height: 32rpx;
+
+  text-align: center;
+
+  color: #8C8C8C;
+}
+
+.offer-reminder text.icon.icon-check,
+.offer-reminder text.icon.icon-calendar {
   padding-left: 16rpx;
 }
 
@@ -345,7 +384,6 @@
   font-weight: 600;
 
   background: #11141B;
-
 }
 
 /* End of Offer Detail - Datetime */

@@ -94,34 +94,36 @@
         </view>
       </view> -->
       <!-- End of progress block -->
+
+      <!-- TODO -->
       <!-- new progress block  -->
       <view class="new-progress">
         <view class="progress-top">
           <view class="inline-block left-box">
-            <view class="yellow-top">{{_t.lottery_tickets+' X2'}}</view>
+            <view class="yellow-top">{{ _t.lottery_tickets+' X2' }}</view>
             <view class="grey-bottom">
-              <text class="ticket">10% {{_t.off}}</text>
-              <text class="ticket">5% {{_t.off}}</text>
+              <text class="ticket">10% {{ _t.off }}</text>
+              <text class="ticket">5% {{ _t.off }}</text>
             </view>
           </view>
-          <view class="inline-block right-box">{{_t.next_price_in}} 26 {{_t.bottles}}: ¥85</view>
+          <view class="inline-block right-box">{{ _t.next_price_in }} 26 {{ _t.bottles }}: ¥85</view>
         </view>
         <view class="green-content">
-          <view class="first-content">¥{{price.prices[0]}}</view>
-          <view class="item-content">¥{{price.prices[1]}}</view>
-          <view class="item-content">¥{{price.prices[2]}}</view>
-          <view class="item-content">¥{{price.prices[3]}}</view>
-          <view class="item-content">¥{{price.prices[4]}}</view>
-          <view class="item-content">¥{{price.prices[5]}}</view>
+          <view class="first-content">¥{{ price.prices[0] }}</view>
+          <view class="item-content">¥{{ price.prices[1] }}</view>
+          <view class="item-content">¥{{ price.prices[2] }}</view>
+          <view class="item-content">¥{{ price.prices[3] }}</view>
+          <view class="item-content">¥{{ price.prices[4] }}</view>
+          <view class="item-content">¥{{ price.prices[5] }}</view>
         </view>
         <view class="text-content">
-          <view class="bottle-content first-bottle">{{bottles[0]}}<text class="btl">BTL</text></view>
-          <view class="bottle-content">{{bottles[1]}}</view>
-          <view class="bottle-content">{{bottles[2]}}</view>
-          <view class="bottle-content">{{bottles[3]}}</view>
-          <view class="bottle-content">{{bottles[4]}}</view>
-          <view class="bottle-content">{{bottles[5]}}</view>
-          <view class="bottle-content">{{bottles[6]}}</view>
+          <view class="bottle-content first-bottle">{{ bottles[0] }}<text class="btl">BTL</text></view>
+          <view class="bottle-content">{{ bottles[1] }}</view>
+          <view class="bottle-content">{{ bottles[2] }}</view>
+          <view class="bottle-content">{{ bottles[3] }}</view>
+          <view class="bottle-content">{{ bottles[4] }}</view>
+          <view class="bottle-content">{{ bottles[5] }}</view>
+          <view class="bottle-content">{{ bottles[6] }}</view>
         </view>
         <view></view>
       </view>
@@ -132,9 +134,9 @@
   <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
     <!-- jump -->
     <view class="flex-between gilroy_500 offer-jump-title">
-      <view class="offer-jump-item {{jump_setting.current_tab=='offer'?'jump_item_selected':''}}" bindtap="jump_item" data-info="offer">{{_t.offer}}</view>
-      <view class="offer-jump-item {{jump_setting.current_tab=='specials'?'jump_item_selected':''}}" bindtap="jump_item" data-info="specials">{{_t.specials}}</view>
-      <view class="offer-jump-item {{jump_setting.current_tab=='lottery'?'jump_item_selected':''}}" bindtap="jump_item" data-info="lottery">{{_t.lottery}}</view>
+      <view class="offer-jump-item {{ jump_setting.current_tab=='offer'?'jump_item_selected':'' }}" bindtap="jump_item" data-info="offer">{{ _t.offer }}</view>
+      <view class="offer-jump-item {{ jump_setting.current_tab=='specials'?'jump_item_selected':'' }}" bindtap="jump_item" data-info="specials">{{ _t.specials }}</view>
+      <view class="offer-jump-item {{ jump_setting.current_tab=='lottery'?'jump_item_selected':'' }}" bindtap="jump_item" data-info="lottery">{{ _t.lottery }}</view>
     </view>
     <!-- end of jump -->
     <!-- Share -->
@@ -146,7 +148,7 @@
     <!-- Offer Detail -->
     <view class="offer-detail">
       <view class="uppercase gilroy_700 offer-title">{{ _offer.name[_language] }}</view>
-      <view class="gilroy_700 uppercase offer-price-rule" wx:if="{{  _offer.type && _offer.type != 'regular' }}">{{ _t.price_rules[_offer.type] }}</view>
+      <view class="gilroy_700 uppercase offer-price-rule" wx:if="{{ _offer.type && _offer.type != 'regular' }}">{{ _t.price_rules[_offer.type] }}</view>
       <view class="offer-description">
         {{ _offer.description[_language] }}
       </view>
@@ -165,7 +167,7 @@
     </view>
     <!-- End of Offer Count -->
     <!-- Offer Cellar Count -->
-    <!-- <view class="flex-center cellar-total_container" wx:if="{{  _offer.type && _offer.type != 'regular' }}">
+    <!-- <view class="flex-center cellar-total_container" wx:if="{{ _offer.type && _offer.type != 'regular' }}">
       <view class="icon icon-wine"></view>
       <view class="cellar-total">
         <view class="nunito_700 cellar-total_count">{{ _offer.sold }}/{{ _offer.total }}</view>
@@ -262,7 +264,7 @@
         <!-- Lottery -->
         <view class="offer-lotteries cellar-lotteries" wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}">
           <view class="lottery_regular">
-            <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" type="{{_offer.type}}">
+            <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" type="{{ _offer.type }}">
 
             </lottery-header>
             <lottery-cellar _current_user="{{ _current_user }}" _offer="{{ _offer }}" _product_names="{{ _product_names }}" _t="{{ _t_prize }}" offer_page="true" id="lottery_list"></lottery-cellar>
@@ -298,7 +300,11 @@
     data="{{ _show_alert: _bourse_info.progress < 100, _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
   ></template> -->
   <!-- End of Pay Button -->
+
+  <template
+    is="payment_container-bottom"
+    data="{{ _show_alert: _bourse_info.progress < 100, _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
+  ></template>
 </view>
-<newPayButton></newPayButton>
 
 <lottery-draw id="lottery_modal"></lottery-draw>
