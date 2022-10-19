@@ -103,7 +103,7 @@ page {
 .contact-right .icon-trash {
   padding-left: 48rpx;
   font-size: 40rpx;
-  opacity: 0.24;
+  /* opacity: 0.24; */
   color: #8C8C8C;
 }
 
@@ -118,19 +118,15 @@ page {
   margin-right: 100rpx;
 }
 
-
-
-
 .selected .detail:not(.select) .address-name,
 .selected .detail:not(.select) .address-detail {
   opacity: 0.4;
 }
 
-
 .detail .btn-icon {
   padding: 0;
   font-size: 32rpx;
-  opacity: 0.24;
+  /* opacity: 0.24; */
 }
 
 .btn-outline_container {
@@ -143,7 +139,6 @@ page {
 
 .btn-outline_container .btn-outline {
   line-height: 50rpx;
-
 }
 
 .container-btn-bottom .btn-bottom button.disabled {

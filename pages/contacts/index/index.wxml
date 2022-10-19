@@ -1,43 +1,47 @@
 <view class="container container-grey address-list{{ _setting.selecting ? ' container-btn-bottom' : ''}}">
   <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
-    <view
-      class="detail{{ select_index == index ? ' select' : '' }}"
-      wx:for="{{ contacts }}"
-      wx:for-item="contact"
-      wx:key="_id"
-      bindtap="selectContact"
-      data-index="{{ index }}"
-    >
-      <view class="contact-box">
-        <!-- Contact info -->
-        <view class="contact-left">
-          <view class="icon icon-star-{{ contact.default ? 'gold' : 'gray' }}" bindtap="setDefault" data-contact="{{contact}}">
-            <text class="nunito_500 default-selection">{{ contact.default ? _t.default_selection : '' }}</text>
+    <view wx:if="{{ contacts.length == 0 }}" class="gilroy-700">{{ _t.there_is_no_contact }}</view>
+
+    <block wx:else>
+      <view
+        class="detail{{ select_index == index ? ' select' : '' }}"
+        wx:for="{{ contacts }}"
+        wx:for-item="contact"
+        wx:key="_id"
+        bindtap="selectContact"
+        data-index="{{ index }}"
+      >
+        <view class="contact-box">
+          <!-- Contact info -->
+          <view class="contact-left">
+            <view class="icon icon-star-{{ contact.default ? 'gold' : 'gray' }}" bindtap="setDefault" data-contact="{{ contact }}">
+              <text class="nunito_500 default-selection">{{ contact.default ? _t.default_selection : '' }}</text>
+            </view>
+
+            <view class="address_container">
+              <view class="detail-box detail-box-name">
+                <view class="detail-name nunito_400">{{ _t.contact_name }}</view>
+                <view class="address-detail gilroy_700">{{ contact.name }}</view>
+              </view>
+              <view class="detail-box">
+                <view class="detail-name nunito_400">{{ _t.contact_number }}</view>
+                <view class="address-detail gilroy_700">{{ contact.phone }}</view>
+              </view>
+            </view>
           </view>
 
-          <view class="address_container">
-            <view class="detail-box detail-box-name">
-              <view class="detail-name nunito_400">{{ _t.contact_name }}</view>
-              <view class="address-detail gilroy_700">{{ contact.name }}</view>
-            </view>
-            <view class="detail-box">
-              <view class="detail-name nunito_400">{{ _t.contact_number }}</view>
-              <view class="address-detail gilroy_700">{{ contact.phone }}</view>
-            </view>
+          <!-- Contact operations -->
+          <view class="contact-right">
+            <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.contact + '?id=' + contact._id }}"></navigator>
+            <view class="icon icon-trash " hover-class="none" bindtap="deleteContact" data-index="{{ index }}"></view>
           </view>
-        </view>
-
-        <!-- Contact operations -->
-        <view class="contact-right">
-          <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.contact + '?id=' + contact._id }}"></navigator>
-          <view class="icon icon-trash " hover-class="none" bindtap="deleteContact" data-index="{{ index }}"></view>
-        </view>
-      </view> 
-    </view>
+        </view> 
+      </view>
+    </block>
   </view>
 
   <view class="btn-outline_container">
-    <navigator class="btn-outline nunito_600" hover-class="none" url="{{ _routes.contact }}">{{ '+ ' + _t.add_new_contact }}</navigator>
+    <navigator class="btn-outline nunito_700" hover-class="none" url="{{ _routes.contact }}">{{ '+ ' + _t.add_new_contact }}</navigator>
   </view>
 
   <view class="btn-bottom" wx:if="{{ _setting.selecting }}">

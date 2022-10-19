@@ -8,7 +8,6 @@
 
 .address_container {
   background-color: #12151E;
-
 }
 
 .inputs_container {
@@ -24,17 +23,14 @@
   padding: 4rpx 0;
 }
 
-.detail_input_content {
+.detail_input {
+  width: 100%;
   height: 64rpx;
   display: flex;
   /* border-bottom: 2rpx solid #EBEBEB; */
   border-bottom: 2rpx solid #545764;
   box-sizing: border-box;
   padding-top: 12rpx;
-}
-
-.detail_input_content .input {
-  width: 650rpx;
 }
 
 .icon-star-gold,

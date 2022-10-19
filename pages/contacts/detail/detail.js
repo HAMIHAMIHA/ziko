@@ -1,5 +1,11 @@
-const { changeFocus, navigateBack, showLoading } = require("../../../utils/common.js");
-const { findIndex } = require("../../../utils/util.js");
+const {
+  changeFocus,
+  navigateBack,
+  showLoading
+} = require("../../../utils/common.js");
+const {
+  findIndex
+} = require("../../../utils/util.js");
 
 const app = getApp();
 const validate_keys = ['name', 'phone'];
@@ -35,7 +41,7 @@ async function getUserInfo(page) {
 const _validateInputs = (page, data) => {
   let error = '';
   for (var i in validate_keys) {
-    (data[validate_keys[i]] == null || data[validate_keys[i]] == '') ? error += `error-field-${i} ` : '';
+    (data[validate_keys[i]] == null || data[validate_keys[i]] == '') ? error += `error-field-${i} `: '';
   }
 
   page.setData({
@@ -55,6 +61,13 @@ const _generateUserContact = (page, action, new_contact) => {
   } else {
     if (page.options.id) {
       contacts[page.data._count] = new_contact;
+      if (new_contact.default == true) {
+        for (const i in contacts) {
+          if (i != page.data._count) {
+            contacts[i].default = false;
+          }
+        }
+      }
     } else {
       contacts && contacts.length > 0 ? contacts.push(new_contact) : contacts = [new_contact];
     }
@@ -83,6 +96,7 @@ Page({
 
     // Set page translation
     self.setData({
+      options_judge: self.options.id,
       _t: {
         contact: i18n.contact,
         cancel: i18n.cancel,
@@ -91,11 +105,10 @@ Page({
         phone_no: i18n.phone_no,
         save: i18n.save,
         contact_name: i18n.contact_name,
-        phone_number:i18n.phone_number,
-        options_judge:self.options.id,
-        please_enter_the_name_of_the_person:i18n.please_enter_the_name_of_the_person,
-        please_enter_the_phone_number:i18n.please_enter_the_phone_number,
-        set_as_default_contact:i18n.set_as_default_contact,
+        phone_number: i18n.phone_number,
+        please_enter_the_name_of_the_person: i18n.please_enter_the_name_of_the_person,
+        please_enter_the_phone_number: i18n.please_enter_the_phone_number,
+        set_as_default_contact: i18n.set_as_default_contact,
       },
     })
 
@@ -106,11 +119,11 @@ Page({
   },
 
   // Change input focus
-  next: function(e) {
+  next: function (e) {
     changeFocus(this, e);
   },
 
-  setDefault: function() {
+  setDefault: function () {
     const self = this;
 
     self.setData({
@@ -119,8 +132,7 @@ Page({
   },
 
   // Save address info
-  updateContact: function(e) {
-    console.log("updateContact",e);
+  updateContact: function (e) {
     const self = this;
     let action = e.type;
 
@@ -129,7 +141,7 @@ Page({
       navigateBack(app.routes.contacts, false);
       return;
     }
- 
+
     // Stop if saving but inputs empty
     if (action != 'reset' && _validateInputs(self, e.detail.value)) return;
 
@@ -142,6 +154,8 @@ Page({
     }
 
     let contact_list = _generateUserContact(self, action, contact);
-    app.sessionUtils.updateUserInfo({ contacts: contact_list }, app.routes.contacts);
+    app.sessionUtils.updateUserInfo({
+      contacts: contact_list
+    }, app.routes.contacts);
   }
 })

@@ -8,7 +8,7 @@ export const languageMap_en = {
     lord_furnace: "lord furnace",
     tourist: "tourist",
     secret_circle: "ziko secret circle",
-},
+  },
   access_the_offer: "Access the offer and price list",
   address: "Address",
   address_comment: "Comments",
@@ -24,7 +24,7 @@ export const languageMap_en = {
   add_a_cat: "Add a cat",
   add_a_dog: "Add a dog",
   add_address: "Add new address",
-  add_contact: "Add contact",
+  add_contact: "Add new contact",
   add_chef_ziko: "Add Chef Ziko",
   add_pet_ziko: "Add Pet Ziko",
   add_farmer_ziko: "Add Farmer Ziko",
@@ -34,6 +34,7 @@ export const languageMap_en = {
   add_new_pet: "Add new pet",
   add_pet: "Add pet",
   add_chef_ziko_on_wechat: "Add Chef Ziko on Wechat",
+  already_got_you: "Already got you",
   all: "All",
   all_done: "All done!",
   am: "AM",
@@ -80,6 +81,7 @@ export const languageMap_en = {
     kitchen: "Kitchen",
     pet: "Pet Corner",
   },
+  confirm: "Confirm",
   congrats: "Congrats",
   contact: "Contact",
   contact_list: "Contact list",
@@ -106,8 +108,9 @@ export const languageMap_en = {
     "SAT.",
   ],
   default_selection: "Default",
-  date_suffix: [ 'th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'],
+  date_suffix: ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'],
   delete: "Delete",
+  delete_it_or_not: "Do you want to delete it?",
   delivery: "Delivery",
   delivery_states: "Delivery states",
   delivery_company: "Delivery company",
@@ -140,8 +143,8 @@ export const languageMap_en = {
   extra_ticket: "extra ticket",
 
   // F
-  fapiao : "Fapiao",
-  fapiao_info : "Fapiao information",
+  fapiao: "Fapiao",
+  fapiao_info: "Fapiao information",
   first_orders: "first orders!",
   free: "Free",
   free_delivery: "Free delivery",
@@ -169,7 +172,7 @@ export const languageMap_en = {
   home: "The land",
   has_won_the_lottery: " has won the lottery.",
   hurry_top_message: "Hurry up to be the top ",
- 
+
   // I
   i_got_you: "I got you",
   item_quantity: "item quantity",
@@ -204,7 +207,7 @@ export const languageMap_en = {
   lower_price_together: "Lower the price together",
   lottery_tickets_you_can_get: "Lottery tickets you can get after payments",
   lorem_ipsum_dolor: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ipsum dolor sit amet consectetur adipiscing. Tortor at auctor urna nunc. Suspendisse interdum consectetur libero id faucibus nisl. Vitae aliquet nec ullamcorper sit.",
-  
+
   // M
   manage_your_delivery_address_details: "Manage your delivery address details",
   manage_contact_for_delivery: "Manage contact for delivery",
@@ -254,7 +257,7 @@ export const languageMap_en = {
   no_vouchers_yet: "No vouchers yet",
   no_winner_yet: "No winner yet",
   no_details_yet: "No details yet. add now",
-  not_this_time : "Not this time...",
+  not_this_time: "Not this time...",
 
   // O
   off: "off",
@@ -290,7 +293,7 @@ export const languageMap_en = {
       suffix: "",
     },
     orders: "orders",
-    orders_sold:  "orders sold",
+    orders_sold: "orders sold",
     x_total_sold_items: {
       prefix: "",
       suffix: " total sold items",
@@ -388,7 +391,7 @@ export const languageMap_en = {
   },
   pet_name: "Pet name",
   phone_no: "Phone no",
-  phone_number : "Phone number",
+  phone_number: "Phone number",
   pick_up_your_item: "Pick up your items",
   please_select: "Please select",
   please_select_voucher: "Please select a Voucher or Ziko gift card",
@@ -479,6 +482,8 @@ export const languageMap_en = {
   // T
   take_a_chance: "Take a chance to add a really cool gift to your order if the lottery is unlocked !",
   terms_and_conditions: "Terms and conditions",
+  there_is_no_address: "There is no address in your list yet.",
+  there_is_no_contact: "There is no contact in your list yet.",
   there_is_no_pet: "There is no pet in your list yet.",
   the_land: "The land",
   ticket: "ticket",
@@ -499,6 +504,7 @@ export const languageMap_en = {
     tomorrow: "tomorrow",
   },
   time_remaining: "Time remaining",
+  tips: "Tips",
   total: "Total",
   total_units_available: "total units available",
   to_order: "Go to order",
@@ -580,7 +586,7 @@ export const languageMap_zh = {
     lord_furnace: "lord furnace",
     tourist: "tourist",
     secret_circle: "ziko secret circle",
-},
+  },
   access_the_offer: "Access the offer and price list",
   address: "地址",
   address_comment: "Comments",
@@ -606,6 +612,7 @@ export const languageMap_zh = {
   add_new_pet: "Add new pet",
   add_pet: "添加宠物",
   add_chef_ziko_on_wechat: "Add Chef Ziko on Wechat",
+  already_got_you: "Already got you",
   all: "全部",
   all_done: "All done!",
   am: "上午",
@@ -651,6 +658,7 @@ export const languageMap_zh = {
     kitchen: "Kitchen",
     pet: "Pet Corner",
   },
+  confirm: "Confirm",
   congrats: "Congrats",
   contact: "联系我们",
   contacts: "Contacts",
@@ -677,8 +685,9 @@ export const languageMap_zh = {
     "星期六",
   ],
   default_selection: "Default",
-  date_suffix: [ '日', '日', '日', '日', '日', '日', '日', '日', '日', '日'],
+  date_suffix: ['日', '日', '日', '日', '日', '日', '日', '日', '日', '日'],
   delete: "Delete",
+  delete_it_or_not: "Do you want to delete it?",
   delivery: "Delivery",
   delivery_states: "Delivery states",
   delivery_company: "Delivery company",
@@ -692,7 +701,7 @@ export const languageMap_zh = {
   dog: "Dog",
   draw: "draw",
   draws: "draws",
-  
+
 
   // E
   edit: "Edit",
@@ -712,8 +721,8 @@ export const languageMap_zh = {
   extra_ticket: "extra ticket",
 
   // F
-  fapiao : "Fapiao",
-  fapiao_info : "发票信息",
+  fapiao: "Fapiao",
+  fapiao_info: "发票信息",
   first_orders: "first orders!",
   free: "Free",
   free_delivery: "免运费",
@@ -757,7 +766,7 @@ export const languageMap_zh = {
   just_won_items: "You just won some items!",
   just_won_lottery: "You just won at the lottery!",
   join_ziko_community: "Join Ziko community",
-  
+
   // K
   kcal: "kCal",
 
@@ -776,7 +785,7 @@ export const languageMap_zh = {
   lower_price_together: "Lower the price together",
   lottery_tickets_you_can_get: "Lottery tickets you can get after payments",
   lorem_ipsum_dolor: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ipsum dolor sit amet consectetur adipiscing. Tortor at auctor urna nunc. Suspendisse interdum consectetur libero id faucibus nisl. Vitae aliquet nec ullamcorper sit.",
-  
+
   // M
   manage_your_delivery_address_details: "Manage your delivery address details",
   manage_contact_for_delivery: "Manage contact for delivery",
@@ -800,7 +809,7 @@ export const languageMap_zh = {
     10: "10月",
     11: "11月",
     12: "12月",
-},
+  },
   multiple: {
     btl: " btl ",
     each: " each"
@@ -826,7 +835,7 @@ export const languageMap_zh = {
   no_vouchers_yet: "No vouchers yet",
   no_winner_yet: "No winner yet",
   no_details_yet: "No details yet. add now",
-  not_this_time : "Not this time...",
+  not_this_time: "Not this time...",
 
   // O
   off: "off",
@@ -862,7 +871,7 @@ export const languageMap_zh = {
       suffix: "",
     },
     orders: "orders",
-    orders_sold:  "orders sold",
+    orders_sold: "orders sold",
     x_total_sold_items: {
       prefix: "",
       suffix: " total sold items",
@@ -959,7 +968,7 @@ export const languageMap_zh = {
   },
   pet_name: "Pet name",
   phone_no: "Phone no",
-  phone_number : "Phone number",
+  phone_number: "Phone number",
   pick_up_your_item: "Pick up your items",
   please_select: "Please select",
   please_select_voucher: "Please select a Voucher or Ziko gift card",
@@ -1050,6 +1059,8 @@ export const languageMap_zh = {
   // T
   take_a_chance: "Take a chance to add a really cool gift to your order if the lottery is unlocked !",
   terms_and_conditions: "Terms and conditions",
+  there_is_no_address: "There is no address in your list yet.",
+  there_is_no_contact: "There is no contact in your list yet.",
   there_is_no_pet: "There is no pet in your list yet.",
   the_land: "The land",
   ticket: "ticket",
@@ -1069,6 +1080,7 @@ export const languageMap_zh = {
     tomorrow: '明天',
   },
   time_remaining: "Time remaining",
+  tips: "提示",
   total: "Total",
   total_units_available: "total units available",
   to_order: "Go to order",

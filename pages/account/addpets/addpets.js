@@ -1,4 +1,7 @@
-const {changeFocus, navigateBack, showLoading} = require("../../../utils/common.js");
+// Add or edit pet
+const {
+  showLoading
+} = require("../../../utils/common.js");
 const app = getApp();
 const validateKeys = {
   type: {
@@ -18,44 +21,64 @@ async function getUserInfo(page) {
   let user = await app.sessionUtils.refreshUserInfo(null);
   console.log("user,", user)
 
-  // Set default address info
-  let count = user.pets ? user.pets.length : 0;
-  page.setData({_count: count, pets: user.pets})
-
+  page.setData({
+    pets: user.pets
+  })
 
   showLoading(false);
-
 }
-async function getPetFromId (page, id) {
+
+async function getPetFromId(page, id) {
   const pets = page.data.pets;
   const pet = pets.find(item => item._id === id);
-  if (pet) page.setData({pet, typechecked: pet.type});
+  if (pet) {
+    page.setData({
+      pet,
+      typechecked: pet.type
+    });
+  }
 }
 
 async function _addPet(page, pet) {
   const pets = page.data.pets;
-  console.log(pets, "pets")
-  console.log(pet, "new pet ")
-  const pet_list = [...pets, pet];
-  app.sessionUtils.updateUserInfo({pets: pet_list});
+  let pet_list = [];
+  if (page.options.id) { // Edit the old pet
+    for (const i in pets) {
+      if (pets[i]._id == page.options.id) {
+        pets[i] = pet;
+        pets[i]._id = page.options.id;
+      }
+    }
+    pet_list = pets;
+  } else { // Add new pet
+    pet_list = [...pets, pet];
+  }
+
+  app.sessionUtils.updateUserInfo({
+    pets: pet_list
+  });
 };
+
 Page({
   data: {},
 
   onLoad(options) {
-    console.log(options, "[addPets] options");
-    this.setData({...options, validateKeys})
-    getUserInfo(this).then(
-      () => {
-        if (options.id) getPetFromId(this, options.id);
-      }
-    );
+    const self = this;
+
+    self.setData({
+      ...options,
+      validateKeys
+    })
+    getUserInfo(self).then(() => {
+      if (options.id) getPetFromId(self, options.id);
+    });
   },
 
   onShow: async function () {
+    const self = this;
     // Change page nav title
     let i18n = app.globalData.i18n;
-    this.setData({
+    self.setData({
       _t: {
         name: i18n.name,
         add_new_pet: i18n.add_new_pet,
@@ -72,23 +95,36 @@ Page({
       // typechecked: "",
     });
   },
+
   addPet: function (e) {
-    console.log("addPet", e)
+    const self = this;
     showLoading(true);
-    if (!this.data.typechecked) return;
-    const type = this.data.typechecked.toLowerCase();
-    const {name, size} = e.detail.value;
-    const newPet = {name, type, size};
-    _addPet(this, newPet).then(() => {
-      showLoading(false)
-      // wx.navigateBack();
+    if (!self.data.typechecked) return;
+    const type = self.data.typechecked.toLowerCase();
+    const {
+      name,
+      size
+    } = e.detail.value;
+    const newPet = {
+      name,
+      type,
+      size
+    };
+    _addPet(self, newPet).then(() => {
+      showLoading(false);
+      // wx.navigateBack({
+      //   delta: 1,
+      // });
       wx.navigateTo({
         url: app.routes.pets
       })
     });
   },
+
   serviceSelection(event) {
-    const {type} = event.currentTarget.dataset;
+    const {
+      type
+    } = event.currentTarget.dataset;
     this.setData({
       typechecked: type
     })

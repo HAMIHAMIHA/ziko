@@ -194,7 +194,7 @@
                 </button>
               </block>
               <block wx:else>
-                <button class="offer-reminder nunito_600 disabled" disabled="true">
+                <button class="offer-reminder nunito_600 disabled" catchtap="getReminder" data-watch="true">
                   <text>{{ _t.i_got_you }}<text class="icon icon-check"></text></text>
                 </button>
               </block>

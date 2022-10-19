@@ -7,7 +7,7 @@
       <view class="details_container inputs_container field-0">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.contact_name }}</view>
-          <view class="detail_input_content">
+          <view class="detail_input">
             <view class="input">
               <input
                 name="name"
@@ -27,7 +27,7 @@
       <view class="details_container inputs_container field-1">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.phone_number }}</view>
-          <view class="detail_input_content">
+          <view class="detail_input">
             <view class="input">
               <input
                 name="phone"
@@ -50,7 +50,7 @@
     <!-- End of Contact Form -->
 
     <!-- Select Button -->
-    <view wx:if="{{!_t.options_judge}}" class="btn-bottom">
+    <view wx:if="{{ !options_judge }}" class="btn-bottom">
       <button class="btn-outline inter_600 cancel-button" formType="reset">{{ _t.cancel }}</button>
     </view>
     <!-- End of Select Button -->

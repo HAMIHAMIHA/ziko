@@ -2,20 +2,17 @@
   <form catchsubmit="addPet">
     <view class="pets-name">
       <view class="nuntio_700">{{ _t.name }}</view>
-      <input class="pets-input" placeholder="{{ _t.please_enter_pets_name }}" type="text"
-             value="{{ pet.name }}" name="name"></input>
+      <input class="pets-input" placeholder="{{ _t.please_enter_pets_name }}" type="text" value="{{ pet.name }}" name="name"></input>
     </view>
     <view class="type-of-pet">
       <view class="type-title">{{ _t.type_of_pet }}</view>
       <view class="type-button-box">
-        <button class="{{ typechecked === validateKeys.type.cat ? 'button-selected' : 'type-button' }}" bindtap="serviceSelection"
-                data-type="{{validateKeys.type.cat}}">
+        <button class="{{ typechecked === validateKeys.type.cat ? 'button-selected' : 'type-button' }}" bindtap="serviceSelection" data-type="{{ validateKeys.type.cat }}">
           <text class="icon icon-walk-cat icon-color"></text>
           <text class="type-name icon-color nunito_500">{{ _t.cat }}</text>
           <text wx:if="{{ typechecked === validateKeys.type.cat }}" class="icon icon-check cat-check"></text>
         </button>
-        <button class="{{ typechecked === validateKeys.type.dog? 'button-selected' : 'type-button' }}" bindtap="serviceSelection"
-                data-type="{{validateKeys.type.dog}}">
+        <button class="{{ typechecked === validateKeys.type.dog? 'button-selected' : 'type-button' }}" bindtap="serviceSelection" data-type="{{ validateKeys.type.dog }}">
           <view class="icon icon-walk-dog icon-color"></view>
           <text class="type-name icon-color nunito_500">{{ _t.dog }}</text>
           <text wx:if="{{ typechecked === validateKeys.type.dog }}" class="icon icon-check dog-check"></text>
@@ -27,13 +24,16 @@
       <view class="size-of-pet-title nuntio_700">{{ _t.size_of_pet }}</view>
       <radio-group name="size" class="radio-color">
         <label>
-          <radio class="radio-items" value="{{validateKeys.size.small}}" checked="{{validateKeys.size.small === pet.size}}"/>{{ _t.pet_size.small }}
+          <radio class="radio-items" value="{{ validateKeys.size.small }}" checked="{{ validateKeys.size.small === pet.size }}" />
+          {{ _t.pet_size.small }}
         </label>
         <label>
-          <radio value="{{validateKeys.size.middle}}" checked="{{validateKeys.size.middle === pet.size}}"/>{{ _t.pet_size.middle }}
+          <radio value="{{ validateKeys.size.middle }}" checked="{{ validateKeys.size.middle === pet.size }}" />
+          {{ _t.pet_size.middle }}
         </label>
         <label>
-          <radio value="{{validateKeys.size.large}}" checked="{{validateKeys.size.large === pet.size }}"/>{{ _t.pet_size.large }}
+          <radio value="{{ validateKeys.size.large }}" checked="{{ validateKeys.size.large === pet.size }}" />
+          {{ _t.pet_size.large }}
         </label>
       </radio-group>
     </view>

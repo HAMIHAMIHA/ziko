@@ -1,28 +1,32 @@
 <view class="container container-grey address-list{{ _setting.selecting ? ' container-btn-bottom' : ''}}">
   <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
-    <view
-      class="detail{{ select_index == index ? ' select' : '' }}"
-      wx:for="{{ addresses }}"
-      wx:for-item="address"
-      wx:key="_id"
-      bindtap="selectAddress"
-      data-index="{{ index }}"
-    >
-      <view class="address_container">
-        <view class="address-name-star">
-          <view class="nunito_500 address-name">{{ _t.address + ' ' + (index + 1) }}</view>
-          <view wx:if="{{!address.default}}" class="icon icon-star-gold"><text class="nunito_500">{{_t.default_selection}}</text></view>
-          
+    <view wx:if="{{ addresses.length == 0 }}" class="gilroy-700">{{ _t.there_is_no_address }}</view>
+
+    <block wx:else>
+      <view
+        class="detail{{ select_index == index ? ' select' : '' }}"
+        wx:for="{{ addresses }}"
+        wx:for-item="address"
+        wx:key="_id"
+        bindtap="selectAddress"
+        data-index="{{ index }}"
+      >
+        <view class="address_container">
+          <view class="address-name-star">
+            <view class="nunito_500 address-name">{{ _t.address + ' ' + (index + 1) }}</view>
+            <view wx:if="{{!address.default}}" class="icon icon-star-gold"><text class="nunito_500">{{_t.default_selection}}</text></view>
+            
+          </view>
+          <view class="address-detail nunito_400">{{ address.detailedAddress }}</view>
+          <view class="contact-detail">{{ address.contact || address.contact != null ? address.contact : '' }}</view>
+          <view class="contact-detail">{{ address.phone }}</view>
         </view>
-        <view class="address-detail nunito_400">{{ address.detailedAddress }}</view>
-        <view class="contact-detail">{{ address.contact || address.contact != null ? address.contact : '' }}</view>
-        <view class="contact-detail">{{ address.phone }}</view>
+        <view class="contact-right">
+          <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.address_detail + '?id=' + address._id }}"></navigator>
+          <view class="icon icon-trash btn-icon" hover-class="none" bindtap="deleteAddress" data-index="{{ index }}"></view>
+        </view>
       </view>
-      <view class="contact-right">
-        <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.address_detail + '?id=' + address._id }}"></navigator>
-        <view class="icon icon-trash btn-icon" hover-class="none" bindtap="deleteAddress" data-index="{{ index }}"></view>
-      </view>
-    </view>
+    </block>
   </view>
 <!-- wx:if="{{ _setting.selecting }}" -->
   <view class="btn-outline_container" >

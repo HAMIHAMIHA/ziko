@@ -1,4 +1,9 @@
-const { communities } = require("../../utils/constants.js");
+const {
+  communities
+} = require("../../utils/constants.js");
+const {
+  showToast
+} = require("../../utils/common.js")
 
 const app = getApp();
 const routes = app.routes;
@@ -21,7 +26,7 @@ Component({
   },
 
   methods: {
-    updateCards: function(_t, startTimer) {
+    updateCards: function (_t, startTimer) {
       const self = this;
 
       // Set offer card contents
@@ -41,10 +46,10 @@ Component({
           timer_intervals.push(timer[i].setTimer([], startTimer));
         }
 
-        now_timer = setInterval( () => {
+        now_timer = setInterval(() => {
           let new_timers = self.selectAllComponents('.timer');
           if (timer.length < new_timers.length) {
-            new_timers.slice(timer.length, new_timers.length).forEach( t => {
+            new_timers.slice(timer.length, new_timers.length).forEach(t => {
               timer_intervals.push(t.setTimer([], startTimer));
             })
             timer = new_timers;
@@ -73,16 +78,18 @@ Component({
       })
     },
 
-    swiperChange: function(e) {
+    swiperChange: function (e) {
       const self = this;
       let offers = self.data.offers;
       offers[e.currentTarget.dataset.offer_idx].banners.index = e.detail.current
 
-      self.setData({ offers })
+      self.setData({
+        offers
+      })
     },
 
     // Navigate to offer page
-    toOffer: function(e) {
+    toOffer: function (e) {
       const self = this;
       let data = e.currentTarget.dataset;
 
@@ -98,24 +105,32 @@ Component({
         }
       }
 
-      self.triggerEvent('navigatePage', { navigating: true });  
+      self.triggerEvent('navigatePage', {
+        navigating: true
+      });
 
       wx.navigateTo({
         url: url + '?id=' + data.offerId,
       })
     },
 
-    getReminder: function(e) {
-      // Request subscription before checkout if lottery / special included
-      wx.requestSubscribeMessage({
-        tmplIds: [app.subscribe.offer],
-        complete: (res) => {
-          // Get subscription
-          if (res[app.subscribe.offer] === "accept") {
-            app.api.setNotificationOffer(e.currentTarget.dataset.offer_id);
+    getReminder: function (e) {
+      const watch = e.currentTarget.dataset.watch;
+
+      if (watch == 'true') {
+        showToast(app.globalData.i18n.already_got_you);
+      } else {
+        // Request subscription before checkout if lottery / special included
+        wx.requestSubscribeMessage({
+          tmplIds: [app.subscribe.offer],
+          complete: (res) => {
+            // Get subscription
+            if (res[app.subscribe.offer] === "accept") {
+              app.api.setNotificationOffer(e.currentTarget.dataset.offer_id);
+            }
           }
-        }
-      })
+        })
+      }
     }
   }
 })

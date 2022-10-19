@@ -1,6 +1,8 @@
 const app = getApp();
+
 function _setI18n(component) {
-  const {i18n} = app.globalData;
+  const i18n = app.globalData.i18n;
+
   component.setData({
     _language: app.db.get('language'),
     _t: {
@@ -25,42 +27,60 @@ function _setI18n(component) {
     },
   })
 }
+
 const _getUserProfile = (component) => {
   app.sessionUtils.getWxUserInfo(component);
 }
+
 const _getPhoneNumber = async (code, component) => {
   await app.sessionUtils.mobileLogin(component, code);
-  component.setData({userLogin: true});
+  component.setData({
+    userLogin: true
+  });
 }
+
 Component({
   options: {
     styleIsolation: "apply-shared"
   },
+
   properties: {},
+
   data: {
     userLogin: false,
   },
+
   lifetimes: {
     attached: function () {
-      _setI18n(this);
-      const {customer} = app.db.get('userInfo');
-      if (!customer?.id) this.setData({userLogin: true});
+      const self = this;
+      _setI18n(self);
+      const customer = app.db.get('userInfo').customer;
+      if (!customer?.id) {
+        self.setData({
+          userLogin: true
+        });
+      }
     }
   },
+
   methods: {
     getUserProfile: function (event) {
       _getUserProfile(this);
     },
+
     getPhoneNumber: function (event) {
-      const { code } = event.detail;
+      const code = event.detail.code;
       _getPhoneNumber(code, this);
     }
   },
+
   observers: {
     "userLogin": function () {
-      const { userLogin } = this.data;
-      this.triggerEvent("refresh", {userLogin});
+      const self = this;
+      const userLogin = self.data.userLogin;
+      self.triggerEvent("refresh", {
+        userLogin
+      });
     }
   }
 });
-

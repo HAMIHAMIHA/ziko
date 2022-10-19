@@ -1,5 +1,10 @@
-const { showLoading, showToast } = require("../../../utils/common.js");
-const { findIndex } = require("../../../utils/util.js");
+const {
+  showLoading,
+  showToast
+} = require("../../../utils/common.js");
+const {
+  findIndex
+} = require("../../../utils/util.js");
 
 const app = getApp();
 const routes = app.routes;
@@ -7,14 +12,16 @@ const routes = app.routes;
 let areas = [];
 
 const _getAddressAreas = () => {
-  app.api.getAreas().then( res => {
+  app.api.getAreas().then(res => {
     areas = res;
   });
 }
 const _getUserInfo = async page => {
   await app.sessionUtils.refreshUserInfo(page);
-  const {customer} = app.db.get("userInfo");
-  page.setData({addresses: customer.addresses});
+  const customer = app.db.get("userInfo").customer;
+  page.setData({
+    addresses: customer.addresses
+  });
 }
 
 Page({
@@ -25,7 +32,6 @@ Page({
   },
 
   onShow: async function () {
-    console.log("userData",this.data)
     const self = this;
     let i18n = app.globalData.i18n;
 
@@ -37,10 +43,15 @@ Page({
     // Set page translation
     self.setData({
       _t: {
+        there_is_no_address: i18n.there_is_no_address,
         address: i18n.address,
         add_new_address: i18n.add_new_address,
         select: i18n.select,
-        default_selection:i18n.default_selection
+        default_selection: i18n.default_selection,
+        tips: i18n.tips,
+        delete_it_or_not: i18n.delete_it_or_not,
+        cancel: i18n.cancel,
+        confirm: i18n.confirm,
       }
     })
 
@@ -68,7 +79,7 @@ Page({
     })
   },
 
-  selectAddress: function(e) {
+  selectAddress: function (e) {
     const self = this;
 
     // Prevent select triggering if in user address list
@@ -80,7 +91,7 @@ Page({
     })
   },
 
-  select: function() {
+  select: function () {
     const self = this;
 
     let pages = getCurrentPages();
@@ -108,9 +119,12 @@ Page({
 
           if (inFeeId === -1) {
             areaList = areaList.map((e) =>
-              area.id === e.parent
-                ? { ...e, parent: undefined }
-                : e
+              area.id === e.parent ?
+              {
+                ...e,
+                parent: undefined
+              } :
+              e
             )
             areaList.splice(inAreaId, 1)
           } else {
@@ -153,10 +167,26 @@ Page({
   },
   deleteAddress: function (event) {
     const self = this;
-    const {addresses} = self.data;
-    const {index} = event.currentTarget.dataset;
-    addresses.splice(index, 1);
-    self.setData({addresses});
-    app.sessionUtils.updateUserInfo({addresses})
+    wx.showModal({
+      title: self.data._t.tips,
+      content: self.data._t.delete_it_or_not,
+      cancelText: self.data._t.cancel,
+      confirmText: self.data._t.confirm,
+      success(res) {
+        if (res.confirm) {
+          const addresses = self.data.addresses;
+          const index = event.currentTarget.dataset.index;
+          addresses.splice(index, 1);
+          self.setData({
+            addresses
+          });
+          app.sessionUtils.updateUserInfo({
+            addresses
+          })
+        } else if (res.cancel) {
+          console.log('Cancel')
+        }
+      }
+    })
   }
 })

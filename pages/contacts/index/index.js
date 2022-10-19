@@ -7,8 +7,10 @@ const app = getApp();
 
 const _getUserInfo = async page => {
   await app.sessionUtils.refreshUserInfo(page);
-  const {customer} = app.db.get('userInfo');
-  page.setData({contacts: customer.contacts})
+  const customer = app.db.get('userInfo').customer;
+  page.setData({
+    contacts: customer.contacts
+  })
 }
 
 Page({
@@ -24,18 +26,23 @@ Page({
 
     // Change page nav title
     wx.setNavigationBarTitle({
-      title: (self.options.action == 'select') ? i18n.select_contact : i18n.contacts
+      title: (self.options.action == 'select') ? i18n.select_contact : i18n.contact_list
     })
 
     // Set page translation
     self.setData({
       _t: {
+        there_is_no_contact: i18n.there_is_no_contact,
         contact: i18n.contact,
         add_new_contact: i18n.add_new_contact,
         select: i18n.select,
         contact_name: i18n.contact_name,
         contact_number: i18n.contact_number,
         default_selection: i18n.default_selection,
+        tips: i18n.tips,
+        delete_it_or_not: i18n.delete_it_or_not,
+        confirm: i18n.confirm,
+        cancel: i18n.cancel,
       }
     })
 
@@ -63,15 +70,30 @@ Page({
 
   deleteContact: function (e) {
     const self = this;
-    const index = e.currentTarget.dataset.index;
-    let contacts = self.data.contacts;
-    contacts.splice(index, 1);
 
-    self.setData({
-      contacts,
+    wx.showModal({
+      title: self.data._t.tips,
+      content: self.data._t.delete_it_or_not,
+      cancelText: self.data._t.cancel,
+      confirmText: self.data._t.confirm,
+      success(res) {
+        if (res.confirm) {
+          const index = e.currentTarget.dataset.index;
+          let contacts = self.data.contacts;
+          contacts.splice(index, 1);
+
+          self.setData({
+            contacts,
+          })
+
+          app.sessionUtils.updateUserInfo({
+            contacts: self.data.contacts
+          });
+        } else if (res.cancel) {
+          console.log('Cancel')
+        }
+      }
     })
-
-    app.sessionUtils.updateUserInfo({ contacts: self.data.contacts });
   },
 
   selectContact: function (e) {
@@ -113,16 +135,20 @@ Page({
       delta: 1,
     })
   },
+
   setDefault: function (event) {
-    const {contact} = event.currentTarget.dataset;
-    const {contacts} = this.data;
+    const self = this;
+    const contact = event.currentTarget.dataset.contact;
+    const contacts = self.data.contacts;
     if (contact.default) return;
     const contacts_list = contacts.map(new_contact => {
       new_contact.default = new_contact._id === contact._id;
       return new_contact;
     });
     console.log("contacts_list", contacts_list);
-    app.sessionUtils.updateUserInfo({contacts: contacts_list})
-    _getUserInfo(this);
+    app.sessionUtils.updateUserInfo({
+      contacts: contacts_list
+    })
+    _getUserInfo(self);
   }
 })
