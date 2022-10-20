@@ -9,7 +9,6 @@ const {
 const {
   changeFocus,
   showLoading,
-  showToast
 } = require("../../utils/common.js");
 const {
   communities
@@ -24,9 +23,6 @@ const {
 const {
   getDeliveryFee
 } = require("./findDeliveryFee");
-const {
-  set
-} = require("../../utils/db.config");
 
 const app = getApp();
 let area_list = [],
@@ -123,7 +119,7 @@ const _setProducts = (offer, cart) => {
   let offer_detail = offer.miniprogram;
 
   let products = [];
-  for (var id in cart.products) {
+  for (var id in cart?.products) {
     let item = cart.products[id];
     if (!item.type || !item.amount) continue;
 
@@ -275,8 +271,7 @@ Page({
     // TEMP TODO
     fapiaotest: true,
     fapiao_content_test: "上海市徐汇区水电路1200弄3号401室上海市徐汇区水电路1200弄3号401室区上海市徐汇区水电路1200弄3号",
-    vouchers: [
-      {
+    vouchers: [{
         community: "kitchen",
         community2: "",
         createdAt: "2022/08/12 12:00",
@@ -334,6 +329,7 @@ Page({
     },
     showLottery: true,
   },
+
   onLoad: function (options) {
     console.log("cart options", options);
     //  received offerid and community from url here.
@@ -345,6 +341,7 @@ Page({
       community
     });
   },
+
   onReady: function () {
     console.log("copybox_type", this.data.copybox_type);
 
@@ -449,38 +446,34 @@ Page({
   pay: function (e) {
     createOrder(this, e.detail.value);
   },
+
   copyBoxShow: function () {
     var that = this;
     that.setData({
       copybox_judgment: true
     })
   },
+
   copyBoxHide: function () {
     var that = this;
     that.setData({
       copybox_judgment: false
     })
   },
+
   copyBtn: function (e) {
     wx.setClipboardData({
       data: e.currentTarget.dataset.text,
-      success: function (res) {
-        wx.getClipboardData({
-          success: function (res) {
-            wx.showToast({
-              title: '复制成功'
-            })
-          }
-        })
-      }
     })
   },
-  showLottery() {
+
+  showLottery: function () {
     this.setData({
       showLottery: false
     })
   },
-  hide_lottery_get: function (event) {
+
+  hideLottery: function () {
     this.setData({
       showLottery: true
     })

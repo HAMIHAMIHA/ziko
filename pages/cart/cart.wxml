@@ -312,9 +312,7 @@
     <view class="x">
       <text class="icon icon-x icon-x-height" bindtap="copyBoxHide"></text>
     </view>
-
   </view>
-
 </view>
 <!-- end of chef -->
 <!-- cellar -->
@@ -344,9 +342,7 @@
     <view class="x">
       <text class="icon icon-x icon-x-height" bindtap="copyBoxHide"></text>
     </view>
-
   </view>
-
 </view>
 <!-- end of cellar -->
 <!-- pet -->
@@ -375,9 +371,7 @@
     <view class="x">
       <text class="icon icon-x icon-x-height" bindtap="copyBoxHide"></text>
     </view>
-
   </view>
-
 </view>
 <!-- end of pet -->
 <!-- farmer  -->
@@ -406,13 +400,11 @@
     <view class="x">
       <text class="icon icon-x icon-x-height" bindtap="copyBoxHide"></text>
     </view>
-
   </view>
-
 </view>
 <!-- end of farmer -->
 <!-- copy box end -->
 <view hidden='{{ showLottery }}'>
-  <new-lottery bind:deliver="hide_lottery_get"></new-lottery>
+  <new-lottery bind:deliver="hideLottery"></new-lottery>
 </view>
 <!-- <lottery-draw id="lottery_modal"></lottery-draw> -->
