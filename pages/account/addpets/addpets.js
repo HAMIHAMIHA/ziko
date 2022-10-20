@@ -66,9 +66,15 @@ Page({
     const self = this;
 
     self.setData({
-      ...options,
+      // ...options,
       validateKeys
     })
+    if (options.typechecked) {
+      self.setData({
+        typechecked: options.typechecked.toLowerCase(),
+      })
+    }
+
     getUserInfo(self).then(() => {
       if (options.id) getPetFromId(self, options.id);
     });
@@ -122,9 +128,7 @@ Page({
   },
 
   serviceSelection(event) {
-    const {
-      type
-    } = event.currentTarget.dataset;
+    const type = event.currentTarget.dataset.type;
     this.setData({
       typechecked: type
     })

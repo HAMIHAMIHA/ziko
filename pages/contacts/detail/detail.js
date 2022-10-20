@@ -69,7 +69,17 @@ const _generateUserContact = (page, action, new_contact) => {
         }
       }
     } else {
-      contacts && contacts.length > 0 ? contacts.push(new_contact) : contacts = [new_contact];
+      if (contacts && contacts.length > 0) {
+        if (new_contact.default == true) {
+          for (const i in contacts) {
+            contacts[i].default = false;
+          }
+        }
+
+        contacts.push(new_contact);
+      } else {
+        contacts = [new_contact];
+      }
     }
   }
 

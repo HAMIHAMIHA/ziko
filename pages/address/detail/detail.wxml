@@ -4,64 +4,35 @@
     <view class="white-box address_container">
       <!-- <view class="nunito_700 header">{{ _t.address + ' ' + (_count + 1) }}</view> -->
 
-      <view class="type-head-box nunito_500">
+      <view class="type-container nunito_500 field-0">
         <view class="detail_label_name line-height">{{ _t.type }}</view>
-        <view class="detail_input_content no-border-bottom">
+        <view class="detail_input no-border-bottom">
           <picker
             class="input picker"
             name="type"
-            placeholder="{{_t.please_select}}"
+            placeholder="{{ _t.please_select }}"
             range="{{ _picker.address_type }}"
             value="{{ _picker_selected }}"
             bindchange="bindPickerChange"
           >
-            <view wx:if="{{!_t.address_type[address.type]}}" class="picker_text greycolor">{{ _t.please_select}}<text
-              class="icon icon-arrow"></text>
+            <view wx:if="{{ !_t.address_type[address.type] }}" class="picker_text grey">
+              {{ _t.please_select }}
+              <text class="icon icon-arrow"></text>
             </view>
-            <view wx:else class="picker_text">{{ _t.address_type[address.type] || _t.please_select}}<text
-              class="icon icon-arrow"></text>
+            <view wx:else class="picker_text">
+              {{ _t.address_type[address.type] || _t.please_select }}
+              <text class="icon icon-arrow"></text>
             </view>
           </picker>
         </view>
       </view>
 
-      <!-- <view class="details_container inputs_container field-0">
-        <view class="detail_content_box">
-            <view class="detail_label_name">{{ _t.type }}</view>
-            <view class="detail_input_content">
-            <picker
-              class="input picker"
-              name="type"
-              range="{{ _picker.address_type }}"
-              value="{{ _picker_selected }}"
-              bindchange="bindPickerChange"
-            >
-              <view class="picker_text">{{ _t.address_type[address.type] }}<text class="icon icon-arrow"></text></view>
-            </picker>
-          </view>
-        </view>
-      </view>  -->
-
       <!-- Province -->
-      <!-- <view class="details_container inputs_container field-5">
-        <view class="detail_content_box">
-          <view class="detail_label_name">{{ _t.province}}</view>
-          <view class="detail_input_content input_goto">
-            <navigator class="input picker" hover-class="none" url="{{ area ? _routes.address_areas + '?id=' + area.id : _routes.address_areas }}">
-              <view wx:if="{{ !area.name }}" class="picker_text greycolor">{{ _t.please_select_your_province}}<text class="icon icon-arrow"></text></view>
-              <view wx:else class="picker_text">{{ area.name }}<text class="icon icon-arrow"></text></view>
-            </navigator>
-          </view>
-        </view>
-      </view> -->
-
-
-      <!--new Province -->
-      <view class="details_container inputs_container">
+      <view class="details_container inputs_container field-1">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.province }}</view>
           <!--    range="{{ _areas[_selected[0]].children[_selected[1]].children }}"-->
-          <view class="detail_input_content input_goto">
+          <view class="detail_input input_goto">
             <picker
               class="input picker"
               name="province"
@@ -69,10 +40,13 @@
               range="{{ newArr }}"
               bindcolumnchange="bindProvinceChange"
             >
-              <view wx:if="{{ !province }}" class="picker_text greycolor">{{ _t.please_select_your_province}}<text
-                class="icon icon-arrow"></text>
+              <view wx:if="{{ !province }}" class="picker_text grey">
+                {{ _t.please_select_your_province }}
+                <text class="icon icon-arrow"></text>
               </view>
-              <view wx:else class="picker_text">{{ province.label }}<text class="icon icon-arrow"></text>
+              <view wx:else class="picker_text">
+                {{ province.label }}
+                <text class="icon icon-arrow"></text>
               </view>
               <!-- <view class="picker_text">{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].label }}</view> -->
               <!-- <text class="icon icon-arrow"></text> -->
@@ -81,46 +55,15 @@
         </view>
       </view>
 
-      <!-- city  -->
-      <!-- <view class="details_container inputs_container field-2">
+      <!-- City -->
+      <view class="details_container inputs_container field-2">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.city }}</view>
-          <view class="detail_input_content input_goto">
-              <picker
-              class="input picker"
-              name="city"
-              range="{{ _picker.address_type }}"
-              value="{{ _picker_selected }}"
-              bindchange="bindPickerChange"
-              >
-              <view wx:if="{{!_t.address_type[address.type]}}" class="picker_text greycolor">{{ _t.please_select_your_city}}<text class="icon icon-arrow"></text></view>              
-              <view wx:else class="picker_text">{{ _t.address_type[address.type]}}<text class="icon icon-arrow"></text></view>
-              </picker>
+          <view class="detail_input">
             <view class="input">
               <input
                 name="city"
-                value="{{ address.city }}"
-                confirm-type="next"
-                confirm-hold="true"
-                focus="{{ _focus == 'city' ? true : false }}"
-                data-next_item="zipCode"
-                bindconfirm="next"
-              >
-              </input>
-            </view>
-          </view>
-        </view>
-      </view> -->
-
-      <!--new city  -->
-      <view class="details_container inputs_container">
-        <view class="detail_content_box">
-          <view class="detail_label_name">{{ _t.city }}</view>
-          <view class="detail_input_content">
-            <view class="input">
-              <input
-                name="city"
-                placeholder="{{_t.please_select_your_city}}"
+                placeholder="{{ _t.please_select_your_city }}"
                 value="{{ address.city }}"
                 confirm-type="next"
                 confirm-hold="true"
@@ -136,16 +79,16 @@
       <view class="details_container inputs_container field-3">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.address }}</view>
-          <view class="detail_input_content">
+          <view class="detail_input">
             <view class="input">
               <input
                 name="detailedAddress"
-                placeholder="{{_t.please_enter_your_address}}"
+                placeholder="{{ _t.please_enter_your_address }}"
                 value="{{ address.detailedAddress }}"
                 confirm-type="next"
                 confirm-hold="true"
                 focus="{{ _focus == 'detailedAddress' ? true : false }}"
-                data-next_item="phone"
+                data-next_item="zipCode"
                 bindconfirm="next"
               >
               </input>
@@ -153,63 +96,19 @@
           </view>
         </view>
       </view>
-
-
-      <!-- delete contact -->
-      <!-- <view class="details_container inputs_container field-1">
-        <view class="detail_content_box">
-          <view class="detail_label_name">{{ _t.contact }}</view>
-          <view class="detail_input_content">
-            <view class="input">
-              <input
-                name="contact"
-                value="{{ address.contact }}"
-                confirm-type="next"
-                confirm-hold="true"
-                data-next_item="city"
-                bindconfirm="next"
-              >
-              </input>
-            </view>
-          </view>
-        </view>
-      </view> -->
-
 
       <view class="details_container inputs_container">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.zipcode }}</view>
-          <view class="detail_input_content">
+          <view class="detail_input">
             <view class="input">
               <input
                 name="zipCode"
-                placeholder="{{_t.please_enter_your_zip_code}}"
+                placeholder="{{ _t.please_enter_your_zip_code }}"
                 value="{{ address.zipCode }}"
                 confirm-type="next"
                 confirm-hold="true"
                 focus="{{ _focus == 'zipCode' ? true : false }}"
-                data-next_item="detailedAddress"
-                bindconfirm="next"
-              >
-              </input>
-            </view>
-          </view>
-        </view>
-      </view>
-
-
-      <!-- delete phone -->
-      <!-- <view class="details_container inputs_container field-4">
-        <view class="detail_content_box">
-          <view class="detail_label_name">{{ _t.phone_no }}</view>
-          <view class="detail_input_content">
-            <view class="input">
-              <input
-                name="phone"
-                value="{{ address.phone }}"
-                confirm-type="next"
-                confirm-hold="true"
-                focus="{{ _focus == 'phone' ? true : false }}"
                 data-next_item="comment"
                 bindconfirm="next"
               >
@@ -217,18 +116,18 @@
             </view>
           </view>
         </view>
-      </view> -->
+      </view>
 
       <view class="details_container textarea_container">
         <view class="detail_content_box">
           <view class="detail_label_name">{{ _t.comment }}</view>
-          <view class="detail_input_content">
+          <view class="detail_input">
             <view class="input">
               <textarea
                 class="textarea"
                 auto-height="true"
                 name="comment"
-                placeholder="{{_t.any_special_requests}}"
+                placeholder="{{ _t.any_special_requests }}"
                 focus="{{ _focus == 'comment' ? true : false }}"
                 value="{{ address.comment }}"
                 type="text"
@@ -247,7 +146,7 @@
     <!-- End of Address Form -->
 
     <!-- Select Button -->
-    <view wx:if="{{!_t.options_judge}}" class="btn-bottom">
+    <view wx:if="{{ !options_judge }}" class="btn-bottom">
       <button class="btn-outline inter_600 cancel-button" formType="reset">{{ _t.cancel }}</button>
     </view>
     <!-- End of Select Button -->

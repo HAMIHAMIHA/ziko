@@ -16,6 +16,7 @@ const _getAddressAreas = () => {
     areas = res;
   });
 }
+
 const _getUserInfo = async page => {
   await app.sessionUtils.refreshUserInfo(page);
   const customer = app.db.get("userInfo").customer;
@@ -33,7 +34,7 @@ Page({
 
   onShow: async function () {
     const self = this;
-    let i18n = app.globalData.i18n;
+    const i18n = app.globalData.i18n;
 
     // Change page nav title
     wx.setNavigationBarTitle({
@@ -165,6 +166,7 @@ Page({
       delta: 1,
     })
   },
+
   deleteAddress: function (event) {
     const self = this;
     wx.showModal({
@@ -188,5 +190,21 @@ Page({
         }
       }
     })
+  },
+
+  setDefault: function (event) {
+    const self = this;
+    const address = event.currentTarget.dataset.address;
+    const addresses = self.data.addresses;
+    if (address.default) return;
+    const addresses_list = addresses.map(new_address => {
+      new_address.default = new_address._id === address._id;
+      return new_address;
+    });
+
+    app.sessionUtils.updateUserInfo({
+      addresses: addresses_list
+    })
+    _getUserInfo(self);
   }
 })

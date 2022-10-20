@@ -1,13 +1,20 @@
-const {changeFocus, navigateBack, showLoading} = require("../../../utils/common.js");
-const {findIndex} = require("../../../utils/util.js");
+const {
+  changeFocus,
+  navigateBack,
+  showLoading
+} = require("../../../utils/common.js");
+const {
+  findIndex
+} = require("../../../utils/util.js");
 
 const app = getApp();
 const address_type = ["office", "home", "other"];
 // const validate_keys = ['type', 'contact', 'city', 'detailedAddress', 'phone'];
 // const validate_keys = ['type', 'city', 'detailedAddress'];//__change
-const validate_keys = {
-  type: address_type,
-}
+// const validate_keys = {
+//   type: address_type,
+// }
+const validate_keys = ['type', 'province', 'city', 'detailedAddress'];
 let all_areas = [];
 
 const _getAddressAreas = (page, area_id) => {
@@ -38,7 +45,10 @@ async function getUserInfo(page) {
     count = findIndex(user.addresses, page.options.id, '_id');
     address = user.addresses[count];
     _getAddressAreas(page, address.area);
-    picker_selected = `${address_type.indexOf(address.type)}`
+    picker_selected = `${address_type.indexOf(address.type)}`;
+    page.setData({
+      default: address.default ? address.default : false,
+    })
   } else {
     address.contact = user.name;
   }
@@ -55,48 +65,47 @@ async function getUserInfo(page) {
 // Check if input empty
 const _validateInputs = (page, data) => {
   let error = '';
-  console.log("validate_keys", validate_keys, "data", data)
   for (var i in validate_keys) {
-    console.log(i, data[validate_keys[i]]);
-    (data[validate_keys[i]] == null || data[validate_keys[i]] === '') ? error += `error-field-${i} ` : '';
-  }
-
-  // if (!page.data.area || JSON.stringify(page.data.area) == "{}") {
-  //   error += 'error-field-5 ';
-  // }
-  if (!page.data.city) {
-    error += 'error-field-5 ';
+    (data[validate_keys[i]] == null || data[validate_keys[i]] === '') ? error += `error-field-${i} `: '';
   }
 
   page.setData({
     error: error
   })
-  console.error("show-error", error)
+
   return error;
 }
 
 // Create address data for api
 const _generateUserAddress = (page, action, new_address) => {
-  console.log("generate-user-address",)
-  let address = app.db.get('userInfo').customer.addresses;
-  console.log("user address", address)
+  let addresses = app.db.get('userInfo').customer.addresses;
 
   if (action == 'reset') {
     let addr_index = page.data._count;
-    address.splice(addr_index, 1)
+    addresses.splice(addr_index, 1)
   } else {
     if (page.options.id) {
-      address[page.data._count] = new_address;
+      addresses[page.data._count] = new_address;
     } else {
-      address ? address.push(new_address) : address = [new_address];
+      if (addresses && addresses.length > 0) {
+        if (new_address.default == true) {
+          for (const i in addresses) {
+            addresses[i].default = false;
+          }
+        }
+
+        addresses.push(new_address);
+      } else {
+        addresses = [new_address];
+      }
     }
   }
 
-  return address;
+  return addresses;
 }
 
 //Get Province
-const _getAreas = (parent_id) => {//__need
+const _getAreas = (parent_id) => {
   let new_areas = [];
   const filtered_areas = all_areas.filter((e) => e.parent === parent_id);
   if (filtered_areas.length) {
@@ -111,6 +120,7 @@ const _getAreas = (parent_id) => {//__need
   }
   return new_areas;
 }
+
 const _formatAreas = (areas, index) => {
   if (index > 1) {
     for (const item of areas) {
@@ -123,14 +133,13 @@ const _formatAreas = (areas, index) => {
   }
 }
 
-
-const getAddressAreaList = page => {//__need
+const getAddressAreaList = page => {
   console.log("getAddressAreaList")
   const callback = res => {
     all_areas = res;
     let areas = _getAreas();
     _formatAreas(areas, 3);
-    console.log("details_areas:", JSON.stringify(areas));
+    console.log("details_areas:", areas);
 
     page.setData({
       _temp: res,
@@ -149,32 +158,34 @@ function _loadPicker(page) {
     arr3: [],
     multiIds: []
   }
-  page.data._areas.map((v, vk) => {
-    console.log("v, vk", v, vk)
-    state.arr1.push(v.label);
-    if (page.data.multiIndex[0] === vk) {
-      state.multiIds[0] = v;
+
+  page.data._areas.map((firstLayer, firstIndex) => {
+    state.arr1.push(firstLayer.label);
+    if (page.data.multiIndex[0] === firstIndex) {
+      state.multiIds[0] = firstLayer;
     }
     if (state.arr2.length <= 0) {
-      v.children.map((c, ck) => {
-        state.arr2.push(c.label);
-        if (page.data.multiIndex[1] === ck) {
-          state.multiIds[1] = c;
+      firstLayer.children.map((secondLayer, secondIndex) => {
+        state.arr2.push(secondLayer.label);
+        if (page.data.multiIndex[1] === secondIndex) {
+          state.multiIds[1] = secondLayer;
         }
-        if (state.arr3.length <= 0 && c.length === 0) {
-          c.children.map((t, tk) => {
-            state.arr3.push(t.label);
-            if (this.data.multiIndex[2] === tk) {
-              state.multiIds[2] = t;
+        if (state.arr3.length <= 0) {
+          secondLayer.children.map((thirdLayer, thirdIndex) => {
+            state.arr3.push(thirdLayer.label);
+            if (page.data.multiIndex[2] === thirdIndex) {
+              state.multiIds[2] = thirdLayer;
             }
           });
         }
       });
     }
   });
+
   state.arr[0] = state.arr1;
   state.arr[1] = state.arr2;
   state.arr[2] = state.arr3;
+
   page.setData({
     newArr: state.arr,
     multiIds: state.multiIds,
@@ -187,11 +198,12 @@ Page({
     multiIndex: [0, 0, 0],
     multiIds: [],
     newArr: [],
+    default: false,
   },
+
   onShow: function () {
-    // onShow: function () {
-    let self = this;
-    let i18n = app.globalData.i18n;
+    const self = this;
+    const i18n = app.globalData.i18n;
 
     if (self.options.back) return;
 
@@ -214,6 +226,7 @@ Page({
 
     // Set page translation
     self.setData({
+      options_judge: self.options.id,
       _picker: {
         address_type: address_picker
       },
@@ -238,7 +251,6 @@ Page({
         please_enter_your_address: i18n.please_enter_your_address,
         please_enter_your_zip_code: i18n.please_enter_your_zip_code,
         any_special_requests: i18n.any_special_requests,
-        options_judge: self.options.id,
         select: i18n.select,
         set_default_address: i18n.set_as_default_address,
       },
@@ -280,32 +292,50 @@ Page({
     }
 
     // Stop if saving but inputs empty
-    // __text
+    if (action != 'reset' && _validateInputs(self, e.detail.value)) return;
 
     showLoading(true);
 
     // Add address to addrss list
     // let address = e.detail.value;
-    const {detailedAddress, type, zipCode, city} = e.detail.value;
-    const {default: defaultData, _picker: {address_type}, province} = this.data;
+    const {
+      detailedAddress,
+      type,
+      zipCode,
+      city
+    } = e.detail.value;
+    const {
+      default: defaultData,
+      _picker: {
+        address_type
+      },
+      province
+    } = this.data;
     const addressType = address_type[type]?.toLowerCase();
     const area = province.value;
-    const address = {area, detailedAddress, type: addressType, zipCode, city, default: defaultData}
+    const address = {
+      area,
+      detailedAddress,
+      type: addressType,
+      zipCode,
+      city,
+      default: defaultData
+    }
     console.log(address, "address")
     // address ? address.type = self.data.address.type : '';
     // address ? address.area = self.data.area.id : '';
     let address_list = _generateUserAddress(self, action, address);
     console.log("address_list", address_list)
 
-    app.sessionUtils.updateUserInfo({addresses: address_list}, app.routes.address);
+    app.sessionUtils.updateUserInfo({
+      addresses: address_list
+    }, app.routes.address);
     showLoading(false);
     wx.navigateTo(app.routes.address);
   },
 
-
-  select: function (e) {//__need
+  select: function (e) {
     const self = this;
-
     let selected = self.data._selected;
 
     // Get area data
@@ -332,6 +362,7 @@ Page({
       delta: 1,
     })
   },
+
   setDefault: function () {
     const self = this;
 
@@ -339,44 +370,49 @@ Page({
       default: !self.data.default,
     })
   },
+
   _selectProvince: function () {
-    const [index1, index2, index3] = this.data.multiIndex;
+    const self = this;
+    const [index1, index2, index3] = self.data.multiIndex;
     console.log("index1", index1, index2, index3)
-    const province = this.data._areas[index1]?.children[index2]?.children[index3]
-    this.setData({province});
+    const province = self.data._areas[index1]?.children[index2]?.children[index3]
+    self.setData({
+      province
+    });
   },
+
   bindProvinceChange(e) {
+    const self = this
     console.log('bindProvinceChange', e)
     let data = {
-      newArr: this.data.newArr,
-      multiIndex: this.data.multiIndex,
-      multiIds: this.data.multiIds,
+      newArr: self.data.newArr,
+      multiIndex: self.data.multiIndex,
+      multiIds: self.data.multiIds,
     };
     data.multiIndex[e.detail.column] = e.detail.value;
 
     let searchColumn = () => {
       let arr1 = [];
       let arr2 = [];
-      this.data._areas.map((v, vk) => {
-        if (data.multiIndex[0] === vk) {
+      self.data._areas.map((firstLayer, firstIndex) => {
+        if (data.multiIndex[0] === firstIndex) {
           data.multiIds[0] = {
-            ...v,
+            ...firstLayer,
           };
-          v.children.map((c, ck) => {
-            arr1.push(c.label);
-            if (data.multiIndex[1] === ck) {
+          firstLayer.children.map((secondLayer, secondIndex) => {
+            arr1.push(secondLayer.label);
+            if (data.multiIndex[1] === secondIndex) {
               data.multiIds[1] = {
-                ...c,
+                ...secondLayer,
               };
-              c.children.map((t, vt) => {
-                arr2.push(t.label);
-                if (data.multiIndex[2] === vt) {
+              secondLayer.children.map((thirdLayer, thirdIndex) => {
+                arr2.push(thirdLayer.label);
+                if (data.multiIndex[2] === thirdIndex) {
                   data.multiIds[2] = {
-                    ...t,
+                    ...thirdLayer,
                   };
                 }
               });
-
             }
           });
         }
@@ -386,10 +422,9 @@ Page({
     };
     switch (e.detail.column) {
       case 0:
-        // 每次切换还原初始值
+        // Switch to the default value
         data.multiIndex[1] = 0;
         data.multiIndex[2] = 0;
-        // 执行函数处理
         searchColumn();
         break;
       case 1:
@@ -397,9 +432,7 @@ Page({
         searchColumn();
         break;
     }
-    this._selectProvince();
-    this.setData(data);
+    self._selectProvince();
+    self.setData(data);
   },
-
-
 })

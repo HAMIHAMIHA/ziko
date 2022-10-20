@@ -65,45 +65,45 @@
       <view class="short-cut__icon icon icon-box"></view>
       <view class="short-cut__label">{{ _t.claims }}</view>
     </navigator>
-    <button class="short-cuts__button" open-type="contact">
+
+    <button class="short-cuts__button" hover-class="short-cuts__button-hover" open-type="contact">
       <view class="short-cut__icon icon icon-headset"></view>
       <view class="short-cut__label">{{ _t.contact }}</view>
     </button>
-
   </view>
   <!-- END OF SHORT CUTS -->
 
   <!-- PROFILE INFO -->
-  <view class="nunito_400 card profile-info{{ user.id ? '' : ' disabled' }}">
-    <navigator class="profile-info__button" url="{{ _routes.address }}">
+  <view class="nunito_400 card profile-info" bindtap="navigate">
+    <navigator class="profile-info__button{{ user.id ? '' : ' disabled' }}" url="{{ _routes.address }}">
       <view>
         <view class="profile-info-title">{{ _t.address_book }}</view>
         <view class="profile-info-content">{{ _t.manage_your_delivery_address_details }}</view>
       </view>
       <view class="icon icon-arrow-right"></view>
     </navigator>
-    <navigator class="profile-info__button" url="{{ _routes.contacts }}">
+    <navigator class="profile-info__button{{ user.id ? '' : ' disabled' }}" url="{{ _routes.contacts }}">
       <view>
         <view class="profile-info-title">{{ _t.contact_list }}</view>
         <view class="profile-info-content">{{ _t.manage_contact_for_delivery }}</view>
       </view>
       <view class="icon icon-arrow-right"></view>
     </navigator>
-    <navigator class="profile-info__button" url="{{ _routes.fapiao }}">
+    <navigator class="profile-info__button{{ user.id ? '' : ' disabled' }}" url="{{ _routes.fapiao }}">
       <view>
         <view class="profile-info-title">{{ _t.fapiao_info }}</view>
         <view class="profile-info-content">{{ _t.edit_your_fapiao_information }}</view>
       </view>
       <view class="icon icon-arrow-right"></view>
     </navigator>
-    <navigator class="profile-info__button" url="{{ _routes.pets }}">
+    <navigator class="profile-info__button{{ user.id ? '' : ' disabled' }}" url="{{ _routes.pets }}">
       <view>
         <view class="profile-info-title">{{ _t.my_pets }}</view>
         <view class="profile-info-content">{{ _t.manage_your_pet_details }}</view>
       </view>
       <view class="icon icon-arrow-right"></view>
     </navigator>
-    <navigator class="profile-info__button" url="{{ _routes.recipes_fav }}?filter=fav" wx:if="{{ show }}">
+    <navigator class="profile-info__button{{ user.id ? '' : ' disabled' }}" url="{{ _routes.recipes_fav }}?filter=fav" wx:if="{{ show }}">
       {{ _t.my_favorite_recipes }}
     </navigator>
   </view>

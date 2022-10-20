@@ -6,13 +6,20 @@
   background-color: #0A0B12;
 }
 
-.type-head-box {
-  margin: 20rpx 0;
-  padding: 0 30rpx;
-  background-color: #252831;
-  border-radius: 16rpx;
+.type-container {
   display: flex;
   justify-content: space-between;
+
+  background-color: #252831;
+  border: 2rpx solid #252831;
+  border-radius: 16rpx;
+
+  padding: 0 30rpx;
+  margin: 20rpx 0;
+}
+
+.error-field-0 .field-0 {
+  border-color: #FF4040;
 }
 
 .detail_label_name.line-height {
@@ -22,12 +29,12 @@
 
 }
 
-.detail_input_content.no-border-bottom {
+.detail_input.no-border-bottom {
   border-bottom: 0;
   line-height: 38rpx;
   font-size: 28rpx;
-  padding: 30rpx 0;
-  padding-right: 42rpx;
+
+  margin: auto 0 auto auto;
 }
 
 .no-border-bottom .icon-arrow {
@@ -51,7 +58,6 @@
   background-color: #F0F0F0 !important;
   color: #1F1F1F !important;
   bottom: calc(-60rpx + var(--env-)) !important;
-
 }
 
 .detail_content_box {
@@ -63,7 +69,8 @@
   padding: 4rpx 0;
 }
 
-.detail_input_content {
+.detail_input {
+  width: 100%;
   height: 64rpx;
   display: flex;
   /* border-bottom: 2rpx solid #EBEBEB; */
@@ -71,13 +78,13 @@
   box-sizing: border-box;
 }
 
-.detail_input_content .input {
+.detail_input .input {
   width: 100%;
   margin: auto;
   border: 0;
 }
 
-.detail_input_content .picker {
+.detail_input .picker {
   position: relative;
 }
 
@@ -85,35 +92,57 @@
   height: 100%;
 } */
 
-.detail_input_content .picker_text {
+.detail_input .picker_text {
   white-space: nowrap;
   width: calc(100% - 24rpx - 16rpx);
   height: 34rpx;
-  display: flex;
+  /* display: flex; */
 }
 
-.detail_input_content .picker_text text {
-  margin-left: auto;
-  margin-right: -32rpx;
-  padding-left: 20rpx;
-}
-
-.icon-arrow {
+.detail_input .picker_text .icon.icon-arrow {
   color: #8C8C8C;
 }
 
-.greycolor {
+.detail_input.no-border-bottom .picker {
+  width: auto;
+  margin: auto 40rpx auto auto;
+}
+
+.detail_input.no-border-bottom .picker_text .icon.icon-arrow {
+  right: -40rpx;
+  color: #FFFFFF;
+}
+
+.grey {
   color: #8C8C8C !important;
 }
 
-.container.container-btn-bottom{
+.container.container-btn-bottom {
   padding-bottom: 0rpx;
 }
+
 .pad-container {
   margin-left: 20rpx;
 }
+
 .flex-container {
   display: flex;
   align-items: center;
   gap: 10rpx;
+}
+
+.icon-star-gold,
+.icon-star-gray {
+  display: flex;
+  align-items: center;
+  padding-top: 14rpx;
+}
+
+.icon-star-gold text,
+.icon-star-gray text {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #D9D9D9 !important;
+  padding-left: 10rpx;
+  padding-top: 6rpx;
 }

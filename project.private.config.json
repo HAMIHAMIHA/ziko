@@ -178,29 +178,18 @@
           "scene": null
         },
         {
-          "name": "account",
-          "pathName": "pages/account/index/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pets",
+          "name": "Pets",
           "pathName": "pages/account/pets/pets",
           "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "editprofile",
+          "name": "Edit profile",
           "pathName": "pages/account/editprofile/editprofile",
           "query": "",
           "launchMode": "default",
-          "scene": null,
-          "partialCompile": {
-            "enabled": false,
-            "pages": []
-          }
+          "scene": null
         },
         {
           "name": "Contacts index",

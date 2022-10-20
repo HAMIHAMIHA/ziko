@@ -11,6 +11,7 @@
   position: relative;
   box-sizing: border-box;
   transition: all 0.3s ease-in-out;
+  align-items: baseline;
 }
 
 .detail:after {
@@ -31,45 +32,49 @@
 .selected .detail.select {
   background: #3F4250;
 }
-.address-name-star{
+
+.address-name-star {
   margin-bottom: 30rpx;
-  display:flex;
+  display: flex;
 }
+
 .address-name {
   /* padding-bottom: 8rpx; */
-  padding:12rpx 16rpx 8rpx 35rpx;
+  padding: 12rpx 16rpx 8rpx 35rpx;
   font-size: 28rpx;
   line-height: 32rpx;
   transition: all 0.3s ease-in-out;
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   margin-left: -30rpx;
 }
-.address-name-star .icon-star-gold{
+
+.address-name-star .icon-star-gold {
   font-size: 40rpx;
   line-height: 40rpx;
   padding-left: 30rpx;
-  display:flex;
+  display: flex;
   align-items: center;
 }
+
 .address-name-star .icon-star-gray {
-    font-size: 40rpx;
-    line-height: 40rpx;
-    padding-left: 30rpx;
-    display:flex;
-    align-items: center;
+  font-size: 40rpx;
+  line-height: 40rpx;
+  padding-left: 30rpx;
+  display: flex;
+  align-items: center;
 }
-.address-name-star .icon-star-gold text{
+
+.address-name-star .icon-star-gold text {
   display: block;
-  padding-left:10rpx;
+  padding-left: 10rpx;
   font-size: 28rpx;
   line-height: 48rpx;
   height: 40rpx;
-  color:#D4B106;
+  color: #D4B106;
 }
 
-
 .address-detail {
-  font-size:32rpx;
+  font-size: 32rpx;
   line-height: 32rpx;
   transition: all 0.3s ease-in-out;
   padding: 12rpx 0;
@@ -80,31 +85,36 @@
   opacity: 0.4;
 }
 
-.contact-detail {
+.city-detail {
   padding-top: 8rpx;
   color: var(--grey-);
 }
-.contact-right {
+
+.actions {
   display: flex;
   gap: 20rpx;
 }
 
-.detail .btn-icon {
+.actions .icon {
   padding: 0;
   font-size: 32rpx;
+}
+
+.actions .icon.icon-edit {
   opacity: 0.24;
 }
 
 .btn-outline_container {
   bottom: 80rpx;
-  position:fixed;
+  position: fixed;
   padding: 30rpx;
   width: 690rpx;
 }
-.btn-outline_container .btn-outline{
-  line-height: 50rpx;
 
+.btn-outline_container .btn-outline {
+  line-height: 50rpx;
 }
+
 .container-btn-bottom .btn-bottom button.disabled {
   background: #d9d9da;
 }

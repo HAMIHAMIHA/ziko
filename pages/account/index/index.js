@@ -1,5 +1,6 @@
 const {
-  showLoading
+  showLoading,
+  showToast,
 } = require('../../../utils/common.js');
 const translate = require('../../../utils/internationalize/translate.js'); // 翻译功能
 
@@ -171,6 +172,7 @@ Page({
         lottery: i18n.lottery,
         copy: i18n.copy,
         language_choice: i18n.language_choice,
+        need_login: i18n.need_login,
       },
       language: app.db.get('language')
     })
@@ -228,5 +230,13 @@ Page({
         })
       }
     })
+  },
+
+  navigate: function () {
+    const self = this;
+    if (!self.data.user.id) {
+      showToast(self.data._t.need_login);
+      return;
+    }
   },
 })

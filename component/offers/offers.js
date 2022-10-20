@@ -115,6 +115,7 @@ Component({
     },
 
     getReminder: function (e) {
+      const self = this;
       const watch = e.currentTarget.dataset.watch;
 
       if (watch == 'true') {
@@ -126,7 +127,20 @@ Component({
           complete: (res) => {
             // Get subscription
             if (res[app.subscribe.offer] === "accept") {
-              app.api.setNotificationOffer(e.currentTarget.dataset.offer_id);
+              app.api.setNotificationOffer(e.currentTarget.dataset.offer_id).then(res => {
+                // Change the subscription button status
+                let offers = self.data.offers;
+                for (const i in offers) {
+                  if (offers[i].id == e.currentTarget.dataset.offer_id) {
+                    offers[i].watch = res.watch;
+                    break;
+                  }
+                }
+
+                self.setData({
+                  offers: offers,
+                })
+              });
             }
           }
         })
