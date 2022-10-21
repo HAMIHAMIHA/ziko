@@ -9,17 +9,28 @@ const {
 
 const app = getApp();
 const address_type = ["office", "home", "other"];
-// const validate_keys = ['type', 'contact', 'city', 'detailedAddress', 'phone'];
-// const validate_keys = ['type', 'city', 'detailedAddress'];//__change
-// const validate_keys = {
-//   type: address_type,
-// }
 const validate_keys = ['type', 'province', 'city', 'detailedAddress'];
 let all_areas = [];
 
 const _getAddressAreas = (page, area_id) => {
   app.api.getAreas().then(res => {
     const area = res[findIndex(res, area_id, 'id')];
+    const areas = page.data._areas;
+
+    // Prefill the province
+    for (const firstIndex in areas) {
+      for (const secondIndex in areas[firstIndex].children) {
+        for (const thirdIndex in areas[firstIndex].children[secondIndex].children) {
+          if (areas[firstIndex].children[secondIndex].children[thirdIndex].value == area_id) {
+            page.setData({
+              multiIndex: [firstIndex, secondIndex, thirdIndex],
+            })
+            break;
+          }
+        }
+      }
+    }
+
     page.setData({
       area,
       province: {
@@ -67,6 +78,10 @@ const _validateInputs = (page, data) => {
   let error = '';
   for (var i in validate_keys) {
     (data[validate_keys[i]] == null || data[validate_keys[i]] === '') ? error += `error-field-${i} `: '';
+
+    if (!page.data.provinceSelected) {
+      error += 'error-field-1 ';
+    }
   }
 
   page.setData({
@@ -80,7 +95,7 @@ const _validateInputs = (page, data) => {
 const _generateUserAddress = (page, action, new_address) => {
   let addresses = app.db.get('userInfo').customer.addresses;
 
-  if (action == 'reset') {
+  if (action == 'delete') {
     let addr_index = page.data._count;
     addresses.splice(addr_index, 1)
   } else {
@@ -199,6 +214,7 @@ Page({
     multiIds: [],
     newArr: [],
     default: false,
+    provinceSelected: false,
   },
 
   onShow: function () {
@@ -253,6 +269,9 @@ Page({
         any_special_requests: i18n.any_special_requests,
         select: i18n.select,
         set_default_address: i18n.set_as_default_address,
+        tips: i18n.tips,
+        delete_it_or_not: i18n.delete_it_or_not,
+        confirm: i18n.confirm,
       },
       _routes: {
         address_areas: app.routes.address_areas,
@@ -285,7 +304,7 @@ Page({
     let action = e.type; //提交类型
     console.log(action)
     console.log(e.detail.value, "detail value")
-    // Go back to address page if delete new address
+    // Go back to address page if cancel
     if (action == 'reset' && !self.options.id) {
       navigateBack(app.routes.address, false);
       return;
@@ -294,44 +313,70 @@ Page({
     // Stop if saving but inputs empty
     if (action != 'reset' && _validateInputs(self, e.detail.value)) return;
 
-    showLoading(true);
+    // Go back to address page if delete new address
+    if (action != 'reset' && e.detail.target.dataset.type == 'delete') {
+      wx.showModal({
+        title: self.data._t.tips,
+        content: self.data._t.delete_it_or_not,
+        cancelText: self.data._t.cancel,
+        confirmText: self.data._t.confirm,
+        success(res) {
+          if (res.confirm) {
+            showLoading(true);
+            let address_list = _generateUserAddress(self, 'delete', []);
+            app.sessionUtils.updateUserInfo({
+              addresses: address_list
+            }, app.routes.address);
+            showLoading(false);
+            wx.navigateTo(app.routes.address);
+            return;
+          } else if (res.cancel) {
+            console.log('Cancel')
+          }
+        }
+      })
 
-    // Add address to addrss list
-    // let address = e.detail.value;
-    const {
-      detailedAddress,
-      type,
-      zipCode,
-      city
-    } = e.detail.value;
-    const {
-      default: defaultData,
-      _picker: {
-        address_type
-      },
-      province
-    } = this.data;
-    const addressType = address_type[type]?.toLowerCase();
-    const area = province.value;
-    const address = {
-      area,
-      detailedAddress,
-      type: addressType,
-      zipCode,
-      city,
-      default: defaultData
+      return;
+    } else { // Save address
+      showLoading(true);
+
+      // Add address to addrss list
+      // let address = e.detail.value;
+      const {
+        detailedAddress,
+        type,
+        zipCode,
+        city
+      } = e.detail.value;
+      const {
+        default: defaultData,
+        _picker: {
+          address_type
+        },
+        province
+      } = self.data;
+      const addressType = address_type[type]?.toLowerCase();
+      const area = province.value;
+      const address = {
+        area,
+        detailedAddress,
+        type: addressType,
+        zipCode,
+        city,
+        default: defaultData
+      }
+      console.log(address, "address")
+      // address ? address.type = self.data.address.type : '';
+      // address ? address.area = self.data.area.id : '';
+      let address_list = _generateUserAddress(self, action, address);
+      console.log("address_list", address_list)
+
+      app.sessionUtils.updateUserInfo({
+        addresses: address_list
+      }, app.routes.address);
+      showLoading(false);
+      wx.navigateTo(app.routes.address);
     }
-    console.log(address, "address")
-    // address ? address.type = self.data.address.type : '';
-    // address ? address.area = self.data.area.id : '';
-    let address_list = _generateUserAddress(self, action, address);
-    console.log("address_list", address_list)
-
-    app.sessionUtils.updateUserInfo({
-      addresses: address_list
-    }, app.routes.address);
-    showLoading(false);
-    wx.navigateTo(app.routes.address);
   },
 
   select: function (e) {
@@ -384,6 +429,10 @@ Page({
   bindProvinceChange(e) {
     const self = this
     console.log('bindProvinceChange', e)
+    self.setData({
+      provinceSelected: true,
+    })
+    
     let data = {
       newArr: self.data.newArr,
       multiIndex: self.data.multiIndex,

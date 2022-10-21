@@ -14,7 +14,8 @@ page {
   background-color: #12151E;
 }
 
-.pets-input {
+.detail_input {
+  width: 100%;
   border-bottom: 2rpx solid rgba(255, 255, 255, 0.4);
   padding: 20rpx 0;
   font-size: 28rpx;
@@ -42,14 +43,10 @@ page {
   background-color: rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: center;
+  border: 3rpx solid rgba(255, 255, 255, 0.1);
 }
 
-.button-selected {
-  width: 320rpx !important;
-  padding: 28rpx 40rpx;
-  background-color: rgba(255, 255, 255, 0.1);
-  display: flex;
-  justify-content: center;
+.type-button-box .type-button.selected {
   border: 3rpx solid #E6A86E;
 }
 
@@ -67,8 +64,13 @@ page {
   padding-top: 6rpx;
 }
 
-.icon-color {
+.type-button .icon.icon-walk-cat::before,
+.type-button .icon.icon-walk-dog::before {
   color: #8C8C8C;
+}
+
+.icon.icon-walk-cat,
+.icon.icon-walk-dog {
   font-size: 48rpx;
 }
 
@@ -77,6 +79,28 @@ page {
   line-height: 48rpx;
   padding-left: 20rpx;
   color: #8C8C8C;
+}
+
+.type-button .icon.icon-check::before,
+.type-button .icon.icon-check::before {
+  position: absolute;
+  top: 50%;
+  right: 20rpx;
+  transform: translateY(-50%);
+
+  color: transparent;
+}
+
+.type-button.selected .icon.icon-check.cat::before,
+.type-button.selected .icon.icon-walk-cat::before,
+.selected .type-name.cat {
+  color: #E6A86E;
+}
+
+.type-button.selected .icon.icon-check.dog::before,
+.type-button.selected .icon.icon-walk-dog::before,
+.selected .type-name.dog {
+  color: #D46B08;
 }
 
 .size-of-pet {
@@ -93,22 +117,30 @@ page {
   justify-content: space-around;
 }
 
-.radio-color radio .wx-radio-input {
-  width: 28rpx;
-  height: 28rpx;
+radio .wx-radio-input {
+  width: 32rpx;
+  height: 32rpx;
   border-radius: 50%;
-  background-color: #12151E;
+  background: transparent;
   border: 3rpx solid #8C8C8C;
 }
 
-.radio-color radio .wx-radio-input.wx-radio-input-checked {
-  background: #E6A86E !important;
-  border-color: #E6A86E !important;
-  vertical-align: middle;
+radio .wx-radio-input.wx-radio-input-checked {
+  background: transparent;
+  border-color: #E6A86E;
 }
 
 radio .wx-radio-input.wx-radio-input-checked::before {
-  color: #E6A86E;
+  border-radius: 50%;
+  width: 24rpx;
+  height: 24rpx;
+  line-height: 24rpx;
+  text-align: center;
+  font-size: 0rpx;
+  color: transparent;
+  background: #E6A86E;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
 }
 
 .under-black-button {
@@ -154,4 +186,9 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   color: #1F1F1F;
   font-size: 32rpx;
   line-height: 20rpx;
+}
+
+.error-field-1 .field-1 .type-button,
+.error-field-2 .field-2 .radio-color radio .wx-radio-input {
+  border-color: #FF4040;
 }

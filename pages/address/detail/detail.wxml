@@ -38,6 +38,8 @@
               name="province"
               mode="multiSelector"
               range="{{ newArr }}"
+              value="{{ multiIndex }}"
+              bindchange="bindProvinceChange"
               bindcolumnchange="bindProvinceChange"
             >
               <view wx:if="{{ !province }}" class="picker_text grey">
@@ -153,13 +155,13 @@
 
     <!-- Delete Button -->
     <view wx:else class="btn-bottom">
-      <button class="btn-outline inter_600 cancel-button" formType="reset">{{ _t.delete }}</button>
+      <button class="btn-outline inter_600 cancel-button" formType="submit" data-type="delete">{{ _t.delete }}</button>
     </view>
     <!-- End of Delete Button -->
 
     <!-- Submit Button -->
     <view class="btn-bottom">
-      <button class="gilroy_700 white-background-black-text" formType="submit">{{ _t.save }}</button>
+      <button class="gilroy_700 white-background-black-text" formType="submit" data-type="submit">{{ _t.save }}</button>
     </view>
     <!-- End of Submit Button -->
   </form>

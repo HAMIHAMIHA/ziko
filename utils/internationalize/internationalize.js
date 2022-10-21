@@ -387,7 +387,7 @@ export const languageMap_en = {
   pet_size: {
     small: "Small",
     middle: "Medium",
-    large: "Big"
+    large: "Large"
   },
   pet_name: "Pet name",
   phone_no: "Phone no",
@@ -964,7 +964,7 @@ export const languageMap_zh = {
   pet_size: {
     small: "Small",
     middle: "Medium",
-    large: "Big"
+    large: "Large"
   },
   pet_name: "Pet name",
   phone_no: "Phone no",

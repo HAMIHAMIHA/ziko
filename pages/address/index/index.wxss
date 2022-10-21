@@ -3,6 +3,7 @@
 }
 
 .white-box {
+  background: unset;
   padding: 0;
 }
 
@@ -12,18 +13,23 @@
   box-sizing: border-box;
   transition: all 0.3s ease-in-out;
   align-items: baseline;
+  background: #252831;
 }
 
-.detail:after {
+.detail+.detail {
+  margin-top: 16rpx;
+}
+
+/* .detail:after {
   content: '';
   width: calc(100% - 30rpx - 30rpx);
   height: 0;
-  /* border-bottom: 2rpx solid #E6E7EB; */
+  border-bottom: 2rpx solid #E6E7EB;
   border-bottom: 2rpx solid #545764;
   position: absolute;
   bottom: 0;
   left: 30rpx;
-}
+} */
 
 .detail:last-child:after {
   content: none;
@@ -98,10 +104,6 @@
 .actions .icon {
   padding: 0;
   font-size: 32rpx;
-}
-
-.actions .icon.icon-edit {
-  opacity: 0.24;
 }
 
 .btn-outline_container {

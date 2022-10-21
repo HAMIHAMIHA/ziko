@@ -86,13 +86,15 @@
         {
           "name": "Address",
           "pathName": "pages/address/index/index",
-          "query": "action=select",
+          "query": "action=",
+          "launchMode": "default",
           "scene": null
         },
         {
           "name": "Address Detail",
           "pathName": "pages/address/detail/detail",
           "query": "id=",
+          "launchMode": "default",
           "scene": null
         },
         {
@@ -201,6 +203,13 @@
         {
           "name": "Account index",
           "pathName": "pages/account/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "Add pet",
+          "pathName": "pages/account/addpets/addpets",
           "query": "",
           "launchMode": "default",
           "scene": null

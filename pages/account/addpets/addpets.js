@@ -3,7 +3,7 @@ const {
   showLoading
 } = require("../../../utils/common.js");
 const app = getApp();
-const validateKeys = {
+const petInfo = {
   type: {
     cat: "cat",
     dog: "dog",
@@ -14,6 +14,7 @@ const validateKeys = {
     large: "large",
   }
 }
+const validate_keys = ['name', 'type', 'size']
 
 // Get user profile
 async function getUserInfo(page) {
@@ -59,6 +60,20 @@ async function _addPet(page, pet) {
   });
 };
 
+// Check if input empty
+const _validateInputs = (page, data) => {
+  let error = '';
+  for (var i in validate_keys) {
+    (data[validate_keys[i]] == null || data[validate_keys[i]] === '') ? error += `error-field-${i} `: '';
+  }
+
+  page.setData({
+    error: error
+  })
+
+  return error;
+}
+
 Page({
   data: {},
 
@@ -67,7 +82,7 @@ Page({
 
     self.setData({
       // ...options,
-      validateKeys
+      petInfo
     })
     if (options.typechecked) {
       self.setData({
@@ -82,8 +97,13 @@ Page({
 
   onShow: async function () {
     const self = this;
+    const i18n = app.globalData.i18n;
+
     // Change page nav title
-    let i18n = app.globalData.i18n;
+    wx.setNavigationBarTitle({
+      title: self.options.id ? i18n.edit : i18n.add_new_pet,
+    })
+
     self.setData({
       _t: {
         name: i18n.name,
@@ -104,18 +124,21 @@ Page({
 
   addPet: function (e) {
     const self = this;
-    showLoading(true);
-    if (!self.data.typechecked) return;
-    const type = self.data.typechecked.toLowerCase();
-    const {
-      name,
-      size
-    } = e.detail.value;
+  
+    // if (!self.data.typechecked) return;
+
+
     const newPet = {
-      name,
-      type,
-      size
+      name: e.detail.value.name,
+      type: self.data.typechecked?.toLowerCase(),
+      size: e.detail.value.size,
     };
+
+    if (_validateInputs(self, newPet)) return;
+
+    showLoading(true);
+
+
     _addPet(self, newPet).then(() => {
       showLoading(false);
       // wx.navigateBack({
