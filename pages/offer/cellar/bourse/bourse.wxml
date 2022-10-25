@@ -106,7 +106,7 @@
               <text class="ticket">5% {{ _t.off }}</text>
             </view>
           </view>
-          <view class="inline-block right-box">{{ _t.next_price_in }} 26 {{ _t.bottles }}: ¥85</view>
+          <view class="inline-block right-box">{{ _t.next_price_in }} 26 {{ _t.bottles }}: <text class="grey">¥85</text></view>
         </view>
         <view class="green-content">
           <view class="first-content">¥{{ price.prices[0] }}</view>

@@ -199,6 +199,10 @@
   font-size: 21rpx;
 }
 
+.right-box .grey {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .green-content {
   display: flex;
   font-size: 26rpx;

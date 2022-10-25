@@ -828,6 +828,7 @@ button:not([size=mini]).float-contact_container {
 .ziko-offer .countdown {
   padding: 16rpx 0 26rpx;
   text-align: center;
+  color: #000000;
 }
 
 .ziko-offer .countdown .countdown_text {

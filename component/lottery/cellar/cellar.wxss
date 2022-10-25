@@ -228,6 +228,10 @@
   border-radius: 50%;
 }
 
+.lotteries_prize .draw__container .offer-lottery_image image {
+  border-radius: 50%;
+}
+
 /* Winner */
 .lotteries_prize .offer-lottery .offer-lottery_winner {
   width: 100%;
