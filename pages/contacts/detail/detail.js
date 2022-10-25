@@ -20,7 +20,7 @@ async function getUserInfo(page) {
   let contact = {};
 
   // Set address info if edit
-  if (page.options.id) {
+  if (page.options.id && page.options.id != '') {
     count = findIndex(user.contacts, page.options.id, '_id');
     contact = user.contacts[count];
   } else {

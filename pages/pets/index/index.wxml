@@ -1,17 +1,17 @@
-<view wx:if="{{ havePets }}" class="container">
-  <block wx:for="{{ pets }}" wx:for-item="pet" wx:key="index">
-    <view class="pet-details">
+<view wx:if="{{ user.pets.length > 0 }}" class="container">
+  <view class="cards">
+    <view class="card" wx:for="{{ pets }}" wx:for-item="pet" wx:key="index">
       <view class="type">
         <view class="icon icon-walk-{{ pet.type }}"></view>
         <view class="nunito_500 text {{ pet.type }} capitalize">{{ pet.type }}</view>
       </view>
 
-      <view class="content">
-        <view class="introduce">
+      <view class="info">
+        <view class="column">
           <view class="top nunito_400">{{ _t.pet_name }}</view>
           <view class="bottom gilroy_700">{{ pet.name }}</view>
         </view>
-        <view class="introduce">
+        <view class="column">
           <view class="top nunito_400">{{ _t.size }}</view>
           <view class="bottom nunito_500">{{ pet.size }}</view>
         </view>
@@ -19,18 +19,18 @@
 
       <view class="actions">
         <view class="icon icon-trash" bindtap="deletePet" data-id="{{ pet._id }}"></view>
-        <navigator class="icon icon-edit" url="{{ _routes.addpets + '?id=' + pet._id }}"></navigator>
+        <navigator class="icon icon-edit" url="{{ _routes.pet + '?id=' + pet._id }}"></navigator>
       </view>
     </view>
-  </block>
-  <navigator class="under-white-button" url="{{ _routes.addpets }}">
+  </view>
+  <navigator class="under-white-button" url="{{ _routes.pet }}">
     <text class="gilroy_700 font-size">+ {{ _t.add_new_pet }}</text>
   </navigator>
 </view>
 <view wx:else class="container">
-  <view class="icon icon-pet-head-big"></view>
+  <view class="icon icon-pet-head"></view>
   <view class="first-paragraph gilroy-700">{{ _t.there_is_no_pet }}</view>
-  <view class="second-paragraph nunito_500">{{ _t.you_can }}</view>
+  <view class="second-paragraph nunito_500">{{ _t.you_can_add_pet }}</view>
   <view class="add-pets">
     <button class="add-pet" bindtap="addPetNavigate" data-typechecked="{{ _t.cat }}">
       <text class="icon icon-walk-cat"></text>

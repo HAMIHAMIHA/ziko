@@ -33,6 +33,7 @@ Page({
     self.setData({
       _t: {
         there_is_no_contact: i18n.there_is_no_contact,
+        you_can_add_contact: i18n.you_can_add_contact,
         contact: i18n.contact,
         add_new_contact: i18n.add_new_contact,
         select: i18n.select,
@@ -51,7 +52,7 @@ Page({
 
     // Get user info
     showLoading(true);
-    _getUserInfo(this);
+    _getUserInfo(self);
     showLoading(false);
 
     // Set page Data

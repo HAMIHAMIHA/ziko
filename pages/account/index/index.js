@@ -170,7 +170,7 @@ Page({
         simonmawas: i18n.simonmawas,
         wechat_id: i18n.wechat_id,
         lottery: i18n.lottery,
-        copy: i18n.copy,
+        copied: i18n.copied,
         language_choice: i18n.language_choice,
         need_login: i18n.need_login,
       },
@@ -217,16 +217,11 @@ Page({
 
     wx.setClipboardData({
       data: e.currentTarget.dataset.text,
-      success: function (res) {
+      success: () => {
+        wx.hideToast();
         wx.showToast({
-          title: self.data._t.copy
-        })
-        wx.getClipboardData({
-          success: function (res) {
-            wx.showToast({
-              title: self.data._t.copy
-            })
-          }
+          title: self.data._t.copied,
+          duration: 1500,
         })
       }
     })

@@ -7,20 +7,30 @@
   padding: 0;
 }
 
-.detail {
-  padding: 32rpx 30rpx;
-  position: relative;
-  box-sizing: border-box;
-  transition: all 0.3s ease-in-out;
-  align-items: baseline;
-  background: #252831;
+.cards {
+  height: calc(100vh - 180rpx - var(--env-));
+  overflow: scroll;
 }
 
-.detail+.detail {
+.card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  background: #252831;
+
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+
+  padding: 32rpx 30rpx;
+}
+
+.card+.card {
   margin-top: 16rpx;
 }
 
-/* .detail:after {
+/* .card:after {
   content: '';
   width: calc(100% - 30rpx - 30rpx);
   height: 0;
@@ -31,11 +41,11 @@
   left: 30rpx;
 } */
 
-.detail:last-child:after {
+/* .card:last-child:after {
   content: none;
-}
+} */
 
-.selected .detail.select {
+.selected .card.select {
   background: #3F4250;
 }
 
@@ -86,8 +96,8 @@
   padding: 12rpx 0;
 }
 
-.selected .detail:not(.select) .address-name,
-.selected .detail:not(.select) .address-detail {
+.selected .card:not(.select) .address-name,
+.selected .card:not(.select) .address-detail {
   opacity: 0.4;
 }
 
@@ -107,10 +117,12 @@
 }
 
 .btn-outline_container {
-  bottom: 80rpx;
   position: fixed;
-  padding: 30rpx;
-  width: 690rpx;
+  bottom: calc(30rpx + var(--env-));
+  width: calc(100% - 60rpx);
+
+  padding: 0;
+  margin: 0 30rpx;
 }
 
 .btn-outline_container .btn-outline {
@@ -119,4 +131,27 @@
 
 .container-btn-bottom .btn-bottom button.disabled {
   background: #d9d9da;
+}
+
+.icon-ziko {
+  margin-top: 160rpx;
+  font-size: 200rpx;
+  text-align: center;
+  color: #8C8C8C;
+}
+
+.first-paragraph {
+  font-size: 34rpx;
+  text-align: center;
+
+  padding-top: 90rpx;
+}
+
+.second-paragraph {
+  font-size: 28rpx;
+  text-align: center;
+
+  opacity: 0.75;
+
+  padding: 30rpx 90rpx 90rpx 90rpx;
 }

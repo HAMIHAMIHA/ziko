@@ -48,6 +48,7 @@ const _setPageDefaultItems = page => {
       comment: i18n.comment,
       contact_customer_hero: i18n.contact_customer_hero,
       contact_label: i18n.contact_label,
+      copied: i18n.copied,
       delivery_fee: i18n.delivery_fee,
       fapiao: i18n.fapiao,
       free_delivery: i18n.free_delivery,
@@ -462,8 +463,17 @@ Page({
   },
 
   copyBtn: function (e) {
+    const self = this;
+
     wx.setClipboardData({
       data: e.currentTarget.dataset.text,
+      success: () => {
+        wx.hideToast();
+        wx.showToast({
+          title: self.data._t.copied,
+          duration: 1500,
+        })
+      }
     })
   },
 

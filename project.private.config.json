@@ -180,8 +180,8 @@
           "scene": null
         },
         {
-          "name": "Pets",
-          "pathName": "pages/account/pets/pets",
+          "name": "Pets index",
+          "pathName": "pages/pets/index/index",
           "query": "",
           "launchMode": "default",
           "scene": null
@@ -208,8 +208,8 @@
           "scene": null
         },
         {
-          "name": "Add pet",
-          "pathName": "pages/account/addpets/addpets",
+          "name": "Pet detail",
+          "pathName": "pages/pets/detail/detail",
           "query": "",
           "launchMode": "default",
           "scene": null

@@ -70,7 +70,7 @@ export const languageMap_en = {
   closed: "Closed",
   close_it: "close it",
   collected_all_items: "All set !",
-  copy: "Copied",
+  copied: "Copied",
   comment: "Anything else we should know?",
   coming_soon: "coming soon...",
   community: {
@@ -482,8 +482,8 @@ export const languageMap_en = {
   // T
   take_a_chance: "Take a chance to add a really cool gift to your order if the lottery is unlocked !",
   terms_and_conditions: "Terms and conditions",
-  there_is_no_address: "There is no address in your list yet.",
-  there_is_no_contact: "There is no contact in your list yet.",
+  there_is_no_address: "There is no address yet.",
+  there_is_no_contact: "There is no contact yet.",
   there_is_no_pet: "There is no pet in your list yet.",
   the_land: "The land",
   ticket: "ticket",
@@ -564,7 +564,9 @@ export const languageMap_en = {
   you_won: "YOU WON!",
   your_pets: "Your pets",
   your_price_will: "Your price will be delivered with your order.",
-  you_can: "You can start adding a new pet by choosing the type of pet. This will help us to give better suggestions for your pets.",
+  you_can_add_contact: "You can contact by clicking below button.",
+  you_can_add_home: "You can add your home, office or other address by clicking below button.",
+  you_can_add_pet: "You can start adding a new pet by choosing the type of pet. This will help us to give better suggestions for your pets.",
   you_just: "You just won at the lottery",
   your_ziko_name: "Your Ziko name",
   // Z
@@ -671,7 +673,7 @@ export const languageMap_zh = {
   contact_name: "Contact name",
   contact_number: "Contact number",
   contact_person: "Contact person",
-  copy: "复制成功",
+  copied: "复制成功",
 
   // D
   day: "day",
@@ -1059,8 +1061,8 @@ export const languageMap_zh = {
   // T
   take_a_chance: "Take a chance to add a really cool gift to your order if the lottery is unlocked !",
   terms_and_conditions: "Terms and conditions",
-  there_is_no_address: "There is no address in your list yet.",
-  there_is_no_contact: "There is no contact in your list yet.",
+  there_is_no_address: "There is no address yet.",
+  there_is_no_contact: "There is no contact yet.",
   there_is_no_pet: "There is no pet in your list yet.",
   the_land: "The land",
   ticket: "ticket",
@@ -1141,7 +1143,8 @@ export const languageMap_zh = {
   your_pets: "Your pets",
   your_price_will: "Your price will be delivered with your order.",
   you_just: "You just won at the lottery",
-  you_can: "You can start adding a new pet by choosing the type of pet. This will help us to give better suggestions for your pets.",
+  you_can_add_home: "You can add your home, office or other address by clicking below button.",
+  you_can_add_pet: "You can start adding a new pet by choosing the type of pet. This will help us to give better suggestions for your pets.",
   your_ziko_name: "Your Ziko name",
 
   // Z

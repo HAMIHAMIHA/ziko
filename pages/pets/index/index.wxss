@@ -1,25 +1,27 @@
-/* pages/account/pets/pets.wxss */
 page {
   background-color: #12151E;
 }
 
 .container {
   background-color: #12151E;
+  height: calc(100vh - 180rpx);
 }
 
 .under-white-button {
-  padding: 40rpx 0;
-  margin: 0 30rpx;
-  margin-bottom: 80rpx;
-  background-color: #F0F0F0;
+  position: fixed;
+  right: 0;
+  bottom: calc(30rpx + var(--env-));
+  left: 0;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background-color: #F0F0F0;
   border-radius: 8rpx;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+
+  padding: 40rpx 0;
+  margin: 0 30rpx;
 }
 
 .under-white-button .font-size {
@@ -28,11 +30,17 @@ page {
   line-height: 20rpx;
 }
 
-.pet-details {
-  background-color: #252831;
-  padding: 30rpx 0;
+.cards {
+  height: calc(100vh - 180rpx - var(--env-));
+  overflow: scroll;
+}
+
+.card {
   display: flex;
   justify-content: space-between;
+  background-color: #252831;
+
+  padding: 30rpx 0;
   margin: 30rpx 0;
 }
 
@@ -66,26 +74,26 @@ page {
   color: #D46B08;
 }
 
-.content {
+.info {
   display: flex;
   flex-direction: row;
 
   width: calc(100% - 188rpx - 100rpx);
 }
 
-.introduce {
+.column {
   width: 50%;
   padding: 0 30rpx;
   text-align: left;
 }
 
-.introduce .top {
+.column .top {
   color: rgba(255, 255, 255, 0.75);
   font-size: 24rpx;
   line-height: 32rpx;
 }
 
-.introduce .bottom {
+.column .bottom {
   font-size: 32rpx;
   line-height: 40rpx;
 }
@@ -100,22 +108,18 @@ page {
 
 .icon-trash {
   font-size: 30rpx;
-  /* line-height: 72rpx; */
-  /* color: #8C8C8C; */
-  /* padding-left: 40rpx; */
 }
 
 .icon-edit {
   font-size: 30rpx;
-  /* line-height: 72rpx; */
-  /* color: #8C8C8C; */
   padding-left: 40rpx;
 }
 
-.icon-pet-head-big {
+.icon-pet-head {
   margin-top: 160rpx;
   font-size: 200rpx;
   text-align: center;
+  color: #8C8C8C;
 }
 
 .first-paragraph {

@@ -1,10 +1,8 @@
-<view class="container container-grey address-list{{ _setting.selecting ? ' container-btn-bottom' : '' }}">
+<view wx:if="{{ addresses.length > 0 }}" class="container container-grey address-list{{ _setting.selecting ? ' container-btn-bottom' : '' }}">
   <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
-    <view wx:if="{{ addresses.length == 0 }}" class="gilroy-700">{{ _t.there_is_no_address }}</view>
-
-    <block wx:else>
+    <view class="cards">
       <view
-        class="detail{{ select_index == index ? ' select' : '' }}"
+        class="card{{ select_index == index ? ' select' : '' }}"
         wx:for="{{ addresses }}"
         wx:for-item="address"
         wx:key="_id"
@@ -26,7 +24,7 @@
           <view class="icon icon-trash" hover-class="none" bindtap="deleteAddress" data-index="{{ index }}"></view>
         </view>
       </view>
-    </block>
+    </view>
   </view>
 <!-- wx:if="{{ _setting.selecting }}" -->
   <view class="btn-outline_container" >
@@ -36,6 +34,14 @@
   <!-- <view class="btn-bottom"  wx:else>
     <button class="nunito_600" bindtap="select">{{ _t.select }}</button>
   </view> -->
+</view>
+<view wx:else class="container">
+  <view class="icon icon-ziko"></view>
+  <view class="first-paragraph gilroy-700">{{ _t.there_is_no_address }}</view>
+  <view class="second-paragraph nunito_500">{{ _t.you_can_add_home }}</view>
+  <view class="btn-outline_container" >
+    <navigator class="btn-outline gilroy_700" hover-class="none" url="{{ _routes.address_detail }}">{{ '+ ' + _t.add_new_address }}</navigator>
+  </view>
 </view>
 
 <lottery-draw id="lottery_modal"></lottery-draw>

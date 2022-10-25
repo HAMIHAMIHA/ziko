@@ -1,6 +1,7 @@
 // Add or edit pet
 const {
-  showLoading
+  showLoading,
+  navigateBack,
 } = require("../../../utils/common.js");
 const app = getApp();
 const petInfo = {
@@ -124,9 +125,13 @@ Page({
 
   addPet: function (e) {
     const self = this;
-  
-    // if (!self.data.typechecked) return;
+    let action = e.type;
 
+    // Go back to pets page
+    if (action == 'reset' && !self.options.id) {
+      navigateBack(app.routes.pets, false);
+      return;
+    }
 
     const newPet = {
       name: e.detail.value.name,
@@ -141,12 +146,7 @@ Page({
 
     _addPet(self, newPet).then(() => {
       showLoading(false);
-      // wx.navigateBack({
-      //   delta: 1,
-      // });
-      wx.navigateTo({
-        url: app.routes.pets
-      })
+      navigateBack(app.routes.pets, false);
     });
   },
 

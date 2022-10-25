@@ -45,6 +45,7 @@ Page({
     self.setData({
       _t: {
         there_is_no_address: i18n.there_is_no_address,
+        you_can_add_home: i18n.you_can_add_home,
         address: i18n.address,
         add_new_address: i18n.add_new_address,
         select: i18n.select,

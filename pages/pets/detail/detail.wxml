@@ -1,5 +1,5 @@
 <view class="container">
-  <form class="{{ error }}" catchsubmit="addPet">
+  <form class="{{ error }}" bindsubmit="addPet" bindreset="addPet">
     <view class="pets-name field-0">
       <view class="nuntio_700">{{ _t.name }}</view>
       <input class="detail_input" placeholder="{{ _t.please_enter_pets_name }}" type="text" value="{{ pet.name }}" name="name"></input>
