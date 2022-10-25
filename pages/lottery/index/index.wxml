@@ -1,60 +1,61 @@
 <view class="container">
   <!-- List View -->
-  <view class="first-show" wx:if="{{ first_show }}">
-    <image src="{{lottery_logo}}" class="image-size"></image>
-    <view class="machine-pure-box machine-pure-box-cellar" bindanimationend="animationend"
-    bindanimationiteration="animate_state_change">
-      <view class="machine-light-box machine-light-box-cellar">
-        <view class="vertical-light">
-          <view class="white-round"></view>
-          <view class="white-round"></view>
-          <view class="white-round"></view>
-          <view class="white-round"></view>
-          <view class="white-round"></view>
-        </view>
-        <view class="light-box-light">
-          <view class="broadwise-light">
+  <view class="lottery-machine-container" wx:if="{{ first_show }}">
+    <view class="lottery-machine-content">
+      <image src="{{ lottery_logo }}" class="image-size"></image>
+      <view class="machine-pure-box machine-pure-box-cellar" bindanimationend="animationend" bindanimationiteration="animate_state_change">
+        <view class="machine-light-box machine-light-box-cellar">
+          <view class="vertical-light">
+            <view class="white-round"></view>
             <view class="white-round"></view>
             <view class="white-round"></view>
             <view class="white-round"></view>
             <view class="white-round"></view>
           </view>
-          <view class="move-items">
-            <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ showid1 }}" scroll-with-animation>
-              <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="{{ content.numb }}" class="content-move-box">
-                <image src="{{ content.src }}" class="content-image"></image>
-              </view>
-            </scroll-view>
-            <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ showid2 }}" scroll-with-animation>
-              <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="{{ content.numb }}" class="content-move-box">
-                <image src="{{ content.src }}" class="content-image"></image>
-              </view>
-            </scroll-view>
-            <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ showid3 }}" scroll-with-animation>
-              <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="{{ content.numb }}" class="content-move-box">
-                <image src="{{ content.src }}" class="content-image"></image>
-              </view>
-            </scroll-view>
+          <view class="light-box-light">
+            <view class="broadwise-light">
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+            </view>
+            <view class="move-items">
+              <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ showid1 }}" scroll-with-animation>
+                <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="{{ content.numb }}" class="content-move-box">
+                  <image src="{{ content.src }}" class="content-image"></image>
+                </view>
+              </scroll-view>
+              <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ showid2 }}" scroll-with-animation>
+                <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="{{ content.numb }}" class="content-move-box">
+                  <image src="{{ content.src }}" class="content-image"></image>
+                </view>
+              </scroll-view>
+              <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ showid3 }}" scroll-with-animation>
+                <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="{{ content.numb }}" class="content-move-box">
+                  <image src="{{ content.src }}" class="content-image"></image>
+                </view>
+              </scroll-view>
+            </view>
+            <view class="broadwise-light">
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+              <view class="white-round"></view>
+            </view>
           </view>
-          <view class="broadwise-light">
+          <view class="vertical-light">
+            <view class="white-round"></view>
             <view class="white-round"></view>
             <view class="white-round"></view>
             <view class="white-round"></view>
             <view class="white-round"></view>
           </view>
-        </view>
-        <view class="vertical-light">
-          <view class="white-round"></view>
-          <view class="white-round"></view>
-          <view class="white-round"></view>
-          <view class="white-round"></view>
-          <view class="white-round"></view>
         </view>
       </view>
+      <view class="ziko_lottery gilroy_700">{{ _t.ziko_lottery }}</view>
+      <view class="tiny-text nunito_500">{{ _t.lorem_ipsum_dolor }}</view>
+      <view class="button-got-it gilroy_700" bindtap="close_firstshow">{{ _t.got_it }}</view>
     </view>
-    <view class="ziko_lottery gilroy_700">{{ _t.ziko_lottery }}</view>
-    <view class="tiny-text nunito_500">{{ _t.lorem_ipsum_dolor }}</view>
-    <view class="button-got-it gilroy_700" bindtap="close_firstshow">{{ _t.got_it }}</view>
   </view>
   <view class="list">
     <!-- Scroll Menu -->
@@ -74,9 +75,10 @@
       days="{{ days }}"
       bind:filterOffers="filterOffers"
     ></dateFilter> -->
-    <view class="choose_box">
-      <view class="basic-button nunito_700 {{ lottery_selected == 0 ? 'select-now' : '' }}" bindtap="lottery_select" data-info='0'>{{ _t.still_a_chance }}</view>
-      <view class="basic-button nunito_700 {{ lottery_selected == 1 ? 'select-now' : '' }}" bindtap="lottery_select" data-info='1'>{{ _t.past_luck }}</view>
+
+    <view class="types">
+      <view class="basic-button nunito_700 {{ type == 'general' ? 'select-now' : '' }}" bindtap="filterOffers" data-type="general">{{ _t.still_a_chance }}</view>
+      <view class="basic-button nunito_700 {{ type == 'past' ? 'select-now' : '' }}" bindtap="filterOffers" data-type="past">{{ _t.past_luck }}</view>
     </view>
 
     <view class="offers_container">
@@ -139,24 +141,28 @@
           </view> -->
           <view class="new-offer-banner">
             <view class="top-box top-box-color-{{ offer.community.name }}">
-              <view class="top-box-won top-box-color-{{ offer.community.name }}">
+              <view wx:if="{{ offer.lotteries.win }}" class="top-box-won top-box-color-{{ offer.community.name }}">
                 <text class="icon icon-crown"></text>
                 <view>
                   <view class="crown-context1">{{ _t.congrats }}</view>
                   <view class="crown-context2">{{ _t.you_won }}</view>
                 </view>
               </view>
-              <view class="color-{{ offer.community.name }} font-size1">Ziko {{ offer.community.name }}</view>
+              <view class="color-{{ offer.community.name }} font-size1">Ziko {{ offer.community.name == 'Garden' ? 'Farm' : offer.community.name }}</view>
               <view class="color-{{ offer.community.name }} font-size2">{{ offer.name[_language] }}</view>
             </view>
 
             <view class="middle-box">
               <view class="middle-box-top">
-                <view class="to_win_button bgc-color-{{ offer.community.name }}"><text class="to_win_big_text">3 {{ _t.chances }} </text> {{ _t.to_win }}</view>
+                <view class="to_win_button bgc-color-{{ offer.community.name }}">
+                  <text class="to_win_big_text">{{ offer.lotteries.draws }} {{ _t.chances }} </text> {{ _t.to_win }}
+                </view>
                 <view class="draws-locked-button nunito_400">
-                  3 {{ _t.draws }} {{ _t.locked }}
+                  {{ offer.lotteries.remaining_draws }} {{ _t.draws }} {{ _t.locked }}
                 </view>
               </view>
+
+              <!-- TODO -->
               <view class="Progress">
                 <view class="middle-box-center">
                 </view>
@@ -174,21 +180,24 @@
                   <view class="numbers-line4"></view>
                 </view>
               </view>
+
               <view class="middle-box-bottom">
                 <view class="address">
                   <text class="icon icon-ticket"></text>
-                  <text class="tickets2 nunito_700">2 {{ _t.tickets }}</text>
+                  <text class="tickets2 nunito_700">{{ offer.lotteries.draws }} {{ _t.tickets }}</text>
                 </view>
                 <view>
                   <text class="time_remaining nunito_400">{{ _t.time_remaining }}</text>
-                  <text class="big_time_remaining color-{{ offer.community.name }}">1<text class="time_remaining">{{ _t.day }}</text>28: 30</text>
+                  <view class="big_time_remaining color-{{ offer.community.name }}">
+                    <countdown class="timer" end-time="{{ offer.endingDate }}"></countdown>
+                  </view>
                 </view>
               </view>
             </view>
 
             <view class="bottom-box">
-              <view class="bottom-box-text color-{{ offer.community.name }}-golden">{{ _t.access_the_offer }}</view>
-              <view class="prizes-num"> 21 {{ _t.prizes }}</view>
+              <view class="bottom-box-text color-{{ offer.community.name }}">{{ _t.access_the_offer }}</view>
+              <view class="prizes-num">{{ offer.lotteries.gifts }} {{ _t.prizes }}</view>
             </view>
           </view>
         </view>

@@ -58,6 +58,11 @@ page {
 
 .address_container {
   display: flex;
+  justify-content: space-between;
+}
+
+.detail-box {
+  width: 48%;
 }
 
 .contact-box {
@@ -68,6 +73,7 @@ page {
 
 /* Contact info */
 .contact-left {
+  width: calc(100% - 100rpx);
   text-align: left;
 }
 
@@ -116,11 +122,8 @@ page {
   color: #FFFFFF;
   font-size: 32rpx;
   line-height: 40rpx;
+  word-break: break-word;
   transition: all 0.3s ease-in-out;
-}
-
-.detail-box-name {
-  margin-right: 100rpx;
 }
 
 .selected .card:not(.select) .address-name,

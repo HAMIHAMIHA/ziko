@@ -13,7 +13,7 @@
         </view>
         <view class="column">
           <view class="top nunito_400">{{ _t.size }}</view>
-          <view class="bottom nunito_500">{{ pet.size }}</view>
+          <view class="bottom nunito_500">{{ _t.pet_size[pet.size] }}</view>
         </view>
       </view>
 

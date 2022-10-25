@@ -80,7 +80,13 @@ export const formatTimer = dateLong => {
   const seconds = Math.floor((dateLong % (1000 * 60)) / 1000);
 
   let time = [];
-  if (days) time.push(`${days}${_i18n.days}`);
+  if (days) {
+    if (days == 1) {
+      time.push(`${days}${_i18n.days}`);
+    } else {
+      time.push(`${days}${_i18n.long_days}`);
+    }
+  }
   if (days || hours) time.push(`${hours}${_i18n.hours}`);
   if ((days && hours) || minutes) time.push(`${minutes}${_i18n.minutes}`);
     

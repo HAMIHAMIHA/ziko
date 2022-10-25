@@ -1592,13 +1592,6 @@ button:not([size=mini]).float-contact_container {
   -webkit-text-fill-color: transparent;
 }
 
-.color-kitchen-golden,
-.color-Kitchen-golden {
-  background-image: -webkit-linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 .bgc-color-kitchen,
 .bgc-color-Kitchen {
   background: #D7BA6D;

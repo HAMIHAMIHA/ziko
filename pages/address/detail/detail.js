@@ -97,7 +97,7 @@ const _generateUserAddress = (page, action, new_address) => {
 
   if (action == 'delete') {
     let addr_index = page.data._count;
-    addresses.splice(addr_index, 1)
+    addresses.splice(addr_index, 1);
   } else {
     if (page.options.id) {
       addresses[page.data._count] = new_address;
@@ -311,7 +311,7 @@ Page({
     }
 
     // Stop if saving but inputs empty
-    if (action != 'reset' && _validateInputs(self, e.detail.value)) return;
+    if (action != 'reset' && e.detail.target.dataset.type != 'delete' && _validateInputs(self, e.detail.value)) return;
 
     // Go back to address page if delete new address
     if (action != 'reset' && e.detail.target.dataset.type == 'delete') {

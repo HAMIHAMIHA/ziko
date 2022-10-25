@@ -14,14 +14,12 @@ let _refresh_data = true,
 
 let current_filter = {
   group: '',
-  date: ''
+  type: 'general'
 }; // Default filter for page
 let timer_intervals = [];
 let raw_offers = [],
   lotteries = [],
   orders = [];
-
-let lotteryShow = app.db.get('lotteryShow');
 
 const _setPageTranslation = function (page) {
   // Translate tabbar
@@ -66,23 +64,6 @@ const _setPageTranslation = function (page) {
   })
 }
 
-// Reset date filter to all
-const _resetDateFilters = (page, new_list) => {
-  let date_filter = page.selectComponent('#list_date_filters');
-
-  // Set seleted data to all
-  if (date_filter) {
-    date_filter.resetDateFilter();
-  }
-
-  // Remove days list for refresh
-  if (new_list) {
-    page.setData({
-      days: []
-    })
-  }
-}
-
 // Toggle timer intervals
 const _timerControl = (page, timer_switch) => {
   // Set offer card contents
@@ -101,14 +82,16 @@ const _timerControl = (page, timer_switch) => {
 }
 
 // Rules for generating api url
-const _generateSuffix = (step, filter_date) => {
+const _generateSuffix = (step, filter_type) => {
   let key = 'general';
   let now = new Date();
   let now_timestamp = now.getTime();
+  let past = new Date();
+  past.setDate(past.getDate() - 30);
+  let past_timestamp = past.getTime();
 
-  if (filter_date) {
-    let today = now.setHours(0, 0, 0, 0);
-    key = (filter_date === today) ? 'today' : 'other';
+  if (filter_type) {
+    key = (filter_type === 'past') ? 'past' : 'general';
   }
 
   const filter_str_list = {
@@ -126,31 +109,12 @@ const _generateSuffix = (step, filter_date) => {
         `["endingDate","ASC"]`
       ],
     ],
-    today: [
+    past: [
       [
         [{
-          "startingDate": {
-            "$gte": `${ filter_date }`,
+          "endingDate": {
+            "$gte": `${ past_timestamp }`,
             "$lte": `${ now_timestamp }`
-          }
-        }, {
-          "endingDate": {
-            "$gt": `${ now_timestamp }`
-          }
-        }],
-        `["endingDate","ASC"]`
-      ],
-    ],
-    other: [
-      [
-        [{
-          "startingDate": {
-            "$gte": `${ filter_date }`,
-            "$lte": `${ new Date(filter_date).setHours(23, 59, 59, 999) }`
-          }
-        }, {
-          "endingDate": {
-            "$gt": `${ now_timestamp }`
           }
         }],
         `["endingDate","ASC"]`
@@ -172,20 +136,11 @@ const _generateSuffix = (step, filter_date) => {
   return filter_str ? `&filter=${JSON.stringify(filter_conditions)}&sort=${filter_str[1]}` : null;
 }
 
-const _setOffers = (page, filter_date) => {
+const _setOffers = (page) => {
   let offers = [];
-  let days = page.data.days;
-  if (!filter_date) {
-    days = []; // create list for date picker
-  }
 
   raw_offers.forEach(offer => {
     let date_value = formatWeekDate(offer.startingDate);
-
-    // Creating date filter list
-    if (!filter_date && findIndex(days, date_value.timestamp, "timestamp") == -1) {
-      days.push(date_value);
-    }
 
     let banner = '';
     if (offer.banner) {
@@ -218,6 +173,13 @@ const _setOffers = (page, filter_date) => {
       offer_orders.forEach(o => offer_tickets += o.ticketAmount)
     }
 
+    let offer_gifts = 0;
+    if (offer.miniprogram.lottery.draws.length > 0) {
+      offer.miniprogram.lottery.draws.map(draw => {
+        offer_gifts = offer_gifts + draw.gifts.length;
+      })
+    }
+
     // Modify offer data to fit page display
     offer.ended = (new Date() >= new Date(offer.endingDate));
     offer.startDate = date_value;
@@ -226,15 +188,13 @@ const _setOffers = (page, filter_date) => {
     offer.lotteries = {
       remaining_draws: (offer.miniprogram.lottery.draws.length - lottery_drawn.length),
       win: wins.length > 0,
-      draws: offer_tickets
+      draws: offer_tickets,
+      gifts: offer_gifts,
     }
     offers.push(offer);
   })
 
   page.setData({
-    days: days.sort((a, b) => {
-      return a.timestamp - b.timestamp
-    }),
     offers: offers
   })
   _timerControl(page, true);
@@ -242,7 +202,7 @@ const _setOffers = (page, filter_date) => {
 }
 
 // Get offer data by filters
-const _filterOfferData = (page, filter_group, filter_id, filter_date) => {
+const _filterOfferData = (page, filter_group, filter_id, filter_type) => {
   let suffix = '';
 
   // Stop all timers
@@ -252,17 +212,12 @@ const _filterOfferData = (page, filter_group, filter_id, filter_date) => {
     filter_group: filter_group || "",
   })
 
-  // Reset date filter if filter type and filter group different from current
-  if (!filter_date) {
-    _resetDateFilters(page, current_filter.group != filter_id);
-  }
-
   // Get data by filter group and filter date
   current_filter.group = filter_id;
-  current_filter.date = filter_date;
+  current_filter.type = filter_type;
 
   // Set up API
-  suffix = `?community=${filter_id}${ _generateSuffix(0, filter_date) }`;
+  suffix = `?community=${filter_id}${ _generateSuffix(0, filter_type) }`;
   app.api.getOffers(suffix).then(res => {
     // Get on going events
     raw_offers = res;
@@ -275,10 +230,10 @@ const _filterOfferData = (page, filter_group, filter_id, filter_date) => {
           filter_str: `channel=miniprogram&paymentStatus=paid`
         }).then(res => {
           orders = res;
-          _setOffers(page, filter_date);
+          _setOffers(page);
         })
       } else {
-        _setOffers(page, filter_date);
+        _setOffers(page);
       }
     })
   });
@@ -337,8 +292,7 @@ Page({
       name: "Vector-2",
       src: "/assets/icons/Vector.svg"
     }, ],
-    lottery_selected: 0,
-
+    type: 'general',
   },
 
   onShow: function () {
@@ -382,18 +336,26 @@ Page({
 
     showLoading(true);
     // Set up filtering items if just changing date
-    if (JSON.stringify(data) == '{}') {
+    if (JSON.stringify(data).indexOf('_type') == -1) {
       data = {
         filter_group: index_data.communities[current_filter.group],
         filter_id: current_filter.group,
       }
     }
 
-    // Get filtering date value
-    let date = (e.detail && e.detail.change_date) ? e.detail.date : '';
+    // Get filtering type value
+    let type = '';
+    if (e.currentTarget && e.currentTarget.dataset.type) {
+      type = e.currentTarget.dataset.type;
+    } else {
+      type = 'general';
+    }
+    self.setData({
+      type: type,
+    })
 
     // Filter
-    _filterOfferData(self, data.filter_group, data.filter_id, date);
+    _filterOfferData(self, data.filter_group, data.filter_id, type);
   },
 
   // To lottery detail
@@ -440,12 +402,6 @@ Page({
     app.db.set('lotteryShow', false)
     this.setData({
       first_show: false
-    })
-  },
-
-  lottery_select: function (e) {
-    this.setData({
-      lottery_selected: e.currentTarget.dataset.info
     })
   },
 })

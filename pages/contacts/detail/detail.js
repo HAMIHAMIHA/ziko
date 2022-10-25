@@ -25,7 +25,7 @@ async function getUserInfo(page) {
     contact = user.contacts[count];
   } else {
     contact.name = user.name;
-    contact.phone = user.phone;
+    // contact.phone = user.phone;
   }
 
   showLoading(false);
