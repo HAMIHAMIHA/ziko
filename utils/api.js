@@ -82,14 +82,8 @@ module.exports = {
 
   // Get orders
   getOrders: (filter) => {
-    const queryParams = [];
-    if (!filter) filter = {};
-    if (filter.trackingStatus) queryParams.push(`trackingStatus=${JSON.stringify(filter.trackingStatus)}`);
-    if (filter.community) queryParams.push(`community=${JSON.stringify(filter.community)}`);
-    queryParams.push(`channel=miniprogram`);
-    if (filter.range) queryParams.push(`range=${JSON.stringify(filter.range)}`);
-    let suffix = `mine?${queryParams.join('&')}`;
-    console.log("getOrders filter", suffix);
+    let suffix = `mine?sort=["createdAt","DESC"]&${filter.filter_str}`;
+    if (filter.id) suffix = `${filter.id}/mine`;
     return request('GET', `orders/${suffix}`);
   },
 

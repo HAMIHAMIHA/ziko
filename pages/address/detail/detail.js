@@ -23,7 +23,7 @@ const _getAddressAreas = (page, area_id) => {
         for (const thirdIndex in areas[firstIndex].children[secondIndex].children) {
           if (areas[firstIndex].children[secondIndex].children[thirdIndex].value == area_id) {
             page.setData({
-              multiIndex: [firstIndex, secondIndex, thirdIndex],
+              multiIndex: [parseInt(firstIndex), parseInt(secondIndex), parseInt(thirdIndex)],
             })
             break;
           }
@@ -38,6 +38,8 @@ const _getAddressAreas = (page, area_id) => {
         label: area.name,
       }
     })
+
+    _loadPicker(page)
   });
 }
 
@@ -184,6 +186,14 @@ function _loadPicker(page) {
         state.arr2.push(secondLayer.label);
         if (page.data.multiIndex[1] === secondIndex) {
           state.multiIds[1] = secondLayer;
+
+          state.arr3 = [];
+          secondLayer.children.map((thirdLayer, thirdIndex) => {
+            state.arr3.push(thirdLayer.label);
+            if (page.data.multiIndex[2] === thirdIndex) {
+              state.multiIds[2] = thirdLayer;
+            }
+          });
         }
         if (state.arr3.length <= 0) {
           secondLayer.children.map((thirdLayer, thirdIndex) => {
@@ -242,6 +252,7 @@ Page({
 
     // Set page translation
     self.setData({
+      provinceSelected: self.options.id ? true : false,
       options_judge: self.options.id,
       _picker: {
         address_type: address_picker
@@ -272,6 +283,7 @@ Page({
         tips: i18n.tips,
         delete_it_or_not: i18n.delete_it_or_not,
         confirm: i18n.confirm,
+        update: i18n.update,
       },
       _routes: {
         address_areas: app.routes.address_areas,

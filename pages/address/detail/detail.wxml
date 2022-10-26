@@ -147,23 +147,25 @@
     </view>
     <!-- End of Address Form -->
 
-    <!-- Select Button -->
-    <view wx:if="{{ !options_judge }}" class="btn-bottom">
-      <button class="btn-outline inter_600 cancel-button" formType="reset">{{ _t.cancel }}</button>
-    </view>
-    <!-- End of Select Button -->
+    <view class="btns">
+      <!-- Cancel Button -->
+      <view wx:if="{{ !options_judge }}" class="btn-bottom">
+        <button class="btn-outline inter_600 cancel-button" formType="reset">{{ _t.cancel }}</button>
+      </view>
+      <!-- End of Cancel Button -->
 
-    <!-- Delete Button -->
-    <view wx:else class="btn-bottom">
-      <button class="btn-outline inter_600 cancel-button" formType="submit" data-type="delete">{{ _t.delete }}</button>
-    </view>
-    <!-- End of Delete Button -->
+      <!-- Delete Button -->
+      <view wx:else class="btn-bottom">
+        <button class="btn-outline inter_600 cancel-button" formType="submit" data-type="delete">{{ _t.delete }}</button>
+      </view>
+      <!-- End of Delete Button -->
 
-    <!-- Submit Button -->
-    <view class="btn-bottom">
-      <button class="gilroy_700 white-background-black-text" formType="submit" data-type="submit">{{ _t.save }}</button>
+      <!-- Submit Button -->
+      <view class="btn-bottom">
+        <button class="gilroy_700 white-background-black-text" formType="submit" data-type="submit">{{ options_judge ? _t.update : _t.save }}</button>
+      </view>
+      <!-- End of Submit Button -->
     </view>
-    <!-- End of Submit Button -->
   </form>
 </view>
 

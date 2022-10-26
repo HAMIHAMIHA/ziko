@@ -27,10 +27,11 @@
   </view>
 
   <view class="lottery-orders_new">
-   <view>{{_t.take_a_chance}}</view>
+    <view>{{ _t.take_a_chance }}</view>
   </view>
 </view>
-<view wx:if="{{type !== 'bourse'}}">
+
+<view wx:if="{{ type !== 'bourse' }}">
   <view class="long-bar-box">
     <view class="gold-color"></view>
     <view class="bar-box-line bar-box-line1"></view>
@@ -44,7 +45,7 @@
     <view>60</view>
     <view>100</view>
     <view>160</view>
-    <view >
+    <view>
       <view>200</view>
       <view style="font-size: 16rpx;">ORDERS</view>
     </view>

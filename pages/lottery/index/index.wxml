@@ -85,10 +85,19 @@
       <view class="gilroy_700 offers_list" wx:if="{{ offers.length == 0 }}">
         {{ _t.no_offers }}
       </view>
-
+      <!-- wx:if="{{ offer.lotteries.draws > 0 }}" -->
       <view class="gilroy_700 offers_list">
         <!-- Card for each offer -->
-        <view class="offer_container" wx:for="{{ offers }}" wx:for-item="offer" wx:key="id" bindtap="toLottery" data-community="{{ offer.community.id }}" data-offer-id="{{ offer.id }}">
+        <view
+          class="offer_container"
+          wx:for="{{ offers }}"
+          wx:for-item="offer"
+          wx:key="id"
+
+          bindtap="toLottery"
+          data-community="{{ offer.community.id }}"
+          data-offer-id="{{ offer.id }}"
+        >
           <!-- Banner image of card -->
           <!-- <view class="offer-banner">
             <view class="offer-banner_image">

@@ -529,6 +529,7 @@ export const languageMap_en = {
   },
   unlocked: "Unlocked",
   unlocked_at: "unlocked at ",
+  update: "Update",
   use_voucher: "Use Voucher",
   use_now: "Use now",
 
@@ -1108,6 +1109,7 @@ export const languageMap_zh = {
   },
   unlocked: "Unlocked",
   unlocked_at: "unlocked at ",
+  update: "Update",
   use_voucher: "Use Voucher",
   use_now: "Use now",
 

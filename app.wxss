@@ -1320,6 +1320,8 @@ button:not([size=mini]).float-contact_container {
   justify-content: space-between;
   font-size: 24rpx;
   text-align: right;
+
+  margin-bottom: 18rpx;
 }
 
 .bar-box-line {

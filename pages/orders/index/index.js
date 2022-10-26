@@ -205,9 +205,9 @@ const getOrders = (page) => {
   let filter = {
     filter_str: `${tracking_filter_str}&channel=miniprogram&community=${community_id}&range=[${current_load}, ${current_load + PAGE_RANGE - 1}]`,
   }
-  if (!!order_status) filter.trackingStatus = order_status;
-  if (!!community_id) filter.community = community_id;
-  if (!!current_load && !!PAGE_RANGE) filter.range = [current_load,current_load + PAGE_RANGE - 1 ];
+  // if (!!order_status) filter.trackingStatus = order_status;
+  // if (!!community_id) filter.community = community_id;
+  // if (!!current_load && !!PAGE_RANGE) filter.range = [current_load,current_load + PAGE_RANGE - 1 ];
   console.log("filter: ", filter);
 
   app.api.getOrders(filter).then(callback);

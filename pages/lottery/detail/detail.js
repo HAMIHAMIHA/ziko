@@ -232,7 +232,7 @@ Page({
 
     // Restart lottery popup
     app.globalData.pause_lottery_check = false;
-  
+
     _getOffer(self, self.options.id);
   },
 

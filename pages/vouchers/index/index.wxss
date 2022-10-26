@@ -160,7 +160,7 @@
   text-align: center;
   padding:90rpx;
   padding-top: 30rpx;
-  color: rgba(255,255,255,0.75);
+  color: #BFBFBF;
 }
 .add_a_cat{
   width: 400rpx !important;

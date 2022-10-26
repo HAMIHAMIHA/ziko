@@ -1,6 +1,6 @@
 <view class="container ziko-offer">
   <!-- Offer Countdown -->
-  <view class="countdown">
+  <view class="countdown ziko-{{_offer.community}}">
     <view class="nunito_600 uppercase countdown_text">{{ _t.remaining_time }}</view>
     <view class="gilroy_700 countdown_clock" wx:if="{{ _offer.ended }}">{{ _t.closed }}</view>
     <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}" wx:else></countdown>
@@ -23,7 +23,7 @@
   <!-- Lottery List -->
   <view class="offer-lotteries cellar-lotteries">
     <view class="lottery__container">
-      <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}"></lottery-header>
+      <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" type="{{ _offer.type }}"></lottery-header>
       <lottery-cellar _current_user="{{ _current_user }}" _offer="{{ _offer }}" _product_names="{{ _product_names }}" _t="{{ _t_prize }}" id="lottery_list"></lottery-cellar>
     </view>
   </view>

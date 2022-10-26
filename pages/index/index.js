@@ -90,6 +90,90 @@ const _generateSuffix = (step, filter_date) => {
   return filter_str ? `${ start_suffix }${ filter_str[0] }]}&sort=${ filter_str[1] }` : null;
 }
 
+// Handle offers after getting data
+const handleRawOffers = (page, raw_offers, res, filter_date) => {
+  raw_offers = [...raw_offers, ...res];
+
+  let offers = [];
+  let days = page.data.days;
+  if (!filter_date) {
+    days = []; // create list for date picker
+  }
+
+  for (var i in raw_offers) {
+    let offer = raw_offers[i];
+    const shortDescription = {};
+    for (const key in offer.description) {
+      let format = " ",
+        length = 16;
+      if (key === "zh") {
+        format = "";
+        length = 50;
+      }
+      shortDescription[key] = truncateText(offer.description[key], format, length);
+    }
+    let date_value = formatWeekDate(offer.startingDate);
+
+    // Creating date filter list
+    if (!filter_date && findIndex(days, date_value.timestamp, "timestamp") == -1) {
+      days.push(date_value);
+    }
+
+    let banners = {
+      index: 0,
+      uris: []
+    };
+    let other_banner = {
+      zh: 'en',
+      en: 'zh'
+    };
+    if (offer.banner) {
+      if (offer.banner[app.db.get('language')]) {
+        banners.uris.push({
+          uri: `${app.folders.offer_banner}${offer.banner[app.db.get('language')].uri}`,
+          type: _checkMediaType(offer.banner[app.db.get('language')].type),
+          pause: true
+        });
+      } else if (offer.banner[other_banner[app.db.get('language')]]) {
+        banners.uris.push({
+          uri: `${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`,
+          type: _checkMediaType(offer.banner[other_banner[app.db.get('language')]].type),
+          pause: true
+        })
+      }
+    }
+
+    // Media images for banner swiper
+    if (offer.media.length) {
+      offer.media.forEach(m => {
+        banners.uris.push({
+          uri: `${app.folders.offer_media}${m.uri}`,
+          type: _checkMediaType(m.type),
+          pause: true,
+        })
+      })
+    }
+
+    // Modify offer data to fit page display
+    offer.startTime = new Date(offer.startingDate).getTime();
+    offer.startDate = date_value;
+    offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
+    offer.banners = banners;
+    // console.log("shortDescription", shortDescription)
+    offer.shortDescription = shortDescription;
+    offers.push(offer);
+  }
+
+  page.setData({
+    days: days.sort((a, b) => {
+      return a.timestamp - b.timestamp
+    }),
+    offers: offers
+  })
+  _timerControl(page, true);
+  showLoading(false);
+}
+
 // Get offer data by filters
 const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_date) => {
   let suffix = '';
@@ -134,181 +218,24 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
 
   // Set up page data, Start new timers, Change date filters
   let callback = res => {
-    const promises = [];
-    res.map(offer => { // To get the notification status of coming orders
-      promises.push(app.api.getNotificationOffer(offer.id))
-    })
-
-    Promise.all(
-      promises
-    ).then(watches => {
-      watches.map((watch, index) => {
-        res[index].watch = watch.watch;
+    if (app.db.get('userInfo') && app.db.get('userInfo').token) {
+      const promises = [];
+      res.map(offer => { // To get the notification status of coming orders
+        promises.push(app.api.getNotificationOffer(offer.id))
       })
-
-      raw_offers = [...raw_offers, ...res];
-
-      let offers = [];
-      let days = page.data.days;
-      if (!filter_date) {
-        days = []; // create list for date picker
-      }
   
-      for (var i in raw_offers) {
-        let offer = raw_offers[i];
-        const shortDescription = {};
-        for (const key in offer.description) {
-          let format = " ",
-            length = 16;
-          if (key === "zh") {
-            format = "";
-            length = 50;
-          }
-          shortDescription[key] = truncateText(offer.description[key], format, length);
-        }
-        let date_value = formatWeekDate(offer.startingDate);
-  
-        // Creating date filter list
-        if (!filter_date && findIndex(days, date_value.timestamp, "timestamp") == -1) {
-          days.push(date_value);
-        }
-  
-        let banners = {
-          index: 0,
-          uris: []
-        };
-        let other_banner = {
-          zh: 'en',
-          en: 'zh'
-        };
-        if (offer.banner) {
-          if (offer.banner[app.db.get('language')]) {
-            banners.uris.push({
-              uri: `${app.folders.offer_banner}${offer.banner[app.db.get('language')].uri}`,
-              type: _checkMediaType(offer.banner[app.db.get('language')].type),
-              pause: true
-            });
-          } else if (offer.banner[other_banner[app.db.get('language')]]) {
-            banners.uris.push({
-              uri: `${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`,
-              type: _checkMediaType(offer.banner[other_banner[app.db.get('language')]].type),
-              pause: true
-            })
-          }
-        }
-  
-        // Media images for banner swiper
-        if (offer.media.length) {
-          offer.media.forEach(m => {
-            banners.uris.push({
-              uri: `${app.folders.offer_media}${m.uri}`,
-              type: _checkMediaType(m.type),
-              pause: true,
-            })
-          })
-        }
-  
-        // Modify offer data to fit page display
-        offer.startTime = new Date(offer.startingDate).getTime();
-        offer.startDate = date_value;
-        offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
-        offer.banners = banners;
-        // console.log("shortDescription", shortDescription)
-        offer.shortDescription = shortDescription;
-        offers.push(offer);
-      }
-  
-      page.setData({
-        days: days.sort((a, b) => {
-          return a.timestamp - b.timestamp
-        }),
-        offers: offers
-      })
-      _timerControl(page, true);
-      showLoading(false);
-    })
-
-
-    // raw_offers = [...raw_offers, ...res];
-
-    // let offers = [];
-    // let days = page.data.days;
-    // if (!filter_date) {
-    //   days = []; // create list for date picker
-    // }
-
-    // for (var i in raw_offers) {
-    //   let offer = raw_offers[i];
-    //   const shortDescription = {};
-    //   for (const key in offer.description) {
-    //     let format = " ",
-    //       length = 16;
-    //     if (key === "zh") {
-    //       format = "";
-    //       length = 50;
-    //     }
-    //     shortDescription[key] = truncateText(offer.description[key], format, length);
-    //   }
-    //   let date_value = formatWeekDate(offer.startingDate);
-
-    //   // Creating date filter list
-    //   if (!filter_date && findIndex(days, date_value.timestamp, "timestamp") == -1) {
-    //     days.push(date_value);
-    //   }
-
-    //   let banners = {
-    //     index: 0,
-    //     uris: []
-    //   };
-    //   let other_banner = {
-    //     zh: 'en',
-    //     en: 'zh'
-    //   };
-    //   if (offer.banner) {
-    //     if (offer.banner[app.db.get('language')]) {
-    //       banners.uris.push({
-    //         uri: `${app.folders.offer_banner}${offer.banner[app.db.get('language')].uri}`,
-    //         type: _checkMediaType(offer.banner[app.db.get('language')].type),
-    //         pause: true
-    //       });
-    //     } else if (offer.banner[other_banner[app.db.get('language')]]) {
-    //       banners.uris.push({
-    //         uri: `${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`,
-    //         type: _checkMediaType(offer.banner[other_banner[app.db.get('language')]].type),
-    //         pause: true
-    //       })
-    //     }
-    //   }
-
-    //   // Media images for banner swiper
-    //   if (offer.media.length) {
-    //     offer.media.forEach(m => {
-    //       banners.uris.push({
-    //         uri: `${app.folders.offer_media}${m.uri}`,
-    //         type: _checkMediaType(m.type),
-    //         pause: true,
-    //       })
-    //     })
-    //   }
-
-    //   // Modify offer data to fit page display
-    //   offer.startTime = new Date(offer.startingDate).getTime();
-    //   offer.startDate = date_value;
-    //   offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
-    //   offer.banners = banners;
-    //   // console.log("shortDescription", shortDescription)
-    //   offer.shortDescription = shortDescription;
-    //   offers.push(offer);
-    // }
-
-    // page.setData({
-    //   days: days.sort((a, b) => {
-    //     return a.timestamp - b.timestamp
-    //   }),
-    //   offers: offers
-    // })
-    // _timerControl(page, true);
-    // showLoading(false);
+      Promise.all(
+        promises
+      ).then(watches => {
+        watches.map((watch, index) => {
+          res[index].watch = watch.watch;
+        })
+        
+        handleRawOffers(page, raw_offers, res, filter_date);
+      })  
+    } else {
+      handleRawOffers(page, raw_offers, res, filter_date);
+    }
   };
 
   // Set up API

@@ -150,8 +150,7 @@
 .second-paragraph {
   font-size: 28rpx;
   text-align: center;
-
-  opacity: 0.75;
+  color: #BFBFBF;
 
   padding: 30rpx 90rpx 90rpx 90rpx;
 }

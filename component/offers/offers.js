@@ -118,6 +118,11 @@ Component({
       const self = this;
       const watch = e.currentTarget.dataset.watch;
 
+      if (!app.db.get('userInfo') || !app.db.get('userInfo').token) {
+        showToast(app.globalData.i18n.need_login);
+        return;
+      }
+
       if (watch == 'true') {
         showToast(app.globalData.i18n.already_got_you);
       } else {
