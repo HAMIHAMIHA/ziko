@@ -93,7 +93,9 @@ export const _getTranslations = (page, community) => {
     _t_lottery: {
       extra_ticket: i18n.extra_ticket,
       item_unit: i18n.item_unit,
+      items: i18n.items,
       items_unit: i18n.items_unit,
+      orders: i18n.orders,
       rmb: i18n.rmb,
       ticket: i18n.ticket,
       take_a_chance: i18n.take_a_chance
@@ -360,6 +362,7 @@ export async function getOffer(page, offer_id) {
   const callback = res => {
     let offer = res[0];
     offer.orders = offer.miniprogramOrders;
+    offer.coming = new Date(offer.startingDate).getTime() > new Date().getTime();
 
     // Banner
     offer.media.map(m => m.uri = `${app.folders.offer_media}${m.uri}`)
@@ -538,30 +541,19 @@ export function switchTabs(page, tab) {
   const _getHeight = () => {
     return new Promise((resolve) => {
       if (tab === "recipe") {
-        wx.createSelectorQuery().select('#recipes').boundingClientRect().exec(res => {
-          resolve(res[0].height);
-        })
-      } else if (tab === "pack") {
-        wx.createSelectorQuery().select('#products').boundingClientRect().exec(res => {
+        wx.createSelectorQuery().select('#recipes').boundingClientRect().exec( res => {
           resolve(res[0].height);
         })
       } else {
-        wx.createSelectorQuery().select('#products').boundingClientRect().exec(res => {
+        wx.createSelectorQuery().select('#products').boundingClientRect().exec( res => {
           resolve(res[0].height);
         })
       }
-    })
+   })
   }
-  let left = "0";
-  if (tab == "pack") {
-    left = "-100vw"
-  } else if (tab == "recipe") {
-    left = "-100vw"
-  } else {
-    left = "0"
-  };
-  // let left = (tab === "recipe") ? "-100vw" : "0";
-  _getHeight().then(res => {
+
+  let left = (tab === "recipe") ? "-100vw" : "0";
+  _getHeight().then( res => {
     page.setData({
       "_setting.currentTab": tab,
       "_setting.height": `${res}px`,
@@ -569,32 +561,16 @@ export function switchTabs(page, tab) {
     })
   });
 }
-export function jump_item(page, info) {
-  const _getHeight = () => {
-    return new Promise((resolve) => {
-      if (info === "offer") {
-        resolve(516);
-      }
-      if (info === "specials") {
-        resolve(1000);
-      }
-      if (info === "lottery") {
-        wx.createSelectorQuery().select('#lottery_modal').boundingClientRect().exec(res => {
-          resolve(res[0].height + 1670);
-        })
-      }
-    })
-  }
-  _getHeight().then(res => {
-    page.setData({
-      "jump_setting.current_tab": info,
-      "jump_setting.height": `${res}`,
-    })
-    wx.pageScrollTo({
-      scrollTop: page.data.jump_setting.height,
-      duration: 200
-    })
-  });
+
+export function scrollTo(page, info, top) {
+  page.setData({
+    "_setting_scrollTo.currentTab": info,
+    "_setting_scrollTo.height": `${top}`,
+  })
+  wx.pageScrollTo({
+    scrollTop: page.data._setting_scrollTo.height,
+    duration: 500
+  })
 }
 
 // Get offer messages

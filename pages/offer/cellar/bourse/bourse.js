@@ -20,9 +20,9 @@ Page({
       left: '0',
       animate: animate,
     },
-    jump_setting: {
+    _setting_scrollTo: {
       height: '0',
-      current_tab: "offer"
+      currentTab: "offer"
     },
     messages: [],
     //__test
@@ -154,10 +154,17 @@ Page({
   switchTab: function (e) {
     Offers.switchTabs(this, e.currentTarget.dataset.toTab);
   },
-  //Switch jump
-  jump_item: function (e) {
-    Offers.jump_item(this, e.currentTarget.dataset.info)
+
+  // Scroll to the specific section
+  scrollTo: function (e) {
+    let query = wx.createSelectorQuery();
+    let top = 0;
+    query.select(`#${e.currentTarget.dataset.info}`).boundingClientRect(res => {
+      top = res.top;
+      Offers.scrollTo(self, e.currentTarget.dataset.info, top)
+    }).exec();
   },
+
   // Checkout offer
   checkout: function () {
     ModifyCart.checkoutItems(this.options.id);

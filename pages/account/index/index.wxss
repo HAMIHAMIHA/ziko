@@ -185,8 +185,8 @@ button:not([size=mini]).short-cuts__button {
   border: 1px solid #373A44;
   border-radius: 50%;
   position: absolute;
-  right: -8rpx;
-  top: -8rpx;
+  right: -5rpx;
+  top: -4rpx;
   z-index: 1;
 }
 
@@ -425,16 +425,15 @@ button:not([size=mini]).langauge {
 
 .simonmawas {
   font-size: 28rpx;
+  font-weight: 700;
   color: #FFFFFF;
+  vertical-align: middle;
+
+  padding-left: 6rpx;
 }
 
 .icon-height {
   padding-left: 16rpx;
-  vertical-align: middle;
-}
-
-.simonmawas {
-  padding-left: 6rpx;
   vertical-align: middle;
 }
 

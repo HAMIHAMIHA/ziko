@@ -3,6 +3,7 @@ Component({
     lottery: Object,
     type: String,
     _t: Object,
+    _offer: Object,
   },
 
   options: {

@@ -31,23 +31,19 @@
   </view>
 </view>
 
-<view wx:if="{{ type !== 'bourse' }}">
-  <view class="long-bar-box">
-    <view class="gold-color"></view>
-    <view class="bar-box-line bar-box-line1"></view>
-    <view class="bar-box-line bar-box-line2"></view>
-    <view class="bar-box-line bar-box-line3"></view>
-    <view class="bar-box-line bar-box-line4"></view>
-  </view>
-  <view class="long-bar-num nunito_400">
-    <view></view>
-    <view>10</view>
-    <view>60</view>
-    <view>100</view>
-    <view>160</view>
-    <view>
-      <view>200</view>
-      <view style="font-size: 16rpx;">ORDERS</view>
+<view wx:if="{{ type !== 'bourse' }}" class="progress-bar__container" style="--filled-:{{ _offer.lottery_progress }}%;">
+  <block wx:for="{{ _offer.miniprogram.lottery.draws }}" wx:key="_id" wx:for-item="draw">
+    <view 
+      class="progress-bar__values{{ index === 0 ? ' progress-bar_first' : (index + 1) === _offer.miniprogram.lottery.draws.length ? ' progress-bar_last' : '' }}"
+      style="--position-:{{ draw.position }}%;"
+    >
+      <view class="nunito_500 progress-axis">{{ draw.conditionValue }}</view>
+      <view wx:if="{{ (index + 1) == _offer.miniprogram.lottery.draws.length }}" class="nunito_400 progress-label">
+        <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ _t.orders }}</text>
+        <text wx:else>{{ _t.items }}</text>
+      </view>
+
     </view>
-  </view>
+  </block>
+  <view class="progress-bar ziko-{{ _offer.community }}"></view>
 </view>

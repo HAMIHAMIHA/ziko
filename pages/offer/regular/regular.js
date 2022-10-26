@@ -13,34 +13,29 @@ Page({
       currentTab: "product",
       height: '0px',
       left: '0',
-      animate: animate, 
+      animate: animate,
     },
-    jump_setting:{
-      height:'0',
-      current_tab:"offer"
+    _setting_scrollTo: {
+      height: '0',
+      currentTab: "offer"
     },
     messages: [],
   },
-  onLoad: function(options) {
+
+  onShow: function () {
     const self = this;
     // Get Offer
-    Offers.getOffer(self, options.id);
+    Offers.getOffer(self, self.options.id);
   },
 
-  // onShow: function() {
-  //   const self = this;
-  //   // Get Offer
-  //   Offers.getOffer(self, self.options.id);
-  // },
-
   // Stop countdown timer on leaving page
-  onHide: function() {
+  onHide: function () {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
     Offers.clearBuyerInterval();
     this.selectComponent('#scroll_messages').clearMessageInterval();
   },
 
-  onUnload: function() {
+  onUnload: function () {
     countdown_timer = Offers._clearCountdown(this, countdown_timer);
     Offers.clearBuyerInterval();
     this.selectComponent('#scroll_messages').clearMessageInterval();
@@ -49,29 +44,32 @@ Page({
   },
 
   // Mobile login
-  getPhoneNumber: async function(e) {
+  getPhoneNumber: async function (e) {
     await getApp().sessionUtils.mobileLogin(this, e.detail.code);
     this.checkout();
   },
 
   // Get user profile if not logged in
-  getUserProfile: function() {
+  getUserProfile: function () {
     app.sessionUtils.getWxUserInfo(this);
   },
 
   // Start countdown timer
-  startCountdown: function() {
+  startCountdown: function () {
     // Start countdown
     let timer = this.selectComponent('#countdown');
     countdown_timer.push(timer.setTimer([], true));
   },
 
   // Change swiper indicatior
-  swiperChange: function(e) {
+  swiperChange: function (e) {
     const self = this;
     let data = {
       currentTarget: {
-        dataset: { index: (self.data._setting.swiperIndex - 1), do_pause: true }
+        dataset: {
+          index: (self.data._setting.swiperIndex - 1),
+          do_pause: true
+        }
       }
     }
 
@@ -80,7 +78,7 @@ Page({
 
     // Play next video
     data.currentTarget.dataset.index = e.detail.current;
-    data.currentTarget.dataset.do_pause = false;    
+    data.currentTarget.dataset.do_pause = false;
     self.toggleVideo(data);
 
     self.setData({
@@ -89,33 +87,49 @@ Page({
   },
 
   // Toggle video
-  toggleVideo: function(e) {
+  toggleVideo: function (e) {
     Offers.toggleVideo(this, e);
   },
 
   // Pause video after video ended
-  setPause: function(e) {
+  setPause: function (e) {
     Offers.pauseVideo(this, e);
   },
 
   // Switch between recipe and products
-  switchTab: function(e) {
+  switchTab: function (e) {
     Offers.switchTabs(this, e.currentTarget.dataset.toTab);
   },
-  //Switch jump
-  jump_item:function(e){
-    Offers.jump_item(this,e.currentTarget.dataset.info)
+
+  // Scroll to the specific section
+  scrollTo: function (e) {
+    const self = this;
+
+    if (e.currentTarget.dataset.info == 'packs') {
+      Offers.switchTabs(self, 'pack');
+    }
+
+    let query = wx.createSelectorQuery();
+    let top = 0;
+    query.select(`#${e.currentTarget.dataset.info}`).boundingClientRect(res => {
+      top = res.top;
+      Offers.scrollTo(self, e.currentTarget.dataset.info, top)
+    }).exec();
   },
 
-
   // Checkout offer
-  checkout: function() {
-    const {id} = this.options;
-    ModifyCart.checkoutItems({id, community: this.data._offer.community});
+  checkout: function () {
+    const {
+      id
+    } = this.options;
+    ModifyCart.checkoutItems({
+      id,
+      community: this.data._offer.community
+    });
   },
 
   // Change product amount in cart
-  changeAmount: function(e) {
+  changeAmount: function (e) {
     ModifyCart.modifyCartItems(this, e)
   },
 

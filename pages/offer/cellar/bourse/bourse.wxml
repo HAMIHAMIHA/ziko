@@ -134,9 +134,29 @@
   <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
     <!-- jump -->
     <view class="flex-between gilroy_500 offer-jump-title">
-      <view class="offer-jump-item {{ jump_setting.current_tab=='offer'?'jump_item_selected':'' }}" bindtap="jump_item" data-info="offer">{{ _t.offer }}</view>
-      <view class="offer-jump-item {{ jump_setting.current_tab=='specials'?'jump_item_selected':'' }}" bindtap="jump_item" data-info="specials">{{ _t.specials }}</view>
-      <view class="offer-jump-item {{ jump_setting.current_tab=='lottery'?'jump_item_selected':'' }}" bindtap="jump_item" data-info="lottery">{{ _t.lottery }}</view>
+      <view
+        class="offer-jump-item {{ _setting_scrollTo.currentTab == 'offer' ? 'jump_item_selected' : '' }}"
+        bindtap="scrollTo"
+        data-info="offer"
+      >
+        {{ _t.offer }}
+      </view>
+      <view
+        wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}"
+        class="offer-jump-item {{ _setting_scrollTo.currentTab == 'specials' ? 'jump_item_selected' : '' }}"
+        bindtap="scrollTo"
+        data-info="specials"
+      >
+        {{ _t.specials }}
+      </view>
+      <view
+        wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}"
+        class="offer-jump-item {{ _setting_scrollTo.currentTab == 'lottery' ? 'jump_item_selected' : '' }}"
+        bindtap="scrollTo"
+        data-info="lottery"
+      >
+        {{ _t.lottery }}
+      </view>
     </view>
     <!-- end of jump -->
     <!-- Share -->
@@ -182,7 +202,7 @@
 
 
   <!-- Offer Tabbar -->
-  <view class="uppercase gilroy_700 flex-center tabbar">
+  <view class="uppercase gilroy_700 flex-center tabbar" id="offer">
     <view
       class="tabbar_item{{ _setting.currentTab == 'product' ? ' selected' : '' }}"
       bindtap="switchTab"
@@ -199,7 +219,11 @@
     >
       {{ _t.recipes }}
     </view>
-    <view class="tabbar_highlighter {{ _setting.currentTab }}" animation="{{ _setting.animate.highlight }}"></view>
+    <view
+      class="tabbar_highlighter {{ _setting.currentTab }}"
+      animation="{{ _setting.animate.highlight }}"
+      style="width: {{ _offer.miniprogram.packs.length > 0 ? '33%' : '50%' }};{{ _offer.miniprogram.packs.length == 0 && _setting.currentTab == 'recipe' ? 'transform: translateX(100%) !important;' : '' }}"
+    ></view>
   </view>
   <!-- End of Offer Tabbar -->
 
@@ -236,7 +260,11 @@
         <!-- End of Offer Product List -->
 
         <!-- Offer Specials -->
-        <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}">
+        <view
+          wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}"
+          class="offer-specials ziko-{{ _offer.community }}"
+          id="specials"
+        >
           <view class="offer-specials_title">
             <view class="icon icon-ziko-special"></view>
           </view>
@@ -262,7 +290,7 @@
         <!-- End of Offer Specials -->
 
         <!-- Lottery -->
-        <view class="offer-lotteries cellar-lotteries" wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}">
+        <view class="offer-lotteries cellar-lotteries" wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}" id="lottery">
           <view class="lottery_regular">
             <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" type="{{ _offer.type }}">
 

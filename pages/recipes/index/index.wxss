@@ -175,7 +175,7 @@
 
 .filter__container button:not([size=mini]).filter-bottom {
   position: absolute;
-  bottom: calc(44rpx + var(--env-));
+  bottom: calc(120rpx + var(--env-));
 }
 /* End of Filter List */
 

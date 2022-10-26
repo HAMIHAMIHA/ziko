@@ -131,6 +131,26 @@ image {
   background: linear-gradient(105.28deg, #FFB2C7 2.41%, #FF5898 100%);
 }
 
+.ziko-kitchen-pure,
+.ziko-kitchen-pure:after {
+  background: #E3B231;
+}
+
+.ziko-farm-pure,
+.ziko-farm-pure:after {
+  background: #86EA7F;
+}
+
+.ziko-cellar-pure,
+.ziko-cellar-pure:after {
+  background: #B5BCC3;
+}
+
+.ziko-pet-pure,
+.ziko-pet-pure:after {
+  background: #FF9849;
+}
+
 .ziko-offer.community-kitchen .offer-payment .payment-button:not(.disabled) {
   background: #CE9910;
 }
@@ -1157,7 +1177,7 @@ button:not([size=mini]).float-contact_container {
 }
 
 .ziko-offer .tabbar_highlighter {
-  width: 33%;
+  /* width: 33%; */
   height: 2rpx;
   background: var(--ziko-default-);
   position: absolute;
@@ -1224,14 +1244,13 @@ button:not([size=mini]).float-contact_container {
   min-height: 220rpx;
   padding: 20rpx;
   text-align: center;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   flex-direction: column;
   align-self: flex-start;
 }
 
 .offer-specials_list .offer-special {
-  background-color: #12151E;
-  opacity: 0.6;
+  background: rgba(18, 21, 30, 0.6);
   border-radius: 24rpx;
   color: white;
 }
@@ -1297,55 +1316,6 @@ button:not([size=mini]).float-contact_container {
   margin-top: 34rpx;
   font-size: 28rpx;
   line-height: 32rpx;
-}
-
-.long-bar-box {
-  width: 100%;
-  height: 30rpx;
-  border-radius: 40rpx;
-  background-color: #262626;
-  position: relative;
-}
-
-.long-bar-box .gold-color {
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%);
-  border-radius: 40rpx;
-}
-
-.long-bar-num {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  font-size: 24rpx;
-  text-align: right;
-
-  margin-bottom: 18rpx;
-}
-
-.bar-box-line {
-  position: absolute;
-  width: 0;
-  height: 26rpx;
-  border: 2rpx solid white;
-  bottom: 2rpx;
-}
-
-.bar-box-line1 {
-  left: 110rpx;
-}
-
-.bar-box-line2 {
-  left: 234rpx;
-}
-
-.bar-box-line3 {
-  left: 368rpx;
-}
-
-.bar-box-line4 {
-  left: 508rpx;
 }
 
 .offer-lotteries extraConditionType.lottery-ticket_text_bottom {

@@ -62,22 +62,24 @@
     <!-- jump  -->
     <view class="flex-between gilroy_500 offer-jump-title">
       <view
-        class="offer-jump-item {{ jump_setting.current_tab == 'offer' ? 'jump_item_selected' : '' }} {{ 'ziko-' + _offer.community }}"
-        bindtap="jump_item"
+        class="offer-jump-item {{ _setting_scrollTo.currentTab == 'offer' ? 'jump_item_selected' : '' }}"
+        bindtap="scrollTo"
         data-info="offer"
       >
         {{ _t.offer }}
       </view>
       <view
-        class="offer-jump-item {{ jump_setting.current_tab == 'specials' ? 'jump_item_selected' : '' }} {{ 'ziko-' + _offer.community }}"
-        bindtap="jump_item"
+        wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}"
+        class="offer-jump-item {{ _setting_scrollTo.currentTab == 'specials' ? 'jump_item_selected' : '' }}"
+        bindtap="scrollTo"
         data-info="specials"
       >
         {{ _t.specials }}
       </view>
       <view
-        class="offer-jump-item {{ jump_setting.current_tab == 'lottery' ? 'jump_item_selected' : '' }} {{ 'ziko-' + _offer.community }}"
-        bindtap="jump_item"
+        wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}"
+        class="offer-jump-item {{ _setting_scrollTo.currentTab == 'lottery' ? 'jump_item_selected' : '' }}"
+        bindtap="scrollTo"
         data-info="lottery"
       >
         {{ _t.lottery }}
@@ -101,12 +103,12 @@
     <!-- End of Offer Detail -->
 
     <!-- Offer Count -->
-    <view class="flex-start gilroy_500 offer-count_container" wx:if="{{ _offer.orders >= 50 || _offer.views >= 50 }}">
-      <view class="icon_container" wx:if="{{ _offer.orders >= 50 }}">
+    <view class="flex-start gilroy_500 offer-count_container">
+      <view class="icon_container">
         <view class="icon icon-bag"></view>
         <view class="icon_text">{{ _offer.orders != 1 ? _offer.orders + _t.orders_unit : _offer.orders + _t.order_unit }}</view>
       </view>
-      <view class="icon_container" wx:if="{{ _offer.views >= 50 }}">
+      <view class="icon_container">
         <view class="icon icon-eye"></view>
         <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
       </view>
@@ -115,7 +117,11 @@
   </view>
 
   <!-- Offer Tabbar -->
-  <view class="uppercase gilroy_700 flex-center tabbar" id="tabbar">
+  <view
+    class="uppercase gilroy_700 flex-center tabbar"
+    id="tabbar"
+    id="offer"
+  >
     <view
       class="tabbar_item{{ _setting.currentTab == 'product' ? ' selected' : '' }}"
       bindtap="switchTab"
@@ -125,9 +131,10 @@
       {{ _t.products }}
     </view>
     <view
+      wx:if="{{ _offer.miniprogram.packs.length > 0 }}"
       class="tabbar_item{{ _setting.currentTab == 'pack' ? ' selected' : '' }}"
-      bindtap="switchTab"
-      data-to-tab="pack"
+      bindtap="scrollTo"
+      data-info="packs"
       animation="{{ _setting.animate.tab }}"
     >
       {{ _t.packs }}
@@ -140,7 +147,11 @@
     >
       {{ _t.recipes }}
     </view>
-    <view class="tabbar_highlighter {{ _setting.currentTab }}" animation="{{ _setting.animate.highlight }}"></view>
+    <view
+      class="tabbar_highlighter {{ _setting.currentTab }}"
+      animation="{{ _setting.animate.highlight }}"
+      style="width: {{ _offer.miniprogram.packs.length > 0 ? '33%' : '50%' }};{{ _offer.miniprogram.packs.length == 0 && _setting.currentTab == 'recipe' ? 'transform: translateX(100%) !important;' : '' }}"
+    ></view>
   </view>
   <!-- End of Offer Tabbar -->
 
@@ -160,7 +171,7 @@
             data="{{ offer_id: _offer.id, cart: cart, product_list: _offer.miniprogram.items, _is_pack: false, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
           ></template>
         </view>
-        <view class="offer-group offer-packs" wx:if="{{ _offer.miniprogram.packs.length > 0 }}" mark:type="packs">
+        <view class="offer-group offer-packs" wx:if="{{ _offer.miniprogram.packs.length > 0 }}" mark:type="packs" id="packs">
           <view class="uppercase title">
             <text class="gilroy_500">{{ _t.our_selected_packs.fst }}</text>
             <text class="gilroy_700">{{ _t.our_selected_packs.snd }}</text>
@@ -168,13 +179,17 @@
           <template
             is="products"
             class="product-list"
-            data="{{offer_id: _offer.id, cart: cart,product_list: _offer.miniprogram.packs,_is_pack: true,_community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
+            data="{{ offer_id: _offer.id, cart: cart, product_list: _offer.miniprogram.packs, _is_pack: true, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
           ></template>
         </view>
         <!-- End of Offer Product List -->
 
         <!-- Offer Specials -->
-        <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}">
+        <view
+          wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}"
+          id="specials"
+          class="offer-specials ziko-{{ _offer.community }}"
+        >
           <view class="offer-specials_title">
             <view class="icon icon-ziko-special"></view>
           </view>
@@ -212,13 +227,25 @@
         <!-- End of Offer Specials -->
 
         <!-- Lottery -->
-        <view class="offer-lotteries cellar-lotteries"
-              wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}">
+        <view
+          id="lottery"
+          wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}"
+          class="offer-lotteries cellar-lotteries"
+        >
           <view class="lottery_regular">
-            <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" type="{{ _offer.type }}"></lottery-header>
-            <lottery-cellar _current_user="{{ _current_user }}" _offer="{{ _offer }}"
-                            _product_names="{{ _product_names }}" _t="{{ _t_prize }}"
-                            id="lottery_list"></lottery-cellar>
+            <lottery-header
+              lottery="{{ _offer.miniprogram.lottery }}"
+              _t="{{ _t_lottery }}"
+              type="{{ _offer.type }}"
+              _offer="{{ _offer }}"
+            ></lottery-header>
+            <lottery-cellar
+              _current_user="{{ _current_user }}"
+              _offer="{{ _offer }}"
+              _product_names="{{ _product_names }}"
+              _t="{{ _t_prize }}"
+              id="lottery_list"
+            ></lottery-cellar>
           </view>
         </view>
         <!-- End of Lottery -->
@@ -254,7 +281,7 @@
 
   <template
     is="payment_container-bottom"
-    data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special, coming_soon: now < _offer.startTime }}"
+    data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special, coming: _offer.coming }}"
   ></template>
 </view>
 

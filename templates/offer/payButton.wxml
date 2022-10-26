@@ -85,13 +85,17 @@
 
       <view class="total-content">
         <view class="detail_label nunito_500 text-right">{{ _t.total }}</view>
-        <text class="detail_result">¥{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total ? _pay_set.reducedTotal : _pay_set.total }}</text>
         <text class="detail_result_before" wx:if="{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total }}">¥{{ _pay_set.total }}</text>
+        <text class="detail_result">¥{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total ? _pay_set.reducedTotal : _pay_set.total }}</text>
       </view>
 
       <!-- Pay buttons -->
+      <!-- Lock button if it is not started -->
+      <view class="pay-button disabled" wx:if="{{ coming }}">
+        <button class="nunito_600">{{ _t.pay }}</button>
+      </view>
       <!-- Payment not available if offer minimum items not reached -->
-      <view class="pay-button disabled" wx:if="{{ _pay_set.single && _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.single }}">
+      <view class="pay-button disabled" wx:elif="{{ _pay_set.single && _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.single }}">
         <button class="nunito_600">{{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }}</button>
       </view>
       <!-- Payment not available if offer minimum price not reached - with deducted price -->
@@ -104,10 +108,6 @@
       </view>
       <!-- Lock button if there is nothing to pay -->
       <view class="pay-button disabled" wx:elif="{{ _pay_set.total == 0 }}">
-        <button class="nunito_600">{{ _t.pay }}</button>
-      </view>
-      <!-- Lock button if it is not started -->
-      <view class="pay-button disabled" wx:elif="{{ coming_soon }}">
         <button class="nunito_600">{{ _t.pay }}</button>
       </view>
       <!-- Make as login buttons if user not logged in -->

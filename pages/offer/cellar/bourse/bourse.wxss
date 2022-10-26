@@ -368,6 +368,11 @@
   color: white;
 }
 
+.disabled button {
+  background: #11141B;
+  border-radius: 4px;
+}
+
 .text-left {
   margin-right: 82rpx;
   margin-top: 44rpx;
