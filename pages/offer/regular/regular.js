@@ -105,6 +105,7 @@ Page({
   scrollTo: function (e) {
     const self = this;
 
+    // TEMP TODO
     if (e.currentTarget.dataset.info == 'packs') {
       Offers.switchTabs(self, 'pack');
     }
@@ -113,7 +114,7 @@ Page({
     let top = 0;
     query.select(`#${e.currentTarget.dataset.info}`).boundingClientRect(res => {
       top = res.top;
-      Offers.scrollTo(self, e.currentTarget.dataset.info, top)
+      Offers.scrollTo(self, e.currentTarget.dataset.info, top);
     }).exec();
   },
 

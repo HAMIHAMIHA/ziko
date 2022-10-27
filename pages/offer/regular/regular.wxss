@@ -3,28 +3,6 @@
   padding-bottom: 30rpx;
 }
 
-/* .offer-jump-title {
-  background-color: rgb(255, 255, 255, 0.4);
-} */
-
-.offer-jump-item {
-  border: 0.5rpx solid #A1803B;
-  padding: 20rpx 0;
-  width: 100%;
-  text-transform: uppercase;
-  text-align: center;
-  background: rgb(255, 255, 255, 0.4);
-}
-
-.jump_item_selected{
-  background: transparent;
-}
-
-.pay-box {
-  width: 100%;
-  height: 400rpx;
-}
-
 .content-container {
   padding-bottom: calc(100rpx);
   /* padding-bottom:calc(100rpx+(--env-)); */

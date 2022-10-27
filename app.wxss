@@ -1609,3 +1609,18 @@ button:not([size=mini]).float-contact_container {
 .items-date {
   font-size: 24rpx;
 }
+
+/* Scroll to */
+.scrollTo-item {
+  border: 0.5rpx solid #A1803B;
+  padding: 20rpx 0;
+  width: 100%;
+  text-transform: uppercase;
+  text-align: center;
+  background: rgb(255, 255, 255, 0.4);
+}
+
+.scrollTo-item.selected{
+  background: transparent;
+}
+/* End of Scroll to */

@@ -11,7 +11,7 @@
 
   <!-- Offer Countdown -->
   <view class="countdown">
-    <view class="nunito_600 uppercase countdown_text">{{ _t.remaining_time }}</view>
+    <view class="nunito_600 uppercase countdown_text">{{ _t.time_remaining }}</view>
     <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}"></countdown>
   </view>
   <!-- End of Offer Countdown -->

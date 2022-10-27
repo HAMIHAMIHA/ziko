@@ -11,7 +11,7 @@
 
   <!-- Offer Countdown -->
   <view class="countdown">
-    <view class="nunito_600 uppercase countdown_text">{{ _t.remaining_time }}</view>
+    <view class="nunito_600 uppercase countdown_text">{{ _t.time_remaining }}</view>
     <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}"></countdown>
   </view>
   <!-- End of Offer Countdown -->
@@ -132,10 +132,10 @@
   </view>
 
   <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
-    <!-- jump -->
-    <view class="flex-between gilroy_500 offer-jump-title">
+    <!-- Scroll to -->
+    <view class="flex-between gilroy_500 scrollTo-items">
       <view
-        class="offer-jump-item {{ _setting_scrollTo.currentTab == 'offer' ? 'jump_item_selected' : '' }}"
+        class="scrollTo-item {{ _setting_scrollTo.currentTab == 'offer' ? 'selected' : '' }}"
         bindtap="scrollTo"
         data-info="offer"
       >
@@ -143,7 +143,7 @@
       </view>
       <view
         wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}"
-        class="offer-jump-item {{ _setting_scrollTo.currentTab == 'specials' ? 'jump_item_selected' : '' }}"
+        class="scrollTo-item {{ _setting_scrollTo.currentTab == 'specials' ? 'selected' : '' }}"
         bindtap="scrollTo"
         data-info="specials"
       >
@@ -151,14 +151,15 @@
       </view>
       <view
         wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}"
-        class="offer-jump-item {{ _setting_scrollTo.currentTab == 'lottery' ? 'jump_item_selected' : '' }}"
+        class="scrollTo-item {{ _setting_scrollTo.currentTab == 'lottery' ? 'selected' : '' }}"
         bindtap="scrollTo"
         data-info="lottery"
       >
         {{ _t.lottery }}
       </view>
     </view>
-    <!-- end of jump -->
+    <!-- End of Scroll to -->
+
     <!-- Share -->
     <button class="float-btn share" open-type="share">
       <view class="icon icon-share"></view>
@@ -211,6 +212,16 @@
     >
       {{ _t.products }}
     </view>
+    <!-- TEMP TODO -->
+    <view
+      wx:if="{{ _offer.miniprogram.packs.length > 0 }}"
+      class="tabbar_item{{ _setting.currentTab == 'pack' ? ' selected' : '' }}"
+      bindtap="scrollTo"
+      data-info="packs"
+      animation="{{ _setting.animate.tab }}"
+    >
+      {{ _t.packs }}
+    </view>
     <view
       class="tabbar_item{{ _setting.currentTab == 'recipe' ? ' selected' : '' }}"
       bindtap="switchTab"
@@ -245,7 +256,7 @@
           ></template>
         </view>
 
-        <view class="offer-group offer-packs" wx:if="{{ _offer.miniprogram.packs.length > 0 }}" mark:type="packs">
+        <view class="offer-group offer-packs" wx:if="{{ _offer.miniprogram.packs.length > 0 }}" mark:type="packs" id="packs">
           <view class="uppercase title">
             <text class="gilroy_500">{{ _t.our_selected_packs.fst }}</text>
             <text class="gilroy_700">{{ _t.our_selected_packs.snd }}</text>

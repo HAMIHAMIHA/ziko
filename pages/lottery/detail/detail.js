@@ -84,7 +84,7 @@ const _setPageTranslation = function(page) {
       closed: i18n.closed,
       community: i18n.community,
       go_to_offer: i18n.go_to_offer,
-      remaining_time: i18n.remaining_time,
+      time_remaining: i18n.time_remaining,
       your_tickets: i18n.your_tickets,
     },
     _t_lottery: {

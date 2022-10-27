@@ -34,7 +34,7 @@ const _setPageTranslation = page => {
       offers: i18n.offers,
       orders_unit: i18n.orders_unit,
       order_unit: i18n.order_unit,
-      remaining_time: i18n.remaining_time,
+      time_remaining: i18n.time_remaining,
       specials: i18n.specials,
       viewers: i18n.viewers,
     }

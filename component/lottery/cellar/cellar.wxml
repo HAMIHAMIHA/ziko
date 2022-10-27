@@ -1,4 +1,8 @@
-<view class="uppercase progress__container" wx:if="{{ _offer.community === 'cellar' }}">
+<!-- wx:if="{{ _offer.community === 'cellar' }}" -->
+<view
+  wx:if="{{ _offer.type == 'bourse' || _offer.type == 'free_fall' || _offer.type == 'multiple_items' }}"
+  class="uppercase progress__container"
+>
   <view class="gilroy_800 lottery-label" wx:if="{{ offer_page }}">{{ _t.lottery_stages }}</view>
   <view class="gilroy_800 lottery-label" wx:else>{{ _t.quantity_bottle_sold }}</view>
 

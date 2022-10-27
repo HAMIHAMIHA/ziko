@@ -31,7 +31,11 @@
   </view>
 </view>
 
-<view wx:if="{{ type !== 'bourse' }}" class="progress-bar__container" style="--filled-:{{ _offer.lottery_progress }}%;">
+<view
+  wx:if="{{ _offer.type != 'bourse' && _offer.type != 'free_fall' && _offer.type != 'multiple_items' }}"
+  class="progress-bar__container"
+  style="--filled-:{{ _offer.lottery_progress }}%;"
+>
   <block wx:for="{{ _offer.miniprogram.lottery.draws }}" wx:key="_id" wx:for-item="draw">
     <view 
       class="progress-bar__values{{ index === 0 ? ' progress-bar_first' : (index + 1) === _offer.miniprogram.lottery.draws.length ? ' progress-bar_last' : '' }}"

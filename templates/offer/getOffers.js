@@ -66,7 +66,7 @@ export const _getTranslations = (page, community) => {
       products: i18n.products,
       recipes: i18n.recipes,
       related_recipes: i18n.related_recipes,
-      remaining_time: i18n.remaining_time,
+      time_remaining: i18n.time_remaining,
       single_items: i18n.single_items,
       total_units_available: i18n.total_units_available,
       viewers: i18n.viewers,
@@ -299,7 +299,7 @@ const _setHurryPopup = function (offer, page) {
 }
 
 // Check for lottery draws
-const _setLotteryDraws = function (offer, orders) {
+export const _setLotteryDraws = function (offer, orders) {
   if (offer.miniprogram.lottery.draws[0].conditionType === "number_of_order") {
     offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
   } else {
@@ -541,19 +541,19 @@ export function switchTabs(page, tab) {
   const _getHeight = () => {
     return new Promise((resolve) => {
       if (tab === "recipe") {
-        wx.createSelectorQuery().select('#recipes').boundingClientRect().exec( res => {
+        wx.createSelectorQuery().select('#recipes').boundingClientRect().exec(res => {
           resolve(res[0].height);
         })
       } else {
-        wx.createSelectorQuery().select('#products').boundingClientRect().exec( res => {
+        wx.createSelectorQuery().select('#products').boundingClientRect().exec(res => {
           resolve(res[0].height);
         })
       }
-   })
+    })
   }
 
   let left = (tab === "recipe") ? "-100vw" : "0";
-  _getHeight().then( res => {
+  _getHeight().then(res => {
     page.setData({
       "_setting.currentTab": tab,
       "_setting.height": `${res}px`,

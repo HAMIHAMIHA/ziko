@@ -140,27 +140,6 @@
 /* End of Progress - bar */
 /* End of Progress */
 
-/* add choice jump */
-.offer-jump-title {
-  background-color: rgb(255, 255, 255, 0.4);
-}
-
-.offer-jump-item {
-  font-size: 28rpx;
-  border: 0.5rpx solid #B0AEB7;
-  padding: 20rpx 0;
-  width: 100%;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.jump_item_selected {
-  background: linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
-  /* background-color: #B9C2C7; */
-}
-
-/* end of add choice jump  */
-
 /* new progress  */
 
 .progress-top {

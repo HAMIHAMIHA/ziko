@@ -4,7 +4,7 @@
 <view class="container ziko-offer {{ 'community-' + _offer.community }}{{ next_special ? ' bottom-message' : '' }}">
   <!-- Offer Countdown -->
   <view class="countdown {{ 'ziko-' + _offer.community }}">
-    <view class="nunito_600 uppercase countdown_text">{{ _t.remaining_time }}</view>
+    <view class="nunito_600 uppercase countdown_text">{{ _t.time_remaining }}</view>
     <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}"></countdown>
   </view>
   <!-- End of Offer Countdown -->
@@ -59,10 +59,10 @@
   </view>
 
   <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
-    <!-- jump  -->
-    <view class="flex-between gilroy_500 offer-jump-title">
+    <!-- Scroll to  -->
+    <view class="flex-between gilroy_500 scrollTo-items">
       <view
-        class="offer-jump-item {{ _setting_scrollTo.currentTab == 'offer' ? 'jump_item_selected' : '' }}"
+        class="scrollTo-item {{ _setting_scrollTo.currentTab == 'offer' ? 'selected' : '' }}"
         bindtap="scrollTo"
         data-info="offer"
       >
@@ -70,7 +70,7 @@
       </view>
       <view
         wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}"
-        class="offer-jump-item {{ _setting_scrollTo.currentTab == 'specials' ? 'jump_item_selected' : '' }}"
+        class="scrollTo-item {{ _setting_scrollTo.currentTab == 'specials' ? 'selected' : '' }}"
         bindtap="scrollTo"
         data-info="specials"
       >
@@ -78,14 +78,14 @@
       </view>
       <view
         wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}"
-        class="offer-jump-item {{ _setting_scrollTo.currentTab == 'lottery' ? 'jump_item_selected' : '' }}"
+        class="scrollTo-item {{ _setting_scrollTo.currentTab == 'lottery' ? 'selected' : '' }}"
         bindtap="scrollTo"
         data-info="lottery"
       >
         {{ _t.lottery }}
       </view>
     </view>
-    <!-- end of jump -->
+    <!-- End of Scroll to -->
 
     <!-- Share -->
     <button class="float-btn share" open-type="share">
@@ -130,6 +130,7 @@
     >
       {{ _t.products }}
     </view>
+    <!-- TEMP TODO -->
     <view
       wx:if="{{ _offer.miniprogram.packs.length > 0 }}"
       class="tabbar_item{{ _setting.currentTab == 'pack' ? ' selected' : '' }}"

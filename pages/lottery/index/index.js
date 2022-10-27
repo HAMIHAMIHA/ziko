@@ -7,6 +7,7 @@ const {
   findIndex,
   mapDeliveryDates
 } = require("../../../utils/util.js");
+const Offers = require('../../../templates/offer/getOffers.js');
 
 const app = getApp();
 let _refresh_data = true,
@@ -40,7 +41,7 @@ const _setPageTranslation = function (page) {
       no_offers: i18n.no_offers,
       tickets: i18n.tickets,
       remaining_draws: i18n.remaining_draws,
-      remaining_time: i18n.remaining_time,
+      time_remaining: i18n.time_remaining,
       you_win: i18n.you_win,
       ziko_lottery: i18n.ziko_lottery,
       lorem_ipsum_dolor: i18n.lorem_ipsum_dolor,
@@ -59,7 +60,9 @@ const _setPageTranslation = function (page) {
       access_the_offer: i18n.access_the_offer,
       prizes: i18n.prizes,
       congrats: i18n.congrats,
-      you_won: i18n.you_won
+      you_won: i18n.you_won,
+      orders: i18n.orders,
+      items: i18n.items,
     }
   })
 }
@@ -191,7 +194,37 @@ const _setOffers = (page) => {
       draws: offer_tickets,
       gifts: offer_gifts,
     }
-    offers.push(offer);
+
+    offer.sold = 0;
+    // Product / Pack name
+    let offer_products = [...offer.miniprogram.items, ...offer.miniprogram.packs];
+    offer_products.forEach(p => {
+      offer.sold += (p.stock - p.actualStock);
+
+      // Check for and Change all free fall product price 
+      if (offer.type === "free_fall" && p.freeFall && p.freeFall.quantityTrigger) {
+        Offers.getRulePrice("free_fall", offer.id, p);
+      }
+
+      // Check for multiple price
+      if (offer.type === "multiple_items" && p.multipleItem && p.multipleItem.length > 0) {
+        Offers.getRulePrice("multiple", offer.id, p)
+      }
+    })
+
+    // Lottery detail
+    if (offer.miniprogram.lotteryEnable && offer.miniprogram.lottery.draws.length) {
+      offer.miniprogram.lottery.draws.sort((a, b) => {
+        return a.conditionValue - b.conditionValue;
+      })
+
+      offer.last_val = offer.miniprogram.lottery.draws[offer.miniprogram.lottery.draws.length - 1].conditionValue;
+
+      offer = Offers._setLotteryDraws(offer, null);
+      offers.push(offer);
+    }
+
+    // offers.push(offer);
   })
 
   page.setData({
