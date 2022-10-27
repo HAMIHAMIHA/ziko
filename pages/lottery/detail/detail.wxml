@@ -23,7 +23,7 @@
   <!-- Lottery List -->
   <view class="offer-lotteries cellar-lotteries">
     <view class="lottery__container">
-      <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" type="{{ _offer.type }}" _offer="{{ _offer }}"></lottery-header>
+      <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" _offer="{{ _offer }}"></lottery-header>
       <lottery-cellar _current_user="{{ _current_user }}" _offer="{{ _offer }}" _product_names="{{ _product_names }}" _t="{{ _t_prize }}" id="lottery_list"></lottery-cellar>
     </view>
   </view>

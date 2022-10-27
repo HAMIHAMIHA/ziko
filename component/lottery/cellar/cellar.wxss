@@ -169,6 +169,10 @@
   box-sizing: border-box;
 }
 
+.lotteries_prize .unlocked .offer-lottery {
+  border: 2px solid #4AF399;
+}
+
 .lotteries_prize .offer-lottery .offer-lottery_gift {
   width: 100%;
   display: flex;

@@ -10,7 +10,7 @@
   <!-- End of Lottery Alert -->
 
   <!-- Offer Countdown -->
-  <view class="countdown">
+  <view class="countdown {{ 'ziko-' + _offer.community }}">
     <view class="nunito_600 uppercase countdown_text">{{ _t.time_remaining }}</view>
     <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}"></countdown>
   </view>
@@ -64,18 +64,33 @@
   </view>
 
   <view class="offer-detail_container {{ 'ziko-' + _offer.community }}">
-    <!-- Offer Count -->
-    <view class="flex-start gilroy_500 offer-count_container" wx:if="{{ _offer.orders >= 50 || _offer.views >= 50 }}">
-      <view class="icon_container" wx:if="{{ _offer.orders >= 50 }}">
-        <view class="icon icon-bag"></view>
-        <view class="icon_text">{{ _offer.orders != 1 ? _offer.orders + _t.orders_unit : _offer.orders + _t.order_unit }}</view>
+     <!-- Scroll to -->
+     <view class="flex-between gilroy_500 scrollTo-items">
+      <view
+        class="scrollTo-item {{ _setting_scrollTo.currentTab == 'offer' ? 'selected' : '' }}"
+        bindtap="scrollTo"
+        data-info="offer"
+      >
+        {{ _t.offer }}
       </view>
-      <view class="icon_container" wx:if="{{ _offer.views >= 50 }}">
-        <view class="icon icon-eye"></view>
-        <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
+      <view
+        wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}"
+        class="scrollTo-item {{ _setting_scrollTo.currentTab == 'specials' ? 'selected' : '' }}"
+        bindtap="scrollTo"
+        data-info="specials"
+      >
+        {{ _t.specials }}
+      </view>
+      <view
+        wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}"
+        class="scrollTo-item {{ _setting_scrollTo.currentTab == 'lottery' ? 'selected' : '' }}"
+        bindtap="scrollTo"
+        data-info="lottery"
+      >
+        {{ _t.lottery }}
       </view>
     </view>
-    <!-- End of Offer Count -->
+    <!-- End of Scroll to -->
 
     <!-- Share -->
     <button class="float-btn share" open-type="share">
@@ -93,6 +108,19 @@
     </view>
     <!-- End of Offer Detail -->
 
+    <!-- Offer Count -->
+    <view class="flex-start gilroy_500 offer-count_container" wx:if="{{ _offer.orders >= 50 || _offer.views >= 50 }}">
+      <view class="icon_container" wx:if="{{ _offer.orders >= 50 }}">
+        <view class="icon icon-bag"></view>
+        <view class="icon_text">{{ _offer.orders != 1 ? _offer.orders + _t.orders_unit : _offer.orders + _t.order_unit }}</view>
+      </view>
+      <view class="icon_container" wx:if="{{ _offer.views >= 50 }}">
+        <view class="icon icon-eye"></view>
+        <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
+      </view>
+    </view>
+    <!-- End of Offer Count -->
+
     <!-- Offer Cellar Count -->
     <view class="flex-center cellar-total_container" wx:if="{{  _offer.type && _offer.type != 'regular' }}">
       <view class="icon icon-wine"></view>
@@ -108,7 +136,7 @@
   </view>
 
   <!-- Offer Tabbar -->
-  <view class="uppercase gilroy_700 flex-center tabbar">
+  <view class="uppercase gilroy_700 flex-center tabbar" id="offer">
     <view
       class="tabbar_item{{ _setting.currentTab == 'product' ? ' selected' : '' }}"
       bindtap="switchTab"
@@ -190,7 +218,7 @@
         <!-- Lottery -->
         <view class="offer-lotteries cellar-lotteries" wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}">
           <view class="lottery_regular">
-            <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" type="{{ _offer.type }}"></lottery-header>
+            <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" _offer="{{ _offer }}"></lottery-header>
             <lottery-cellar _current_user="{{ _current_user }}" _offer="{{ _offer }}" _product_names="{{ _product_names }}" _t="{{ _t_prize }}" offer_page="true" id="lottery_list"></lottery-cellar>
           </view>
         </view>
@@ -219,9 +247,14 @@
   </view>
 
   <!-- Pay Button -->
-  <template
+  <!-- <template
     is="payment_container"
     data="{{ _show_alert: _offer.type === 'free_fall', _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special, checkout: checkout }}"
+  ></template> -->
+
+  <template
+    is="payment_container-bottom"
+    data="{{ _show_alert: _offer.type === 'free_fall', _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special, checkout: checkout, coming: _offer.coming }}"
   ></template>
   <!-- End of Pay Button -->
 </view>

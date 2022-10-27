@@ -66,14 +66,14 @@
 <!-- New payment container -->
 <template name="payment_container-bottom">
   <view class="bottom-pay">
-    <view class="remind" wx:if="{{ _show_alert }}">
+    <view class="remind nunito_500" wx:if="{{ _show_alert }}">
       <text class="icon icon-alert"></text>
-      <text class="remind-text nunito_500">{{ _t.bourse_payment_message }}</text>
+      {{ _t.bourse_payment_message }}
     </view>
 
-    <view class="remind" wx:if="{{ next_special }}">
+    <view class="remind nunito_500" wx:if="{{ next_special }}">
       <text class="icon icon-alert"></text>
-      <text class="remind-text nunito_500">{{ _t.you_are_still }} {{ next_special.conditionValue }} {{ _t.first_orders }}</text>
+      {{ _t.you_are_still }} {{ next_special.conditionValue }} {{ _t.first_orders }}
     </view>
 
     <!-- PAY -->

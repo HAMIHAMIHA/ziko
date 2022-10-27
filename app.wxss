@@ -1033,6 +1033,97 @@ button:not([size=mini]).float-contact_container {
   background: var(--grey-);
   pointer-events: none;
 }
+
+
+.ziko-offer .bottom-pay {
+  width: 100%;
+  /* height: calc(200rpx + var(--env-)); */
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+  background-color: #3F4250;
+  left: 0;
+  right: 0;
+}
+
+.ziko-offer .remind {
+  padding: 18rpx 40rpx;
+  border-bottom: 1rpx solid #11141B;
+  background-color: #11141B;
+  font-size: 24rpx;
+  line-height: 28rpx;
+  color: #FAAD14;
+}
+
+.ziko-offer .icon-alert {
+  color: #FAAD14;
+}
+
+.ziko-offer .remind-number {
+  padding: 0 20rpx;
+}
+
+.ziko-offer .icon-ticket {
+  color: #FFC700;
+  vertical-align: middle;
+}
+
+.ziko-offer .cartdetail-flex {
+  padding-top: 30rpx;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ziko-offer .total-content {
+  margin-right: 30rpx;
+  margin-top: 10rpx;
+}
+
+.ziko-offer .total-content .text-right {
+  font-size: 28rpx;
+  text-align: right;
+}
+
+.ziko-offer .detail_result_before {
+  text-decoration: line-through;
+  color: rgb(255, 255, 255, 0.6);
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+
+.ziko-offer .detail_result {
+  font-size: 34rpx;
+  line-height: 32rpx;
+  padding-left: 10rpx;
+}
+
+.ziko-offer .pay-button {
+  margin: 10rpx 30rpx 40rpx 0;
+  margin-bottom: calc(40rpx + var(--env-));
+}
+
+.ziko-offer .pay-button button {
+  background: #07C160;
+  width: 294rpx;
+  height: 80rpx;
+  color: white;
+}
+
+.ziko-offer .disabled button {
+  background: #11141B;
+  border-radius: 4px;
+}
+
+.ziko-offer .hover-pay-button {
+  background: #009B4A;
+}
+
+.ziko-offer .text-left {
+  margin-right: 82rpx;
+  margin-top: 44rpx;
+}
+
 /* End of Offer Payment */
 
 .ziko-offer .content-container {
@@ -1161,7 +1252,6 @@ button:not([size=mini]).float-contact_container {
 /* Offer Product Tabbar */
 .ziko-offer .tabbar {
   width: 100%;
-  padding-top: 8rpx;
   position: relative;
 }
 

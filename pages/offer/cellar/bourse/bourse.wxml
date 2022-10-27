@@ -10,7 +10,7 @@
   <!-- End of Lottery Alert -->
 
   <!-- Offer Countdown -->
-  <view class="countdown">
+  <view class="countdown {{ 'ziko-' + _offer.community }}">
     <view class="nunito_600 uppercase countdown_text">{{ _t.time_remaining }}</view>
     <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}"></countdown>
   </view>
@@ -106,7 +106,12 @@
               <text class="ticket">5% {{ _t.off }}</text>
             </view>
           </view>
-          <view class="inline-block right-box">{{ _t.next_price_in }} 26 {{ _t.bottles }}: <text class="grey">¥85</text></view>
+          <view class="inline-block right-box">
+            {{ _t.next_price_in }} {{ next_lottery.remaining }}
+            <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ _t.orders }}</text>
+            <text wx:else>{{ _t.offer_special_names.items_sold }}</text>
+            : <text class="grey">¥85</text>
+          </view>
         </view>
         <view class="green-content">
           <view class="first-content">¥{{ price.prices[0] }}</view>
@@ -252,7 +257,7 @@
           <template
             is="products"
             class="product-list"
-            data="{{ offer_id: _offer.id, cart: cart, product_list: _offer.miniprogram.items, _is_pack: false, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
+            data="{{ offer_id: _offer.id, cart: cart, product_list: _offer.miniprogram.items, _is_pack: false, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting, next_lottery: next_lottery }}"
           ></template>
         </view>
 
@@ -303,9 +308,7 @@
         <!-- Lottery -->
         <view class="offer-lotteries cellar-lotteries" wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}" id="lottery">
           <view class="lottery_regular">
-            <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" type="{{ _offer.type }}">
-
-            </lottery-header>
+            <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" _offer="{{ _offer }}"></lottery-header>
             <lottery-cellar _current_user="{{ _current_user }}" _offer="{{ _offer }}" _product_names="{{ _product_names }}" _t="{{ _t_prize }}" offer_page="true" id="lottery_list"></lottery-cellar>
           </view>
         </view>
@@ -338,12 +341,12 @@
     is="payment_container"
     data="{{ _show_alert: _bourse_info.progress < 100, _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
   ></template> -->
-  <!-- End of Pay Button -->
 
   <template
     is="payment_container-bottom"
     data="{{ _show_alert: _bourse_info.progress < 100, _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
   ></template>
+  <!-- End of Pay Button -->
 </view>
 
 <lottery-draw id="lottery_modal"></lottery-draw>

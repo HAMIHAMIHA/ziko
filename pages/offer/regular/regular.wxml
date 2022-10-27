@@ -237,7 +237,6 @@
             <lottery-header
               lottery="{{ _offer.miniprogram.lottery }}"
               _t="{{ _t_lottery }}"
-              type="{{ _offer.type }}"
               _offer="{{ _offer }}"
             ></lottery-header>
             <lottery-cellar
@@ -278,12 +277,12 @@
     is="payment_container"
     data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special }}"
   ></template> -->
-  <!-- End of Pay Button -->
 
   <template
     is="payment_container-bottom"
     data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special, coming: _offer.coming }}"
   ></template>
+  <!-- End of Pay Button -->
 </view>
 
 <lottery-draw id="lottery_modal"></lottery-draw>
