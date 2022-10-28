@@ -110,27 +110,28 @@
             {{ _t.next_price_in }} {{ next_lottery.remaining }}
             <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ _t.orders }}</text>
             <text wx:else>{{ _t.offer_special_names.items_sold }}</text>
-            : <text class="grey">¥85</text>
+            : <text class="grey">¥{{ _bourse_info.nextPrice }}</text>
           </view>
         </view>
-        <view class="green-content">
-          <view class="first-content">¥{{ price.prices[0] }}</view>
-          <view class="item-content">¥{{ price.prices[1] }}</view>
-          <view class="item-content">¥{{ price.prices[2] }}</view>
-          <view class="item-content">¥{{ price.prices[3] }}</view>
-          <view class="item-content">¥{{ price.prices[4] }}</view>
-          <view class="item-content">¥{{ price.prices[5] }}</view>
+
+        <view id="arrow-progress-bar" class="arrow-progress-bar">
+          <!-- Responsive Arrow Progress Bar -->
+          <view class="arrow-steps">
+            <block wx:for="{{ _bourse_info.list }}" wx:key="_id" wx:for-item="bourse" wx:key="index">
+              <view
+                class="nunito_500 step{{ bourse.unitPrice == _bourse_info.currentPrice ? ' current' : ( bourse.unlocked ? ' done' : '' ) }}"
+                style="--barWidth-:{{ _bourse_info.barWidth }}rpx;"
+              >
+                <view wx:if="{{ index == 0 }}" class="nunito_500 num from">{{ bourse.from }}</view>
+                <view wx:if="{{ bourse.unitPrice == _bourse_info.currentPrice }}" class="progress-current-bg" style="--filled-:{{ _bourse_info.currentProgress }}%;"></view>
+                <text class="symbol">¥</text>
+                <text class="price{{ bourse.unitPrice == _bourse_info.currentPrice ? ' nunito_700' : '' }}">{{ bourse.unitPrice }}</text>
+                <view class="nunito_500 num">{{ bourse.to }}</view>
+              </view>
+            </block>
+          </view>
+          <!-- End of Responsive Arrow Progress Bar -->
         </view>
-        <view class="text-content">
-          <view class="bottle-content first-bottle">{{ bottles[0] }}<text class="btl">BTL</text></view>
-          <view class="bottle-content">{{ bottles[1] }}</view>
-          <view class="bottle-content">{{ bottles[2] }}</view>
-          <view class="bottle-content">{{ bottles[3] }}</view>
-          <view class="bottle-content">{{ bottles[4] }}</view>
-          <view class="bottle-content">{{ bottles[5] }}</view>
-          <view class="bottle-content">{{ bottles[6] }}</view>
-        </view>
-        <view></view>
       </view>
       <!-- end of new progree block  -->
     </view>
@@ -257,7 +258,7 @@
           <template
             is="products"
             class="product-list"
-            data="{{ offer_id: _offer.id, cart: cart, product_list: _offer.miniprogram.items, _is_pack: false, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting, next_lottery: next_lottery }}"
+            data="{{ offer_id: _offer.id, cart: cart, product_list: _offer.miniprogram.items, _is_pack: false, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting, next_lottery: next_lottery, _bourse_info: _bourse_info }}"
           ></template>
         </view>
 
@@ -270,7 +271,7 @@
           <template
             is="products"
             class="product-list"
-            data="{{ offer_id: _offer.id, cart: cart, product_list: _offer.miniprogram.packs, _is_pack: true, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting }}"
+            data="{{ offer_id: _offer.id, cart: cart, product_list: _offer.miniprogram.packs, _is_pack: true, _community: _offer.community, _t: _t_product, _offer_setting: _offer_setting, next_lottery: next_lottery, _bourse_info: _bourse_info }}"
           ></template>
         </view>
         <!-- End of Offer Product List -->

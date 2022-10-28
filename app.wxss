@@ -1176,7 +1176,8 @@ button:not([size=mini]).float-contact_container {
 }
 
 .product_container .product_left {
-  width: 74%;
+  /* width: 74%; */
+  width: 80%;
 }
 
 .product_container:last-child {
@@ -1714,3 +1715,41 @@ button:not([size=mini]).float-contact_container {
   background: transparent;
 }
 /* End of Scroll to */
+
+/* Product Next lottery or price info */
+.product-next-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.product-next-info+.product-next-info {
+  margin-top: 8rpx;
+}
+
+.product-next-info.red {
+  color: #FF4D4F;
+}
+
+.product-next-info.green {
+  color: #4AF399;
+}
+
+.product-next-info-message,
+.product-next-info-target {
+  background: #2E3448;
+}
+
+.product-next-info-message {
+  font-size: 18rpx;
+  line-height: 24rpx;
+
+  padding: 10rpx;
+}
+
+.product-next-info-target {
+  font-size: 20rpx;
+  line-height: 28rpx;
+
+  margin-left: 2rpx;
+}
+/* End of Product Next lottery or price info */

@@ -89,6 +89,10 @@ export const _getTranslations = (page, community) => {
       units: i18n.units[community],
       freefall: i18n.freefall,
       multiple: i18n.multiple,
+      next_lottery_in: i18n.next_lottery_in,
+      next_price_in: i18n.next_price_in,
+      offer_special_names: i18n.offer_special_names,
+      draw: i18n.draw,
     },
     _t_lottery: {
       extra_ticket: i18n.extra_ticket,
@@ -258,6 +262,7 @@ const _setHurryPopup = function (offer, page) {
       }
 
       next.text = text;
+      next.num = first_locked + 1;
     }
 
     return next

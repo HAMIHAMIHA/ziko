@@ -25,18 +25,20 @@ Page({
       currentTab: "offer"
     },
     messages: [],
-    //__test
-    price: {
-      prices: [115, 105, 95, 85, 75, 65],
-      the_price: 85,
-    },
-    bottles: [0, 48, 120, 180, 240, 480, 960]
   },
 
   onShow: async function () {
     const self = this;
     // Get Offer
     Offers.getOffer(self, self.options.id);
+
+    wx.getSystemInfo({
+      success: (res) => {
+        self.setData({
+          onePxToRpx: 750 / res.windowWidth,
+        })
+      },
+    })
   },
 
   // Stop countdown timer on leaving page
@@ -63,7 +65,7 @@ Page({
       return b.unitPrice - a.unitPrice;
     })
 
-    if (bourses[0].from > 0) {
+    if (bourses[0].from > 0 && bourses[0].from != 1) {
       bourses = [{
         _id: 'b000',
         from: 0,
@@ -88,13 +90,27 @@ Page({
       bg_list.push(`${b.color} ${b.end_position}%`);
     })
 
+    let nextBourseInfo = bourses.find(b => b.unlocked == false);
+    let currentBourseInfo = bourses.slice().reverse().find(b => b.unlocked == true);
+    let currentProgress = Math.round((offer.sold - currentBourseInfo.from) / currentBourseInfo.to * 100);
+
     self.setData({
       _bourse_info: {
         progress,
+        currentProgress,
         list: bourses,
-        bg_color: `linear-gradient(90deg, ${ bg_list.join(', ') })`
+        bg_color: `linear-gradient(90deg, ${ bg_list.join(', ') })`,
+        nextPrice: nextBourseInfo.unitPrice,
+        currentPrice: currentBourseInfo.unitPrice,
       }
     })
+
+    let query = wx.createSelectorQuery();
+    query.select('#arrow-progress-bar').boundingClientRect(res => {
+      self.setData({
+        "_bourse_info.barWidth": Math.round((res.width * self.data.onePxToRpx - 32 - (bourses.length - 1) * 16) / bourses.length), // 32 is the width of last arrow, 16 is the gap between two process bar
+      })
+    }).exec();
   },
 
   // Mobile login
