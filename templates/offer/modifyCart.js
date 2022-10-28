@@ -82,12 +82,8 @@ export const modifyCartItems = (page, event, checkout = false) => {
   }
 }
 
-export const checkoutItems = (params) => {
-  const searchParams = [];
-  const {id, community} = params;
-  if (id) searchParams.push(`id=${id}`);
-  if (community) searchParams.push(`community=${community}`);
+export const checkoutItems = (offer_id) => {
   wx.navigateTo({
-    url: `${app.routes.cart}?${searchParams.join('&')}`,
+    url: `${app.routes.cart}?id=${offer_id}`,
   })
 }

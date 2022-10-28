@@ -120,13 +120,7 @@ Page({
 
   // Checkout offer
   checkout: function () {
-    const {
-      id
-    } = this.options;
-    ModifyCart.checkoutItems({
-      id,
-      community: this.data._offer.community
-    });
+    ModifyCart.checkoutItems(this.options.id);
   },
 
   // Change product amount in cart

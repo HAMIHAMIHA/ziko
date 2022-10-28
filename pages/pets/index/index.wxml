@@ -2,7 +2,7 @@
   <view class="cards">
     <view class="card" wx:for="{{ pets }}" wx:for-item="pet" wx:key="index">
       <view class="type">
-        <view class="icon icon-walk-{{ pet.type }}"></view>
+        <view class="icon icon-{{ pet.type }}"></view>
         <view class="nunito_500 text {{ pet.type }} capitalize">{{ pet.type }}</view>
       </view>
 
@@ -33,11 +33,11 @@
   <view class="second-paragraph nunito_500">{{ _t.you_can_add_pet }}</view>
   <view class="add-pets">
     <button class="add-pet" bindtap="addPetNavigate" data-typechecked="{{ _t.cat }}">
-      <text class="icon icon-walk-cat"></text>
+      <text class="icon icon-cat"></text>
       <text class="cat">{{ _t.add_a_cat }}</text>
     </button>
     <button class="add-pet" bindtap="addPetNavigate" data-typechecked="{{ _t.dog }}">
-      <text class="icon icon-walk-dog"></text>
+      <text class="icon icon-dog"></text>
       <text class="dog">{{ _t.add_a_dog }}</text>
     </button>
   </view>

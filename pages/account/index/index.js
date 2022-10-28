@@ -73,8 +73,28 @@ Page({
       pets: app.routes.pets,
     },
     language: app.db.get('language'),
-    copybox_judgment: true,
+    showCopyBox: false,
     animationData: {},
+
+    // TEMP
+    // To fill in the real wechat ids
+    copyContent: [{
+      community: 'cellar',
+      title: app.globalData.i18n.add_cellar_ziko,
+      wechat: 'SimonMawas',
+    }, {
+      community: 'farm',
+      title: app.globalData.i18n.add_farmer_ziko,
+      wechat: 'SimonMawas',
+    }, {
+      community: 'kitchen',
+      title: app.globalData.i18n.add_chef_ziko,
+      wechat: 'SimonMawas',
+    }, {
+      community: 'pet',
+      title: app.globalData.i18n.add_pet_ziko,
+      wechat: 'SimonMawas',
+    }, ],
   },
 
   onShow: async function () {
@@ -198,22 +218,20 @@ Page({
     }
   },
 
-  copyBoxShow: function () {
-    var self = this;
-    self.setData({
-      copybox_judgment: false,
+  showCopyBox: function () {
+    this.setData({
+      showCopyBox: true,
     })
   },
 
-  copyBoxHide: function () {
-    var self = this;
-    self.setData({
-      copybox_judgment: true,
+  hideCopyBox: function () {
+    this.setData({
+      showCopyBox: false,
     })
   },
 
-  copyBtn: function (e) {
-    let self = this;
+  copy: function (e) {
+    const self = this;
 
     wx.setClipboardData({
       data: e.currentTarget.dataset.text,

@@ -120,7 +120,7 @@
   <!-- END OF LANGUAGE BUTTON -->
 
   <!-- Join Ziko community-->
-  <view class="ziko-community" bindtap="copyBoxShow">
+  <view class="ziko-community" bindtap="showCopyBox">
     <view class="icon icon-ziko"></view>
     <view class="community-content">
       <text class="community-title">{{ _t.join_ziko_community }}</text>
@@ -131,55 +131,24 @@
 </view>
 
 <!-- copy box -->
-<view class="copybox" hidden="{{ copybox_judgment }}">
-  <view class="copybox-cancel" bindtap="copyBoxHide">
+<view wx:if="{{ showCopyBox }}" class="copybox">
+  <view class="copybox-cancel" bindtap="hideCopyBox">
   </view>
+
   <view class="copybox-tap bottom-pos" animation="{{ animationData }}">
-    <view class="add-box" data-text="{{ _t.simonmawas }}" bindtap='copyBtn'>
-      <view class="icon icon-chef-head icon-chef"></view>
+    <view class="add-box" wx:for="{{ copyContent }}" wx:for-item="copy" data-text="{{ copy.wechat }}" bindtap="copy">
+      <view class="icon icon-{{ copy.community }}-head"></view>
       <view>
-        <text class="box-name">{{ _t.add_chef_ziko }}</text>
-        <view class="wechat-copy box-chef" hover-class="clicked-chef">
+        <text class="box-name">{{ copy.title }}</text>
+        <view class="wechat-copy ziko-{{ copy.community }}" hover-class="clicked-chef">
           <text class="wechat-id">{{ _t.wechat_id }}</text>
-          <text class="simonmawas">{{ _t.simonmawas }}</text>
-          <text class="icon icon-click-copy icon-height"></text>
+          <text class="simonmawas">{{ copy.wechat }}</text>
+          <text class="icon icon-copy icon-height"></text>
         </view>
       </view>
     </view>
-    <view class="add-box" data-text="{{ _t.simonmawas }}" bindtap='copyBtn'>
-      <view class="icon icon-pet-head icon-pet"></view>
-      <view>
-        <text class="box-name">{{ _t.add_pet_ziko }}</text>
-        <view class="wechat-copy box-pet" hover-class="clicked-pet">
-          <text class="wechat-id">{{ _t.wechat_id }}</text>
-          <text class="simonmawas">{{ _t.simonmawas }}</text>
-          <text class="icon icon-click-copy icon-height"></text>
-        </view>
-      </view>
-    </view>
-    <view class="add-box" data-text="{{ _t.simonmawas }}" bindtap='copyBtn'>
-      <view class="icon icon-farmer-head icon-farmer"></view>
-      <view>
-        <text class="box-name">{{ _t.add_farmer_ziko }}</text>
-        <view class="wechat-copy box-farmer" hover-class="clicked-farmer">
-          <text class="wechat-id">{{ _t.wechat_id }}</text>
-          <text class="simonmawas">{{ _t.simonmawas }}</text>
-          <text class="icon icon-click-copy icon-height"></text>
-        </view>
-      </view>
-    </view>
-    <view class="add-box" data-text="{{ _t.simonmawas }}" bindtap='copyBtn'>
-      <view class="icon icon-celler-head icon-celler"></view>
-      <view>
-        <text class="box-name">{{ _t.add_cellar_ziko }}</text>
-        <view class="wechat-copy box-cellar" hover-class="clicked-cellar">
-          <text class="wechat-id">{{ _t.wechat_id }}</text>
-          <text class="simonmawas">{{ _t.simonmawas }}</text>
-          <text class="icon icon-click-copy icon-height"></text>
-        </view>
-      </view>
-    </view>
-    <view class="x" bindtap="copyBoxHide">
+
+    <view class="x" bindtap="hideCopyBox">
       <text class="icon icon-x icon-x-height"></text>
     </view>
   </view>

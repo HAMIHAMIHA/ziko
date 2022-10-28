@@ -4,7 +4,7 @@
   <form bindsubmit="pay">
     <view class="white-box order-products_container">
       <view class="nunito_700 header">{{ _t.items }}</view>
-      <!-- <block wx:for="{{ products }}" wx:key="id" wx:for-item="product"> -->
+
       <block wx:for="{{ products }}" wx:key="id" wx:for-item="product">
         <view class="order-products product_container" wx:if="{{ product.amount }}">
           <view class="flex-between product" mark:type="{{ product.type }}">
@@ -50,6 +50,7 @@
             <quantity
               class="flex-start product-quantity"
               amount="{{ product.amount }}"
+              community="{{ _offer.community }}"
               stock="{{ product.actualStock }}"
               bind:changeAmount="changeAmount"
               data-idx="{{ cart.products[product._id].index_in_offer }}"
@@ -79,18 +80,22 @@
 
       <view class="detail field-2 delivery-date">
         <picker
-          class="nunito_600 detail_result text-justify"
+          class="detail_result text-justify"
           name="delivery_date"
           value="{{ delivery_date }}"
           range="{{ delivery_dates }}"
           bindchange="bindPickerChange"
           data-key="delivery_date"
         >
-          <text class="detail_label">{{ _t.expected_delivery_date }}</text>
-          <!-- <view class="flex-center picker">
-          <text>{{ delivery_dates[delivery_date] }}</text>
-        </view> -->
-          <text class="icon icon-calendar"></text>
+        <view class="picker-content">
+          <view class="nunito_500 detail_label">{{ _t.expected_delivery_date }}</view>
+            <view wx:if="{{ !delivery_date }}" class="nunito_700 detail_label green">
+              {{ _t.pick_a_date }}<text class="icon icon-calendar"></text>
+            </view>
+            <view wx:else class="nunito_700 detail_label">
+              {{ delivery_dates[delivery_date] }}<text class="icon icon-calendar"></text>
+            </view>
+          </view>
         </picker>
       </view>
 
@@ -99,7 +104,7 @@
         <view class="detail_label">{{ _t.address }}</view>
         <view class="cart_detail_input input_goto">
           <navigator class="input picker" hover-class="none" url="{{ _routes.address + '?action=select&selected_address=' + address_selected }}">
-            <text>{{ _t.address_type[user.addresses[address_selected].type] }}</text>
+            <text class="content">{{ _t.address_type[user.addresses[address_selected].type] }}</text>
             <text class="icon icon-arrow-right"></text>
           </navigator>
           <text class="detail_note"><text class="detail_note_content ellipsis">{{ user.addresses[address_selected].detailedAddress }}</text></text>
@@ -110,7 +115,11 @@
         <text class="detail_label">{{ _t.contact_person }}</text>
         <view class="cart_detail_input input_goto">
           <navigator class="input picker" hover-class="none" url="{{ _routes.contacts + '?action=select&selected_contact=' + contact_selected }}">
-            <text>{{ user.contacts[contact_selected].name }}</text>
+            <view>
+              <view>{{ user.contacts[contact_selected].name }}</view>
+              <view>{{ user.contacts[contact_selected].phone }}</view>
+            </view>
+
             <text class="icon icon-arrow-right"></text>
           </navigator>
         </view>
@@ -149,7 +158,7 @@
     </view>-->
 
     <view class="white-box details_container inputs_container">
-      <view wx:if="{{ fapiaotest }}" class="cartdetail checkbox-container fapiao">
+      <view wx:if="{{ user.fapiaoInformation }}" class="cartdetail checkbox-container fapiao">
         <view class="fapiao-title">
           <text class="detail_label">{{ _t.send_fapiao_to }}</text>
           <view wx:if="{{ fapiao }}" class="fapiao-checked checked-no">
@@ -164,21 +173,18 @@
           <!-- <view class="checkbox{{ fapiao ? ' checked' : '' }}" bindtap="toggleCheck" data-key="fapiao">
             </view> -->
         </view>
-        <view class="send-fapiao-content">
-          {{ fapiao_content_test }}
-        </view>
+        <view class="send-fapiao-content">{{ user.fapiaoInformation }}</view>
       </view>
       <view wx:else class="cartdetail">
         <text class="detail_label">{{ _t.send_fapiao_to }}</text>
-        <view class="send-fapiao-to">
-          <navigator hover-class="none" url="{{ _routes.fapiao + '?action=edit' }}">
-            <text class="nunito_400">{{ _t.no_details_yet }}</text>
-            <text class="icon icon-plus"></text>
-          </navigator>
-        </view>
+        <navigator class="send-fapiao-to" hover-class="none" url="{{ _routes.fapiao + '?action=edit' }}">
+          <text class="nunito_400">{{ _t.no_details_yet }}</text>
+          <text class="icon icon-plus"></text>
+        </navigator>
       </view>
     </view>
 
+    <!-- TODO -->
     <!-- Available Ziko vouchers -->
     <view class="white-box ">
       <view class="gilroy_700 vouchers-title">{{ _t.available_ziko_vouchers }}</view>
@@ -243,7 +249,7 @@
         </button>
       </view>
       <view class="contact-button_container">
-        <button class="contact-button" bindtap="copyBoxShow">
+        <button class="contact-button" bindtap="showCopyBox">
           <text class="icon icon-wechat"></text>
           <text class="nunito_600">{{ _t.add_chef_ziko_on_wechat }}</text>
         </button>
@@ -253,7 +259,7 @@
     <view class="bottom-pay" bindtap="showLottery">
       <view class="remind">
         <text class="remind-text nunito_500">{{ _t.lottery_tickets_you_can_get }}</text>
-        <text class="remind-number">{{ '+' + 3 + '' }}</text>
+        <text class="remind-number">+{{ _pay_set.tickets }}</text>
         <text class="icon icon-ticket"></text>
       </view>
       <!-- PAY -->
@@ -261,23 +267,24 @@
         <view class="total-content">
           <view class="detail_label nunito_500 text-right">{{ _t.total }}</view>
           <!-- <text class="detail_result">¥{{ fixDecimals.toFix((_pay_set.finalFee - voucher.amount) * discount) }}</text> -->
-<!--          <text class="detail_result_before">¥{{ voucher.amount_before }}</text>-->
-          <text class="detail_result_before">¥{{ _pay_set.finalFee  + _pay_set.reducedTotal  }}</text>
-<!--          <text class="detail_result">¥{{ voucher.price }}</text>-->
+          <!--          <text class="detail_result_before">¥{{ voucher.amount_before }}</text>-->
+          <text class="detail_result_before">¥{{ _pay_set.finalFee + _pay_set.reducedTotal }}</text>
+          <!--          <text class="detail_result">¥{{ voucher.price }}</text>-->
           <text class="detail_result">¥{{ _pay_set.finalFee }}</text>
         </view>
         <view class="pay-button">
           <button class="nunito_600 disabled" wx:if="{{ _pay_set.single && _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.single }}">
-            {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }} </button>
-              <button class="nunito_600 disabled" wx:elif="{{ _pay_set.reducedTotal && _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.reducedTotal }}">
-                {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
-              </button>
-              <button class="nunito_600 disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.total }}">
-                {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
-              </button>
-              <button class="nunito_600{{ _pay_set.pay_disabled ? ' disabled' : '' }}" formType="submit" wx:else>
-                {{ _t.pay }}
-              </button>
+            {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }}
+          </button>
+          <button class="nunito_600 disabled" wx:elif="{{ _pay_set.reducedTotal && _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.reducedTotal }}">
+            {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
+          </button>
+          <button class="nunito_600 disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.total }}">
+            {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
+          </button>
+          <button class="nunito_600{{ _pay_set.pay_disabled ? ' disabled' : '' }}" formType="submit" wx:else>
+            {{ _t.pay }}
+          </button>
         </view>
       </view>
     </view>
@@ -285,125 +292,34 @@
 </view>
 
 
-<!-- copy box -->
-<!-- chef -->
-<view class="copybox" wx:if="{{ copybox_type.chef && copybox_judgment }}">
-  <view class="copybox-cancel" bindtap="copyBoxHide">
-  </view>
+<!-- Copy box -->
+<view class="copybox" wx:if="{{ showCopyBox }}">
+  <view class="copybox-cancel" bindtap="hideCopyBox"></view>
   <view class="copybox-tap bottom-pos">
     <view class="add-box">
       <view class="icon icon-wechat"></view>
       <view class="box-title">
-        <view class="icon icon-chef-head icon-chef"></view>
+        <view class="icon icon-{{ _offer.community }}-head"></view>
         <view class="box-title-inside">
-          <view class="gilroy_700 inside-title">{{ _t.add_cellar_ziko }}</view>
+          <view class="gilroy_700 inside-title">{{ copyContent[_offer.community].title }}</view>
           <view class="nunito_500 inside-content">{{ _t.please_long_press }}</view>
         </view>
       </view>
-      <image src="/assets/images/QRCODE.png" class="qrcode"></image>
+      <image src="{{ copyContent[_offer.community].qrcode }}" class="qrcode"></image>
     </view>
 
-    <view class="wechat-copy box-chef" bindtap='copyBtn' data-text="{{ _t.simonmawas }}">
-      <text class="wechat-id">{{ _t.wechat_id }}</text>
-      <text class="simonmawas">{{ _t.simonmawas }}</text>
-      <text class="icon icon-click-copy icon-height"></text>
-    </view>
-
-    <view class="x">
-      <text class="icon icon-x icon-x-height" bindtap="copyBoxHide"></text>
-    </view>
-  </view>
-</view>
-<!-- end of chef -->
-<!-- cellar -->
-<view class="copybox" wx:if="{{ copybox_type.cellar && copybox_judgment }}">
-  <view class="copybox-cancel" bindtap="copyBoxHide">
-  </view>
-  <view class="copybox-tap bottom-pos">
-
-    <view class="add-box">
-      <view class="icon icon-wechat"></view>
-      <view class="box-title">
-        <view class="icon icon-celler-head icon-celler"></view>
-        <view class="box-title-inside">
-          <view class="gilroy_700 inside-title">{{ _t.add_cellar_ziko }}</view>
-          <view class="nunito_500 inside-content">{{ _t.please_long_press }}</view>
-        </view>
-      </view>
-      <image src="/assets/images/QRCODE.png" class="qrcode"></image>
-    </view>
-
-    <view class="wechat-copy box-cellar" bindtap='copyBtn' data-text="{{ _t.simonmawas }}">
-      <text class="wechat-id">{{ _t.wechat_id }}</text>
-      <text class="simonmawas">{{ _t.simonmawas }}</text>
-      <text class="icon icon-click-copy icon-height"></text>
+    <view class="wechat-copy ziko-{{ _offer.community }}" bindtap='copyBtn' data-text="{{ _t.simonmawas }}">
+      <text class="wechat-id">{{ _t.wechat_id }}{{ copyContent[_offer.community].wechat }}</text>
+      <text class="icon icon-copy"></text>
     </view>
 
     <view class="x">
-      <text class="icon icon-x icon-x-height" bindtap="copyBoxHide"></text>
+      <text class="icon icon-x" bindtap="hideCopyBox"></text>
     </view>
   </view>
 </view>
-<!-- end of cellar -->
-<!-- pet -->
-<view class="copybox" wx:if="{{ copybox_type.pet && copybox_judgment }}">
-  <view class="copybox-cancel" bindtap="copyBoxHide">
-  </view>
-  <view class="copybox-tap bottom-pos">
-    <view class="add-box">
-      <view class="icon icon-wechat"></view>
-      <view class="box-title">
-        <view class="icon icon-pet-head icon-pet"></view>
-        <view class="box-title-inside">
-          <view class="gilroy_700 inside-title">{{ _t.add_pet_ziko }}</view>
-          <view class="nunito_500 inside-content">{{ _t.please_long_press }}</view>
-        </view>
-      </view>
-      <image src="/assets/images/QRCODE.png" class="qrcode"></image>
-    </view>
+<!-- End of Copy box -->
 
-    <view class="wechat-copy box-pet" bindtap='copyBtn' data-text="{{ _t.simonmawas }}">
-      <text class="wechat-id">{{ _t.wechat_id }}</text>
-      <text class="simonmawas">{{ _t.simonmawas }}</text>
-      <text class="icon icon-click-copy icon-height"></text>
-    </view>
-
-    <view class="x">
-      <text class="icon icon-x icon-x-height" bindtap="copyBoxHide"></text>
-    </view>
-  </view>
-</view>
-<!-- end of pet -->
-<!-- farmer  -->
-<view class="copybox" wx:if="{{ copybox_type.farmer && copybox_judgment }}">
-  <view class="copybox-cancel" bindtap="copyBoxHide">
-  </view>
-  <view class="copybox-tap bottom-pos">
-    <view class="add-box">
-      <view class="icon icon-wechat"></view>
-      <view class="box-title">
-        <view class="icon icon-farmer-head icon-farmer"></view>
-        <view class="box-title-inside">
-          <view class="gilroy_700 inside-title">{{ _t.add_farmer_ziko }}</view>
-          <view class="nunito_500 inside-content">{{ _t.please_long_press }}</view>
-        </view>
-      </view>
-      <image src="/assets/images/QRCODE.png" class="qrcode"></image>
-    </view>
-
-    <view class="wechat-copy box-farmer" bindtap='copyBtn' data-text="{{ _t.simonmawas }}">
-      <text class="wechat-id">{{ _t.wechat_id }}</text>
-      <text class="simonmawas">{{ _t.simonmawas }}</text>
-      <text class="icon icon-click-copy icon-height"></text>
-    </view>
-
-    <view class="x">
-      <text class="icon icon-x icon-x-height" bindtap="copyBoxHide"></text>
-    </view>
-  </view>
-</view>
-<!-- end of farmer -->
-<!-- copy box end -->
 <view hidden='{{ showLottery }}'>
   <new-lottery bind:deliver="hideLottery"></new-lottery>
 </view>

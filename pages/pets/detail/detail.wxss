@@ -63,13 +63,13 @@ page {
   padding-top: 6rpx;
 }
 
-.type-button .icon.icon-walk-cat::before,
-.type-button .icon.icon-walk-dog::before {
+.type-button .icon.icon-cat::before,
+.type-button .icon.icon-dog::before {
   color: #8C8C8C;
 }
 
-.icon.icon-walk-cat,
-.icon.icon-walk-dog {
+.icon.icon-cat,
+.icon.icon-dog {
   font-size: 48rpx;
 }
 
@@ -91,13 +91,13 @@ page {
 }
 
 .type-button.selected .icon.icon-check.cat::before,
-.type-button.selected .icon.icon-walk-cat::before,
+.type-button.selected .icon.icon-cat::before,
 .selected .type-name.cat {
   color: #E6A86E;
 }
 
 .type-button.selected .icon.icon-check.dog::before,
-.type-button.selected .icon.icon-walk-dog::before,
+.type-button.selected .icon.icon-dog::before,
 .selected .type-name.dog {
   color: #D46B08;
 }

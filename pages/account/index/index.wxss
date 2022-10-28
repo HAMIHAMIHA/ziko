@@ -338,7 +338,7 @@ button:not([size=mini]).langauge {
   z-index: 100000
 }
 
-.copybox-tap .add-box .icon-chef-head {
+.copybox-tap .add-box .icon-kitchen-head {
   font-size: 101.4rpx;
   padding-right: 22rpx;
   padding-top: 10rpx;
@@ -350,13 +350,13 @@ button:not([size=mini]).langauge {
   padding-top: 20rpx;
 }
 
-.copybox-tap .add-box .icon-farmer-head {
+.copybox-tap .add-box .icon-farm-head {
   font-size: 74rpx;
   padding-right: 20rpx;
   padding-top: 18rpx;
 }
 
-.copybox-tap .add-box .icon-celler-head {
+.copybox-tap .add-box .icon-cellar-head {
   font-size: 66rpx;
   padding-right: 35rpx;
   padding-top: 28rpx;
@@ -382,22 +382,6 @@ button:not([size=mini]).langauge {
   font-weight: 700;
   font-size: 28rpx;
   line-height: 34rpx;
-}
-
-.wechat-copy.box-chef {
-  background: linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%);
-}
-
-.wechat-copy.box-pet {
-  background: linear-gradient(132.48deg, #FFB65A -1194.24%, #FF7233 1529.08%);
-}
-
-.wechat-copy.box-farmer {
-  background: linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%);
-}
-
-.wechat-copy.box-cellar {
-  background: linear-gradient(113.45deg, #C5CACE -6.01%, #A4A8AB 0.17%, #8C8F91 9.43%, #838688 12.52%, #888C8E 24.87%, #919699 37.21%, #A4AAAF 65%, #BBC3CA 89.7%, #BAC3C8 120.57%, #BDC5C9 126.74%, #D9D9D9 163.79%, #DFDEDE 169.96%, #F0EDED 179.22%, #FFF9F9 182.31%, #F5F5F4 203.92%, #FFFFFF 216.27%, #F7F7F7 228.62%, #EAEAEA 237.88%, #CBCBCD 268.75%, #C3CCD3 287.27%, #A4A9AC 299.62%);
 }
 
 .clicked-chef {

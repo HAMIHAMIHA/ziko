@@ -61,6 +61,7 @@ const _setPageDefaultItems = page => {
       only_left: i18n.only_left,
       pay: i18n.pay,
       phone_no: i18n.phone_no,
+      pick_a_date: i18n.pick_a_date,
       products_left: i18n.products_left,
       storage_types: i18n.storage_types,
       total: i18n.total,
@@ -200,7 +201,7 @@ const _getOffers = page => {
       cart: cart,
       products: _setProducts(offer, cart),
       delivery_dates: delivery_dates,
-      delivery_date: 0,
+      // delivery_date: 0,
       _vouchers: vouchers,
       _pay_set: {
         _static_total: cart.total,
@@ -240,38 +241,14 @@ const _getOffers = page => {
 Page({
   data: {
     discount: 1,
-    // voucher: {
-    //   amount: 0,
-    //   id: null,
-    // },    
     voucher: {
-      amount: 5,
+      amount: 0,
       id: null,
     },
     delivery_fee: -1,
     free_delivery: false,
-    //__test
-    productstest: [{
-      amount: 2,
-      type: "packs",
-      illustation: {
-        url: "/assets/images/lottery-box.png"
-      },
-      product: {
-        mainPicture: {
-          en: "en",
-          zh: "zh"
-        },
-        name: {
-          en: "en",
-          zh: "zh"
-        }
-      }
-    }],
 
     // TEMP TODO
-    fapiaotest: true,
-    fapiao_content_test: "上海市徐汇区水电路1200弄3号401室上海市徐汇区水电路1200弄3号401室区上海市徐汇区水电路1200弄3号",
     vouchers: [{
         community: "kitchen",
         community2: "",
@@ -312,40 +289,43 @@ Page({
         expire_on: "Tomorrow"
       },
     ],
-    voucher: {
-      community: "kitchen",
-      community2: "",
-      createdAt: "2022/08/12 12:00",
-      price: 1000,
-      amount: 100,
-      amount_before: 1500,
-      expire_on: "In 3 hours"
-    },
-    copybox_judgment: false,
-    copybox_type: {
-      chef: "",
-      cellar: true,
-      pet: "",
-      farmer: "",
-    },
+
+    showCopyBox: false,
     showLottery: true,
+
+    // TEMP
+    // To fill in the real wechat ids
+    copyContent: {
+      cellar: {
+        qrcode: '/assets/images/QRCODE.png',
+        title: app.globalData.i18n.add_cellar_ziko,
+        wechat: 'SimonMawas',
+      },
+      farm: {
+        qrcode: '/assets/images/QRCODE.png',
+        title: app.globalData.i18n.add_farmer_ziko,
+        wechat: 'SimonMawas',
+      },
+      kitchen: {
+        qrcode: '/assets/images/QRCODE.png',
+        title: app.globalData.i18n.add_chef_ziko,
+        wechat: 'SimonMawas',
+      },
+      pet: {
+        qrcode: '/assets/images/QRCODE.png',
+        title: app.globalData.i18n.add_pet_ziko,
+        wechat: 'SimonMawas',
+      },
+    },
   },
 
   onLoad: function (options) {
-    console.log("cart options", options);
-    //  received offerid and community from url here.
-    const {
-      id,
-      community
-    } = options;
-    if (community) this.setData({
-      community
-    });
-  },
-
-  onReady: function () {
-    console.log("copybox_type", this.data.copybox_type);
-
+    const self = this;
+    if (options.community) {
+      self.setData({
+        community: options.community,
+      });
+    }
   },
 
   onShow: function () {
@@ -448,17 +428,15 @@ Page({
     createOrder(this, e.detail.value);
   },
 
-  copyBoxShow: function () {
-    var that = this;
-    that.setData({
-      copybox_judgment: true
+  showCopyBox: function () {
+    this.setData({
+      showCopyBox: true,
     })
   },
 
-  copyBoxHide: function () {
-    var that = this;
-    that.setData({
-      copybox_judgment: false
+  hideCopyBox: function () {
+    this.setData({
+      showCopyBox: false,
     })
   },
 

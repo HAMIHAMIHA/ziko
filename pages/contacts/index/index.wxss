@@ -77,20 +77,15 @@ page {
   text-align: left;
 }
 
-.contact-left .icon-star-gold {
-  font-size: 40rpx;
-  padding-left: 0rpx;
-  padding-bottom: 30rpx;
+.contact-left .icon {
   display: flex;
   align-items: center;
-}
+  width: fit-content;
 
-.contact-left .icon-star-gray {
   font-size: 40rpx;
+
   padding-left: 0rpx;
   padding-bottom: 30rpx;
-  display: flex;
-  align-items: center;
 }
 
 .contact-left .icon-star-gold .default-selection {
