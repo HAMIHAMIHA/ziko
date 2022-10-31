@@ -62,7 +62,7 @@
     </view>
 
     <!-- <view class="detail" bindtap="toSelectVoucher"> -->
-    <view class="detail ziko-special">
+    <!-- <view class="detail ziko-special">
       <text class="detail_label">{{ _t.ziko_special }}</text>
       <view class="nunito_600 detail_result" wx:if="{{ voucher.amount > 0 }}">
         <text class="font_red">-￥{{ voucher.amount }}</text>
@@ -70,7 +70,7 @@
       <view class="nunito_600 detail_result" wx:else>
         <text>{{ _t.available.fst + voucher_count + _t.available.snd }}</text>
       </view>
-    </view>
+    </view> -->
 
     <view class="white-box details_container">
       <view class="detail">
@@ -186,25 +186,42 @@
 
     <!-- TODO -->
     <!-- Available Ziko vouchers -->
-    <view class="white-box ">
-      <view class="gilroy_700 vouchers-title">{{ _t.available_ziko_vouchers }}</view>
+    <view class="white-box">
+      <view class="vouchers-info">
+        <view class="gilroy_700 vouchers-title">{{ _t.available_ziko_vouchers }}</view>
+        <view wx:if="{{ voucher.amount != 0 }}" class="gilroy_700 vouchers-title font_yellow">-￥{{ voucher.amount }}</view>
+      </view>
       <!-- vouchers -->
-      <scroll-view scroll-x="true" wx:if="{{ vouchers.length > 1 }}">
-        <block wx:for="{{ vouchers }}" wx:key="id" wx:for-item="voucher" class="ticket_box">
-          <image src="/assets/images/{{ voucher.community || 'kitchen' }}_ticket.svg" class="ticket_picture">
+      <scroll-view scroll-x="true" wx:if="{{ _vouchers.length > 1 }}">
+        <block wx:for="{{ _vouchers }}" wx:key="id" wx:for-item="voucher" class="ticket_box">
+          <image src="/assets/images/{{ voucher.ticket_type || 'kitchen' }}_ticket.svg" class="ticket_picture">
             <view class="box-content">
               <view class="box-content-left">
-                <view class="black-box gilroy_700">
-                  <text class="ziko-name">{{ _t.ziko }}</text>
-                  <text class="nunito_700 ziko-community ziko-community-{{ voucher.community }}">{{ voucher.community ? ' ' + voucher.community : ' land ' }}</text>
-                  <text class="ziko-community">{{ voucher.community2 ? ' / ' : " " }}</text>
-                  <text class="nunito_700 ziko-community ziko-community-{{ voucher.community2 }}">{{ voucher.community2 ? voucher.community2 : " " }}</text>
+                <view wx:if="{{ voucher.community_list }}" class="black-box gilroy_700">
+                  <block
+                    wx:for="{{ voucher.community_list }}"
+                    wx:for-item="c"
+                    wx:key="index"
+                  >
+                    <block wx:if="{{ index == 0 }}">
+                      <text class="ziko-name">{{ _t.ziko }}</text>
+                      <text class="nunito_700 gradient-text ziko-{{ c.style }}">{{ " " + c.name }}</text>                  
+                    </block>
+
+                    <block wx:else>
+                      <text class="ziko-community">{{' / '}}</text>
+                      <text class="nunito_700 gradient-text ziko-{{ c.style}}">{{ c.name }}</text>
+                    </block>
+                  </block>
+                </view>
+                <view wx:else class="black-box gilroy_700">
+                  <text class="ziko-name">{{ voucher.community }}</text>
                 </view>
                 <view class="nunito_400 received">
-                  <text>{{ _t.received+': ' }}{{ voucher.createdAt }}</text>
-                  <view>{{ _t.expires+': ' }}<text class="expires nunito_500">{{ voucher.expire_on }}</text></view>
+                  <text>{{ _t.received + ': ' }}{{ voucher.createdAt }}</text>
+                  <view>{{ _t.expires + ': ' }}<text class="expires nunito_500 capitalize">{{ voucher.expireIn }}</text>
+                  </view>
                 </view>
-
               </view>
               <view class="box-content-right">
                 <view class="money gilroy_700">¥ {{ voucher.amount }}</view>
@@ -214,24 +231,38 @@
           </image>
         </block>
       </scroll-view>
-      <view wx:if="{{ !vouchers.length > 1 }}">
-        <image src="/assets/images/{{ voucher.community || 'kitchen' }}_ticket.svg" class="ticket_picture ticket_picture-alone">
-          <view class="box-content box-content-alone">
+      <view wx:if="{{ _vouchers.length == 1 }}">
+        <image src="/assets/images/{{ _vouchers[0].ticket_type || 'kitchen' }}_ticket.svg" class="ticket_picture fullWidth" mode="widthFix">
+          <view class="box-content">
             <view class="box-content-left">
-              <view class="black-box black-box-alone gilroy_700">
-                <text class="ziko-name">{{ _t.ziko }}</text>
-                <text class="nunito_700 ziko-community ziko-community-{{ voucher.community }}">{{ voucher.community ? ' ' + voucher.community : ' land ' }}</text>
-                <text class="ziko-community">{{ voucher.community2 ? ' / ' : " " }}</text>
-                <text class="nunito_700 ziko-community ziko-community-{{ voucher.community2 }}">{{ voucher.community2 ? voucher.community2 : " " }}</text>
+              <view wx:if="{{ _vouchers[0].community_list }}" class="black-box gilroy_700">
+                <block
+                  wx:for="{{ _vouchers[0].community_list }}"
+                  wx:for-item="c"
+                  wx:key="index"
+                >
+                  <block wx:if="{{ index == 0 }}">
+                    <text class="ziko-name">{{ _t.ziko }}</text>
+                    <text class="nunito_700 gradient-text ziko-{{ c.style }}">{{ " " + c.name }}</text>                  
+                  </block>
+
+                  <block wx:else>
+                    <text class="ziko-community">{{' / '}}</text>
+                    <text class="nunito_700 gradient-text ziko-{{ c.style}}">{{ c.name }}</text>
+                  </block>
+                </block>
+              </view>
+              <view wx:else class="black-box gilroy_700">
+                <text class="ziko-name">{{ _vouchers[0].community }}</text>
               </view>
               <view class="nunito_400 received">
-                <text>{{ _t.received + ': ' }}{{ voucher.createdAt }}</text>
-                <view>{{ _t.expires + ': ' }}<text class="expires nunito_500">{{ voucher.expire_on }}</text></view>
+                <text>{{ _t.received + ': ' }}{{ _vouchers[0].createdAt }}</text>
+                <view>{{ _t.expires + ': ' }}<text class="expires nunito_500 capitalize">{{ _vouchers[0].expireIn }}</text></view>
               </view>
 
             </view>
             <view class="box-content-right">
-              <view class="money gilroy_700">¥ {{ voucher.amount }}</view>
+              <view class="money gilroy_700">¥ {{ _vouchers[0].amount }}</view>
               <view class="circle-check"></view>
             </view>
           </view>

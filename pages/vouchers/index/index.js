@@ -8,9 +8,9 @@ const {
 } = require("../../../utils/constants.js");
 const {
   formatDate,
-  formatTime
+  formatTime,
+  formatCountDown,
 } = require("../../../utils/util.js");
-const {formatCountDown} = require("../../../utils/util");
 
 const app = getApp();
 const _voucher_status = ['all', 'unused', 'used'];
@@ -66,7 +66,7 @@ const _getVouchers = (page, filters) => {
       voucher.status = v.status; /* validated, used, expired */
       voucher.createdAt = `${formatDate('yyyy/mm/dd', v.createdAt)} ${formatTime(v.createdAt)}`;
       // voucher.expirationDate = formatDate('yyyy-mm-dd', v.expirationDate);
-      voucher.expirationDate = formatCountDown(v.expirationDate);
+      voucher.expireIn = formatCountDown(v.expirationDate);
       voucher.order = v.order;
       voucher.reason = app.globalData.i18n.voucher_source[v.reason];
 
@@ -91,9 +91,9 @@ const _getVouchers = (page, filters) => {
         if (v.communities.find(c => communities[c] === "farm")) {
           community_list.unshift({
             name: app.globalData.i18n.community.farm,
-            style: "garden"
+            style: "farm"
           });
-          ticket_type = "garden";
+          ticket_type = "farm";
         }
         if (v.communities.find(c => communities[c] === "cellar")) {
           community_list.unshift({
@@ -125,7 +125,6 @@ const _getVouchers = (page, filters) => {
     vouchers.sort((v1, v2) => {
       return v2.createdAt - v1.createdAt
     })
-    // console.log("vouchers", vouchers)
 
     page.setData({
       vouchers
@@ -140,7 +139,7 @@ const _getVouchers = (page, filters) => {
   }
 
   showLoading(true);
-  app.api.getNotExpiredVouchers(status, filter).then(callback);
+  app.api.getVouchers(status, filter).then(callback);
 }
 const _resetDateFilters = (page, new_list) => {
   let date_filter = page.selectComponent('#list_date_filters');

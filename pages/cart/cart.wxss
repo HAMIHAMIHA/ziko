@@ -14,6 +14,10 @@ page {
   color: #FF4040;
 }
 
+.font_yellow {
+  color: #D4B106;
+}
+
 /* Error for delivery date */
 .error-field-2 .field-2 {
   color: #FF4040;
@@ -250,6 +254,12 @@ page {
 
 }
 
+.vouchers-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .vouchers-title {
   padding: 30rpx 0;
 }
@@ -265,15 +275,19 @@ scroll-view {
 
 /* voucher*/
 .ticket_picture {
+  position: relative;
   width: 600rpx;
   height: 196rpx;
-  padding-bottom: 40rpx;
-  position: relative;
-  margin-right: 30rpx;
+
+  margin-bottom: 40rpx;
 }
 
-.ticket_picture-alone {
-  width: 690rpx;
+.ticket_picture+.ticket_picture {
+  margin-left: 30rpx;
+}
+
+.fullWidth {
+  width: 100%;
 }
 
 .box-content {
@@ -285,12 +299,12 @@ scroll-view {
   justify-content: space-between;
 }
 
-.box-content-alone {
-  width: 690rpx;
+.fullWidth .box-content {
+  width: 100%;
 }
 
 .box-content-left {
-  width: 460rpx;
+  width: 67%;
 }
 
 .black-box {
@@ -305,33 +319,8 @@ scroll-view {
   padding-top: 10rpx;
 }
 
-.black-box-alone {
+.ticket_picture-alone .black-box {
   margin: 4rpx 0 0 4rpx;
-}
-
-.ziko-community-kitchen {
-  background-image: -webkit-linear-gradient(-120deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.ziko-community-pet {
-  background-image: -webkit-linear-gradient(-120deg, #FFB65A 100%,
-      #FF7233 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.ziko-community-garden {
-  background-image: -webkit-linear-gradient(-120deg, #97F082 100%, #11BE67 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.ziko-community-cellar {
-  background-image: -webkit-linear-gradient(-120deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .received {
@@ -349,7 +338,7 @@ scroll-view {
 
 .box-content-right {
   text-align: center;
-  width: 230rpx;
+  width: 33%;
 }
 
 .money {
@@ -360,23 +349,18 @@ scroll-view {
 .circle-check {
   width: 48rpx;
   height: 48rpx;
-  margin-top: 18rpx;
-  margin-left: 80rpx;
+
   background-color: transparent;
   border-radius: 100%;
-  border: 3rpx solid rgb(255, 255, 255, 0.6)
-}
+  border: 3rpx solid rgb(255, 255, 255, 0.6);
 
-.circle-check {
-  margin-left: 98rpx;
-
+  margin: 24rpx auto;
 }
 
 /* end of voucher */
 
 .contact-button {
   background-color: black !important;
-  width: 480rpx !important;
 }
 
 .bottom-pay {

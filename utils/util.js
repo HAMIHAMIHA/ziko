@@ -17,9 +17,9 @@ export const formatDate = (format, date) => {
   const day = formatNumber(date.getDate())
 
   let new_date = date_str.replace('yyyy', year)
-                    .replace('mth', getApp().globalData.i18n.month[month])
-                    .replace('mm', formatNumber(month))
-                    .replace('dd', day);
+    .replace('mth', getApp().globalData.i18n.month[month])
+    .replace('mm', formatNumber(month))
+    .replace('dd', day);
 
   return new_date;
 }
@@ -33,6 +33,7 @@ export const formatTime = dateLong => {
   return [hour, minute].map(formatNumber).join(':')
 }
 
+// For vouchers
 export const formatCountDown = dateLong => {
   console.log("datelong", dateLong)
   const date = new Date(dateLong) - new Date();
@@ -40,12 +41,12 @@ export const formatCountDown = dateLong => {
   console.log('date', date)
   // Time calculations for days, hours, minutes and seconds
   const days = Math.floor(date / (1000 * 60 * 60 * 24));
-  const year = Math.floor(days/365);
-  const months = Math.floor(days/30);
+  const year = Math.floor(days / 365);
+  const months = Math.floor(days / 30);
   const hours = Math.floor((date % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((date % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((date % (1000 * 60)) / 1000);
-  console.log(year, months, days, hours, minutes, seconds, 'format countdown',)
+  console.log(year, months, days, hours, minutes, seconds, 'format countdown', )
 
   if (year > 0) {
     if (year === 1) return `${_i18n.in} ${year} ${_i18n.years}`;
@@ -62,13 +63,6 @@ export const formatCountDown = dateLong => {
   if (hours > 0) {
     return `${_i18n.in} ${hours} ${_i18n.long_hours}`;
   }
-  // if (days || hours) time.push(`${formatNumber(hours)}:${formatNumber(minutes)}`);
-// if (days || hours) time.push(`${formatNumber(hours)}${_i18n.hours}`);
-//   if ((days && hours) || minutes) time.push(`${formatNumber(minutes)}`);
-// if ((days && hours) || minutes) time.push(`${formatNumber(minutes)}${_i18n.minutes}`);
-  // time.push(`${formatNumber(seconds)}${_i18n.seconds}`);
-
-
 }
 
 export const formatTimer = dateLong => {
@@ -89,7 +83,7 @@ export const formatTimer = dateLong => {
   }
   if (days || hours) time.push(`${hours}${_i18n.hours}`);
   if ((days && hours) || minutes) time.push(`${minutes}${_i18n.minutes}`);
-    
+
   return time.join(" ");
 }
 
@@ -112,8 +106,8 @@ export const formatWeekDate = dateLong => {
     day: day,
     month: mth,
     date: date_val,
-    time: getApp().db.get('language') == 'zh' ?  `${unit} ${time}` : `${time} ${unit}`,
-    date_str: getApp().db.get('language') == 'zh' ? `${day} ${mth}${date_val}日` : `${day} ${date_val} ${mth},` ,
+    time: getApp().db.get('language') == 'zh' ? `${unit} ${time}` : `${time} ${unit}`,
+    date_str: getApp().db.get('language') == 'zh' ? `${day} ${mth}${date_val}日` : `${day} ${date_val} ${mth},`,
     timestamp: date.setHours(0, 0, 0, 0)
   }
 }
@@ -122,7 +116,7 @@ export const mapDeliveryDates = dates => {
   let current_month = '';
 
   dates = dates.sort();
-  return dates.map( date => {
+  return dates.map(date => {
     let res = '';
 
     let d = new Date(date);
@@ -146,14 +140,13 @@ export const _checkMediaType = type => {
     return "video";
   }
 }
-export const truncateText =  (str, format, length) => {
+export const truncateText = (str, format, length) => {
   if (typeof str !== "string") return;
   let index = 0;
   for (let i = 0; i < length; i++) {
-    const nextIndex = str?.indexOf( format, index + 1);
+    const nextIndex = str?.indexOf(format, index + 1);
     if (nextIndex === -1) return str;
     index = nextIndex;
   }
   return str.substring(0, index).padEnd(index + 3, ".");
 }
-

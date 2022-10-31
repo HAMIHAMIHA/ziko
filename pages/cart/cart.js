@@ -14,7 +14,9 @@ const {
   communities
 } = require("../../utils/constants");
 const {
-  formatDate
+  formatDate,
+  formatTime,
+  formatCountDown,
 } = require("../../utils/util.js");
 
 const {
@@ -142,6 +144,61 @@ const _setProducts = (offer, cart) => {
 const _getOffers = page => {
   let offer;
   let callback = res => {
+    res.forEach(voucher => {
+      if (voucher.status === 'pending' || voucher.status === 'declined') return;
+
+      voucher.createdAt = `${formatDate('yyyy/mm/dd', voucher.createdAt)} ${formatTime(voucher.createdAt)}`;
+      voucher.expireIn = formatCountDown(voucher.expirationDate);
+
+      // Check if voucher expired
+      if (voucher.expirationDate > new Date()) {
+        voucher.status = "expired";
+      }
+
+      // Available for community
+      let community_list = [];
+      let ticket_type = "kitchen";
+      if (voucher.communities.length === 4) voucher.community = app.globalData.i18n.community.all
+      else {
+        if (voucher.communities.find(c => communities[c] === "pet")) {
+          community_list.unshift({
+            name: app.globalData.i18n.community.pet,
+            style: "pet"
+          });
+          ticket_type = "pet";
+        }
+        if (voucher.communities.find(c => communities[c] === "farm")) {
+          community_list.unshift({
+            name: app.globalData.i18n.community.farm,
+            style: "farm"
+          });
+          ticket_type = "farm";
+        }
+        if (voucher.communities.find(c => communities[c] === "cellar")) {
+          community_list.unshift({
+            name: app.globalData.i18n.community.cellar,
+            style: "cellar"
+          });
+          ticket_type = "cellar";
+        }
+        if (voucher.communities.find(c => communities[c] === "kitchen")) {
+          community_list.unshift({
+            name: app.globalData.i18n.community.kitchen,
+            style: "kitchen"
+          });
+          ticket_type = "kitchen";
+        }
+
+        voucher.community_list = community_list;
+      }
+
+      voucher.ticket_type = ticket_type;
+    });
+
+    // TEMP TEST
+    // let voucherTest = [res[0]];
+    // vouchers = voucherTest;
+
     vouchers = res;
 
     community = offer.community.id;
@@ -247,48 +304,6 @@ Page({
     },
     delivery_fee: -1,
     free_delivery: false,
-
-    // TEMP TODO
-    vouchers: [{
-        community: "kitchen",
-        community2: "",
-        createdAt: "2022/08/12 12:00",
-        amount: 100,
-        expire_on: "In 3 hours"
-      }, {
-        community: "kitchen",
-        community2: "pet",
-        createdAt: "2022/11/11 12:00",
-        amount: 100,
-        expire_on: "In 3 hours"
-      }, {
-        community: "pet",
-        community2: "",
-        createdAt: "2022/11/11 12:00",
-        amount: 150,
-        expire_on: "In 3 hours"
-      }, {
-        community: "cellar",
-        community2: "garden",
-        createdAt: "2022/11/11 12:00",
-        amount: 100,
-        expire_on: "Tomorrow"
-      },
-      {
-        community: "garden",
-        community2: "",
-        createdAt: "2022/11/11 12:00",
-        amount: 100,
-        expire_on: "Tomorrow"
-      },
-      {
-        community: "",
-        community2: "",
-        createdAt: "2022/11/11 12:00",
-        amount: 120,
-        expire_on: "Tomorrow"
-      },
-    ],
 
     showCopyBox: false,
     showLottery: true,
