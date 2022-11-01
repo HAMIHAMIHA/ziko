@@ -106,12 +106,13 @@ page {
 }
 
 .cartdetail {
-  padding-top: 30rpx;
+  margin-top: 30rpx;
   font-size: 28rpx;
 }
 
-.cart_detail_input {
+.detail_input {
   flex: 0 0 68%;
+  width: 100%;
   height: 78rpx;
   display: flex;
   /* border-bottom: 2rpx solid #EBEBEB; */
@@ -119,36 +120,37 @@ page {
   box-sizing: border-box;
 }
 
-.cart_detail_input .input {
+.detail_input .input {
   width: 100%;
   margin: auto;
   border: 0;
 }
 
-.cart_detail_input .picker {
+.detail_input .picker {
   position: relative;
 }
 
-.cart_detail_input.input_goto .input {
+.detail_input.input_goto .input {
   height: 100%;
 }
 
-.cart_detail_input .picker_text {
+.detail_input .picker_text {
   width: calc(100% - 24rpx - 16rpx);
   height: 64rpx;
 }
 
-.cart_detail_input .picker text {
+.detail_input .picker text {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.cart_detail_input .picker .content {
+.detail_input .picker .content {
+  width: 95%;
   left: 0;
 }
 
-.cart_detail_input .picker .icon {
+.detail_input .picker .icon {
   right: 0;
 }
 
@@ -355,6 +357,15 @@ scroll-view {
   border: 3rpx solid rgb(255, 255, 255, 0.6);
 
   margin: 24rpx auto;
+}
+
+.circle-check.check {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.circle-check .icon.icon-check {
+  line-height: 48rpx;
+  color: #1F1F1F;
 }
 
 /* end of voucher */

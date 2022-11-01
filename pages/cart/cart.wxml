@@ -102,18 +102,19 @@
       <!-- ADDRESS -->
       <view class="cartdetail address field-0">
         <view class="detail_label">{{ _t.address }}</view>
-        <view class="cart_detail_input input_goto">
+        <view class="detail_input input_goto">
           <navigator class="input picker" hover-class="none" url="{{ _routes.address + '?action=select&selected_address=' + address_selected }}">
-            <text class="content">{{ _t.address_type[user.addresses[address_selected].type] }}</text>
+            <!-- <text class="content">{{ _t.address_type[user.addresses[address_selected].type] }}</text> -->
+            <text class="content ellipsis">{{ user.addresses[address_selected].detailedAddress }}</text>
             <text class="icon icon-arrow-right"></text>
           </navigator>
-          <text class="detail_note"><text class="detail_note_content ellipsis">{{ user.addresses[address_selected].detailedAddress }}</text></text>
+          <!-- <text class="detail_note"><text class="detail_note_content ellipsis">{{ user.addresses[address_selected].detailedAddress }}</text></text> -->
         </view>
       </view>
 
       <view class="cartdetail field-1">
         <text class="detail_label">{{ _t.contact_person }}</text>
-        <view class="cart_detail_input input_goto">
+        <view class="detail_input input_goto">
           <navigator class="input picker" hover-class="none" url="{{ _routes.contacts + '?action=select&selected_contact=' + contact_selected }}">
             <view>
               <view>{{ user.contacts[contact_selected].name }}</view>
@@ -127,7 +128,7 @@
       <!-- PHONE NO -->
       <!-- <view class="cartdetail">
         <text class="detail_label">{{ _t.phone_no }}</text>
-        <view class="cart_detail_input">
+        <view class="detail_input">
           <input
             class="input"
             type="text"
@@ -139,7 +140,7 @@
       <!-- SPECIAL REQUESTS -->
       <view class="cartdetail special_requests">
         <text class="detail_label">{{ _t.special_requests }}</text>
-        <view class="cart_detail_input">
+        <view class="detail_input">
           <input class="input" name="comment" placeholder="{{ _t.anything_else_we }}" type="text" />
         </view>
       </view>
@@ -194,7 +195,7 @@
       <!-- vouchers -->
       <scroll-view scroll-x="true" wx:if="{{ _vouchers.length > 1 }}">
         <block wx:for="{{ _vouchers }}" wx:key="id" wx:for-item="voucher" class="ticket_box">
-          <image src="/assets/images/{{ voucher.ticket_type || 'kitchen' }}_ticket.svg" class="ticket_picture">
+          <image src="/assets/images/{{ voucher.ticket_type || 'kitchen' }}_ticket.svg" class="ticket_picture" bindtap="selectVoucher" data-index="{{ index }}">
             <view class="box-content">
               <view class="box-content-left">
                 <view wx:if="{{ voucher.community_list }}" class="black-box gilroy_700">
@@ -225,14 +226,16 @@
               </view>
               <view class="box-content-right">
                 <view class="money gilroy_700">¥ {{ voucher.amount }}</view>
-                <view class="circle-check"></view>
+                <view class="circle-check{{ voucher_selected == index ? ' check' : ''}}">
+                  <text wx:if="{{ voucher_selected == index }}" class="icon icon-check"></text>
+                </view>
               </view>
             </view>
           </image>
         </block>
       </scroll-view>
       <view wx:if="{{ _vouchers.length == 1 }}">
-        <image src="/assets/images/{{ _vouchers[0].ticket_type || 'kitchen' }}_ticket.svg" class="ticket_picture fullWidth" mode="widthFix">
+        <image src="/assets/images/{{ _vouchers[0].ticket_type || 'kitchen' }}_ticket.svg" class="ticket_picture fullWidth" mode="widthFix" bindtap="selectVoucher" data-index="0">
           <view class="box-content">
             <view class="box-content-left">
               <view wx:if="{{ _vouchers[0].community_list }}" class="black-box gilroy_700">
@@ -263,7 +266,9 @@
             </view>
             <view class="box-content-right">
               <view class="money gilroy_700">¥ {{ _vouchers[0].amount }}</view>
-              <view class="circle-check"></view>
+              <view class="circle-check{{ voucher_selected == 0 ? ' check' : ''}}">
+                <text wx:if="{{ voucher_selected == 0 }}" class="icon icon-check"></text>
+              </view>
             </view>
           </view>
         </image>
@@ -351,7 +356,7 @@
 </view>
 <!-- End of Copy box -->
 
-<view hidden='{{ showLottery }}'>
+<!-- <view hidden='{{ showLottery }}'>
   <new-lottery bind:deliver="hideLottery"></new-lottery>
-</view>
-<!-- <lottery-draw id="lottery_modal"></lottery-draw> -->
+</view> -->
+<lottery-draw id="lottery_modal"></lottery-draw>

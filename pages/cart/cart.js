@@ -111,6 +111,7 @@ const _setPageDefaultItems = page => {
     }
   })
 }
+
 // Get area list from db
 const _getAddressAreas = () => {
   app.api.getAreas().then(res => {
@@ -144,8 +145,12 @@ const _setProducts = (offer, cart) => {
 const _getOffers = page => {
   let offer;
   let callback = res => {
+    community = offer.community.id;
+    offer.community = communities[offer.community.id];
     res.forEach(voucher => {
       if (voucher.status === 'pending' || voucher.status === 'declined') return;
+
+      if (voucher.communities.findIndex(c => communities[c] === offer.community) == -1) return;
 
       voucher.createdAt = `${formatDate('yyyy/mm/dd', voucher.createdAt)} ${formatTime(voucher.createdAt)}`;
       voucher.expireIn = formatCountDown(voucher.expirationDate);
@@ -193,16 +198,17 @@ const _getOffers = page => {
       }
 
       voucher.ticket_type = ticket_type;
+      vouchers.push(voucher);
     });
 
     // TEMP TEST
     // let voucherTest = [res[0]];
     // vouchers = voucherTest;
 
-    vouchers = res;
+    // vouchers = res;
 
-    community = offer.community.id;
-    offer.community = communities[offer.community.id];
+    // community = offer.community.id;
+    // offer.community = communities[offer.community.id];
     offer = packProductDetail(offer);
 
     let delivery_dates = [];
@@ -286,6 +292,28 @@ const _getOffers = page => {
       OfferRules.checkOfferTicket(page, offer);
     }
 
+    // Prefill default address or contact info
+    if (page.data.user?.addresses.length > 0) {
+      for (const i in page.data.user.addresses) {
+        if (page.data.user.addresses[i].default == true) {
+          page.setData({
+            address_selected: i,
+          })
+          break;
+        }
+      }
+    }
+    if (page.data.user?.contacts.length > 0) {
+      for (const i in page.data.user.contacts) {
+        if (page.data.user.contacts[i].default == true) {
+          page.setData({
+            contact_selected: i,
+          })
+          break;
+        }
+      }
+    }
+
     showLoading(false);
   }
   app.api.getOffers(`?id=${page.options.id}`).then(res => {
@@ -365,6 +393,7 @@ Page({
     _getAddressAreas();
 
     self.setData({
+      voucher_selected: -1,
       address_selected: -1,
       contact_selected: -1
     })
@@ -480,5 +509,28 @@ Page({
     this.setData({
       showLottery: true
     })
-  }
+  },
+
+  selectVoucher: function (e) {
+    const self = this;
+    const index = parseInt(e.currentTarget.dataset.index);
+
+    if (self.data.voucher_selected != index) {
+      self.setData({
+        voucher_selected: index,
+        voucher: {
+          amount: self.data._vouchers[index].amount,
+          id: self.data._vouchers[index].id,
+        },
+      })      
+    } else {
+      self.setData({
+        voucher_selected: -1,
+        voucher: {
+          amount: 0,
+          id: null,
+        },
+      })     
+    }
+  },
 })
