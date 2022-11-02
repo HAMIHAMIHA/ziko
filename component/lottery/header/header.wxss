@@ -60,7 +60,7 @@
 .progress-bar__values .progress-axis:before {
   content: "";
   width: 2px;
-  height: 30rpx;
+  height: 26rpx;
   margin: auto auto 8rpx auto;
   padding-top: 4rpx;
   background: #FFFFFF;
