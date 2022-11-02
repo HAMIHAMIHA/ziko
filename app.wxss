@@ -229,7 +229,7 @@ button:not([size=mini]).btn-primary {
 .container-btn-bottom .btn-bottom button {
   position: absolute;
   left: 30rpx;
-  bottom: calc(48rpx + var(--env-));
+  bottom: calc(160rpx + var(--env-));
 }
 /* End of Button Bottom */
 
@@ -1222,7 +1222,9 @@ button:not([size=mini]).float-contact_container {
 .product_container .product-price+.product-price,
 .product-info_container .product-price+.product-price {
   padding-left: 8rpx;
-  color: #626778;
+  /* color: #626778; */
+  font-weight: 300;
+  font-size: 36rpx;
   text-decoration: line-through;
 }
 
@@ -1748,8 +1750,7 @@ button:not([size=mini]).float-contact_container {
 
 .product-next-info-target {
   font-size: 20rpx;
-  line-height: 28rpx;
-
+  line-height: 44rpx;
   margin-left: 2rpx;
 }
 /* End of Product Next lottery or price info */

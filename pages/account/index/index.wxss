@@ -384,7 +384,7 @@ button:not([size=mini]).langauge {
   line-height: 34rpx;
 }
 
-.clicked-chef {
+.clicked-kitchen {
   background: linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 55.51%, #EFD486 110.57%, #FFE592 116.73%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%) !important;
 }
 
@@ -392,9 +392,10 @@ button:not([size=mini]).langauge {
   background: linear-gradient(205.85deg, #FFB65A -253.16%, #FF7233 259.13%) !important;
 }
 
-.clicked-farmer {
+.clicked-farm {
   background: linear-gradient(120.73deg, #97F082 -280.08%, #11BE67 141.6%) !important;
 }
+
 
 .clicked-cellar {
   background: linear-gradient(113.45deg, #C5CACE -6.01%, #8C8F91 -2.7%, #A4A8AB 0.17%, #838688 5.38%, #888C8E 42.65%, #919699 55.77%, #A4AAAF 101.33%, #BBC3CA 116.45%, #BAC3C8 120.57%, #BDC5C9 126.74%, #D9D9D9 163.79%, #DFDEDE 169.96%, #F0EDED 179.22%, #FFF9F9 182.31%, #F5F5F4 203.92%, #FFFFFF 216.27%, #F7F7F7 228.62%, #EAEAEA 237.88%, #CBCBCD 268.75%, #C3CCD3 287.27%, #A4A9AC 299.62%) !important;

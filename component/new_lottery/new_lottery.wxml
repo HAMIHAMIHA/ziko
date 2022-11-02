@@ -3,7 +3,7 @@
   <view wx:if="{{ completed[com_index]=='undo' }}">
     <image class="lottery-image-0 lottery-image-{{ type[index] }}" src="/assets/images/{{ type[index] }}_lottery.svg" mode="aspectFill">
     <view class="x" bindtap="hide_lottery_send">
-      <text class="icon icon-x icon-x-height" ></text>
+      <text class="icon icon-x icon-x-height icon-color-{{ type[index] }}" ></text>
     </view>
     </image>
     <view class="title-text">

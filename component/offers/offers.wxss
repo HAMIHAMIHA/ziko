@@ -58,6 +58,7 @@
 
 .offer-banner .indicator {
   bottom: 20rpx;
+  padding: 5rpx 25rpx;
 }
 
 /* End of Offer Banner */
@@ -211,7 +212,7 @@
 
 .offer-specials .icon {
   margin-right: -4rpx;
-  padding: 10rpx;
+  padding: 5rpx;
   background: #ffdb59;
   color: #252831;
   border-radius: 50%;
