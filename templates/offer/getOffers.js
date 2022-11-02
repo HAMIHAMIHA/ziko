@@ -100,6 +100,7 @@ export const _getTranslations = (page, community) => {
       items: i18n.items,
       items_unit: i18n.items_unit,
       orders: i18n.orders,
+      order_unit: i18n.order_unit,
       rmb: i18n.rmb,
       ticket: i18n.ticket,
       take_a_chance: i18n.take_a_chance

@@ -5,7 +5,7 @@
   <!-- Lottery Alert -->
   <view class="gilroy_700 uppercase flex-center icon_container lottery-alert" wx:if="{{ next_lottery }}">
     <view class="icon icon-flash"></view>
-    <view class="icon_text">{{ _t.next_lottery_in }}{{ next_lottery.remaining }} {{ _t.offer_special_names[next_lottery.text] }}</view>
+    <view class="icon_text">{{ _t.next_lottery_in }}{{ _bourse_info.remaining }} {{ _t.offer_special_names[next_lottery.text] }}</view>
   </view>
   <!-- End of Lottery Alert -->
 
@@ -99,15 +99,17 @@
       <!-- new progress block  -->
       <view class="new-progress">
         <view class="progress-top">
-          <view class="inline-block left-box">
+          <!-- TODO -->
+          <view class="inline-block left-box" style="opacity: 0;">
             <view class="yellow-top">{{ _t.lottery_tickets+' X2' }}</view>
             <view class="grey-bottom">
               <text class="ticket">10% {{ _t.off }}</text>
               <text class="ticket">5% {{ _t.off }}</text>
             </view>
           </view>
+
           <view class="inline-block right-box">
-            {{ _t.next_price_in }} {{ next_lottery.remaining }}
+            {{ _t.next_price_in }} {{ _bourse_info.remaining }}
             <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ _t.orders }}</text>
             <text wx:else>{{ _t.offer_special_names.items_sold }}</text>
             : <text class="grey">¥{{ _bourse_info.nextPrice }}</text>

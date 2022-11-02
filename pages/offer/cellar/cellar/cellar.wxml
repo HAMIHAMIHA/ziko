@@ -153,7 +153,11 @@
     >
       {{ _t.recipes }}
     </view>
-    <view class="tabbar_highlighter {{ _setting.currentTab }}" animation="{{ _setting.animate.highlight }}"></view>
+    <view
+      class="tabbar_highlighter {{ _setting.currentTab }}"
+      animation="{{ _setting.animate.highlight }}"
+      style="width: {{ _offer.miniprogram.packs.length > 0 ? '33%' : '50%' }};{{ _offer.miniprogram.packs.length == 0 && _setting.currentTab == 'recipe' ? 'transform: translateX(100%) !important;' : '' }}"
+    ></view>
   </view>
   <!-- End of Offer Tabbar -->
 
@@ -175,7 +179,7 @@
           ></template>
         </view>
 
-        <view class="offer-group offer-packs" wx:if="{{ _offer.miniprogram.packs.length > 0 }}" mark:type="packs">
+        <view class="offer-group offer-packs" wx:if="{{ _offer.miniprogram.packs.length > 0 }}" mark:type="packs" id="packs">
           <view class="uppercase title">
             <text class="gilroy_500">{{ _t.our_selected_packs.fst }}</text>
             <text class="gilroy_700">{{ _t.our_selected_packs.snd }}</text>
@@ -190,7 +194,11 @@
         <!-- End of Offer Product List -->
 
         <!-- Offer Specials -->
-        <view class="offer-specials ziko-{{ _offer.community }}" wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}">
+        <view
+          wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}"
+          class="offer-specials ziko-{{ _offer.community }}"
+          id="specials"
+        >
           <view class="offer-specials_title">
             <view class="icon icon-ziko-special"></view>
           </view>
@@ -216,7 +224,11 @@
         <!-- End of Offer Specials -->
 
         <!-- Lottery -->
-        <view class="offer-lotteries cellar-lotteries" wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}">
+        <view
+          wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}"
+          class="offer-lotteries cellar-lotteries"
+          id="lottery"
+        >
           <view class="lottery_regular">
             <lottery-header lottery="{{ _offer.miniprogram.lottery }}" _t="{{ _t_lottery }}" _offer="{{ _offer }}"></lottery-header>
             <lottery-cellar _current_user="{{ _current_user }}" _offer="{{ _offer }}" _product_names="{{ _product_names }}" _t="{{ _t_prize }}" offer_page="true" id="lottery_list"></lottery-cellar>

@@ -92,7 +92,7 @@ Page({
 
     let nextBourseInfo = bourses.find(b => b.unlocked == false);
     let currentBourseInfo = bourses.slice().reverse().find(b => b.unlocked == true) ? bourses.slice().reverse().find(b => b.unlocked == true) : bourses[0];
-    let currentProgress = Math.round((offer.sold - currentBourseInfo.from) / currentBourseInfo.to * 100);
+    let currentProgress = Math.round((offer.sold - currentBourseInfo.from) / (currentBourseInfo.to - currentBourseInfo.from) * 100);
 
     self.setData({
       _bourse_info: {
@@ -102,6 +102,7 @@ Page({
         bg_color: `linear-gradient(90deg, ${ bg_list.join(', ') })`,
         nextPrice: nextBourseInfo.unitPrice,
         currentPrice: currentBourseInfo.unitPrice,
+        remaining: currentBourseInfo.to - offer.sold,
       }
     })
 

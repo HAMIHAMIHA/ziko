@@ -202,6 +202,9 @@ export const checkOfferTicket = (page, offer) => {
     spend_for: (condition) => {
       return _checkSpent(condition);
     },
+    order: (condition) => {
+      return 1;
+    },
   }
 
   let total_tickets = 0;

@@ -82,7 +82,7 @@ export const formatTimer = dateLong => {
   if (days || hours) time.push(`${hours}${_i18n.hours}`);
   if ((days && hours) || minutes) time.push(`${minutes}${_i18n.minutes}`);
 
-  return time.join(" ");
+  return time.join(":");
 }
 
 export const formatWeekDate = dateLong => {
