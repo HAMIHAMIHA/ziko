@@ -9,6 +9,10 @@ const {
 } = require("../../../utils/util.js");
 const Offers = require('../../../templates/offer/getOffers.js');
 
+const {
+  getRulePrice
+} = require("../../../templates/offer/offerRules");
+
 const app = getApp();
 let _refresh_data = true,
   _leave_triggered = false;
@@ -203,12 +207,12 @@ const _setOffers = (page) => {
 
       // Check for and Change all free fall product price 
       if (offer.type === "free_fall" && p.freeFall && p.freeFall.quantityTrigger) {
-        Offers.getRulePrice("free_fall", offer.id, p);
+        getRulePrice("free_fall", offer.id, p);
       }
 
       // Check for multiple price
       if (offer.type === "multiple_items" && p.multipleItem && p.multipleItem.length > 0) {
-        Offers.getRulePrice("multiple", offer.id, p)
+        getRulePrice("multiple", offer.id, p)
       }
     })
 

@@ -1,4 +1,4 @@
-<!-- <wxs module="fixDecimals" src="/utils/fixDecimals.wxs"></wxs> -->
+<wxs module="fixDecimals" src="/utils/fixDecimals.wxs"></wxs>
 
 <view class="container container-grey container-btn-bottom {{ error }}">
   <form bindsubmit="pay">
@@ -75,8 +75,7 @@
     <view class="white-box details_container">
       <view class="detail">
         <text class="detail_label delivery-fee">{{ _t.delivery }}</text>
-        <!-- <text class="detail_result">{{ free_delivery || delivery_fee === 0 ? _t.free_delivery : delivery_fee > 0 ? '¥' + delivery_fee : '' }}</text> -->
-        <text class="detail_result">{{ free_delivery || delivery_fee === 0 ? _t.free_delivery : delivery_fee > 0 ? '¥' + delivery_fee : '¥10' }}</text>
+        <text class="detail_result">{{ free_delivery || delivery_fee === 0 ? _t.free_delivery : delivery_fee > 0 ? '¥' + delivery_fee : '' }}</text>
       </view>
 
       <view class="detail field-2 delivery-date">
@@ -186,9 +185,8 @@
       </view>
     </view>
 
-    <!-- TODO -->
     <!-- Available Ziko vouchers -->
-    <view class="white-box">
+    <view wx:if="{{ _vouchers.length > 0 }}" class="white-box">
       <view class="vouchers-info">
         <view class="gilroy_700 vouchers-title">{{ _t.available_ziko_vouchers }}</view>
         <view wx:if="{{ voucher.amount != 0 }}" class="gilroy_700 vouchers-title font_yellow">-￥{{ voucher.amount }}</view>
@@ -303,11 +301,8 @@
       <view class="nunito_700 cartdetail-flex">
         <view class="total-content">
           <view class="detail_label nunito_500 text-right">{{ _t.total }}</view>
-          <!-- <text class="detail_result">¥{{ fixDecimals.toFix((_pay_set.finalFee - voucher.amount) * discount) }}</text> -->
-          <!--          <text class="detail_result_before">¥{{ voucher.amount_before }}</text>-->
           <text class="detail_result_before">¥{{ _pay_set.finalFee + _pay_set.reducedTotal }}</text>
-          <!--          <text class="detail_result">¥{{ voucher.price }}</text>-->
-          <text class="detail_result">¥{{ _pay_set.finalFee }}</text>
+          <text class="detail_result">¥{{ fixDecimals.toFix((_pay_set.finalFee - voucher.amount) * discount) }}</text>
         </view>
         <view class="pay-button">
           <button class="nunito_600 disabled" wx:if="{{ _pay_set.single && _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.single }}">

@@ -102,6 +102,11 @@ const _generateUserAddress = (page, action, new_address) => {
     addresses.splice(addr_index, 1);
   } else {
     if (page.options.id) {
+      if (new_address.default == true) {
+        for (const i in addresses) {
+          addresses[i].default = false;
+        }
+      }
       addresses[page.data._count] = new_address;
     } else {
       if (addresses && addresses.length > 0) {

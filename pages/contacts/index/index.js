@@ -11,6 +11,8 @@ const _getUserInfo = async page => {
   page.setData({
     contacts: customer.contacts
   })
+
+  showLoading(false);
 }
 
 Page({
@@ -53,7 +55,6 @@ Page({
     // Get user info
     showLoading(true);
     _getUserInfo(self);
-    showLoading(false);
 
     // Set page Data
     if (self.options.selected_contact != undefined) {

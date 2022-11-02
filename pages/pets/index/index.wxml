@@ -1,4 +1,4 @@
-<view wx:if="{{ user.pets.length > 0 }}" class="container">
+<view wx:if="{{ pets.length > 0 }}" class="container">
   <view class="cards">
     <view class="card" wx:for="{{ pets }}" wx:for-item="pet" wx:key="index">
       <view class="type">

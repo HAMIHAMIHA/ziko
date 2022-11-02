@@ -299,6 +299,8 @@ const _getOffers = page => {
           page.setData({
             address_selected: i,
           })
+
+          page.calculateDeliveryFee(page.data.user.addresses[i].area);
           break;
         }
       }
@@ -331,6 +333,7 @@ Page({
       id: null,
     },
     delivery_fee: -1,
+    delivery_fee: 10, // The default delivery fee is 10
     free_delivery: false,
 
     showCopyBox: false,
@@ -373,6 +376,7 @@ Page({
 
   onShow: function () {
     const self = this;
+    vouchers = [];
 
     // Need to get newest user info
     app.sessionUtils.getUserInfo(self);

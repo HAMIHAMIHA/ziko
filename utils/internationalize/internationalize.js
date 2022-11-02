@@ -558,6 +558,7 @@ export const languageMap_en = {
   // W
   winner: "winner",
   wechat_id: "Wechat ID: ",
+  work_in_progress: "Work in progress, we will be back in 10 minutes. If not, read this message again.",
 
   // X
   // Y
@@ -1139,6 +1140,7 @@ export const languageMap_zh = {
   // W
   winner: "winner",
   wechat_id: "Wechat ID: ",
+  work_in_progress: "Work in progress, we will be back in 10 minutes. If not, read this message again.",
 
 
   // X
