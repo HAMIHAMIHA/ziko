@@ -86,7 +86,7 @@
               </view>
               <view class="box-content-right">
                 <view class="money gilroy_700">¥ {{ voucher.amount }}</view>
-                <view class="use_now nunito_600" bindtap="navigateOffer">{{ _t.use_now }}</view>
+                <view class="use_now nunito_600" bindtap="navigateOffer" data-voucher="{{ voucher }}">{{ _t.use_now }}</view>
               </view>
             </view>
           </image>

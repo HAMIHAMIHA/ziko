@@ -75,7 +75,8 @@
     <view class="white-box details_container">
       <view class="detail">
         <text class="detail_label delivery-fee">{{ _t.delivery }}</text>
-        <text class="detail_result">{{ free_delivery || delivery_fee === 0 ? _t.free_delivery : delivery_fee > 0 ? '¥' + delivery_fee : '' }}</text>
+        <!-- <text class="detail_result">{{ free_delivery || delivery_fee === 0 ? _t.free_delivery : delivery_fee > 0 ? '¥' + delivery_fee : '' }}</text> -->
+        <text class="detail_result">{{ free_delivery || delivery_fee === 0 ? _t.free_delivery : delivery_fee > 0 ? '¥' + delivery_fee : '¥10' }}</text>
       </view>
 
       <view class="detail field-2 delivery-date">

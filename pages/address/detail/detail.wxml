@@ -27,27 +27,27 @@
         </view>
       </view>
 
-      <!-- Province -->
+      <!-- Area -->
       <view class="details_container inputs_container field-1">
         <view class="detail_content_box">
-          <view class="detail_label_name">{{ _t.province }}</view>
+          <view class="detail_label_name">{{ _t.area }}</view>
           <!--    range="{{ _areas[_selected[0]].children[_selected[1]].children }}"-->
           <view class="detail_input input_goto">
             <picker
               class="input picker"
-              name="province"
+              name="area"
               mode="multiSelector"
               range="{{ newArr }}"
               value="{{ multiIndex }}"
-              bindchange="bindProvinceChange"
-              bindcolumnchange="bindProvinceChange"
+              bindchange="bindAreaChange"
+              bindcolumnchange="bindAreaChange"
             >
-              <view wx:if="{{ !province }}" class="picker_text grey">
-                {{ _t.please_select_your_province }}
+              <view wx:if="{{ !areaSelectedData }}" class="picker_text grey">
+                {{ _t.please_select_your_area }}
                 <text class="icon icon-arrow"></text>
               </view>
               <view wx:else class="picker_text">
-                {{ province.label }}
+                {{ areaSelectedData.label }}
                 <text class="icon icon-arrow"></text>
               </view>
               <!-- <view class="picker_text">{{ _areas[_selected[0]].children[_selected[1]].children[_selected[2]].label }}</view> -->

@@ -58,32 +58,47 @@ const _generateSuffix = (step, filter_date) => {
   let key = 'general';
   let now = new Date();
   let now_timestamp = now.getTime();
+  let filter_date_start = new Date(filter_date).setHours(0, 0, 0, 0);
+  let filter_date_end = new Date(filter_date).setHours(23, 59, 59, 999);
 
   if (filter_date) {
     let today = now.setHours(0, 0, 0, 0);
-    key = (filter_date === today) ? 'today' : (filter_date > today) ? 'tomorrow' : 'yesturday';
+    // key = (filter_date === today) ? 'today' : (filter_date > today) ? 'tomorrow' : 'yesturday';
+    key = (filter_date_start > today) ? 'future' : 'general';
   }
 
   // 1: event in progress, 2: comming event
-  const filter_str_list = {
+  // const filter_str_list = {
+  //   general: {
+  //     1: [`,{"endingDate":{"$gte":"${ now_timestamp }"}},{"startingDate":{"$lte":"${ now_timestamp }"}}`, `["endingDate","ASC"]`],
+  //     2: [`,{"startingDate":{"$gt":"${ now_timestamp }"}},{}`, `["startingDate","ASC"]`]
+  //   },
+  //   today: {
+  //     // filter_date.setHours(0, 0, 0, 0) < startingDate < now and now < endingDate => 1
+  //     // startingDate > now and startingDate < filter_date.setHours(999) => 2
+  //     1: [`,{"endingDate":{"$gte":"${ now_timestamp }"}},{"startingDate":{"$gte":"${ filter_date }", "$lte":"${ now_timestamp }"}}`, `["endingDate","ASC"]`],
+  //     2: [`,{"startingDate":{"$gt":"${ now_timestamp }", "$lte":"${ now.setHours(23, 59, 59, 999) }"}},{}`, `["startingDate","ASC"]`]
+  //   },
+  //   tomorrow: {
+  //     // filter_date.setHours(0, 0, 0, 0) < startingDate < filter_date.setHours(999) => 1
+  //     1: [`,{"startingDate":{"$gte":"${ filter_date }", "$lte":"${ new Date(filter_date).setHours(23, 59, 59, 999) }"}}`, `["endingDate","ASC"]`]
+  //   },
+  //   yesturday: {
+  //     // filter_date.setHours(0, 0, 0, 0) < startingDate < filter_date.setHours(999) and endingDate > now => 1
+  //     1: [`,{"endingDate":{"$gte":"${ now_timestamp }"}},{"startingDate":{"$gte":"${ filter_date }", "$lte":"${ new Date(filter_date).setHours(23, 59, 59, 999) }"}}`, `["endingDate","ASC"]`],
+  //   }
+  // }
+
+
+  const filter_str_list = { // New filter logic
     general: {
       1: [`,{"endingDate":{"$gte":"${ now_timestamp }"}},{"startingDate":{"$lte":"${ now_timestamp }"}}`, `["endingDate","ASC"]`],
       2: [`,{"startingDate":{"$gt":"${ now_timestamp }"}},{}`, `["startingDate","ASC"]`]
     },
-    today: {
-      // filter_date.setHours(0, 0, 0, 0) < startingDate < now and now < endingDate => 1
-      // startingDate > now and startingDate < filter_date.setHours(999) => 2
-      1: [`,{"endingDate":{"$gte":"${ now_timestamp }"}},{"startingDate":{"$gte":"${ filter_date }", "$lte":"${ now_timestamp }"}}`, `["endingDate","ASC"]`],
-      2: [`,{"startingDate":{"$gt":"${ now_timestamp }", "$lte":"${ now.setHours(23, 59, 59, 999) }"}},{}`, `["startingDate","ASC"]`]
+    future: {
+      1: [`,{"endingDate":{"$gte":"${ filter_date_end }"}},{"startingDate":{"$lte":"${ filter_date_start }"}}`, `["endingDate","ASC"]`],
+      2: [`,{"startingDate":{"$gt":"${ filter_date_start }"}},{}`, `["startingDate","ASC"]`]
     },
-    tomorrow: {
-      // filter_date.setHours(0, 0, 0, 0) < startingDate < filter_date.setHours(999) => 1
-      1: [`,{"startingDate":{"$gte":"${ filter_date }", "$lte":"${ new Date(filter_date).setHours(23, 59, 59, 999) }"}}`, `["endingDate","ASC"]`]
-    },
-    yesturday: {
-      // filter_date.setHours(0, 0, 0, 0) < startingDate < filter_date.setHours(999) and endingDate > now => 1
-      1: [`,{"endingDate":{"$gte":"${ now_timestamp }"}},{"startingDate":{"$gte":"${ filter_date }", "$lte":"${ new Date(filter_date).setHours(23, 59, 59, 999) }"}}`, `["endingDate","ASC"]`],
-    }
   }
 
   let filter_str = filter_str_list[key][step];
@@ -284,9 +299,17 @@ Page({
     } = app.globalData;
     // Switch to list tab if global data set
     if (index_type && filter_group) {
-      _filterOfferData(self, index_type, filter_group, '', '');
-      Reflect.deleteProperty(app.globalData, "filter_group");
-      Reflect.deleteProperty(app.globalData, "index_type");
+      let communityId = '';
+
+      index_data.list_filter.map(c => {
+        if (c.key == filter_group) {
+          communityId = c.id;
+        }
+      })
+
+      _filterOfferData(self, index_type, filter_group, communityId, '');
+      // Reflect.deleteProperty(app.globalData, "filter_group");
+      // Reflect.deleteProperty(app.globalData, "index_type");
     } else _filterOfferData(self, "list", '', '', '');
 
     // Change tabBar

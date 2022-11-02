@@ -231,6 +231,7 @@ Page({
     // filter_group: '',
     // map: true // Default open to map view
   },
+
   onLoad: async function () {
     this.setData({filter_group: "", user: app.db.get('userInfo')});
     await app.sessionUtils.getUserInfo(this);
@@ -240,6 +241,7 @@ Page({
       _getVouchers(this, {status: "validated"});
     }
   },
+
   onShow: function () {
     const self = this;
     _setPageTranslation(self);
@@ -281,6 +283,7 @@ Page({
     })
     _getVouchers(self, {status: voucher_status[e.currentTarget.dataset.value]});
   },
+
   // Filter vouchers by selected group
   filterVouchers: function (e) {
     const self = this;
@@ -300,17 +303,19 @@ Page({
     _filterVoucherData(self, data.filter_type, data.filter_group, data.filter_id, date);
   },
 
-  navigateOffer: function () {
-    const {vouchers, filter_group} = this.data;
+  navigateOffer: function (e) {
     app.globalData.index_type = "list";
-    if (vouchers && vouchers.length === 1) {
-      // switched to specified tab
-      app.globalData.filter_group = communities[vouchers[0].rawCommunity[0]];
-    } else app.globalData.filter_group = filter_group;
+    if (!e.currentTarget.dataset.voucher || e.currentTarget.dataset.voucher?.rawCommunity.length > 1) {
+      app.globalData.filter_group = '';
+    } else {
+      app.globalData.filter_group = communities[e.currentTarget.dataset.voucher.rawCommunity[0]];
+    }
+
     wx.switchTab({
       url: app.routes.home
     })
   },
+
   refreshLoginState: function (event) {
     // console.log("refreshLoginState", event.detail);
     const {userLogin} = event.detail;

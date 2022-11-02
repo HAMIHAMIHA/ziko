@@ -9,7 +9,7 @@ const {
 
 const app = getApp();
 const address_type = ["office", "home", "other"];
-const validate_keys = ['type', 'province', 'city', 'detailedAddress'];
+const validate_keys = ['type', 'area', 'city', 'detailedAddress'];
 let all_areas = [];
 
 const _getAddressAreas = (page, area_id) => {
@@ -17,7 +17,7 @@ const _getAddressAreas = (page, area_id) => {
     const area = res[findIndex(res, area_id, 'id')];
     const areas = page.data._areas;
 
-    // Prefill the province
+    // Prefill the area
     for (const firstIndex in areas) {
       for (const secondIndex in areas[firstIndex].children) {
         for (const thirdIndex in areas[firstIndex].children[secondIndex].children) {
@@ -33,7 +33,7 @@ const _getAddressAreas = (page, area_id) => {
 
     page.setData({
       area,
-      province: {
+      areaSelectedData: {
         value: area.id,
         label: area.name,
       }
@@ -81,7 +81,7 @@ const _validateInputs = (page, data) => {
   for (var i in validate_keys) {
     (data[validate_keys[i]] == null || data[validate_keys[i]] === '') ? error += `error-field-${i} `: '';
 
-    if (!page.data.provinceSelected) {
+    if (!page.data.areaSelected) {
       error += 'error-field-1 ';
     }
   }
@@ -121,7 +121,7 @@ const _generateUserAddress = (page, action, new_address) => {
   return addresses;
 }
 
-//Get Province
+//Get Areas
 const _getAreas = (parent_id) => {
   let new_areas = [];
   const filtered_areas = all_areas.filter((e) => e.parent === parent_id);
@@ -224,7 +224,7 @@ Page({
     multiIds: [],
     newArr: [],
     default: false,
-    provinceSelected: false,
+    areaSelected: false,
   },
 
   onShow: function () {
@@ -252,7 +252,7 @@ Page({
 
     // Set page translation
     self.setData({
-      provinceSelected: self.options.id ? true : false,
+      areaSelected: self.options.id ? true : false,
       options_judge: self.options.id,
       _picker: {
         address_type: address_picker
@@ -270,10 +270,9 @@ Page({
         type: i18n.type,
         zipcode: i18n.zipcode,
         cancel: i18n.cancel,
-        province: i18n.province,
         any_special_requests: i18n.any_special_requests,
         please_select: i18n.please_select,
-        please_select_your_province: i18n.please_select_your_province,
+        please_select_your_area: i18n.please_select_your_area,
         please_select_your_city: i18n.please_select_your_city,
         please_enter_your_address: i18n.please_enter_your_address,
         please_enter_your_zip_code: i18n.please_enter_your_zip_code,
@@ -365,10 +364,10 @@ Page({
         _picker: {
           address_type
         },
-        province
+        areaSelectedData
       } = self.data;
       const addressType = address_type[type]?.toLowerCase();
-      const area = province.value;
+      const area = areaSelectedData.value;
       const address = {
         area,
         detailedAddress,
@@ -428,21 +427,21 @@ Page({
     })
   },
 
-  _selectProvince: function () {
+  _selectArea: function () {
     const self = this;
     const [index1, index2, index3] = self.data.multiIndex;
     console.log("index1", index1, index2, index3)
-    const province = self.data._areas[index1]?.children[index2]?.children[index3]
+    const areaSelectedData = self.data._areas[index1]?.children[index2]?.children[index3]
     self.setData({
-      province
+      areaSelectedData
     });
   },
 
-  bindProvinceChange(e) {
+  bindAreaChange(e) {
     const self = this
-    console.log('bindProvinceChange', e)
+    console.log('bindAreaChange', e)
     self.setData({
-      provinceSelected: true,
+      areaSelected: true,
     })
     
     let data = {
@@ -493,7 +492,7 @@ Page({
         searchColumn();
         break;
     }
-    self._selectProvince();
+    self._selectArea();
     self.setData(data);
   },
 })
