@@ -334,13 +334,14 @@
         <view class="icon icon-{{ _offer.community }}-head"></view>
         <view class="box-title-inside">
           <view class="gilroy_700 inside-title">{{ copyContent[_offer.community].title }}</view>
-          <view class="nunito_500 inside-content">{{ _t.please_long_press }}</view>
+          <!-- <view class="nunito_500 inside-content">{{ _t.please_long_press }}</view> -->
         </view>
       </view>
       <image src="{{ copyContent[_offer.community].qrcode }}" class="qrcode"></image>
     </view>
 
-    <view class="wechat-copy ziko-{{ _offer.community }}" bindtap='copyBtn' data-text="{{ _t.simonmawas }}">
+<!-- hover-class="clicked-{{ copy.community }}" -->
+    <view class="wechat-copy ziko-{{ _offer.community }}" bindtap='copyBtn' data-text="{{ _t.simonmawas }}" hover-class="clicked-{{ _offer.community }}">
       <text class="wechat-id">{{ _t.wechat_id }}{{ copyContent[_offer.community].wechat }}</text>
       <text class="icon icon-copy"></text>
     </view>

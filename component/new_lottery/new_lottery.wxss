@@ -393,6 +393,7 @@
 }
 
 .dicover-buttom {
+  color: white;
   padding: 16rpx;
   padding-left: 50rpx;
   padding-right: 50rpx;
@@ -422,5 +423,21 @@
 .icon-x-height {
   font-size: 25rpx;
   text-align: center;
-  color: #ffffff;
+  /* color: #ffffff; */
+}
+.icon-color-farm{
+  color: #11BF67;
+
+}
+.icon-color-chef{
+  color: #D8BC74;
+}
+.icon-color-cellar{
+  color: #8C9093;
+}
+.icon-color-pet{
+  color:#FF7233;
+  /* background-image:-webkit-linear-gradient(0deg, #FFB75A 10%, #FF7233 50%);
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;  */
 }

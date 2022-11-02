@@ -140,7 +140,7 @@
       <view class="icon icon-{{ copy.community }}-head"></view>
       <view>
         <text class="box-name">{{ copy.title }}</text>
-        <view class="wechat-copy ziko-{{ copy.community }}" hover-class="clicked-chef">
+        <view class="wechat-copy ziko-{{ copy.community }}" hover-class="clicked-{{ copy.community }}">
           <text class="wechat-id">{{ _t.wechat_id }}</text>
           <text class="simonmawas">{{ copy.wechat }}</text>
           <text class="icon icon-copy icon-height"></text>

@@ -188,6 +188,7 @@ const getOrders = (page) => {
     }, function () {
       current_load = orders.length;
     });
+    console.log("testData",orders)
 
     showLoading(false);
   }
@@ -232,6 +233,7 @@ Page({
   },
 
   onLoad: function (options) {
+    // console.log("data",this.data._filters.list,this.data._filters.map)
     const self = this;
 
     self.updatePageConstants();
