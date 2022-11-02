@@ -91,7 +91,7 @@ Page({
     })
 
     let nextBourseInfo = bourses.find(b => b.unlocked == false);
-    let currentBourseInfo = bourses.slice().reverse().find(b => b.unlocked == true);
+    let currentBourseInfo = bourses.slice().reverse().find(b => b.unlocked == true) ? bourses.slice().reverse().find(b => b.unlocked == true) : bourses[0];
     let currentProgress = Math.round((offer.sold - currentBourseInfo.from) / currentBourseInfo.to * 100);
 
     self.setData({

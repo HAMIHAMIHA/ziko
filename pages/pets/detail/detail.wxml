@@ -38,11 +38,24 @@
       </radio-group>
     </view>
 
-    <button class="under-black-button" formType="reset">
+
+    <!-- Cancel Button -->
+    <button wx:if="{{ !options_judge }}" class="under-black-button" formType="reset">
       <text class="inter_600 font-size">{{ _t.cancel }}</text>
     </button>
+    <!-- End of Cancel Button -->
+
+    <!-- Delete Button -->
+    <button wx:else class="under-black-button" formType="submit" data-type="delete">
+      <text class="inter_600 font-size">{{ _t.remove }}</text>
+    </button>
+    <!-- End of Delete Button -->
+
+    <!-- <button class="under-black-button" formType="reset">
+      <text class="inter_600 font-size">{{ _t.cancel }}</text>
+    </button> -->
     <button class="under-white-button" formType="submit">
-      <text class="gilroy_700 font-size">{{ _t.save }}</text>
+      <text class="gilroy_700 font-size">{{ options_judge ? _t.update : _t.save }}</text>
     </button>
   </form>
 </view>

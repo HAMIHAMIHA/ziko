@@ -446,6 +446,7 @@ export const languageMap_en = {
   remaining_draws: "Remaining draws",
   remaining_time: "remaining time",
   remind_me: "Remind me",
+  remove: "Remove",
   reset_filters: "Reset filters",
   rmb: "rmb",
 
@@ -1027,6 +1028,7 @@ export const languageMap_zh = {
   remaining_draws: "Remaining draws",
   remaining_time: "remaining time",
   remind_me: "Remind me",
+  remove: "Remove",
   reset_filters: "Reset filters",
   rmb: "rmb",
 

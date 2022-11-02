@@ -357,13 +357,11 @@ Page({
         detailedAddress,
         type,
         zipCode,
-        city
+        city,
+        comment
       } = e.detail.value;
       const {
         default: defaultData,
-        _picker: {
-          address_type
-        },
         areaSelectedData
       } = self.data;
       const addressType = address_type[type]?.toLowerCase();
@@ -374,7 +372,8 @@ Page({
         type: addressType,
         zipCode,
         city,
-        default: defaultData
+        default: defaultData,
+        comment
       }
       console.log(address, "address")
       // address ? address.type = self.data.address.type : '';

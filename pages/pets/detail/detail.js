@@ -83,6 +83,7 @@ Page({
 
     self.setData({
       // ...options,
+      options_judge: options.id,
       petInfo
     })
     if (options.typechecked) {
@@ -117,7 +118,12 @@ Page({
         size_of_pet: i18n.size_of_pet,
         pet_size: i18n.pet_size,
         cancel: i18n.cancel,
-        save: i18n.save
+        save: i18n.save,
+        update: i18n.update,
+        tips: i18n.tips,
+        delete_it_or_not: i18n.delete_it_or_not,
+        confirm: i18n.confirm,
+        remove: i18n.remove,
       },
       // typechecked: "",
     });
@@ -133,21 +139,48 @@ Page({
       return;
     }
 
-    const newPet = {
-      name: e.detail.value.name,
-      type: self.data.typechecked?.toLowerCase(),
-      size: e.detail.value.size,
-    };
+    // Go back to address page if delete new address
+    if (action != 'reset' && e.detail.target.dataset.type == 'delete') {
+      wx.showModal({
+        title: self.data._t.tips,
+        content: self.data._t.delete_it_or_not,
+        cancelText: self.data._t.cancel,
+        confirmText: self.data._t.confirm,
+        success(res) {
+          if (res.confirm) {
+            showLoading(true);
+            let pets = self.data.pets;
+            let removeIndex = pets.findIndex(p => p._id == self.data.pet._id);
+            pets.splice(removeIndex, 1);
 
-    if (_validateInputs(self, newPet)) return;
+            app.sessionUtils.updateUserInfo({
+              pets: pets
+            }, app.routes.pets);
+            showLoading(false);
+            return;
+          } else if (res.cancel) {
+            console.log('Cancel')
+          }
+        }
+      })
 
-    showLoading(true);
-
-
-    _addPet(self, newPet).then(() => {
-      showLoading(false);
-      navigateBack(app.routes.pets, false);
-    });
+      return;
+    } else { // Save New pet
+      const newPet = {
+        name: e.detail.value.name,
+        type: self.data.typechecked?.toLowerCase(),
+        size: e.detail.value.size,
+      };
+  
+      if (_validateInputs(self, newPet)) return;
+  
+      showLoading(true);
+  
+      _addPet(self, newPet).then(() => {
+        showLoading(false);
+        navigateBack(app.routes.pets, false);
+      });
+    }
   },
 
   serviceSelection(event) {
