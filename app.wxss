@@ -1221,7 +1221,7 @@ button:not([size=mini]).float-contact_container {
 
 .product_container .product-price+.product-price,
 .product-info_container .product-price+.product-price {
-  padding-left: 8rpx;
+  padding-left: 20rpx;
   /* color: #626778; */
   font-weight: 300;
   font-size: 36rpx;
