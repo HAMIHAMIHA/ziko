@@ -61,6 +61,13 @@ image {
   overflow: hidden;
 }
 
+.ellipsis_3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* White Box */
 .white-box {
   padding: 0 30rpx;

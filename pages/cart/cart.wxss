@@ -245,6 +245,10 @@ page {
   color: #95DE64;
 }
 
+.grey {
+  color: rgba(255, 255, 255, 0.4);
+}
+
 .contact-box {
   padding-bottom: 100rpx;
 }

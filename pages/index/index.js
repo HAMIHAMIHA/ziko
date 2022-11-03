@@ -117,16 +117,6 @@ const handleRawOffers = (page, raw_offers, res, filter_date) => {
 
   for (var i in raw_offers) {
     let offer = raw_offers[i];
-    const shortDescription = {};
-    for (const key in offer.description) {
-      let format = " ",
-        length = 16;
-      if (key === "zh") {
-        format = "";
-        length = 50;
-      }
-      shortDescription[key] = truncateText(offer.description[key], format, length);
-    }
     let date_value = formatWeekDate(offer.startingDate);
 
     // Creating date filter list
@@ -174,8 +164,6 @@ const handleRawOffers = (page, raw_offers, res, filter_date) => {
     offer.startDate = date_value;
     offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
     offer.banners = banners;
-    // console.log("shortDescription", shortDescription)
-    offer.shortDescription = shortDescription;
     offers.push(offer);
   }
 

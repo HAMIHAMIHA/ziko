@@ -56,7 +56,7 @@
       <view class="short-cut__label">{{ _t.vouchers }}</view>
     </navigator>
 
-    <navigator class="short-cuts__button{{ new_vouchers > 0 ? ' new' : '' }}" url="{{ _routes.lottery }}">
+    <navigator class="short-cuts__button" url="{{ _routes.lottery }}">
       <view class="short-cut__icon icon icon-lottery"></view>
       <view class="short-cut__label">{{ _t.lottery }}</view>
     </navigator>

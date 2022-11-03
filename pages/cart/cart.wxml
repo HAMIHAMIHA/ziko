@@ -104,11 +104,15 @@
         <view class="detail_label">{{ _t.address }}</view>
         <view class="detail_input input_goto">
           <navigator class="input picker" hover-class="none" url="{{ _routes.address + '?action=select&selected_address=' + address_selected }}">
-            <!-- <text class="content">{{ _t.address_type[user.addresses[address_selected].type] }}</text> -->
-            <text class="content ellipsis">{{ user.addresses[address_selected].detailedAddress }}</text>
-            <text class="icon icon-arrow-right"></text>
+            <block wx:if="{{ user.addresses[address_selected] }}">
+              <text class="content ellipsis">{{ user.addresses[address_selected].detailedAddress }}</text>
+              <text class="icon icon-arrow-right"></text>            
+            </block>
+            <block wx:else>
+              <text class="content grey">{{ _t.please_add_address }}</text>
+              <text class="icon icon-plus"></text>            
+            </block>
           </navigator>
-          <!-- <text class="detail_note"><text class="detail_note_content ellipsis">{{ user.addresses[address_selected].detailedAddress }}</text></text> -->
         </view>
       </view>
 
@@ -116,12 +120,18 @@
         <text class="detail_label">{{ _t.contact_person }}</text>
         <view class="detail_input input_goto">
           <navigator class="input picker" hover-class="none" url="{{ _routes.contacts + '?action=select&selected_contact=' + contact_selected }}">
-            <view>
-              <view>{{ user.contacts[contact_selected].name }}</view>
-              <view>{{ user.contacts[contact_selected].phone }}</view>
-            </view>
+            <block wx:if="{{ user.contacts[contact_selected] }}">
+              <view>
+                <view>{{ user.contacts[contact_selected].name }}</view>
+                <view>{{ user.contacts[contact_selected].phone }}</view>
+              </view>
 
-            <text class="icon icon-arrow-right"></text>
+              <text class="icon icon-arrow-right"></text>        
+            </block>
+            <block wx:else>
+              <text class="content grey">{{ _t.please_add_contacts }}</text>
+              <text class="icon icon-plus"></text>            
+            </block>
           </navigator>
         </view>
       </view>
