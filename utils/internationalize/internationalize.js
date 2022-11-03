@@ -24,6 +24,7 @@ export const languageMap_en = {
   add_a_cat: "Add a cat",
   add_a_dog: "Add a dog",
   add_address: "Add new address",
+  
   add_contact: "Add new contact",
   add_chef_ziko: "Add Chef Ziko",
   add_pet_ziko: "Add Pet Ziko",
@@ -88,7 +89,7 @@ export const languageMap_en = {
   contact_list: "Contact list",
   contacts: "Contacts",
   contact_empty: "Contact is not selected",
-  contact_customer_hero: "Contact our customer hero!",
+  contact_customer_hero: "Contact customer hero!",
   contact_label: "Contact",
   contact_info: "Contact information",
   contains_items: "Contain items: ",
@@ -350,7 +351,7 @@ export const languageMap_en = {
   order_status: {
     all: "All",
     delayed: "Processing",
-    delivered: "Arrived",
+    delivered: "Delivered",
     on_the_way: "Delivery in progress",
     paid: "Paid",
     prepared: "Processing",
@@ -673,7 +674,7 @@ export const languageMap_zh = {
   contact: "联系我们",
   contacts: "Contacts",
   contact_empty: "Contact is not selected",
-  contact_customer_hero: "Contact our customer hero!",
+  contact_customer_hero: "Contact customer hero!",
   contact_label: "Contact",
   contact_list: "Contact list",
   contact_info: "Contact information",
@@ -937,7 +938,7 @@ export const languageMap_zh = {
   order_status: {
     all: "All",
     delayed: "Processing",
-    delivered: "Arrived",
+    delivered: "Delivered",
     on_the_way: "Delivery in progress",
     paid: "Paid",
     prepared: "Processing",

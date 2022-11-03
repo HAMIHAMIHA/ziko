@@ -62,3 +62,7 @@
   background-color: #F0F0F0 !important;
   color: #1F1F1F !important;
 }
+
+.white-background-black-text.saveButton{
+  bottom: calc(48rpx + var(--env-)) !important;
+}

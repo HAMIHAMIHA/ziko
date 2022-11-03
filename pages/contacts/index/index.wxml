@@ -1,6 +1,6 @@
 <view wx:if="{{ contacts.length > 0 }}" class="container container-grey address-list{{ _setting.selecting ? ' container-btn-bottom' : ''}}">
   <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
-    <view class="cards">
+    <view class="cards{{ _setting.selecting == true ? ' shortCards' : '' }}">
       <view
         class="card{{ select_index == index ? ' select' : '' }}"
         wx:for="{{ contacts }}"
@@ -33,7 +33,7 @@
             <navigator class="icon icon-edit btn-icon" hover-class="none" url="{{ _routes.contact + '?id=' + contact._id }}"></navigator>
             <view class="icon icon-trash " hover-class="none" bindtap="deleteContact" data-index="{{ index }}"></view>
           </view>
-        </view> 
+        </view>
       </view>
     </view>
   </view>
@@ -43,7 +43,7 @@
   </view>
 
   <view class="btn-bottom" wx:if="{{ _setting.selecting }}">
-    <button class="nunito_600" bindtap="select">{{ _t.select }}</button>
+    <button class="nunito_600 selectButton" bindtap="select">{{ _t.select }}</button>
   </view>
 </view>
 <view wx:else class="container">

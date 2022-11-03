@@ -198,13 +198,13 @@
       <view class="contact-button_container">
         <button class="contact-button" open-type="contact">
           <text class="icon icon-headset"></text>
-          <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
+          <text class="nunito_700 height30">{{ _t.contact_customer_hero }}</text>
         </button>
       </view>
       <view class="contact-button_container">
         <button class="contact-button" bindtap="showCopyBox">
           <text class="icon icon-wechat"></text>
-          <text class="nunito_600">{{ _t.add_chef_ziko_on_wechat }}</text>
+          <text class="nunito_700 height30">{{ _t.add_chef_ziko_on_wechat }}</text>
         </button>
       </view>
   </view>

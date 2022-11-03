@@ -16,6 +16,10 @@ page {
   overflow: scroll;
 }
 
+.shortCards {
+  height: calc(100vh - 300rpx - var(--env-));
+}
+
 .card {
   padding: 40rpx 34rpx;
   /* position: relative;
@@ -148,6 +152,7 @@ page {
   background: #d9d9da;
 }
 
+
 .icon-ziko {
   margin-top: 160rpx;
   font-size: 200rpx;
@@ -168,4 +173,12 @@ page {
   color: #BFBFBF;
 
   padding: 30rpx 90rpx 90rpx 90rpx;
+}
+
+.btn-bottom {
+  position: fixed;
+  bottom: calc(-55rpx + var(--env-));
+  width: calc(100% - 60rpx);
+  padding: 0;
+  /* margin: 0 30rpx; */
 }

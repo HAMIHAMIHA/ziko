@@ -271,21 +271,30 @@ button:not([size=mini]).btn-primary {
 }
 
 .contact-box .contact-button_container {
-  padding: 42rpx 0 12rpx;
+  padding: 30rpx 0 12rpx;
 }
+/* .contact-button_container .icon-headset{
+  margin-right: 10px;
+} */
 
 .contact-box .contact-button {
-  width: fit-content;
+  width: 470rpx !important;
+  text-align: left !important;
   padding: 26rpx 48rpx;
   background: #3F4250;
   color: var(--ziko-default-);
   font-size: 28rpx;
   line-height: 34rpx;
+  display: flex;
+  align-items: center;
 }
 
 .contact-box .icon {
-  padding-right: 20rpx;
+  padding-right: 8rpx;
   font-size: 32rpx;
+}
+.height30{
+  height: 30rpx;
 }
 /* End of Contact Box */
 
@@ -1067,7 +1076,7 @@ button:not([size=mini]).float-contact_container {
 }
 
 .ziko-offer .remind-number {
-  padding: 0 20rpx;
+  padding: 0 8rpx;
 }
 
 .ziko-offer .icon-ticket {
@@ -1079,7 +1088,12 @@ button:not([size=mini]).float-contact_container {
   padding-top: 30rpx;
   font-size: 28rpx;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+
+}
+
+.ziko-offer .cartdetail-pay-flex {
+  display: flex;
 }
 
 .ziko-offer .total-content {
@@ -1127,8 +1141,9 @@ button:not([size=mini]).float-contact_container {
 }
 
 .ziko-offer .text-left {
-  margin-right: 82rpx;
+  margin-left: 30rpx;
   margin-top: 44rpx;
+  display: flex;
 }
 
 /* End of Offer Payment */
@@ -1228,16 +1243,19 @@ button:not([size=mini]).float-contact_container {
 
 .product_container .product-price+.product-price,
 .product-info_container .product-price+.product-price {
-  padding-left: 20rpx;
-  /* color: #626778; */
-  font-weight: 300;
-  font-size: 36rpx;
+  /* padding-left: 20rpx; */
+  /* font-weight: 300; */
+  /* font-size: 36rpx; */
+  /* text-decoration: line-through; */
+  color: #626778;
+  padding-left: 10rpx;
+  font-weight: 800;
   text-decoration: line-through;
 }
 
 .product_container .product-quantity,
 .product_container .product-navigate_container {
-  height: 160rpx;
+  /* height: 160rpx; */
   align-self: start;
 }
 /* End of Offer Product List */

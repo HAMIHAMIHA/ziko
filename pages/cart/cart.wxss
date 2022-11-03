@@ -14,6 +14,10 @@ page {
   color: #FF4040;
 }
 
+.font_red.product-available {
+  color: #FF7875;
+}
+
 .font_yellow {
   color: #D4B106;
 }
@@ -54,14 +58,28 @@ page {
   line-height: 32rpx;
 }
 
+.noCenter {
+  align-items: flex-start;
+}
+
 .product_container .product-price_container {
-  position: absolute;
+  /* position: absolute; */
+  text-align: right;
+  margin-bottom: 15rpx;
   bottom: 0;
 }
 
 .product_container .product-price {
   font-size: 28rpx;
   line-height: 38rpx;
+}
+
+.quantity-change {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.quantity-change .icon {
+  color: #fff !important;
 }
 
 .detail_note_content {
@@ -156,6 +174,20 @@ page {
 
 .icon-arrow-right {
   font-size: 20rpx;
+}
+
+.icon-plus {
+  font-size: 20rpx;
+}
+
+.addContent {
+  font-family: Nunito;
+  font-size: 28rpx;
+  font-weight: 400;
+  line-height: 32rpx;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .special_requests {
@@ -615,6 +647,7 @@ scroll-view {
 .clicked-farm {
   background: linear-gradient(120.73deg, #97F082 -280.08%, #11BE67 141.6%) !important;
 }
+
 .clicked-cellar {
   background: linear-gradient(113.45deg, #C5CACE -6.01%, #8C8F91 -2.7%, #A4A8AB 0.17%, #838688 5.38%, #888C8E 42.65%, #919699 55.77%, #A4AAAF 101.33%, #BBC3CA 116.45%, #BAC3C8 120.57%, #BDC5C9 126.74%, #D9D9D9 163.79%, #DFDEDE 169.96%, #F0EDED 179.22%, #FFF9F9 182.31%, #F5F5F4 203.92%, #FFFFFF 216.27%, #F7F7F7 228.62%, #EAEAEA 237.88%, #CBCBCD 268.75%, #C3CCD3 287.27%, #A4A9AC 299.62%) !important;
 }
