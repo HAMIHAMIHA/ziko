@@ -13,6 +13,9 @@ page {
 .font_red .product-price {
   color: #FF4040;
 }
+.font_red.product-available{
+  color: #FF7875;
+}
 
 .font_yellow {
   color: #D4B106;
@@ -53,9 +56,13 @@ page {
   font-size: 24rpx;
   line-height: 32rpx;
 }
-
+.noCenter{
+  align-items: flex-start;
+}
 .product_container .product-price_container {
-  position: absolute;
+  /* position: absolute; */
+  text-align: right;
+  margin-bottom: 15rpx;
   bottom: 0;
 }
 
@@ -63,7 +70,12 @@ page {
   font-size: 28rpx;
   line-height: 38rpx;
 }
-
+.quantity-change{
+  background-color:rgba(255,255,255,0.2) !important;
+}
+.quantity-change .icon{
+  color: #fff !important;
+}
 .detail_note_content {
   display: block;
 }

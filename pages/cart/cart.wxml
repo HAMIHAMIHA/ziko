@@ -7,7 +7,7 @@
 
       <block wx:for="{{ products }}" wx:key="id" wx:for-item="product">
         <view class="order-products product_container" wx:if="{{ product.amount }}">
-          <view class="flex-between product" mark:type="{{ product.type }}">
+          <view class="flex-between product noCenter" mark:type="{{ product.type }}">
             <view class="flex-start flex-align-start product_left">
               <view class="product-image">
                 <image src="{{ _setting.folders.pack + product.illustation.uri }}" mode="aspectFill" wx:if="{{ product.type == 'packs' && product.illustation }}"></image>
@@ -31,22 +31,24 @@
                   <!-- End of Single Products Detail -->
 
                   <!-- Available Amount Left -->
-                  <view class="-font_red product-available">
+                  <view class="font_red product-available">
                     <text wx:if="{{ product.actualStock == 0 }}">{{ _t.products_left.fst + product.actualStock + _t.products_left.snd }}</text>
                     <text wx:elif="{{ product.actualStock >= 100 }}">{{ _t.available.fst + product.actualStock + _t.available.snd }}</text>
                     <text wx:else>{{ _t.only_left.fst + product.actualStock + _t.only_left.snd }}</text>
                   </view>
                   <!-- End of Available Amount Left -->
                 </view>
+
+              </view>
+            </view>
+            <view>
                 <!-- Price -->
                 <view class="nunito_600 -font_red product-price_container">
                   <text class="product-price" wx:if="{{ product.actualPrice && product.actualPrice != product.price }}">¥{{ product.actualPrice }}</text>
                   <text class="product-price" wx:elif="{{ product.formerPrice && product.formerPrice != product.price }}">¥{{ product.price }}</text>
-                  <text class="product-price">¥{{ product.formerPrice ? product.formerPrice : product.price }}</text>
+                  <!-- <text class="product-price">¥{{ product.formerPrice ? product.formerPrice : product.price }}</text> -->
                 </view>
                 <!-- End of Price -->
-              </view>
-            </view>
             <quantity
               class="flex-start product-quantity"
               amount="{{ product.amount }}"
@@ -56,6 +58,7 @@
               data-idx="{{ cart.products[product._id].index_in_offer }}"
               data-price="{{ product.price }}"
             ></quantity>
+            </view>
           </view>
         </view>
       </block>

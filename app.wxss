@@ -1060,7 +1060,7 @@ button:not([size=mini]).float-contact_container {
 }
 
 .ziko-offer .remind-number {
-  padding: 0 20rpx;
+  padding: 0 8rpx;
 }
 
 .ziko-offer .icon-ticket {
@@ -1070,11 +1070,14 @@ button:not([size=mini]).float-contact_container {
 
 .ziko-offer .cartdetail-flex {
   padding-top: 30rpx;
+  
   font-size: 28rpx;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
-
+.ziko-offer .cartdetail-pay-flex{
+  display: flex;
+}
 .ziko-offer .total-content {
   margin-right: 30rpx;
   margin-top: 10rpx;
@@ -1120,8 +1123,9 @@ button:not([size=mini]).float-contact_container {
 }
 
 .ziko-offer .text-left {
-  margin-right: 82rpx;
+  margin-left: 30rpx;
   margin-top: 44rpx;
+  display: flex;
 }
 
 /* End of Offer Payment */
@@ -1230,7 +1234,7 @@ button:not([size=mini]).float-contact_container {
 
 .product_container .product-quantity,
 .product_container .product-navigate_container {
-  height: 160rpx;
+  /* height: 160rpx; */
   align-self: start;
 }
 /* End of Offer Product List */
