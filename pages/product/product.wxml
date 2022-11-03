@@ -86,7 +86,7 @@
         <view class="gilroy_700 uppercase title">{{ _t.contains_items }}</view>
 
         <view class="product_container" wx:for="{{ product.products }}" wx:for-item="product" wx:key="_id">
-          <view class="flex-between flex-align-start product">
+          <navigator class="flex-between flex-align-start product" url="{{ _routes.product + '?id=' + product._id + '&offer_id=' + _offer.id + '&type=packProduct' }}">
             <view class="flex-start flex-align-start product_left">
               <view class="product-image">
                 <image src="{{ _folders.product_picture + product.product.mainPicture[_language].uri }}" mode="aspectFill" lazy-load="true"></image>
@@ -110,11 +110,9 @@
             </view>
 
             <view class="flex-start product-navigate_container">
-              <navigator class="product-navigate" url="{{ _routes.product + '?id=' + product._id + '&offer_id=' + _offer.id + '&type=packProduct' }}">
-                {{ _t.discover }}
-              </navigator>
+              <view class="product-navigate">{{ _t.discover }}</view>
             </view>
-          </view>
+          </navigator>
         </view>
       </view>
       <!-- End of Pack Product List -->

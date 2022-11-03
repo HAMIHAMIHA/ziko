@@ -7,7 +7,7 @@
       <view class="lottery-ticket_text">
         <view class="uppercase lottery-ticket_text_top">1 {{ _t.ticket }}</view>
         <!-- <view class="nunito_800 uppercase lottery-ticket_text_bottom">{{ lottery.conditionValue }}{{ lottery.conditionType === 'spend' ? _t.rmb : lottery.conditionValue > 1 ? _t.items_unit : _t.item_unit }}</view> -->
-        <view class="nunito_800 uppercase lottery-ticket_text_bottom">{{ lottery.conditionValue }}{{ lottery.conditionType === 'spend' ? _t.rmb : ( lottery.conditionType === 'order' ? _t.order_unit : lottery.conditionValue > 1 ? _t.items_unit : _t.item_unit) }}</view>
+        <view class="nunito_800 uppercase lottery-ticket_text_bottom">{{ lottery.conditionValue ? lottery.conditionValue : '' }}{{ lottery.conditionType === 'spend' ? _t.rmb : ( lottery.conditionType === 'order' ? _t.order_unit : lottery.conditionValue > 1 ? _t.items_unit : _t.item_unit) }}</view>
       </view>
       <image class="lottery-ticket_image" src="/assets/icons/lotteryTicket.svg" mode="aspectFill"></image>
     </view>
