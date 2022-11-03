@@ -63,7 +63,7 @@
 
     <!-- Submit Button -->
     <view class="btn-bottom">
-      <button class="gilroy_700 white-background-black-text" formType="submit">{{ _t.save }}</button>
+      <button class="gilroy_700 white-background-black-text saveButton" formType="submit">{{ _t.save }}</button>
     </view>
     <!-- End of Submit Button -->
   </form>

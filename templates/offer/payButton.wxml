@@ -78,10 +78,12 @@
 
     <!-- PAY -->
     <view class="nunito_700 cartdetail-flex">
-      <view class="text-left" wx:if="{{ _pay_set.tickets > 0 }}">
+    <view>
+      <view  class="text-left" wx:if="{{ _pay_set.tickets > 0 }}">
         <view class="icon icon-ticket"></view>
         <view class="remind-number">+{{ _pay_set.tickets }}</view>
       </view>
+    </view>
 
       <view class="cartdetail-pay-flex">
         <view class="total-content">

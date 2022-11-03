@@ -97,6 +97,8 @@ const _setPageDefaultItems = page => {
       add_pet_ziko: i18n.add_pet_ziko,
       add_chef_ziko: i18n.add_chef_ziko,
       please_long_press: i18n.please_long_press,
+      please_add_contacts: i18n.please_add_contacts,
+      please_add_address: i18n.please_add_address
     },
     _routes: {
       address: app.routes.address,

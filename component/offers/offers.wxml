@@ -190,7 +190,7 @@
             <view class="flex-between_rt">
               <block wx:if="{{ !offer.watch }}">
                 <button class="offer-reminder nunito_600" hover-class="offer-reminder-hover" catchtap="getReminder" data-offer_id="{{ offer.id }}">
-                  <text class="ziko-{{ offer.community }}">{{ _t.get_reminder }}<text class="icon icon-calendar"></text></text>
+                  <text class="ziko-{{ offer.community }}">{{ _t.remind_me }}<text class="icon icon-calendar"></text></text>
                 </button>
               </block>
               <block wx:else>

@@ -23,10 +23,10 @@
 
                   <!-- Single Products Detail -->
                   <view class="product-detail_container" wx:else>
-                    <text>{{ product.product.storageType && product.product.storageType != 'none' ? '(' + _t.storage_types[product.product.storageType] + ') ' : '' }}</text>
-                    <text wx:if="{{ product.weight && product.weightType }}">{{ product.quantity ? product.quantity + ' x ' + product.weight + product.weightType : product.weight + product.weightType }}</text>
-                    <text wx:elif="{{ product.weight }}">{{ product.quantity ? product.quantity + ' x ' + product.weight + _t.units : product.weight + _t.units }}</text>
-                    <text wx:else>{{ product.quantity ? product.quantity > 1 ? product.quantity + _t.items_unit : product.quantity + _t.item_unit : '' }}</text>
+                    <view>{{ product.product.storageType && product.product.storageType != 'none' ? '(' + _t.storage_types[product.product.storageType] + ') ' : '' }}</view>
+                    <view wx:if="{{ product.weight && product.weightType }}">{{ product.quantity ? product.quantity + ' x ' + product.weight + product.weightType : product.weight + product.weightType }}</view>
+                    <view wx:elif="{{ product.weight }}">{{ product.quantity ? product.quantity + ' x ' + product.weight + _t.units : product.weight + _t.units }}</view>
+                    <view wx:else>{{ product.quantity ? product.quantity > 1 ? product.quantity + _t.items_unit : product.quantity + _t.item_unit : '' }}</view>
                   </view>
                   <!-- End of Single Products Detail -->
 
@@ -106,11 +106,16 @@
       <!-- ADDRESS -->
       <view class="cartdetail address field-0">
         <view class="detail_label">{{ _t.address }}</view>
-        <view class="detail_input input_goto">
-          <navigator class="input picker" hover-class="none" url="{{ _routes.address + '?action=select&selected_address=' + address_selected }}">
+        <view class="detail_input input_goto" >
+          <navigator class="input picker" hover-class="none" url="{{ _routes.address + '?action=select&selected_address=' + address_selected }}" wx:if="{{ user.addresses[address_selected].detailedAddress }}">
             <!-- <text class="content">{{ _t.address_type[user.addresses[address_selected].type] }}</text> -->
-            <text class="content ellipsis">{{ user.addresses[address_selected].detailedAddress }}</text>
-            <text class="icon icon-arrow-right"></text>
+              <text class="content ellipsis" >{{ user.addresses[address_selected].detailedAddress }}</text>
+              <text class="icon icon-arrow-right"></text>
+          </navigator>
+          <navigator class="input picker" hover-class="none" url="{{ _routes.address + '?action=select&selected_address=' + address_selected }}" wx:else>
+            <!-- <text class="content">{{ _t.address_type[user.addresses[address_selected].type] }}</text> -->
+              <text class="content ellipsis addContent" >{{ _t.please_add_address }}</text>
+              <text class="icon icon-plus"></text>
           </navigator>
           <!-- <text class="detail_note"><text class="detail_note_content ellipsis">{{ user.addresses[address_selected].detailedAddress }}</text></text> -->
         </view>
@@ -119,13 +124,16 @@
       <view class="cartdetail field-1">
         <text class="detail_label">{{ _t.contact_person }}</text>
         <view class="detail_input input_goto">
-          <navigator class="input picker" hover-class="none" url="{{ _routes.contacts + '?action=select&selected_contact=' + contact_selected }}">
+          <navigator class="input picker" hover-class="none" url="{{ _routes.contacts + '?action=select&selected_contact=' + contact_selected }}" wx:if="{{ user.contacts[contact_selected].name }}">
             <view>
               <view>{{ user.contacts[contact_selected].name }}</view>
               <view>{{ user.contacts[contact_selected].phone }}</view>
             </view>
-
             <text class="icon icon-arrow-right"></text>
+          </navigator>
+          <navigator class="input picker" hover-class="none" url="{{ _routes.contacts + '?action=select&selected_contact=' + contact_selected }}" wx:else>
+            <text class="content ellipsis addContent" >{{ _t.please_add_contacts }}</text>
+              <text class="icon icon-plus"></text>
           </navigator>
         </view>
       </view>
@@ -285,13 +293,13 @@
       <view class="contact-button_container">
         <button class="contact-button" open-type="contact">
           <text class="icon icon-headset"></text>
-          <text class="nunito_600">{{ _t.contact_customer_hero }}</text>
+          <text class="nunito_700 height30">{{ _t.contact_customer_hero }}</text>
         </button>
       </view>
       <view class="contact-button_container">
         <button class="contact-button" bindtap="showCopyBox">
           <text class="icon icon-wechat"></text>
-          <text class="nunito_600">{{ _t.add_chef_ziko_on_wechat }}</text>
+          <text class="nunito_700 height30">{{ _t.add_chef_ziko_on_wechat }}</text>
         </button>
       </view>
     </view>

@@ -1,6 +1,6 @@
 <view wx:if="{{ contacts.length > 0 }}" class="container container-grey address-list{{ _setting.selecting ? ' container-btn-bottom' : ''}}">
   <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
-    <view class="cards">
+    <view class="cards {{_setting.selecting==true ? 'shortCards' : ''}}">
       <view
         class="card{{ select_index == index ? ' select' : '' }}"
         wx:for="{{ contacts }}"

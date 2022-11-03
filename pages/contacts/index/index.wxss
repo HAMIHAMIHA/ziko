@@ -15,6 +15,10 @@ page {
   height: calc(100vh - 180rpx - var(--env-));
   overflow: scroll;
 }
+.shortCards{
+  height: calc(100vh - 300rpx - var(--env-));
+
+}
 
 .card {
   padding: 40rpx 34rpx;

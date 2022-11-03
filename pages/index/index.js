@@ -397,6 +397,7 @@ Page({
         empty: i18n.empty,
         explore: i18n.explore,
         get_reminder: i18n.get_reminder,
+        remind_me: i18n.remind_me,
         i_got_you: i18n.i_got_you,
         item_unit: i18n.item_unit,
         items_unit: i18n.items_unit,
