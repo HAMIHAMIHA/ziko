@@ -459,6 +459,7 @@
 }
 
 .progress-bar__values .progress-label {
+  white-space: nowrap;
   font-size: 16rpx;
   line-height: 18rpx;
 }
