@@ -233,11 +233,11 @@ button:not([size=mini]).btn-primary {
   border-radius: 8rpx;
 }
 
-.container-btn-bottom .btn-bottom button {
+/* .container-btn-bottom .btn-bottom button {
   position: absolute;
   left: 30rpx;
   bottom: calc(160rpx + var(--env-));
-}
+} */
 /* End of Button Bottom */
 
 /* Buttons */
