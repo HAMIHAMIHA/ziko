@@ -25,6 +25,7 @@ Page({
       currentTab: "offer"
     },
     messages: [],
+    scrollTop:0,
   },
 
   onShow: async function () {
@@ -175,7 +176,7 @@ Page({
   // Scroll to the specific section
   scrollTo: function (e) {
     const self = this;
-
+    console.log(e)
     // TEMP TODO
     if (e.currentTarget.dataset.info == 'packs') {
       Offers.switchTabs(self, 'pack');
@@ -183,12 +184,25 @@ Page({
 
     let query = wx.createSelectorQuery();
     let top = 0;
+    let h = this.data.scrollTop
+    
     query.select(`#${e.currentTarget.dataset.info}`).boundingClientRect(res => {
       top = res.top;
-      Offers.scrollTo(self, e.currentTarget.dataset.info, top)
+      let htop=h+top;
+      Offers.scrollTo(self, e.currentTarget.dataset.info, htop);
+
+      // console.log("self",self,"info",e.currentTarget.dataset.info,"res.top",res.top,"h",h,"htop",htop)
     }).exec();
   },
+  //get page top height
 
+  onPageScroll:function(e){
+    this.setData({
+      scrollTop:e.scrollTop
+    })
+    // console.log(this.data.scrollTop)
+
+  },
   // Checkout offer
   checkout: function () {
     ModifyCart.checkoutItems(this.options.id);

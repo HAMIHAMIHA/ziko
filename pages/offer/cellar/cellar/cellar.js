@@ -21,6 +21,7 @@ Page({
       currentTab: "offer"
     },
     messages: [],
+    scrollTop:0,
   },
 
   onShow: function () {
@@ -113,9 +114,12 @@ Page({
 
     let query = wx.createSelectorQuery();
     let top = 0;
+    let h = this.data.scrollTop
     query.select(`#${e.currentTarget.dataset.info}`).boundingClientRect(res => {
       top = res.top;
-      Offers.scrollTo(self, e.currentTarget.dataset.info, top);
+      let htop=h+top;
+
+      Offers.scrollTo(self, e.currentTarget.dataset.info, htop);
     }).exec();
   },
 
@@ -124,7 +128,15 @@ Page({
     console.log("checkout")
     ModifyCart.checkoutItems(this.options.id);
   },
+  //get page top height
 
+  onPageScroll:function(e){
+    this.setData({
+      scrollTop:e.scrollTop
+    })
+    // console.log(this.data.scrollTop)
+
+  },
   // Change product amount in cart
   changeAmount: function (e) {
     ModifyCart.modifyCartItems(this, e)
