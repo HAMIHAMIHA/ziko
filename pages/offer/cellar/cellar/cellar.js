@@ -27,6 +27,14 @@ Page({
     const self = this;
     // Get Offer
     Offers.getOffer(self, self.options.id);
+
+    wx.getSystemInfo({
+      success: (res) => {
+        self.setData({
+          onePxToRpx: 750 / res.windowWidth,
+        })
+      },
+    })
   },
 
   // Stop countdown timer on leaving page

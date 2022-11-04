@@ -495,33 +495,33 @@ export async function getOffer(page, offer_id) {
     wx.createSelectorQuery().select('#products').boundingClientRect().exec(res => {
       page.setData({
         "_setting.height": `${res[0].height + 12}px`,
-        "_setting.products.top": res[0].top,
+        "_setting.products.top": res[0].top + 60 / page.data.onePxToRpx, // When loading this page, there will be a delay for the countdown text. So need to add its height manually. 
       })
     })
 
     wx.createSelectorQuery().select('#offer').boundingClientRect().exec(res => {
       page.setData({
-        "_setting.offer.top": res[0].top,
+        "_setting.offer.top": res[0].top + 60 / page.data.onePxToRpx, // When loading this page, there will be a delay for the countdown text. So need to add its height manually. 
       })
     })
     if (offer.miniprogram.packs.length > 0) {
       wx.createSelectorQuery().select('#packs').boundingClientRect().exec(res => {
         page.setData({
-          "_setting.packs.top": res[0].top,
+          "_setting.packs.top": res[0].top + 60 / page.data.onePxToRpx, // When loading this page, there will be a delay for the countdown text. So need to add its height manually. 
         })
       })  
     }
     if (offer.miniprogram.lottery.draws.length > 0 && offer.miniprogram.lotteryEnable) {
       wx.createSelectorQuery().select('#lottery').boundingClientRect().exec(res => {
         page.setData({
-          "_setting.lottery.top": res[0].top,
+          "_setting.lottery.top": res[0].top + 60 / page.data.onePxToRpx, // When loading this page, there will be a delay for the countdown text. So need to add its height manually. 
         })
       })  
     }
     if (offer.miniprogram.zikoSpecials.length > 0) {
       wx.createSelectorQuery().select('#specials').boundingClientRect().exec(res => {
         page.setData({
-          "_setting.specials.top": res[0].top,
+          "_setting.specials.top": res[0].top + 60 / page.data.onePxToRpx, // When loading this page, there will be a delay for the countdown text. So need to add its height manually. 
         })
       })  
     }
