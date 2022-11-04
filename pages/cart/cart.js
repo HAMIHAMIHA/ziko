@@ -169,7 +169,7 @@ const _getOffers = page => {
       else {
         if (voucher.communities.find(c => communities[c] === "pet")) {
           community_list.unshift({
-            name: app.globalData.i18n.community.pet,
+            name: app.globalData.i18n.community.pet_short,
             style: "pet"
           });
           ticket_type = "pet";

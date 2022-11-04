@@ -35,31 +35,39 @@ export const formatTime = dateLong => {
 
 // For vouchers
 export const formatCountDown = dateLong => {
-  const date = new Date(dateLong) - new Date();
+  let date = new Date(dateLong) - new Date().setHours(0, 0, 0, 0);
+  // const date = new Date(dateLong) - new Date();
   const _i18n = app.globalData.i18n.timer;
 
   // Time calculations for days, hours, minutes and seconds
   const days = Math.floor(date / (1000 * 60 * 60 * 24));
   const year = Math.floor(days / 365);
   const months = Math.floor(days / 30);
-  const hours = Math.floor((date % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((date % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((date % (1000 * 60)) / 1000);
 
   if (year > 0) {
     if (year === 1) return `${_i18n.in} ${year} ${_i18n.years}`;
-    return `${_i18n.in} ${year} ${_i18n.long_years}`
+    return `${_i18n.in} ${year} ${_i18n.long_years}`;
   }
   if (months > 0) {
     if (months === 1) return `${_i18n.in} ${months} ${_i18n.months}`;
-    return `${_i18n.in} ${months} ${_i18n.long_months}`
+    return `${_i18n.in} ${months} ${_i18n.long_months}`;
   }
   if (days > 0) {
     if (days === 1) return _i18n.tomorrow;
     return `${_i18n.in} ${days} ${_i18n.long_days}`;
   }
+
+  // To caculate accurate hours and minutes
+  date = new Date(dateLong) - new Date();
+  const hours = Math.floor((date % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((date % (1000 * 60 * 60)) / (1000 * 60));
   if (hours > 0) {
+    if (hours === 1) return `${_i18n.in} ${hours} ${_i18n.hours}`;
     return `${_i18n.in} ${hours} ${_i18n.long_hours}`;
+  }
+  if (minutes > 0) {
+    if (minutes === 1) return `${_i18n.in} ${minutes} ${_i18n.minutes}`;
+    return `${_i18n.in} ${minutes} ${_i18n.long_minutes}`;
   }
 }
 

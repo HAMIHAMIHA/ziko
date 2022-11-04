@@ -65,12 +65,12 @@
                   >
                     <block wx:if="{{ index == 0 }}">
                       <text class="ziko-name">{{ _t.ziko }}</text>
-                      <text class="nunito_700 ziko-community ziko-community-{{ c.style }}">{{ " " + c.name }}</text>                  
+                      <text class="nunito_700 gradient-text ziko-{{ c.style }}">{{ " " + c.name }}</text>                  
                     </block>
 
                     <block wx:else>
                       <text class="ziko-community">{{' / '}}</text>
-                      <text class="nunito_700 ziko-community ziko-community-{{ c.style}}">{{ c.name }}</text>
+                      <text class="nunito_700 gradient-text ziko-{{ c.style}}">{{ c.name }}</text>
                     </block>
                   </block>
                 </view>
