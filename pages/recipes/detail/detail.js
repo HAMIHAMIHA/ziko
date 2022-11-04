@@ -1,5 +1,6 @@
 const { showLoading } = require("../../../utils/common.js");
 const { formatWeekDate, mapDeliveryDates, _checkMediaType } = require("../../../utils/util.js");
+const { communities } = require('../../../utils/constants.js');
 
 const app = getApp();
 
@@ -37,65 +38,148 @@ const _setPageTranslation = page => {
       time_remaining: i18n.time_remaining,
       specials: i18n.specials,
       viewers: i18n.viewers,
+      remind_me: i18n.remind_me,
+      i_got_you: i18n.i_got_you,
     }
   })
 }
 
-const getOffers = (page, id) => {
-  app.api.getRecipeOffers(id).then(res => {
-    let offers = [];
-    res.forEach( offer => {
-      let date_value = formatWeekDate(offer.startingDate);
+const handleRawOffers = (page, res) => {
+  let offers = [];
+  res.forEach( offer => {
+    let date_value = formatWeekDate(offer.startingDate);
 
-      let banners = { index: 0, uris: [] };
-      let other_banner = { zh: 'en', en: 'zh' };
-      if (offer.banner) {
-        if (offer.banner[app.db.get('language')]) {
-          banners.uris.push({
-            uri: `${app.folders.offer_banner}${offer.banner[app.db.get('language')].uri}`,
-            type: _checkMediaType(offer.banner[app.db.get('language')].type),
-            pause: true
-          });
-        } else if (offer.banner[other_banner[app.db.get('language')]]) {
-          banners.uris.push({
-            uri: `${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`,
-            type: _checkMediaType(offer.banner[other_banner[app.db.get('language')]].type),
-            pause: true
-          })
-        }
-      }
-
-      // Media images for banner swiper
-      if (offer.media.length) {
-        offer.media.forEach( m => {
-          banners.uris.push({
-            uri: `${app.folders.offer_media}${m.uri}`,
-            type: _checkMediaType(m.type),
-            pause: true,
-          })
+    let banners = { index: 0, uris: [] };
+    let other_banner = { zh: 'en', en: 'zh' };
+    if (offer.banner) {
+      if (offer.banner[app.db.get('language')]) {
+        banners.uris.push({
+          uri: `${app.folders.offer_banner}${offer.banner[app.db.get('language')].uri}`,
+          type: _checkMediaType(offer.banner[app.db.get('language')].type),
+          pause: true
+        });
+      } else if (offer.banner[other_banner[app.db.get('language')]]) {
+        banners.uris.push({
+          uri: `${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`,
+          type: _checkMediaType(offer.banner[other_banner[app.db.get('language')]].type),
+          pause: true
         })
       }
-
-      // Modify offer data to fit page display
-      offer.startTime = new Date(offer.startingDate).getTime();
-      offer.startDate = date_value;
-      offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
-      offer.banners = banners;
-      offer.orders = offer.orderCount;
-      offers.push(offer);
-    })
-
-    page.setData({
-      offers: offers,
-    });
-
-    if (offers.length) {
-      let offer_comp = page.selectComponent('#list_offers');
-      offer_comp.updateCards(page.data._t_offers, true);
     }
 
-    showLoading(false);
+    // Media images for banner swiper
+    if (offer.media.length) {
+      offer.media.forEach( m => {
+        banners.uris.push({
+          uri: `${app.folders.offer_media}${m.uri}`,
+          type: _checkMediaType(m.type),
+          pause: true,
+        })
+      })
+    }
+
+    // Modify offer data to fit page display
+    offer.startTime = new Date(offer.startingDate).getTime();
+    offer.startDate = date_value;
+    offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
+    offer.banners = banners;
+    offer.orders = offer.orderCount;
+    offer.community = communities[offer.community];
+    offers.push(offer);
+  })
+
+  page.setData({
+    offers: offers,
   });
+
+  if (offers.length) {
+    let offer_comp = page.selectComponent('#list_offers');
+    offer_comp.updateCards(page.data._t_offers, true);
+  }
+
+  showLoading(false);
+}
+
+const getOffers = (page, id) => {
+  // Set up page data, Start new timers, Change date filters
+  let callback = res => {
+    if (app.db.get('userInfo') && app.db.get('userInfo').token) {
+      const promises = [];
+      res.map(offer => { // To get the notification status of coming orders
+        promises.push(app.api.getNotificationOffer(offer.id))
+      })
+  
+      Promise.all(
+        promises
+      ).then(watches => {
+        watches.map((watch, index) => {
+          res[index].watch = watch.watch;
+        })
+        
+        handleRawOffers(page, res);
+      })  
+    } else {
+      handleRawOffers(page, res);
+    }
+  };
+
+  app.api.getRecipeOffers(id).then(callback);
+
+  // app.api.getRecipeOffers(id).then(res => {
+  //   let offers = [];
+  //   res.forEach( offer => {
+  //     let date_value = formatWeekDate(offer.startingDate);
+
+  //     let banners = { index: 0, uris: [] };
+  //     let other_banner = { zh: 'en', en: 'zh' };
+  //     if (offer.banner) {
+  //       if (offer.banner[app.db.get('language')]) {
+  //         banners.uris.push({
+  //           uri: `${app.folders.offer_banner}${offer.banner[app.db.get('language')].uri}`,
+  //           type: _checkMediaType(offer.banner[app.db.get('language')].type),
+  //           pause: true
+  //         });
+  //       } else if (offer.banner[other_banner[app.db.get('language')]]) {
+  //         banners.uris.push({
+  //           uri: `${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`,
+  //           type: _checkMediaType(offer.banner[other_banner[app.db.get('language')]].type),
+  //           pause: true
+  //         })
+  //       }
+  //     }
+
+  //     // Media images for banner swiper
+  //     if (offer.media.length) {
+  //       offer.media.forEach( m => {
+  //         banners.uris.push({
+  //           uri: `${app.folders.offer_media}${m.uri}`,
+  //           type: _checkMediaType(m.type),
+  //           pause: true,
+  //         })
+  //       })
+  //     }
+
+  //     // Modify offer data to fit page display
+  //     offer.startTime = new Date(offer.startingDate).getTime();
+  //     offer.startDate = date_value;
+  //     offer.deliveryDates = mapDeliveryDates(offer.deliveryDates);
+  //     offer.banners = banners;
+  //     offer.orders = offer.orderCount;
+  //     offer.community = communities[offer.community];
+  //     offers.push(offer);
+  //   })
+
+  //   page.setData({
+  //     offers: offers,
+  //   });
+
+  //   if (offers.length) {
+  //     let offer_comp = page.selectComponent('#list_offers');
+  //     offer_comp.updateCards(page.data._t_offers, true);
+  //   }
+
+  //   showLoading(false);
+  // });
 }
 
 const getRecipeDetail = (page, id) => {

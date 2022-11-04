@@ -104,19 +104,7 @@ Page({
 
   // Scroll to the specific section
   scrollTo: function (e) {
-    const self = this;
-
-    // TEMP TODO
-    if (e.currentTarget.dataset.info == 'packs') {
-      Offers.switchTabs(self, 'pack');
-    }
-
-    let query = wx.createSelectorQuery();
-    let top = 0;
-    query.select(`#${e.currentTarget.dataset.info}`).boundingClientRect(res => {
-      top = res.top;
-      Offers.scrollTo(self, e.currentTarget.dataset.info, top);
-    }).exec();
+    Offers.scrollTo(this, e.currentTarget.dataset.info, this.data._setting[e.currentTarget.dataset.info].top);
   },
 
   // Checkout offer

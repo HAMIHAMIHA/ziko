@@ -495,8 +495,36 @@ export async function getOffer(page, offer_id) {
     wx.createSelectorQuery().select('#products').boundingClientRect().exec(res => {
       page.setData({
         "_setting.height": `${res[0].height + 12}px`,
+        "_setting.products.top": res[0].top,
       })
     })
+
+    wx.createSelectorQuery().select('#offer').boundingClientRect().exec(res => {
+      page.setData({
+        "_setting.offer.top": res[0].top,
+      })
+    })
+    if (offer.miniprogram.packs.length > 0) {
+      wx.createSelectorQuery().select('#packs').boundingClientRect().exec(res => {
+        page.setData({
+          "_setting.packs.top": res[0].top,
+        })
+      })  
+    }
+    if (offer.miniprogram.lottery.draws.length > 0 && offer.miniprogram.lotteryEnable) {
+      wx.createSelectorQuery().select('#lottery').boundingClientRect().exec(res => {
+        page.setData({
+          "_setting.lottery.top": res[0].top,
+        })
+      })  
+    }
+    if (offer.miniprogram.zikoSpecials.length > 0) {
+      wx.createSelectorQuery().select('#specials').boundingClientRect().exec(res => {
+        page.setData({
+          "_setting.specials.top": res[0].top,
+        })
+      })  
+    }
 
     // Autoplay if main image is video
     if (offer.media[0].type === "video") {
@@ -544,39 +572,49 @@ export async function getOffer(page, offer_id) {
 
 // Switch tabs
 export function switchTabs(page, tab) {
-  const _getHeight = () => {
-    return new Promise((resolve) => {
-      if (tab === "recipe") {
-        wx.createSelectorQuery().select('#recipes').boundingClientRect().exec(res => {
-          resolve(res[0].height);
-        })
-      } else {
-        wx.createSelectorQuery().select('#products').boundingClientRect().exec(res => {
-          resolve(res[0].height);
-        })
-      }
-    })
-  }
+  return new Promise((resolve) => {
+    const _getHeight = () => {
+      return new Promise((resolve) => {
+        if (tab === "recipe") {
+          wx.createSelectorQuery().select('#recipes').boundingClientRect().exec(res => {
+            resolve(res[0].height);
+          })
+        } else {
+          wx.createSelectorQuery().select('#products').boundingClientRect().exec(res => {
+            resolve(res[0].height);
+          })
+        }
+      })
+    }
 
-  let left = (tab === "recipe") ? "-100vw" : "0";
-  _getHeight().then(res => {
-    page.setData({
-      "_setting.currentTab": tab,
-      "_setting.height": `${res}px`,
-      "_setting.left": left
-    })
+    let left = (tab === "recipe") ? "-100vw" : "0";
+    _getHeight().then(res => {
+      page.setData({
+        "_setting.currentTab": tab,
+        "_setting.height": `${res}px`,
+        "_setting.left": left
+      })
+      resolve();
+    });
   });
 }
 
 export function scrollTo(page, info, top) {
-  page.setData({
-    "_setting_scrollTo.currentTab": info,
-    "_setting_scrollTo.height": `${top}`,
-  })
-  wx.pageScrollTo({
-    scrollTop: page.data._setting_scrollTo.height,
-    duration: 500
-  })
+  const tab = info == 'packs' ? 'pack' : 'product';
+
+  switchTabs(page, tab).then(res => {
+    page.setData({
+      "_setting_scrollTo.currentTab": info,
+      "_setting_scrollTo.top": top,
+    })
+
+    setTimeout(() => {
+      wx.pageScrollTo({
+        scrollTop: page.data._setting_scrollTo.top,
+        duration: 500
+      })
+    }, 300)
+  });
 }
 
 // Get offer messages

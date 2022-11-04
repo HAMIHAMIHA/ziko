@@ -146,6 +146,15 @@
       {{ _t.products }}
     </view>
     <view
+      wx:if="{{ _offer.miniprogram.packs.length > 0 }}"
+      class="tabbar_item{{ _setting.currentTab == 'pack' ? ' selected' : '' }}"
+      bindtap="scrollTo"
+      data-info="packs"
+      animation="{{ _setting.animate.tab }}"
+    >
+      {{ _t.packs }}
+    </view>
+    <view
       class="tabbar_item{{ _setting.currentTab == 'recipe' ? ' selected' : '' }}"
       bindtap="switchTab"
       data-to-tab="recipe"
