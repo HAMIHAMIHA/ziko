@@ -293,6 +293,7 @@ page {
 }
 
 .vouchers-info {
+  height: 98rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
