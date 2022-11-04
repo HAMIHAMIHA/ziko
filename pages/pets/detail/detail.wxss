@@ -45,8 +45,12 @@ page {
   border: 3rpx solid rgba(255, 255, 255, 0.1);
 }
 
-.type-button-box .type-button.selected {
+.type-button-box .type-button.cat.selected {
   border: 3rpx solid #E6A86E;
+}
+
+.type-button-box .type-button.dog.selected {
+  border: 3rpx solid #D46B08;
 }
 
 .cat-check {

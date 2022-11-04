@@ -67,6 +67,7 @@ const getProductDetail = page => {
 
     const community = communities[offer.community.id];
     const offer_products = offer.miniprogram;
+    offer.coming = new Date(offer.startingDate).getTime() > new Date().getTime();
 
     // Find product index in packs or items
     let product_index = -1;

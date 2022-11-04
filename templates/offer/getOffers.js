@@ -504,21 +504,21 @@ export async function getOffer(page, offer_id) {
         "_setting.offer.top": res[0].top + 60 / page.data.onePxToRpx, // When loading this page, there will be a delay for the countdown text. So need to add its height manually. 
       })
     })
-    if (offer.miniprogram.packs.length > 0) {
+    if (offer.miniprogram?.packs.length > 0) {
       wx.createSelectorQuery().select('#packs').boundingClientRect().exec(res => {
         page.setData({
           "_setting.packs.top": res[0].top + 60 / page.data.onePxToRpx, // When loading this page, there will be a delay for the countdown text. So need to add its height manually. 
         })
       })  
     }
-    if (offer.miniprogram.lottery.draws.length > 0 && offer.miniprogram.lotteryEnable) {
+    if (offer.miniprogram?.lottery?.draws.length > 0 && offer.miniprogram?.lotteryEnable) {
       wx.createSelectorQuery().select('#lottery').boundingClientRect().exec(res => {
         page.setData({
           "_setting.lottery.top": res[0].top + 60 / page.data.onePxToRpx, // When loading this page, there will be a delay for the countdown text. So need to add its height manually. 
         })
       })  
     }
-    if (offer.miniprogram.zikoSpecials.length > 0) {
+    if (offer.miniprogram?.zikoSpecials.length > 0) {
       wx.createSelectorQuery().select('#specials').boundingClientRect().exec(res => {
         page.setData({
           "_setting.specials.top": res[0].top + 60 / page.data.onePxToRpx, // When loading this page, there will be a delay for the countdown text. So need to add its height manually. 

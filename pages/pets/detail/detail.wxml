@@ -7,12 +7,12 @@
     <view class="type-of-pet field-1">
       <view class="type-title">{{ _t.type_of_pet }}</view>
       <view class="type-button-box">
-        <button class="type-button{{ typechecked === petInfo.type.cat ? ' selected' : '' }}" bindtap="serviceSelection" data-type="{{ petInfo.type.cat }}">
+        <button class="type-button cat{{ typechecked === petInfo.type.cat ? ' selected' : '' }}" bindtap="serviceSelection" data-type="{{ petInfo.type.cat }}">
           <text class="icon icon-cat"></text>
           <text class="type-name nunito_500 cat">{{ _t.cat }}</text>
           <text class="icon icon-check cat"></text>
         </button>
-        <button class="type-button{{ typechecked === petInfo.type.dog? ' selected' : '' }}" bindtap="serviceSelection" data-type="{{ petInfo.type.dog }}">
+        <button class="type-button dog{{ typechecked === petInfo.type.dog? ' selected' : '' }}" bindtap="serviceSelection" data-type="{{ petInfo.type.dog }}">
           <view class="icon icon-dog"></view>
           <text class="type-name nunito_500 dog">{{ _t.dog }}</text>
           <text class="icon icon-check dog"></text>

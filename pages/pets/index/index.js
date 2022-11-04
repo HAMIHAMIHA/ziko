@@ -20,13 +20,6 @@ async function getUserInfo(page) {
   showLoading(false);
 }
 
-async function _deletePet(page, id) {
-  const pets = page.data.pets.filter(item => item._id !== id);
-  app.sessionUtils.updateUserInfo({
-    pets
-  });
-}
-
 const _setPageTranslation = page => {
   let i18n = app.globalData.i18n;
 
@@ -68,10 +61,6 @@ Page({
     _routes: {
       pet: app.routes.pet,
     },
-  },
-
-  onLoad: function () {
-
   },
 
   onShow: async function () {
@@ -125,7 +114,6 @@ Page({
 
   deletePet: function (e) {
     const self = this;
-    const id = e.currentTarget.dataset.id;
 
     wx.showModal({
       title: self.data._t.tips,
@@ -134,9 +122,17 @@ Page({
       confirmText: self.data._t.confirm,
       success(res) {
         if (res.confirm) {
-          _deletePet(self, id).then(() => {
-            getUserInfo(self);
+          const index = e.currentTarget.dataset.index;
+          let pets = self.data.pets;
+          pets.splice(index, 1);
+
+          self.setData({
+            pets,
           })
+
+          app.sessionUtils.updateUserInfo({
+            pets
+          });
         } else if (res.cancel) {
           console.log('Cancel')
         }
