@@ -96,8 +96,19 @@ const getOrders = (page) => {
     res.products = [...res.packs, ...res.singleItems];
 
     if (res.statusHistory) {
-      res.statusHistory.map( history => history.date = formatDate(history.date));
+      res.statusHistory.map( history => history.date = formatDate('yyyy-mm-dd', history.date));
     }
+
+    let temp = [];
+    res.deliveryTrackingHistory.forEach(function (a) {
+      var check = temp.every(function (b) {
+        return a.status !== b.status;
+      })
+      a.date = formatDate('yyyy-mm-dd', a.acceptTime);
+      a.value = a.status;
+      check ? temp.push(a) : '';
+    })
+    res.states = [...res.statusHistory, ...temp];
 
     let i18n = app.globalData.i18n;
     let _lang = app.db.get('language');
@@ -303,9 +314,10 @@ Page({
         use_voucher: i18n.use_voucher,
         ziko_lottery: i18n.ziko_lottery,
         ziko_special: i18n.ziko_special,
-        if_you_need_to:i18n.if_you_need_to,
-        add_chef_ziko_on_wechat:i18n.add_chef_ziko_on_wechat,
-        delivery_states:i18n.delivery_states
+        if_you_need_to: i18n.if_you_need_to,
+        add_chef_ziko_on_wechat: i18n.add_chef_ziko_on_wechat,
+        delivery_states: i18n.delivery_states,
+        special_requests: i18n.special_requests,
       },
       _t_gifts: {
         congrats: i18n.congrats,
@@ -365,10 +377,10 @@ Page({
     self.setData({
       need_reveived: false
     })
-    // app.api.updateOrder(self.options.id).then( res => {
-    //   self.setData({
-    //     order: res
-    //   })
-    // })
+    app.api.updateOrder(self.options.id).then( res => {
+      self.setData({
+        order: res
+      })
+    })
   }
 })

@@ -24,12 +24,11 @@ export const languageMap_en = {
   add_a_cat: "Add a cat",
   add_a_dog: "Add a dog",
   add_address: "Add new address",
-  
   add_contact: "Add new contact",
   add_chef_ziko: "Add Chef Ziko",
   add_pet_ziko: "Add Pet Ziko",
   add_farmer_ziko: "Add Farmer Ziko",
-  add_cellar_ziko: "Add Cellar  Ziko",
+  add_cellar_ziko: "Add Cellar Ziko",
   add_new_address: "Add new address",
   add_new_contact: "Add new contact",
   add_new_pet: "Add new pet",

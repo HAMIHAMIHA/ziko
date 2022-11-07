@@ -1,9 +1,10 @@
-page{
-  background-color:#11141B;
+page {
+  background-color: #11141B;
 }
+
 .container {
   padding-bottom: var(--env-);
-  background-color:#11141B;
+  background-color: #11141B;
 }
 
 .container.container-btn-bottom {
@@ -120,7 +121,7 @@ page{
   display: block;
   height: 100%;
   width: 2rpx;
-  background: #FF9898;
+  background: #8C8C8C;
   position: absolute;
   left: 23rpx;
   bottom: -50%;
@@ -135,14 +136,14 @@ page{
   width: 26rpx;
   height: 26rpx;
   margin: 0 10rpx;
-  background: #FF9898;
+  background: #8C8C8C;
   border-radius: 50%;
   position: relative;
   z-index: 1;
 }
 
 .timeline__detail:last-child .timeline__dot {
-  background: #FF4040;
+  background: #FFA940;
 }
 
 .timeline__content {
@@ -159,27 +160,36 @@ page{
 .timeline__status {
   padding-left: 16rpx;
 }
+
+.timeline__detail:last-child .timeline__date,
+.timeline__detail:last-child .timeline__status {
+  color: #FFA940;
+}
 /* End of Timeline */
 
 .disabled {
   pointer-events: none;
 }
 
-/* .contact-box */
-.if-you-need{
+/* Contact box */
+.if-you-need {
   font-size: 24rpx;
 }
-.contact-box .content_text{
-  width:502rpx;
-  position: relative;
-  margin:auto;
 
+.contact-box .content_text {
+  position: relative;
+  width: 80%;
+
+  margin: auto;
 }
-.contact-button{
+
+.contact-button {
   background-color: black !important;
-  width: 480rpx !important;
+  width: 60% !important;
 }
-.add-box .icon-wechat{
+
+.add-box .icon-wechat {
   font-size: 48rpx;
-  margin:30rpx 0;
+  margin: 30rpx 0;
 }
+/* End of Contact box */

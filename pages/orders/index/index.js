@@ -229,7 +229,12 @@ Page({
     app.sessionUtils.getUserInfo(self);
 
     if (app.db.get('userInfo') && app.db.get('userInfo').token) {
-      getOrders(self);
+      if (!self.options.back) {
+        self.initOrders();
+      } else {
+        self.options.back = false;
+        getOrders(self);
+      }
     }
   },
 
@@ -243,6 +248,9 @@ Page({
     _defaultFilters(self, 'community', 0);
     _defaultFilters(self, 'order_status', 0);
     current_load = 0;
+    self.setData({
+      orders: []
+    })
     getOrders(self);
   },
 

@@ -13,7 +13,18 @@
       <text class="detail_result">{{ order.deliveryTrackingID }}</text>
     </view>
     <view class="detail" wx:if="{{ order.deliveryTrackingID }}">
-      <text class="nunito_600 detail_label">{{_t.delivery_states}}</text>
+      <text class="nunito_600 detail_label">{{ _t.delivery_states }}</text>
+      <view class="white-box order-details_container timeline" wx:if="{{ order.states.length > 0 }}">
+        <block wx:for="{{ order.states }}" wx:key="index" wx:for-item="status">
+          <view class="timeline__detail">
+            <view class="timeline__dot"></view>
+            <view class="timeline__content">
+              <text class="timeline__date">{{ status.date }}</text>
+              <text class="nunito_600 timeline__status">{{ _t.order_status[status.value] }}</text>
+            </view>
+          </view>
+        </block>
+      </view>
     </view>
   </view>
 
@@ -158,6 +169,13 @@
     </view>
   </view>
 
+  <view class="white-box order-details_container" wx:if="{{ order.comment }}">
+    <view class="detail">
+      <text class="nunito_600 detail_label">{{ _t.special_requests }}</text>
+      <text class="detail_result">{{ order.comment }}</text>
+    </view>
+  </view>
+
   <view class="white-box order-details_container" wx:if="{{ order.fapiao }}">
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.fapiao }}</text>
@@ -180,7 +198,7 @@
     </view>
   </view> -->
 
-  <view class="white-box order-details_container timeline" wx:if="{{ order.statusHistory.length > 0 }}">
+  <!-- <view class="white-box order-details_container timeline" wx:if="{{ order.statusHistory.length > 0 }}">
     <block wx:for="{{ order.statusHistory }}" wx:key="index" wx:for-item="status">
       <view class="timeline__detail">
         <view class="timeline__dot"></view>
@@ -190,27 +208,26 @@
         </view>
       </view>
     </block>
-  </view>
+  </view> -->
 
   <view class="contact-box">
-      <view class="if-you-need content_text nunito_400">{{ _t.if_you_need_to}}
-      </view>
-      <view class="contact-button_container">
-        <button class="contact-button" open-type="contact">
-          <text class="icon icon-headset"></text>
-          <text class="nunito_700 height30">{{ _t.contact_customer_hero }}</text>
-        </button>
-      </view>
-      <view class="contact-button_container">
-        <button class="contact-button" bindtap="showCopyBox">
-          <text class="icon icon-wechat"></text>
-          <text class="nunito_700 height30">{{ _t.add_chef_ziko_on_wechat }}</text>
-        </button>
-      </view>
+    <view class="if-you-need content_text nunito_400">{{ _t.if_you_need_to }}</view>
+    <view class="contact-button_container">
+      <button class="contact-button" open-type="contact">
+        <text class="icon icon-headset"></text>
+        <text class="nunito_700 height30">{{ _t.contact_customer_hero }}</text>
+      </button>
+    </view>
+    <view class="contact-button_container">
+      <button class="contact-button" bindtap="showCopyBox">
+        <text class="icon icon-wechat"></text>
+        <text class="nunito_700 height30">{{ _t.add_chef_ziko_on_wechat }}</text>
+      </button>
+    </view>
   </view>
 
   <!-- Pay button for pending orders -->
-  <view class="btn-bottom" wx:if="{{ order.paymentStatus == 'pending' }}" style="display: none;">
+  <view class="btn-bottom" wx:if="{{ order.paymentStatus == 'pending' }}">
     <button class="nunito_600{{ _pay_set.pay_disabled ? ' disabled' : '' }}" bindtap="makePayment">
       {{ _t.pay }}
     </button>
