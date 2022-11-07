@@ -7,3 +7,8 @@
   padding-bottom: calc(100rpx);
   /* padding-bottom:calc(100rpx+(--env-)); */
 }
+.containerTitle{
+  font-size: 32rpx;
+  line-height: 38rpx;
+  text-align: left;
+}

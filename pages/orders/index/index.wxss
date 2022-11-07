@@ -237,9 +237,11 @@
 }
 .payment-cleared{
   font-size:24rpx;
+  color: #A3A8B7;
 }
 .price-type{
   font-size:28rpx;
+  font-weight: 700;
 }
 .lottery-gift{
  font-size:24rpx;
