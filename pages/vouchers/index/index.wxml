@@ -108,7 +108,7 @@
     </view>
     <view class="first-paragraph gilroy-700">{{ _t.no_vouchers_yet }}</view>
     <view class="second-paragraph nunito_500">{{ _t.its_up_to_you }}</view>
-    <button class="add_a_cat" bindtap="navigateOffer">
+    <button class="view-offers" bindtap="navigateOffer">
       <text>{{ _t.view_ziko_offers }}</text>
     </button>
   </view>

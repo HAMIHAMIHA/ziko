@@ -272,6 +272,9 @@ Page({
     _pay_set: {},
     need_reveived: false,
     showCopyBox: false,
+
+    // TEMP
+    // To fill in the real wechat ids
     copyContent: {
       cellar: {
         qrcode: '/assets/images/QRCODE.png',

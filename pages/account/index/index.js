@@ -74,7 +74,6 @@ Page({
     },
     language: app.db.get('language'),
     showCopyBox: false,
-    animationData: {},
 
     // TEMP
     // To fill in the real wechat ids

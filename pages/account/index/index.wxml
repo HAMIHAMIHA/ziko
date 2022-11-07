@@ -130,17 +130,16 @@
   <!-- Join Ziko community end-->
 </view>
 
-<!-- copy box -->
+<!-- Copy box -->
 <view wx:if="{{ showCopyBox }}" class="copybox">
-  <view class="copybox-cancel" bindtap="hideCopyBox">
-  </view>
+  <view class="copybox-cancel" bindtap="hideCopyBox"></view>
 
-  <view class="copybox-tap bottom-pos" animation="{{ animationData }}">
+  <view class="copybox-tap bottom-pos">
     <view class="add-box" wx:for="{{ copyContent }}" wx:for-item="copy" data-text="{{ copy.wechat }}" bindtap="copy">
       <view class="icon icon-{{ copy.community }}-head"></view>
       <view>
         <text class="box-name">{{ copy.title }}</text>
-        <view class="wechat-copy ziko-{{ copy.community }}" hover-class="clicked-{{ copy.community }}">
+        <view class="wechat-copy ziko-{{ copy.community }}" hover-class="hover-{{ copy.community }}">
           <text class="wechat-id">{{ _t.wechat_id }}</text>
           <text class="simonmawas">{{ copy.wechat }}</text>
           <text class="icon icon-copy icon-height"></text>
@@ -153,6 +152,6 @@
     </view>
   </view>
 </view>
-<!-- copy box end -->
+<!-- End of Copy box -->
 
 <lottery-draw id="lottery_modal"></lottery-draw>

@@ -291,9 +291,12 @@
 }
 
 .right-box {
-  margin-top: 50rpx;
-  margin-right: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
   text-align: right;
+  margin-right: 30rpx;
 }
 
 .right-box-title-size {

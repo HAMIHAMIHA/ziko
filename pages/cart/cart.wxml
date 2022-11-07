@@ -353,8 +353,7 @@
       <image src="{{ copyContent[_offer.community].qrcode }}" class="qrcode"></image>
     </view>
 
-<!-- hover-class="clicked-{{ copy.community }}" -->
-    <view class="wechat-copy ziko-{{ _offer.community }}" bindtap='copyBtn' data-text="{{ _t.simonmawas }}" hover-class="clicked-{{ _offer.community }}">
+    <view class="wechat-copy ziko-{{ _offer.community }}" bindtap='copyBtn' data-text="{{ _t.simonmawas }}" hover-class="hover-{{ _offer.community }}">
       <text class="wechat-id">{{ _t.wechat_id }}{{ copyContent[_offer.community].wechat }}</text>
       <text class="icon icon-copy"></text>
     </view>

@@ -124,30 +124,30 @@
           <view class="topAllbox">
             <view class="top_box">
               <view class="text_box">
-                <view class="color_bar bgc-color-{{ _communities[order.community] }}"></view>
+                <view class="color_bar ziko-{{ _communities[order.community] }}"></view>
                 <view class="text-box-inside">
-                  <view class="type-title color-{{ _communities[order.community] }}">Ziko {{ _communities[order.community] }}</view>
+                  <view class="type-title gradient-text ziko-{{ _communities[order.community] }}">Ziko {{ _communities[order.community] }}</view>
                   <view class="big-text gilroy_700">{{ order.offer[_language] }}</view>
                   <view class="items-num" wx:if="{{ order.count > 0 }}">x{{ order.count == 1 ? order.count + _t.item_unit : order.count + _t.items_unit }}</view>
                   <view class="items-date nunito_400">{{ order.orderDate }}</view>
                 </view>
               </view>
               <view class="right-box">
-                <view class="right-box-title-size color-{{ _communities[order.community] }}">{{ _t.payment_status[order.paymentStatus] }}</view>
-                <view class="payment-cleared">{{ _t.payment_cleared }}</view>
+                <view class="right-box-title-size gradient-text ziko-{{ _communities[order.community] }}">{{ _t.order_status[order.trackingStatus] }}</view>
+                <view wx:if="{{ order.paymentStatus == 'paid' }}" class="payment-cleared">{{ _t.payment_cleared }}</view>
                 <view class="price-type">¥ {{ order.actualAmount }}</view>
               </view>
             </view>
-            <!-- ——test temporary structure -->
-            <view class="returned">
-              <view class="text">{{_t.amount_paid}}</view>
-              <view class="money">¥ 1100</view>
+
+            <view wx:if="{{ order.actualAmount !== order.actualTotal }}" class="returned">
+              <view class="text">{{ _t.amount_paid }}</view>
+              <view class="money">¥ {{ order.actualTotal }}</view>
               <view class="text">—</view>
-              <view class="text">{{_t.ziko_returned}}</view>
-              <view class="money">¥ 200</view>
+              <view class="text">{{ _t.ziko_returned }}</view>
+              <view class="money">¥ {{ order.actualAmount }}</view>
             </view>
           </view>
-          <view wx:if="{{  order.gifts.length > 0 }}" class="bottom_box">
+          <view wx:if="{{ order.gifts.length > 0 }}" class="bottom_box">
             <view class="lottery-gift nunito_400">{{ _t.lottery_gift }}:</view>
             <block wx:for="{{ order.gifts }}" wx:key="_id" wx:for-item="gift">
               <view class="gift__container flex-between">

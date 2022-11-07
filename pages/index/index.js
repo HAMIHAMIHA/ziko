@@ -64,7 +64,7 @@ const _generateSuffix = (step, filter_date) => {
   if (filter_date) {
     let today = now.setHours(0, 0, 0, 0);
     // key = (filter_date === today) ? 'today' : (filter_date > today) ? 'tomorrow' : 'yesturday';
-    key = (filter_date_start > today) ? 'future' : 'general';
+    key = (filter_date_start > today) ? 'future' : 'general'; // New filter logic
   }
 
   // 1: event in progress, 2: comming event
