@@ -14,7 +14,8 @@ const {
 const app = getApp();
 
 const pickers = {
-  community: ['all', 'cellar', 'farm', 'kitchen', 'pet'],
+  // community: ['all', 'cellar', 'farm', 'kitchen', 'pet'],
+  community: ['all', 'kitchen', 'cellar', 'farm', 'pet'],
   order_status: ['all', 'delivered', 'on_the_way', 'prepared'],
 }
 const PAGE_RANGE = 10;
@@ -119,16 +120,9 @@ const getOrders = (page) => {
     },
   }
   const callback = res => {
-    console.log("Callback", res);
-    if (!("length" in res)) {
+    if (!res.length) {
       showLoading(false);
-      return;
-    }
-    if (res.length === 0) {
-      console.log("empty order")
-      page.setData({orders: res});
-      showLoading(false);
-      return;
+      // return;
     }
 
     _setOrderStatus();
@@ -188,7 +182,6 @@ const getOrders = (page) => {
     }, function () {
       current_load = orders.length;
     });
-    console.log("testData",orders)
 
     showLoading(false);
   }
@@ -222,18 +215,10 @@ Page({
     },
     _filters: {
       list: index_data.list_filter,
-      map: index_data.map_filters
     },
-    //__test
-    type: ['kitchen', 'cellar', 'garden', 'pet'],
-    index_t: 1,
-    state: ['delivered', 'progress', 'processing'],
-    index_s: 1,
-    items_name: ["Outstanding beef", "Fresh Pack Vages", "Greedy dog food"]
   },
 
   onLoad: function (options) {
-    // console.log("data",this.data._filters.list,this.data._filters.map)
     const self = this;
 
     self.updatePageConstants();
@@ -278,7 +263,8 @@ Page({
     current_load = 0;
 
     let filter_type = e.currentTarget.dataset.filter_type;
-    let value = filter_type == 'community' ? e.detail.value : e.currentTarget.dataset.value;
+    // let value = filter_type == 'community' ? e.detail.value : e.currentTarget.dataset.value;
+    let value = e.currentTarget.dataset.value;
 
     current_load = 0;
 
@@ -337,15 +323,8 @@ Page({
     })
   },
 
-  // Filter offers by selected group
-  filterOffers: function (e) {
-    this.setData({
-      "_picker_selected.community": e.currentTarget.dataset.filter_group
-    })
-  },
-  refreshLoginState: function (event) {
-    console.log("refreshLoginState", event.detail);
-    const {userLogin} = event.detail;
+  refreshLoginState: function (e) {
+    const userLogin = e.detail.userLogin;
     if (userLogin) getOrders(this);
   }
 })

@@ -11,7 +11,7 @@
 <!--    </button>-->
 <!--  </view>-->
 <!--</block>-->
-<block wx:if="{{!orders}}">
+<block wx:if="{{ !orders }}">
   <login-hint bind:refresh="refreshLoginState"></login-hint>
 </block>
 
@@ -19,13 +19,12 @@
   <!-- Scroll Menu  community-->
   <view class="h-scroll_container scroll-menu_community">
     <scroll-view class="h-scroll" scroll-x="true">
-      <block wx:for="{{ _filters.list }}" wx:key="filter_group" wx:for-item="filter">
+      <block wx:for="{{ _filters.list }}" wx:key="index" wx:for-item="filter">
         <view
-          class="h-scroll_item {{ filter.class_name }} {{ _picker_selected.community == filter.filter_group ? ' selected' : '' }}"
-          bindtap="filterOffers"
-          data-filter_type="list"
-          data-filter_group="{{ filter.filter_group }}"
-          data-filter_id="{{ filter.id }}"
+          class="h-scroll_item {{ filter.class_name }} {{ _picker_selected.community == index ? ' selected' : '' }}"
+          bindtap="changeFilter"
+          data-filter_type="community"
+          data-value="{{ index }}"
         >
           <view class="icon icon-{{ filter.icon }}"></view>
         </view>
@@ -36,16 +35,16 @@
 
   <!-- Scroll Menu account-->
   <view class="nunito_500 scroll-menu_account_new">
-      <block wx:for="{{ _pickers.order_status }}" wx:key="index" wx:for-item="status">
-        <view
-          class="h-scroll_item_new order-status{{ _picker_selected.order_status == index ? ' selected' : '' }}"
-          bindtap="changeFilter"
-          data-filter_type="order_status"
-          data-value="{{ index }}"
-        >
-          <view class="text-class" >{{ _t.order_status[status] }}</view>
-        </view>
-      </block>
+    <block wx:for="{{ _pickers.order_status }}" wx:key="index" wx:for-item="status">
+      <view
+        class="h-scroll_item_new order-status{{ _picker_selected.order_status == index ? ' selected' : '' }}"
+        bindtap="changeFilter"
+        data-filter_type="order_status"
+        data-value="{{ index }}"
+      >
+        <view class="text-class">{{ _t.order_status[status] }}</view>
+      </view>
+    </block>
   </view>
   <!-- End of Scroll Menu -->
 
@@ -74,8 +73,14 @@
 
     <!-- Order Card -->
     <view class="cards-container">
-      <block wx:for="{{ orders }}" wx:key="id" wx:for-item="order">
-        <!-- <view class="card order-card{{ order.count == 0 ? 'disabled' : ''}}" data-id="{{ order.id }}" bindtap="toDetails">
+      <view
+        wx:for="{{ orders }}"
+        wx:for-item="order"
+        wx:key="id"
+        data-id="{{ order.id }}"
+        bindtap="toDetails"
+      >
+        <!-- <view class="card order-card{{ order.count == 0 ? 'disabled' : '' }}" data-id="{{ order.id }}" bindtap="toDetails">
           // Order Detail
           <view class="order-info__detail">
             <view class="flex-between order-info">
@@ -114,39 +119,40 @@
           </view>
           // End of Order Lottery
         </view> -->
-        <view class="" bindtap="toDetails">
-          <view class="allbox">
-            <view class="top_box">
-              <view class="text_box">
-                <view class="color_bar bgc-color-{{type[index_t]}}"></view>
-                <view class="text-box-inside">
-                  <view class="type-title color-{{type[index_t]}}">Ziko {{type[index_t]}}</view>
-                  <view class="big-text gilroy_700">{{items_name[0]}}</view>
-                  <view class="items-num">x{{orders[0].count}} {{_t.items_unit}}</view>
-                  <view class="items-date nunito_400">{{orders[0].orderDate}}</view>
-                </view>
+
+        <view class="allbox">
+          <view class="top_box">
+            <view class="text_box">
+              <view class="color_bar bgc-color-{{ _communities[order.community] }}"></view>
+              <view class="text-box-inside">
+                <view class="type-title color-{{ _communities[order.community] }}">Ziko {{ _communities[order.community] }}</view>
+                <view class="big-text gilroy_700">{{ order.offer[_language] }}</view>
+                <view class="items-num" wx:if="{{ order.count > 0 }}">x{{ order.count == 1 ? order.count + _t.item_unit : order.count + _t.items_unit }}</view>
+                <view class="items-date nunito_400">{{ order.orderDate }}</view>
               </view>
-              <view class="right-box">
-                <view class="right-box-title-size color-{{type[index_t]}}">{{state[index_s]}}</view>
-                <view class="payment-cleared">{{_t.payment_cleared}}</view>
-                <view class="price-type">¥{{orders[0].actualAmount}}</view>
-              </view>
-              
             </view>
-            <view wx:if="{{orders[0].lottery}}" class="bottom_box">
-              <view class="lottery-gift nunito_400">{{_t.lottery_gift}}
-              </view>
-              <view class="flex-between">
-                <view class="flex-start">
-                  <view class="picture-white-box"></view>
-                  <view class="picture-text">{{orders[0].item}}</view>
-                </view>
-                <view class="lottery-number">x1</view>
-              </view>
+            <view class="right-box">
+              <view class="right-box-title-size color-{{ _communities[order.community] }}">{{ _t.payment_status[order.paymentStatus] }}</view>
+              <view class="payment-cleared">{{ _t.payment_cleared }}</view>
+              <view class="price-type">¥{{ order.actualAmount }}</view>
             </view>
           </view>
+
+          <view wx:if="{{  order.gifts.length > 0 }}" class="bottom_box">
+            <view class="lottery-gift nunito_400">{{ _t.lottery_gift }}</view>
+            <block wx:for="{{ order.gifts }}" wx:key="_id" wx:for-item="gift">
+              <view class="gift__container flex-between">
+                <view class="gift">
+                  <image class="gift__image" src="{{ gift.picture }}" mode="aspectFill" wx:if="{{ gift.picture }}"></image>
+                  <view class="gift__image icon icon-gift" wx:else></view>
+                  <view class="capitalize gift__name">{{ gift.name }}</view>
+                </view>
+                <view class="gift__count">x{{ gift.count }}</view>
+              </view>
+            </block>
+          </view>
         </view>
-      </block>
+      </view>
     </view>
     <!-- End of Order Card -->
   </view>

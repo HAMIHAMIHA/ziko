@@ -21,6 +21,7 @@
 .community-selector .icon {
   font-size: 20rpx;
 }
+
 /* End of Community Picker */
 
 /* Order Card */
@@ -38,14 +39,16 @@
 .order-card.disabled {
   pointer-events: none;
 }
-.scroll-menu_account_new{
-  font-size: 24rpx;
-  margin:20rpx 0;
-  margin-right: 15rpx;
-  height: 64rpx;
+
+.scroll-menu_account_new {
   display: flex;
+
+  font-size: 24rpx;
+
+  margin: 20rpx 15rpx 20rpx 0;
 }
-.h-scroll_item_new{
+
+.h-scroll_item_new {
   width: 150rpx;
   height: 50rpx;
   padding: 12rpx;
@@ -58,14 +61,16 @@
   justify-content: center;
   align-items: center;
 }
-.text-class{
-  text-align: center; 
+
+.text-class {
+  text-align: center;
 }
 
-.order-status.selected{
+.order-status.selected {
   background-color: #D9D9D9;
   color: #1F1F1F;
 }
+
 /* Order Detail */
 .order-info__detail {
   padding: 24rpx;
@@ -137,6 +142,7 @@
   color: var(--grey-);
   text-decoration: line-through;
 }
+
 /* End of Order Detail */
 
 /* Order Lottery */
@@ -178,90 +184,90 @@
   font-size: 24rpx;
   line-height: 28rpx;
 }
+
 /* End of Order Card */
 
-.allbox{
+.allbox {
   background-color: #373A44;
-  margin:30rpx;
+  margin: 30rpx;
   width: 690rpx;
-  box-sizing:border-box;
+  box-sizing: border-box;
   border-radius: 8rpx;
 }
-.color_bar{
+
+.color_bar {
   width: 20rpx;
-  height:80rpx;
+  height: 80rpx;
   border-radius: 0 0 8rpx 8rpx;
   margin-left: 18rpx;
 }
-.top_box{
+
+.top_box {
   background-color: #373A44;
   display: flex;
   justify-content: space-between;
   padding-bottom: 10rpx;
 }
-.bottom_box{
+
+.bottom_box {
   background-color: #252831;
+
+  padding: 16rpx 30rpx;
 }
-.big-text{
+
+.big-text {
   font-size: 34rpx;
 }
-.items-num{
+
+.items-num {
   font-size: 24rpx;
   color: #BFBFBF;
 }
-.type-title{
+
+.type-title {
   font-size: 22rpx;
   padding-top: 10rpx;
 }
-.items-date{
+
+.items-date {
   color: #BFBFBF;
   font-size: 24rpx;
 }
-.text_box{
+
+.text_box {
   display: flex;
 }
-.text-box-inside{
+
+.text-box-inside {
   margin-left: 20rpx;
 }
-.flex-right{
+
+.flex-right {
   right: 0;
 }
-.right-box{
-  margin-top:50rpx;
+
+.right-box {
+  margin-top: 50rpx;
   margin-right: 30rpx;
-  text-align:right;
+  text-align: right;
 }
-.right-box-title-size{
-  text-transform:uppercase;
+
+.right-box-title-size {
+  text-transform: uppercase;
   font-size: 24rpx;
 }
-.payment-cleared{
-  font-size:24rpx;
-}
-.price-type{
-  font-size:28rpx;
-}
-.lottery-gift{
- font-size:24rpx;
- color: #A3A8B7;
- margin-left:30rpx;
- padding-top: 20rpx;
-}
-.picture-white-box{
-  width: 48rpx;
-  height: 48rpx;
-  background-color: #fff;
-  margin-left: 30rpx;
-  margin-top: 20rpx;
-  margin-bottom: 30rpx;
-  margin-right: 20rpx;
-}
-.picture-text{
+
+.payment-cleared {
   font-size: 24rpx;
-  color: #D9D9D9;
+  color: #A3A8B7;
 }
-.lottery-number{
+
+.price-type {
+  font-size: 28rpx;
+}
+
+.lottery-gift {
   font-size: 24rpx;
-  color:#BFBFBF;
-  margin-right: 30rpx;
+  color: #A3A8B7;
+  margin-bottom: 16rpx;
 }
