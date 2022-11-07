@@ -44,24 +44,32 @@
           <!-- Next price and lottery draw -->
           <!-- CSS TODO -->
           <view wx:if="{{ _offer_setting.type == 'bourse' }}" class="nunito_500 product-next-info_container">
-            <view class="product-next-info red">
-              <view class="product-next-info-message capitalize">
-                {{ _t.next_price_in }} {{ next_lottery.remaining }}
-                <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ _t.orders }}</text>
-                <text wx:else>{{ _t.offer_special_names.items_sold }}</text>:
+            <view class="containerTitle">
+              <view class="product-next-info red">
+                <view class="product-next-info-message capitalize">
+                  {{ _t.next_price_in }} {{ next_lottery.remaining }}
+                  <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ _t.orders }}</text>
+                  <text wx:else>{{ _t.offer_special_names.items_sold }}</text>:
+                </view>
               </view>
-              <view class="nunito_700 product-next-info-target">
-                ¥{{ _bourse_info.nextPrice }}
+              <view class="product-next-info green">
+                <view class="product-next-info-message capitalize">
+                  {{ _t.next_lottery_in }} {{ next_lottery.remaining }}
+                  <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ _t.orders }}</text>
+                  <text wx:else>{{ _t.offer_special_names.items_sold }}</text>:
+                </view>
               </view>
             </view>
-            <view class="product-next-info green">
-              <view class="product-next-info-message capitalize">
-                {{ _t.next_lottery_in }} {{ next_lottery.remaining }}
-                <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ _t.orders }}</text>
-                <text wx:else>{{ _t.offer_special_names.items_sold }}</text>:
+            <view class="content">
+              <view class="product-next-info red">
+                <view class="nunito_700 product-next-info-target">
+                  ¥{{ _bourse_info.nextPrice }}
+                </view>
               </view>
-              <view class="nunito_700 product-next-info-target uppercase">
-                {{ _t.draw }} {{ next_lottery.num }}
+              <view class="product-next-info green">
+                <view class="nunito_700 product-next-info-target uppercase">
+                  {{ _t.draw }} {{ next_lottery.num }}
+                </view>
               </view>
             </view>
           </view>

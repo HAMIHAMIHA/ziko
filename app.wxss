@@ -233,11 +233,11 @@ button:not([size=mini]).btn-primary {
   border-radius: 8rpx;
 }
 
-.container-btn-bottom .btn-bottom button {
+/* .container-btn-bottom .btn-bottom button {
   position: absolute;
   left: 30rpx;
   bottom: calc(160rpx + var(--env-));
-}
+} */
 /* End of Button Bottom */
 
 /* Buttons */
@@ -883,6 +883,7 @@ button:not([size=mini]).float-contact_container {
 .ziko-offer .offer-detail_container {
   color: #000000;
   position: relative;
+  border-right: 0.5rpx solid #A1803B;
 }
 
 .ziko-offer .offer-detail_container:after {
@@ -949,7 +950,7 @@ button:not([size=mini]).float-contact_container {
 .ziko-offer:not(.ziko-product) {
   --message-height: 0px;
   --bottom-alert: 0px;
-  padding-bottom: calc(106rpx + var(--message-height) + var(--bottom-alert) + var(--env-));
+  padding-bottom: calc(156rpx + var(--message-height) + var(--bottom-alert) + var(--env-));
   position: relative;
 }
 
@@ -1731,6 +1732,7 @@ button:not([size=mini]).float-contact_container {
 /* Scroll to */
 .scrollTo-item {
   border: 0.5rpx solid #A1803B;
+  border-right: transparent;
   padding: 20rpx 0;
   width: 100%;
   text-transform: uppercase;
@@ -1749,6 +1751,11 @@ button:not([size=mini]).float-contact_container {
   flex-direction: row;
 }
 
+.product-next-info_container {
+  display: flex;
+  white-space: nowrap;
+}
+
 .product-next-info+.product-next-info {
   margin-top: 8rpx;
 }
@@ -1764,12 +1771,13 @@ button:not([size=mini]).float-contact_container {
 .product-next-info-message,
 .product-next-info-target {
   background: #2E3448;
+  width: 100%;
+  padding: 0 10rpx;
 }
 
 .product-next-info-message {
   font-size: 18rpx;
   line-height: 24rpx;
-
   padding: 10rpx;
 }
 
