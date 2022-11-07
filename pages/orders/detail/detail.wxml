@@ -209,6 +209,35 @@
       </view>
   </view>
 
+<!-- Copy box -->
+<view class="copybox" wx:if="{{ showCopyBox }}">
+  <view class="copybox-cancel" bindtap="hideCopyBox"></view>
+  <view class="copybox-tap bottom-pos">
+    <view class="add-box">
+      <view class="icon icon-wechat"></view>
+      <view class="box-title">
+        <view class="icon icon-{{ communities[order.community] }}-head"></view>
+        <view class="box-title-inside">
+          <view class="gilroy_700 inside-title">{{ copyContent[communities[order.community]].title }}</view>
+          <!-- <view class="nunito_500 inside-content">{{ _t.please_long_press }}</view> -->
+        </view>
+      </view>
+      <image src="{{ copyContent[communities[order.community]].qrcode }}" class="qrcode"></image>
+    </view>
+
+<!-- hover-class="clicked-{{ copy.community }}" -->
+    <view class="wechat-copy ziko-{{ communities[order.community] }}" bindtap='copyBtn' data-text="{{ copyContent[communities[order.community]].wechat }}" hover-class="clicked-{{ communities[order.community] }}">
+      <text class="wechat-id">{{ _t.wechat_id }}{{ copyContent[communities[order.community]].wechat }}</text>
+      <text class="icon icon-copy"></text>
+    </view>
+
+    <view class="x">
+      <text class="icon icon-x" bindtap="hideCopyBox"></text>
+    </view>
+  </view>
+</view>
+<!-- End of Copy box -->
+
   <!-- Pay button for pending orders -->
   <view class="btn-bottom" wx:if="{{ order.paymentStatus == 'pending' }}" style="display: none;">
     <button class="nunito_600{{ _pay_set.pay_disabled ? ' disabled' : '' }}" bindtap="makePayment">

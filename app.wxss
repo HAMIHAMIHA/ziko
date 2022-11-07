@@ -1700,6 +1700,11 @@ button:not([size=mini]).float-contact_container {
 .bgc-color-Garden {
   background: linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%);
 }
+.bgc-color-farm,
+.bgc-color-Farm {
+  background: linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%);
+}
+
 
 .color-pet,
 .color-Pet {

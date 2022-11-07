@@ -4,6 +4,9 @@ const { formatDate, findIndex } = require("../../../utils/util.js");
 
 const { makePayment } = require("../../cart/createOrder.js");
 
+
+
+
 const app = getApp();
 
 const _findPrice = {
@@ -249,20 +252,43 @@ const getOrders = (page) => {
 
 Page({
   data: {
+    communities:communities,
     _folders: {
       fapiao_image: app.folders.fapiao_image,
       pack_picture: app.folders.pack_picture,
       product_picture: app.folders.product_picture,
     },
     _pay_set: {},
-    need_reveived: false
+    need_reveived: false,
+    showCopyBox: false,
+    copyContent: {
+      cellar: {
+        qrcode: '/assets/images/QRCODE.png',
+        title: app.globalData.i18n.add_cellar_ziko,
+        wechat: 'SimonMawas',
+      },
+      farm: {
+        qrcode: '/assets/images/QRCODE.png',
+        title: app.globalData.i18n.add_farmer_ziko,
+        wechat: 'SimonMawas',
+      },
+      kitchen: {
+        qrcode: '/assets/images/QRCODE.png',
+        title: app.globalData.i18n.add_chef_ziko,
+        wechat: 'SimonMawas',
+      },
+      pet: {
+        qrcode: '/assets/images/QRCODE.png',
+        title: app.globalData.i18n.add_pet_ziko,
+        wechat: 'SimonMawas',
+      },
+    },
   },
 
   onShow: function () {
     const self = this;
     let i18n = app.globalData.i18n;
     app.globalData.pause_lottery_check = false;
-
     // Change page nav title
     wx.setNavigationBarTitle({
       title: i18n.order_detail
@@ -305,8 +331,10 @@ Page({
         ziko_special: i18n.ziko_special,
         if_you_need_to:i18n.if_you_need_to,
         add_chef_ziko_on_wechat:i18n.add_chef_ziko_on_wechat,
-        delivery_states:i18n.delivery_states
-      },
+        delivery_states:i18n.delivery_states,
+        wechat_id: i18n.wechat_id,
+      copied: i18n.copied,
+    },
       _t_gifts: {
         congrats: i18n.congrats,
         get: i18n.get,
@@ -370,5 +398,30 @@ Page({
     //     order: res
     //   })
     // })
-  }
+  },
+  showCopyBox: function () {
+    this.setData({
+      showCopyBox: true,
+    })
+  },
+
+  hideCopyBox: function () {
+    this.setData({
+      showCopyBox: false,
+    })
+  },
+  copyBtn: function (e) {
+    const self = this;
+    console.log(e)
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.text,
+      success: () => {
+        wx.hideToast();
+        wx.showToast({
+          title: self.data._t.copied,
+          duration: 1500,
+        })
+      }
+    })
+  },
 })
