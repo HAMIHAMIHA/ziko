@@ -313,7 +313,9 @@ Page({
         order_status: i18n.order_status,
         payment_status: i18n.payment_status,
         payment_cleared: i18n.payment_cleared,
-        lottery_gift: i18n.lottery_gift
+        lottery_gift: i18n.lottery_gift,
+        amount_paid: i18n.amount_paid,
+        ziko_returned: i18n.ziko_returned
       },
       _pickers: {
         communities: picker_communities,

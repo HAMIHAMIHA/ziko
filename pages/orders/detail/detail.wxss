@@ -192,4 +192,158 @@ page {
   font-size: 48rpx;
   margin: 30rpx 0;
 }
-/* End of Contact box */
+
+/* Copy box */
+.copybox {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.copybox-cancel {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.copybox-tap {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 30rpx;
+  height: 910rpx;
+  background-color: #FAFAFA;
+  border-radius: 40rpx 40rpx 0 0;
+  box-sizing: border-box;
+  color: black;
+}
+
+.copybox-tap .add-box {
+  margin: auto;
+  text-align: center;
+  width: fit-content;
+}
+
+.add-box .box-title {
+  display: flex;
+}
+
+.add-box .icon-wechat {
+  font-size: 48rpx;
+  margin: 30rpx 0;
+}
+
+.add-box .qrcode {
+  width: 350rpx;
+  height: 350rpx;
+  margin: 40rpx 0;
+}
+
+.box-title-inside {
+  /* text-align: left; */
+  padding-top: 30rpx;
+  /* padding-left: 11rpx; */
+}
+
+.box-title-inside .inside-title {
+  font-size: 42rpx;
+  line-height: 50rpx;
+}
+
+.box-title-inside .inside-content {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #8C8C8C;
+  padding-top: 4rpx;
+}
+
+.copybox-tap .add-box .icon-kitchen-head {
+  font-size: 101.4rpx;
+  padding-right: 22rpx;
+  padding-top: 10rpx;
+}
+
+.copybox-tap .add-box .icon-pet-head {
+  font-size: 80rpx;
+  padding-right: 34rpx;
+  padding-top: 20rpx;
+}
+
+.copybox-tap .add-box .icon-farm-head {
+  font-size: 74rpx;
+  padding-right: 20rpx;
+  padding-top: 18rpx;
+}
+
+.copybox-tap .add-box .icon-cellar-head {
+  font-size: 66rpx;
+  padding-right: 35rpx;
+  padding-top: 28rpx;
+}
+
+.wechat-copy {
+  line-height: 50rpx;
+  padding: 6px 20rpx;
+  border-radius: 4px;
+  margin: 6rpx 87rpx;
+  text-align: center;
+}
+
+.wechat-copy-hover {
+  line-height: 56rpx;
+  padding: 0px 20rpx;
+  border-radius: 4px;
+  box-shadow: 0px 0px 0px 2px rgba(24, 144, 255, 0.2);
+}
+
+.box-name {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28rpx;
+  line-height: 34rpx;
+}
+
+.wechat-id {
+  font-size: 28rpx;
+  color: #FFFFFF;
+  vertical-align: middle;
+}
+
+.icon.icon-copy {
+  padding-left: 20rpx;
+  vertical-align: middle;
+}
+
+.simonmawas {
+  padding-left: 6rpx;
+  vertical-align: middle;
+}
+
+.x {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background-color: #D9D9D9;
+  position: absolute;
+  right: 20px;
+  top: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon.icon-x {
+  font-size: 25rpx;
+  text-align: center;
+}
+/* End of Copy box */

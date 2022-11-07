@@ -1,4 +1,10 @@
-
 .detail_input {
   width: 100%;
+}
+
+.btn-bottom {
+  left: 0;
+  right: 0;
+  position: fixed;
+  bottom: calc(48rpx + var(--env-)) !important;
 }

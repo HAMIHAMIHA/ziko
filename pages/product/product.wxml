@@ -84,7 +84,6 @@
       <!-- Pack Product List -->
       <view class="offer-group offer-packs">
         <view class="gilroy_700 uppercase title">{{ _t.contains_items }}</view>
-
         <view class="product_container" wx:for="{{ product.products }}" wx:for-item="product" wx:key="_id">
           <navigator class="flex-between flex-align-start product" url="{{ _routes.product + '?id=' + product._id + '&offer_id=' + _offer.id + '&type=packProduct' }}">
             <view class="flex-start flex-align-start product_left">

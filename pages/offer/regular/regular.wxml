@@ -177,6 +177,7 @@
             <text class="gilroy_500">{{ _t.our_selected_packs.fst }}</text>
             <text class="gilroy_700">{{ _t.our_selected_packs.snd }}</text>
           </view>
+
           <template
             is="products"
             class="product-list"

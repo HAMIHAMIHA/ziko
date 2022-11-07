@@ -38,6 +38,7 @@ export const languageMap_en = {
   all: "All",
   all_done: "All done!",
   am: "AM",
+  amount_paid: "Amount paid",
   any_special_requests: "Any special requests",
   anything_else_we: "Anything else we should know?",
   area: "Area",
@@ -580,6 +581,7 @@ export const languageMap_en = {
   // Z
   zh: "中",
   ziko: "ziko",
+  ziko_returned: "Ziko returned",
   ziko_lottery: "Ziko Lottery",
   ziko_special: "Ziko Special",
   zipcode: "Zip code",
@@ -626,6 +628,7 @@ export const languageMap_zh = {
   all: "全部",
   all_done: "All done!",
   am: "上午",
+  amount_paid: "Amount paid",
   any_special_requests: "Any special requests",
   anything_else_we: "Anything else we should know?",
   area: "地区",
@@ -1166,6 +1169,7 @@ export const languageMap_zh = {
   // Z
   zh: "中",
   ziko: "ziko",
+  ziko_returned: "Ziko returned",
   ziko_lottery: "Ziko Lottery",
   ziko_special: "Ziko Special",
   zipcode: "Zip code",

@@ -43,12 +43,10 @@
               <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ draw.conditionValue }} {{ _t.orders }}</text>
               <text wx:else>{{ draw.conditionValue }} {{ _t.offer_special_names.items_sold }}</text>
             </view>
-
             <view class="offer-lottery_image">
               <image src="{{ _folders.custom_image + draw.gifts[0].customImage.uri }}" wx:if="{{ draw.gifts[0].customImage }}"/>
               <view class="icon icon-gift" wx:else></view>
             </view>
-
             <view class="offer-lottery_detail">
               <block wx:for="{{ draw.gifts }}" wx:for-item="gift" wx:key="_id">
                 <text wx:if="{{ index > 0 }}"> + </text>
@@ -60,7 +58,6 @@
               </block>
             <!-- </view> -->
           </view>
-
           <!-- Winner block -->
           <view class="offer-lottery_winner">
             <view class="nunito_600 uppercase winner-label winner-empty" wx:if="{{ draw.winners.length === 0 }}">{{ _t.no_winner_yet }}</view>
