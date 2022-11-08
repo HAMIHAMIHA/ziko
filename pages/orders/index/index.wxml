@@ -133,7 +133,8 @@
                 </view>
               </view>
               <view class="right-box">
-                <view class="right-box-title-size gradient-text ziko-{{ _communities[order.community] }}">{{ _t.order_status[order.trackingStatus] }}</view>
+                <!-- <view class="right-box-title-size gradient-text ziko-{{ _communities[order.community] }} status-{{ _t.order_status[order.trackingStatus][6] }}" >{{ _t.order_status[order.trackingStatus] }}</view> -->
+                <view class="right-box-title-size status-{{ _t.order_status[order.trackingStatus][7] }}" >{{ _t.order_status[order.trackingStatus] }}</view>
                 <view wx:if="{{ order.paymentStatus == 'paid' }}" class="payment-cleared">{{ _t.payment_cleared }}</view>
                 <view class="price-type">¥ {{ order.actualAmount }}</view>
               </view>
@@ -144,7 +145,7 @@
               <view class="money">¥ {{ order.actualTotal }}</view>
               <view class="text">—</view>
               <view class="text">{{ _t.ziko_returned }}</view>
-              <view class="money">¥ {{ order.actualAmount }}</view>
+              <view class="money">¥ {{ order.actualTotal - order.actualAmount }}</view>
             </view>
           </view>
           <view wx:if="{{ order.gifts.length > 0 }}" class="bottom_box">

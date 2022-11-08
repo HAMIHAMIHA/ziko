@@ -302,6 +302,7 @@
 .right-box-title-size {
   text-transform: uppercase;
   font-size: 24rpx;
+  font-weight: 700;
 }
 
 .payment-cleared {
@@ -321,4 +322,17 @@
 
 .topAllbox {
   padding: 0 0 0.5rpx 0;
+}
+
+.status-e{
+
+  color: #73D13D;
+}
+.status-y{
+
+  color: #FFA940;
+}
+.status-i{
+
+  color: #40A9FF;
 }
