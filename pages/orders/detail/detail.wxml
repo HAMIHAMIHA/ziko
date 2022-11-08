@@ -144,10 +144,12 @@
     <view class="detail" wx:if="{{ order.ticketAmount > 0 }}">
       <text class="nunito_600 detail_label">{{ _t.lottery_tickets }}</text>
       <text class="detail_result">x{{ order.ticketAmount }}</text>
+      <view class="icon icon-ticket"></view>
     </view>
     <view class="detail" wx:if="{{ order.fidlityPoints > 0 }}">
       <text class="nunito_600 detail_label">{{ _t.fidelity_points }}</text>
       <text class="detail_result">+{{ order.fidlityPoints }}</text>
+      <view class="icon icon-ticket"></view>
     </view>
   </view>
 

@@ -349,11 +349,8 @@ Page({
         special_requests: i18n.special_requests,
         wechat_id: i18n.wechat_id,
         copied: i18n.copied,
-<<<<<<< HEAD
     },
-=======
-      },
->>>>>>> origin/dev_lorraine
+
       _t_gifts: {
         congrats: i18n.congrats,
         get: i18n.get,

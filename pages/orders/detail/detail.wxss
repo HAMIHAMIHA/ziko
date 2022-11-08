@@ -346,4 +346,9 @@ page {
   font-size: 25rpx;
   text-align: center;
 }
+.icon.icon-ticket{
+  color: #FFC700;
+  font-size: 30rpx;
+  padding-left: 10rpx;
+}
 /* End of Copy box */
