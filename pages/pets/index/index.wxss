@@ -8,9 +8,9 @@ page {
 }
 
 .under-white-button {
-  position: fixed;
+  position: absolute;
   right: 0;
-  bottom: calc(30rpx + var(--env-));
+  bottom: calc(-130rpx + var(--env-));
   left: 0;
 
   display: flex;
@@ -112,7 +112,7 @@ page {
 
 .icon-edit {
   font-size: 30rpx;
-  padding-left: 40rpx;
+  padding-right: 30rpx;
 }
 
 .icon-pet-head {

@@ -5,6 +5,7 @@ page {
 .container {
   font-size: 30rpx;
   background-color: #12151E;
+  height: 100vh;
 }
 
 .pets-name {
@@ -148,15 +149,13 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 .under-black-button {
   padding: 30rpx 0;
-  margin: 0 30rpx;
-  margin-bottom: 48rpx;
   background-color: #12151E;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 8rpx;
-  position: fixed;
-  bottom: 120rpx;
+  position: absolute;
+  bottom: calc(150rpx + var(--env-));
   left: 0;
   right: 0;
   border: 3rpx solid #595959;
@@ -172,14 +171,13 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 .under-white-button {
   padding: 38rpx 0;
   margin: 0 30rpx;
-  margin-bottom: 52rpx;
   background-color: #F0F0F0;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 8rpx;
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  bottom: calc(30rpx + var(--env-));
   left: 0;
   right: 0;
   width: 90% !important;

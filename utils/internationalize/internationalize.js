@@ -66,6 +66,7 @@ export const languageMap_en = {
   checkout_message: "Need any help?",
   choose_delivery_date: "Choose delivery date",
   chosen_delivery_date: "Expected delivery date",
+  Chosen_delivery_date: "Chosen delivery date",
   city: "City",
   claims: "Claims",
   closed: "Closed",
@@ -544,6 +545,7 @@ export const languageMap_en = {
   // V
   viewers: " Viewers",
   view_ziko_offers: "View Ziko offers",
+  voucher_used:"Voucher used",
   vouchers: "Vouchers",
   voucher_empty: " Voucher not selected",
   voucher_question: "Is there a problem with your vouchers?",
@@ -657,6 +659,7 @@ export const languageMap_zh = {
   checkout_message: "如果您在购买后需要更改交货日期或其他信息，请联系客服",
   choose_delivery_date: "Choose delivery date",
   chosen_delivery_date: "Expected delivery date",
+  Chosen_delivery_date: "Chosen delivery date",
   city: "City",
   claims: "Claims",
   closed: "Closed",
@@ -1132,6 +1135,7 @@ export const languageMap_zh = {
   // V
   viewers: " 浏览",
   view_ziko_offers: "View Ziko offers",
+  voucher_used:"Voucher used",
   vouchers: "Vouchers",
   voucher_empty: " Voucher not selected",
   voucher_question: "Is there a problem with your vouchers?",

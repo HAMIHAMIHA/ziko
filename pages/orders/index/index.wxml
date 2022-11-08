@@ -147,7 +147,7 @@
               <view class="money">¥ {{ order.actualTotal }}</view>
               <view class="text">—</view>
               <view class="text">{{ _t.ziko_returned }}</view>
-              <view class="money">¥ {{ order.actualTotal - order.actualAmount }}</view>
+              <view class="money">¥ {{ order.returned }}</view>
             </view>
           </view>
           <view wx:if="{{ order.gifts.length > 0 }}" class="bottom_box">
