@@ -314,7 +314,7 @@
       <view class="nunito_700 cartdetail-flex">
         <view class="total-content">
           <view class="detail_label nunito_500 text-right">{{ _t.total }}</view>
-          <text class="detail_result_before">¥{{ _pay_set.finalFee + _pay_set.reducedTotal }}</text>
+          <text class="detail_result_before">¥{{ _pay_set.total + delivery_fee }}</text>
           <text class="detail_result">¥{{ fixDecimals.toFix((_pay_set.finalFee - voucher.amount) * discount) }}</text>
         </view>
         <view class="pay-button">

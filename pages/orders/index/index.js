@@ -157,7 +157,10 @@ const getOrders = (page) => {
 
       order_info.actualAmount = Math.round(order.actualAmount * 100) / 100;
       order_info.orderDate = `${formatDate('yyyy-mm-dd', order.orderDate)} ${formatTime(order.orderDate)}`;
-      order_info.count = countItems([...order.packs, ...order.singleItems])
+      order_info.count = countItems([...order.packs, ...order.singleItems]);
+
+      order_info.payment = order.statusHistory.find(status => (status.type === "payment_status" && status.value === 'paid'));
+      order_info.refund = order.statusHistory.find(status => (status.type === "refund"));
 
       // Gfit info
       let gifts = [];
