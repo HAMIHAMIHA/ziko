@@ -288,7 +288,7 @@ button:not([size=mini]).btn-primary {
 }
 
 .contact-box .contact-button_container {
-  padding: 30rpx 0 12rpx;
+  padding: 20rpx 0 12rpx;
 }
 /* .contact-button_container .icon-headset{
   margin-right: 10px;
@@ -307,7 +307,7 @@ button:not([size=mini]).btn-primary {
 }
 
 .contact-box .icon {
-  padding-right: 8rpx;
+  padding-right: 10rpx;
   font-size: 32rpx;
 }
 .height30{

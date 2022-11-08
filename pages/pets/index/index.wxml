@@ -18,8 +18,8 @@
       </view>
 
       <view class="actions">
-        <view class="icon icon-trash" bindtap="deletePet" data-index="{{ index }}"></view>
         <navigator class="icon icon-edit" url="{{ _routes.pet + '?id=' + pet._id }}"></navigator>
+        <view class="icon icon-trash" bindtap="deletePet" data-index="{{ index }}"></view>
       </view>
     </view>
   </view>

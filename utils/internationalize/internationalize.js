@@ -147,6 +147,7 @@ export const languageMap_en = {
 
   // F
   fapiao: "Fapiao",
+  fapiao_send_to:"Fapiao send to",
   fapiao_info: "Fapiao information",
   first_orders: "first orders!",
   free: "Free",
@@ -738,6 +739,7 @@ export const languageMap_zh = {
   // F
   fapiao: "Fapiao",
   fapiao_info: "发票信息",
+  fapiao_send_to:"Fapiao send to",
   first_orders: "first orders!",
   free: "Free",
   free_delivery: "免运费",

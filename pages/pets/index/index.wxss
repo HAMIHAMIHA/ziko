@@ -102,7 +102,7 @@ page {
   display: flex;
   flex-direction: row;
   width: 100rpx;
-
+  align-items: center;
   margin-right: 30rpx;
 }
 

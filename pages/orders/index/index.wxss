@@ -269,6 +269,7 @@
 }
 
 .type-title {
+  text-transform:capitalize;
   font-size: 22rpx;
   padding-top: 10rpx;
 }

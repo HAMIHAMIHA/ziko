@@ -318,6 +318,7 @@ Page({
         comment: i18n.comment,
         contact_customer_hero: i18n.contact_customer_hero,
         contact_label: i18n.contact_label,
+        contact_person: i18n.contact_person,
         delivery_company: i18n.delivery_company,
         delivery_companies: i18n.delivery_companies,
         delivery_fee: i18n.delivery_fee,
@@ -349,6 +350,7 @@ Page({
         special_requests: i18n.special_requests,
         wechat_id: i18n.wechat_id,
         copied: i18n.copied,
+        fapiao_send_to: i18n.fapiao_send_to
     },
 
       _t_gifts: {

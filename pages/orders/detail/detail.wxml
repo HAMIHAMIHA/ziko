@@ -1,7 +1,8 @@
 <view class="container container-grey{{ order.paymentStatus == 'pending' || need_reveived ? ' container-btn-bottom' : '' }}">
   <view class="white-box order-details_container">
+    <view class="nunito_700 header page-header">{{ order.offer.name[_language] }}</view>
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.order_no }}</text>
+      <text class="nunito_700 detail_label">{{ _t.order_no }}</text>
       <text class="detail_result">{{ order.orderID }}</text>
     </view>
     <view class="detail">
@@ -29,7 +30,6 @@
   </view>
 
   <view class="white-box order-products_container">
-    <view class="nunito_700 header page-header">{{ order.offer.name[_language] }}</view>
     <view class="nunito_700 header">{{ _t.items }}</view>
     <view class="order-products product_container" wx:for="{{ order.products }}" wx:key="id" wx:for-item="product">
       <view class="flex-between product">
@@ -56,20 +56,19 @@
                 <text wx:else>{{ product.quantity ? product.quantity > 1 ? product.quantity + _t.items_unit : product.quantity + _t.item_unit : '' }}</text>
               </view>
               <!-- End of Single Products Detail -->
-
-              <!-- Product Amount Bought -->
-              <view class="gilroy_500 product-count">
-                {{ 'x' + product.amount }}
-              </view>
-              <!-- End of Product Amount Bought -->
             </view>
+            <!-- Product Amount Bought -->
+            <view class="gilroy_500 product-count">
+              {{ 'x' + product.amount }}
+            </view>
+            <!-- End of Product Amount Bought -->
           </view>
         </view>
         <!-- Price -->
         <view class="nunito_600 product-price_container">
           <view class="product-price" wx:if="{{ product.actualPrice && product.actualPrice !== product.price }}">¥{{ product.actualPrice }}</view>
           <view class="product-price" wx:elif="{{ product.formerPrice && product.formerPrice !== product.price }}">¥{{ product.price }}</view>
-          <text class="product-price">¥{{ product.formerPrice ? product.formerPrice : product.price }}</text>
+          <!-- <text class="product-price">¥{{ product.formerPrice ? product.formerPrice : product.price }}</text> -->
         </view>
         <!-- End of Price -->
       </view>
@@ -87,13 +86,12 @@
               <!-- Gift Products Detail -->
               <view class="gilroy_500 product-detail_container">{{ gift.product_info }}</view>
               <!-- End of Gift Products Detail -->
-
-              <!-- Gift Count -->
-              <view class="gilroy_500 product-count gift-count">
-                {{ 'x' + gift.count }}
-              </view>
-              <!-- End of Gift Count -->
             </view>
+            <!-- Gift Count -->
+            <view class="gilroy_500 product-count gift-count">
+              {{ 'x' + gift.count }}
+            </view>
+            <!-- End of Gift Count -->
           </view>
         </view>
         <!-- Price -->
@@ -162,11 +160,12 @@
       </view>
     </view>
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.contact_label }}</text>
+      <text class="nunito_600 detail_label">{{ _t.contact_person }}</text>
       <view class="detail_value">{{ order.customerAddress.contact ? order.customerAddress.contact : "" }}</view>
     </view>
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.phone_no }}</text>
+      <!-- <text class="nunito_600 detail_label">{{ _t.phone_no }}</text> -->
+      <text class="nunito_600 detail_label"> </text>
       <view class="detail_value">{{ order.customerAddress.phone }}</view>
     </view>
   </view>
@@ -178,9 +177,10 @@
     </view>
   </view>
 
-  <view class="white-box order-details_container" wx:if="{{ order.fapiao }}">
+  <!-- <view class="white-box order-details_container" wx:if="{{ order.fapiao }}"> -->
+  <view class="white-box order-details_container" wx:if="{{ order.customer.fapiaoInformation }}">
     <view class="detail">
-      <text class="nunito_600 detail_label">{{ _t.fapiao }}</text>
+      <text class="nunito_600 detail_label">{{ _t.fapiao_send_to }}</text>
       <view class="detail_value">{{ order.customer.fapiaoInformation }}</view>
     </view>
 
