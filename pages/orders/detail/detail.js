@@ -333,7 +333,7 @@ Page({
         add_chef_ziko_on_wechat:i18n.add_chef_ziko_on_wechat,
         delivery_states:i18n.delivery_states,
         wechat_id: i18n.wechat_id,
-      copied: i18n.copied,
+        copied: i18n.copied,
     },
       _t_gifts: {
         congrats: i18n.congrats,
