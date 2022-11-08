@@ -67,7 +67,7 @@
      <!-- Scroll to -->
      <view class="flex-between gilroy_500 scrollTo-items">
       <view
-        class="scrollTo-item {{ _setting_scrollTo.currentTab == 'offer' ? 'selected' : '' }}"
+        class="scrollTo-item {{ 'border-' + _offer.community }} {{ _setting_scrollTo.currentTab == 'offer' ? 'selected' : '' }}"
         bindtap="scrollTo"
         data-info="offer"
       >
@@ -75,7 +75,7 @@
       </view>
       <view
         wx:if="{{ _offer.miniprogram.zikoSpecials.length > 0 }}"
-        class="scrollTo-item {{ _setting_scrollTo.currentTab == 'specials' ? 'selected' : '' }}"
+        class="scrollTo-item {{ 'border-' + _offer.community }} {{ _setting_scrollTo.currentTab == 'specials' ? 'selected' : '' }}"
         bindtap="scrollTo"
         data-info="specials"
       >
@@ -83,7 +83,7 @@
       </view>
       <view
         wx:if="{{ _offer.miniprogram.lottery.draws.length > 0 && _offer.miniprogram.lotteryEnable }}"
-        class="scrollTo-item {{ _setting_scrollTo.currentTab == 'lottery' ? 'selected' : '' }}"
+        class="scrollTo-item {{ 'border-' + _offer.community }} {{ _setting_scrollTo.currentTab == 'lottery' ? 'selected' : '' }}"
         bindtap="scrollTo"
         data-info="lottery"
       >

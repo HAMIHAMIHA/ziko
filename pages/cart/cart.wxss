@@ -465,7 +465,8 @@ scroll-view {
 }
 
 .detail_result {
-  font-size: 34rpx;
+  font-weight: 700;
+  font-size: 28rpx;
   line-height: 32rpx;
   padding-left: 10rpx;
 }
@@ -636,3 +637,7 @@ scroll-view {
   text-align: center;
 }
 /* End of Copy box */
+
+.icon-headset {
+  margin-right: 20rpx;
+}

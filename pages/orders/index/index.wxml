@@ -133,8 +133,11 @@
                 </view>
               </view>
               <view class="right-box">
-                <view class="right-box-title-size gradient-text ziko-{{ _communities[order.community] }}">{{ _t.order_status[order.trackingStatus] }}</view>
+                <view class="right-box-title-size status-{{ order.trackingStatus }}" >{{ _t.order_status[order.trackingStatus] }}</view>
                 <view wx:if="{{ order.paymentStatus == 'paid' }}" class="payment-cleared">{{ _t.payment_cleared }}</view>
+                <view wx:if="{{ order.paymentStatus == 'pending' }}" class="payment-cleared">{{ _t.pending }}</view>
+                <view wx:if="{{ order.paymentStatus == 'ccl' }}" class="payment-cleared">{{ _t.cancelled }}</view>
+                <view wx:if="{{ order.paymentStatus == 'rfd' }}" class="payment-cleared">{{ _t.refund }}</view>
                 <view class="price-type">¥ {{ order.actualAmount }}</view>
               </view>
             </view>

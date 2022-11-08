@@ -288,7 +288,7 @@ button:not([size=mini]).btn-primary {
 }
 
 .contact-box .contact-button_container {
-  padding: 30rpx 0 12rpx;
+  padding: 20rpx 0 12rpx;
 }
 /* .contact-button_container .icon-headset{
   margin-right: 10px;
@@ -307,7 +307,7 @@ button:not([size=mini]).btn-primary {
 }
 
 .contact-box .icon {
-  padding-right: 8rpx;
+  padding-right: 10rpx;
   font-size: 32rpx;
 }
 .height30{
@@ -1693,6 +1693,79 @@ button:not([size=mini]).float-contact_container {
 }
 /* End of Vouchers */
 
+/* <<<<<<< HEAD */
+.color-kitchen,
+.color-Kitchen {
+  color: #D7BA6D;
+  background-image: -webkit-linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.border-kitchen{
+  border: 0.5rpx solid #CDB469 !important;
+}
+.bgc-color-kitchen,
+.bgc-color-Kitchen {
+  background: #D7BA6D;
+}
+
+.color-garden,
+.color-Garden {
+  background-image: -webkit-linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bgc-color-garden,
+.bgc-color-Garden {
+  background: linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%);
+}
+.border-garden{
+  border: 0.5rpx solid #11BE67 !important;
+}
+
+.bgc-color-farm,
+.bgc-color-Farm {
+  background: linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%);
+}
+.border-farm{
+  border: 0.5rpx solid #11BE67 !important;
+}
+
+.color-pet,
+.color-Pet {
+  background-image: -webkit-linear-gradient(132.48deg, #FFB65A -1194.24%, #FF7233 1529.08%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bgc-color-pet,
+.bgc-color-Pet {
+  background: linear-gradient(132.48deg, #FFB65A -1194.24%, #FF7233 1529.08%);
+}
+.border-pet{
+  border: 0.5rpx solid #FF7233 !important;
+}
+
+
+
+.color-cellar,
+.color-Cellar {
+  background-image: -webkit-linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bgc-color-cellar,
+.bgc-color-Cellar {
+  background: linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%);
+}
+.border-cellar{
+  border: 0.5rpx solid #B0AEB7 !important;
+}
+
+
+
+/* =======
+>>>>>>> origin/dev_lorraine */
 .items-date {
   font-size: 24rpx;
 }

@@ -269,6 +269,7 @@
 }
 
 .type-title {
+  text-transform: capitalize;
   font-size: 22rpx;
   padding-top: 10rpx;
 }
@@ -302,6 +303,7 @@
 .right-box-title-size {
   text-transform: uppercase;
   font-size: 24rpx;
+  font-weight: 700;
 }
 
 .payment-cleared {
@@ -321,4 +323,17 @@
 
 .topAllbox {
   padding: 0 0 0.5rpx 0;
+}
+
+.status-delivered {
+  color: #73D13D;
+}
+
+.status-on_the_way {
+  color: #FFA940;
+}
+
+.status-delayed,
+.status-prepared {
+  color: #40A9FF;
 }

@@ -12,7 +12,7 @@ page {
 }
 
 .page-header {
-  text-align: center;
+  text-align: left;
   padding-bottom: 0;
 }
 
@@ -26,6 +26,9 @@ page {
 .product-info {
   min-height: 160rpx;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .product_container .product-info .product-title {
@@ -78,6 +81,7 @@ page {
   color: #A3A8B7;
   font-size: 20rpx;
   line-height: 24rpx;
+  white-space: nowrap;
 }
 /* End of Gift Container */
 
@@ -346,4 +350,13 @@ page {
   font-size: 25rpx;
   text-align: center;
 }
+.icon.icon-ticket {
+  color: #FFC700;
+  font-size: 30rpx;
+  padding-left: 10rpx;
+}
 /* End of Copy box */
+
+.icon-headset {
+  margin-right: 20rpx;
+}

@@ -315,7 +315,10 @@ Page({
         payment_cleared: i18n.payment_cleared,
         lottery_gift: i18n.lottery_gift,
         amount_paid: i18n.amount_paid,
-        ziko_returned: i18n.ziko_returned
+        ziko_returned: i18n.ziko_returned,
+        pending: i18n.payment_status.pending,
+        cancelled: i18n.payment_status.ccl,
+        refund: i18n.payment_status.rfd
       },
       _pickers: {
         communities: picker_communities,
