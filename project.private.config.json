@@ -25,7 +25,7 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=636279abd56f88aee8277ea7",
+          "query": "id=6368ab17d56f88aee8284c41",
           "launchMode": "default",
           "scene": null
         },
@@ -79,7 +79,7 @@
         {
           "name": "Cart",
           "pathName": "pages/cart/cart",
-          "query": "id=635a05e7d56f88aee826d993",
+          "query": "id=6368a540d56f88aee8284624",
           "launchMode": "default",
           "scene": null
         },
@@ -142,7 +142,7 @@
         {
           "name": "Order",
           "pathName": "pages/orders/detail/detail",
-          "query": "id=6364891dd56f88aee827c222&status=delivered",
+          "query": "id=63690fd5a9829b860d8e5258&status=delivered",
           "launchMode": "default",
           "scene": null
         },

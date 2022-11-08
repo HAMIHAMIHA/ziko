@@ -42,22 +42,22 @@
               </view>
             </view>
             <view>
-                <!-- Price -->
-                <view class="nunito_600 -font_red product-price_container">
-                  <text class="product-price" wx:if="{{ product.actualPrice && product.actualPrice != product.price }}">¥{{ product.actualPrice }}</text>
-                  <text class="product-price" wx:elif="{{ product.formerPrice && product.formerPrice != product.price }}">¥{{ product.price }}</text>
-                   <text class="product-price">¥{{ product.formerPrice ? product.formerPrice : product.price }}</text> 
-                </view>
-                <!-- End of Price -->
-            <quantity
-              class="flex-start product-quantity"
-              amount="{{ product.amount }}"
-              community="{{ _offer.community }}"
-              stock="{{ product.actualStock }}"
-              bind:changeAmount="changeAmount"
-              data-idx="{{ cart.products[product._id].index_in_offer }}"
-              data-price="{{ product.price }}"
-            ></quantity>
+              <!-- Price -->
+              <view class="nunito_600 -font_red product-price_container">
+                <text class="product-price" wx:if="{{ product.actualPrice && product.actualPrice != product.price }}">¥{{ product.actualPrice }}</text>
+                <text class="product-price" wx:elif="{{ product.formerPrice && product.formerPrice != product.price }}">¥{{ product.price }}</text>
+                <text class="product-price">¥{{ product.formerPrice ? product.formerPrice : product.price }}</text>
+              </view>
+              <!-- End of Price -->
+              <quantity
+                class="flex-start product-quantity"
+                amount="{{ product.amount }}"
+                community="{{ _offer.community }}"
+                stock="{{ product.actualStock }}"
+                bind:changeAmount="changeAmount"
+                data-idx="{{ cart.products[product._id].index_in_offer }}"
+                data-price="{{ product.price }}"
+              ></quantity>
             </view>
           </view>
         </view>
@@ -90,8 +90,8 @@
           bindchange="bindPickerChange"
           data-key="delivery_date"
         >
-        <view class="picker-content">
-          <view class="nunito_500 detail_label">{{ _t.expected_delivery_date }}</view>
+          <view class="picker-content">
+            <view class="nunito_500 detail_label">{{ _t.expected_delivery_date }}</view>
             <view wx:if="{{ !delivery_date }}" class="nunito_700 detail_label green">
               {{ _t.pick_a_date }}<text class="icon icon-calendar"></text>
             </view>
@@ -109,11 +109,11 @@
           <navigator class="input picker" hover-class="none" url="{{ _routes.address + '?action=select&selected_address=' + address_selected }}">
             <block wx:if="{{ user.addresses[address_selected] }}">
               <text class="content ellipsis">{{ user.addresses[address_selected].detailedAddress }}</text>
-              <text class="icon icon-arrow-right"></text>            
+              <text class="icon icon-arrow-right"></text>
             </block>
             <block wx:else>
               <text class="content grey">{{ _t.please_add_address }}</text>
-              <text class="icon icon-plus"></text>            
+              <text class="icon icon-plus"></text>
             </block>
           </navigator>
         </view>
@@ -129,11 +129,11 @@
                 <view>{{ user.contacts[contact_selected].phone }}</view>
               </view>
 
-              <text class="icon icon-arrow-right"></text>        
+              <text class="icon icon-arrow-right"></text>
             </block>
             <block wx:else>
               <text class="content grey">{{ _t.please_add_contacts }}</text>
-              <text class="icon icon-plus"></text>            
+              <text class="icon icon-plus"></text>
             </block>
           </navigator>
         </view>
@@ -218,7 +218,7 @@
                   >
                     <block wx:if="{{ index == 0 }}">
                       <text class="ziko-name">{{ _t.ziko }}</text>
-                      <text class="nunito_700 gradient-text ziko-{{ c.style }}">{{ " " + c.name }}</text>                  
+                      <text class="nunito_700 gradient-text ziko-{{ c.style }}">{{ " " + c.name }}</text>
                     </block>
 
                     <block wx:else>
@@ -258,7 +258,7 @@
                 >
                   <block wx:if="{{ index == 0 }}">
                     <text class="ziko-name">{{ _t.ziko }}</text>
-                    <text class="nunito_700 gradient-text ziko-{{ c.style }}">{{ " " + c.name }}</text>                  
+                    <text class="nunito_700 gradient-text ziko-{{ c.style }}">{{ " " + c.name }}</text>
                   </block>
 
                   <block wx:else>
@@ -319,17 +319,16 @@
         </view>
         <view class="pay-button">
           <button class="nunito_600 disabled" wx:if="{{ _pay_set.single && _pay_set.minimum.items && _pay_set.minimum.items > _pay_set.single }}">
-            {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }}
-          </button>
-          <button class="nunito_600 disabled" wx:elif="{{ _pay_set.reducedTotal && _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.reducedTotal }}">
-            {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
-          </button>
-          <button class="nunito_600 disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.total }}">
-            {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
-          </button>
-          <button class="nunito_600{{ _pay_set.pay_disabled ? ' disabled' : '' }}" formType="submit" wx:else>
-            {{ _t.pay }}
-          </button>
+            {{ _t.minimum + ': ' + _pay_set.minimum.items }}{{ _pay_set.minimum.items < 1 ? _t.item_units : _t.item_unit }} </button>
+              <button class="nunito_600 disabled" wx:elif="{{ _pay_set.reducedTotal && _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.reducedTotal }}">
+                {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
+              </button>
+              <button class="nunito_600 disabled" wx:elif="{{ _pay_set.minimum.price && _pay_set.minimum.price > _pay_set.total }}">
+                {{ _t.minimum + ': ¥' + _pay_set.minimum.price }}
+              </button>
+              <button class="nunito_600{{ _pay_set.pay_disabled ? ' disabled' : '' }}" formType="submit" wx:else>
+                {{ _t.pay }}
+              </button>
         </view>
       </view>
     </view>
