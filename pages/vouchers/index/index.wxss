@@ -58,13 +58,14 @@
   padding-bottom: 132rpx;
 }
 
-.ticket_picture{
+.ticket_picture {
   width: 690rpx;
   height: 196rpx;
   padding-bottom: 40rpx;
   position: relative;
 }
-.box-content{
+
+.box-content {
   position: absolute;
   width: 690rpx;
   height: 196rpx;
@@ -72,108 +73,91 @@
   display: flex;
   justify-content: space-between;
 }
-.box-content-left{
+
+.box-content-left {
   width: 460rpx;
 }
-.black-box{
+
+.black-box {
   background-color: #000;
   border-radius: 3px 0px 4px;
   margin: 4rpx 0 0 4rpx;
   padding: 8rpx 20rpx;
   font-size: 22rpx;
   line-height: 32rpx;
-  text-transform:uppercase;
+  text-transform: uppercase;
   width: fit-content;
   padding-top: 10rpx;
 }
-.ziko-community-Kitchen,
-.ziko-community-kitchen{
-  background-image:-webkit-linear-gradient(-120deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%); 
-  -webkit-background-clip:text; 
-  -webkit-text-fill-color:transparent;
-}
-.ziko-community-Pet,
-.ziko-community-pet{
-  background-image:-webkit-linear-gradient(-120deg, #FFB65A 100%,
-  #FF7233 100%); 
-  -webkit-background-clip:text; 
-  -webkit-text-fill-color:transparent;
-}
-.ziko-community-Garden,
-.ziko-community-garden{
-  background-image:-webkit-linear-gradient(-120deg, #97F082 100%,  #11BE67 100%); 
-  -webkit-background-clip:text; 
-  -webkit-text-fill-color:transparent;
-}
-.ziko-community-Cellar,
-.ziko-community-cellar{
-  background-image:-webkit-linear-gradient(-120deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%); 
-  -webkit-background-clip:text; 
-  -webkit-text-fill-color:transparent;
-}
-.received{
+
+.received {
   margin-top: 40rpx;
   text-align: right;
   font-size: 24rpx;
   line-height: 32rpx;
   padding-right: 40rpx;
 }
-.expires{
+
+.expires {
   font-size: 30rpx;
   line-height: 40rpx;
   /*text-transform: capitalize;*/
 }
-.box-content-right{
+
+.box-content-right {
   text-align: center;
   width: 230rpx;
 }
-.money{
+
+.money {
   margin-top: 32rpx;
   font-size: 42rpx;
 }
-.use_now{
+
+.use_now {
   margin-top: 28rpx;
   margin-left: 56rpx;
   font-size: 24rpx;
-  background-color: rgba(38,38,38,0.5);
+  background-color: rgba(38, 38, 38, 0.5);
   padding: 10rpx 18rpx;
-  width:fit-content;
+  width: fit-content;
   border-radius: 200rpx;
 }
 
 
 /* NO VOUCHERS */
-
-.icon-ziko{
+.icon-ziko {
   margin-top: 160rpx;
   font-size: 200rpx;
   text-align: center;
   color: #8C8C8C;
 }
-.first-paragraph{
+
+.first-paragraph {
   font-size: 34rpx;
   text-align: center;
   padding-top: 90rpx;
 }
-.second-paragraph{
+
+.second-paragraph {
   font-size: 28rpx;
   text-align: center;
-  padding:90rpx;
+  padding: 90rpx;
   padding-top: 30rpx;
   color: #BFBFBF;
 }
-.add_a_cat{
+
+.view-offers {
   width: 400rpx !important;
-  background-color:rgb(255,255,255,0.1);
+  background-color: rgb(255, 255, 255, 0.1);
   padding: 25rpx;
   display: flex;
   justify-content: center;
 }
-.add_a_cat :nth-child(1){
+
+.view-offers text {
   font-size: 28rpx;
-  color:#F0F0F0;
+  color: #F0F0F0;
   padding-top: 10rpx;
 }
-
-
 /* END OF NO VOUCHER */

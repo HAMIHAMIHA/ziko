@@ -89,7 +89,6 @@ const _generateUserContact = (page, action, new_contact) => {
 Page({
   data: {
     default: false,
-
   },
 
   onShow: function () {
@@ -168,7 +167,5 @@ Page({
     app.sessionUtils.updateUserInfo({
       contacts: contact_list
     }, app.routes.contacts);
-  },
-
-
+  }
 })

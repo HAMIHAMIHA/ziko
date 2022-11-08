@@ -63,7 +63,7 @@
   color: #1F1F1F !important;
 }
 
-.white-background-black-text.saveButton{
+.white-background-black-text.saveButton {
   left: 0;
   right: 0;
   position: fixed;

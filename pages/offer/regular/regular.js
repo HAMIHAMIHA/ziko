@@ -8,13 +8,6 @@ let countdown_timer = [];
 
 Page({
   data: {
-    _setting: {
-      swiperIndex: 1,
-      currentTab: "product",
-      height: '0px',
-      left: '0',
-      animate: animate,
-    },
     _setting_scrollTo: {
       height: '0',
       currentTab: "offer"
@@ -24,6 +17,17 @@ Page({
 
   onShow: function () {
     const self = this;
+
+    self.setData({
+      _setting: {
+        swiperIndex: 1,
+        currentTab: "product",
+        height: '0px',
+        left: '0',
+        animate: animate,
+      },
+    })
+
     // Get Offer
     Offers.getOffer(self, self.options.id);
 

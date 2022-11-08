@@ -175,7 +175,7 @@
       <view wx:if="{{ user.fapiaoInformation }}" class="cartdetail checkbox-container fapiao">
         <view class="fapiao-title">
           <text class="detail_label">{{ _t.send_fapiao_to }}</text>
-          <view wx:if="{{ fapiao }}" class="fapiao-checked checked-no">
+          <view wx:if="{{ !fapiao }}" class="fapiao-checked checked-no">
             <view class="ball" bindtap="toggleCheck" data-key="fapiao"></view>
             <view class="no nunito_400" bindtap="toggleCheck" data-key="fapiao">{{ _t.no }}</view>
           </view>
@@ -353,8 +353,7 @@
       <image src="{{ copyContent[_offer.community].qrcode }}" class="qrcode"></image>
     </view>
 
-<!-- hover-class="clicked-{{ copy.community }}" -->
-    <view class="wechat-copy ziko-{{ _offer.community }}" bindtap='copyBtn' data-text="{{ _t.simonmawas }}" hover-class="clicked-{{ _offer.community }}">
+    <view class="wechat-copy ziko-{{ _offer.community }}" bindtap='copyBtn' data-text="{{ _t.simonmawas }}" hover-class="hover-{{ _offer.community }}">
       <text class="wechat-id">{{ _t.wechat_id }}{{ copyContent[_offer.community].wechat }}</text>
       <text class="icon icon-copy"></text>
     </view>

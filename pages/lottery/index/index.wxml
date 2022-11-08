@@ -149,21 +149,21 @@
             // End of Current Status
           </view> -->
           <view class="new-offer-banner">
-            <view class="top-box top-box-color-{{ offer.community.name }}">
-              <view wx:if="{{ offer.lotteries.win }}" class="top-box-won top-box-color-{{ offer.community.name }}">
+            <view class="top-box top-box-color-{{ _communities[offer.community.id] }}">
+              <view wx:if="{{ offer.lotteries.win }}" class="top-box-won top-box-color-{{ _communities[offer.community.id] }}">
                 <text class="icon icon-crown"></text>
                 <view>
                   <view class="crown-context1">{{ _t.congrats }}</view>
                   <view class="crown-context2">{{ _t.you_won }}</view>
                 </view>
               </view>
-              <view class="color-{{ offer.community.name }} font-size1">Ziko {{ offer.community.name == 'Garden' ? 'Farm' : offer.community.name }}</view>
-              <view class="color-{{ offer.community.name }} font-size2">{{ offer.name[_language] }}</view>
+              <view class="font-size1 gradient-text ziko-{{ _communities[offer.community.id] }} capitalize">Ziko {{ _communities[offer.community.id] }}</view>
+              <view class="font-size2 gradient-text ziko-{{ _communities[offer.community.id] }}">{{ offer.name[_language] }}</view>
             </view>
 
             <view class="middle-box">
               <view class="middle-box-top">
-                <view class="to_win_button bgc-color-{{ offer.community.name }}">
+                <view class="to_win_button ziko-{{ _communities[offer.community.id] }}">
                   <text class="to_win_big_text">{{ offer.lotteries.draws }} {{ _t.chances }} </text> {{ _t.to_win }}
                 </view>
                 <view class="draws-locked-button nunito_400">
@@ -197,7 +197,7 @@
                 </view>
                 <view>
                   <text class="time_remaining nunito_400">{{ _t.time_remaining }}</text>
-                  <view class="big_time_remaining color-{{ offer.community.name }}">
+                  <view class="big_time_remaining gradient-text ziko-{{ _communities[offer.community.id] }}">
                     <countdown class="timer" end-time="{{ offer.endingDate }}"></countdown>
                   </view>
                 </view>
@@ -205,7 +205,7 @@
             </view>
 
             <view class="bottom-box">
-              <view class="bottom-box-text color-{{ offer.community.name }}">{{ _t.access_the_offer }}</view>
+              <view class="bottom-box-text gradient-text ziko-{{ _communities[offer.community.id] }}">{{ _t.access_the_offer }}</view>
               <view class="prizes-num">{{ offer.lotteries.gifts }} {{ _t.prizes }}</view>
             </view>
           </view>
