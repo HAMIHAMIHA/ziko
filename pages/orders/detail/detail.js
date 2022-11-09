@@ -107,7 +107,11 @@ const getOrders = (page) => {
       var check = temp.every(function (b) {
         return a.status !== b.status;
       })
-      a.date = formatDate('yyyy-mm-dd', a.acceptTime);
+
+      // The acceptTime is like 'yyyy-MM-dd hh:mm:ss'
+      let splitAcceptTime = a.acceptTime.split(' ');
+      a.date = splitAcceptTime[0];
+
       a.value = a.status;
       check ? temp.push(a) : '';
     })
@@ -412,11 +416,11 @@ Page({
     self.setData({
       need_reveived: false
     })
-    app.api.updateOrder(self.options.id).then( res => {
-      self.setData({
-        order: res
-      })
-    })
+    // app.api.updateOrder(self.options.id).then( res => {
+    //   self.setData({
+    //     order: res
+    //   })
+    // })
   },
 
   showCopyBox: function () {

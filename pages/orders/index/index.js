@@ -159,8 +159,8 @@ const getOrders = (page) => {
       order_info.orderDate = `${formatDate('yyyy-mm-dd', order.orderDate)} ${formatTime(order.orderDate)}`;
       order_info.count = countItems([...order.packs, ...order.singleItems]);
 
-      order_info.payment = order.statusHistory.find(status => (status.type === "payment_status" && status.value === 'paid'));
-      order_info.refund = order.statusHistory.find(status => (status.type === "refund"));
+      order_info.payment = order.statusHistory.find(status => (status.type === "payment_status" && status.value === 'paid')) ? order.statusHistory.find(status => (status.type === "payment_status" && status.value === 'paid')) : { amount: 'Paid amount' };
+      // order_info.refund = order.statusHistory.find(status => (status.type === "refund"));
 
       // Gfit info
       let gifts = [];

@@ -229,6 +229,7 @@ export const checkVouchers = (page, vouchers, community) => {
   });
 
   page.setData({
+    _vouchers: vouchers_filtered,
     voucher_count: vouchers_filtered.length
   })
 }

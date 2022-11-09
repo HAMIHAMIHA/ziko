@@ -147,7 +147,6 @@ const _getOffer = function(page, offer_id) {
     // Sort order of draws occurence
     offer.miniprogram.lottery.draws.sort( (a, b) => {
       return a.conditionValue - b.conditionValue;
-
     })
 
     offer.last_val = offer.miniprogram.lottery.draws[offer.miniprogram.lottery.draws.length - 1].conditionValue;

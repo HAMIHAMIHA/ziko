@@ -25,7 +25,7 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=6368ab17d56f88aee8284c41",
+          "query": "id=636b19ef80d179c0333be66f",
           "launchMode": "default",
           "scene": null
         },
@@ -79,7 +79,7 @@
         {
           "name": "Cart",
           "pathName": "pages/cart/cart",
-          "query": "id=6368d3c0a9829b860d8e43d1",
+          "query": "id=636b507680d179c0333c0426",
           "launchMode": "default",
           "scene": null
         },

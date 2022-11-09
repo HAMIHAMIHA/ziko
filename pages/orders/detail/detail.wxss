@@ -13,7 +13,7 @@ page {
 
 .page-header {
   text-align: left;
-  padding-bottom: 0;
+  padding-bottom: 20rpx;
 }
 
 /* Product Container */
@@ -107,6 +107,10 @@ page {
   overflow-wrap: anywhere;
 }
 
+.order-details_container{
+  padding-top: 10rpx;
+}
+
 .fapiao_image {
   width: 100%;
 }
@@ -140,7 +144,7 @@ page {
   display: flex;
 }
 
-.timeline__detail:last-child .timeline__date{
+.timeline__detail:first-child .timeline__date{
   padding-bottom: 10rpx;
 }
 
