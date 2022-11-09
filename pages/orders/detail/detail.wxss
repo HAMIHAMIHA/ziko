@@ -139,6 +139,7 @@ page {
 .timeline__detail {
   display: flex;
 }
+
 .timeline__detail:last-child .timeline__date{
   padding-bottom: 10rpx;
 }

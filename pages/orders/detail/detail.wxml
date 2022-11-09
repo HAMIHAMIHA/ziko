@@ -161,13 +161,17 @@
     </view>
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.contact_person }}</text>
-      <view class="detail_value">{{ order.customerAddress.contact ? order.customerAddress.contact : "" }}</view>
+      <view class="detail_value">
+        <view class="address-name">{{ order.customerAddress.contact ? order.customerAddress.contact : "" }}
+        </view>
+        <text class="detail_value">{{ order.customerAddress.phone }}</text>
+      </view>
     </view>
-    <view class="detail phone_padding_top">
-      <!-- <text class="nunito_600 detail_label">{{ _t.phone_no }}</text> -->
+    <!-- <view class="detail phone_padding_top">
+      <text class="nunito_600 detail_label">{{ _t.phone_no }}</text>
       <text class="nunito_600 detail_label"> </text>
       <view class="detail_value">{{ order.customerAddress.phone }}</view>
-    </view>
+    </view> -->
   </view>
 
   <view class="white-box order-details_container" wx:if="{{ order.comment }}">
