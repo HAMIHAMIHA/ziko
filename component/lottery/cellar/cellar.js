@@ -23,7 +23,7 @@ Component({
             })
           }
         })
-
+        
         self.setData({
           '_offer.miniprogram.lottery.draws': lotteryDraws,
         })

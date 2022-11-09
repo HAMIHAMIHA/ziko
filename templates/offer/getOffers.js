@@ -346,6 +346,7 @@ export const _setLotteryDraws = function (offer, orders) {
 
     // Set size of axis mark
     draw.position = Math.round(draw.conditionValue / offer.last_val * 100);
+    console.log(draw.conditionValue , offer.last_val)
     draw.winners = winners;
     draw.unlocked = ((draw.conditionType === "number_of_order" && offer.orders >= draw.conditionValue) || (draw.conditionType === "x_item_sold" && offer.sold >= draw.conditionValue));
   })

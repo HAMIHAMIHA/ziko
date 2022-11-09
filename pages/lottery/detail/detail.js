@@ -147,6 +147,7 @@ const _getOffer = function(page, offer_id) {
     // Sort order of draws occurence
     offer.miniprogram.lottery.draws.sort( (a, b) => {
       return a.conditionValue - b.conditionValue;
+
     })
 
     offer.last_val = offer.miniprogram.lottery.draws[offer.miniprogram.lottery.draws.length - 1].conditionValue;
@@ -169,7 +170,7 @@ const _getOffer = function(page, offer_id) {
       });
 
       // Set size of axis mark
-      draw.position = Math.round(draw.conditionValue / offer.last_val * 100);
+      draw.position = Math.round(draw.conditionValue / offer.last_val * 10);
 
       // Draw status and winner
       draw.winners = winners

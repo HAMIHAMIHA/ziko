@@ -198,6 +198,7 @@ page {
 .contact-button {
   background-color: black !important;
   width: 60% !important;
+  white-space: nowrap;
 }
 
 .add-box .icon-wechat {

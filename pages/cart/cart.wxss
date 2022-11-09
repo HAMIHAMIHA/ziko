@@ -410,6 +410,7 @@ scroll-view {
 
 .contact-button {
   background-color: black !important;
+  white-space: nowrap;
 }
 
 .bottom-pay {

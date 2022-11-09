@@ -65,7 +65,7 @@ export const languageMap_en = {
   chances: "Chances",
   checkout_message: "Need any help?",
   choose_delivery_date: "Choose delivery date",
-  chosen_delivery_date: "Chosen delivery date",
+  chosen_delivery_date: "Expected delivery date",
   city: "City",
   claims: "Claims",
   closed: "Closed",
@@ -147,7 +147,7 @@ export const languageMap_en = {
 
   // F
   fapiao: "Fapiao",
-  fapiao_send_to: "Fapiao send to",
+  fapiao_send_to: "Fapiao sent to",
   fapiao_info: "Fapiao information",
   first_orders: "first orders!",
   free: "Free",
@@ -657,7 +657,7 @@ export const languageMap_zh = {
   chances: "Chances",
   checkout_message: "如果您在购买后需要更改交货日期或其他信息，请联系客服",
   choose_delivery_date: "Choose delivery date",
-  chosen_delivery_date: "Chosen delivery date",
+  chosen_delivery_date: "Expected delivery date",
   city: "City",
   claims: "Claims",
   closed: "Closed",
@@ -740,7 +740,7 @@ export const languageMap_zh = {
   // F
   fapiao: "Fapiao",
   fapiao_info: "发票信息",
-  fapiao_send_to: "Fapiao send to",
+  fapiao_send_to: "Fapiao sent to",
   first_orders: "first orders!",
   free: "Free",
   free_delivery: "免运费",

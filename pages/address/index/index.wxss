@@ -8,8 +8,8 @@
 }
 
 .cards {
-  /* height: calc(100vh - 180rpx - var(--env-)); */
-  height: calc(100vh  - var(--env-));
+  height: calc(100vh - 180rpx - var(--env-));
+  /* height: calc(100vh  - var(--env-)); */
   overflow: scroll;
 }
 
@@ -124,7 +124,6 @@
   background-color: #0A0B12;
   padding: 0;
   margin: 0 30rpx;
-  height: 150rpx;
 }
 
 .btn-outline_container .btn-outline {

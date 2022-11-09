@@ -60,12 +60,13 @@ page {
   font-size: 32rpx;
   line-height: 34rpx;
   text-align: center;
+  box-sizing: border-box;
+  margin:0 auto;
 }
 
 .user-info__name text {
   opacity: 0.6;
-  padding-left: 60rpx;
-  margin-right: -100rpx;
+  padding-left: 30rpx;
 }
 
 button:not([size=mini]).user-info__login {

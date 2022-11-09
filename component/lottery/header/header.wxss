@@ -49,7 +49,7 @@
 .progress-bar__container .progress-bar_last {
   text-align: right;
   transform: translateX(-100%);
-  margin-top: 42rpx;
+  margin-top: 38rpx;
 }
 
 .progress-bar__values .progress-axis {
