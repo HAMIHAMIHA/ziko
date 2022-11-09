@@ -8,6 +8,11 @@ Component({
       type: Object,
       observer: function (newVal, oldVal, changePath) {
         const self = this;
+
+        if (!newVal.miniprogram?.lottery?.draws) {
+          return;
+        }
+
         const lotteryDraws = newVal.miniprogram?.lottery?.draws;
 
         lotteryDraws?.map(draw => {
