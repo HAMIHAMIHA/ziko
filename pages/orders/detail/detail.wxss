@@ -114,7 +114,6 @@ page {
 /* Timeline */
 .timeline {
   padding: 0;
-  padding-bottom: 16rpx;
   display: flex;
   flex-direction: column-reverse;
   margin-left: -20rpx;
