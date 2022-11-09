@@ -306,12 +306,12 @@ const _setHurryPopup = function (offer, page) {
 
 // Check for lottery draws
 export const _setLotteryDraws = function (offer, orders) {
-  if (offer.miniprogram.lottery.draws[0].conditionType === "number_of_order") {
+  // if (offer.miniprogram.lottery.draws[0].conditionType === "number_of_order") {
+  if (offer.miniprogram.lottery.draws[0].conditionType === "number_of_order" || offer.miniprogram.lottery.draws[1]?.conditionType === "number_of_order") {
     offer.lottery_progress = Math.round(offer.orders / offer.last_val * 100);
   } else {
     offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
   }
-
   offer.miniprogram.lottery.draws.map((draw, i) => {
     let winners = [];
 
@@ -346,7 +346,6 @@ export const _setLotteryDraws = function (offer, orders) {
 
     // Set size of axis mark
     draw.position = Math.round(draw.conditionValue / offer.last_val * 100);
-    console.log(draw.conditionValue , offer.last_val)
     draw.winners = winners;
     draw.unlocked = ((draw.conditionType === "number_of_order" && offer.orders >= draw.conditionValue) || (draw.conditionType === "x_item_sold" && offer.sold >= draw.conditionValue));
   })
