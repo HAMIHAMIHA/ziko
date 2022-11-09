@@ -316,6 +316,7 @@
 }
 
 .lottery-gift {
+  text-transform:capitalize;
   font-size: 24rpx;
   color: #A3A8B7;
   margin-bottom: 16rpx;
