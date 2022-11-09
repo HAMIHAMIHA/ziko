@@ -98,9 +98,11 @@ page {
 .order-details_container:not(.price-detail) .detail_value {
   width: 57.6%;
 }
-.phone_padding_top{
+
+.phone_padding_top {
   padding-top: 0;
 }
+
 .order-details_container .detail_result {
   overflow-wrap: anywhere;
 }

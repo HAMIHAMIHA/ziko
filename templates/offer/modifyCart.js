@@ -38,7 +38,9 @@ export const modifyCartItems = (page, event, checkout = false) => {
 
   // Set up values for product in cart
   cart_offer.count += (new_amount - old_amount);
-  cart_offer.total += (product.price * (new_amount - old_amount));
+  // cart_offer.total += (product.price * (new_amount - old_amount));
+  cart_offer.total += product.formerPrice ? (product.formerPrice * (new_amount - old_amount)) : (product.price * (new_amount - old_amount));
+
   cart_offer.products[product._id] = {
     amount: new_amount,
     type: type,

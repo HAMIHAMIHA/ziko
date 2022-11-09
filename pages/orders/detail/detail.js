@@ -315,7 +315,6 @@ Page({
         address: i18n.address,
         address_type: i18n.address_type,
         chosen_delivery_date: i18n.chosen_delivery_date,
-        Chosen_delivery_date: i18n.Chosen_delivery_date,
         comment: i18n.comment,
         contact_customer_hero: i18n.contact_customer_hero,
         contact_label: i18n.contact_label,

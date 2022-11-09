@@ -13,9 +13,9 @@
       <text class="nunito_600 detail_label">{{ _t.tracking_number }}</text>
       <text class="detail_result">{{ order.deliveryTrackingID }}</text>
     </view>
-    <view class="detail" wx:if="{{ order.deliveryTrackingID }}">
+    <view class="detail" wx:if="{{ order.states.length > 0 }}">
       <text class="nunito_600 detail_label">{{ _t.delivery_states }}</text>
-      <view class="white-box order-details_container timeline" wx:if="{{ order.states.length > 0 }}">
+      <view class="white-box order-details_container timeline">
         <block wx:for="{{ order.states }}" wx:key="index" wx:for-item="status">
           <view class="timeline__detail">
             <view class="timeline__dot"></view>

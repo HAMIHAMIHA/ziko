@@ -138,16 +138,20 @@
                 <view wx:if="{{ order.paymentStatus == 'pending' }}" class="payment-cleared">{{ _t.pending }}</view>
                 <view wx:if="{{ order.paymentStatus == 'ccl' }}" class="payment-cleared">{{ _t.cancelled }}</view>
                 <view wx:if="{{ order.paymentStatus == 'rfd' }}" class="payment-cleared">{{ _t.refund }}</view>
-                <view class="price-type">¥ {{ order.actualAmount }}</view>
+                <!-- <view class="price-type">¥ {{ order.actualAmount }}</view> -->
+
+                <!-- TEMP -->
+                <view class="price-type">¥ {{ order.payment ? order.payment.amount : order.actualTotal }}</view>
               </view>
             </view>
 
-            <view wx:if="{{ order.actualAmount !== order.actualTotal }}" class="returned">
+            <!-- <view wx:if="{{ order.actualAmount !== order.actualTotal }}" class="returned"> -->
+            <view wx:if="{{ order.payment && order.refund }}" class="returned">
               <view class="text">{{ _t.amount_paid }}</view>
-              <view class="money">¥ {{ order.actualTotal }}</view>
+              <view class="money">¥ {{ order.payment.amount }}</view>
               <view class="text">—</view>
               <view class="text">{{ _t.ziko_returned }}</view>
-              <view class="money">¥ {{ order.returned }}</view>
+              <view class="money">¥ {{ order.refund.amount }}</view>
             </view>
           </view>
           <view wx:if="{{ order.gifts.length > 0 }}" class="bottom_box">
