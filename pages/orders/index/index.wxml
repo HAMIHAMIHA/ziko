@@ -145,12 +145,11 @@
             </view>
 
             <!-- <view wx:if="{{ order.actualAmount !== order.actualTotal }}" class="returned"> -->
-            <view wx:if="{{ (order.paymentStatus === 'paid' || order.paymentStatus === 'rfd' ) && order.payment.amount !== order.actualAmount }}" class="returned">
+            <view wx:if="{{ (order.paymentStatus === 'paid' || order.paymentStatus === 'rfd' ) && fixDecimals.toFix(order.payment.amount) !== fixDecimals.toFix(order.actualAmount) }}" class="returned">
               <view class="text">{{ _t.amount_paid }}</view>
               <view class="money">¥ {{ fixDecimals.toFix(order.payment.amount) }}</view>
               <view class="text">—</view>
               <view class="text">{{ _t.ziko_returned }}</view>
-              <!-- <view class="money">¥ {{ order.refund.amount }}</view> -->
               <view class="money">¥ {{ fixDecimals.toFix(order.payment.amount - order.actualAmount) }}</view>
             </view>
           </view>
