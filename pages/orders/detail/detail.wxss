@@ -368,3 +368,7 @@ page {
 .icon-headset {
   margin-right: 20rpx;
 }
+
+.detail{
+  padding: 20rpx 0;
+}
