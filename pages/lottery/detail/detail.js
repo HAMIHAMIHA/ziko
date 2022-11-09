@@ -170,7 +170,7 @@ const _getOffer = function(page, offer_id) {
       });
 
       // Set size of axis mark
-      draw.position = Math.round(draw.conditionValue / offer.last_val * 10);
+      draw.position = Math.round(draw.conditionValue / offer.last_val * 100);
 
       // Draw status and winner
       draw.winners = winners
