@@ -114,7 +114,6 @@ page {
 /* Timeline */
 .timeline {
   padding: 0;
-  padding-bottom: 16rpx;
   display: flex;
   flex-direction: column-reverse;
   margin-left: -20rpx;
@@ -198,6 +197,7 @@ page {
 .contact-button {
   background-color: black !important;
   width: 60% !important;
+  white-space: nowrap;
 }
 
 .add-box .icon-wechat {

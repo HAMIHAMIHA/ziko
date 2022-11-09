@@ -9,6 +9,7 @@
 
 .cards {
   height: calc(100vh - 180rpx - var(--env-));
+  /* height: calc(100vh  - var(--env-)); */
   overflow: scroll;
 }
 
@@ -117,10 +118,10 @@
 }
 
 .btn-outline_container {
-  position: absolute !important;
-  bottom: calc(-130rpx + var(--env-));
+  position: fixed !important;
+  bottom: calc(30rpx + var(--env-));
   width: calc(100% - 60rpx);
-
+  background-color: #0A0B12;
   padding: 0;
   margin: 0 30rpx;
 }

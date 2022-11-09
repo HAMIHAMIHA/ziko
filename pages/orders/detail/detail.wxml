@@ -114,7 +114,7 @@
       </view>
     </block>
     <view class="nunito_600 detail">
-      <text class="detail_label">{{ _t.Chosen_delivery_date }}</text>
+      <text class="detail_label">{{ _t.chosen_delivery_date }}</text>
       <view class="detail_result">
         <text>{{ order.deliveryDate }}</text>
       </view>
@@ -156,7 +156,7 @@
       <text class="nunito_600 detail_label">{{ _t.address }}</text>
       <view class="detail_value">
         <view class="address-name">{{ _t.address_type[order.customerAddress.type] }}</view>
-        <text class="detail_note">{{ order.customerAddress.detailedAddress }}</text>
+        <text class="detail_value">{{ order.customerAddress.detailedAddress }}</text>
       </view>
     </view>
     <view class="detail">

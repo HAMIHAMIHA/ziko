@@ -25,11 +25,12 @@
 /* End of Community Picker */
 
 /* Order Card */
-/* .cards-container {
-  padding: 12rpx 0;
+.cards-container {
+  padding-bottom: calc(12rpx  + var(--env-));
+  /* padding: 12rpx 0;
   display: grid;
-  grid-row-gap: 24rpx;
-} */
+  grid-row-gap: 24rpx; */
+}
 
 .card {
   background: #252831;
@@ -193,6 +194,7 @@
   width: 690rpx;
   box-sizing: border-box;
   border-radius: 8rpx;
+  overflow: hidden;
 }
 
 .color_bar {
@@ -316,6 +318,7 @@
 }
 
 .lottery-gift {
+  text-transform:capitalize;
   font-size: 24rpx;
   color: #A3A8B7;
   margin-bottom: 16rpx;
