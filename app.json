@@ -65,5 +65,6 @@
     "login-hint": "/component/login-hint/login-hint"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "disableScroll": true
 }

@@ -213,6 +213,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "edit",
+          "pathName": "pages/account/editprofile/editprofile",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

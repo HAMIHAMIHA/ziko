@@ -66,6 +66,6 @@
 .white-background-black-text.saveButton {
   left: 0;
   right: 0;
-  position: fixed;
+  position: absolute !important;
   bottom: calc(48rpx + var(--env-)) !important;
 }

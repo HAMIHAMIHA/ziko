@@ -342,6 +342,7 @@ Page({
         total: i18n.total,
         tracking_number: i18n.tracking_number,
         use_voucher: i18n.use_voucher,
+        voucher_used: i18n.voucher_used,
         ziko_lottery: i18n.ziko_lottery,
         ziko_special: i18n.ziko_special,
         if_you_need_to: i18n.if_you_need_to,

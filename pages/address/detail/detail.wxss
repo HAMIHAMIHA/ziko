@@ -81,7 +81,7 @@
 }
 
 .detail_content_box {
-  padding: 18rpx 0;
+  padding: 17rpx 0;
   font-size: 28rpx;
 }
 
