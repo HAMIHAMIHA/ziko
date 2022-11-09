@@ -1,5 +1,3 @@
-<wxs module="fixDecimals" src="/utils/fixDecimals.wxs"></wxs>
-
 <!--<block wx:if="{{ !user.id }}">-->
 <!--  <view class="login-container">-->
 <!--    <view class="empty_message">{{ _t.need_login }}</view>-->
@@ -140,21 +138,24 @@
                 <view wx:if="{{ order.paymentStatus == 'pending' }}" class="payment-cleared">{{ _t.pending }}</view>
                 <view wx:if="{{ order.paymentStatus == 'ccl' }}" class="payment-cleared">{{ _t.cancelled }}</view>
                 <view wx:if="{{ order.paymentStatus == 'rfd' }}" class="payment-cleared">{{ _t.refund }}</view>
-                <view class="price-type">¥ {{ order.actualAmount }}</view>
+                <!-- <view class="price-type">¥ {{ order.actualAmount }}</view> -->
+
+                <!-- TEMP -->
+                <view class="price-type">¥ {{ order.payment ? order.payment.amount : order.actualTotal }}</view>
               </view>
             </view>
 
             <!-- <view wx:if="{{ order.actualAmount !== order.actualTotal }}" class="returned"> -->
             <view wx:if="{{ (order.paymentStatus === 'paid' || order.paymentStatus === 'rfd' ) && fixDecimals.toFix(order.payment.amount) !== fixDecimals.toFix(order.actualAmount) }}" class="returned">
               <view class="text">{{ _t.amount_paid }}</view>
-              <view class="money">¥ {{ fixDecimals.toFix(order.payment.amount) }}</view>
+              <view class="money">¥ {{ order.payment.amount }}</view>
               <view class="text">—</view>
               <view class="text">{{ _t.ziko_returned }}</view>
               <view class="money">¥ {{ fixDecimals.toFix(order.payment.amount - order.actualAmount) }}</view>
             </view>
           </view>
           <view wx:if="{{ order.gifts.length > 0 }}" class="bottom_box">
-            <view class="lottery-gift nunito_400">{{ _t.gift }}:</view>
+            <view class="lottery-gift nunito_400">{{ _t.gift }}</view>
             <block wx:for="{{ order.gifts }}" wx:key="_id" wx:for-item="gift">
               <view class="gift__container flex-between">
                 <view class="gift">
