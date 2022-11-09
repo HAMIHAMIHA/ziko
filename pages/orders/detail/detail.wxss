@@ -140,6 +140,11 @@ page {
   display: flex;
 }
 
+.timeline__detail:last-child .timeline__date{
+  padding-bottom: 10rpx;
+}
+
+
 .timeline__dot {
   width: 26rpx;
   height: 26rpx;
@@ -367,4 +372,8 @@ page {
 
 .icon-headset {
   margin-right: 20rpx;
+}
+
+.detail {
+  padding: 20rpx 0;
 }
