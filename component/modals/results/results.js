@@ -18,6 +18,7 @@ Component({
       const self = this;
 
       self.setData({
+        current: 0,
         gifts
       })
 

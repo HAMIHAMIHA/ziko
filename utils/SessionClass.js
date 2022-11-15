@@ -62,6 +62,9 @@ class SessionClass {
       let user = app.db.get('userInfo') || {};
       user.customer ? user.customer.openId = res.openId : user.customer = res;
       app.db.set('userInfo', user);
+
+      // Store lottery machine status in local storage
+      app.db.set('lotteryShow', true);
       return;
     });
   }

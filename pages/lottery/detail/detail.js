@@ -93,6 +93,7 @@ const _setPageTranslation = function(page) {
       items_unit: i18n.items_unit,
       rmb: i18n.rmb,
       ticket: i18n.ticket,
+      order_unit: i18n.order_unit,
     },
     _t_prize: {
       _language: app.db.get('language'),

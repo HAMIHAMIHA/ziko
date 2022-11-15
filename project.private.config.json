@@ -25,7 +25,7 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=63721f98c3c2cd3448e394af",
+          "query": "id=637351d1a0ce1aa2e1009b91",
           "launchMode": "default",
           "scene": null
         },
@@ -79,7 +79,7 @@
         {
           "name": "Cart",
           "pathName": "pages/cart/cart",
-          "query": "id=636b507680d179c0333c0426",
+          "query": "id=637351d1a0ce1aa2e1009b91",
           "launchMode": "default",
           "scene": null
         },
@@ -168,7 +168,7 @@
         {
           "name": "Lottery",
           "pathName": "pages/lottery/detail/detail",
-          "query": "id=628619f98ef366815d1fff20",
+          "query": "id=6372ffc3c3c2cd3448e39f36",
           "launchMode": "default",
           "scene": null
         },

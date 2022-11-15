@@ -31,7 +31,7 @@
 
       <!-- Pay buttons -->
       <!-- Lock button if it is not started -->
-      <view class="payment-button disabled" wx:if="{{ coming }}">
+      <view class="payment-button disabled" wx:if="{{ coming || ended }}">
         {{ _t.pay }}
       </view>
       <!-- Payment not available if offer minimum items not reached -->
@@ -98,7 +98,7 @@
 
         <!-- Pay buttons -->
         <!-- Lock button if it is not started -->
-        <view class="pay-button disabled" wx:if="{{ coming }}">
+        <view class="pay-button disabled" wx:if="{{ coming || ended }}">
           <button class="nunito_600">{{ _t.pay }}</button>
         </view>
         <!-- Payment not available if offer minimum items not reached -->

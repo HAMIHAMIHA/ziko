@@ -180,6 +180,8 @@ const _setOffers = (page) => {
       offer_orders.forEach(o => offer_tickets += o.ticketAmount)
     }
 
+    if (offer_tickets == 0) return;
+
     let offer_gifts = 0;
     if (offer.miniprogram.lottery.draws.length > 0) {
       offer.miniprogram.lottery.draws.map(draw => {
@@ -264,7 +266,8 @@ const _filterOfferData = (page, filter_group, filter_id, filter_type) => {
       // Get user orders if user is logged in
       if (page.data.user?.id) {
         app.api.getOrders({
-          filter_str: `channel=miniprogram&paymentStatus=paid`
+          // filter_str: `channel=miniprogram&paymentStatus=paid`
+          filter_str: `channel=miniprogram&filter={"$or":[{"paymentStatus":"paid"},{"paymentStatus":"pending"}]}`
         }).then(res => {
           orders = res;
           _setOffers(page);

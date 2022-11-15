@@ -53,6 +53,10 @@
 }
 
 .progress-bar__values .progress-axis {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
   font-size: 24rpx;
   line-height: 24rpx;
 }
@@ -69,6 +73,12 @@
 
 .progress-bar__values.progress-bar_first .progress-axis:before {
   margin-left: 0;
+}
+
+.progress-bar__values.progress-bar_last .progress-axis {
+  position: unset;
+  left: unset;
+  transform: unset;
 }
 
 .progress-bar__values.progress-bar_last .progress-axis:before {

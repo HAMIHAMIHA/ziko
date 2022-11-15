@@ -347,7 +347,7 @@
 
   <template
     is="payment_container-bottom"
-    data="{{ _show_alert: _bourse_info.progress < 100, _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special, coming: _offer.coming }}"
+    data="{{ _show_alert: _bourse_info.progress < 100, _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, next_special: next_special, coming: _offer.coming, ended: _offer.ended }}"
   ></template>
   <!-- End of Pay Button -->
 </view>

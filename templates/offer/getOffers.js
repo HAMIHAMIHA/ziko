@@ -369,6 +369,7 @@ export async function getOffer(page, offer_id) {
     let offer = res[0];
     offer.orders = offer.miniprogramOrders;
     offer.coming = new Date(offer.startingDate).getTime() > new Date().getTime();
+    offer.ended = new Date(offer.endingDate).getTime() < new Date().getTime();
 
     // Banner
     offer.media.map(m => m.uri = `${app.folders.offer_media}${m.uri}`)

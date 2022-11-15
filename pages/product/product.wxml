@@ -136,7 +136,7 @@
 
   <!-- Pay Button -->
   <view wx:if="{{ (_setting.type != 'packProduct') }}">
-    <template is="payment_container" data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, coming: _offer.coming }}"></template>
+    <template is="payment_container" data="{{ _pay_set: _pay_set, _t: _t, user: user, wxUser: wxUser, coming: _offer.coming, ended: _offer.ended }}"></template>
   </view>
   <!-- End of Pay Button -->
 </view>
