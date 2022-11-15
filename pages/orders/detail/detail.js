@@ -254,7 +254,7 @@ const getOrders = (page) => {
 
     if (page.options.type === 'paid') {
       if (modal_gifts.length > 0) {
-        page.selectComponent('#order_gifts').showResults(modal_gifts);
+        page.selectComponent('#order_gifts').showResults(modal_gifts, res);
       } else {
         page.selectComponent('#order_complete').show();
       }

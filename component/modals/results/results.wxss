@@ -53,3 +53,39 @@
   animation-name: check-scale;
   animation-duration: 0.5s;
 }
+
+
+.modal-container {
+  width: 100%;
+  padding: 120rpx 0;
+}
+
+.draw-box-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.modal-container .content-title-container {
+  position: relative;
+  text-align: left;
+  padding-left: 200rpx;
+}
+
+.modal-container .content-title {
+  font-size: 42rpx;
+  line-height: 50rpx;
+
+  color: #252831;
+}
+
+.modal-container .content-subtitle {
+  font-size: 28rpx;
+  line-height: 38rpx;
+
+  color: #252831;
+}
+
+.modal-container .content-foot {
+  position: relative;
+}

@@ -1,3 +1,5 @@
+const { communities } = require("../../../utils/constants.js");
+
 const app = getApp();
 
 Component({
@@ -14,12 +16,14 @@ Component({
   },
 
   methods: {
-    showResults: function(gifts) {
+    showResults: function(gifts, order) {
       const self = this;
 
       self.setData({
+        _communities: communities,
         current: 0,
-        gifts
+        gifts,
+        order
       })
 
       self.selectComponent('#modal_template').showModal();

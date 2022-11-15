@@ -142,7 +142,7 @@
         {
           "name": "Order",
           "pathName": "pages/orders/detail/detail",
-          "query": "id=63690fd5a9829b860d8e5258&status=delivered",
+          "query": "id=6373059a9ee798899687a514&type=paid",
           "launchMode": "default",
           "scene": null
         },
