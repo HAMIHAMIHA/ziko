@@ -132,7 +132,6 @@
 
 .machine-pure-box {
   margin-top: 10rpx;
-  background: linear-gradient(113.45deg, #C5CACE -6.01%, #A4A8AB 0.17%, #8C8F91 9.43%, #838688 12.52%, #888C8E 24.87%, #919699 37.21%, #A4AAAF 65%, #BBC3CA 89.7%, #BAC3C8 120.57%, #BDC5C9 126.74%, #D9D9D9 163.79%, #DFDEDE 169.96%, #F0EDED 179.22%, #FFF9F9 182.31%, #F5F5F4 203.92%, #FFFFFF 216.27%, #F7F7F7 228.62%, #EAEAEA 237.88%, #CBCBCD 268.75%, #C3CCD3 287.27%, #A4A9AC 299.62%);
 
   width: 424rpx;
   height: 304rpx;
@@ -146,7 +145,7 @@
   height: 276rpx;
   border-radius: 20rpx;
   width: 400rpx;
-  background: linear-gradient(113.45deg, #C5CACE -6.01%, #A4A8AB 0.17%, #8C8F91 9.43%, #838688 12.52%, #888C8E 24.87%, #919699 37.21%, #A4AAAF 65%, #BBC3CA 89.7%, #BAC3C8 120.57%, #BDC5C9 126.74%, #D9D9D9 163.79%, #DFDEDE 169.96%, #F0EDED 179.22%, #FFF9F9 182.31%, #F5F5F4 203.92%, #FFFFFF 216.27%, #F7F7F7 228.62%, #EAEAEA 237.88%, #CBCBCD 268.75%, #C3CCD3 287.27%, #A4A9AC 299.62%);
+
   margin: 10rpx;
   box-shadow: 2rpx 2rpx 2rpx 2rpx #86898B;
   display: flex;

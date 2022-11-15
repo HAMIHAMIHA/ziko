@@ -1,9 +1,13 @@
-<view class="container">
+<block wx:if="{{ !offers }}">
+  <login-hint bind:refresh="refreshLoginState"></login-hint>
+</block>
+
+<view wx:else class="container">
   <!-- List View -->
   <view class="lottery-machine-container" wx:if="{{ first_show }}">
     <view class="lottery-machine-content">
       <image src="{{ lottery_logo }}" class="image-size"></image>
-      <view class="machine-pure-box machine-pure-box-cellar" bindanimationend="animationend" bindanimationiteration="animate_state_change">
+      <view class="machine-pure-box ziko-cellar" bindanimationiteration="startSlotMachine">
         <view class="machine-light-box machine-light-box-cellar">
           <view class="vertical-light">
             <view class="white-round"></view>
@@ -20,19 +24,19 @@
               <view class="white-round"></view>
             </view>
             <view class="move-items">
-              <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ showid1 }}" scroll-with-animation>
-                <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="{{ content.numb }}" class="content-move-box">
-                  <image src="{{ content.src }}" class="content-image"></image>
+              <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ column1 }}" scroll-with-animation>
+                <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="i{{ index }}" class="content-move-box">
+                  <image src="{{ content }}" class="content-image"></image>
                 </view>
               </scroll-view>
-              <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ showid2 }}" scroll-with-animation>
-                <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="{{ content.numb }}" class="content-move-box">
-                  <image src="{{ content.src }}" class="content-image"></image>
+              <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ column2 }}" scroll-with-animation>
+                <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="i{{ index }}" class="content-move-box">
+                  <image src="{{ content }}" class="content-image"></image>
                 </view>
               </scroll-view>
-              <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ showid3 }}" scroll-with-animation>
-                <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="{{ content.numb }}" class="content-move-box">
-                  <image src="{{ content.src }}" class="content-image"></image>
+              <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ column3 }}" scroll-with-animation>
+                <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="i{{ index }}" class="content-move-box">
+                  <image src="{{ content }}" class="content-image"></image>
                 </view>
               </scroll-view>
             </view>
@@ -187,7 +191,7 @@
                     </view>
                   </view>
                 </block>
-                <view class="progress-bar ziko-{{ offer.community }}"></view>
+                <view class="progress-bar ziko-{{ _communities[offer.community.id] }}"></view>
               </view>
 
               <view class="middle-box-bottom">

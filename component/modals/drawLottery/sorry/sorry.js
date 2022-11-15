@@ -24,7 +24,16 @@ Component({
         winner_names = i ? `${winner_names}, ${w.name}` : w.name;
       });
 
-      let winner_message = `${ winners[0].order.customer.name }${ app.globalData.i18n.has_won_the_lottery }`;
+      let customerNameSplit = winners[0].order.customer.name.split('');
+      let newCustomerName = '';
+      for (const i in customerNameSplit) {
+        if (i != 0) {
+          customerNameSplit[i] = '*';
+        }
+      }
+      newCustomerName = customerNameSplit.join('');
+
+      let winner_message = `${ newCustomerName }${ app.globalData.i18n.has_won_the_lottery }`;
       self.setData({
         lottery,
         winner_message

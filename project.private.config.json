@@ -25,14 +25,14 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=636b19ef80d179c0333be66f",
+          "query": "id=63721f98c3c2cd3448e394af",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "Cellar",
           "pathName": "pages/offer/cellar/cellar/cellar",
-          "query": "id=63624addd56f88aee82757d9",
+          "query": "id=6371c686be3ad6ed8070c7b3",
           "launchMode": "default",
           "scene": null
         },

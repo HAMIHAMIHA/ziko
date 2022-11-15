@@ -1,4 +1,4 @@
-.modal-container {
+/* .modal-container {
   padding: 64rpx 0;
   background: #FF4853;
   border: 3px solid #FF7C7C;
@@ -62,4 +62,287 @@
   color: #CD4141;
   font-size: 24rpx;
   line-height: 36rpx;
+} */
+
+
+
+.modal-container {
+  width: 100%;
+  padding: 120rpx 0;
+}
+
+.modal-container .content-title-container {
+  position: relative;
+  text-align: left;
+  padding-left: 200rpx;
+}
+
+.modal-container .content-title {
+  font-size: 42rpx;
+  line-height: 50rpx;
+
+  color: #252831;
+}
+
+.modal-container .content-subtitle {
+  font-size: 28rpx;
+  line-height: 38rpx;
+
+  color: #252831;
+}
+
+.modal-container .draw-box-container {
+  position: relative;
+  padding: 80rpx 0;
+  margin: 46rpx;
+}
+
+.draw-box-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.draw-box-container .draw-detail {
+  width: 100%;
+  color: #11141B;
+}
+
+.draw-detail .draw-participants {
+  font-size: 24rpx;
+  line-height: 30rpx;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.draw-btn {
+  width: fit-content !important;
+  background: #EB4949;
+  border-radius: 34px;
+
+  font-size: 24rpx;
+  line-height: 36rpx;
+  color: #FFFFFF;
+
+  padding: 12rpx 48rpx;
+}
+
+.machine {
+  height: 300rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.machine-pure-box {
+  width: 424rpx;
+  height: 304rpx;
+  display: flex;
+  justify-content: center;
+  border-radius: 8rpx;
+  align-items: center;
+}
+
+.machine-light-box {
+  height: 276rpx;
+  border-radius: 20rpx;
+  width: 400rpx;
+  box-shadow: 2px 2px 2px 2px rgb(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-between;
+}
+
+.vertical-light {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10rpx;
+}
+
+.white-round {
+  width: 36rpx;
+  height: 36rpx;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.light-box-light {
+  width: 300rpx;
+  padding: 8rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.broadwise-light {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
+.move-items {
+  border-radius: 20rpx;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx;
+  margin: 6rpx 0;
+}
+
+.scroll-box {
+  width: 83rpx;
+  height: 160rpx;
+  background-image: linear-gradient(0deg, rgba(180, 180, 180, 1) 0%, rgba(240, 240, 240, 1) 30%, rgba(240, 240, 240, 1) 70%, rgba(180, 180, 180, 1) 100%);
+  border-radius: 20rpx;
+  margin: auto;
+  overflow: hidden;
+}
+
+.scroll-box ::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.content-move-box {
+  margin: 0 12rpx;
+  padding: 30rpx 0;
+}
+
+.modal-container .content-image {
+  width: 100%;
+  height: 70rpx;
+}
+
+.machine-hand {
+  position: relative;
+}
+
+.machine-hand-grey-box {
+  position: absolute;
+  width: 16rpx;
+  height: 100rpx;
+  background-color: #434343;
+  border-radius: 0 16rpx 16rpx 0;
+  z-index: 9;
+  top: 106rpx;
+  left: 0;
+}
+
+.machine-hand-black-box {
+  position: absolute;
+  width: 32rpx;
+  height: 100rpx;
+  background-color: black;
+  border-radius: 0 16rpx 16rpx 0;
+  z-index: 8;
+  top: 106rpx;
+  left: 0;
+}
+
+.hander {
+  position: absolute;
+  width: 30rpx;
+  height: 0rpx;
+  border-top: 15rpx solid black;
+  border-radius: 0 28rpx 0 0;
+  left: 22rpx;
+  top: 138rpx;
+}
+
+.hander_move {
+  animation-name: handermove;
+  animation-duration: 0.5s;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+}
+
+@keyframes handermove {
+  0% {}
+
+  30% {
+    border-right: 0;
+    height: 0rpx;
+  }
+
+  31% {
+    border-right: 15rpx solid black;
+  }
+
+  100% {
+    border-right: 15rpx solid black;
+    height: 100rpx;
+  }
+}
+
+.hander-top {
+  position: absolute;
+  width: 30rpx;
+  height: 100rpx;
+  border-bottom: 15rpx solid black;
+  border-right: 15rpx solid black;
+  border-radius: 0 0 28rpx 0;
+  left: 22rpx;
+  bottom: 149rpx;
+  transform-origin: 100% 100% 0;
+}
+
+.hander_top_move {
+  animation-name: handertopmove;
+  animation-duration: 0.5s;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+}
+
+@keyframes handertopmove {
+  0% {}
+
+  20% {
+    border-right: 15rpx solid black;
+  }
+
+  40% {
+    height: 0;
+    border-right: 0;
+  }
+
+  100% {
+    border-right: 0;
+    height: 0;
+  }
+}
+
+.hander-ball {
+  position: absolute;
+  top: 0rpx;
+  left: 29rpx;
+
+  width: 60rpx;
+  height: 60rpx;
+
+  border-radius: 50%;
+
+  z-index: 10;
+}
+
+.hander_ball_move {
+  animation-name: handballmove;
+  animation-duration: 0.5s;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+}
+
+@keyframes handballmove {
+  0% {}
+
+  100% {
+    top: 236rpx;
+  }
+}
+
+.participants {
+  font-size: 24rpx;
+  color: rgb(0, 0, 0, 0.65);
+  margin-top: 72rpx;
 }

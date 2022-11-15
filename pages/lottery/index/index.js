@@ -288,47 +288,7 @@ Page({
     _communities: index_data.communities,
     first_show: app.db.get('lotteryShow'),
     lottery_logo: "/assets/images/zikoland.svg",
-    lottery_content: [{
-      numb: "i0",
-      name: "bottle-1",
-      src: "/assets/icons/bottle.svg"
-    }, {
-      numb: "i1",
-      name: "cheese-1",
-      src: "/assets/icons/cheese.svg"
-    }, {
-      numb: "i2",
-      name: "fruit-1",
-      src: "/assets/icons/fruit.svg"
-    }, {
-      numb: "i3",
-      name: "noodle-1",
-      src: "/assets/icons/noodle.svg"
-    }, {
-      numb: "i4",
-      name: "Vector-1",
-      src: "/assets/icons/Vector.svg"
-    }, {
-      numb: "i5",
-      name: "bottle-2",
-      src: "/assets/icons/bottle.svg"
-    }, {
-      numb: "i6",
-      name: "cheese-2",
-      src: "/assets/icons/cheese.svg"
-    }, {
-      numb: "i7",
-      name: "fruit-2",
-      src: "/assets/icons/fruit.svg"
-    }, {
-      numb: "i8",
-      name: "noodle-2",
-      src: "/assets/icons/noodle.svg"
-    }, {
-      numb: "i9",
-      name: "Vector-2",
-      src: "/assets/icons/Vector.svg"
-    }, ],
+    lottery_content: ["/assets/icons/bottle.svg", "/assets/icons/cheese.svg", "/assets/icons/fruit.svg", "/assets/icons/noodle.svg", "/assets/icons/fish.svg"],
     type: 'general',
   },
 
@@ -336,23 +296,41 @@ Page({
     const self = this;
     _setPageTranslation(self);
 
-    // Restart lottery popup
-    app.globalData.pause_lottery_check = false;
+    if (app.db.get('userInfo') && app.db.get('userInfo').token) {
+      self.setData({
+        column1: 'i0',
+        column2: 'i0',
+        column3: 'i0',
+        first_show: app.db.get('lotteryShow'),
+      })
 
-    _leave_triggered = false;
-    if (_refresh_data) {
-      showLoading(true);
-      app.sessionUtils.getUserInfo(self);
-      self.filterOffers({
-        detail: {
-          change_date: false
-        }
-      });
+      self.startSlotMachine();
+
+      // Restart lottery popup
+      app.globalData.pause_lottery_check = false;
+
+      _leave_triggered = false;
+      if (_refresh_data) {
+        showLoading(true);
+        app.sessionUtils.getUserInfo(self);
+        self.filterOffers({
+          detail: {
+            change_date: false
+          }
+        });
+      }
     }
-  },
 
-  onReady: function () {
-    this.animate_state_change()
+    // _leave_triggered = false;
+    // if (_refresh_data) {
+    //   showLoading(true);
+    //   app.sessionUtils.getUserInfo(self);
+    //   self.filterOffers({
+    //     detail: {
+    //       change_date: false
+    //     }
+    //   });
+    // }
   },
 
   onHide: function () {
@@ -407,32 +385,24 @@ Page({
 
   onShareAppMessage: function (res) {},
 
-  animate_state_change: function () {
+  startSlotMachine: function () {
+    const self = this;
+
     setTimeout(() => {
-      this.setData({
-        showid1: "i6",
+      self.setData({
+        column1: 'i2'
       })
     }, 500)
     setTimeout(() => {
-      this.setData({
-        showid2: "i7",
+      self.setData({
+        column2: 'i3'
       })
     }, 800)
     setTimeout(() => {
-      this.setData({
-        showid3: "i8",
+      self.setData({
+        column3: 'i4'
       })
     }, 1100)
-  },
-
-  animationend: function () {
-    setTimeout(() => {
-      this.setData({
-        showid1: "i0",
-        showid2: "i0",
-        showid3: "i0",
-      })
-    }, 5000)
   },
 
   close_firstshow: function () {
@@ -441,4 +411,9 @@ Page({
       first_show: false
     })
   },
+
+  refreshLoginState: function (e) {
+    const userLogin = e.detail.userLogin;
+    if (userLogin) this.onShow();
+  }
 })

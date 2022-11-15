@@ -194,9 +194,9 @@ const getOrders = (page) => {
   let order_status = current.order_status;
 
   // Tracking status filter
-  let tracking_filter_str = `trackingStatus=${order_status}`;
+  let tracking_filter_str = `trackingStatus=${order_status}&filter={"valid":true}`;
   if (order_status === 'prepared') {
-    tracking_filter_str = `filter={"$or":[{"trackingStatus":"prepared"},{"trackingStatus":"delayed"}]}`;
+    tracking_filter_str = `filter={"$or":[{"trackingStatus":"prepared"},{"trackingStatus":"delayed"}],"valid":true}`;
   }
 
   let filter = {
