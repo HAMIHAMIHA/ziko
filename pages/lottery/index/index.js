@@ -67,6 +67,7 @@ const _setPageTranslation = function (page) {
       you_won: i18n.you_won,
       orders: i18n.orders,
       items: i18n.items,
+      better_luck_next_time: i18n.better_luck_next_time,
     }
   })
 }

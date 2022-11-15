@@ -104,7 +104,7 @@
 /* End of Offer Detail - Closed */
 
 .lottery-machine-container {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100vh;
   z-index: 10;
@@ -285,10 +285,13 @@
 }
 
 .font-size2 {
+  line-height: 38rpx;
   font-size: 34rpx;
   padding-top: 10rpx;
 }
-
+.narrow{
+  width: 50%;
+}
 .top-box {
   border-radius: 8rpx 8rpx 0 0;
   background-color: #252831;
@@ -308,6 +311,18 @@
   text-align: center;
   align-items: center;
   border-bottom: 4rpx solid;
+}
+.betterLuck{
+  position: absolute;
+  right: 30rpx;
+  top: 40rpx;
+  font-family: Gilroy;
+  font-size: 28rpx;
+  font-weight: 700;
+  line-height: 34rpx;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #8C8C8C;
 }
 
 .icon-crown {
@@ -512,17 +527,24 @@
 .middle-box-bottom {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   margin: 20rpx 30rpx;
 }
-
+.tickets{
+  display: flex;
+  align-items: center;
+}
 .icon-ticket {
+  display: block;
   font-size: 40rpx;
   margin-right: 10rpx;
   color: #FFC700;
+
 }
 
 .tickets-num {
+  display: block;
+  height: 20rpx;
   font-size: 28rpx;
 }
 
