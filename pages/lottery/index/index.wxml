@@ -61,7 +61,7 @@
       <view class="button-got-it gilroy_700" bindtap="close_firstshow">{{ _t.got_it }}</view>
     </view>
   </view>
-  <view class="list">
+  <view class="list {{first_show ? 'fixed' : ''}}">
     <!-- Scroll Menu -->
     <view class="h-scroll_container scroll-menu_community">
       <scroll-view class="h-scroll" scroll-x="true">
@@ -154,7 +154,7 @@
           </view> -->
           <view class="new-offer-banner">
             <view class="top-box top-box-color-{{ _communities[offer.community.id] }}">
-              <view wx:if="{{ offer.lotteries.win }}" class="top-box-won top-box-color-{{ _communities[offer.community.id] }}">
+              <view wx:if="{{ offer.lotteries.win }}" class="top-box-won top-box-win-color-{{ _communities[offer.community.id] }}">
                 <text class="icon icon-crown"></text>
                 <view>
                   <view class="crown-context1">{{ _t.congrats }}</view>
