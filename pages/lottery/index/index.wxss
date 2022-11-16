@@ -77,7 +77,7 @@
   background: #ffdb59;
   color: #252831;
   font-size: 40rpx;
-  border-radius: 50%;
+  border-radius: 55%;
 }
 
 .offer-specials .icon_container .icon_text {
@@ -113,6 +113,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+.fixed{
+  position: fixed;
 }
 
 .lottery-machine-content {
@@ -310,11 +313,14 @@
   text-align: center;
   align-items: center;
   border-bottom: 4rpx solid;
+  border-radius:  0 0 8rpx 8rpx;
 }
 .betterLuck{
   position: absolute;
-  right: 30rpx;
-  top: 40rpx;
+  top: 50%;
+  transform: translate(0, -50%); 
+  transform-origin: 25% 25%;
+  right:30rpx;
   font-family: Gilroy;
   font-size: 28rpx;
   font-weight: 700;
@@ -343,18 +349,42 @@
 
 .top-box-color-kitchen {
   border-image: linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%) 1;
+  border-image-slice:100% 0 0 0;
 }
 
 .top-box-color-cellar {
   border-image: -webkit-linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%) 1;
+  border-image-slice:100% 0 0 0;
+
 }
 
 .top-box-color-farm {
   border-image: -webkit-linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%) 1;
+  border-image-slice:100% 0 0 0;
 }
 
 .top-box-color-pet {
   border-image: -webkit-linear-gradient(132.48deg, #FFB65A -1194.24%, #FF7233 1529.08%) 1;
+  border-image-slice:100% 0 0 0;
+}
+
+
+
+.top-box-win-color-kitchen {
+  border-image: linear-gradient(121.42deg, #715026 -7.93%, #876737 1.67%, #C7AA67 32.89%, #EFD486 56.91%, #FFE592 68.92%, #BD9D54 124.15%, #A2803B 150.57%, #A4823E 174.58%, #AB8C47 191.39%, #B79B58 208.2%, #C7B16F 225.01%, #D2BF7E 232.22%) 1;
+  border-image-slice:0 0 100% 0;
+}
+.top-box-win-color-cellar {
+  border-image: -webkit-linear-gradient(104.65deg, #F8F6F5 1.33%, #B9C2C7 37.3%, #B7BFC5 71.73%, #8C9093 100%) 1;
+  border-image-slice:0 0 100% 0;
+}
+.top-box-win-color-farm {
+  border-image: -webkit-linear-gradient(109.79deg, #97F082 23.08%, #11BE67 241.3%) 1;
+  border-image-slice:0 0 100% 0;
+}
+.top-box-win-color-pet {
+  border-image: -webkit-linear-gradient(132.48deg, #FFB65A -1194.24%, #FF7233 1529.08%) 1;
+  border-image-slice:0 0 100% 0;
 }
 
 .middle-box {
@@ -458,7 +488,7 @@
 .progress-bar__values .progress-axis:before {
   content: "";
   width: 2px;
-  height: 30rpx;
+  height: 26rpx;
   margin: auto auto 8rpx auto;
   padding-top: 4rpx;
   background: #FFFFFF;
