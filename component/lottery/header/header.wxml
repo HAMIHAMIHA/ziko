@@ -44,7 +44,7 @@
     >
       <view class="nunito_500 progress-axis">{{ draw.conditionValue }}</view>
       <view wx:if="{{ (index + 1) == _offer.miniprogram.lottery.draws.length }}" class="nunito_400 progress-label">
-        <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ _t.orders }}</text>
+        <text wx:if="{{ draw.conditionType === 'number_of_order'}}" style="text-transform:uppercase;">{{ _t.orders }}</text>
         <text wx:else>{{ _t.items }}</text>
       </view>
 

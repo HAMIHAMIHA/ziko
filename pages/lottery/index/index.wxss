@@ -77,7 +77,7 @@
   background: #ffdb59;
   color: #252831;
   font-size: 40rpx;
-  border-radius: 50%;
+  border-radius: 55%;
 }
 
 .offer-specials .icon_container .icon_text {
@@ -297,6 +297,9 @@
   padding: 20rpx;
   border-top: 4rpx solid;
   position: relative;
+  border-bottom: transparent;
+  border-left: transparent;
+  border-right: transparent;
 }
 
 .top-box-won {
@@ -310,11 +313,16 @@
   text-align: center;
   align-items: center;
   border-bottom: 4rpx solid;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
 }
 .betterLuck{
   position: absolute;
-  right: 30rpx;
-  top: 40rpx;
+  top: 50%;
+  transform: translate(0, -50%); 
+  transform-origin: 25% 25%;
+  right:30rpx;
   font-family: Gilroy;
   font-size: 28rpx;
   font-weight: 700;
@@ -458,7 +466,7 @@
 .progress-bar__values .progress-axis:before {
   content: "";
   width: 2px;
-  height: 30rpx;
+  height: 26rpx;
   margin: auto auto 8rpx auto;
   padding-top: 4rpx;
   background: #FFFFFF;

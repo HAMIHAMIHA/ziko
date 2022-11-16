@@ -94,6 +94,7 @@ const _setPageTranslation = function(page) {
       rmb: i18n.rmb,
       ticket: i18n.ticket,
       order_unit: i18n.order_unit,
+      orders: i18n.orders
     },
     _t_prize: {
       _language: app.db.get('language'),
@@ -157,7 +158,7 @@ const _getOffer = function(page, offer_id) {
       offer.lottery_progress = Math.round(offer.sold / offer.last_val * 100);
     }
 
-    offer.miniprogram.lottery.draws.forEach( draw => {
+    offer.miniprogram.lottery.draws.forEach( (draw,index) => {
       let winners = [];
       lotteries.forEach( l => {
         if (l.offerDrawId === draw._id){
@@ -170,6 +171,8 @@ const _getOffer = function(page, offer_id) {
       });
 
       // Set size of axis mark
+      //The progress bar is evenly distributed
+      // draw.position = Math.round((index+1) / (offer.miniprogram.lottery.draws.length) * 100);
       draw.position = Math.round(draw.conditionValue / offer.last_val * 100);
 
       // Draw status and winner
