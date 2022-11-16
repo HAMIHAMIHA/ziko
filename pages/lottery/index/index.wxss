@@ -114,9 +114,7 @@
   align-items: center;
   flex-direction: column;
 }
-.fixed{
-  position: fixed;
-}
+
 
 .lottery-machine-content {
   display: flex;

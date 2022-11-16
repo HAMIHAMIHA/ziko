@@ -655,22 +655,22 @@ button:not([size=mini]).float-contact_container {
 
 .modal-container .close-btn {
   padding: 12rpx;
-  background: #FFFFFF;
-  color: #242331;
+  background: rgba(0,0,0,0.7);
+  /* color: #fff; */
   font-size: 16rpx;
   border-radius: 50%;
-  position: fixed;
+  position: absolute;
   top: 28rpx;
   right: 28rpx;
   z-index: 100001;
 }
 
 .modal-container_header .close-btn {
-  top: calc(28rpx + 76rpx);
+  top: calc(28rpx + 326rpx);
 }
 
 .modal-container_header.modal-star .close-btn {
-  top: calc(28rpx + 170rpx);
+  top: calc(28rpx + 340rpx);
 }
 
 .modal-container .content {
@@ -690,6 +690,7 @@ button:not([size=mini]).float-contact_container {
 }
 
 .modal-container .content-body {
+  margin-top:30rpx;
   padding: 48rpx 48rpx 0;
   text-align: center;
 }

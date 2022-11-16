@@ -83,10 +83,10 @@
             <view class="hander-ball ziko-{{ _communities[lottery.offer.community] }} {{ hander_ball_move }}" bindtap="startSlotMachine" bindanimationend="makeDraw"></view>
           </view>
         </view>
-
         <view class="nunito_500 draw-participants">{{ lottery.contestants }}{{ _t.participants }}</view>
       </view>
+      <button class="uppercase nunito_800 draw-btn" bindtap="startSlotMachine">{{ _t.discover_the }}</button>
     </view>
-    <button class="uppercase nunito_800 draw-btn" bindtap="startSlotMachine">{{ _t.discover_the }}</button>
+
   </view>
 </modal>
