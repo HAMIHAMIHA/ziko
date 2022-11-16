@@ -54,6 +54,7 @@
                 amount="{{ product.amount }}"
                 community="{{ _offer.community }}"
                 stock="{{ product.actualStock }}"
+                checkout="true"
                 bind:changeAmount="changeAmount"
                 data-idx="{{ cart.products[product._id].index_in_offer }}"
                 data-price="{{ product.price }}"

@@ -8,6 +8,7 @@ Component({
     amount: Number,
     stock: Number,
     product_id: String,
+    checkout: Boolean,
   },
   options: {
     addGlobalClass: true
@@ -24,6 +25,9 @@ Component({
 
       // Prevent users from adding above the available amount
       if (new_amount > self.data.stock) return;
+
+      // Prevent users from creating an empty order
+      if (self.data.checkout === true && new_amount === 0) return;
 
       // Prevent users from removing the last item in cart
       let pages = getCurrentPages();

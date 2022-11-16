@@ -268,7 +268,7 @@ const _filterOfferData = (page, filter_group, filter_id, filter_type) => {
       if (page.data.user?.id) {
         app.api.getOrders({
           // filter_str: `channel=miniprogram&paymentStatus=paid`
-          filter_str: `channel=miniprogram&filter={"$or":[{"paymentStatus":"paid"},{"paymentStatus":"pending"}]}`
+          filter_str: filter_type === 'past' ? `channel=miniprogram&paymentStatus=paid` : `channel=miniprogram&filter={"$or":[{"paymentStatus":"paid"},{"paymentStatus":"pending"}]}`
         }).then(res => {
           orders = res;
           _setOffers(page);
