@@ -161,8 +161,11 @@
                   <view class="crown-context2">{{ _t.you_won }}</view>
                 </view>
               </view>
+              <view wx:elif="{{ type=='past'}}" class="betterLuck">
+                  {{_t.better_luck_next_time}}
+              </view>
               <view class="font-size1 gradient-text ziko-{{ _communities[offer.community.id] }} capitalize">Ziko {{ _communities[offer.community.id] }}</view>
-              <view class="font-size2 gradient-text ziko-{{ _communities[offer.community.id] }}">{{ offer.name[_language] }}</view>
+              <view class="font-size2 gradient-text ziko-{{ _communities[offer.community.id] }} {{ offer.lotteries.win ? 'narrow':''}}">{{ offer.name[_language] }}</view>
             </view>
 
             <view class="middle-box">
