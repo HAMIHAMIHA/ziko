@@ -42,10 +42,10 @@ Component({
   },
 
   methods: {
-    showModal: function(lottery) {
+    showModal: function(lottery, winners) {
       const self = this;
       _getPageTranslation(self);
-      
+
       let i18n = app.globalData.i18n;
       let _lang = app.db.get('language');
       const _getGiftValue = {
@@ -95,6 +95,16 @@ Component({
 
       let draw = lottery.offer.miniprogram.lottery.draws[draw_idx]
       draw.count = draw_idx + 1;
+
+      // Only display the gifts winner gets
+      // To fix the issue that it will display all gifts if one draw has several gifts
+      let winGifts = [];
+      winners.forEach(w => {
+        if (w.order.customer.id == app.db.get('userInfo').customer.id) {
+          winGifts.push(w.gift);
+        }
+      });
+      draw.gifts = winGifts;
 
       draw.gifts.forEach((gift, i) => {
         draw.gifts[i] = _getGiftValue[gift.type](gift, lottery.offer)

@@ -125,7 +125,7 @@
     <view class="flex-center cellar-total_container" wx:if="{{  _offer.type && _offer.type != 'regular' }}">
       <view class="icon icon-wine"></view>
       <view class="cellar-total">
-        <view class="nunito_700 cellar-total_count">{{ _offer.sold }}/{{ _offer.total }}</view>
+        <view class="nunito_700 cellar-total_count">{{ (_offer.total - _offer.sold) }}/{{ _offer.total }}</view>
         <view class="nunito_600 cellar-total_label">{{ _t.total_units_available }}</view>
       </view>
       <view class="cellar-total_progress">

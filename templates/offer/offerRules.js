@@ -212,7 +212,8 @@ export const checkOfferTicket = (page, offer) => {
     total_tickets += _checkCondition[offer.miniprogram.lottery.conditionType]('conditionValue');
   }
 
-  if (offer.miniprogram.lottery.extraConditionType && _checkCondition[offer.miniprogram.lottery.extraConditionType]) {
+  // User can get extra ticket when he already met the first requirement
+  if (total_tickets > 0 && offer.miniprogram.lottery.extraConditionType && _checkCondition[offer.miniprogram.lottery.extraConditionType]) {
     total_tickets += _checkCondition[offer.miniprogram.lottery.extraConditionType]('extraConditionValue');
   }
 
