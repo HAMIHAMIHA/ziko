@@ -614,9 +614,9 @@ button:not([size=mini]).float-contact_container {
   padding-top: 76rpx;
 }
 
-.modal-star .modal-container .card {
+/* .modal-star .modal-container .card {
   padding-top: 170rpx;
-}
+} */
 
 .modal-container .modal-content {
   position: relative;
@@ -683,6 +683,30 @@ button:not([size=mini]).float-contact_container {
   background: #242331;
 }
 
+.modal-container .draw-box-bg {
+  height: 100% !important;
+  position: absolute;
+  left: 0;
+  top: -50rpx;
+  z-index: -1;
+}
+.draw-box-bg.kitchen{
+  top: -90rpx;
+}
+.draw-box-bg.cellar{
+  top: -30rpx;
+}
+.draw-box-bg.farm{
+  top: -80rpx;
+}
+.draw-box-bg.pet{
+  top: -50rpx;
+
+}
+
+
+
+
 .modal-container .content-head {
   padding: 64rpx 0 48rpx;
   background: #242331;
@@ -694,6 +718,7 @@ button:not([size=mini]).float-contact_container {
   padding: 48rpx 48rpx 0;
   text-align: center;
 }
+
 
 .modal-container .content-title {
   font-size: 36rpx;

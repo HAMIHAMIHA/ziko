@@ -17,7 +17,7 @@
 <!-- TODO CSS -->
 <modal class="modal-container_header" id="modal_template" bind:closeCheck="closeCheck">
   <view class="modal-container" slot="content">
-    <image class="draw-box-bg" src="/assets/images/{{ _communities[lottery.offer.community] }}_lottery.svg" bindtap="makeDraw" mode="widthFix"></image>
+    <image class="draw-box-bg {{ _communities[lottery.offer.community] }}" src="/assets/images/{{ _communities[lottery.offer.community] }}_lottery.svg" bindtap="makeDraw" mode="widthFix"></image>
     <view class="content-title-container">
       <view class="uppercase gilroy_700 content-title">{{ _t.new_lottery }}</view>
       <view class="nunito_600 content-subtitle">{{ _t.spin_to }}</view>

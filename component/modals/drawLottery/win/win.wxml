@@ -39,7 +39,7 @@
 <!-- TODO CSS -->
 <modal class="modal-container_header modal-star" id="modal_template" bind:closeCheck="closeCheck">
   <view class="modal-container" slot="content">
-    <image class="draw-box-bg" src="/assets/images/{{ _communities[lottery.offer.community] }}_lottery.svg" bindtap="makeDraw"></image>
+    <image class="draw-box-bg {{ _communities[lottery.offer.community] }}" src="/assets/images/{{ _communities[lottery.offer.community] }}_lottery.svg" bindtap="makeDraw"></image>
     <view class="content-title-container">
       <view class="uppercase gilroy_800 content-title">{{ _t.you_win }}!</view>
       <view class="gilroy_700 content-subtitle">{{ _t.just_won_lottery }}</view>
