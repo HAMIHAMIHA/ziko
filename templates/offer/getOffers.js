@@ -636,7 +636,8 @@ export function getOfferBuyers(page, offer_id) {
             orderNameSplit[i] = '*';
           }
         }
-        newOrderName = orderNameSplit.join('');
+        orderNameSplit = orderNameSplit.slice(0, 6);
+        newOrderName = orderNameSplit.join('').padEnd(6, '*');
 
         let message = `${ newOrderName }${ _t.ordered }`;
         let cart = [];
@@ -657,7 +658,9 @@ export function getOfferBuyers(page, offer_id) {
 
     // Check for lottery winners if no new order but data changed
     order_history = JSON.stringify(res);
-    if (res.length === offer.order) {
+
+    // if (res.length === offer.order) {
+    if (res.length === offer.orders) {
       if (offer.miniprogram.lotteryEnable && offer.miniprogram.lottery.draws.length) {
         offer = _setLotteryDraws(offer, res);
       }

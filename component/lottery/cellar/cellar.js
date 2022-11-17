@@ -24,7 +24,8 @@ Component({
                   winnerNameSplit[i] = '*';
                 }
               }
-              winner.name = winnerNameSplit.join('');
+              winnerNameSplit = winnerNameSplit.slice(0, 6);
+              winner.name = winnerNameSplit.join('').padEnd(6, '*');
             })
           }
         })

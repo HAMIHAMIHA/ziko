@@ -31,7 +31,8 @@ Component({
           customerNameSplit[i] = '*';
         }
       }
-      newCustomerName = customerNameSplit.join('');
+      customerNameSplit = customerNameSplit.slice(0, 6);
+      newCustomerName = customerNameSplit.join('').padEnd(6, '*');
 
       let winner_message = `${ newCustomerName }${ app.globalData.i18n.has_won_the_lottery }`;
       self.setData({
