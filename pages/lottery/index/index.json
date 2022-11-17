@@ -3,5 +3,6 @@
     "countdown": "/component/countdown/countdown",
     "offers": "/component/offers/offers",
     "dateFilter": "/component/dateFilter/dateFilter"
-  }
+  },
+  "disableScroll": true
 }

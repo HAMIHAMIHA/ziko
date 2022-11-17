@@ -13,6 +13,8 @@
 .modal-container {
   width: 100%;
   padding: 120rpx 0;
+  height: 80vh;
+  padding-top: 220rpx;
 }
 
 .draw-box-bg {
