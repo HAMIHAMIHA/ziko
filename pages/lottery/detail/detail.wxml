@@ -4,7 +4,7 @@
     <view class="nunito_600 uppercase countdown_text">{{ _t.time_remaining }}</view>
     <view class="gilroy_700 countdown_clock" wx:if="{{ _offer.ended }}">{{ _t.closed }}</view>
     <countdown class="gilroy_700 countdown_clock" id="countdown" end-time="{{ _offer.endingDate }}" wx:else></countdown>
-    <button class="share-btn icon icon-share" open-type="share"></button>
+    <button class="share-btn icon icon-Vector" open-type="share"></button>
   </view>
   <!-- End of Offer Countdown -->
 
