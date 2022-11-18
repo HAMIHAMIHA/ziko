@@ -4,7 +4,7 @@
 
 <view wx:else class="container">
   <!-- List View -->
-  <view class="lottery-machine-container" wx:if="{{ first_show }}">
+  <view class="lottery-machine-container" wx:if="{{ first_show }}" catchtouchmove="ture">
     <view class="lottery-machine-content">
       <image src="{{ lottery_logo }}" class="image-size"></image>
       <view class="machine-pure-box ziko-cellar" bindanimationiteration="startSlotMachine">

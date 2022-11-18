@@ -14,20 +14,16 @@
   width: 100%;
   padding: 120rpx 0;
   height: 80vh;
-  padding-top: 220rpx;
-}
-
-.draw-box-bg {
-  position: absolute;
-  left: 0;
-  top: 0;
+  position: relative;
 }
 
 .modal-container .content-title-container {
-  position: relative;
   text-align: left;
-  padding-left: 200rpx;
+  padding-left: 220rpx;
+  margin-top: -20rpx;
 }
+
+
 
 .modal-container .content-title {
   font-size: 42rpx;

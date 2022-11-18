@@ -15,78 +15,78 @@
 
 
 <!-- TODO CSS -->
-<modal class="modal-container_header" id="modal_template" bind:closeCheck="closeCheck">
+<modal class="modal-container_header {{ _communities[lottery.offer.community] }}" id="modal_template" bind:closeCheck="closeCheck">
   <view class="modal-container" slot="content">
-    <image class="draw-box-bg" src="/assets/images/{{ _communities[lottery.offer.community] }}_lottery.svg" bindtap="makeDraw" mode="widthFix"></image>
-    <view class="content-title-container">
-      <view class="uppercase gilroy_700 content-title">{{ _t.new_lottery }}</view>
-      <view class="nunito_600 content-subtitle">{{ _t.spin_to }}</view>
-    </view>
-
-    <view class="draw-box-container">
-      <view class="draw-detail">
-        <view class="machine">
-          <view class="machine-pure-box ziko-{{ _communities[lottery.offer.community] }}" bindtap="startSlotMachine" bindanimationend="makeDraw">
-            <view class="machine-light-box ziko-{{ _communities[lottery.offer.community] }}">
-              <view class="vertical-light">
-                <view class="white-round"></view>
-                <view class="white-round"></view>
-                <view class="white-round"></view>
-                <view class="white-round"></view>
-                <view class="white-round"></view>
-              </view>
-              <view class="light-box-light">
-                <view class="broadwise-light">
+    <image class="draw-box-bg {{ _communities[lottery.offer.community] }}" src="/assets/images/{{ _communities[lottery.offer.community] }}_lottery.svg" bindtap="makeDraw" mode="widthFix"></image>
+    <view class="text-container {{ _communities[lottery.offer.community] }}">
+      <view class="content-title-container">
+        <view class="uppercase gilroy_700 content-title">{{ _t.new_lottery }}</view>
+        <view class="nunito_600 content-subtitle">{{ _t.spin_to }}</view>
+      </view>
+      <view class="draw-box-container">
+        <view class="draw-detail">
+          <view class="machine">
+            <view class="machine-pure-box ziko-{{ _communities[lottery.offer.community] }}" bindtap="startSlotMachine" bindanimationend="makeDraw">
+              <view class="machine-light-box ziko-{{ _communities[lottery.offer.community] }}">
+                <view class="vertical-light">
+                  <view class="white-round"></view>
                   <view class="white-round"></view>
                   <view class="white-round"></view>
                   <view class="white-round"></view>
                   <view class="white-round"></view>
                 </view>
-                <view class="move-items">
-                  <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ column1 }}" scroll-with-animation>
-                    <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="i{{ index }}" class="content-move-box">
-                      <image src="{{ content }}" class="content-image"></image>
-                    </view>
-                  </scroll-view>
-                  <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ column2 }}" scroll-with-animation>
-                    <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="i{{ index }}" class="content-move-box">
-                      <image src="{{ content }}" class="content-image"></image>
-                    </view>
-                  </scroll-view>
-                  <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ column3 }}" scroll-with-animation>
-                    <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="i{{ index }}" class="content-move-box">
-                      <image src="{{ content }}" class="content-image"></image>
-                    </view>
-                  </scroll-view>
+                <view class="light-box-light">
+                  <view class="broadwise-light">
+                    <view class="white-round"></view>
+                    <view class="white-round"></view>
+                    <view class="white-round"></view>
+                    <view class="white-round"></view>
+                  </view>
+                  <view class="move-items" >
+                    <scroll-view class="scroll-box " scroll-y scroll-into-view="{{ column1 }}" scroll-with-animation>
+                      <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="i{{ index }}" class="content-move-box">
+                        <image src="{{ content }}" class="content-image"></image>
+                      </view>
+                    </scroll-view>
+                    <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ column2 }}" scroll-with-animation>
+                      <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="i{{ index }}" class="content-move-box">
+                        <image src="{{ content }}" class="content-image"></image>
+                      </view>
+                    </scroll-view>
+                    <scroll-view class="scroll-box" scroll-y scroll-into-view="{{ column3 }}" scroll-with-animation>
+                      <view wx:for="{{ lottery_content }}" wx:for-item="content" wx:key="index" id="i{{ index }}" class="content-move-box">
+                        <image src="{{ content }}" class="content-image"></image>
+                      </view>
+                    </scroll-view>
+                  </view>
+                  <view class="broadwise-light">
+                    <view class="white-round"></view>
+                    <view class="white-round"></view>
+                    <view class="white-round"></view>
+                    <view class="white-round"></view>
+                  </view>
                 </view>
-                <view class="broadwise-light">
+                <view class="vertical-light">
+                  <view class="white-round"></view>
                   <view class="white-round"></view>
                   <view class="white-round"></view>
                   <view class="white-round"></view>
                   <view class="white-round"></view>
                 </view>
-              </view>
-              <view class="vertical-light">
-                <view class="white-round"></view>
-                <view class="white-round"></view>
-                <view class="white-round"></view>
-                <view class="white-round"></view>
-                <view class="white-round"></view>
               </view>
             </view>
+            <view class="machine-hand">
+              <view class="machine-hand-grey-box"></view>
+              <view class="machine-hand-black-box"></view>
+              <view class="hander {{ hander_move }}"></view>
+              <view class="hander-top {{ hander_top_move }}"></view>
+              <view class="hander-ball ziko-{{ _communities[lottery.offer.community] }} {{ hander_ball_move }}" bindtap="startSlotMachine" bindanimationend="makeDraw"></view>
+            </view>
           </view>
-          <view class="machine-hand">
-            <view class="machine-hand-grey-box"></view>
-            <view class="machine-hand-black-box"></view>
-            <view class="hander {{ hander_move }}"></view>
-            <view class="hander-top {{ hander_top_move }}"></view>
-            <view class="hander-ball ziko-{{ _communities[lottery.offer.community] }} {{ hander_ball_move }}" bindtap="startSlotMachine" bindanimationend="makeDraw"></view>
-          </view>
+          <view class="nunito_500 draw-participants">{{ lottery.contestants }}{{ _t.participants }}</view>
         </view>
-        <view class="nunito_500 draw-participants">{{ lottery.contestants }}{{ _t.participants }}</view>
+        <button class="uppercase nunito_800 draw-btn" bindtap="startSlotMachine">{{ _t.discover_the }}</button>
       </view>
-      <button class="uppercase nunito_800 draw-btn" bindtap="startSlotMachine">{{ _t.discover_the }}</button>
     </view>
-
   </view>
 </modal>

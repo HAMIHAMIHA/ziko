@@ -25,21 +25,21 @@
         {
           "name": "Regular Offer",
           "pathName": "pages/offer/regular/regular",
-          "query": "id=63745336a0ce1aa2e100bc8d",
+          "query": "id=6375b8a6778dff68bcc40bcc",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "Cellar",
           "pathName": "pages/offer/cellar/cellar/cellar",
-          "query": "id=6374a056d0152b1cbee499e2",
+          "query": "id=6371c686be3ad6ed8070c7b3",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "Bourse",
           "pathName": "pages/offer/cellar/bourse/bourse",
-          "query": "id=635a05e7d56f88aee826d993",
+          "query": "id=636a273780d179c0333bd723",
           "launchMode": "default",
           "scene": null
         },

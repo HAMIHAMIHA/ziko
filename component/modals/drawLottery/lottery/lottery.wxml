@@ -1,3 +1,5 @@
-<draw id="draw_modal" bind:showResult="showResult" bind:closeModal="closeModal"></draw>
-<win id="win_modal" bind:closeModal="closeModal"></win>
-<sorry id="sorry_modal" bind:closeModal="closeModal"></sorry>
+<view catchtouchmove='true'>
+  <draw id="draw_modal" bind:showResult="showResult" bind:closeModal="closeModal"></draw>
+  <win id="win_modal" bind:closeModal="closeModal"></win>
+  <sorry id="sorry_modal" bind:closeModal="closeModal"></sorry>
+</view>
