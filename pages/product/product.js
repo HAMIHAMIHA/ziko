@@ -201,6 +201,7 @@ Page({
         products_left: i18n.products_left,
         related_recipes: i18n.related_recipes,
         storage_types: i18n.storage_types,
+        total: i18n.total,
       },
       _t_recipes: {
         _language: app.db.get('language'),

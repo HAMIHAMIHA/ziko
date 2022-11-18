@@ -44,9 +44,9 @@
             <view>
               <!-- Price -->
               <view class="nunito_600 -font_red product-price_container">
-                <text class="product-price" wx:if="{{ product.actualPrice && product.actualPrice != product.price }}">¥{{ product.actualPrice }}</text>
-                <text class="product-price" wx:elif="{{ product.formerPrice && product.formerPrice != product.price }}">¥{{ product.price }}</text>
-                <text class="product-price">¥{{ product.formerPrice ? product.formerPrice : product.price }}</text>
+                <text class="product-price" wx:if="{{ product.actualPrice && product.actualPrice != product.price }}">¥{{ fixDecimals.toFix(product.actualPrice) }}</text>
+                <text class="product-price" wx:elif="{{ product.formerPrice && product.formerPrice != product.price }}">¥{{ fixDecimals.toFix(product.price) }}</text>
+                <text class="product-price">¥{{ product.formerPrice ? fixDecimals.toFix(product.formerPrice) : fixDecimals.toFix(product.price) }}</text>
               </view>
               <!-- End of Price -->
               <quantity
@@ -315,7 +315,7 @@
       <view class="nunito_700 cartdetail-flex">
         <view class="total-content">
           <view class="detail_label nunito_500 text-right">{{ _t.total }}</view>
-          <text class="detail_result_before">¥{{ _pay_set.total + delivery_fee }}</text>
+          <text class="detail_result_before">¥{{ fixDecimals.toFix(_pay_set.total + delivery_fee) }}</text>
           <text class="detail_result">¥{{ fixDecimals.toFix(_pay_set.finalFee * discount - voucher.amount) }}</text>
         </view>
         <view class="pay-button">

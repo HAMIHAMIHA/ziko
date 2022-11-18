@@ -1,3 +1,5 @@
+<wxs module="fixDecimals" src="/utils/fixDecimals.wxs"></wxs>
+
 <template name="payment_container">
   <view class="offer-payment{{ minimum && original_price < minimum ? ' disabled' : '' }}">
     <view class="bourse-alert" wx:if="{{ _show_alert }}">
@@ -19,8 +21,8 @@
         <view class="icon_container payment-price">
           <view class="icon icon-bigbag"></view>
           <view class="icon_text">
-            <text class="price_final">¥{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total ? _pay_set.reducedTotal : _pay_set.total }}</text>
-            <text class="payment-price_original" wx:if="{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total }}">¥{{ _pay_set.total }}</text>
+            <text class="price_final">¥{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total ? fixDecimals.toFix(_pay_set.reducedTotal) : fixDecimals.toFix(_pay_set.total) }}</text>
+            <text class="payment-price_original" wx:if="{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total }}">¥{{ fixDecimals.toFix(_pay_set.total) }}</text>
           </view>
         </view>
         <view class="icon_container payment-tickets" wx:if="{{ _pay_set.tickets > 0 }}">
@@ -92,8 +94,8 @@
       <view class="cartdetail-pay-flex">
         <view class="total-content">
           <view class="detail_label nunito_500 text-right">{{ _t.total }}</view>
-          <text class="detail_result_before" wx:if="{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total }}">¥{{ _pay_set.total }}</text>
-          <text class="detail_result">¥{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total ? _pay_set.reducedTotal : _pay_set.total }}</text>
+          <text class="detail_result_before" wx:if="{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total }}">¥{{ fixDecimals.toFix(_pay_set.total) }}</text>
+          <text class="detail_result">¥{{ _pay_set.reducedTotal && _pay_set.reducedTotal != _pay_set.total ? fixDecimals.toFix(_pay_set.reducedTotal) : fixDecimals.toFix(_pay_set.total) }}</text>
         </view>
 
         <!-- Pay buttons -->

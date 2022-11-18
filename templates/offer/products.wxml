@@ -1,3 +1,5 @@
+<wxs module="fixDecimals" src="/utils/fixDecimals.wxs"></wxs>
+
 <template name="products">
   <view class="product_container{{ list_item.actualStock == 0 ? ' sold-out' : '' }}" wx:for="{{ product_list }}" wx:key="id" wx:for-item="list_item">
     <view class="flex-between flex-align-start product">
@@ -35,9 +37,9 @@
 
           <!-- Price -->
           <view class="gilroy_800 product-price_container">
-            <text class="product-price" wx:if="{{ cart.products[list_item._id].price && cart.products[list_item._id].price != list_item.price }}">¥{{ cart.products[list_item._id].price }}</text>
-            <text class="product-price" wx:elif="{{ list_item.formerPrice && list_item.formerPrice != list_item.price }}">¥{{ list_item.price }}</text>
-            <text class="product-price">¥{{ list_item.formerPrice ? list_item.formerPrice : list_item.price }}</text>
+            <text class="product-price" wx:if="{{ cart.products[list_item._id].price && cart.products[list_item._id].price != list_item.price }}">¥{{ fixDecimals.toFix(cart.products[list_item._id].price) }}</text>
+            <text class="product-price" wx:elif="{{ list_item.formerPrice && list_item.formerPrice != list_item.price }}">¥{{ fixDecimals.toFix(list_item.price) }}</text>
+            <text class="product-price">¥{{ list_item.formerPrice ? fixDecimals.toFix(list_item.formerPrice) : fixDecimals.toFix(list_item.price) }}</text>
           </view>
           <!-- End of Price -->
 

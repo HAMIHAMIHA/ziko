@@ -1,3 +1,5 @@
+<wxs module="fixDecimals" src="/utils/fixDecimals.wxs"></wxs>
+
 <view class="container container-grey{{ order.paymentStatus == 'pending' || need_reveived ? ' container-btn-bottom' : '' }}">
   <view class="white-box order-details_container">
     <view class="nunito_700 header page-header">{{ order.offer.name[_language] }}</view>
@@ -125,15 +127,15 @@
     </view>
     <view class="detail" wx:if="{{ order.lottery_discount > 0 }}">
       <text class="nunito_600 detail_label">{{ _t.ziko_lottery }}</text>
-      <text class="font_red detail_result">-¥{{ order.lottery_discount }}</text>
+      <text class="font_red detail_result">-¥{{ fixDecimals.toFix(order.lottery_discount) }}</text>
     </view>
     <view class="detail" wx:if="{{ order.special_discount > 0 }}">
       <text class="nunito_600 detail_label">{{ _t.ziko_special }}</text>
-      <text class="font_red detail_result">-¥{{ order.special_discount }}</text>
+      <text class="font_red detail_result">-¥{{ fixDecimals.toFix(order.special_discount) }}</text>
     </view>
     <view class="detail">
       <text class="nunito_600 detail_label">{{ _t.total }}</text>
-      <text class="nunito_700 detail_result">¥{{ order.actualAmount }}</text>
+      <text class="nunito_700 detail_result">¥{{ fixDecimals.toFix(order.actualAmount) }}</text>
     </view>
   </view>
 
