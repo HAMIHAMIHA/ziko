@@ -23,6 +23,12 @@
   padding: 8rpx 0 16rpx;
 }
 
+.content-body .content-label{
+  margin-top: -40rpx;
+}
+.content-body .content-image_container{
+  margin: 40rpx 0;
+}
 .content-total {
   padding-top: 32rpx;
   color: #11141B;
@@ -65,7 +71,7 @@
 .modal-container .content-title-container {
   text-align: left;
   padding-left: 220rpx;
-  margin-top: -20rpx;
+  margin-top: -40rpx;
 }
 
 
@@ -86,4 +92,5 @@
 
 .modal-container .content-foot {
   position: relative;
+  margin-top: 20rpx;
 }

@@ -190,7 +190,7 @@ export const languageMap_en = {
 
   // J
   just_won_items: "You just won some items!",
-  just_won_lottery: "You just won at the lottery!",
+  just_won_lottery: "You just won the lottery !",
   join_ziko_community: "Join Ziko community",
 
   // K
@@ -420,7 +420,7 @@ export const languageMap_en = {
     regular: "",
   },
   prizes: "prizes",
-  prize_will_be_delivered: "Your price will be delivered with your order.",
+  prize_will_be_delivered: "Your prize will be delivered with your order.",
   problem_with_order: "Need any help?",
   product_detail: "Product detail",
   products: "products",
@@ -574,11 +574,11 @@ export const languageMap_en = {
   you_win: "You Win !",
   you_won: "YOU WON!",
   your_pets: "Your pets",
-  your_price_will: "Your price will be delivered with your order.",
+  your_price_will: "Your prize will be delivered with your order.",
   you_can_add_contact: "You can contact by clicking below button.",
   you_can_add_home: "You can add your home, office or other address by clicking below button.",
   you_can_add_pet: "You can start adding a new pet by choosing the type of pet. This will help us to give better suggestions for your pets.",
-  you_just: "You just won at the lottery",
+  you_just: "You just won the lottery",
   your_ziko_name: "Your Ziko name",
   // Z
   zh: "中",
@@ -782,7 +782,7 @@ export const languageMap_zh = {
 
   // J
   just_won_items: "You just won some items!",
-  just_won_lottery: "You just won at the lottery!",
+  just_won_lottery: "You just won the lottery !",
   join_ziko_community: "Join Ziko community",
 
   // K
@@ -1164,8 +1164,8 @@ export const languageMap_zh = {
   you_win: "You Win !",
   you_won: "YOU WON!",
   your_pets: "Your pets",
-  your_price_will: "Your price will be delivered with your order.",
-  you_just: "You just won at the lottery",
+  your_price_will: "Your prize will be delivered with your order.",
+  you_just: "You just won the lottery",
   you_can_add_home: "You can add your home, office or other address by clicking below button.",
   you_can_add_pet: "You can start adding a new pet by choosing the type of pet. This will help us to give better suggestions for your pets.",
   your_ziko_name: "Your Ziko name",

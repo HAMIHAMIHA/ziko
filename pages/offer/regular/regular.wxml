@@ -89,7 +89,7 @@
 
     <!-- Share -->
     <button class="float-btn share" open-type="share">
-      <view class="icon icon-Vector"></view>
+      <view class="icon icon-newShare"></view>
     </button>
     <!-- End of Share -->
 

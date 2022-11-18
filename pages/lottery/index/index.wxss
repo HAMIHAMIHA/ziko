@@ -192,6 +192,7 @@
   align-items: center;
   padding: 10rpx;
   margin: 6rpx 0;
+  pointer-events: none;
 }
 
 .scroll-box {
