@@ -161,6 +161,7 @@ const getOrders = (page) => {
 
       // TEMP
       order_info.payment = order.statusHistory.find(status => (status.type === "payment_status" && status.value === 'paid')) ? order.statusHistory.find(status => (status.type === "payment_status" && status.value === 'paid')) : { amount: 0 };
+      order_info.payment.amount = order_info.payment.amount / 100;
 
       // Gfit info
       let gifts = [];

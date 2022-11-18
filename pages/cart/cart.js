@@ -203,14 +203,6 @@ const _getOffers = page => {
       vouchers.push(voucher);
     });
 
-    // TEMP TEST
-    // let voucherTest = [res[0]];
-    // vouchers = voucherTest;
-
-    // vouchers = res;
-
-    // community = offer.community.id;
-    // offer.community = communities[offer.community.id];
     offer = packProductDetail(offer);
 
     let delivery_dates = [];

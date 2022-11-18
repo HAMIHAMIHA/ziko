@@ -141,7 +141,7 @@ export const checkOfferSpecial = (page, offer) => {
         item_x_in_cart: () => {
           let idx = -1;
           Object.values(db.get('cart')[offer.id].products).forEach( (p, i) => {
-            if (p.shortName === special.conditionPack) {
+            if (p.shortName === special.conditionPack && p.amount > 0) {
               idx = i;
               return;
             }
