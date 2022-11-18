@@ -12,6 +12,10 @@
   /* height: calc(100vh  - var(--env-)); */
   overflow: scroll;
 }
+.cards.select{
+  height: calc(100vh - 290rpx - var(--env-));
+
+}
 
 .card {
   position: relative;

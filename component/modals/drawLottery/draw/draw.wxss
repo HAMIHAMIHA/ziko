@@ -96,10 +96,13 @@
   top: 520rpx; */
   margin-top: 80rpx;
 }
+
+
+
 .modal-container .content-title-container {
   text-align: left;
   padding-left: 220rpx;
-  margin-top: 190rpx;
+  /* margin-top: 190rpx; */
 }
 
 
@@ -188,6 +191,7 @@
   align-items: center;
   padding: 10rpx;
   margin: 6rpx 0;
+  pointer-events: none;
 }
 
 .scroll-box {

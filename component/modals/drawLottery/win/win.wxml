@@ -37,36 +37,38 @@
 
 
 <!-- TODO CSS -->
-<modal class="modal-container_header modal-star" id="modal_template" bind:closeCheck="closeCheck">
+<modal class="modal-container_header modal-star {{ _communities[lottery.offer.community] }}" id="modal_template" bind:closeCheck="closeCheck">
   <view class="modal-container" slot="content">
     <image class="draw-box-bg {{ _communities[lottery.offer.community] }}" src="/assets/images/{{ _communities[lottery.offer.community] }}_lottery.svg" bindtap="makeDraw"></image>
-    <view class="content-title-container">
-      <view class="uppercase gilroy_800 content-title">{{ _t.you_win }}!</view>
-      <view class="gilroy_700 content-subtitle">{{ _t.just_won_lottery }}</view>
-      <view class="nunito_600 content-subtitle">{{ _t.pick_up_your_item }}</view>
-    </view>
-
-    <view class="content-body">
-      <view class="nunito_800 uppercase content-label">
-        {{ _t.unlocked_at }}{{ draw.conditionValue }} {{ draw.conditionType === 'number_of_order' ? _t.orders : _t.items_sold }}
-      </view>
-      <view class="content-image_container">
-        <image class="content-image_background" src="/assets/images/starBackground.png" mode="aspectFill"></image>
-        <image class="content-image" src="{{ draw.gifts[_current].picture }}" mode="aspectFit" wx:if="{{ draw.gifts[_current].picture }}"></image>
-        <view class="content-image icon icon-gift" wx:else></view>
+    <view class="text-container {{ _communities[lottery.offer.community] }}">
+      <view class="content-title-container">
+        <view class="uppercase gilroy_800 content-title">{{ _t.you_win }}!</view>
+        <view class="gilroy_700 content-subtitle">{{ _t.just_won_lottery }}</view>
+        <view class="nunito_600 content-subtitle">{{ _t.pick_up_your_item }}</view>
       </view>
 
-      <view class="content-detail">
-        <view class="gilroy_700 uppercase content-name">{{ draw.gifts[_current].name }}</view>
-        <view class="content-draw">{{ _t.draw }} {{ draw.count }}</view>
-        <view class="content-info">{{ offer.name[_language] }} ({{ _communities[offer.community] }})</view>
-      </view>
+      <view class="content-body">
+        <view class="nunito_800 uppercase content-label">
+          {{ _t.unlocked_at }}{{ draw.conditionValue }} {{ draw.conditionType === 'number_of_order' ? _t.orders : _t.items_sold }}
+        </view>
+        <view class="content-image_container">
+          <image class="content-image_background" src="/assets/images/starBackground.png" mode="aspectFill"></image>
+          <image class="content-image" src="{{ draw.gifts[_current].picture }}" mode="aspectFit" wx:if="{{ draw.gifts[_current].picture }}"></image>
+          <view class="content-image icon icon-gift" wx:else></view>
+        </view>
 
-      <view class="content-note">{{ _t.prize_will_be_delivered }}</view>
-    </view>
-    <view class="content-foot">
-      <button class="nunito_800 uppercase content-confirm" bindtap="getPrize">{{ _t.get }}</button>
-      <view class="gilroy_700 content-total" wx:if="{{ _max_number }}">{{ _current + 1 }}/{{ _max_number + 1 }}</view>
+        <view class="content-detail">
+          <view class="gilroy_700 uppercase content-name">{{ draw.gifts[_current].name }}</view>
+          <view class="content-draw">{{ _t.draw }} {{ draw.count }}</view>
+          <view class="content-info">{{ offer.name[_language] }} ({{ _communities[offer.community] }})</view>
+        </view>
+
+        <view class="content-note">{{ _t.prize_will_be_delivered }}</view>
+      </view>
+      <view class="content-foot">
+        <button class="nunito_800 uppercase content-confirm" bindtap="getPrize">{{ _t.get }}</button>
+        <view class="gilroy_700 content-total" wx:if="{{ _max_number }}">{{ _current + 1 }}/{{ _max_number + 1 }}</view>
+      </view>
     </view>
   </view>
 </modal>

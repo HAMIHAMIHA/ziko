@@ -1,6 +1,6 @@
 <view wx:if="{{ addresses.length > 0 }}" class="container container-grey address-list{{ _setting.selecting ? ' container-btn-bottom' : '' }}">
   <view class="white-box details_container{{ select_index >= 0 ? ' selected' : '' }}">
-    <view class="cards">
+    <view class="cards {{ _setting.selecting? 'select':'' }}">
       <view
         class="card{{ select_index == index ? ' select' : '' }}"
         wx:for="{{ addresses }}"
@@ -38,7 +38,7 @@
     <navigator class="btn-outline gilroy_700" hover-class="none" url="{{ _routes.address_detail }}">{{ '+ ' + _t.add_new_address }}</navigator>
   </view>
 
-  <view class="btn-bottom" wx:if="{{ _setting.selecting }}">
+  <view class="btn-bottom " wx:if="{{ _setting.selecting }}">
     <button class="nunito_600" bindtap="select">{{ _t.select }}</button>
   </view>
 

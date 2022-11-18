@@ -665,12 +665,39 @@ button:not([size=mini]).float-contact_container {
   z-index: 100001;
 }
 
-.modal-container_header .close-btn {
-  top: calc(28rpx + 326rpx);
+.modal-container_header.kitchen .close-btn{
+  top: calc(28rpx + 270rpx);
+}
+.modal-container_header.cellar .close-btn{
+  top: calc(28rpx + 210rpx);
+}
+.modal-container_header.farm .close-btn{
+  top: calc(28rpx + 250rpx);
+}
+.modal-container_header.pet .close-btn{
+  top: calc(28rpx + 250rpx);
+}
+.modal-container_header.kitchen .icon-x{
+  color: #E3C77C;
+}
+.modal-container_header.cellar .icon-x{
+  color: #A8AFB4;
+}
+.modal-container_header.farm .icon-x{
+  color: #28C66B;
+}
+.modal-container_header.pet .icon-x{
+  color: #FF7D39;
 }
 
-.modal-container_header.modal-star .close-btn {
-  top: calc(28rpx + 340rpx);
+
+
+
+/* .modal-container_header.modal-star .close-btn {
+  top: calc(28rpx + 220rpx);
+} */
+.modal-container_header.modal-sorry .close-btn {
+  top: calc(28rpx + 76rpx);
 }
 
 .modal-container .content {
@@ -684,26 +711,32 @@ button:not([size=mini]).float-contact_container {
 }
 
 .modal-container .draw-box-bg {
-  height: 100% !important;
+  height: 1200rpx !important;
   position: absolute;
   left: 0;
   top: -50rpx;
   z-index: -1;
 }
-.draw-box-bg.kitchen{
-  top: -90rpx;
+.modal-container .text-container{
+  height: 1200rpx !important;
+  width: 100%;
+  position: absolute;
+  left: 0;
 }
-.draw-box-bg.cellar{
-  top: -30rpx;
+.text-container.kitchen{
+  top: 270rpx;
+  
 }
-.draw-box-bg.farm{
-  top: -80rpx;
-}
-.draw-box-bg.pet{
-  top: -50rpx;
+.text-container.cellar{
+  top: 210rpx;
 
 }
-
+.text-container.farm{
+  top: 250rpx;
+}
+.text-container.pet{
+  top: 250rpx;
+}
 
 
 

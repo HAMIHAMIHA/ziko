@@ -43,11 +43,11 @@
 
 
 <!-- TODO CSS -->
-<modal class="modal-container_header modal-star" id="modal_template">
+<modal class="modal-container_header modal-star {{ _communities[order.offer.community] }}" id="modal_template">
   <view class="modal-container" slot="content">
     <image class="draw-box-bg" src="/assets/images/{{ _communities[order.offer.community] }}_lottery.svg"></image>
-
-    <view class="content-title-container">
+    <view class="text-container {{ _communities[order.offer.community] }}">
+    <view class="content-title-container"> 
       <view class="uppercase gilroy_800 content-title">{{ _t.congrats }}</view>
       <view class="gilroy_700 content-subtitle">{{ _t.just_won_items }}</view>
       <view class="nunito_600 content-subtitle">{{ _t.pick_up_your_item }}</view>
@@ -81,6 +81,7 @@
       <button class="nunito_800 uppercase content-confirm" bindtap="nextItem" wx:else>{{ _t.next }}</button>
 
       <view class="gilroy_700 content-total">{{ current + 1 }}/{{ gifts.length }}</view>
+    </view>
     </view>
   </view>
 </modal>
