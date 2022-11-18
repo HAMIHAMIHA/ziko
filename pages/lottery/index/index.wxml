@@ -161,7 +161,8 @@
                   <view class="crown-context2">{{ _t.you_won }}</view>
                 </view>
               </view>
-              <view wx:elif="{{ type=='past'}} " class="betterLuck" catchtouchmove='true'>
+              <!-- There is no space -->
+              <view wx:elif="{{type=='past'}}" class="betterLuck" catchtouchmove='true'>
                   {{_t.better_luck_next_time}}
               </view>
                 <view class="font-size1 gradient-text ziko-{{ _communities[offer.community.id] }} capitalize">Ziko {{ _communities[offer.community.id] }}</view>

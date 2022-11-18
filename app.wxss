@@ -666,7 +666,7 @@ button:not([size=mini]).float-contact_container {
 }
 
 .modal-container_header.kitchen .close-btn{
-  top: calc(28rpx + 270rpx);
+  top: calc(28rpx + 290rpx);
 }
 .modal-container_header.cellar .close-btn{
   top: calc(28rpx + 210rpx);
@@ -724,7 +724,7 @@ button:not([size=mini]).float-contact_container {
   left: 0;
 }
 .text-container.kitchen{
-  top: 270rpx;
+  top: 290rpx;
   
 }
 .text-container.cellar{

@@ -77,7 +77,7 @@
         <view class="icon icon-heart"></view>
       </button>
       <button class="float-btn share" open-type="share">
-        <view class="icon icon-Vector"></view>
+        <view class="icon icon-newShare"></view>
       </button>
       <!-- End of Share -->
     </view>
