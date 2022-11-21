@@ -2,10 +2,6 @@
 const app = getApp();
 
 Component({
-  properties: {
-    tabIndex: Number
-  },
-
   data: {
     selected: 0,
     color: "#BFBFBF",
@@ -38,29 +34,13 @@ Component({
     lang: '',
   },
 
-  // lifetimes: {
-  //   // 生命周期函数，可以为函数，或一个在 methods 段中定义的方法名
-  //   attached: function () {
-  //     // console.log(this)
-  //     // 页面创建时执行
-  //     this.setData({
-  //       "list[0].text": app.globalData.i18n.the_land,
-  //       "list[1].text": app.globalData.i18n.explore,
-  //       "list[2].text": app.globalData.i18n.account,
-  //     })
-  //     console.log("tabIndex", this.properties)
-  //   },
-  // },
-
   methods: {
     switchTab(e) {
-      const data = e.currentTarget.dataset
-      const url = data.path
+      const data = e.currentTarget.dataset;
+      const url = data.path;
+
       wx.switchTab({
         url
-      })
-      this.setData({
-        selected: data.index
       })
     }
   }

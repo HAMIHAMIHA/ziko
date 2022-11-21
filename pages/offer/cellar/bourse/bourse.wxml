@@ -108,7 +108,7 @@
             </view>
           </view>
 
-          <view class="inline-block right-box">
+          <view wx:if="{{ _bourse_info.nextPrice }}" class="inline-block right-box">
             {{ _t.next_price_in }} {{ _bourse_info.remaining }}
             <text wx:if="{{ draw.conditionType === 'number_of_order'}}">{{ _t.orders }}</text>
             <text wx:else>{{ _t.offer_special_names.items_sold }}</text>

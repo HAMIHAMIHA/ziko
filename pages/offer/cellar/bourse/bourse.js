@@ -106,7 +106,7 @@ Page({
         bg_color: `linear-gradient(90deg, ${ bg_list.join(', ') })`,
         nextPrice: nextBourseInfo?.unitPrice,
         currentPrice: currentBourseInfo.unitPrice,
-        remaining: currentBourseInfo.to - offer.sold,
+        remaining: currentBourseInfo.to - offer.sold + 1,
       }
     })
 

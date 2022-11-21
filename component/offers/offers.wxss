@@ -227,6 +227,15 @@
 
 }
 
+.offer-specials .unactive .icon {
+  background: transparent;
+  color: #8C8C8C;
+}
+
+.offer-specials .unactive .icon_text {
+  color: #8C8C8C;
+}
+
 /* End of Offer Detail - Specials */
 
 /* Offer Detail - Bag */

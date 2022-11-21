@@ -8,9 +8,6 @@ const {
   mapDeliveryDates,
   _checkMediaType
 } = require("../../utils/util.js");
-const {
-  truncateText
-} = require("../../utils/util");
 
 const app = getApp();
 let leave_triggered = false; // To track if leave page already triggered
@@ -188,6 +185,9 @@ const _filterOfferData = (page, filter_type, filter_group, filter_id, filter_dat
     map: (filter_type == 'map'),
     filter_group: filter_group,
   })
+
+  app.globalData.index_type = filter_type;
+  app.globalData.filter_group = filter_group;
 
   // Change filter type if different from current
   if (current_filter.type != filter_type) {

@@ -2,19 +2,8 @@ var filters = {
   toFix: function (value) {
     return parseFloat(value.toFixed(2)) //此处2为保留两位小数
   },
-  truncateText: function (str, length) {
-    console.log("truncateText", str, length);
-    let index = 0, i = 0;
-    for (i = 0; i < length; i++) {
-      const nextIndex = str.indexOf(str, index);
-      if (nextIndex == -1) return str;
-      index = nextIndex;
-    }
-    return str.subString(0, index).padEnd(index + 3, ".");
-  }
 }
 
 module.exports = {
   toFix: filters.toFix,
-  truncateText: filters.truncateText
 }
