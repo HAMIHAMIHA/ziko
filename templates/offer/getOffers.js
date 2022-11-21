@@ -77,7 +77,8 @@ export const _getTranslations = (page, community) => {
       lottery_tickets_you_can_get: i18n.lottery_tickets_you_can_get,
       minimum: i18n.minimum,
       lottery_tickets: i18n.lottery_tickets,
-      bottles: i18n.bottles
+      bottles: i18n.bottles,
+      btl:i18n.multiple.btl
     },
     _t_product: {
       item_unit: i18n.item_unit,

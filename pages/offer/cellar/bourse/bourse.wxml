@@ -100,7 +100,8 @@
       <view class="new-progress">
         <view class="progress-top">
           <!-- TODO -->
-          <view class="inline-block left-box" style="opacity: 0;">
+          <!-- <view class="inline-block left-box" style="opacity: 0;"> -->
+          <view class="inline-block left-box" >
             <view class="yellow-top">{{ _t.lottery_tickets+' X2' }}</view>
             <view class="grey-bottom">
               <text class="ticket">10% {{ _t.off }}</text>
@@ -121,11 +122,11 @@
           <view class="arrow-steps">
             <block wx:for="{{ _bourse_info.list }}" wx:key="_id" wx:for-item="bourse" wx:key="index">
               <view
-                class="nunito_500 step{{ bourse.unitPrice == _bourse_info.currentPrice ? ' current' : ( bourse.unlocked ? ' done' : '' ) }}"
+                class="nunito_500 step{{ bourse.unitPrice == _bourse_info.currentPrice ? ' current' : ( bourse.unlocked ? ' done' : '' ) }} {{ (_bourse_info.currentProgress>=100 && bourse.unitPrice == _bourse_info.currentPrice)? 'last-filled':'' }}"
                 style="--barWidth-:{{ _bourse_info.barWidth }}rpx;"
               >
                 <view wx:if="{{ index == 0 }}" class="nunito_500 num from">{{ bourse.from }}</view>
-                <view wx:if="{{ bourse.unitPrice == _bourse_info.currentPrice }}" class="progress-current-bg" style="--filled-:{{ _bourse_info.currentProgress }}%;"></view>
+                <view wx:if="{{ bourse.unitPrice == _bourse_info.currentPrice }}" class="progress-current-bg" style="--filled-:{{ _bourse_info.currentProgress<100? _bourse_info.currentProgress:97 }}%;"></view>
                 <text class="symbol">¥</text>
                 <text class="price{{ bourse.unitPrice == _bourse_info.currentPrice ? ' nunito_700' : '' }}">{{ bourse.unitPrice }}</text>
                 <view class="nunito_500 num">{{ bourse.to }}</view>
@@ -192,6 +193,9 @@
       <view class="icon_container" wx:if="{{ _offer.views >= 50 }}">
         <view class="icon icon-eye"></view>
         <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
+      </view>
+      <view class="icon_container">
+        <view class="icon_text uppercase">{{ _offer.sold }}/{{ _offer.total }} {{_t.btl}}</view>
       </view>
     </view>
     <!-- End of Offer Count -->
