@@ -77,7 +77,8 @@ export const _getTranslations = (page, community) => {
       lottery_tickets_you_can_get: i18n.lottery_tickets_you_can_get,
       minimum: i18n.minimum,
       lottery_tickets: i18n.lottery_tickets,
-      bottles: i18n.bottles
+      bottles: i18n.bottles,
+      btl: i18n.multiple.btl
     },
     _t_product: {
       item_unit: i18n.item_unit,
@@ -510,21 +511,21 @@ export async function getOffer(page, offer_id) {
         page.setData({
           "_setting.packs.top": res[0].top + 60 / page.data.onePxToRpx, // When loading this page, there will be a delay for the countdown text. So need to add its height manually. 
         })
-      })  
+      })
     }
     if (offer.miniprogram?.lottery?.draws.length > 0 && offer.miniprogram?.lotteryEnable) {
       wx.createSelectorQuery().select('#lottery').boundingClientRect().exec(res => {
         page.setData({
           "_setting.lottery.top": res[0].top + 60 / page.data.onePxToRpx, // When loading this page, there will be a delay for the countdown text. So need to add its height manually. 
         })
-      })  
+      })
     }
     if (offer.miniprogram?.zikoSpecials.length > 0) {
       wx.createSelectorQuery().select('#specials').boundingClientRect().exec(res => {
         page.setData({
           "_setting.specials.top": res[0].top + 60 / page.data.onePxToRpx, // When loading this page, there will be a delay for the countdown text. So need to add its height manually. 
         })
-      })  
+      })
     }
 
     // Autoplay if main image is video
