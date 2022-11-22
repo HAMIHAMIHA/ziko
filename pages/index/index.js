@@ -170,6 +170,15 @@ const handleRawOffers = (page, raw_offers, res, filter_date) => {
     }),
     offers: offers
   })
+
+  let filterDates = page.selectComponent('#list_date_filters');
+  if (current_filter.type == "map") {
+    filterDates = page.selectComponent('#map_date_filter');
+  }
+  if (filterDates) {
+    filterDates.getWeekDay();
+  }
+
   _timerControl(page, true);
   showLoading(false);
 }
@@ -399,7 +408,6 @@ Page({
         time_remaining: i18n.time_remaining,
         specials: i18n.specials,
         viewers: i18n.viewers,
-        week_days: i18n.days
       }
     })
   },

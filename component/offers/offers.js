@@ -18,7 +18,7 @@ Component({
 
   data: {
     _communities: communities,
-    _language: app.db.get('language'),
+    // _language: app.db.get('language'),
   },
 
   options: {
@@ -37,6 +37,7 @@ Component({
         },
         _t: _t,
         _cart: app.db.get('cart'),
+        _language: app.db.get('language'),
       })
       // Start or end timers
       let timer = self.selectAllComponents('.timer');

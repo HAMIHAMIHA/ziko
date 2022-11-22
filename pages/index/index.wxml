@@ -43,7 +43,6 @@
     <dateFilter
       id="list_date_filters"
       days="{{ days }}"
-      week_days="{{ _t.week_days }}"
       bind:filterOffers="filterOffers"
     ></dateFilter>
     <offers id="list_offers" offers="{{ offers }}" bind:navigatePage="navigatePage"></offers>
@@ -69,7 +68,6 @@
         <dateFilter
           id="map_date_filter"
           days="{{ days }}"
-          week_days="{{ _t.week_days }}"
           bind:filterOffers="filterOffers"
         ></dateFilter>
         <scroll-view class="modal-offers_container" scroll-y="true">
