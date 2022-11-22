@@ -249,9 +249,9 @@
 
 .hander {
   position: absolute;
-  width: 30rpx;
+  width: 20rpx;
   height: 0rpx;
-  border-top: 15rpx solid black;
+  border-top: 12rpx solid black;
   border-radius: 0 28rpx 0 0;
   left: 22rpx;
   top: 138rpx;
@@ -277,7 +277,8 @@
   }
 
   100% {
-    border-right: 15rpx solid black;
+  width: 30rpx;
+  border-right: 15rpx solid black;
     height: 100rpx;
   }
 }
@@ -289,7 +290,7 @@
   border-bottom: 15rpx solid black;
   border-right: 15rpx solid black;
   border-radius: 0 0 28rpx 0;
-  left: 26rpx;
+  left: 22rpx;
   bottom: 149rpx;
   transform-origin: 100% 100% 0;
 }
@@ -310,10 +311,13 @@
 
   40% {
     height: 0;
+    width: 20rpx;
     border-right: 0;
   }
 
   100% {
+    width: 20rpx;
+    border-bottom: 10rpx solid black;
     border-right: 0;
     height: 0;
   }

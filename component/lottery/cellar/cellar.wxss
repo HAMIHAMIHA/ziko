@@ -79,12 +79,13 @@
 
 .progress-bar__values .progress-axis:after {
   content: "";
-  width: 1px;
-  height: 20rpx;
+  width: 2rpx;
+  height: 17rpx;
   margin: auto;
   padding-top: 4rpx;
-  margin-top: 20rpx;
-  background: #9A9EA6;
+  margin-top: 24rpx;
+  background: white;
+  /* background: #9A9EA6; */
   display: block;
 }
 
