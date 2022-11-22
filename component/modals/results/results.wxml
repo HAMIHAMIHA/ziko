@@ -42,7 +42,6 @@
 </modal> -->
 
 
-<!-- TODO CSS -->
 <modal class="modal-container_header modal-star {{ _communities[order.offer.community] }}" id="modal_template">
   <view class="modal-container" slot="content">
     <image class="draw-box-bg" src="/assets/images/{{ _communities[order.offer.community] }}_lottery.svg"></image>

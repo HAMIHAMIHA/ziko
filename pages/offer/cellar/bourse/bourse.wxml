@@ -194,7 +194,7 @@
         <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
       </view>
       <view class="icon_container">
-        <view class="icon_text uppercase">{{ _offer.sold }}/{{ _offer.total }} {{_t.btl}}</view>
+        <view class="icon_text uppercase">{{ _offer.sold }}/{{ _offer.total }} {{ _t.btl }}</view>
       </view>
     </view>
     <!-- End of Offer Count -->
@@ -223,7 +223,6 @@
     >
       {{ _t.products }}
     </view>
-    <!-- TEMP TODO -->
     <view
       wx:if="{{ _offer.miniprogram.packs.length > 0 }}"
       class="tabbar_item{{ _setting.currentTab == 'pack' ? ' selected' : '' }}"

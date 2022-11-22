@@ -102,9 +102,9 @@ const getOrders = (page) => {
       res.statusHistory.map( history => history.date = formatDate('yyyy-mm-dd', history.date));
     }
 
-    let temp = [];
+    let deliveryTrackingHistory = [];
     res.deliveryTrackingHistory.forEach(function (a) {
-      var check = temp.every(function (b) {
+      var check = deliveryTrackingHistory.every(function (b) {
         return a.status !== b.status;
       })
 
@@ -113,9 +113,9 @@ const getOrders = (page) => {
       a.date = splitAcceptTime[0];
 
       a.value = a.status;
-      check ? temp.push(a) : '';
+      check ? deliveryTrackingHistory.push(a) : '';
     })
-    res.states = [...res.statusHistory, ...temp];
+    res.states = [...res.statusHistory, ...deliveryTrackingHistory];
 
     let i18n = app.globalData.i18n;
     let _lang = app.db.get('language');

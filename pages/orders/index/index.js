@@ -144,6 +144,8 @@ const getOrders = (page) => {
         offer: order.offer.name,
         paymentStatus: order.paymentStatus,
         trackingStatus: order.trackingStatus,
+        offerType: order.offer.type,
+        offerEnded: new Date(order.offer.endingDate).getTime() < new Date().getTime(),
       };
       order.actualTotal = 0;
 
@@ -159,9 +161,21 @@ const getOrders = (page) => {
       order_info.orderDate = `${formatDate('yyyy-mm-dd', order.orderDate)} ${formatTime(order.orderDate)}`;
       order_info.count = countItems([...order.packs, ...order.singleItems]);
 
-      // TEMP
+      // Payment amount
       order_info.payment = order.statusHistory.find(status => (status.type === "payment_status" && status.value === 'paid')) ? order.statusHistory.find(status => (status.type === "payment_status" && status.value === 'paid')) : { amount: 0 };
       order_info.payment.amount = order_info.payment.amount / 100;
+
+      // Show ziko return or not
+      order_info.showReturn = false;
+      if ((order_info.paymentStatus === 'paid' || order_info.paymentStatus === 'rfd') && order_info.payment.amount !== order_info.actualAmount) {
+        if (order_info.offerType === 'bourse' || order_info.offerType === 'free_fall') {
+          if (order_info.offerEnded === true && order_info.payment.amount !== order_info.actualAmount) {
+            order_info.showReturn = true;
+          }
+        } else {
+          order_info.showReturn = true;
+        }
+      }
 
       // Gfit info
       let gifts = [];

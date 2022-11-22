@@ -162,19 +162,19 @@
           </view>
 
           <view class="uppercase offer-detail_content offer-specials">
-            <view wx:if="{{ offer.miniprogram.lotteryEnable && offer.miniprogram.lottery.draws.length > 0 }}" class="icon_container lottery">
+            <view class="icon_container lottery{{ offer.miniprogram.lotteryEnable && offer.miniprogram.lottery.draws.length > 0 ? '' : ' unactive' }}">
               <view class="icon icon-yuan"></view>
               <view class="icon_text">{{ _t.lottery }}</view>
             </view>
-            <view wx:if="{{ offer.miniprogram.zikoSpecials.length > 0 }}" class="icon_container specials">
+            <view class="icon_container specials{{ offer.miniprogram.zikoSpecials.length > 0 ? '' : ' unactive' }}">
               <view class="icon icon-gift"></view>
               <view class="icon_text">{{ _t.specials }}</view>
             </view>
-            <view class="icon_container orders">
+            <view class="icon_container orders" style="opacity: {{ offer.orders >= 50 ? 1 : 0 }};">
               <view class="icon icon-line icon-bag"></view>
               <view class="icon_text icon_text_grey">{{ offer.orders }}{{ _t.orders_unit }}</view>
             </view>
-            <view class="icon_container viewers">
+            <view class="icon_container viewers" style="opacity: {{ offer.views >= 50 ? 1 : 0 }};">
               <view class="icon icon-line icon-eye"></view>
               <view class="icon_text icon_text_grey">{{ offer.views ? offer.views : 0 }}{{ _t.viewers }}</view>
             </view>

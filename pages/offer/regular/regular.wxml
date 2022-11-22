@@ -130,7 +130,6 @@
     >
       {{ _t.products }}
     </view>
-    <!-- TEMP TODO -->
     <view
       wx:if="{{ _offer.miniprogram.packs.length > 0 }}"
       class="tabbar_item{{ _setting.currentTab == 'pack' ? ' selected' : '' }}"

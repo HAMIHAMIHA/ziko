@@ -14,7 +14,6 @@
 </modal> -->
 
 
-<!-- TODO CSS -->
 <modal class="modal-container_header {{ _communities[lottery.offer.community] }}" id="modal_template" bind:closeCheck="closeCheck">
   <view class="modal-container" slot="content">
     <image class="draw-box-bg {{ _communities[lottery.offer.community] }}" src="/assets/images/{{ _communities[lottery.offer.community] }}_lottery.svg" bindtap="makeDraw" mode="widthFix"></image>
