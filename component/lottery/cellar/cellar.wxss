@@ -105,15 +105,16 @@
   font-size: 18rpx;
   line-height: 22rpx;
   white-space: nowrap;
-  border-radius: 4px;
+  /* border-radius: 4px; */
+  border-radius: 8rpx 4rpx 8rpx 8rpx;
   position: absolute;
-  right: 50%;
+  right: 80%;
   bottom: 26rpx;
 }
 
-/* .progress-bar__values.progress-bar_last .progress-label {
-  right: -20rpx;
-} */
+.progress-bar__values.progress-bar_last .progress-label {
+  right: 0rpx;
+}
 
 .progress-label:before {
   content: "";
