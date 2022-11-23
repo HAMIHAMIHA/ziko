@@ -91,7 +91,7 @@
   position: absolute;
   left: var(--tag-position-);
   bottom: 0;*/
-  transform: translateX(-5%);
+  /* transform: translateX(-5%); */
 }
 
 .progress-label.unlocked {
@@ -222,7 +222,10 @@
   border-left: 32rpx solid #2E3448;
   z-index: 6;
 }
-
+.arrow-steps .price{
+  position: relative;
+  z-index: 10;
+}
 .arrow-steps .step:before {
   right: auto;
   left: -4rpx;
@@ -285,8 +288,7 @@
 .current .symbol {
   color: #2E3448;
   position: absolute;
-  transform: translate(-20rpx);
-  left: 50%;
+  left: 30%;
   z-index: 8;
 }
 
@@ -294,6 +296,8 @@
   color: #2E3448;
   position: absolute;
   /* transform: translate(-12rpx); */
+  width: 60rpx;
+  transform: translate(-20%);
   left: 50%;
   z-index: 8;
 }
@@ -316,7 +320,7 @@
 
 .arrow-steps .step.current text.symbol {
   font-size: 22rpx;
-  margin-left: 10rpx;
+  margin-left: 0rpx;
 }
 
 .arrow-steps .step.current:after {
