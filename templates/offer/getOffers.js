@@ -476,6 +476,7 @@ export async function getOffer(page, offer_id) {
         },
         total: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].total : 0,
         reducedTotal: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].reducedTotal : 0,
+        single: app.db.get('cart')[offer.id] ? app.db.get('cart')[offer.id].count : 0,
       },
       _offer: offer,
       _product_names: product_name_list,

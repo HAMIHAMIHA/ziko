@@ -220,7 +220,7 @@ const _getOffers = page => {
     offer.addon_sold = 0;
     offer_products.forEach(i => {
       total_sold += i.stock - i.actualStock;
-      if (offer.type === 'bourse' && i.type === 'items') {
+      if (offer.type === 'bourse') {
         offer.addon_sold += (i.stock - i.actualStock);
       }
     });
@@ -270,6 +270,7 @@ const _getOffers = page => {
           items: offer.minimumCartItems,
         },
         pay_disabled: false,
+        single: cart.count,
       },
     })
 

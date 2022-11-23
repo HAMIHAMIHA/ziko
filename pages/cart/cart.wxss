@@ -485,6 +485,10 @@ scroll-view {
   color: white;
 }
 
+.pay-button button.disabled {
+  background: #11141B;
+}
+
 /* Copy box */
 .copybox {
   position: fixed;

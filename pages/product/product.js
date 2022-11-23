@@ -120,8 +120,10 @@ const getProductDetail = page => {
     // Check for bourse
     if (offer.type === 'bourse') {
       offer.sold = 0
+      offer.addon_sold = 0;
       offer.miniprogram.items.forEach( i => {
         offer.sold += (i.stock - i.actualStock);
+        offer.addon_sold += (i.stock - i.actualStock);
       })
 
       getBoursePrice(offer, null);
