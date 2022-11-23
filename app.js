@@ -49,7 +49,7 @@ App({
     const getLotteryNotif = () => {
       if (self.globalData.pause_lottery_check) return;
       api.getLotteryNotifications().then(res => {
-        // if (!res.length) return; // If there's no new notification
+        if (!res.length) return; // If there's no new notification
         let page = getCurrentPages()[getCurrentPages().length - 1];
         page.selectComponent('#lottery_modal').show(res);
         self.globalData.pause_lottery_check = true;
