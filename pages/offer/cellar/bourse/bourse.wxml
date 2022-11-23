@@ -125,7 +125,7 @@
                 style="--barWidth-:{{ _bourse_info.barWidth }}rpx;"
               >
                 <view wx:if="{{ index == 0 }}" class="nunito_500 num from">{{ bourse.from }}</view>
-                <view wx:if="{{ bourse.unitPrice == _bourse_info.currentPrice }}" class="progress-current-bg" style="--filled-:{{ _bourse_info.currentProgress<100? _bourse_info.currentProgress:97 }}%;"></view>
+                <view wx:if="{{ bourse.unitPrice == _bourse_info.currentPrice }}" class="progress-current-bg {{_bourse_info.currentProgress<100?'':'borderRadius'}}" style="--filled-:{{ _bourse_info.currentProgress<100? _bourse_info.currentProgress:100 }}%;"></view>
                 <text class="symbol">¥</text>
                 <text class="price{{ bourse.unitPrice == _bourse_info.currentPrice ? ' nunito_700' : '' }}">{{ bourse.unitPrice }}</text>
                 <view class="nunito_500 num">{{ bourse.to }}</view>
@@ -194,7 +194,7 @@
         <view class="icon_text">{{ _offer.views ? _offer.views : 0 }} {{ _t.viewers }}</view>
       </view>
       <view class="icon_container">
-        <view class="icon_text uppercase">{{ _offer.sold }}/{{ _offer.total }} {{ _t.btl }}</view>
+        <view class="icon_text uppercase">{{ _offer.total - _offer.sold }}/{{ _offer.total }} {{ _t.btl }}</view>
       </view>
     </view>
     <!-- End of Offer Count -->

@@ -61,6 +61,18 @@ Component({
         hander_move: "hander_move",
         hander_top_move: "hander_top_move"
       })
+      // let time=2;
+      // let arr=['column1','column2','column3']
+      // let timer =setInterval(function() {
+      //   console.log(time)
+      //   self.setData({
+      //     [arr[time-2]]: self.data.lottery.winner ? 'i4' : `i${time}`
+      //   })
+      //   time++
+      // }, 300)   
+      // setTimeout(() => {
+      //   clearInterval(timer)
+      // }, 1200)
       setTimeout(() => {
         self.setData({
           column1: self.data.lottery.winner ? 'i4' : 'i2'

@@ -155,9 +155,10 @@
 }
 
 .yellow-top {
+  font-weight: 700;
   background-color: #FAAD14;
   border-radius: 4rpx 4rpx 0px 0px;
-  padding: 1px 20rpx;
+  padding: 2rpx 20rpx;
   line-height: 26rpx;
 }
 
@@ -213,7 +214,7 @@
   content: "";
   position: absolute;
   top: 0;
-  right: -29rpx;
+  right: -28rpx;
   width: 0;
   height: 0;
   border-top: 32rpx solid transparent;
@@ -235,7 +236,7 @@
 
 .arrow-steps .step.current:before {
   border-top: 32rpx solid #52EA9A;
-  border-bottom: 32rpx solid #52EA9A;
+  border-bottom: 33rpx solid #52EA9A;
 }
 
 .arrow-steps .step:first-child,
@@ -250,6 +251,9 @@
   border-radius: 0 8rpx 8rpx 0;
 }
 
+.borderRadius {
+  border-radius: 0 8rpx 8rpx 0;
+}
 
 .arrow-steps .step text.symbol {
   margin-left: 30rpx;
@@ -282,7 +286,7 @@
 .current .symbol {
   color: #2E3448;
   position: absolute;
-  transform: translate(-32rpx);
+  transform: translate(-20rpx);
   left: 50%;
   z-index: 8;
 }
@@ -290,7 +294,7 @@
 .current .price {
   color: #2E3448;
   position: absolute;
-  transform: translate(-12rpx);
+  /* transform: translate(-12rpx); */
   left: 50%;
   z-index: 8;
 }
