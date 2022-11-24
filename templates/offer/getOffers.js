@@ -385,7 +385,7 @@ export async function getOffer(page, offer_id) {
       }
     }
     banner.uri = `${app.folders.offer_banner}${banner.uri}`;
-    offer.media = [banner, ...offer.media];
+    // offer.media = [banner, ...offer.media];
 
     offer.media.map(media => {
       media.type = _checkMediaType(media.type);

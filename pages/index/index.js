@@ -146,15 +146,15 @@ const handleRawOffers = (page, raw_offers, res, filter_date) => {
     }
 
     // Media images for banner swiper
-    if (offer.media.length) {
-      offer.media.forEach(m => {
-        banners.uris.push({
-          uri: `${app.folders.offer_media}${m.uri}`,
-          type: _checkMediaType(m.type),
-          pause: true,
-        })
-      })
-    }
+    // if (offer.media.length) {
+    //   offer.media.forEach(m => {
+    //     banners.uris.push({
+    //       uri: `${app.folders.offer_media}${m.uri}`,
+    //       type: _checkMediaType(m.type),
+    //       pause: true,
+    //     })
+    //   })
+    // }
 
     // Modify offer data to fit page display
     offer.startTime = new Date(offer.startingDate).getTime();
