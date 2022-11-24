@@ -129,21 +129,43 @@ const handleRawOffers = (page, raw_offers, res, filter_date) => {
       zh: 'en',
       en: 'zh'
     };
-    if (offer.banner) {
-      if (offer.banner[app.db.get('language')]) {
-        banners.uris.push({
-          uri: `${app.folders.offer_banner}${offer.banner[app.db.get('language')].uri}`,
-          type: _checkMediaType(offer.banner[app.db.get('language')].type),
-          pause: true
-        });
-      } else if (offer.banner[other_banner[app.db.get('language')]]) {
-        banners.uris.push({
-          uri: `${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`,
-          type: _checkMediaType(offer.banner[other_banner[app.db.get('language')]].type),
-          pause: true
+
+    if (offer.banners) {
+      if (offer.banners[app.db.get('language')]) {
+        offer.banners[app.db.get('language')].map(banner => {
+          banners.uris.push({
+            uri: `${app.folders.offer_banner}${banner.uri}`,
+            type: _checkMediaType(banner.type),
+            pause: true
+          });
+        })
+      } else if (offer.banners[other_banner[app.db.get('language')]]) {
+        offer.banners[other_banner[app.db.get('language')]].map(banner => {
+          banners.uris.push({
+            uri: `${app.folders.offer_banner}${banner.uri}`,
+            type: _checkMediaType(banner.type),
+            pause: true
+          });
         })
       }
     }
+
+
+    // if (offer.banner) {
+    //   if (offer.banner[app.db.get('language')]) {
+    //     banners.uris.push({
+    //       uri: `${app.folders.offer_banner}${offer.banner[app.db.get('language')].uri}`,
+    //       type: _checkMediaType(offer.banner[app.db.get('language')].type),
+    //       pause: true
+    //     });
+    //   } else if (offer.banner[other_banner[app.db.get('language')]]) {
+    //     banners.uris.push({
+    //       uri: `${app.folders.offer_banner}${offer.banner[other_banner[app.db.get('language')]].uri}`,
+    //       type: _checkMediaType(offer.banner[other_banner[app.db.get('language')]].type),
+    //       pause: true
+    //     })
+    //   }
+    // }
 
     // Media images for banner swiper
     // if (offer.media.length) {
