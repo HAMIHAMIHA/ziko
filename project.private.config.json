@@ -220,6 +220,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/account/information/information",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
