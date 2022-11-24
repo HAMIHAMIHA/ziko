@@ -292,7 +292,15 @@
       <view class="if-you-need content_text nunito_400">{{ _t.if_you_need_to }}
       </view>
       <view class="contact-button_container">
-        <button class="contact-button" open-type="contact">
+        <!-- <button class="contact-button" open-type="contact"> -->
+        <button
+          class="contact-button"
+          open-type="contact"
+          send-message-title="{{ _offer.name[_language] }}"
+          send-message-path="{{ pagePath + '?id=' + _offer.id }}"
+          send-message-img="{{ _offer.media[0].uri ? _offer.media[0].uri : '' }}"
+          show-message-card="true"
+        >
           <text class="icon icon-headset"></text>
           <text class="nunito_700 height30">{{ _t.contact_customer_hero }}</text>
         </button>

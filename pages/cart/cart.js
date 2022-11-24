@@ -246,13 +246,23 @@ const _getOffers = page => {
     }
 
     // Bourse total
-    if (offer.type === "bourder") {
+    if (offer.type === "bourse") {
       OfferRules.getBoursePrice(offer, null);
     }
 
     let cart = app.db.get('cart')[offer.id];
 
+    let pagePath = app.routes.offer_regular;
+    if (offer.community === "cellar" && offer.type && offer.type !== "regular") {
+      if (offer.type == "bourse") {
+        pagePath = app.routes.offer_bourse;
+      } else {
+        pagePath = app.routes.offer_cellar;
+      }
+    }
+
     page.setData({
+      pagePath: pagePath,
       _offer: offer,
       '_t.units': app.globalData.i18n.units[offer.community],
       cart: cart,

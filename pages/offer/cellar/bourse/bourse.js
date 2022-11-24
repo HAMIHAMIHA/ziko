@@ -12,6 +12,7 @@ let countdown_timer = [];
 
 Page({
   data: {
+    pagePath: app.routes.offer_bourse,
     _setting_scrollTo: {
       height: '0',
       currentTab: "offer"

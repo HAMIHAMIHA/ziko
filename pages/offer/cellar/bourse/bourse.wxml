@@ -17,7 +17,15 @@
   <!-- End of Offer Countdown -->
 
   <!-- Contact -->
-  <button class="float-contact_container" open-type="contact">
+  <!-- <button class="float-contact_container" open-type="contact"> -->
+  <button
+    class="float-contact_container"
+    open-type="contact"
+    send-message-title="{{ _offer.name[_language] }}"
+    send-message-path="{{ pagePath + '?id=' + _offer.id }}"
+    send-message-img="{{ _offer.media[0].uri ? _offer.media[0].uri : '' }}"
+    show-message-card="true"
+  >
     <view class="icon icon-chat"></view>
   </button>
   <!-- End of Contact -->
@@ -100,7 +108,8 @@
       <view class="new-progress">
         <view class="progress-top">
           <!-- TODO -->
-          <view class="inline-block left-box" >
+          <!-- Hide it until finishing the logic -->
+          <view class="inline-block left-box" style="opacity: 0;">
             <view class="yellow-top">{{ _t.lottery_tickets+' X2' }}</view>
             <view class="grey-bottom">
               <text class="ticket">10% {{ _t.off }}</text>
