@@ -372,19 +372,19 @@ export async function getOffer(page, offer_id) {
     offer.coming = new Date(offer.startingDate).getTime() > new Date().getTime();
     offer.ended = new Date(offer.endingDate).getTime() < new Date().getTime();
 
-    // Banner
+    // Offer medias
     offer.media.map(m => m.uri = `${app.folders.offer_media}${m.uri}`)
-    let banner = {};
-    if (offer.banner) {
-      if (offer.banner[app.db.get('language')]) {
-        banner = offer.banner[app.db.get('language')];
-      } else if (app.db.get('language') === 'zh' && offer.banner.en) {
-        banner = offer.banner.en;
-      } else if (app.db.get('language') === 'en' && offer.banner.zh) {
-        banner = offer.banner.zh;
-      }
-    }
-    banner.uri = `${app.folders.offer_banner}${banner.uri}`;
+    // let banner = {};
+    // if (offer.banner) {
+    //   if (offer.banner[app.db.get('language')]) {
+    //     banner = offer.banner[app.db.get('language')];
+    //   } else if (app.db.get('language') === 'zh' && offer.banner.en) {
+    //     banner = offer.banner.en;
+    //   } else if (app.db.get('language') === 'en' && offer.banner.zh) {
+    //     banner = offer.banner.zh;
+    //   }
+    // }
+    // banner.uri = `${app.folders.offer_banner}${banner.uri}`;
     // offer.media = [banner, ...offer.media];
 
     offer.media.map(media => {
@@ -530,7 +530,7 @@ export async function getOffer(page, offer_id) {
     }
 
     // Autoplay if main image is video
-    if (offer.media[0].type === "video") {
+    if (offer.media[0]?.type === "video") {
       let play_data = {
         currentTarget: {
           dataset: {
